@@ -1,0 +1,198 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint and type check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -e ".[dev]"
+      - name: ruff check
+        run: ruff check src tests
+      - name: ruff format
+        run: ruff format --check src tests
+      - name: mypy
+        run: mypy
+
+  test:
+    name: Tests on Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - run: pip install -e ".[dev]"
+      - name: Unit, property, golden and integration tests
+        run: pytest --cov --cov-report=term-missing --cov-report=xml
+      - name: Enforce coverage floor
+        run: coverage report --fail-under=90
+
+  minimum-versions:
+    name: Oldest supported dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: pip
+      # Installing the declared floor rather than the latest release. Without
+      # this job a wrong lower bound ships silently and only breaks for users.
+      - run: pip install -e ".[dev]" "pysigma==1.0.0" "pyyaml==6.0"
+      - run: pytest -q
+
+  packaging:
+    name: Wheel builds and installs cleanly
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install build
+      - run: python -m build
+      - name: Install the wheel into a clean environment
+        run: |
+          python -m venv /tmp/check
+          /tmp/check/bin/pip install dist/*.whl
+      - name: Bundled profiles and catalog must be present in the wheel
+        run: |
+          /tmp/check/bin/python -c "
+          from sagan2sigma.mapping.context import load_catalog, load_profile
+          assert load_profile('rsigma-syslog').field('message') == '_raw'
+          assert load_catalog().resolve('ssh.rules').logsource
+          print('package data OK')
+          "
+      - run: /tmp/check/bin/sagan2sigma --version
+
+  vrl:
+    name: VRL transforms under Vector
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -e ".[dev]"
+      - name: Install Vector
+        run: |
+          curl -sL --proto '=https' --tlsv1.2 \
+            https://packages.timber.io/vector/0.39.0/vector-0.39.0-x86_64-unknown-linux-gnu.tar.gz \
+            | tar xz -C /tmp
+          echo "/tmp/vector-x86_64-unknown-linux-gnu/bin" >> "$GITHUB_PATH"
+      # The vector-enriched profile promises fields the VRL has to create. This
+      # job is what stops that promise from drifting: it executes the transforms
+      # and checks the addresses they extract against Sagan's own semantics.
+      - name: Run the bundled VRL against Vector
+        run: pytest tests/integration/test_vector_vrl.py -v
+
+  differential:
+    name: Differential semantics against rsigma
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -e ".[dev]"
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Install the rsigma engine
+        # The daemon feature carries the syslog input parser, without which the
+        # harness cannot present events in the two shapes RSigma actually sees.
+        run: cargo install --locked --features daemon rsigma
+      - name: Fetch the upstream Sagan rule corpus
+        run: git clone --depth 1 https://github.com/quadrantsec/sagan-rules.git /tmp/sagan-rules
+      # This is the only test that asks whether a converted rule *behaves* like
+      # the original. Both sides are computed independently: the Sagan side by a
+      # reference evaluator written from the engine C source, the Sigma side by
+      # the real rsigma binary. It is what caught the envelope field naming
+      # defect that silently broke a quarter of the corpus.
+      - name: Differential semantics
+        env:
+          SAGAN_RULES_DIR: /tmp/sagan-rules
+          SAGAN2SIGMA_DIFF_SAMPLE: "99999"
+        run: pytest tests/differential -v
+
+  corpus:
+    name: Upstream corpus invariants
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -e ".[dev]"
+      - name: Fetch the upstream Sagan rule corpus
+        run: git clone --depth 1 https://github.com/quadrantsec/sagan-rules.git /tmp/sagan-rules
+      # These assert the invariants that only a real corpus can exercise:
+      # every line parses, every emitted document validates, identifiers stay
+      # unique, no new upstream keyword goes unhandled and the conversion rate
+      # does not regress.
+      - name: Corpus invariants
+        env:
+          SAGAN_RULES_DIR: /tmp/sagan-rules
+        run: pytest tests/integration/test_corpus.py -v
+      - name: End-to-end run with a conversion-rate gate
+        run: |
+          sagan2sigma /tmp/sagan-rules \
+            --output /tmp/converted \
+            --min-rate 78 \
+            --fail-on-validation
+      - name: The enriched profile must recover the positional correlations
+        run: |
+          sagan2sigma /tmp/sagan-rules \
+            --output /tmp/converted-enriched \
+            --profile vector-enriched \
+            --min-rate 81 \
+            --fail-on-validation
+      - uses: actions/upload-artifact@v4
+        with:
+          name: conversion-report
+          path: |
+            /tmp/converted/CONVERSION-REPORT.md
+            /tmp/converted/conversion-report.json
+
+  publish:
+    name: Publish to PyPI
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [lint, test, minimum-versions, packaging, vrl, differential, corpus]
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install build
+      - run: python -m build
+      - uses: pypa/gh-action-pypi-publish@release/v1
