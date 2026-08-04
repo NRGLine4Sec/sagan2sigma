@@ -1,0 +1,42 @@
+# Profile: syslog events parsed natively by RSigma
+# (rsigma engine daemon --input-format syslog).
+#
+# Field names verified against crates/rsigma-runtime/src/input/syslog.rs.
+#
+# Keys are Sagan internal value names, so that this table and a rule's
+# json_map can be consulted through the same interface. Only the internal
+# values that have a syslog-level equivalent are listed: src_ip and event_id
+# deliberately have none, which is what makes the converter refuse a
+# correlation whose group-by key does not exist anywhere.
+name: rsigma-syslog
+description: >-
+  RSigma parses RFC 3164/5424 syslog itself. The message body is exposed as
+  _raw and the envelope as appname / hostname / facility / severity.
+fields:
+  message: _raw
+  program: appname
+  syslog_host: hostname
+  facility: facility
+  level: severity
+# Field names when the syslog body is a JSON document.
+#
+# This is not a stylistic variant, it is a different event shape. RSigma parses
+# the body, returns a JsonEvent built from the parsed object, and merges the
+# envelope back in under syslog_ prefixed names
+# (crates/rsigma-runtime/src/input/syslog.rs, inject_syslog_headers). The
+# unprefixed names do not exist on such an event, and neither does _raw.
+#
+# Verified by execution: a rule matching on `appname` never fires on a
+# JSON-bodied line, and one matching on `syslog_appname` does.
+json_envelope:
+  program: syslog_appname
+  syslog_host: syslog_hostname
+  facility: syslog_facility
+  level: syslog_severity
+
+notes:
+  - >-
+    When the message body is a JSON object, RSigma switches to a JsonEvent and
+    prefixes the syslog envelope with syslog_ (syslog_appname,
+    syslog_hostname). Rules derived from json_content target JSON keys
+    directly, so they remain correct in both cases.

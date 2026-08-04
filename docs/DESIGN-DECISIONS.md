@@ -1,0 +1,390 @@
+# Design decisions
+
+This document records the choices that are not obvious from the code, and the
+evidence behind them. Every entry here was either a bug that shipped and got
+caught, or a bug that was avoided because someone read the engine source
+instead of the documentation.
+
+## The three traps
+
+These are the mistakes a straightforward Sagan-to-Sigma converter makes. All
+three produce output that parses cleanly, validates against pySigma, and is
+wrong.
+
+### 1. Case sensitivity is inverted between the two formats
+
+Sagan compares `content` **case-sensitively** by default; `nocase` turns that
+off. Sigma is **case-insensitive** by default; `|cased` turns sensitivity on.
+
+A converter that copies the flag across without inverting it flips the meaning
+of every rule that does not carry `nocase`. In the upstream corpus that is
+about 7,600 rules. Nothing downstream catches it: the rules parse, they
+validate, and they match more than they should.
+
+Handled in `mapping/values.py::case_modifiers`, with a dedicated test class in
+`tests/unit/test_content.py::TestContentCaseInversion`.
+
+The `--case-policy relaxed` flag drops `|cased` everywhere. That is a
+deliberate, documented trade of fidelity for recall, not the default.
+
+### 2. `threshold` is not a correlation
+
+Three Sagan keywords look like thresholds. Only one is.
+
+| Keyword | What it actually does |
+| --- | --- |
+| `after` | genuine correlation: suppress the first N events, alert from N+1 |
+| `threshold type limit` | alert volume cap: alert on the first N per window, then stay silent |
+| `threshold type suppress` | alert volume cap with a timer that resets on every event |
+
+Only `after` changes *whether* something is a detection. The other two change
+*how often you are told*. Converting `threshold` into a Sigma `event_count`
+correlation turns a noisy detection into one that requires N occurrences, which
+is a different rule.
+
+`type suppress` is carried over as `custom_attributes['rsigma.suppress']`,
+where a downstream deduplicator can honour it. `type limit` has no equivalent
+and is dropped with `D_THRESHOLD_LIMIT`.
+
+The corpus has 1,143 `suppress` and 146 `limit` uses, against 970 real `after`
+correlations.
+
+### 3. Group-by keys need not exist as fields
+
+Sagan reasons over internal values (`src_ip`, `username`) that are populated
+after matching, not fields present in the event. `after: track by_src` groups
+on whatever Sagan decided `src_ip` was. Three cases arise:
+
+1. a `json_map` binds the internal value to a JSON key, so that key is the
+   group-by field;
+2. `parse_src_ip` or `normalize` is present, meaning Sagan extracts the address
+   by regex from the raw text. No field exists anywhere, so the rule is refused
+   with `E_GROUPBY_UNRESOLVED` and the report says the field has to be produced
+   upstream;
+3. neither applies, in which case Sagan falls back to the syslog sender. The
+   rule converts, grouping on the profile's hostname field, and carries
+   `D_GROUPBY_SYSLOG_HOST` because the grouping is now per emitting host rather
+   than per attacker.
+
+Case 3 covers 387 corpus rules. Emitting `group-by: [src_ip]` for any of these
+would produce a correlation that never fires, because no event has that field.
+
+A fourth branch sits ahead of case 2 when the active profile declares
+positional enrichment. See the next section.
+
+## Recreating what Sagan derived from raw text
+
+Case 2 above refuses 313 rules, and the refusal is correct only for as long as
+nothing produces the field. The `vector-enriched` profile plus the bundled VRL
+library change that, taking the category from 313 rules to 14.
+
+### The port is faithful, and that is the whole point
+
+`data/vrl/sagan-parse-ip.vrl` reproduces `Parse_IP()` from `src/parsers/ip.c`
+rather than approximating it with a convenient regular expression. The engine
+does something specific: it rewrites a fixed delimiter set to spaces, splits on
+whitespace, and validates each whole token with `inet_pton()`.
+
+Two branches would be lost by anyone reaching for `\d+\.\d+\.\d+\.\d+`:
+
+* **Both sides of a separator are validated** (`ip.c:476` and `556`). Sagan
+  calls `strtok_r` and tries the left half, then the right. This is what makes
+  `outside:203.0.113.7` resolve, where the address sits *after* the colon,
+  while `1.2.3.4:8080` resolves with the address *before* it. Cisco ASA is 118
+  of the affected rules, so getting this wrong would have quietly discarded the
+  largest product family in the set.
+* **The dot-count envelope** (`ip.c:255`) rejects tokens with fewer than three
+  or more than four dots, which is what stops `1.2.3` and `4.5.6.7.8` from
+  being read as addresses. A greedy regex matches `4.5.6.7` inside the latter.
+
+Validation uses VRL's `ip_to_ipv6()`, whose accept and reject behaviour matches
+`inet_pton()` for both families, including rejecting leading zeros such as
+`01.2.3.4`. That was verified by execution, not assumed.
+
+### Position is preserved because it is meaning
+
+`parse_src_ip: 2` does not mean "a source address", it means the second address
+in the message. In the corpus, 94% of `parse_src_ip` uses ask for position 1
+and 91% of `parse_dst_ip` for position 2, but positions 2 and 3 appear in 480
+rules between them.
+
+So the transform exposes `sagan_ip_1` through `sagan_ip_5`, and each converted
+rule targets the index it declared. `src_ip` and `dest_ip` exist as aliases for
+positions 1 and 2, for humans reading the events; the converter never uses them
+where a rule asked for something else.
+
+### Where the port stops, and why it says so
+
+`data/vrl/username-extraction.vrl` is explicitly **not** a port. Sagan resolves
+usernames through liblognorm rulebases, which are per-format data files, not an
+algorithm. There is nothing to reproduce faithfully, so the file opens by
+saying so and ships a starter kit of patterns for the formats the corpus groups
+by user.
+
+The same honesty applies to precedence. `engine.c:797` shows that liblognorm
+wins when it resolves an address and positional parsing is only the fallback.
+88 corpus rules carry both. They convert against the fallback and carry
+`D_NORMALIZE_PRECEDENCE`, because reproducing half a mechanism and calling it
+whole is exactly the kind of silent divergence this document exists to prevent.
+
+The 14 rules that still refuse are the honest residue: they group on a value
+only liblognorm produced, with no positional fallback to inherit.
+
+### The rules and the transforms are one deliverable
+
+A rule grouped on `sagan_ip_2` is valid Sigma that never fires if nothing
+produces `sagan_ip_2`. Shipping the profile without the transform would create
+precisely the failure this project refuses everywhere else, so
+`--emit-vector-config` is implied by the enriched profile rather than left as
+an option, and CI executes the transforms against a real Vector binary.
+
+## Where the documentation and the engine disagree
+
+The rule-keywords documentation is the best available description of the
+format, but it is not the specification. Where it and the C source disagree,
+this converter follows the source and says so in a comment.
+
+### `json_map` accepts three undocumented internal values
+
+The documentation lists fifteen internal values. The `strcmp(json_map_type, …)`
+chain in `src/rules.c` accepts eighteen: it also takes `username`, `flow_id`
+and `ja3`.
+
+`username` alone appears in 1,182 corpus rules. Following the documentation
+here would have silently dropped the binding, which in turn would have refused
+or misgrouped every user-based correlation.
+
+Encoded in `mapping/fields.py::INTERNAL_VALUES`.
+
+### `json_map: "message"` redirects the message search
+
+The documentation does mention this, in one sentence, and it is easy to miss:
+
+> `message` — Replaces existing "syslog" message with the value within the
+> specified key.
+
+The consequence is large. In a rule carrying
+`json_map: "message", ".RenderedDescription";`, a `content:` search runs
+against the `RenderedDescription` JSON key, **not** against the raw body.
+1,020 corpus rules are in that situation. Emitting `_raw|contains` for them
+produces rules that never match, because the engine sees a JSON object rather
+than the original line.
+
+Handled by `mapping/fields.py::FieldResolver`, which every message-searching
+handler consults instead of hardcoding a field name.
+
+### Sagan's option tokenisation ignores quotes
+
+Sagan splits the option block with a plain `strtok_r(rulestring, ";", …)`,
+with no quote tracking whatsoever, then applies `Between_Quotes()` per token.
+A literal semicolon therefore cannot appear inside a Sagan value; it has to be
+hex-encoded as `|3b|`.
+
+An earlier revision of this parser tracked quote state across the line, which
+is more correct in the abstract and wrong in practice: roughly 175 upstream
+rules carry an odd number of double quotes, usually a stray quote inside a JSON
+key such as `json_meta_content:!".properties".deviceDetail",…`. Sagan reads
+those rules without complaint; a quote-aware lexer desynchronises and loses the
+rest of the line.
+
+Matching the engine took parse failures from 175 to zero.
+
+### `meta_content` without `%sagan%` is a load-time error
+
+`src/rules.c` logs `lacks the meta_content 'helper' (%sagan%)` and aborts. Such
+a rule cannot run under Sagan at all, so the converter refuses it rather than
+guessing what was meant. The upstream corpus contains none.
+
+### `program` matching is a case-sensitive full-string glob
+
+`Wildcard()` in `src/util.c` supports `*` and `?` with the same semantics as a
+Sigma plain value, anchored on the whole string, and compares case-sensitively.
+Wildcards therefore pass through unescaped, and `|cased` applies.
+
+That is the opposite of `content`, where `*` and `?` are literal characters and
+must be escaped. The two are handled by different code paths for exactly this
+reason.
+
+## Refusals that are architectural, not gaps
+
+### `pass` rules
+
+> When using the `pass` option and the signature's conditions are met, no other
+> signatures are processed.
+
+That is a global short-circuit of the whole engine, not a per-rule exception.
+Sigma's nearest construct is a global filter, which suppresses named rules
+rather than aborting evaluation, and RSigma does not implement filters at all.
+Emitting a `pass` rule as an `alert` inverts its meaning: a suppression becomes
+a detection.
+
+515 corpus rules, refused with `E_PASS_RULE`. This is the single largest
+refusal category that is not a genuine expressiveness gap, and it is deliberate.
+
+### Base64 field decoding
+
+Sigma has a `base64` modifier, so this looks convertible. It is not. Sagan's
+`json_decode_base64` decodes the **field value** and then compares. Sigma's
+`base64` encodes the **searched pattern** and then compares. The two agree only
+when the encoding aligns on byte boundaries, which is not guaranteed.
+
+Refused with `E_BASE64_FIELD_DECODE`.
+
+### `xbits isnotset`
+
+Requires that an earlier event did **not** occur. Sigma correlations can only
+express conjunction and ordering, never absence. Eight corpus rules, refused
+with `E_STATE_ABSENCE`.
+
+## Rebuilding `xbits` state machines
+
+Sigma cannot express a disjunction between the rules a correlation references:
+`rules: [a, b]` in a `temporal_ordered` requires **both** to occur. Sagan's
+`xbits` are a many-to-many state machine, so a direct translation is
+impossible.
+
+The corpus makes the scale clear:
+
+| Bit | Rules that set it | Rules that test it |
+| --- | ---: | ---: |
+| `exploit_attempt` | 178 | 31 |
+| `brute_force` | 122 | 44 |
+| `recon` | 58 | 30 |
+
+Emitting one correlation per setter–tester pair would produce 5,518
+correlations for `exploit_attempt` alone.
+
+Instead, one **synthetic aggregate rule** is emitted per bit, whose detection
+is the disjunction of every setter's detection, each branch keeping its own
+negations:
+
+```yaml
+condition: (s1_selection_1 and not s1_filter_2) or (s2_selection_1) or ...
+```
+
+Each tester then gets a two-rule `temporal_ordered` correlation referencing the
+aggregate and itself. The correlation window comes from the `expire` declared
+by the **setters**, because Sagan attaches bit lifetime to `set` and not to
+`isset`. When setters disagree, the longest expiry wins, the only choice that
+cannot lose a correlation the original would have made.
+
+Aggregates are capped at `--max-xbit-branches` (default 250), with
+`D_XBIT_AGGREGATE_TRUNCATED` when the cap bites.
+
+Note that the corpus carries both `brute_force` and `brute-force` as distinct
+bits that never correlate with each other. The identifier slug preserves the
+difference, and a deterministic suffix guards against any remaining collision.
+This was caught by the corpus invariant test, not by the fixtures.
+
+## The event shape decides the field names
+
+RSigma does not expose one set of fields. It exposes two, and which one you get
+depends on whether the syslog body parsed as JSON
+(`crates/rsigma-runtime/src/input/syslog.rs`):
+
+| Body | Envelope fields | Message body |
+| --- | --- | --- |
+| plain text | `appname`, `hostname`, `facility`, `severity` | `_raw` |
+| JSON | `syslog_appname`, `syslog_hostname`, `syslog_facility`, `syslog_severity` | the parsed keys, and **no `_raw` at all** |
+
+Both were confirmed by running the engine, not merely read from the source.
+
+Two consequences, and both were live defects until the differential harness
+found them.
+
+### A JSON rule must select the prefixed envelope
+
+2,564 corpus rules, a quarter of the whole set, combine a JSON operator with an
+envelope selector such as `program`. Emitting `appname` for those produces a
+rule that parses, validates against pySigma, and can never fire, because a
+JSON-bodied event has no field by that name.
+
+Profiles therefore carry a `json_envelope` table alongside `fields`, and the
+converter picks between them from the rule itself: any of `json_content`,
+`json_meta_content`, `json_pcre` or `json_map` means the rule targets JSON
+events. The fix corrected 1,673 predicates.
+
+Vector-based profiles declare an empty `json_envelope`, because Vector emits
+one flat object either way and the names do not change.
+
+### A raw-text search on a JSON event is refused, not emitted
+
+250 corpus rules search the raw body with `content` or `pcre` while also using
+JSON operators, without a `json_map` binding `message` to a key. Under Sagan
+that works: `content` searches the syslog message, which for those events is
+the JSON text itself. Under RSigma there is no raw field on a JSON event, so
+the predicate has nothing to run against.
+
+Emitting it anyway would have been the worst available outcome: a rule that
+looks converted, counts towards the conversion rate, and silently contributes
+nothing. They are refused with `E_RAW_TEXT_ON_JSON_EVENT`, and the refusal
+message names the fix, which is to add a `json_map` binding `message` to the
+key that carries the text.
+
+This is why the headline conversion rate went **down** from 81.8% to 79.4% when
+the defect was fixed. The 2.4 points it lost were never real.
+
+## Determinism
+
+Two runs over the same corpus produce byte-identical output. This is not
+cosmetic: without it, the Git diff between two conversions is unreadable and
+regressions are invisible in review.
+
+- Rule identifiers are UUID5 values derived from the Sagan SID under a fixed
+  namespace, so a rule keeps its id forever and across profiles.
+- YAML keys are serialised in insertion order, never alphabetically.
+- Anchors and aliases are disabled.
+- Rule files and bits are iterated in sorted order.
+
+Enforced by `tests/integration/test_corpus.py::TestDeterminism` and by the
+golden files.
+
+## Proving behaviour, not just shape
+
+Every other test in this repository checks that the converter produces the
+output we expect. That cannot catch a mistaken belief about what Sagan does,
+because the same belief shapes the code and the expectation alike.
+
+`tests/differential/` asks the harder question: given an event, does the
+converted rule fire exactly when the original would have? Both answers are
+computed independently:
+
+* the Sagan side by `sagan_reference.py`, an evaluator written from the engine
+  C source that imports nothing from `sagan2sigma.mapping`;
+* the Sigma side by the real `rsigma` binary evaluating the emitted document.
+
+Events are generated from each rule rather than hand-written, so no expectation
+is baked in anywhere. Each rule gets a battery: a base event satisfying every
+positive condition, a case-flipped copy, one copy per positive literal removed,
+one per negation reintroduced, a wrong program, and a literal-asterisk probe.
+
+The harness carries a test that deliberately mis-converts a rule by dropping
+`|cased`, and asserts the disagreement is detected. Without it, a harness that
+silently compared nothing would pass.
+
+Coverage: the reference evaluator can judge 4,083 of the 10,000 corpus rules,
+the ones built only from constructs it implements. `pcre`, correlation and
+positional keywords are out of scope and are skipped rather than judged
+approximately.
+
+**What this catches**: case-sensitivity inversion, negation grouping, wildcard
+escaping, hex decoding, `json_map` redirection, numeric versus string
+comparison, envelope field naming, alternative handling in `program`.
+
+**What it cannot catch**: a misreading of the Sagan source that the reference
+evaluator and the converter happen to share. That limitation is exactly why the
+reference is written from the C rather than from the converter, and why the two
+are kept in separate packages.
+
+## Honest metadata
+
+Every emitted rule carries:
+
+```yaml
+falsepositives:
+  - "Unassessed: automatically converted, not yet tuned"
+status: experimental
+```
+
+Claiming a converted rule has no false positives would be a lie, and `status:
+stable` on a machine translation nobody has reviewed would be worse.

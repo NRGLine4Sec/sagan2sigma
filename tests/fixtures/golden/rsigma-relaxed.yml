@@ -1,0 +1,388 @@
+title: '[SSH] Authentication failure'
+id: 59e6470e-13c5-5b41-8d46-e3e50849ae85
+status: experimental
+description: Converted from Sagan rule SID 9000001 (rev 1), file synthetic.rules.
+references:
+  - https://example.org/ssh
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname:
+      - sshd
+      - openssh
+  selection_2:
+    _raw|contains: authentication failure
+  filter_3:
+    _raw|contains: frank
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '9000001'
+  sagan.rev: '1'
+  sagan.source_file: synthetic.rules
+---
+title: '[WEB] Suspicious user agent'
+id: 143efd8a-837d-5aae-9350-459ec5f07165
+status: experimental
+description: Converted from Sagan rule SID 9000002 (rev 1), file synthetic.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname: '*apache*'
+  selection_2:
+    _raw|contains: 'User Agent: scanner'
+  selection_3:
+    _raw|contains: 100\*
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '9000002'
+  sagan.rev: '1'
+  sagan.source_file: synthetic.rules
+---
+title: '[AUTH] Privileged account used'
+id: 318894a4-ffa5-544e-82bd-7a9f92be3df9
+status: experimental
+description: Converted from Sagan rule SID 9000003 (rev 1), file synthetic.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname: sudo
+  selection_2:
+    _raw|contains:
+      - USER=root
+      - USER=admin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '9000003'
+  sagan.rev: '1'
+  sagan.source_file: synthetic.rules
+---
+title: '[SYSLOG] Out of disk space'
+id: 8b136fee-ccfd-579d-8e70-186a50006aa8
+status: experimental
+description: Converted from Sagan rule SID 9000004 (rev 2), file synthetic.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|re|i: file system full|No space left on device
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: informational
+tags:
+  - sagan.classtype.hardware-event
+custom_attributes:
+  sagan.sid: '9000004'
+  sagan.rev: '2'
+  sagan.source_file: synthetic.rules
+---
+title: '[CLOUD] Trail created'
+id: a699459f-4eb7-5489-84c0-755355465ddb
+status: experimental
+description: Converted from Sagan rule SID 9000005 (rev 1), file synthetic.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname: cloudtrail.amazonaws.com
+  selection_2:
+    eventName: CreateTrail
+  filter_3:
+    userIdentity.type: AssumedRole
+  selection_4:
+    awsRegion:
+      - us-east-1
+      - eu-west-1
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1078
+  - attack.ta0005
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '9000005'
+  sagan.rev: '1'
+  sagan.source_file: synthetic.rules
+---
+title: '[WINDOWS] Service installed'
+id: 0793c4f8-a50f-57c8-bd06-7198d5acf595
+status: experimental
+description: Converted from Sagan rule SID 9000006 (rev 1), file synthetic.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname: eventlog
+  selection_2:
+    EventID: 7045
+  selection_3:
+    RenderedDescription|contains: service was installed
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '9000006'
+  sagan.rev: '1'
+  sagan.source_file: synthetic.rules
+---
+title: '[AZURE] Interactive sign-in success'
+id: 1ff3faa1-60d5-56eb-b9f9-a39dfd95c39f
+status: experimental
+description: Converted from Sagan rule SID 9000007 (rev 1), file synthetic.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname: azureEventHub
+  selection_2:
+    resultType: 0
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '9000007'
+  sagan.rev: '1'
+  sagan.source_file: synthetic.rules
+---
+title: '[CLOUD] Console login brute force'
+id: 9c95134a-d98a-52f7-8229-cd53634e295a
+name: sagan_9000008
+status: experimental
+description: Converted from Sagan rule SID 9000008 (rev 1), file synthetic.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname: signin.amazonaws.com
+  selection_2:
+    errorMessage: Failed authentication
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '9000008'
+  sagan.rev: '1'
+  sagan.source_file: synthetic.rules
+---
+title: '[CLOUD] Console login brute force (threshold 5 in 5m)'
+id: 8e61e99f-8b1f-51e9-8f0b-016322ed25cf
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_9000008
+  group-by:
+    - sourceIPAddress
+  timespan: 5m
+  condition:
+    gte: 5
+level: high
+---
+title: '[PBX] Repeated registration failure'
+id: 2c163d52-4e65-5ff5-a5e8-ecff1a1860a6
+name: sagan_9000009
+status: experimental
+description: Converted from Sagan rule SID 9000009 (rev 1), file synthetic.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname: asterisk
+  selection_2:
+    _raw|contains: Registration from
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '9000009'
+  sagan.rev: '1'
+  sagan.source_file: synthetic.rules
+  rsigma.suppress: 15m
+---
+title: '[PBX] Repeated registration failure (threshold 10 in 10m)'
+id: de4b348f-e21a-52a4-a04e-030e6ac67cc4
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_9000009
+  group-by:
+    - hostname
+  timespan: 10m
+  condition:
+    gte: 10
+level: high
+---
+title: '[AUTH] Brute force detected'
+id: eb7ee980-1fca-5f1e-85a1-ecf21ba67f05
+status: experimental
+description: Converted from Sagan rule SID 9000010 (rev 1), file synthetic.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname: sshd
+  selection_2:
+    msg: Failed password
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '9000010'
+  sagan.rev: '1'
+  sagan.source_file: synthetic.rules
+---
+title: '[AUTH] Login success after brute force'
+id: 725f241b-371f-523f-8489-0fc88297a809
+name: sagan_9000011
+status: experimental
+description: Converted from Sagan rule SID 9000011 (rev 1), file synthetic.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname: sshd
+  selection_2:
+    msg: Accepted password
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '9000011'
+  sagan.rev: '1'
+  sagan.source_file: synthetic.rules
+---
+title: '[AUTH] Login success after brute force (correlated with brute_force)'
+id: 91a757d8-e341-5e56-b29a-852323889f7f
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_9000011
+  group-by:
+    - ip
+  timespan: 6h
+level: high
+---
+title: '[TEST] Priority beats classtype'
+id: ad8cdb32-4a32-59a0-b5a6-cd4ed13be165
+status: experimental
+description: Converted from Sagan rule SID 9000012 (rev 1), file synthetic.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname: test
+  selection_2:
+    _raw|contains: x
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.hardware-event
+custom_attributes:
+  sagan.sid: '9000012'
+  sagan.rev: '1'
+  sagan.source_file: synthetic.rules
+---
+title: '[TEST] Drop action'
+id: 0c4f4a8d-6a07-56a9-bfa3-f8240f02d978
+status: experimental
+description: Converted from Sagan rule SID 9000013 (rev 1), file synthetic.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname: test
+  selection_2:
+    _raw|contains: y
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '9000013'
+  sagan.rev: '1'
+  sagan.source_file: synthetic.rules
+---
+title: Aggregate of rules setting Sagan bit brute_force
+id: d096d8bc-eae7-5535-9ff1-02c0aeca8e2c
+name: sagan_xbit_brute_force
+status: experimental
+description: Synthetic rule. Sagan set the 'brute_force' bit from 1 rule(s); since Sigma cannot express
+  an OR between correlated rules, their detections are gathered here. This rule is not meant to alert
+  on its own.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  s1_selection_1:
+    syslog_appname: sshd
+  s1_selection_2:
+    msg: Failed password
+  condition: (s1_selection_1 and s1_selection_2)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: informational
+custom_attributes:
+  sagan.xbit: brute_force
+  sagan.xbit_setters: '1'

@@ -1,0 +1,117 @@
+# Mapping from Sagan rule file names to Sigma logsource and report category.
+#
+# The source file name is the only reliable clue about which product a rule
+# targets: the Sagan corpus is organised by product, not by event category. It
+# is used to emit a meaningful logsource where a naive conversion would stamp
+# `product: syslog` on the entire corpus.
+#
+# Matching order:
+#   1. `exact`   full file name without the .rules extension
+#   2. `prefix`  file name prefix, longest match wins
+#   3. otherwise `fallback`, with a D_LOGSOURCE_FALLBACK degradation
+#
+# `category` is deliberately left unset almost everywhere. The SigmaHQ category
+# taxonomy (process_creation, network_connection and so on) describes endpoint
+# telemetry, not application syslog. Emitting a wrong category would be worse
+# than emitting none.
+
+version: 1
+
+fallback:
+  product: syslog
+
+exact:
+  apache: {product: apache, service: httpd}
+  arp: {product: linux, service: arp}
+  auditd: {product: linux, service: auditd}
+  bash: {product: linux, service: bash}
+  bind: {product: bind, service: named}
+  courier: {product: courier, service: imap}
+  dovecot: {product: dovecot, service: imap}
+  imapd: {product: imapd, service: imap}
+  nginx: {product: nginx, service: access}
+  openssh: {product: linux, service: sshd}
+  postfix: {product: postfix, service: smtpd}
+  proftpd: {product: linux, service: proftpd}
+  samba: {product: samba, service: smbd}
+  sendmail: {product: sendmail, service: smtp}
+  snmptrapd: {product: linux, service: snmptrapd}
+  snort: {product: snort, service: alert}
+  ssh: {product: linux, service: sshd}
+  su: {product: linux, service: su}
+  sudo: {product: linux, service: sudo}
+  suricata: {product: suricata, service: alert}
+  syslog: {product: linux, service: syslog}
+  systemd: {product: linux, service: systemd}
+  vsftpd: {product: linux, service: vsftpd}
+  wordpress: {product: wordpress, service: application}
+  zeek: {product: zeek, service: notice}
+
+prefix:
+  # Cloud and SaaS
+  aws-: {product: aws}
+  cloudtrail: {product: aws, service: cloudtrail}
+  gcp-: {product: gcp}
+  azure-: {product: azure}
+  azureEventHub_windows-: {product: windows}
+  azureEventHub_: {product: azure}
+  msapi-: {product: m365}
+  microsoft-defender: {product: m365, service: defender}
+  mcas: {product: m365, service: cloud_app_security}
+  onelogin: {product: onelogin}
+  okta: {product: okta}
+  box: {product: box}
+  airtables: {product: airtable}
+  # Operating systems
+  windows-: {product: windows}
+  msexchange: {product: exchange}
+  linux-: {product: linux}
+  as400: {product: as400}
+  # Network and perimeter security
+  cisco-: {product: cisco}
+  fortinet: {product: fortinet}
+  palo: {product: paloalto}
+  checkpoint: {product: checkpoint}
+  juniper: {product: juniper}
+  sonicwall: {product: sonicwall}
+  watchguard: {product: watchguard}
+  sophos: {product: sophos}
+  barracuda: {product: barracuda}
+  f5-: {product: f5}
+  zscaler: {product: zscaler}
+  citrix: {product: citrix}
+  riverbed: {product: riverbed}
+  fatpipe: {product: fatpipe}
+  adtran: {product: adtran}
+  cloudgenix: {product: cloudgenix}
+  # Endpoint and identity
+  crowdstrike: {product: crowdstrike}
+  carbonblack: {product: carbonblack}
+  bitdefender: {product: bitdefender}
+  cyberark: {product: cyberark}
+  centrify: {product: centrify}
+  yubikey: {product: yubikey}
+  duo: {product: duo}
+  # Infrastructure
+  vmware: {product: vmware}
+  veeam: {product: veeam}
+  apc-: {product: apc}
+  asterisk: {product: asterisk}
+  bomgar: {product: bomgar}
+  cacti: {product: cacti}
+  darktrace: {product: darktrace}
+
+# Report groupings. Coarser than the logsource: these answer the question
+# "which kinds of device caused conversion trouble?".
+report_categories:
+  AWS: [aws-, cloudtrail]
+  Azure and Microsoft 365: [azure, azureEventHub_, msapi-, mcas, microsoft-defender]
+  Google Cloud: [gcp-]
+  SaaS and identity: [onelogin, okta, box, airtables, duo, yubikey, centrify, cyberark]
+  Windows: [windows-, msexchange]
+  Unix and Linux: [linux, ssh, openssh, sudo, su, bash, auditd, syslog, systemd, arp, as400]
+  Applications and web: [apache, nginx, wordpress, weblabrinth, web, vsftpd, proftpd, imapd, courier, dovecot, postfix, sendmail, zimbra, vpopmail, samba, bind]
+  Network and firewalls: [cisco-, fortinet, palo, checkpoint, juniper, sonicwall, watchguard, f5-, zscaler, citrix, riverbed, fatpipe, adtran, cloudgenix, netwrix]
+  Endpoint and EDR: [crowdstrike, carbonblack, bitdefender, sophos, barracuda, artillery]
+  Infrastructure: [vmware, veeam, apc-, asterisk, bomgar, cacti, darktrace, snmptrapd, nfcapd]
+  Network detection: [snort, suricata, zeek, zeeks, bluedot, blacklist, fingerprint]

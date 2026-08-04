@@ -1,0 +1,97 @@
+# Best-effort username extraction.
+#
+# READ THIS BEFORE DEPLOYING
+# --------------------------
+# Unlike sagan-parse-ip.vrl, this file is NOT a port of Sagan behaviour.
+#
+# Sagan populates its internal `username` through liblognorm normalization
+# rulebases, which are data files describing each log format, not algorithmic
+# code. There is nothing to port faithfully. What follows is a starter kit of
+# patterns for the formats the upstream rule corpus most often groups by user,
+# written from the documented log formats of each product.
+#
+# Validate every pattern against your own logs before relying on it. A pattern
+# that silently fails to match turns a brute-force correlation into a rule that
+# never fires, which is worse than the refusal it replaced.
+#
+# Output: .sagan_username
+#
+# Ordering is deliberate: the more specific structured formats are tried first,
+# and the loose fallbacks last, so a FortiGate `user="bob"` is never mistaken
+# for the generic `user bob` pattern.
+
+body = string(.message) ?? ""
+
+# Structured key=value formats: FortiGate, Sophos, Palo Alto, many appliances.
+matched, error = parse_regex(body, r'\buser(?:name)?="(?P<name>[^"]+)"')
+if error == null {
+    .sagan_username = matched.name
+}
+
+# Same families without quoting.
+if !exists(.sagan_username) {
+    matched, error = parse_regex(body, r'\buser(?:name)?=(?P<name>[^\s,;]+)')
+    if error == null {
+        .sagan_username = matched.name
+    }
+}
+
+# Windows Security event text, as forwarded by NXLog, winlogbeat or the Azure
+# Event Hub pipeline.
+#
+# "Account Name:" appears twice in a 4625 record: once under Subject, for the
+# account that made the request, and once under "Account For Which Logon
+# Failed", for the account being attacked. Which one you want depends on the
+# rule, and the Sagan corpus does not make the distinction because liblognorm
+# resolved it per rulebase.
+#
+# This picks the first occurrence that is neither "-" nor a machine account,
+# which lands on the human account in the large majority of 4625 records.
+# Check it against your own events: if your rules should group on the targeted
+# account rather than the requesting one, take the last match instead by using
+# parse_regex_all and indexing -1.
+if !exists(.sagan_username) {
+    candidates, error = parse_regex_all(body, r'Account Name:\s+(?P<name>\S+)')
+    if error == null {
+        for_each(candidates) -> |_index, entry| {
+            name = string(entry.name) ?? ""
+            if !exists(.sagan_username) && name != "-" && !ends_with(name, "$") {
+                .sagan_username = name
+            }
+        }
+    }
+}
+
+# OpenSSH and PAM.
+if !exists(.sagan_username) {
+    matched, error = parse_regex(
+        body, r'(?:Failed|Accepted)\s+\w+\s+for\s+(?:invalid user\s+)?(?P<name>\S+)\s+from'
+    )
+    if error == null {
+        .sagan_username = matched.name
+    }
+}
+
+# sudo.
+if !exists(.sagan_username) {
+    matched, error = parse_regex(body, r'^\s*(?P<name>\S+)\s+:\s+TTY=')
+    if error == null {
+        .sagan_username = matched.name
+    }
+}
+
+# IBM i / AS400 audit records.
+if !exists(.sagan_username) {
+    matched, error = parse_regex(body, r'\bUSER\((?P<name>[^)]+)\)')
+    if error == null {
+        .sagan_username = matched.name
+    }
+}
+
+# Generic trailing fallback, intentionally last and intentionally loose.
+if !exists(.sagan_username) {
+    matched, error = parse_regex(body, r'\bfor user\s+(?P<name>[^\s,;]+)')
+    if error == null {
+        .sagan_username = matched.name
+    }
+}

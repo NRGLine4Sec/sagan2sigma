@@ -1,0 +1,40 @@
+# Profile: Vector parses syslog, runs the bundled VRL library, and forwards
+# enriched JSON to RSigma.
+#
+# This is the only profile under which correlations grouped on src_ip, dest_ip
+# or username convert instead of being refused. It assumes the transforms in
+# data/vrl/ are present in the Vector pipeline, which `sagan2sigma
+# --emit-vector-config` will write for you.
+#
+# The positional section is what makes this exact rather than approximate.
+# Sagan's `parse_src_ip: 2` means "the second address in the message", not
+# "some source address", so the converter resolves each rule against the
+# position it actually declared instead of assuming the first hit.
+name: vector-enriched
+description: >-
+  Vector with the bundled Sagan-compatible VRL transforms. Adds positional IP
+  fields and a best-effort username field on top of the vector-json profile.
+fields:
+  message: message
+  program: appname
+  syslog_host: hostname
+  facility: facility
+  level: severity
+  username: sagan_username
+positional:
+  src_ip: sagan_ip_{position}
+  dest_ip: sagan_ip_{position}
+# Vector emits one flat JSON object either way, so the envelope keeps the same
+# names whether or not the body was itself JSON. No prefixed variant is needed.
+json_envelope: {}
+
+notes:
+  - >-
+    sagan_ip_N is produced by data/vrl/sagan-parse-ip.vrl, a faithful port of
+    the engine's Parse_IP(). Positions are 1-based and follow order of
+    appearance in the message, exactly as Sagan indexes its lookup cache.
+  - >-
+    sagan_username is produced by data/vrl/username-extraction.vrl, which is a
+    best-effort starter kit rather than a port: Sagan derives usernames through
+    liblognorm rulebases, which are per-format data files with no algorithm to
+    reproduce. Validate the patterns against your own logs.

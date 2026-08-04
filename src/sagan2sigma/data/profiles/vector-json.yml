@@ -1,0 +1,24 @@
+# Profile: Vector consumes syslog and forwards JSON to RSigma.
+#
+# Field names from Vector's `syslog` source and its VRL parse_syslog()
+# function: appname, hostname, host, message, facility, severity, procid,
+# msgid, timestamp, version.
+name: vector-json
+description: >-
+  Vector parses syslog and emits a JSON object. The message body is exposed as
+  message, not as _raw.
+fields:
+  message: message
+  program: appname
+  syslog_host: hostname
+  facility: facility
+  level: severity
+# Vector emits one flat JSON object either way, so the envelope keeps the same
+# names whether or not the body was itself JSON. No prefixed variant is needed.
+json_envelope: {}
+
+notes:
+  - >-
+    Vector also exposes `host`, which equals hostname when the syslog envelope
+    carries one and the peer address otherwise. The profile keeps hostname,
+    which is closer to Sagan's syslog_host semantics.
