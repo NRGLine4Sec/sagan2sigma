@@ -23,7 +23,7 @@ behind it, so the gap in your coverage is explicit rather than silent.
 Not published to PyPI yet, so install from source:
 
 ```sh
-git clone https://github.com/OWNER/sagan2sigma.git
+git clone https://github.com/NRGLine4Sec/sagan2sigma.git
 cd sagan2sigma
 pip install .
 ```
@@ -31,7 +31,7 @@ pip install .
 Or in one line, without keeping the checkout:
 
 ```sh
-pip install "git+https://github.com/OWNER/sagan2sigma.git"
+pip install "git+https://github.com/NRGLine4Sec/sagan2sigma.git"
 ```
 
 Either way you get a `sagan2sigma` command on your PATH. Python 3.10 or newer.
