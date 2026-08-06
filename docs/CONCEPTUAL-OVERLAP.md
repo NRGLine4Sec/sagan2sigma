@@ -24,7 +24,7 @@ ATT&CK techniques it declares, and it proposes pairs a human should look at.
   written for the same attack. A lexical and tag comparison is the only thing
   that can pair those, and it does so as a triage aid, nothing more.
 
-Why this caution is not merely rhetorical is shown in section 5: of the 1,346
+Why this caution is not merely rhetorical is shown in section 5: of the 1,469
 candidate pairs this analysis proposes, only 11 also appear in the behavioural
 analysis, and only 6 are behaviourally confirmed coverage. The two methods see
 almost entirely different things. That is the point, and also the warning.
@@ -95,10 +95,10 @@ SigmaHQ with `rules-placeholder/` excluded), with the default lexical floor of
 
 | Metric | Value |
 | --- | ---: |
-| Converted rules | 7,911 |
+| Converted rules | 8,147 |
 | SigmaHQ rules | 4,013 |
-| Converted rules with at least one candidate | 798 |
-| Candidate pairs | 1,346 |
+| Converted rules with at least one candidate | 861 |
+| Candidate pairs | 1,469 |
 
 The strongest candidates are unambiguous, and they are exactly the pairs the
 behavioural method cannot see, because both sides match structured Sysmon or
@@ -119,12 +119,12 @@ first group and discards the second in seconds.
 
 ## 5. How this relates to the behavioural analysis
 
-This is the number that justifies keeping the two apart. Of the 1,346 conceptual
+This is the number that justifies keeping the two apart. Of the 1,469 conceptual
 candidate pairs:
 
 - **11** also appear anywhere in the behavioural analysis;
 - **6** are behaviourally confirmed as log-source-compatible coverage;
-- **1,335** have no behavioural co-firing at all.
+- **1,458** have no behavioural co-firing at all.
 
 So the two lenses are almost disjoint, and each is strongest where the other is
 blind. The behavioural analysis is silent on raw-text rules because they share
@@ -134,7 +134,7 @@ project can produce: conceptually about the same thing, and confirmed to fire on
 the same event. Those six are worth looking at first.
 
 The practical reading: treat the behavioural 58 as the deployable-coverage list,
-and treat these 1,346 as a review queue for detection engineers deciding, rule
+and treat these 1,469 as a review queue for detection engineers deciding, rule
 by rule, whether a converted rule is worth keeping now that SigmaHQ is deployed.
 The two answer different questions and neither replaces the other.
 

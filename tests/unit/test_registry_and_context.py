@@ -49,6 +49,8 @@ class TestRegistry:
 
     def test_families_are_disjoint(self) -> None:
         """A keyword in two families would be handled inconsistently."""
+        from sagan2sigma.mapping.positional import POSITIONAL_KEYWORDS
+
         handled = registered_keywords()
         assert not handled & MODIFIERS
         assert not handled & BLOCKING.keys()
@@ -56,6 +58,11 @@ class TestRegistry:
         assert not MODIFIERS & BLOCKING.keys()
         assert not MODIFIERS & IGNORED.keys()
         assert not IGNORED.keys() & BLOCKING.keys()
+        # Positional keywords are their own family, overlapping none of the rest.
+        assert not POSITIONAL_KEYWORDS & handled
+        assert not POSITIONAL_KEYWORDS & MODIFIERS
+        assert not POSITIONAL_KEYWORDS & IGNORED.keys()
+        assert not POSITIONAL_KEYWORDS & BLOCKING.keys()
 
     @pytest.mark.parametrize(
         ("keyword", "family"),
@@ -63,7 +70,8 @@ class TestRegistry:
             ("content", "handled"),
             ("nocase", "modifier"),
             ("sid", "ignored"),
-            ("offset", "blocking"),
+            ("offset", "positional"),
+            ("within", "positional"),
             ("bluedot", "blocking"),
             ("never_seen_before", "unknown"),
         ],

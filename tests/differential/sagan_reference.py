@@ -32,10 +32,17 @@ What it implements, and where the behaviour comes from:
 Negated options must all fail for the rule to fire, and every positive option
 must succeed: Sagan ANDs its conditions.
 
+Positional keywords are supported only when they are inert. Sagan's engine
+treats ``offset:0``, ``depth:0``, ``distance:0`` and ``within:0`` as no-ops (see
+``sagan2sigma.mapping.positional``), so a rule carrying only zero-valued ones
+means exactly what it would without them, and this evaluator matches its
+``content`` as plain substring search. A rule with an effective (non-zero)
+positional is skipped, since modelling a byte position is out of scope.
+
 Deliberately out of scope: ``pcre`` (event generation for an arbitrary regular
-expression is a different problem), correlation keywords, and positional
-matching. Rules using those are skipped by the harness rather than evaluated
-approximately.
+expression is a different problem), correlation keywords, and effective
+positional matching. Rules using those are skipped by the harness rather than
+evaluated approximately.
 """
 
 from __future__ import annotations
@@ -44,6 +51,9 @@ import re
 from dataclasses import dataclass, field
 from typing import Any
 
+from sagan2sigma.errors import Refusal
+from sagan2sigma.mapping.content import split_meta_content
+from sagan2sigma.mapping.positional import POSITIONAL_KEYWORDS, effective_positional
 from sagan2sigma.sagan.hexdec import decode_hex
 from sagan2sigma.sagan.model import SaganRule
 
@@ -78,10 +88,13 @@ SUPPORTED = frozenset(
         "default_proto",
         "default_dst_port",
         "default_src_port",
+        # Positional keywords are supported only when inert; is_supported checks
+        # the values, so their presence in SUPPORTED does not admit a rule whose
+        # positional actually bites.
+        *POSITIONAL_KEYWORDS,
     }
 )
 
-_META = re.compile(r'^\s*(?P<neg>!?)\s*"(?P<pattern>.*?)"\s*,\s*(?P<values>.+)$', re.S)
 _JSON_ARGS = re.compile(
     r'^\s*(?P<neg>!?)\s*"?\.?(?P<key>[A-Za-z0-9_.\[\]@-]+)"?\s*,\s*(?P<rest>.+)$', re.S
 )
@@ -149,8 +162,13 @@ def json_map(rule: SaganRule) -> dict[str, str]:
 
 
 def is_supported(rule: SaganRule) -> bool:
-    """Whether every option of the rule is one this evaluator implements."""
-    return rule.keywords <= SUPPORTED
+    """Whether every option of the rule is one this evaluator implements.
+
+    A positional keyword is admitted only when inert: a rule with an effective
+    (non-zero) offset, depth or distance is skipped, since this evaluator models
+    content as a plain substring search and cannot honour a byte position.
+    """
+    return rule.keywords <= SUPPORTED and not effective_positional(rule)
 
 
 def expand_values(raw: str, variables: dict[str, list[str]]) -> list[str]:
@@ -170,7 +188,7 @@ def expand_values(raw: str, variables: dict[str, list[str]]) -> list[str]:
         if token.startswith("$"):
             values.extend(variables.get(token[1:].upper(), []))
         else:
-            values.append(decode_hex(token.strip('"')))
+            values.append(decode_hex(token))
     return values
 
 
@@ -275,7 +293,7 @@ class SaganEvaluator:
             if len(text) >= 2 and text[0] == '"' and text[-1] == '"':
                 text = text[1:-1]
             nocase = "nocase" in self.rule.modifiers_after(
-                option.index, frozenset({"nocase"})
+                option.index, frozenset({"nocase"}) | POSITIONAL_KEYWORDS
             )
             present = _contains(target, decode_hex(text), nocase)
             if present == negated:
@@ -287,19 +305,24 @@ class SaganEvaluator:
         for option in self.rule.iter_options("meta_content"):
             if option.value is None:
                 continue
-            match = _META.match(option.value)
-            if match is None:
+            try:
+                negated, helper, values_string = split_meta_content(option.value)
+            except Refusal:
+                # The engine aborts on a helper with no search data; a rule that
+                # cannot load never fires.
                 return False
-            pattern = decode_hex(match.group("pattern"))
-            values = expand_values(match.group("values"), self.variables)
+            pattern = decode_hex(helper)
+            if "%sagan%" not in pattern:
+                return False
+            values = expand_values(values_string, self.variables)
             nocase = "meta_nocase" in self.rule.modifiers_after(
-                option.index, frozenset({"meta_nocase"})
+                option.index, frozenset({"meta_nocase"}) | POSITIONAL_KEYWORDS
             )
             present = any(
                 _contains(target, pattern.replace("%sagan%", value), nocase)
                 for value in values
             )
-            if present == (match.group("neg") == "!"):
+            if present == negated:
                 return False
         return True
 

@@ -27,6 +27,7 @@ from .mapping.context import Context
 from .mapping.correlation import format_timespan
 from .mapping.fields import FieldResolver
 from .mapping.ir import CorrelationSpec, RuleDraft
+from .mapping.positional import POSITIONAL_KEYWORDS, effective_positional
 from .mapping.registry import BLOCKING, IGNORED, MODIFIERS, get_handler
 from .mapping.values import CasePolicy
 from .sagan.model import ParseFailure, SaganRule
@@ -149,6 +150,7 @@ class Converter:
         """
         self._reject_pass_action(rule)
         self._reject_blocking_keywords(rule)
+        self._reject_effective_positional(rule)
         self._reject_unknown_keywords(rule)
 
         draft = RuleDraft()
@@ -231,6 +233,30 @@ class Converter:
         )
 
     @staticmethod
+    def _reject_effective_positional(rule: SaganRule) -> None:
+        """Refuse rules whose positional constraints actually bite.
+
+        A zero-valued ``offset``/``depth``/``distance``/``within`` is a no-op in
+        the Sagan engine, so a rule carrying only inert ones converts exactly as
+        if they were absent. A non-zero ``offset``, ``depth`` or ``distance`` is
+        a real byte position Sigma string modifiers cannot express, so the rule
+        is refused. See :mod:`.mapping.positional` for the engine reference.
+        """
+        effective = effective_positional(rule)
+        if not effective:
+            return
+        detail = ", ".join(f"{keyword}:{value}" for keyword, value in effective)
+        raise Refusal(
+            code=RefusalCode.POSITIONAL,
+            detail=(
+                "the rule constrains a byte position that changes what matches "
+                f"({detail}); Sigma string modifiers cannot express a byte "
+                "distance, so no faithful translation exists"
+            ),
+            keywords=tuple(sorted({keyword for keyword, _ in effective})),
+        )
+
+    @staticmethod
     def _reject_unknown_keywords(rule: SaganRule) -> None:
         """Refuse rules using keywords no handler covers.
 
@@ -243,6 +269,7 @@ class Converter:
             if get_handler(keyword) is None
             and keyword not in MODIFIERS
             and keyword not in IGNORED
+            and keyword not in POSITIONAL_KEYWORDS
         )
         if not unknown:
             return

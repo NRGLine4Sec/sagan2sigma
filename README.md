@@ -10,10 +10,10 @@ rules to a format other engines can run, notably
 [RSigma](https://github.com/timescale/rsigma).
 
 On the upstream corpus (10,000 active rules across 337 files) it converts
-**79.0%** into 8,711 Sigma documents, with zero parse failures, zero documents
+**81.4%** into 8,947 Sigma documents, with zero parse failures, zero documents
 rejected by pySigma, and zero rules the RSigma engine refuses to load. With
 `--profile vector-enriched`, which ships the transforms needed to recreate the
-fields Sagan derived from raw text, the rate rises to **81.9%**.
+fields Sagan derived from raw text, the rate rises to **84.3%**.
 
 Everything it does not convert is reported with a stable code and the reasoning
 behind it, so the gap in your coverage is explicit rather than silent.
@@ -127,8 +127,9 @@ a rule that looks right and matches the wrong thing is not. It will not convert:
 - **`pass` rules**, which abort evaluation of every remaining signature. Sigma
   has no equivalent short-circuit, and emitting them as alerts would invert
   their meaning.
-- **positional matching** (`offset`, `depth`, `distance`, `within`), which
-  Sigma string modifiers cannot express.
+- **effective positional matching**, a non-zero `offset`, `depth` or `distance`,
+  which pins a pattern to a byte position Sigma string modifiers cannot express.
+  A zero-valued positional is a no-op in the Sagan engine and is converted.
 - **external enrichment** (Bluedot, GeoIP, blacklists, Zeek Intel), which
   belongs in an ingestion pipeline.
 - **negative correlations** (`xbits isnotset`), which Sigma cannot express.
@@ -151,11 +152,12 @@ corpus converts with zero parse failures and zero rejected documents, and the
 conversion is deterministic: two runs are byte-identical.
 
 Beyond shape, behaviour is checked too. A differential harness runs every
-corpus rule it can judge, 4,083 of them, through two independent evaluators: a
+corpus rule it can judge, 4,310 of them, through two independent evaluators: a
 reference implementation of Sagan semantics written from the engine C source,
 and the real [rsigma](https://github.com/timescale/rsigma) engine evaluating
-the converted rule. Roughly 24,000 event evaluations, no disagreements. This is
-what caught the field-naming defect that silently broke a quarter of the corpus
+the converted rule. Tens of thousands of event evaluations, no disagreements.
+This is what caught the field-naming defect that silently broke a quarter of the
+corpus
 before release.
 
 The bundled VRL transforms are executed against a real Vector binary in CI, and
@@ -163,8 +165,9 @@ their address extraction is checked case by case against the branches of
 Sagan's own `Parse_IP()`.
 
 **What is not verified.** The differential harness covers detection semantics
-only. Correlation rules, `pcre` and positional constructs are outside what the
-reference evaluator can judge, and are skipped rather than approximated. No
+only. Correlation rules, `pcre` and effective (non-zero) positional constructs
+are outside what the reference evaluator can judge, and are skipped rather than
+approximated. No
 test replays real production traffic. Treat the first deployment as a tuning
 exercise, not a migration, and read the conversion report before trusting any
 of it.

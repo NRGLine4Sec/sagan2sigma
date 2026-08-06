@@ -34,7 +34,7 @@ All notable changes to this project are documented here. The format follows
   their shared ATT&CK techniques, which the behavioural analysis cannot reach
   because raw-text and structured-field rules never fire the same event. It is
   explicitly not tested equivalence and never grounds for retiring a rule; the
-  two analyses are almost disjoint on the upstream corpora (11 of 1,346
+  two analyses are almost disjoint on the upstream corpora (11 of 1,469
   conceptual candidates also appear behaviourally). Pure standard library, no
   engine, deterministic. Documented in `docs/CONCEPTUAL-OVERLAP.md`.
 - `sagan2sigma-inventory`, which merges the behavioural and conceptual reports
@@ -45,6 +45,24 @@ All notable changes to this project are documented here. The format follows
   and an unpinned list rots silently. A generated snapshot is committed at
   `docs/OVERLAP-INVENTORY.md`.
 
+### Changed
+
+- Rules whose only positional constraints are zero-valued are now converted
+  rather than refused. The Sagan engine guards every `offset`, `depth`,
+  `distance` and `within` with `if (value != 0)` (`src/content.c`,
+  `src/meta-content.c`), so `distance:0` and its kin are no-ops: the search runs
+  over the whole message, exactly as a bare `content` does, and `within` is inert
+  without a non-zero `distance`. Reading `distance:0` as an ordering constraint,
+  which the inherited Snort documentation suggests, would emit a rule that misses
+  events the original matches, so a rule with only inert positionals is converted
+  faithfully as independent `|contains` predicates. Only a non-zero `offset`,
+  `depth` or `distance`, a real byte position Sigma cannot express, is still
+  refused. This clears 245 positional refusals and lifts the upstream conversion
+  rate from 79.0% to 81.4% (8,135 of 9,997 rules; a handful of the un-blocked
+  rules then meet a different, genuine refusal). The differential harness now
+  covers them and reports zero disagreements. See `mapping/positional.py` and
+  `docs/DESIGN-DECISIONS.md`.
+
 ### Fixed
 
 - Regular expressions using lookahead, lookbehind or backreferences, and
@@ -53,6 +71,22 @@ All notable changes to this project are documented here. The format follows
   rule aborts the entire rule load, the 34 affected rules made the whole
   converted ruleset undeployable. `validate_regex` now rejects them, and the
   full corpus loads with zero refusals.
+- A `pcre` containing a `{` that is not a counted repetition, such as `{\d}`,
+  was emitted verbatim: Python's `re` reads it as a literal brace, but the Rust
+  `regex` engine rejects it and aborts the whole rule load. Two such rules were
+  exposed once the positional un-blocking let them convert. `has_unsupported_brace`
+  now refuses them; the check was verified against the engine over every `pcre`
+  in the corpus, catching all 19 it rejects with no false positives.
+- `meta_content` is now split the way the engine splits it (`src/rules.c`),
+  taking the first comma-delimited token as the helper and stripping its quotes
+  with the engine's `Between_Quotes`, rather than with a regex that assumed the
+  comma sat outside the quotes. This recovers 3 rules that were refused with
+  `E_PARSE` because they wrote their values inside the quotes, and, more
+  importantly, corrects 72 Cisco ASA/FWSM rules whose `""%sagan%"` helper made
+  the regex emit a search for `"%ASA`, a leading quote no real ASA log carries,
+  so they matched nothing. Values are now kept verbatim, since the engine does
+  not trim them either. All are covered by the differential harness with no
+  disagreement.
 - The README opened with `pip install sagan2sigma`, which fails because the
   project is not published. Replaced with the install-from-source instructions
   that work today, and added `RELEASING.md` covering publication.

@@ -27,6 +27,7 @@ from collections.abc import Callable
 from typing import TYPE_CHECKING
 
 from ..errors import RefusalCode
+from .positional import POSITIONAL_KEYWORDS
 
 if TYPE_CHECKING:  # pragma: no cover
     from ..sagan.model import SaganRule
@@ -118,16 +119,11 @@ IGNORED: dict[str, bool] = {
     "flexbits_upause": True,
 }
 
-#: Constructs with no Sigma equivalent, each with its refusal code.
+#: Constructs with no Sigma equivalent, each with its refusal code. Positional
+#: keywords are not here: a zero-valued positional is a no-op in the Sagan engine
+#: (see :mod:`.positional`), so the refusal is decided on the effective value in
+#: the converter, not on the keyword's mere presence.
 BLOCKING: dict[str, RefusalCode] = {
-    "offset": RefusalCode.POSITIONAL,
-    "depth": RefusalCode.POSITIONAL,
-    "distance": RefusalCode.POSITIONAL,
-    "within": RefusalCode.POSITIONAL,
-    "meta_offset": RefusalCode.POSITIONAL,
-    "meta_depth": RefusalCode.POSITIONAL,
-    "meta_distance": RefusalCode.POSITIONAL,
-    "meta_within": RefusalCode.POSITIONAL,
     "bluedot": RefusalCode.EXTERNAL_ENRICHMENT,
     "blacklist": RefusalCode.EXTERNAL_ENRICHMENT,
     "zeek-intel": RefusalCode.EXTERNAL_ENRICHMENT,
@@ -139,12 +135,16 @@ BLOCKING: dict[str, RefusalCode] = {
 
 
 def classify(keyword: str) -> str:
-    """Family of a keyword: handled, modifier, ignored, blocking or unknown.
+    """Family of a keyword: handled, modifier, ignored, positional, blocking, unknown.
+
+    ``positional`` keywords are inert at value zero and refused only when their
+    value bites, so they are neither a plain modifier nor unconditionally
+    blocking; the converter decides on the value.
 
     >>> classify('content'), classify('nocase'), classify('offset')
-    ('handled', 'modifier', 'blocking')
-    >>> classify('sid'), classify('made_up')
-    ('ignored', 'unknown')
+    ('handled', 'modifier', 'positional')
+    >>> classify('bluedot'), classify('sid'), classify('made_up')
+    ('blocking', 'ignored', 'unknown')
     """
     if keyword in _HANDLERS:
         return "handled"
@@ -152,6 +152,8 @@ def classify(keyword: str) -> str:
         return "modifier"
     if keyword in IGNORED:
         return "ignored"
+    if keyword in POSITIONAL_KEYWORDS:
+        return "positional"
     if keyword in BLOCKING:
         return "blocking"
     return "unknown"

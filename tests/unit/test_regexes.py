@@ -7,7 +7,12 @@ from tests.conftest import make_rule, run
 
 from sagan2sigma.errors import Refusal, RefusalCode
 from sagan2sigma.mapping.ir import RuleDraft
-from sagan2sigma.mapping.regexes import handle_pcre, parse_pcre, validate_regex
+from sagan2sigma.mapping.regexes import (
+    handle_pcre,
+    has_unsupported_brace,
+    parse_pcre,
+    validate_regex,
+)
 
 
 class TestParsePcre:
@@ -50,6 +55,11 @@ class TestValidateRegex:
             r"(*SKIP)abc",
             r"(?(1)a|b)",
             r"abc\K def",
+            # A '{' that is not a counted repetition: Python reads a literal
+            # brace, the Rust regex engine rejects it. This is the real corpus
+            # pattern that the positional un-blocking exposed.
+            r'{\d}{\d}{\d}\\*"\s*-f',
+            r"a{def}b",
         ],
     )
     def test_rejects_non_portable_constructs(self, pattern: str) -> None:
@@ -68,10 +78,29 @@ class TestValidateRegex:
             r"^\d{1,3}\.\d{1,3}$",
             r"(?i)abc",
             r"a(?:b|c)+",
+            # A well-formed counted repetition is fine, as is an escaped or
+            # in-class brace, which is a literal to both engines.
+            r"x{3}y{2,}z{1,4}",
+            r"a\{3\}b",
+            r"[a{]b",
         ],
     )
     def test_accepts_portable_patterns(self, pattern: str) -> None:
         validate_regex(pattern)
+
+    @pytest.mark.parametrize(
+        ("pattern", "unsupported"),
+        [
+            (r"{\d}", True),
+            (r"a{def}", True),
+            (r"{3}abc", False),  # a valid quantifier body, left to the engine
+            (r"\d{3}", False),
+            (r"a\{3\}b", False),  # escaped braces are literals
+            (r"[a{]b", False),  # a brace inside a character class is a literal
+        ],
+    )
+    def test_has_unsupported_brace(self, pattern: str, unsupported: bool) -> None:
+        assert has_unsupported_brace(pattern) is unsupported
 
 
 class TestHandlePcre:

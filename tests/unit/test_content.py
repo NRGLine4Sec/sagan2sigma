@@ -6,7 +6,12 @@ import pytest
 from tests.conftest import make_rule, run
 
 from sagan2sigma.errors import DegradationCode, Refusal, RefusalCode
-from sagan2sigma.mapping.content import handle_content, handle_meta_content
+from sagan2sigma.mapping.content import (
+    between_quotes,
+    handle_content,
+    handle_meta_content,
+    split_meta_content,
+)
 from sagan2sigma.mapping.ir import RuleDraft
 from sagan2sigma.mapping.values import CasePolicy
 
@@ -148,3 +153,55 @@ class TestMetaContent:
         rule = make_rule('msg:"t"; meta_content:garbage; sid:1;')
         with pytest.raises(Refusal):
             run(handle_meta_content, rule, draft, context)
+
+
+class TestMetaContentEngineSplit:
+    """The helper/values split must match Sagan's rules.c, not a tidy regex.
+
+    Sagan grabs the first comma-delimited token as the helper and strips its
+    quotes with Between_Quotes, then takes everything after that first comma as
+    the values. Matching the engine, rather than a regex that assumes the comma
+    sits outside the quotes, is what fixes the double-quote and values-in-quotes
+    forms below.
+    """
+
+    def test_between_quotes_matches_the_engine(self) -> None:
+        # Everything after the first quote, with quotes removed.
+        assert between_quotes('"Username %sagan%"') == "Username %sagan%"
+        assert between_quotes('"%sagan%') == "%sagan%"
+        # A doubled opening quote: the engine keeps the inner content, dropping
+        # every quote. This is the Cisco ASA case.
+        assert between_quotes('""%sagan%"') == "%sagan%"
+
+    def test_split_on_first_comma_even_inside_quotes(self) -> None:
+        negated, helper, values = split_meta_content('"a %sagan%,b,c"')
+        assert not negated
+        assert helper == "a %sagan%"
+        assert values == 'b,c"'
+
+    def test_no_comma_is_refused(self) -> None:
+        with pytest.raises(Refusal) as excinfo:
+            split_meta_content('"%sagan% only"')
+        assert excinfo.value.code is RefusalCode.PARSE
+
+    def test_double_quote_helper_drops_the_leading_quote(
+        self, draft: RuleDraft, context
+    ) -> None:
+        # `meta_content: ""%sagan%", %ASA,%FWSM` (Cisco ASA). The old regex
+        # emitted `"%ASA` with a spurious leading quote that no real ASA log
+        # carries; the engine-faithful split emits `%ASA`.
+        rule = make_rule('msg:"t"; meta_content:""%sagan%", %ASA,%FWSM; sid:1;')
+        run(handle_meta_content, rule, draft, context)
+        assert draft.predicates[0].values == ("%ASA", "%FWSM")
+
+    def test_values_written_inside_the_closing_quote(
+        self, draft: RuleDraft, context
+    ) -> None:
+        # `meta_content:"eventName|22 3a 20 22|%sagan%,A,B"` (AWS IAM). The values
+        # sit inside the quote; the last one keeps the trailing quote, exactly as
+        # the engine reads it. This form was refused with E_PARSE before.
+        rule = make_rule(
+            'msg:"t"; meta_content:"eventName|22 3a 20 22|%sagan%,A,B"; sid:1;'
+        )
+        run(handle_meta_content, rule, draft, context)
+        assert draft.predicates[0].values == ('eventName": "A', 'eventName": "B"')

@@ -160,7 +160,7 @@ Encoded in `mapping/fields.py::INTERNAL_VALUES`.
 
 The documentation does mention this, in one sentence, and it is easy to miss:
 
-> `message` — Replaces existing "syslog" message with the value within the
+> `message`: Replaces existing "syslog" message with the value within the
 > specified key.
 
 The consequence is large. In a rule carrying
@@ -204,6 +204,74 @@ Wildcards therefore pass through unescaped, and `|cased` applies.
 That is the opposite of `content`, where `*` and `?` are literal characters and
 must be escaped. The two are handled by different code paths for exactly this
 reason.
+
+### A zero-valued `offset`, `depth`, `distance` or `within` is a no-op
+
+The Snort syntax Sagan inherits describes `offset`, `depth`, `distance` and
+`within` as byte constraints on where a `content` match may sit. The engine
+implements them, in `src/content.c` (`Content()`) and `src/meta-content.c`,
+guarding every one with `if (value != 0)`:
+
+```c
+if ( rulestruct[rule_position].s_offset[z]   != 0 ) { ... }
+if ( rulestruct[rule_position].s_depth[z]    != 0 ) { ... }
+if ( rulestruct[rule_position].s_distance[z] != 0 ) { ...  /* within lives here */ }
+```
+
+So `offset:0`, `depth:0`, `distance:0` and `within:0` change nothing: the search
+runs over the whole message, exactly as a bare `content` does. And `within` is
+applied only inside the `distance != 0` block, so it is inert unless the same
+content also carries a non-zero `distance`.
+
+The consequence matters, because the documentation would mislead. A rule
+`content:"A"; content:"B"; distance:0` does **not** require B to follow A: with
+`distance` at zero the positional block is skipped and both are independent
+substring searches. Reading `distance:0` as "B after A", as the Snort
+documentation suggests, and emitting an ordered regex `A.*B` would produce a
+rule that misses events the original matches. A rule whose positional keywords
+are all inert is therefore converted faithfully as plain `|contains` predicates,
+and only a non-zero `offset`, `depth` or `distance`, a real byte position Sigma
+cannot express, is refused. This recovers 245 rules of the upstream corpus that
+were previously refused wholesale. See `mapping/positional.py`.
+
+One consequence to guard: un-blocking these rules exposes their `content` and
+`pcre` to the engine for the first time. Two carried a `pcre` with a `{` that is
+not a counted repetition, for example `{\d}`, which Python's `re` reads as a
+literal brace and the Rust `regex` crate rejects, taking the whole ruleset down
+at load. `has_unsupported_brace` in `mapping/regexes.py` now refuses those, and
+the property that the full converted corpus loads into RSigma with zero refusals
+holds. It was verified against the engine over every `pcre` in the corpus.
+
+### `meta_content` is split the way the engine splits it, not by a tidy regex
+
+`meta_content:"HELPER", value1, value2` searches for HELPER once per value, with
+`%sagan%` in HELPER replaced by each. The obvious way to parse it is a regex that
+reads a quoted helper, then a comma, then the values. The engine does something
+less tidy, in `src/rules.c`: it takes the first comma-delimited token as the
+helper, strips its quotes with `Between_Quotes` (`src/util.c`), and takes
+everything after that first comma as the values. Two consequences follow that
+the regex gets wrong.
+
+First, the first comma is the separator wherever it sits, even inside the
+quotes. A rule that writes its values inside the closing quote,
+`meta_content:"eventName|22 3a 20 22|%sagan%,AttachRolePolicy,PutBucketPolicy"`,
+is parsed by the engine as helper `eventName": "%sagan%` and values
+`AttachRolePolicy` and `PutBucketPolicy"`, the trailing quote included. The regex
+could not parse it at all and the rule was refused with `E_PARSE`. Three corpus
+rules were in this position.
+
+Second, `Between_Quotes` is not a balanced-quote parser: it keeps everything
+after the first quote and drops every quote it meets. So `meta_content:""%sagan%",
+%ASA,%FWSM`, with a doubled opening quote, has helper `%sagan%`, not `"%sagan%`.
+The regex, matching non-greedily, kept the stray quote and emitted a search for
+`"%ASA`, a string no real Cisco ASA log carries, so 72 Cisco rules silently
+matched nothing. Parsing the way the engine does fixes them: the search becomes
+`%ASA`, which a `%ASA-2-...` line does contain.
+
+Values are kept verbatim, quotes and all, because the engine does not trim them
+either; the stray closing quote a rule leaves on its last value is part of what
+the engine searches for. All of this is validated by the differential harness,
+which now judges these rules and reports no disagreement.
 
 ## Refusals that are architectural, not gaps
 
@@ -362,8 +430,9 @@ The harness carries a test that deliberately mis-converts a rule by dropping
 `|cased`, and asserts the disagreement is detected. Without it, a harness that
 silently compared nothing would pass.
 
-Coverage: the reference evaluator can judge 4,083 of the 10,000 corpus rules,
-the ones built only from constructs it implements. `pcre`, correlation and
+Coverage: the reference evaluator can judge 4,310 of the 10,000 corpus rules,
+the ones built only from constructs it implements, including rules whose
+positional keywords are inert. `pcre`, correlation and effective (non-zero)
 positional keywords are out of scope and are skipped rather than judged
 approximately.
 

@@ -137,8 +137,9 @@ whose condition is `not selection`, such as the SigmaHQ rule "Publicly
 Accessible RDP Service" (`condition: not selection` over a private-address CIDR
 list), fires on **every event that lacks the field it negates**. Left unchecked,
 one such rule co-fires with almost every synthesised event and is reported as
-covering thousands of unrelated converted rules. In an early run, a single Zeek
-RDP rule "covered" all 7,879 testable converted rules.
+covering thousands of unrelated converted rules. In an early run without the
+control, a single Zeek RDP rule "covered" every one of the testable converted
+rules.
 
 The fix is a negative control: the **empty event** `{}`. Every rule is evaluated
 against it once. A discriminating rule, one that needs some field to be present,
@@ -168,7 +169,7 @@ SigmaHQ rule must target the same product. A covering co-firing across
 incompatible log sources is still recorded in the JSON report, flagged
 `logsource_compatible: false`, but it is kept out of the actionable "covered"
 count, because acting on it would be a mistake. This gate alone took the covered
-count in the run below from 484 co-firings to 58 deployable ones.
+count in the run below from 521 co-firings to 58 deployable ones.
 
 ## 3. The taxonomy
 
@@ -200,18 +201,18 @@ excluded, using RSigma 0.21.0.
 
 | Metric | Converted (Sagan) | SigmaHQ |
 | --- | ---: | ---: |
-| Rules with a detection block | 7,911 | 4,013 |
-| With an engine-confirmed test event | 7,879 | 3,866 |
+| Rules with a detection block | 8,147 | 4,013 |
+| With an engine-confirmed test event | 8,114 | 3,870 |
 | Refused by the engine (uncompilable) | 0 | 0 |
 | Absence matchers, excluded | 0 | 1 |
 | Synthesised no candidate event at all | 1 | 61 |
 
-21,051 events were evaluated in one engine pass, producing 561 recorded verdicts:
+21,462 events were evaluated in one engine pass, producing 598 recorded verdicts:
 
 | Relation | Pairs |
 | --- | ---: |
 | `EQUIVALENT` | 6 |
-| `SAGAN_REDUNDANT` | 478 |
+| `SAGAN_REDUNDANT` | 515 |
 | `SAGAN_BROADER` | 19 |
 | `OVERLAP` | 58 |
 
@@ -228,7 +229,7 @@ appliances and Unix daemons, terrain SigmaHQ barely covers, while SigmaHQ is
 overwhelmingly Windows endpoint telemetry. The two libraries are largely
 complementary rather than redundant.
 
-A further **420 covering co-firings were found across incompatible log sources**
+A further **457 covering co-firings were found across incompatible log sources**
 and deliberately kept out of that count. Almost all are a SigmaHQ keyword rule
 matching a common English word in the raw body of a rule from another product:
 "Cisco File Deletion" firing on any message containing "delete", "Suspicious SQL
@@ -297,10 +298,10 @@ you to believe a similarity score.
   between a product-scoped and a category-scoped rule. Those survive as
   `logsource_compatible: false` entries for manual review.
 - **Field vocabulary.** Two rules can only fire on one event if they agree on
-  field names. Of the 7,911 converted rules carrying a detection block, 2,250
-  match only named fields and 5,570 search the raw syslog body; SigmaHQ, by
+  field names. Of the 8,147 converted rules carrying a detection block, 2,287
+  match only named fields and 5,769 search the raw syslog body; SigmaHQ, by
   contrast, is overwhelmingly structured Windows telemetry. The two corpora
-  share just 23 field names, dominated by `EventID` (1,811 converted rules,
+  share just 23 field names, dominated by `EventID` (1,849 converted rules,
   355 SigmaHQ), then a long tail of `category`, `action`, `status`,
   `operationName` (Azure) and `eventName` (CloudTrail). Overlap therefore
   concentrates in that shared vocabulary; a converted rule matching the raw body

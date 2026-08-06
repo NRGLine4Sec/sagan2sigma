@@ -60,9 +60,10 @@ REFUSAL_HELP: dict[RefusalCode, str] = {
         "side effects or metadata."
     ),
     RefusalCode.POSITIONAL: (
-        "The rule constrains where a pattern sits in the log line (offset, "
-        "depth, distance, within). Sigma string modifiers cannot express a "
-        "byte distance, so no faithful translation exists."
+        "The rule constrains where a pattern sits in the log line with a "
+        "non-zero offset, depth or distance. Sigma string modifiers cannot "
+        "express a byte position, so no faithful translation exists. A "
+        "zero-valued positional is a no-op in the Sagan engine and is converted."
     ),
     RefusalCode.EXTERNAL_ENRICHMENT: (
         "The rule queries an external source (Bluedot threat intelligence, "

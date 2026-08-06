@@ -98,6 +98,42 @@ def has_invalid_class_range(body: str) -> bool:
     return False
 
 
+#: A well-formed counted repetition: ``{m}``, ``{m,}`` or ``{m,n}``.
+_QUANTIFIER = re.compile(r"\{\d+(?:,\d*)?\}")
+
+
+def has_unsupported_brace(body: str) -> bool:
+    r"""Whether the pattern carries a ``{`` the Rust regex engine rejects.
+
+    Python's ``re`` treats a ``{`` that does not open a counted repetition as a
+    literal brace, so ``{\d}`` matches a literal ``{``, a digit and a literal
+    ``}``. The Rust ``regex`` crate behind RSigma rejects such a brace outright,
+    and one rejected rule takes the whole ruleset down at load time. Only an
+    unescaped ``{`` outside a character class is considered; an escaped ``\{``
+    and a class member ``[{]`` are literals to both engines.
+
+    >>> has_unsupported_brace(r"{\d}"), has_unsupported_brace(r"a\{3\}")
+    (True, False)
+    >>> has_unsupported_brace(r"\d{3}"), has_unsupported_brace(r"[a{]b")
+    (False, False)
+    """
+    depth = 0
+    index = 0
+    while index < len(body):
+        char = body[index]
+        if char == "\\":
+            index += 2
+            continue
+        if char == "[" and not depth:
+            depth = 1
+        elif char == "]" and depth:
+            depth = 0
+        elif char == "{" and not depth and not _QUANTIFIER.match(body, index):
+            return True
+        index += 1
+    return False
+
+
 def validate_regex(body: str, keyword: str = "pcre") -> None:
     """Check that a pattern fits the subset both Sigma and RSigma accept.
 
@@ -117,6 +153,15 @@ def validate_regex(body: str, keyword: str = "pcre") -> None:
             detail=(
                 "escaped hyphen inside a character class: Python reads it as a "
                 "literal, the Rust regex engine as an invalid range"
+            ),
+            keywords=(keyword,),
+        )
+    if has_unsupported_brace(body):
+        raise Refusal(
+            code=RefusalCode.PCRE_UNSUPPORTED,
+            detail=(
+                "a '{' that is not a counted repetition: Python reads it as a "
+                "literal brace, the Rust regex engine rejects it"
             ),
             keywords=(keyword,),
         )

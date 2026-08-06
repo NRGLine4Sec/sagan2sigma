@@ -8,22 +8,71 @@ carries ``json_map: "message", ".key"``.
 
 from __future__ import annotations
 
-import re
-
 from ..errors import Degradation, DegradationCode, Refusal, RefusalCode
 from ..sagan.hexdec import decode_hex
 from ..sagan.model import SaganRule
 from .context import Context
 from .fields import FieldResolver
 from .ir import Predicate, RuleDraft
+from .positional import POSITIONAL_KEYWORDS
 from .registry import handler
 from .values import CasePolicy, case_modifiers, escape_literal, strip_quotes
 
-#: ``meta_content: "prefix %sagan% suffix", value1,value2`` or ``, $VAR``.
-_META = re.compile(r'^\s*(?P<neg>!?)\s*"(?P<pattern>.*?)"\s*,\s*(?P<values>.+)$', re.S)
-
 #: Substitution marker of ``meta_content``.
 PLACEHOLDER = "%sagan%"
+
+
+def between_quotes(text: str) -> str:
+    r"""Reproduce Sagan's ``Between_Quotes`` (``src/util.c``).
+
+    The engine walks the string, starts capturing after the first ``"``, and
+    drops every ``"`` it meets while resetting its flag on each, so the net
+    effect is: discard anything before the first quote, then keep every
+    character except the quotes themselves. It is not a balanced-quote parser,
+    which is exactly why a stray quote left inside a value survives.
+
+    >>> between_quotes('"Username|3a| %sagan%"')
+    'Username|3a| %sagan%'
+    >>> between_quotes('"%sagan%')
+    '%sagan%'
+    """
+    out: list[str] = []
+    started = False
+    for char in text:
+        if char == '"':
+            started = True
+            continue
+        if started:
+            out.append(char)
+    return "".join(out)
+
+
+def split_meta_content(value: str) -> tuple[bool, str, str]:
+    """Split a ``meta_content`` value the way ``src/rules.c`` does.
+
+    Sagan grabs the first comma-delimited token as the helper, runs it through
+    ``Between_Quotes``, then takes everything after that first comma as the
+    search-value string. The first comma is the separator wherever it sits, even
+    inside the quotes, which is why a rule that writes its values inside the
+    closing quote, ``"eventName|22 3a 20 22|%sagan%,A,B"``, still parses: the
+    helper is ``eventName": "%sagan%`` and the values are ``A`` and ``B"``, the
+    trailing quote and all, exactly as the engine sees them.
+
+    Returns ``(negated, helper, values_string)``. Raises :class:`Refusal` when
+    there is no comma, since the engine aborts on a helper with no search data.
+    """
+    text = value.strip()
+    negated = text.startswith("!")
+    if negated:
+        text = text[1:].strip()
+    helper_token, separator, values = text.partition(",")
+    if not separator:
+        raise Refusal(
+            code=RefusalCode.PARSE,
+            detail=f"meta_content has no search value: {value!r}",
+            keywords=("meta_content",),
+        )
+    return negated, between_quotes(helper_token), values
 
 
 @handler("content")
@@ -49,7 +98,12 @@ def handle_content(
         if option.value is None:
             continue
         negated, text = strip_quotes(option.value)
-        nocase = "nocase" in rule.modifiers_after(option.index, frozenset({"nocase"}))
+        # nocase can sit after the content's positional modifiers, for example
+        # `content:"x"; distance:0; nocase`, so the scan looks through the inert
+        # positional keywords rather than stopping at the first of them.
+        nocase = "nocase" in rule.modifiers_after(
+            option.index, frozenset({"nocase"}) | POSITIONAL_KEYWORDS
+        )
         draft.add(
             Predicate(
                 field=resolver.message,
@@ -85,16 +139,8 @@ def handle_meta_content(
     for option in rule.iter_options("meta_content"):
         if option.value is None:
             continue
-        match = _META.match(option.value)
-        if match is None:
-            raise Refusal(
-                code=RefusalCode.PARSE,
-                detail=f"unparsable meta_content: {option.value!r}",
-                keywords=("meta_content",),
-            )
-
-        negated = match.group("neg") == "!"
-        pattern = decode_hex(match.group("pattern"))
+        negated, helper, values_string = split_meta_content(option.value)
+        pattern = decode_hex(helper)
         if PLACEHOLDER not in pattern:
             raise Refusal(
                 code=RefusalCode.PARSE,
@@ -105,9 +151,9 @@ def handle_meta_content(
                 keywords=("meta_content",),
             )
 
-        values = _resolve_values(match.group("values"), context)
+        values = _resolve_values(values_string, context)
         nocase = "meta_nocase" in rule.modifiers_after(
-            option.index, frozenset({"meta_nocase"})
+            option.index, frozenset({"meta_nocase"}) | POSITIONAL_KEYWORDS
         )
         expanded = tuple(
             escape_literal(pattern.replace(PLACEHOLDER, value)) for value in values
@@ -164,7 +210,10 @@ def _resolve_values(raw: str, context: Context) -> list[str]:
                 )
             values.extend(decode_hex(value) for value in expanded)
         else:
-            values.append(decode_hex(token.strip('"')))
+            # No quote stripping: the engine does not trim a value, so a stray
+            # quote left in one, such as the closing quote of a rule that wrote
+            # its values inside the quotes, is part of the search string.
+            values.append(decode_hex(token))
     if not values:
         raise Refusal(
             code=RefusalCode.PARSE,
