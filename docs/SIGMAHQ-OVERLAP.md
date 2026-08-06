@@ -121,8 +121,8 @@ RSigma compiles a rule set as a whole, and **a single rule it cannot compile
 aborts the entire load** with no rules loaded at all. pySigma does not catch
 these, and neither does `rsigma rule validate`: the rejection happens at engine
 compile time, on constructs the Rust `regex` crate refuses but Python's `re`
-accepts (lookarounds, backreferences, an escaped hyphen forming an invalid
-character-class range). So before any analysis, each corpus is screened by
+accepts (lookarounds, backreferences, a brace that is not a counted
+repetition). So before any analysis, each corpus is screened by
 **bisection**: a batch that compiles is accepted wholesale, one that does not is
 split until the offenders are isolated. That costs O(k log n) engine invocations
 for k bad rules and is exact. The refused rules are removed and reported, never
@@ -201,13 +201,13 @@ excluded, using RSigma 0.21.0.
 
 | Metric | Converted (Sagan) | SigmaHQ |
 | --- | ---: | ---: |
-| Rules with a detection block | 8,147 | 4,013 |
-| With an engine-confirmed test event | 8,114 | 3,870 |
+| Rules with a detection block | 8,152 | 4,013 |
+| With an engine-confirmed test event | 8,119 | 3,870 |
 | Refused by the engine (uncompilable) | 0 | 0 |
 | Absence matchers, excluded | 0 | 1 |
 | Synthesised no candidate event at all | 1 | 61 |
 
-21,462 events were evaluated in one engine pass, producing 598 recorded verdicts:
+21,472 events were evaluated in one engine pass, producing 598 recorded verdicts:
 
 | Relation | Pairs |
 | --- | ---: |
@@ -298,10 +298,10 @@ you to believe a similarity score.
   between a product-scoped and a category-scoped rule. Those survive as
   `logsource_compatible: false` entries for manual review.
 - **Field vocabulary.** Two rules can only fire on one event if they agree on
-  field names. Of the 8,147 converted rules carrying a detection block, 2,287
-  match only named fields and 5,769 search the raw syslog body; SigmaHQ, by
+  field names. Of the 8,152 converted rules carrying a detection block, 2,291
+  match only named fields and 5,770 search the raw syslog body; SigmaHQ, by
   contrast, is overwhelmingly structured Windows telemetry. The two corpora
-  share just 23 field names, dominated by `EventID` (1,849 converted rules,
+  share just 23 field names, dominated by `EventID` (1,851 converted rules,
   355 SigmaHQ), then a long tail of `category`, `action`, `status`,
   `operationName` (Azure) and `eventName` (CloudTrail). Overlap therefore
   concentrates in that shared vocabulary; a converted rule matching the raw body

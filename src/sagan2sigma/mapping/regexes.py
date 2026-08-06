@@ -35,7 +35,10 @@ _FLAG_IGNORED = frozenset("gxAEOSUD")
 #: ``re`` accepts both, so a converter that validates only against ``re`` emits
 #: rules the target engine refuses. Worse, RSigma aborts the **entire** rule
 #: load on one such rule, so a single unconverted lookahead takes the whole
-#: ruleset offline. 34 rules of the upstream corpus are in that position.
+#: ruleset offline. What the crate accepts is checked against the engine, not
+#: guessed: an escaped hyphen inside a character class, once refused here, was
+#: found to compile in the RSigma versions this targets and is no longer
+#: rejected.
 _UNSUPPORTED: tuple[tuple[re.Pattern[str], str], ...] = (
     (re.compile(r"\(\?[0-9+-]"), "subroutine call"),
     (re.compile(r"\(\?R\)"), "recursion"),
@@ -57,45 +60,6 @@ _UNSUPPORTED: tuple[tuple[re.Pattern[str], str], ...] = (
         "named backreference, unsupported by the Rust regex engine",
     ),
 )
-
-
-def has_invalid_class_range(body: str) -> bool:
-    r"""Whether a character class contains an escaped hyphen mid-class.
-
-    ``[\!\-\%]`` is accepted by Python, which reads the escaped hyphen as a
-    literal, and rejected by the Rust ``regex`` crate, which reads it as the
-    start of an invalid range. Catching it statically avoids emitting a rule
-    that takes the whole ruleset down at load time.
-
-    >>> has_invalid_class_range(r"[\!\-\%]")
-    True
-    >>> has_invalid_class_range(r"[a-z]"), has_invalid_class_range(r"[\-abc]")
-    (False, False)
-    """
-    depth = 0
-    index = 0
-    class_start = -1
-    while index < len(body):
-        char = body[index]
-        if char == "\\":
-            # An escaped hyphen that is neither the first nor the last element
-            # of the class is what the Rust regex engine rejects.
-            if (
-                depth
-                and body[index : index + 2] == "\\-"
-                and index > class_start + 1
-                and body[index + 2 : index + 3] != "]"
-            ):
-                return True
-            index += 2
-            continue
-        if char == "[" and not depth:
-            depth = 1
-            class_start = index
-        elif char == "]" and depth:
-            depth = 0
-        index += 1
-    return False
 
 
 #: A well-formed counted repetition: ``{m}``, ``{m,}`` or ``{m,n}``.
@@ -147,15 +111,6 @@ def validate_regex(body: str, keyword: str = "pcre") -> None:
                 detail=f"non-portable PCRE construct: {label}",
                 keywords=(keyword,),
             )
-    if has_invalid_class_range(body):
-        raise Refusal(
-            code=RefusalCode.PCRE_UNSUPPORTED,
-            detail=(
-                "escaped hyphen inside a character class: Python reads it as a "
-                "literal, the Rust regex engine as an invalid range"
-            ),
-            keywords=(keyword,),
-        )
     if has_unsupported_brace(body):
         raise Refusal(
             code=RefusalCode.PCRE_UNSUPPORTED,

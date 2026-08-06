@@ -65,12 +65,17 @@ All notable changes to this project are documented here. The format follows
 
 ### Fixed
 
-- Regular expressions using lookahead, lookbehind or backreferences, and
-  character classes containing an escaped hyphen, were emitted despite the Rust
-  `regex` engine behind RSigma refusing all of them. Because one uncompilable
-  rule aborts the entire rule load, the 34 affected rules made the whole
-  converted ruleset undeployable. `validate_regex` now rejects them, and the
-  full corpus loads with zero refusals.
+- Regular expressions using lookahead, lookbehind or backreferences were emitted
+  despite the Rust `regex` engine behind RSigma refusing all of them. Because one
+  uncompilable rule aborts the entire rule load, the affected rules made the
+  whole converted ruleset undeployable. `validate_regex` now rejects them, and
+  the full corpus loads with zero refusals.
+- An escaped hyphen inside a character class, `[\!\-\%]`, was refused as
+  non-portable, but the RSigma versions this targets compile it and match it
+  exactly as Python does. The over-cautious check was removed, recovering the
+  rules it had refused. `validate_regex` was verified against the engine over
+  every `pcre` in the corpus: it now refuses exactly the regexes RSigma rejects,
+  no more and no fewer.
 - A `pcre` containing a `{` that is not a counted repetition, such as `{\d}`,
   was emitted verbatim: Python's `re` reads it as a literal brace, but the Rust
   `regex` engine rejects it and aborts the whole rule load. Two such rules were

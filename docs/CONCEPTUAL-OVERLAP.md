@@ -95,9 +95,9 @@ SigmaHQ with `rules-placeholder/` excluded), with the default lexical floor of
 
 | Metric | Value |
 | --- | ---: |
-| Converted rules | 8,147 |
+| Converted rules | 8,152 |
 | SigmaHQ rules | 4,013 |
-| Converted rules with at least one candidate | 861 |
+| Converted rules with at least one candidate | 863 |
 | Candidate pairs | 1,469 |
 
 The strongest candidates are unambiguous, and they are exactly the pairs the
