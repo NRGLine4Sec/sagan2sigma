@@ -28,6 +28,8 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = [
+    # pysigma itself demands >=6.0.3, so declaring 6.0 here made the floor
+    # uninstallable. The minimum-versions CI job exists to catch exactly this.
     "pyyaml>=6.0.3",
     # 1.0 is the first release whose correlation support this tool relies on
     # actually imports cleanly. 0.11.0 fails on a pyparsing incompatibility and
@@ -37,11 +39,21 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+# The behavioural overlap analysis (sagan2sigma-overlap) needs two extras the
+# conversion path never touches: hypothesis and exrex, both for generating a
+# string that satisfies a regular expression. They are kept out of the core
+# dependencies so a plain `pip install sagan2sigma` stays lean; a user who wants
+# the overlap tool asks for `sagan2sigma[overlap]`.
+overlap = [
+    "hypothesis>=6.100",
+    "exrex>=0.11",
+]
 dev = [
     "build>=1.2",
     "pytest>=8.0",
     "pytest-cov>=5.0",
     "hypothesis>=6.100",
+    "exrex>=0.11",
     "mypy>=1.10",
     "ruff>=0.5",
     "types-PyYAML",
@@ -55,6 +67,11 @@ Changelog = "https://github.com/NRGLine4Sec/sagan2sigma/blob/main/CHANGELOG.md"
 
 [project.scripts]
 sagan2sigma = "sagan2sigma.cli:main"
+sagan2sigma-overlap = "sagan2sigma.overlap.cli:main"
+# The conceptual analysis is pure standard-library, so it needs no extra.
+sagan2sigma-conceptual = "sagan2sigma.conceptual.cli:main"
+# Merges the two reports into a commit-pinned, confidence-tiered inventory.
+sagan2sigma-inventory = "sagan2sigma.inventory.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/sagan2sigma"]

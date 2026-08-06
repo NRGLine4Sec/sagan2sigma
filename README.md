@@ -10,19 +10,34 @@ rules to a format other engines can run, notably
 [RSigma](https://github.com/timescale/rsigma).
 
 On the upstream corpus (10,000 active rules across 337 files) it converts
-**79.4%** into 8,750 Sigma documents, with zero parse failures and zero
-documents rejected by pySigma. With `--profile vector-enriched`, which ships
-the transforms needed to recreate the fields Sagan derived from raw text, the
-rate rises to **82.3%**.
+**79.0%** into 8,711 Sigma documents, with zero parse failures, zero documents
+rejected by pySigma, and zero rules the RSigma engine refuses to load. With
+`--profile vector-enriched`, which ships the transforms needed to recreate the
+fields Sagan derived from raw text, the rate rises to **81.9%**.
 
 Everything it does not convert is reported with a stable code and the reasoning
 behind it, so the gap in your coverage is explicit rather than silent.
 
 ## Install
 
+Not published to PyPI yet, so install from source:
+
 ```sh
-pip install sagan2sigma
+git clone https://github.com/OWNER/sagan2sigma.git
+cd sagan2sigma
+pip install .
 ```
+
+Or in one line, without keeping the checkout:
+
+```sh
+pip install "git+https://github.com/OWNER/sagan2sigma.git"
+```
+
+Either way you get a `sagan2sigma` command on your PATH. Python 3.10 or newer.
+
+Once the project is released, `pip install sagan2sigma` will work as well; see
+[`RELEASING.md`](RELEASING.md).
 
 ## Use
 
@@ -62,6 +77,47 @@ sagan2sigma sagan-rules -o converted --min-rate 80 --fail-on-validation
 ```
 
 `sagan2sigma --help` lists the rest.
+
+## Finding what SigmaHQ already covers
+
+A companion command answers a question a migration always raises: which of the
+converted rules already have an equivalent in [SigmaHQ](https://github.com/SigmaHQ/sigma),
+so you can deploy SigmaHQ for those and keep the converted rules only where they
+add coverage. It answers it by running, not by comparing text: every rule from
+both sets is turned into events that satisfy it, and the RSigma engine decides
+which rules each event fires. When it reports that SigmaHQ covers a converted
+rule, a test event that fires both is attached.
+
+```sh
+pip install "sagan2sigma[overlap]"   # pulls in the two extra dependencies
+
+sagan2sigma-overlap \
+  --converted converted/rules \
+  --sigmahq /path/to/sigmahq \
+  --output overlap --cache .overlap-cache
+```
+
+It needs the `rsigma` binary on your PATH, and writes `OVERLAP-REPORT.md` (the
+actionable list) and `overlap-report.json` (every verdict, with its witness
+event). The method, the taxonomy and the results are in
+[`docs/SIGMAHQ-OVERLAP.md`](docs/SIGMAHQ-OVERLAP.md).
+
+A second, separate command answers a softer question the behavioural one cannot:
+which converted rules *look like* they detect the same thing as a SigmaHQ rule,
+even when they can never fire the same event because one matches raw text and the
+other a structured field. It compares the distinctive terms rules search for and
+their ATT&CK techniques, and produces review candidates, never verdicts:
+
+```sh
+sagan2sigma-conceptual \
+  --converted converted/rules \
+  --sigmahq /path/to/sigmahq \
+  --output conceptual
+```
+
+It needs no engine and no extra dependency. It is a triage aid, not grounds for
+retiring a rule, and the two analyses are almost disjoint by design; see
+[`docs/CONCEPTUAL-OVERLAP.md`](docs/CONCEPTUAL-OVERLAP.md).
 
 ## What it will not do
 
@@ -127,11 +183,19 @@ it; the detection engineering is theirs.
 
 ## Read next
 
+- [`docs/SIGMAHQ-OVERLAP.md`](docs/SIGMAHQ-OVERLAP.md) to see which converted
+  rules SigmaHQ already covers, and how that is established by testing
+- [`docs/CONCEPTUAL-OVERLAP.md`](docs/CONCEPTUAL-OVERLAP.md) for the separate,
+  lexical review-candidate analysis that covers the rules testing cannot reach
+- [`docs/OVERLAP-INVENTORY.md`](docs/OVERLAP-INVENTORY.md) for the merged,
+  confidence-tiered list of overlapping rules, pinned to a commit of each corpus
+  (a point-in-time snapshot; regenerate with `sagan2sigma-inventory`)
 - [`docs/PIPELINE.md`](docs/PIPELINE.md) to get the output running under RSigma
 - [`docs/MAPPING.md`](docs/MAPPING.md) for the keyword-by-keyword mapping
 - [`docs/DESIGN-DECISIONS.md`](docs/DESIGN-DECISIONS.md) for the traps this
   converter avoids, and why
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) to work on the code
+- [`CONTRIBUTING.md`](CONTRIBUTING.md) to add a keyword handler
 
 ## Licence
 

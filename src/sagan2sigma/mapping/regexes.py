@@ -28,6 +28,14 @@ _FLAG_MAP = {"i": "i", "m": "m", "s": "s"}
 _FLAG_IGNORED = frozenset("gxAEOSUD")
 
 #: PCRE constructs outside the Sigma subset.
+#:
+#: The lookaround and backreference entries are not theoretical. RSigma
+#: compiles Sigma regular expressions with the Rust ``regex`` crate, which
+#: guarantees linear-time matching and therefore supports neither. Python's
+#: ``re`` accepts both, so a converter that validates only against ``re`` emits
+#: rules the target engine refuses. Worse, RSigma aborts the **entire** rule
+#: load on one such rule, so a single unconverted lookahead takes the whole
+#: ruleset offline. 34 rules of the upstream corpus are in that position.
 _UNSUPPORTED: tuple[tuple[re.Pattern[str], str], ...] = (
     (re.compile(r"\(\?[0-9+-]"), "subroutine call"),
     (re.compile(r"\(\?R\)"), "recursion"),
@@ -35,11 +43,63 @@ _UNSUPPORTED: tuple[tuple[re.Pattern[str], str], ...] = (
     (re.compile(r"\(\*[A-Z]"), "control verb"),
     (re.compile(r"\(\?\("), "conditional pattern"),
     (re.compile(r"\\[GKZ]"), "non-portable PCRE anchor"),
+    (re.compile(r"\(\?=|\(\?!"), "lookahead, unsupported by the Rust regex engine"),
+    (
+        re.compile(r"\(\?<=|\(\?<!"),
+        "lookbehind, unsupported by the Rust regex engine",
+    ),
+    (
+        re.compile(r"(?<!\\)\\[1-9]"),
+        "backreference, unsupported by the Rust regex engine",
+    ),
+    (
+        re.compile(r"\\k<"),
+        "named backreference, unsupported by the Rust regex engine",
+    ),
 )
 
 
+def has_invalid_class_range(body: str) -> bool:
+    r"""Whether a character class contains an escaped hyphen mid-class.
+
+    ``[\!\-\%]`` is accepted by Python, which reads the escaped hyphen as a
+    literal, and rejected by the Rust ``regex`` crate, which reads it as the
+    start of an invalid range. Catching it statically avoids emitting a rule
+    that takes the whole ruleset down at load time.
+
+    >>> has_invalid_class_range(r"[\!\-\%]")
+    True
+    >>> has_invalid_class_range(r"[a-z]"), has_invalid_class_range(r"[\-abc]")
+    (False, False)
+    """
+    depth = 0
+    index = 0
+    class_start = -1
+    while index < len(body):
+        char = body[index]
+        if char == "\\":
+            # An escaped hyphen that is neither the first nor the last element
+            # of the class is what the Rust regex engine rejects.
+            if (
+                depth
+                and body[index : index + 2] == "\\-"
+                and index > class_start + 1
+                and body[index + 2 : index + 3] != "]"
+            ):
+                return True
+            index += 2
+            continue
+        if char == "[" and not depth:
+            depth = 1
+            class_start = index
+        elif char == "]" and depth:
+            depth = 0
+        index += 1
+    return False
+
+
 def validate_regex(body: str, keyword: str = "pcre") -> None:
-    """Check that a pattern fits the Sigma subset.
+    """Check that a pattern fits the subset both Sigma and RSigma accept.
 
     Raises :class:`~sagan2sigma.errors.Refusal` when a non-portable construct is
     found, or when the pattern does not even compile under Python's ``re``.
@@ -51,6 +111,15 @@ def validate_regex(body: str, keyword: str = "pcre") -> None:
                 detail=f"non-portable PCRE construct: {label}",
                 keywords=(keyword,),
             )
+    if has_invalid_class_range(body):
+        raise Refusal(
+            code=RefusalCode.PCRE_UNSUPPORTED,
+            detail=(
+                "escaped hyphen inside a character class: Python reads it as a "
+                "literal, the Rust regex engine as an invalid range"
+            ),
+            keywords=(keyword,),
+        )
     try:
         re.compile(body)
     except re.error as error:

@@ -6,6 +6,59 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- `sagan2sigma-overlap`, a behavioural comparison between the converted rules
+  and the SigmaHQ corpus that establishes coverage by testing rather than by
+  textual similarity: every rule from both sets is turned into events that
+  satisfy it, and the RSigma engine decides which rules each event fires in a
+  single pass. It reports, for each converted rule, whether a SigmaHQ rule
+  already covers it, with a witness event attached to every verdict. Two
+  safeguards keep the verdicts honest against the engine not enforcing
+  logsource: a negative-control screen removes rules that fire on the empty
+  event, since they match on absence rather than on shared detection, and a
+  log-source-compatibility gate keeps a SigmaHQ keyword rule from being counted
+  as covering a rule from another product whose raw text merely shares a word.
+  On the upstream corpora this is the difference between a spurious 7,879
+  "covered" and the 58 deployable ones. Installed with the `overlap` extra
+  (`pip install "sagan2sigma[overlap]"`), which adds `hypothesis` and `exrex`.
+  The method, taxonomy and results are documented in `docs/SIGMAHQ-OVERLAP.md`.
+  Synthesised events are cached (`--cache`), keyed by a hash of the detection
+  block, so re-runs against a moved corpus are cheap. The analysis carries its
+  own invariant tests, including a self-validation that replays every covering
+  verdict's witness event against each rule on its own and requires both to
+  fire, run both on hand-built pairs and, opt-in, over the real corpora.
+- `sagan2sigma-conceptual`, a separate lexical analysis that proposes review
+  candidates: converted rules that look like they detect the same thing as a
+  SigmaHQ rule, from the distinctive terms they search for (IDF-weighted) and
+  their shared ATT&CK techniques, which the behavioural analysis cannot reach
+  because raw-text and structured-field rules never fire the same event. It is
+  explicitly not tested equivalence and never grounds for retiring a rule; the
+  two analyses are almost disjoint on the upstream corpora (11 of 1,346
+  conceptual candidates also appear behaviourally). Pure standard library, no
+  engine, deterministic. Documented in `docs/CONCEPTUAL-OVERLAP.md`.
+- `sagan2sigma-inventory`, which merges the behavioural and conceptual reports
+  into one confidence-tiered list of overlapping rule pairs, each placed in the
+  single strongest tier its evidence earns, from "confirmed by both analyses"
+  down to "conceptual candidate, weaker match". Every inventory is pinned to the
+  exact commit of each rule corpus it was built from, since both change daily
+  and an unpinned list rots silently. A generated snapshot is committed at
+  `docs/OVERLAP-INVENTORY.md`.
+
+### Fixed
+
+- Regular expressions using lookahead, lookbehind or backreferences, and
+  character classes containing an escaped hyphen, were emitted despite the Rust
+  `regex` engine behind RSigma refusing all of them. Because one uncompilable
+  rule aborts the entire rule load, the 34 affected rules made the whole
+  converted ruleset undeployable. `validate_regex` now rejects them, and the
+  full corpus loads with zero refusals.
+- The README opened with `pip install sagan2sigma`, which fails because the
+  project is not published. Replaced with the install-from-source instructions
+  that work today, and added `RELEASING.md` covering publication.
+- The declared `pyyaml` floor was 6.0, which no resolver can satisfy alongside
+  pysigma's own `pyyaml>=6.0.3`. Corrected to 6.0.3.
+
 ## [0.1.0]
 
 First public release.
