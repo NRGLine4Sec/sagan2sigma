@@ -1,0 +1,564 @@
+title: '[MCAS] ALERT_ANUBIS_DETECTION_VELOCITY'
+id: 88b54fd0-89a9-5840-895d-02179faa6cfe
+status: experimental
+description: Converted from Sagan rule SID 5003802 (rev 5), file mcas.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+  service: cloud_app_security
+detection:
+  selection_1:
+    _raw|contains|cased: ALERT_ANUBIS_DETECTION_VELOCITY
+  filter_2:
+    _raw|contains|cased: '"Workload": "Exchange"'
+  selection_3:
+    _raw|contains|cased: msg=
+  selection_4:
+    _raw|contains|cased: cloudapps
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5003802'
+  sagan.rev: '5'
+  sagan.source_file: mcas.rules
+---
+title: '[MCAS] ALERT_CABINET_EVENT_MATCH_AUDIT'
+id: ab00fbb7-55fd-5078-8404-d4c3bb23555d
+status: experimental
+description: Converted from Sagan rule SID 5003803 (rev 5), file mcas.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+  service: cloud_app_security
+detection:
+  selection_1:
+    _raw|contains|cased: ALERT_CABINET_EVENT_MATCH_AUDIT
+  filter_2:
+    _raw|contains|cased: '"Workload": "Exchange"'
+  selection_3:
+    _raw|contains|cased: msg=
+  selection_4:
+    _raw|contains|cased: cloudapps
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003803'
+  sagan.rev: '5'
+  sagan.source_file: mcas.rules
+---
+title: '[MCAS] ALERT_ANUBIS_DETECTION_NEW_COUNTRY'
+id: d77d26f7-705d-5c8b-ad16-aa9a8d30624b
+status: experimental
+description: Converted from Sagan rule SID 5003804 (rev 5), file mcas.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+  service: cloud_app_security
+detection:
+  selection_1:
+    _raw|contains|cased: ALERT_ANUBIS_DETECTION_NEW_COUNTRY
+  filter_2:
+    _raw|contains|cased: ResultStatus":"Resolved
+  filter_3:
+    _raw|contains|cased: '"Workload": "Exchange"'
+  selection_4:
+    _raw|contains|cased: msg=
+  selection_5:
+    _raw|contains|cased: cloudapps
+  condition: selection_1 and selection_4 and selection_5 and not (filter_2 or filter_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003804'
+  sagan.rev: '5'
+  sagan.source_file: mcas.rules
+---
+title: '[MCAS] ALERT_SUSPICIOUS_ACTIVITY'
+id: faa903ec-8900-50ab-bce2-aeab2fd1786a
+status: experimental
+description: Converted from Sagan rule SID 5003805 (rev 3), file mcas.rules.
+references:
+  - https://docs.microsoft.com/en-us/cloud-app-security/monitor-alerts
+author: sagan2sigma
+logsource:
+  product: m365
+  service: cloud_app_security
+detection:
+  selection_1:
+    _raw|contains|cased: ALERT_SUSPICIOUS_ACTIVITY
+  filter_2:
+    _raw|contains|cased: '"Workload": "Exchange"'
+  selection_3:
+    _raw|contains|cased: msg=
+  selection_4:
+    _raw|contains|cased: cloudapps
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003805'
+  sagan.rev: '3'
+  sagan.source_file: mcas.rules
+---
+title: '[MCAS] ALERT_DISCOVERY_ANOMALY_DETECTION'
+id: dfdab723-8e74-57a6-99b9-67de9c4dd528
+status: experimental
+description: Converted from Sagan rule SID 5003806 (rev 3), file mcas.rules.
+references:
+  - https://docs.microsoft.com/en-us/cloud-app-security/monitor-alerts
+author: sagan2sigma
+logsource:
+  product: m365
+  service: cloud_app_security
+detection:
+  selection_1:
+    _raw|contains|cased: ALERT_DISCOVERY_ANOMALY_DETECTION
+  filter_2:
+    _raw|contains|cased: '"Workload": "Exchange"'
+  selection_3:
+    _raw|contains|cased: msg=
+  selection_4:
+    _raw|contains|cased: cloudapps
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003806'
+  sagan.rev: '3'
+  sagan.source_file: mcas.rules
+---
+title: '[MCAS] ALERT_CABINET_EVENT_MATCH_FILE'
+id: d8dd4f69-5eba-5a84-a05b-03fb9e0cc638
+status: experimental
+description: Converted from Sagan rule SID 5003807 (rev 3), file mcas.rules.
+references:
+  - https://docs.microsoft.com/en-us/cloud-app-security/monitor-alerts
+author: sagan2sigma
+logsource:
+  product: m365
+  service: cloud_app_security
+detection:
+  selection_1:
+    _raw|contains|cased: ALERT_CABINET_EVENT_MATCH_FILE
+  filter_2:
+    _raw|contains|cased: '"Workload": "Exchange"'
+  selection_3:
+    _raw|contains|cased: msg=
+  selection_4:
+    _raw|contains|cased: cloudapps
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003807'
+  sagan.rev: '3'
+  sagan.source_file: mcas.rules
+---
+title: '[MCAS] ALERT_CABINET_INLINE_EVENT_MATCH'
+id: dedca120-de11-552f-94f1-a3318c6e228c
+status: experimental
+description: Converted from Sagan rule SID 5003808 (rev 3), file mcas.rules.
+references:
+  - https://docs.microsoft.com/en-us/cloud-app-security/monitor-alerts
+author: sagan2sigma
+logsource:
+  product: m365
+  service: cloud_app_security
+detection:
+  selection_1:
+    _raw|contains|cased: ALERT_CABINET_INLINE_EVENT_MATCH
+  filter_2:
+    _raw|contains|cased: '"Workload": "Exchange"'
+  selection_3:
+    _raw|contains|cased: msg=
+  selection_4:
+    _raw|contains|cased: cloudapps
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003808'
+  sagan.rev: '3'
+  sagan.source_file: mcas.rules
+---
+title: '[MCAS] ALERT_CABINET_EVENT_MATCH_OBJECT'
+id: 2ab1958e-fe35-525a-a867-b71e134985c9
+status: experimental
+description: Converted from Sagan rule SID 5003809 (rev 3), file mcas.rules.
+references:
+  - https://docs.microsoft.com/en-us/cloud-app-security/monitor-alerts
+author: sagan2sigma
+logsource:
+  product: m365
+  service: cloud_app_security
+detection:
+  selection_1:
+    _raw|contains|cased: ALERT_CABINET_EVENT_MATCH_OBJECT
+  filter_2:
+    _raw|contains|cased: '"Workload": "Exchange"'
+  selection_3:
+    _raw|contains|cased: msg=
+  selection_4:
+    _raw|contains|cased: cloudapps
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003809'
+  sagan.rev: '3'
+  sagan.source_file: mcas.rules
+---
+title: '[MCAS] ALERT_CABINET_DISCOVERY_NEW_SERVICE'
+id: cf1f45b8-950a-5323-80b0-d8f5a7b7f973
+status: experimental
+description: Converted from Sagan rule SID 5003810 (rev 3), file mcas.rules.
+references:
+  - https://docs.microsoft.com/en-us/cloud-app-security/monitor-alerts
+author: sagan2sigma
+logsource:
+  product: m365
+  service: cloud_app_security
+detection:
+  selection_1:
+    _raw|contains|cased: ALERT_CABINET_DISCOVERY_NEW_SERVICE
+  filter_2:
+    _raw|contains|cased: '"Workload": "Exchange"'
+  selection_3:
+    _raw|contains|cased: msg=
+  selection_4:
+    _raw|contains|cased: cloudapps
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003810'
+  sagan.rev: '3'
+  sagan.source_file: mcas.rules
+---
+title: '[MCAS] ALERT_PERSONAL_USER_SAGE'
+id: 807e2f65-3953-577c-b5a4-c2e2ffeafbdb
+status: experimental
+description: Converted from Sagan rule SID 5003818 (rev 3), file mcas.rules.
+references:
+  - https://docs.microsoft.com/en-us/cloud-app-security/monitor-alerts
+author: sagan2sigma
+logsource:
+  product: m365
+  service: cloud_app_security
+detection:
+  selection_1:
+    _raw|contains|cased: ALERT_PERSONAL_USER_SAGE
+  filter_2:
+    _raw|contains|cased: '"Workload": "Exchange"'
+  selection_3:
+    _raw|contains|cased: msg=
+  selection_4:
+    _raw|contains|cased: cloudapps
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003818'
+  sagan.rev: '3'
+  sagan.source_file: mcas.rules
+---
+title: '[MCAS] ALERT_GEOLOCATION_NEW_COUNTRY'
+id: 48850569-1231-537a-b09f-a5335ac03ef3
+status: experimental
+description: Converted from Sagan rule SID 5003811 (rev 3), file mcas.rules.
+references:
+  - https://docs.microsoft.com/en-us/cloud-app-security/monitor-alerts
+author: sagan2sigma
+logsource:
+  product: m365
+  service: cloud_app_security
+detection:
+  selection_1:
+    _raw|contains|cased: ALERT_GEOLOCATION_NEW_COUNTRY
+  filter_2:
+    _raw|contains|cased: '"Workload": "Exchange"'
+  selection_3:
+    _raw|contains|cased: msg=
+  selection_4:
+    _raw|contains|cased: cloudapps
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003811'
+  sagan.rev: '3'
+  sagan.source_file: mcas.rules
+---
+title: '[MCAS] ALERT_ADMIN_USER'
+id: 9976d7bd-2d77-52b4-a578-6292bf5325a8
+status: experimental
+description: Converted from Sagan rule SID 5003812 (rev 3), file mcas.rules.
+references:
+  - https://docs.microsoft.com/en-us/cloud-app-security/monitor-alerts
+author: sagan2sigma
+logsource:
+  product: m365
+  service: cloud_app_security
+detection:
+  selection_1:
+    _raw|contains|cased: ALERT_ADMIN_USER
+  filter_2:
+    _raw|contains|cased: '"Workload": "Exchange"'
+  selection_3:
+    _raw|contains|cased: msg=
+  selection_4:
+    _raw|contains|cased: cloudapps
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003812'
+  sagan.rev: '3'
+  sagan.source_file: mcas.rules
+---
+title: '[MCAS] ALERT_ZOMBIE_USER'
+id: 8454193f-ae02-5bd1-8c60-e23fee038163
+status: experimental
+description: Converted from Sagan rule SID 5003813 (rev 3), file mcas.rules.
+references:
+  - https://docs.microsoft.com/en-us/cloud-app-security/monitor-alerts
+author: sagan2sigma
+logsource:
+  product: m365
+  service: cloud_app_security
+detection:
+  selection_1:
+    _raw|contains|cased: ALERT_ZOMBIE_USER
+  filter_2:
+    _raw|contains|cased: '"Workload": "Exchange"'
+  selection_3:
+    _raw|contains|cased: msg=
+  selection_4:
+    _raw|contains|cased: cloudapps
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003813'
+  sagan.rev: '3'
+  sagan.source_file: mcas.rules
+---
+title: '[MCAS] ALERT_NEW_ADMIN_LOCATION'
+id: 0280b755-2060-53d8-b968-ee7055ce8843
+status: experimental
+description: Converted from Sagan rule SID 5003814 (rev 3), file mcas.rules.
+references:
+  - https://docs.microsoft.com/en-us/cloud-app-security/monitor-alerts
+author: sagan2sigma
+logsource:
+  product: m365
+  service: cloud_app_security
+detection:
+  selection_1:
+    _raw|contains|cased: ALERT_NEW_ADMIN_LOCATION
+  filter_2:
+    _raw|contains|cased: '"Workload": "Exchange"'
+  selection_3:
+    _raw|contains|cased: msg=
+  selection_4:
+    _raw|contains|cased: cloudapps
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003814'
+  sagan.rev: '3'
+  sagan.source_file: mcas.rules
+---
+title: '[MCAS] ALERT_COMPROMISED_ACCOUNT'
+id: a540c9c3-b926-519d-a584-58e5ff1a3977
+status: experimental
+description: Converted from Sagan rule SID 5003819 (rev 3), file mcas.rules.
+references:
+  - https://docs.microsoft.com/en-us/cloud-app-security/monitor-alerts
+author: sagan2sigma
+logsource:
+  product: m365
+  service: cloud_app_security
+detection:
+  selection_1:
+    _raw|contains|cased: ALERT_COMPROMISED_ACCOUNT
+  filter_2:
+    _raw|contains|cased: '"Workload": "Exchange"'
+  selection_3:
+    _raw|contains|cased: msg=
+  selection_4:
+    _raw|contains|cased: cloudapps
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003819'
+  sagan.rev: '3'
+  sagan.source_file: mcas.rules
+---
+title: '[MCAS] ALERT_ANUBIS_DETECTION_REPEATED_ACTIVITY_ADMIN_ACTIVITY'
+id: 187925b0-e91d-50f0-8e55-4780a794abfd
+status: experimental
+description: Converted from Sagan rule SID 5003929 (rev 3), file mcas.rules.
+references:
+  - https://docs.microsoft.com/en-us/cloud-app-security/monitor-alerts
+author: sagan2sigma
+logsource:
+  product: m365
+  service: cloud_app_security
+detection:
+  selection_1:
+    _raw|contains|cased: ALERT_ANUBIS_DETECTION_REPEATED_ACTIVITY_ADMIN_ACTIVITY
+  filter_2:
+    _raw|contains|cased: '"Workload": "Exchange"'
+  selection_3:
+    _raw|contains|cased: msg=
+  selection_4:
+    _raw|contains|cased: cloudapps
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003929'
+  sagan.rev: '3'
+  sagan.source_file: mcas.rules
+---
+title: '[MCAS] ALERT_MANAGEMENT_DISCOVERY_BREACHED_APP'
+id: 96fe8928-dfcb-5a48-abc9-8f0542468268
+status: experimental
+description: Converted from Sagan rule SID 5003930 (rev 3), file mcas.rules.
+references:
+  - https://docs.microsoft.com/en-us/cloud-app-security/monitor-alerts
+author: sagan2sigma
+logsource:
+  product: m365
+  service: cloud_app_security
+detection:
+  selection_1:
+    _raw|contains|cased: ALERT_MANAGEMENT_DISCOVERY_BREACHED_APP
+  filter_2:
+    _raw|contains|cased: '"Workload": "Exchange"'
+  selection_3:
+    _raw|contains|cased: msg=
+  selection_4:
+    _raw|contains|cased: cloudapps
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003930'
+  sagan.rev: '3'
+  sagan.source_file: mcas.rules
+---
+title: '[MCAS] ALERT_ANUBIS_DETECTION_INBOX_HIDING'
+id: daad6f3e-4f9a-5863-bf14-df4c87e0a88c
+status: experimental
+description: Converted from Sagan rule SID 5003984 (rev 3), file mcas.rules.
+references:
+  - https://docs.microsoft.com/en-us/cloud-app-security/monitor-alerts
+author: sagan2sigma
+logsource:
+  product: m365
+  service: cloud_app_security
+detection:
+  selection_1:
+    _raw|contains|cased: ALERT_ANUBIS_DETECTION_INBOX_HIDING
+  filter_2:
+    _raw|contains|cased: '"Workload": "Exchange"'
+  selection_3:
+    _raw|contains|cased: msg=
+  selection_4:
+    _raw|contains|cased: cloudapps
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5003984'
+  sagan.rev: '3'
+  sagan.source_file: mcas.rules
+---
+title: '[MCAS] MCAS_ALERT_ANUBIS_DETECTION_RISKY_IP_SUSPICIOUS'
+id: ee409941-4330-5e7f-a7a7-1d8fae1ca997
+status: experimental
+description: Converted from Sagan rule SID 5015201 (rev 3), file mcas.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+  service: cloud_app_security
+detection:
+  selection_1:
+    _raw|contains|cased: ALERT_ANUBIS_DETECTION_RISKY_IP_SUSPICIOUS
+  filter_2:
+    _raw|contains|cased: '"Workload": "Exchange"'
+  selection_3:
+    _raw|contains|cased: msg=
+  selection_4:
+    _raw|contains|cased: cloudapps
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015201'
+  sagan.rev: '3'
+  sagan.source_file: mcas.rules
+  sagan.metadata: created_at=2025_01_09,updated_at=2025_09_05

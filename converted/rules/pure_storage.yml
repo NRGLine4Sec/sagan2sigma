@@ -1,0 +1,123 @@
+title: '[PURE_STORAGE] Multiple Pending File Deletions From A Single Source'
+id: e4f1bf49-a395-59f9-baf0-698d285f69c8
+name: sagan_5017217
+status: experimental
+description: Converted from Sagan rule SID 5017217 (rev 2), file pure_storage.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: fileaudit
+  selection_2:
+    op_data|cased: delete_pending
+  selection_3:
+    result|cased: success
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017217'
+  sagan.rev: '2'
+  sagan.source_file: pure_storage.rules
+  rsigma.suppress: 6h
+---
+title: '[PURE_STORAGE] Multiple Pending File Deletions From A Single Source (threshold 20 in 10m)'
+id: 9ea46dfc-8df6-5b0d-8b9d-00be71c24605
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017217
+  group-by:
+    - client_ip
+  timespan: 10m
+  condition:
+    gte: 20
+level: medium
+---
+title: '[PURE_STORAGE] Multiple File Deletions From A Single Source'
+id: f0187b5a-4536-5b9d-85d3-26b06ba7c604
+name: sagan_5017218
+status: experimental
+description: Converted from Sagan rule SID 5017218 (rev 1), file pure_storage.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: fileaudit
+  selection_2:
+    op_data|cased: remove
+  selection_3:
+    result|cased: success
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017218'
+  sagan.rev: '1'
+  sagan.source_file: pure_storage.rules
+---
+title: '[PURE_STORAGE] Multiple File Deletions From A Single Source (threshold 20 in 10m)'
+id: 4c39269a-2b25-5113-a008-f8c244f76659
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017218
+  group-by:
+    - client_ip
+  timespan: 10m
+  condition:
+    gte: 20
+level: medium
+---
+title: '[PURE_STORAGE] Multiple File Writes From A Single Source'
+id: bd2b6550-003e-58c1-a709-49c6ba14658b
+name: sagan_5017219
+status: experimental
+description: Converted from Sagan rule SID 5017219 (rev 1), file pure_storage.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: fileaudit
+  selection_2:
+    op_data|cased: write
+  selection_3:
+    result|cased: success
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017219'
+  sagan.rev: '1'
+  sagan.source_file: pure_storage.rules
+---
+title: '[PURE_STORAGE] Multiple File Writes From A Single Source (threshold 50 in 5m)'
+id: 9ea6a0cb-4c8b-576a-9c58-87dc59507a95
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017219
+  group-by:
+    - client_ip
+  timespan: 5m
+  condition:
+    gte: 50
+level: medium

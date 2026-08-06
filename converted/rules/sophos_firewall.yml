@@ -1,0 +1,1627 @@
+title: '[SOPHOS_FIREWALL] HTTP AntiVirus Module - Virus Detected'
+id: 37b8323e-e29a-570a-9228-fdd306be9f13
+status: experimental
+description: Converted from Sagan rule SID 5017400 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="Anti-Virus"
+  selection_3:
+    _raw|contains|cased: log_component="HTTP/HTTPS"
+  selection_4:
+    _raw|contains|cased: log_subtype="Virus"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017400'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] HTTP AntiVirus Module - PUA Detected'
+id: 5a8840e1-7f8f-51ef-8e54-0bd5e4af0f5f
+status: experimental
+description: Converted from Sagan rule SID 5017401 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="Anti-Virus"
+  selection_3:
+    _raw|contains|cased: log_component="HTTP/HTTPS"
+  selection_4:
+    _raw|contains|cased: log_subtype="PUA"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017401'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] FTP AntiVirus Module - Virus Detected'
+id: 3fae66c1-8401-5195-bd2b-759456cea09c
+status: experimental
+description: Converted from Sagan rule SID 5017404 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="Anti-Virus"
+  selection_3:
+    _raw|contains|cased: log_component="FTP"
+  selection_4:
+    _raw|contains|cased: log_subtype="Virus"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017404'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] Firewall ATP Module - Malware Detected But Not Blocked'
+id: 971d5ab9-3ed8-537a-972a-b26c80f6638f
+status: experimental
+description: Converted from Sagan rule SID 5017407 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="ATP"
+  selection_3:
+    _raw|contains|cased: log_component="Firewall"
+  selection_4:
+    _raw|contains|cased: log_subtype="Alert"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017407'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] Firewall ATP Module - Malware Detected And Blocked'
+id: bc06130f-7ac8-50e3-98ed-86bba2c563e4
+status: experimental
+description: Converted from Sagan rule SID 5017408 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="ATP"
+  selection_3:
+    _raw|contains|cased: log_component="Firewall"
+  selection_4:
+    _raw|contains|cased: log_subtype="Drop"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017408'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] DNS ATP Module - Malware Detected But Not Blocked'
+id: f732abbe-11bb-5caa-90e3-eef3148219dc
+status: experimental
+description: Converted from Sagan rule SID 5017409 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="ATP"
+  selection_3:
+    _raw|contains|cased: log_component="DNS"
+  selection_4:
+    _raw|contains|cased: log_subtype="Alert"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017409'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] DNS ATP Module - Malware Detected And Blocked'
+id: 3ee6dd78-e902-51b2-aa81-10b1918d9329
+status: experimental
+description: Converted from Sagan rule SID 5017410 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="ATP"
+  selection_3:
+    _raw|contains|cased: log_component="DNS"
+  selection_4:
+    _raw|contains|cased: log_subtype="Drop"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017410'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] IPS ATP Module - Malware Detected But Not Blocked'
+id: d832efa2-9613-5b65-a826-c28bd8280bb7
+status: experimental
+description: Converted from Sagan rule SID 5017411 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="ATP"
+  selection_3:
+    _raw|contains|cased: log_component="IPS"
+  selection_4:
+    _raw|contains|cased: log_subtype="Alert"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017411'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] IPS ATP Module - Malware Detected And Blocked'
+id: 58149021-6b41-5e70-a664-396040b54886
+status: experimental
+description: Converted from Sagan rule SID 5017412 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="ATP"
+  selection_3:
+    _raw|contains|cased: log_component="IPS"
+  selection_4:
+    _raw|contains|cased: log_subtype="Drop"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017412'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] Web ATP Module - Malware Detected But Not Blocked'
+id: 1bb3347b-5f8e-507c-aef6-45ed341f264a
+status: experimental
+description: Converted from Sagan rule SID 5017413 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="ATP"
+  selection_3:
+    _raw|contains|cased: log_component="Web"
+  selection_4:
+    _raw|contains|cased: log_subtype="Alert"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017413'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] Web ATP Module - Malware Detected And Blocked'
+id: b4720d4f-ada3-5925-a7fc-1e53d0bd4028
+status: experimental
+description: Converted from Sagan rule SID 5017414 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="ATP"
+  selection_3:
+    _raw|contains|cased: log_component="Web"
+  selection_4:
+    _raw|contains|cased: log_subtype="Drop"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017414'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] Anti-Spam Module Detection'
+id: 78f3aa64-32ac-5f1d-92e7-b9c55bb61dd2
+status: experimental
+description: Converted from Sagan rule SID 5017434 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="Event"
+  selection_3:
+    _raw|contains|cased: log_type="Anti-Spam"
+  filter_4:
+    _raw|contains|cased:
+      - log_subtype="Clean"
+      - log_subtype="Allowed"
+      - log_subtype="Denied"
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017434'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] AntiVirus Email Module Detected Virus'
+id: f04fbdcd-39c6-570b-bbf5-f5058b269af4
+status: experimental
+description: Converted from Sagan rule SID 5017435 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="Event"
+  selection_3:
+    _raw|contains|cased: log_type="Anti-virus"
+  selection_4:
+    _raw|contains|cased: subtype="Virus"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017435'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] IPS Detected A Threat But Not Blocked'
+id: 9e3a67b0-261e-572b-a868-56e7028e6765
+status: experimental
+description: Converted from Sagan rule SID 5017436 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="IDP"
+  selection_3:
+    _raw|contains|cased: log_subtype="Detect"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017436'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] IPsec Alert Priority Log Detected'
+id: 5fee5670-c9d6-5616-9f7a-f4a3361e3775
+status: experimental
+description: Converted from Sagan rule SID 5017437 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="IPsec"
+  selection_3:
+    _raw|contains|cased: log_subtype="System"
+  selection_4:
+    _raw|contains|cased: priority="Alert"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017437'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] IPsec Critical Priority Log Detected'
+id: 82e24f76-87ab-520a-81f4-7860a5339e0d
+status: experimental
+description: Converted from Sagan rule SID 5017438 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="IPsec"
+  selection_3:
+    _raw|contains|cased: log_subtype="System"
+  selection_4:
+    _raw|contains|cased: priority="Critical"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017438'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] Zero Day Protect Event Detected - Mail Allowed'
+id: 60bc7d04-c76b-5b47-8e37-d17302dab0f0
+status: experimental
+description: Converted from Sagan rule SID 5017440 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="Sandbox"
+  selection_3:
+    _raw|contains|cased: log_component="Mail"
+  selection_4:
+    _raw|contains|cased: log_subtype="Allowed"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017440'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] Zero Day Protect Event Detected - Mail Denied'
+id: 0389dd6b-1e5a-5f7b-b3f4-2fc727ef0f2d
+status: experimental
+description: Converted from Sagan rule SID 5017441 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="Sandbox"
+  selection_3:
+    _raw|contains|cased: log_component="Mail"
+  selection_4:
+    _raw|contains|cased: log_subtype="Denied"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017441'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] Zero Day Protect Event Detected - Web Allowed'
+id: bff1828a-e6d1-572c-a392-403619cfdbf5
+status: experimental
+description: Converted from Sagan rule SID 5017442 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="Sandbox"
+  selection_3:
+    _raw|contains|cased: log_component="Web"
+  selection_4:
+    _raw|contains|cased: log_subtype="Allowed"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017442'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] Zero Day Protect Event Detected - Web Denied'
+id: 97083ea0-96ea-5891-ad4a-ab780b475dc9
+status: experimental
+description: Converted from Sagan rule SID 5017443 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="Sandbox"
+  selection_3:
+    _raw|contains|cased: log_component="Web"
+  selection_4:
+    _raw|contains|cased: log_subtype="Denied"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017443'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] WAF Module - WAF Alert'
+id: 0e20f960-6e88-599f-8f72-b92e821d6008
+status: experimental
+description: Converted from Sagan rule SID 5017447 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="WAF"
+  selection_3:
+    _raw|contains|cased: reason="waf"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017447'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] WAF Module - Cookie Alert'
+id: 105511b4-3fd6-583a-bbf1-7e89dfbd5c43
+status: experimental
+description: Converted from Sagan rule SID 5017448 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="WAF"
+  selection_3:
+    _raw|contains|cased: reason="cookie"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017448'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] WAF Module - URL Hardening Alert'
+id: 7630d735-0ef9-5f63-b9a7-ee2256e9a1bc
+status: experimental
+description: Converted from Sagan rule SID 5017449 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="WAF"
+  selection_3:
+    _raw|contains|cased: reason="url hardening"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017449'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] WAF Module - AV Alert'
+id: 4df0e92a-b59b-5007-877e-cfa561d47d14
+status: experimental
+description: Converted from Sagan rule SID 5017450 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="WAF"
+  selection_3:
+    _raw|contains|cased: reason="av"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017450'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] WAF Module - GeoIP Alert'
+id: 000aaa11-37f8-5658-abcf-01da371d5b85
+status: experimental
+description: Converted from Sagan rule SID 5017451 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="WAF"
+  selection_3:
+    _raw|contains|cased: reason="geoip"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017451'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] WAF Module - DNSRBL Alert'
+id: ba4c86ca-e6e2-5f68-83f7-116f98c9418e
+status: experimental
+description: Converted from Sagan rule SID 5017452 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="WAF"
+  selection_3:
+    _raw|contains|cased: reason="dnsrbl"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017452'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] Web Content Filter - Malicious File Detected'
+id: 925bd9ae-7abe-507a-98eb-9eb96fb7c639
+status: experimental
+description: Converted from Sagan rule SID 5017453 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="Content Filtering"
+  selection_3:
+    _raw|contains|cased: reason="cloud malicious"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017453'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] Firewall Rule Added to Configuration'
+id: 7dca7cc6-29dd-5752-ad75-f84829f7cdf5
+status: experimental
+description: Converted from Sagan rule SID 5017721 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: 'message="Configuration change: Firewall rule'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017721'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] HTTP AntiVirus Module - Virus Detected'
+id: c0cfd431-12b0-53cd-8dac-09ca8afdb9ca
+status: experimental
+description: Converted from Sagan rule SID 5017875 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="Anti-Virus"
+  selection_3:
+    _raw|contains|cased: log_component="HTTP/HTTPS"
+  selection_4:
+    _raw|contains|cased: log_subtype="Virus"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017875'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] HTTP AntiVirus Module - PUA Detected'
+id: faad15ac-b9bd-532a-a001-a1ba740168df
+status: experimental
+description: Converted from Sagan rule SID 5017876 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="Anti-Virus"
+  selection_3:
+    _raw|contains|cased: log_component="HTTP/HTTPS"
+  selection_4:
+    _raw|contains|cased: log_subtype="PUA"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017876'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] FTP AntiVirus Module - Virus Detected'
+id: 87f58558-22ec-53ed-9f50-4ba97474d288
+status: experimental
+description: Converted from Sagan rule SID 5017879 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="Anti-Virus"
+  selection_3:
+    _raw|contains|cased: log_component="FTP"
+  selection_4:
+    _raw|contains|cased: log_subtype="Virus"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017879'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] Firewall ATP Module - Malware Detected But Not Blocked'
+id: eba7843c-544d-5d57-a97a-e536ae7967d2
+status: experimental
+description: Converted from Sagan rule SID 5017828 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="ATP"
+  selection_3:
+    _raw|contains|cased: log_component="Firewall"
+  selection_4:
+    _raw|contains|cased: log_subtype="Alert"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017828'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] Firewall ATP Module - Malware Detected And Blocked'
+id: 1970c02e-1eb4-5ec5-9730-4c6c279b99e6
+status: experimental
+description: Converted from Sagan rule SID 5017829 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="ATP"
+  selection_3:
+    _raw|contains|cased: log_component="Firewall"
+  selection_4:
+    _raw|contains|cased: log_subtype="Drop"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017829'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] DNS ATP Module - Malware Detected But Not Blocked'
+id: efa2d1f1-d3b8-50f7-9761-3f98292f5c86
+status: experimental
+description: Converted from Sagan rule SID 5017830 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="ATP"
+  selection_3:
+    _raw|contains|cased: log_component="DNS"
+  selection_4:
+    _raw|contains|cased: log_subtype="Alert"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017830'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] DNS ATP Module - Malware Detected And Blocked'
+id: 12819d5e-5b6b-538b-9790-37c2eb4726d0
+status: experimental
+description: Converted from Sagan rule SID 5017831 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="ATP"
+  selection_3:
+    _raw|contains|cased: log_component="DNS"
+  selection_4:
+    _raw|contains|cased: log_subtype="Drop"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017831'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] IPS ATP Module - Malware Detected But Not Blocked'
+id: c7ba2b5f-5ab2-5295-b36c-10c10ad0899b
+status: experimental
+description: Converted from Sagan rule SID 5017832 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="ATP"
+  selection_3:
+    _raw|contains|cased: log_component="IPS"
+  selection_4:
+    _raw|contains|cased: log_subtype="Alert"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017832'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] IPS ATP Module - Malware Detected And Blocked'
+id: 338f2d2a-8440-56fd-be34-858155a9d26e
+status: experimental
+description: Converted from Sagan rule SID 5017833 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="ATP"
+  selection_3:
+    _raw|contains|cased: log_component="IPS"
+  selection_4:
+    _raw|contains|cased: log_subtype="Drop"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017833'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] Web ATP Module - Malware Detected But Not Blocked'
+id: d88c9032-5872-5e2b-87af-bea1e221be05
+status: experimental
+description: Converted from Sagan rule SID 5017834 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="ATP"
+  selection_3:
+    _raw|contains|cased: log_component="Web"
+  selection_4:
+    _raw|contains|cased: log_subtype="Alert"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017834'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] Web ATP Module - Malware Detected And Blocked'
+id: 5ab57562-fd70-5f24-83a6-16d6f9cebe20
+status: experimental
+description: Converted from Sagan rule SID 5017835 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="ATP"
+  selection_3:
+    _raw|contains|cased: log_component="Web"
+  selection_4:
+    _raw|contains|cased: log_subtype="Drop"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017835'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] Authentication Module - Admin/System Brute Force Attempt'
+id: c6c96f9c-1ce1-5c77-be12-3f7cfea82286
+status: experimental
+description: Converted from Sagan rule SID 5017850 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="Event"
+  selection_3:
+    _raw|contains|cased: status="Failed"
+  selection_4:
+    _raw|contains|cased:
+      - log_subtype=Admin
+      - log_subtype=System
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017850'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] Anti-Spam Module Detection'
+id: fd06647c-c8a5-5d06-9fe8-810ef098cb53
+status: experimental
+description: Converted from Sagan rule SID 5017855 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="Event"
+  selection_3:
+    _raw|contains|cased: log_type="Anti-Spam"
+  filter_4:
+    _raw|contains|cased:
+      - log_subtype="Clean"
+      - log_subtype="Allowed"
+      - log_subtype="Denied"
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017855'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] AntiVirus Email Module Detected Virus'
+id: 7e17396e-048e-5929-b64f-f2c56a66f434
+status: experimental
+description: Converted from Sagan rule SID 5017856 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="Event"
+  selection_3:
+    _raw|contains|cased: log_type="Anti-virus"
+  selection_4:
+    _raw|contains|cased: subtype="Virus"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017856'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] IPS Detected A Threat But Not Blocked'
+id: 797673d3-abd3-5c37-9fbf-321eb3683c23
+status: experimental
+description: Converted from Sagan rule SID 5017857 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="IDP"
+  selection_3:
+    _raw|contains|cased: log_subtype="Detect"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017857'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] IPsec Alert Priority Log Detected - CatchAll'
+id: 80f740bf-e952-58b9-a88a-fd62fa66ea30
+status: experimental
+description: Converted from Sagan rule SID 5017858 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="Event"
+  selection_3:
+    _raw|contains|cased: log_subcomponent="IPsec"
+  selection_4:
+    _raw|contains|cased: log_subtype="System"
+  selection_5:
+    _raw|contains|cased: priority="Alert"
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017858'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] IPsec Critical Priority Log Detected - CatchAll'
+id: 2677a110-076f-55c3-b086-ccbc188a0117
+status: experimental
+description: Converted from Sagan rule SID 5017859 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="Event"
+  selection_3:
+    _raw|contains|cased: log_subcomponent="IPsec"
+  selection_4:
+    _raw|contains|cased: log_subtype="System"
+  selection_5:
+    _raw|contains|cased: priority="Critical"
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017859'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] Zero Day Protect Event Detected - Mail Allowed'
+id: 91974d13-a8e7-5caf-9ed0-88279638320f
+status: experimental
+description: Converted from Sagan rule SID 5017861 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="Sandbox"
+  selection_3:
+    _raw|contains|cased: log_component="Mail"
+  selection_4:
+    _raw|contains|cased: log_subtype="Allowed"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017861'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] Zero Day Protect Event Detected - Mail Denied'
+id: d111e6fa-0455-5441-8381-53dcdd7892ac
+status: experimental
+description: Converted from Sagan rule SID 5017862 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="Sandbox"
+  selection_3:
+    _raw|contains|cased: log_component="Mail"
+  selection_4:
+    _raw|contains|cased: log_subtype="Denied"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017862'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] Zero Day Protect Event Detected - Web Allowed'
+id: 27ebad55-bcd7-5b84-b73c-37c1f6006f0e
+status: experimental
+description: Converted from Sagan rule SID 5017863 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="Sandbox"
+  selection_3:
+    _raw|contains|cased: log_component="Web"
+  selection_4:
+    _raw|contains|cased: log_subtype="Allowed"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017863'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] Zero Day Protect Event Detected - Web Denied'
+id: 263127ed-9c6b-5921-aa2c-4333fac3322c
+status: experimental
+description: Converted from Sagan rule SID 5017864 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="Sandbox"
+  selection_3:
+    _raw|contains|cased: log_component="Web"
+  selection_4:
+    _raw|contains|cased: log_subtype="Denied"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017864'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] WAF Module - WAF Alert'
+id: e256388b-baf1-5a8d-9aab-3e7e5fe5e67f
+status: experimental
+description: Converted from Sagan rule SID 5017868 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="WAF"
+  selection_3:
+    _raw|contains|cased: reason="waf"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017868'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] WAF Module - Cookie Alert'
+id: 7c52d95f-8635-5a49-8f4c-12af1970c4a8
+status: experimental
+description: Converted from Sagan rule SID 5017869 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="WAF"
+  selection_3:
+    _raw|contains|cased: reason="cookie"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017869'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] WAF Module - URL Hardening Alert'
+id: 6463e5f2-a164-5a93-9414-c1f69dbe6045
+status: experimental
+description: Converted from Sagan rule SID 5017870 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="WAF"
+  selection_3:
+    _raw|contains|cased: reason="url hardening"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017870'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] WAF Module - AV Alert'
+id: bca5477f-8967-5680-bd9f-8dd5d4ebb930
+status: experimental
+description: Converted from Sagan rule SID 5017871 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="WAF"
+  selection_3:
+    _raw|contains|cased: reason="av"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017871'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] WAF Module - GeoIP Alert'
+id: c544ae69-86e0-555d-82ba-c30b38ab8569
+status: experimental
+description: Converted from Sagan rule SID 5017872 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="WAF"
+  selection_3:
+    _raw|contains|cased: reason="geoip"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017872'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] WAF Module - DNSRBL Alert'
+id: 30e9af39-687a-531f-a088-6922d21ec068
+status: experimental
+description: Converted from Sagan rule SID 5017873 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="WAF"
+  selection_3:
+    _raw|contains|cased: reason="dnsrbl"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017873'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] Web Content Filter - Malicious File Detected'
+id: 7e2d64a3-1116-5137-8b59-c3f7ef8778e3
+status: experimental
+description: Converted from Sagan rule SID 5017874 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    _raw|contains|cased: log_type="Content Filtering"
+  selection_3:
+    _raw|contains|cased: reason="cloud malicious"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017874'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03

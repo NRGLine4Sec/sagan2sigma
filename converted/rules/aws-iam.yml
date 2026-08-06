@@ -1,0 +1,73 @@
+title: '[AWS-IAM] Identity and Access Management Discovery Command Event Detected (ListUsers)'
+id: 1c5d6df4-c14e-5ceb-84d5-471a2974d987
+status: experimental
+description: Converted from Sagan rule SID 5015086 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    _raw|contains|cased: 'eventName": "ListUsers'
+  filter_3:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    _raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    _raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.ta0007
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015086'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management Administrator Access Assigned to Role - Privilege Escalation'
+id: 468ec8e1-8ea3-5a4d-9e06-952814702a5a
+status: experimental
+description: Converted from Sagan rule SID 5015093 (rev 2), file aws-iam.rules.
+references:
+  - https://unit42.paloaltonetworks.com/large-scale-cloud-extortion-operation/
+  - https://docs.aws.amazon.com/aws-managed-policy/latest/reference/AdministratorAccess.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: '*.amazonaws.com'
+  selection_2:
+    _raw|contains|cased:
+      - 'eventName": "AttachRolePolicy'
+      - 'eventName": "PutBucketPolicy"'
+  selection_3:
+    _raw|contains|cased: '"Effect":"Allow"'
+  selection_4:
+    _raw|contains|cased: '"Action":"\*"'
+  selection_5:
+    _raw|contains|cased: '"Resource":"\*"'
+  filter_6:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_7:
+    _raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_8:
+    _raw|contains|cased: AWSSrviceRole
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and not (filter_6
+    or filter_7 or filter_8)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.ta0004
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015093'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules

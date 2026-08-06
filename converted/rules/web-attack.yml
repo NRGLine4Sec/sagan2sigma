@@ -1,0 +1,1835 @@
+title: '[WEB-ATTACKS] Havij SQL Injection Tool Identified'
+id: b5ae029c-0b2b-5f71-868f-5b9e102fe7d6
+status: experimental
+description: Converted from Sagan rule SID 5001699 (rev 2), file web-attack.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: '0x31303235343830303536'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5001699'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] UNION ALL SELECT in URL - Possible SQL Injection'
+id: e2214062-b710-5410-b740-957bd00f52f3
+status: experimental
+description: Converted from Sagan rule SID 5001700 (rev 2), file web-attack.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains: 0%27%20union%20all%20select%20
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5001700'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] SQL Injection Using Encapsulated Data - x=x'
+id: 8284734b-4522-50c5-b077-e554bd649c37
+status: experimental
+description: Converted from Sagan rule SID 5001701 (rev 2), file web-attack.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains: '%20and%20%27x%27%3D%27x'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5001701'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] SQL Injection Using Encapsulated Data - 1=1'
+id: ef133bda-989a-53b7-99e1-e02a783c5c9c
+status: experimental
+description: Converted from Sagan rule SID 5001702 (rev 2), file web-attack.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains: '%20and%20%271%27%3D%271'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5001702'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] SQL Injection Using Hex Encoding'
+id: aab87f0f-60ac-598b-b655-92e5f8d70ccd
+status: experimental
+description: Converted from Sagan rule SID 5001703 (rev 2), file web-attack.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: concat
+  selection_2:
+    _raw|contains: unhex
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5001703'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Absinthe SQL Injection Tool HTTP Header Detected'
+id: 2b5b9603-43a0-54c3-ac09-55585975355c
+status: experimental
+description: Converted from Sagan rule SID 5001864 (rev 3), file web-attack.rules.
+references:
+  - https://0x90.org/releases/absinthe
+  - https://doc.emergingthreats.net/2009555
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: Absinthe
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001864'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] bsqlbf Brute Force SQL Injection'
+id: 5887fe24-c5bc-5342-9d9d-4b4d38784077
+status: experimental
+description: Converted from Sagan rule SID 5001792 (rev 2), file web-attack.rules.
+references:
+  - https://code.google.com/p/bsqlbf-v2/
+  - https://doc.emergingthreats.net/2008362
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains: bsqlbf
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.web-application-activity
+custom_attributes:
+  sagan.sid: '5001792'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Cisco Torch IOS HTTP Scan'
+id: 3ef65727-6fa0-564e-a7a0-dd30a5518f6f
+status: experimental
+description: Converted from Sagan rule SID 5001793 (rev 3), file web-attack.rules.
+references:
+  - https://www.hackingexposedcisco.com/?link=tools
+  - https://www.securiteam.com/tools/5EP0F1FEUA.html
+  - https://doc.emergingthreats.net/2008415
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: Cisco-torch
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001793'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Core-Project Scanning Bot UA Detected'
+id: 24c188a4-1ee0-5575-a779-b49954e690da
+status: experimental
+description: Converted from Sagan rule SID 5001794 (rev 2), file web-attack.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: core-project/1.0
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.web-application-activity
+custom_attributes:
+  sagan.sid: '5001794'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] crimscanner User-Agent detected'
+id: e0050234-f883-5b62-a60c-75d4bfd20d5f
+status: experimental
+description: Converted from Sagan rule SID 5001795 (rev 2), file web-attack.rules.
+references:
+  - https://doc.emergingthreats.net/2010954
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains: GET
+  selection_2:
+    _raw|contains|cased: User-Agent
+  selection_3:
+    _raw|contains: crimscanner
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.network-scan
+custom_attributes:
+  sagan.sid: '5001795'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] DavTest WebDav Vulnerability Scanner Default User Agent Detected'
+id: eff8c50c-1a5f-52b9-b989-535ab689089e
+status: experimental
+description: Converted from Sagan rule SID 5001796 (rev 3), file web-attack.rules.
+references:
+  - https://www.darknet.org.uk/2010/04/davtest-webdav-vulerability-scanning-scanner-tool/
+  - https://code.google.com/p/davtest/
+  - https://doc.emergingthreats.net/2011089
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: DAV.pm
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001796'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] DirBuster Web App Scan in Progress'
+id: 873f67ba-b2cb-5db5-aba5-9bd71fc032db
+status: experimental
+description: Converted from Sagan rule SID 5001797 (rev 2), file web-attack.rules.
+references:
+  - https://owasp.org
+  - https://doc.emergingthreats.net/2008186
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: DirBuster
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5001797'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Possible Fast-Track Tool Spidering User-Agent Detected'
+id: bc205768-6d69-5923-ae76-58b32300d29a
+status: experimental
+description: Converted from Sagan rule SID 5001798 (rev 3), file web-attack.rules.
+references:
+  - https://www.offensive-security.com/metasploit-unleashed/Fast-Track-Modes
+  - https://doc.emergingthreats.net/2011721
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: pymills-spider
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001798'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Suspicious User-Agent - get-minimal - Possible Vuln Scan'
+id: 33d65acc-f96d-5891-85ea-bebf4a4effee
+status: experimental
+description: Converted from Sagan rule SID 5001799 (rev 2), file web-attack.rules.
+references:
+  - https://doc.emergingthreats.net/2003634
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: get-minimal
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5001799'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Grabber.py Web Scan Detected'
+id: d73538e9-84f5-5348-876b-e294189477f5
+status: experimental
+description: Converted from Sagan rule SID 5001800 (rev 3), file web-attack.rules.
+references:
+  - https://rgaucher.info/beta/grabber/
+  - https://doc.emergingthreats.net/2009483
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: Grabber
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001800'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Grendel Web Scan - Default User Agent Detected'
+id: 79a5b596-d0db-5869-a92b-0d49fc729da6
+status: experimental
+description: Converted from Sagan rule SID 5001863 (rev 4), file web-attack.rules.
+references:
+  - https://www.grendel-scan.com
+  - https://doc.emergingthreats.net/2009480
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: Mozilla/5.0
+  selection_3:
+    _raw|contains: Grendel-Scan
+  selection_4:
+    _raw|contains: http://www.grendel-scan.com
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001863'
+  sagan.rev: '4'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Hmap Webserver Fingerprint Scan'
+id: bb8854d2-ca34-55ed-8262-4394a44d4af7
+status: experimental
+description: Converted from Sagan rule SID 5001802 (rev 3), file web-attack.rules.
+references:
+  - https://www.ujeni.murkyroc.com/hmap/
+  - https://doc.emergingthreats.net/2008537
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains: GET
+  selection_2:
+    _raw|contains|cased: HTTP/1.0
+  selection_3:
+    _raw|contains|cased: User-Agent
+  selection_4:
+    _raw|contains|cased: Mozilla
+  selection_5:
+    _raw|contains|cased: 4.75 [en] (Windows NT 5.0
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001802'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Mini MySqlatOr SQL Injection Scanner'
+id: af0fa800-28e1-5201-a66b-6e854f8122e0
+status: experimental
+description: Converted from Sagan rule SID 5001803 (rev 3), file web-attack.rules.
+references:
+  - https://www.scrt.ch/pages_en/minimysqlator.html
+  - https://doc.emergingthreats.net/2008729
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: prog.CustomCrawler
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001803'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Default Mysqloit User Agent Detected - Mysql Injection Takover Tool'
+id: e7857f86-16c5-566c-a9e9-72c63f72130a
+status: experimental
+description: Converted from Sagan rule SID 5001804 (rev 3), file web-attack.rules.
+references:
+  - https://code.google.com/p/mysqloit/
+  - https://doc.emergingthreats.net/2009882
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: Mysqloit
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001804'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Nmap Scripting Engine User-Agent Detected - Nmap NSE'
+id: 1ac9549c-6557-51cf-8a17-bbfff214543c
+status: experimental
+description: Converted from Sagan rule SID 5001805 (rev 2), file web-attack.rules.
+references:
+  - https://doc.emergingthreats.net/2009359
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: Nmap NSE
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5001805'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Nmap Scripting Engine User-Agent Detected - Nmap Scripting Engine'
+id: 9b14f7de-8c4d-54f0-9563-68b3a1d91ba2
+status: experimental
+description: Converted from Sagan rule SID 5001806 (rev 2), file web-attack.rules.
+references:
+  - https://doc.emergingthreats.net/2009358
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: Mozilla/5.0
+  selection_3:
+    _raw|contains: Nmap Scripting Engine
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5001806'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Nessus User Agent'
+id: d99eb63b-9a73-58ab-9d8c-1faf8a89c40a
+status: experimental
+description: Converted from Sagan rule SID 5001865 (rev 4), file web-attack.rules.
+references:
+  - https://www.nessus.org
+  - https://doc.emergingthreats.net/2002664
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains: User-Agent
+  selection_2:
+    _raw|contains: Nessus
+  filter_3:
+    _raw|contains: inessus
+  filter_4:
+    _raw|contains: www.nessus.org
+  filter_5:
+    _raw|contains: Rule
+  filter_6:
+    _raw|contains|cased: drop
+  filter_7:
+    _raw|contains: tmm
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6 or filter_7)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001865'
+  sagan.rev: '4'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Netsparker Default User-Agent'
+id: 1b1f57ab-06b4-5167-97f7-6583b89e1c1c
+status: experimental
+description: Converted from Sagan rule SID 5001808 (rev 3), file web-attack.rules.
+references:
+  - https://www.mavitunasecurity.com/communityedition/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: ' Netsparker'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001808'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Nikto Web App Scan in Progress'
+id: decffbc2-d679-5d5f-8cd1-6506fce53a02
+status: experimental
+description: Converted from Sagan rule SID 5001866 (rev 2), file web-attack.rules.
+references:
+  - https://www.cirt.net/code/nikto.shtml
+  - https://doc.emergingthreats.net/2002677
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: Nikto
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5001866'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Paros Proxy Scanner Detected'
+id: e35b0818-d9fe-5df8-8b7d-9f81aab1b569
+status: experimental
+description: Converted from Sagan rule SID 5001810 (rev 3), file web-attack.rules.
+references:
+  - https://www.parosproxy.org
+  - https://doc.emergingthreats.net/2008187
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: Paros
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001810'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] SQL Injection Attempt (Agent uil2pn)'
+id: 5769f9bd-6a8e-5bf8-9131-5eb803aa7749
+status: experimental
+description: Converted from Sagan rule SID 5001811 (rev 2), file web-attack.rules.
+references:
+  - https://www.prevx.com/filenames/89385984947861762-X1/UIL2PN.EXE.html
+  - https://doc.emergingthreats.net/2010215
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: uil2pn
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5001811'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] SQL Power Injector SQL Injection User Agent Detected'
+id: 272c9fdb-71db-5a26-a65d-24cd410ae265
+status: experimental
+description: Converted from Sagan rule SID 5001812 (rev 3), file web-attack.rules.
+references:
+  - https://www.sqlpowerinjector.com/index.htm
+  - https://en.wikipedia.org/wiki/Sql_injection
+  - https://doc.emergingthreats.net/2009769
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: SQL Power Injector
+  selection_3:
+    _raw|contains|cased: Security tool (Make sure it is used with the administrator consent)
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001812'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Sqlmap SQL Injection Scan'
+id: 2f524f6e-7cd6-5881-895f-adc9c37337dc
+status: experimental
+description: Converted from Sagan rule SID 5001813 (rev 3), file web-attack.rules.
+references:
+  - https://sqlmap.sourceforge.net
+  - https://doc.emergingthreats.net/2008538
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: sqlmap
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001813'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Skipfish Web Application Scan Detected'
+id: 94206a63-236b-5188-9d3e-3dce26b1a03b
+status: experimental
+description: Converted from Sagan rule SID 5001814 (rev 3), file web-attack.rules.
+references:
+  - https://isc.sans.org/diary.html?storyid=8467
+  - https://code.google.com/p/skipfish/
+  - https://doc.emergingthreats.net/2010953
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: Mozilla/5.0 SF
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001814'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Skipfish Web Application Scan Detected (2)'
+id: 3a86bd4f-4246-510b-9e0e-40a322622fe3
+status: experimental
+description: Converted from Sagan rule SID 5001815 (rev 3), file web-attack.rules.
+references:
+  - https://isc.sans.org/diary.html?storyid=8467
+  - https://code.google.com/p/skipfish/
+  - https://doc.emergingthreats.net/2010956
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: GET
+  selection_2:
+    _raw|contains|cased: .old
+  selection_3:
+    _raw|contains|cased: User-Agent
+  selection_4:
+    _raw|contains|cased: Mozilla/5.0 SF/
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001815'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Springenwerk XSS Scanner User-Agent Detected'
+id: 0025644f-8329-5c21-9741-879d51a61335
+status: experimental
+description: Converted from Sagan rule SID 5001816 (rev 3), file web-attack.rules.
+references:
+  - https://springenwerk.org/
+  - https://doc.emergingthreats.net/2010508
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains: Springenwerk
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001816'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Suspicious User-Agent inbound (bot)'
+id: 644bada0-d16c-5b0d-9107-c572c35cc77c
+status: experimental
+description: Converted from Sagan rule SID 5001817 (rev 3), file web-attack.rules.
+references:
+  - https://doc.emergingthreats.net/bin/view/Main/2008228
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains: bot/
+  filter_3:
+    _raw|contains: robots.txt
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5001817'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+  rsigma.suppress: 5m
+---
+title: '[WEB-ATTACKS] Toata Scanner User-Agent Detected'
+id: 53c2e194-f65f-518e-9619-9202510a616f
+status: experimental
+description: Converted from Sagan rule SID 5001818 (rev 3), file web-attack.rules.
+references:
+  - https://isc.sans.org/diary.html?storyid=5599
+  - https://doc.emergingthreats.net/2009159
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: Toata dragostea
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001818'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Tomcat Web Application Manager scanning'
+id: 027a936d-413e-55f6-ae8c-30354e99e7a7
+status: experimental
+description: Converted from Sagan rule SID 5001819 (rev 3), file web-attack.rules.
+references:
+  - https://doc.emergingthreats.net/2010019
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains: GET
+  selection_2:
+    _raw|contains: /manager/html
+  selection_3:
+    _raw|contains|cased: User-Agent
+  selection_4:
+    _raw|contains|cased: Mozilla/3.0
+  selection_5:
+    _raw|contains|cased: Indy Library)
+  selection_6:
+    _raw|contains|cased: Authorization
+  selection_7:
+    _raw|contains|cased: Basic
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+    and selection_7
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001819'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Suspicious User-Agent Containing SQL Inject/ion, Likely SQL Injection Scanner'
+id: 4df06faa-87a8-51a0-a478-2bd11c318833
+status: experimental
+description: Converted from Sagan rule SID 5001820 (rev 3), file web-attack.rules.
+references:
+  - https://www.owasp.org/index.php/SQL_Injection
+  - https://doc.emergingthreats.net/2010087
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains: SQL
+  selection_3:
+    _raw|contains: Inject
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001820'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] w3af User Agent'
+id: 19049054-e339-55c3-b877-cee54968d22a
+status: experimental
+description: Converted from Sagan rule SID 5001823 (rev 3), file web-attack.rules.
+references:
+  - https://w3af.sourceforge.net
+  - https://doc.emergingthreats.net/2007757
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: w3af.sourceforge.net
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001823'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] WSFuzzer Web Application Fuzzing'
+id: c523175e-d572-5eff-afb0-43eca4355d01
+status: experimental
+description: Converted from Sagan rule SID 5001824 (rev 3), file web-attack.rules.
+references:
+  - https://www.owasp.org/index.php/Category%3aOWASP_WSFuzzer_Project
+  - https://doc.emergingthreats.net/2008628
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: /ServiceDefinition
+  selection_2:
+    _raw|contains|cased: User-Agent
+  selection_3:
+    _raw|contains|cased: Python-urllib
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001824'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Wapiti Web Server Vulnerability Scan'
+id: 118ae79f-b8c6-5b1f-9570-e895f94cd18b
+status: experimental
+description: Converted from Sagan rule SID 5001825 (rev 3), file web-attack.rules.
+references:
+  - https://wapiti.sourceforge.net/
+  - https://doc.emergingthreats.net/2008417
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: GET
+  selection_2:
+    _raw|contains|cased: \?http
+  selection_3:
+    _raw|contains: //www.google.
+  selection_4:
+    _raw|contains|cased: User-Agent
+  selection_5:
+    _raw|contains|cased: Python-httplib2
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001825'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Open-Proxy ScannerBot (webcollage-UA)'
+id: 82e34b0a-7b19-55a0-930c-ef12e2f1627c
+status: experimental
+description: Converted from Sagan rule SID 5001827 (rev 2), file web-attack.rules.
+references:
+  - https://stateofsecurity.com/?p=526
+  - https://www.botsvsbrowsers.com/details/214715/index.html
+  - https://doc.emergingthreats.net/2010768
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains: webcollage/1.135a
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5001827'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] WebShag Web Application Scan Detected'
+id: 4a69070f-3690-5098-9f10-2748782ade0b
+status: experimental
+description: Converted from Sagan rule SID 5001828 (rev 3), file web-attack.rules.
+references:
+  - https://www.scrt.ch/pages_en/outils.html
+  - https://doc.emergingthreats.net/2009158
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: webshag
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001828'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] WhatWeb Web Application Fingerprint Scanner Default User-Agent Detected'
+id: c074be7d-1d9b-5232-847a-7b5681581ca1
+status: experimental
+description: Converted from Sagan rule SID 5001829 (rev 3), file web-attack.rules.
+references:
+  - https://www.morningstarsecurity.com/research/whatweb
+  - https://doc.emergingthreats.net/2010960
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: WhatWeb
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001829'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] WITOOL SQL Injection Scan'
+id: dfd2b7b9-3074-5909-b81c-dcc0efb2f940
+status: experimental
+description: Converted from Sagan rule SID 5001830 (rev 3), file web-attack.rules.
+references:
+  - https://witool.sourceforge.net/
+  - https://doc.emergingthreats.net/2009833
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: union+select
+  selection_2:
+    _raw|contains|cased: select+user
+  selection_3:
+    _raw|contains|cased: User-Agent
+  selection_4:
+    _raw|contains|cased: Mozilla/4.0 (compatible
+  selection_5:
+    _raw|contains|cased: MSIE 6.0
+  selection_6:
+    _raw|contains|cased: Windows NT 5.0
+  selection_7:
+    _raw|contains|cased: MyIE2
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+    and selection_7
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001830'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] ZmEu exploit scanner'
+id: 7f406b43-4449-52a8-b8bd-b0803a54fabc
+status: experimental
+description: Converted from Sagan rule SID 5001831 (rev 2), file web-attack.rules.
+references:
+  - https://doc.emergingthreats.net/2010715
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: Made by ZmEu
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5001831'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Possible jBroFuzz Fuzzer Detected'
+id: c8c64317-91e8-56c6-a71b-f2747651f0d9
+status: experimental
+description: Converted from Sagan rule SID 5001832 (rev 3), file web-attack.rules.
+references:
+  - https://www.owasp.org/index.php/Category%3aOWASP_JBroFuzz
+  - https://doc.emergingthreats.net/2009476
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: Host
+  selection_2:
+    _raw|contains|cased: localhost
+  selection_3:
+    _raw|contains|cased: User-Agent
+  selection_4:
+    _raw|contains|cased: Mozilla/5.0 (Windows
+  selection_5:
+    _raw|contains|cased: Windows NT 5.1
+  selection_6:
+    _raw|contains|cased: en-GB
+  selection_7:
+    _raw|contains|cased: Gecko/20061204 Firefox/2.0.0.1
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+    and selection_7
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001832'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Hydra User-Agent'
+id: 6035e2bc-6354-592a-ade5-2a889328785e
+status: experimental
+description: Converted from Sagan rule SID 5001833 (rev 3), file web-attack.rules.
+references:
+  - https://freeworld.thc.org/thc-hydra
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains: Mozilla/4.0 (Hydra)
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001833'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+  rsigma.suppress: 1m
+---
+title: '[WEB-ATTACKS] Inspathx Path Disclosure Scanner User-Agent Detected'
+id: c261ace2-43ef-5666-8a90-cfafd308a15e
+status: experimental
+description: Converted from Sagan rule SID 5001834 (rev 5), file web-attack.rules.
+references:
+  - https://code.google.com/p/inspathx/
+  - https://www.darknet.org.uk/2010/09/inspathx-tool-for-finding-path-disclosure-vulnerabilities/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: inspath [path disclosure finder
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001834'
+  sagan.rev: '5'
+  sagan.source_file: web-attack.rules
+  rsigma.suppress: 30s
+---
+title: '[WEB-ATTACKS] Medusa User-Agent'
+id: 24389eab-d86b-565a-87c5-5f0d20dbb5ca
+status: experimental
+description: Converted from Sagan rule SID 5001835 (rev 3), file web-attack.rules.
+references:
+  - https://www.foofus.net/~jmk/medusa/medusa.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains: Teh Forest Lobster
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001835'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+  rsigma.suppress: 1m
+---
+title: '[WEB-ATTACKS] DotDotPwn User-Agent'
+id: 441151da-3409-50ca-9e1b-ef3cb9258230
+status: experimental
+description: Converted from Sagan rule SID 5001836 (rev 4), file web-attack.rules.
+references:
+  - https://dotdotpwn.sectester.net
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains: DotDotPwn
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001836'
+  sagan.rev: '4'
+  sagan.source_file: web-attack.rules
+  rsigma.suppress: 1m
+---
+title: '[WEB-ATTACKS] Havij SQL Injection Tool User-Agent Inbound'
+id: 6beb1586-6a6e-5d99-8209-aa138ed6288c
+status: experimental
+description: Converted from Sagan rule SID 5001838 (rev 2), file web-attack.rules.
+references:
+  - https://itsecteam.com/en/projects/project1.htm
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: ' Havij'
+  selection_3:
+    _raw|contains|cased: 'Connection: '
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5001838'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] OpenVAS User-Agent Inbound'
+id: 144ee8b9-16db-5c59-b8a5-504398a21a17
+status: experimental
+description: Converted from Sagan rule SID 5001839 (rev 4), file web-attack.rules.
+references:
+  - https://openvas.org
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: OpenVAS
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001839'
+  sagan.rev: '4'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Internal Dummy Connection User-Agent Inbound'
+id: 549c22a3-34c4-58d6-a36a-5f2acf6e82c3
+status: experimental
+description: Converted from Sagan rule SID 5001841 (rev 2), file web-attack.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: (internal dummy connection)
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5001841'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] DominoHunter Security Scan in Progress'
+id: 8ce5f438-ae1a-5ef8-b0c9-1fafdaa2cae0
+status: experimental
+description: Converted from Sagan rule SID 5001842 (rev 3), file web-attack.rules.
+references:
+  - https://packetstormsecurity.org/files/31653/DominoHunter-0.92.zip.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains: DominoHunter
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5001842'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Vega Web Application Scan'
+id: b9375f4c-3e47-58b8-8e69-87a5c3793636
+status: experimental
+description: Converted from Sagan rule SID 5001843 (rev 4), file web-attack.rules.
+references:
+  - https://www.subgraph.com/products.html
+  - https://www.darknet.org.uk/2011/07/vega-open-source-cross-platform-web-application-security-assessment-platform/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  filter_1:
+    _raw|contains|cased: Vegas
+  selection_2:
+    _raw|contains|cased: Vega
+  selection_3:
+    _raw|contains|cased: User-Agent
+  condition: selection_2 and selection_3 and not filter_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001843'
+  sagan.rev: '4'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] FHScan core User-Agent Detect'
+id: 2d20ac2b-c9d0-535d-bd5f-e257ea4044cc
+status: experimental
+description: Converted from Sagan rule SID 5001844 (rev 3), file web-attack.rules.
+references:
+  - https://www.tarasco.org/security/FHScan_Fast_HTTP_Vulnerability_Scanner/index.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: 'FHScan Core '
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001844'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] w3af User-Agent 2'
+id: fc22b935-338e-5326-bd64-0072022bca35
+status: experimental
+description: Converted from Sagan rule SID 5001845 (rev 3), file web-attack.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: User-Agent
+  selection_2:
+    _raw|contains|cased: w3af.sf.net
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001845'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] RFI Attempt'
+id: 82eda7ff-c54e-59a1-b24f-43b2540122dc
+status: experimental
+description: Converted from Sagan rule SID 5002736 (rev 2), file web-attack.rules.
+references:
+  - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: index.php\?cmd=
+  selection_2:
+    _raw|contains|cased: page=
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5002736'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Possible LFI Attempt'
+id: b83f3b7b-7c73-520f-8cc9-24a0ed3bcce5
+status: experimental
+description: Converted from Sagan rule SID 5002737 (rev 2), file web-attack.rules.
+references:
+  - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: '"index.php\?system=" default_proto:tcp'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5002737'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Attempt to Access Default WordPress Login Page'
+id: af49c125-2052-5ae5-b74b-61932537c621
+status: experimental
+description: Converted from Sagan rule SID 5002738 (rev 2), file web-attack.rules.
+references:
+  - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: '"/wp-login.php" default_proto:tcp'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5002738'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Attempt to Access a Webshell via WordPress'
+id: c2d3557b-2879-55ec-89e7-35b57cb75636
+status: experimental
+description: Converted from Sagan rule SID 5002739 (rev 2), file web-attack.rules.
+references:
+  - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: '"/wp-login.php" default_proto:tcp'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5002739'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Attempt to Access Default Cacti Login Page'
+id: bd02e4db-cdde-5715-a087-7de268e3f484
+status: experimental
+description: Converted from Sagan rule SID 5002740 (rev 2), file web-attack.rules.
+references:
+  - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: '"/include/config.php" default_proto:tcp'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5002740'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Attempt to Access PHPMyAdmin Changelog Page'
+id: db281135-bbee-5350-9244-16d56626d571
+status: experimental
+description: Converted from Sagan rule SID 5002741 (rev 2), file web-attack.rules.
+references:
+  - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: '"/changelog.php" default_proto:tcp'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5002741'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Attempt to Access robots.txt File'
+id: 0a9ba10a-17cc-554e-ba31-83b1f8945ce2
+status: experimental
+description: Converted from Sagan rule SID 5002742 (rev 2), file web-attack.rules.
+references:
+  - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: '"robots.txt" default_proto:tcp'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5002742'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Possible SQL Injection'
+id: 86fbf825-40fb-5bb8-b5ac-df6a4f092d86
+status: experimental
+description: Converted from Sagan rule SID 5002743 (rev 2), file web-attack.rules.
+references:
+  - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: '";--" default_proto:tcp'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5002743'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Attempt to Access Default Drupal DB Config File'
+id: d913ea98-a818-5051-9188-cd75303bab64
+status: experimental
+description: Converted from Sagan rule SID 5002744 (rev 2), file web-attack.rules.
+references:
+  - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: '"/sites/default/settings.php" default_proto:tcp'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5002744'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Attempt to Access Default Joomla Page'
+id: f9fc7f0a-0802-5b8b-b96a-5d68a3415e8c
+status: experimental
+description: Converted from Sagan rule SID 5002745 (rev 2), file web-attack.rules.
+references:
+  - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: '"/configuration.php" default_proto:tcp'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5002745'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Attempt to Access PHP Timeclock Page'
+id: 1fb11aff-d810-5b50-b20c-aece8f62d765
+status: experimental
+description: Converted from Sagan rule SID 5002746 (rev 2), file web-attack.rules.
+references:
+  - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: '"/db.php" default_proto:tcp'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5002746'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Attempt to Access default DeV!L`s ClanPortal Page'
+id: c2013d3b-1342-5b0d-ba22-02bbac8eb752
+status: experimental
+description: Converted from Sagan rule SID 5002747 (rev 2), file web-attack.rules.
+references:
+  - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: '"/inc/mysql.php" default_proto:tcp'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5002747'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Attempt to Access IISamples Page'
+id: c53bbd27-7055-541d-885e-82d3c200fb2c
+status: experimental
+description: Converted from Sagan rule SID 5002748 (rev 2), file web-attack.rules.
+references:
+  - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: '"/iisamples" default_proto:tcp'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5002748'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Log4j exploit attempt - CVE-2021-44228'
+id: c1c5f648-5160-5742-8657-b15492a72b42
+status: experimental
+description: Converted from Sagan rule SID 5005958 (rev 2), file web-attack.rules.
+references:
+  - https://lunasec.io/docs/blog/log4j-zero-day/
+  - 2021-44228
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: 'jndi:'
+  selection_2:
+    _raw|contains|cased: '{'
+  selection_3:
+    _raw|contains|cased: ' 200 '
+  filter_4:
+    _raw|contains: Rule
+  filter_5:
+    _raw|contains|cased: drop
+  filter_6:
+    _raw|contains: tmm
+  condition: selection_1 and selection_2 and selection_3 and not (filter_4 or filter_5 or filter_6)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5005958'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Log4j exploit attempt via hex encoding - CVE-2021-44228'
+id: d303f44b-a9ee-506d-af17-59608b160d20
+status: experimental
+description: Converted from Sagan rule SID 5005959 (rev 2), file web-attack.rules.
+references:
+  - https://lunasec.io/docs/blog/log4j-zero-day/
+  - 2021-44228
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: jndi
+  selection_2:
+    _raw|contains: '%3A'
+  selection_3:
+    _raw|contains: '%7B'
+  selection_4:
+    _raw|contains|cased: ' 200 '
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5005959'
+  sagan.rev: '2'
+  sagan.source_file: web-attack.rules

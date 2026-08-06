@@ -1,0 +1,718 @@
+title: '[WINDOWS-MISC] Trusted Platform Module [TPM] Error. User name not found'
+id: 1eda8094-74c5-5c29-a00d-837174a1f83c
+status: experimental
+description: Converted from Sagan rule SID 5009231 (rev 4), file azureEventHub_windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: ' 17150: '
+  selection_2:
+    appname|cased: DAC
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5009231'
+  sagan.rev: '4'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5000318
+---
+title: '[WINDOWS-MISC] Eventlog service was corrupted'
+id: a392ada2-dd5a-5c8d-b8ca-b398d0322908
+status: experimental
+description: Converted from Sagan rule SID 5009232 (rev 2), file azureEventHub_windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: was corrupted
+  selection_2:
+    appname|cased: Eventlog
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.program-error
+custom_attributes:
+  sagan.sid: '5009232'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5000319
+---
+title: '[WINDOWS-MISC] Eventlog service was stopped'
+id: 187401bd-3493-5615-9531-c6658a52cd45
+status: experimental
+description: Converted from Sagan rule SID 5009233 (rev 3), file azureEventHub_windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: Service Stopped
+  selection_2:
+    appname|cased: Eventlog
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009233'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5000320
+---
+title: '[WINDOWS-MISC] Eventlog service returned error'
+id: c601ce2b-e8e4-5069-9f7b-d9307559b724
+status: experimental
+description: Converted from Sagan rule SID 5009234 (rev 3), file azureEventHub_windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: returned error
+  selection_2:
+    appname|cased: Eventlog
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.program-error
+custom_attributes:
+  sagan.sid: '5009234'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5000322
+---
+title: '[WINDOWS-MISC] MsiInstaller - RegWork - Registry clearner'
+id: 3824dbf9-ecd4-5bb6-bd44-f95eed833f27
+status: experimental
+description: Converted from Sagan rule SID 5009244 (rev 3), file azureEventHub_windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: RegWork
+  selection_2:
+    _raw|contains|cased: Product
+  selection_3:
+    appname|cased: MsiInstaller
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5009244'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5000330
+---
+title: '[WINDOWS-MISC] Tenable Nessus service is active [pen-test tool]'
+id: da66e6cc-1e06-57c2-bd3c-8b811f38bd04
+status: experimental
+description: Converted from Sagan rule SID 5009251 (rev 2), file azureEventHub_windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: Tenable Nessus
+  selection_2:
+    appname|cased: Service
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5009251'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5000339
+---
+title: '[WINDOWS-MISC] Tenable Nessus started [pen-test tool]'
+id: 7ed237d8-fbd3-5b5d-9695-632e83f77035
+status: experimental
+description: Converted from Sagan rule SID 5009258 (rev 2), file azureEventHub_windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: started successfully
+  selection_2:
+    appname|cased: Tenable
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009258'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5000345
+---
+title: '[WINDOWS-MISC] WinVNC4 Connection blacklisted'
+id: 60589fc7-0e08-58df-9cfc-3615fce976c2
+status: experimental
+description: Converted from Sagan rule SID 5009262 (rev 5), file azureEventHub_windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: blacklisted
+  selection_2:
+    _raw|contains|cased: Connections
+  selection_3:
+    appname|cased: WinVNC4
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009262'
+  sagan.rev: '5'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5000349
+---
+title: '[WINDOWS-MISC] WinVNC4 Connection Authentication failure'
+id: db44f787-1e0c-5993-affa-c1cff027cbda
+status: experimental
+description: Converted from Sagan rule SID 5009263 (rev 6), file azureEventHub_windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: Authentication failure
+  selection_2:
+    appname|cased: WinVNC4
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5009263'
+  sagan.rev: '6'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5000350
+---
+title: '[WINDOWS-MISC] WinVNC4 Connection close - reading version failed'
+id: 92bf23ff-4256-58a6-9bf1-c9b4d09b8709
+status: experimental
+description: Converted from Sagan rule SID 5009266 (rev 6), file azureEventHub_windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: reading version failed
+  selection_2:
+    _raw|contains|cased: closed
+  selection_3:
+    appname|cased: WinVNC4
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009266'
+  sagan.rev: '6'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5000353
+---
+title: '[WINDOWS-MISC] MSSQLServer I/O error'
+id: a53db875-e50c-5587-bc05-0af7be70f524
+status: experimental
+description: Converted from Sagan rule SID 5009271 (rev 4), file azureEventHub_windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: ' 823: '
+  selection_2:
+    appname|cased: Ntfs
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.program-error
+custom_attributes:
+  sagan.sid: '5009271'
+  sagan.rev: '4'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001096
+---
+title: '[WINDOWS-MISC] File system full'
+id: a69e96d1-e03e-5598-b4a8-89adac8f3c95
+status: experimental
+description: Converted from Sagan rule SID 5009275 (rev 4), file azureEventHub_windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: ' 13570: '
+  selection_2:
+    appname|cased:
+      - NtFrs
+      - Ntfs
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-error
+custom_attributes:
+  sagan.sid: '5009275'
+  sagan.rev: '4'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001191
+---
+title: '[WINDOWS-MISC] System time has changed'
+id: a07cb852-7493-57f6-a0ca-a8a36f0b69b2
+status: experimental
+description: Converted from Sagan rule SID 5009276 (rev 11), file azureEventHub_windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4616
+      - 520
+  filter_2:
+    RenderedDescription|contains|cased: :\\\\Program Files\\\\VMware\\\\VMware Tools\\\\vmtoolsd.exe
+  selection_3:
+    syslog_appname|cased: '*Security*'
+  condition: selection_1 and selection_3 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009276'
+  sagan.rev: '11'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001194
+---
+title: '[WINDOWS-MISC] Windows audit log was cleared'
+id: 144563a6-142d-5eef-b0c7-09c73e2d563e
+status: experimental
+description: Converted from Sagan rule SID 5009280 (rev 10), file azureEventHub_windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 1102
+      - 517
+  selection_2:
+    RenderedDescription|contains|cased: audit log was cleared
+  selection_3:
+    syslog_appname|cased:
+      - '*Security*'
+      - Eventlog
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009280'
+  sagan.rev: '10'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001185
+---
+title: '[WINDOWS-MISC] System shutdown [XBIT SET]'
+id: 593949fa-e6c9-59b0-b3a4-9073bfbe5141
+status: experimental
+description: Converted from Sagan rule SID 5009285 (rev 31), file azureEventHub_windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 1074
+      - 6006
+      - 41
+      - 6008
+      - 1076
+  selection_2:
+    syslog_appname|cased:
+      - '*System*'
+      - '*USER32*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009285'
+  sagan.rev: '31'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5002014
+---
+title: '[WINDOWS-MISC] Microsoft Antimalware has encountered an error trying to update signatures'
+id: f96358d8-9dc2-525b-a79a-a7ffac25572f
+status: experimental
+description: Converted from Sagan rule SID 5009286 (rev 5), file azureEventHub_windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*Microsoft_Antimalware*'
+  selection_2:
+    EventID: 2001
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.program-error
+custom_attributes:
+  sagan.sid: '5009286'
+  sagan.rev: '5'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2022_11_22,old_sid=5002392
+---
+title: '[WINDOWS-MISC] Unable to log events to security log'
+id: b21da5af-668f-511b-ab8f-45c94a863636
+status: experimental
+description: Converted from Sagan rule SID 5009287 (rev 5), file azureEventHub_windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 521
+  selection_2:
+    syslog_appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.program-error
+custom_attributes:
+  sagan.sid: '5009287'
+  sagan.rev: '5'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2022_11_22,old_sid=5002564
+---
+title: '[WINDOWS-MISC] Installation of new service via Security Audit'
+id: 0f5c93cf-432e-55ea-9da4-101829f7a0ea
+status: experimental
+description: Converted from Sagan rule SID 5009289 (rev 5), file azureEventHub_windows-misc.rules.
+references:
+  - https://pastebin.com/raw/0SNSvyjJ
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4697
+      - 601
+  selection_2:
+    syslog_appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009289'
+  sagan.rev: '5'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5002818
+---
+title: '[WINDOWS-MISC] VSS shutdown [XBIT SET]'
+id: f11bb5c3-2c69-5ec7-ad3b-6bd51236e1e4
+status: experimental
+description: Converted from Sagan rule SID 5009290 (rev 2), file azureEventHub_windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 8225
+  selection_2:
+    syslog_appname|cased: '*Application*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.program-error
+custom_attributes:
+  sagan.sid: '5009290'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005745
+---
+title: '[WINDOWS-MISC] Event log has been cleared.'
+id: 0b93ae05-394a-5b66-a882-8315e2542d05
+status: experimental
+description: Converted from Sagan rule SID 5009292 (rev 4), file azureEventHub_windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 104
+  selection_2:
+    RenderedDescription|contains|cased: cleared
+  selection_3:
+    syslog_appname|cased: '*Eventlog*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009292'
+  sagan.rev: '4'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5002954
+---
+title: '[WINDOWS-MISC] Installation of PSEXEC service via Security Audit'
+id: 57ec8801-99be-5ec3-90c2-86fb15e7670e
+status: experimental
+description: Converted from Sagan rule SID 5009295 (rev 5), file azureEventHub_windows-misc.rules.
+references:
+  - https://pastebin.com/raw/0SNSvyjJ
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    RenderedDescription|contains: PSEXEC
+  selection_2:
+    EventID:
+      - 4697
+      - 601
+  selection_3:
+    syslog_appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009295'
+  sagan.rev: '5'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003105
+---
+title: '[WINDOWS-MISC] Installation of PSEXEC service via SCM'
+id: fbf06537-4929-57dc-a4a0-4e80f2ff2ee1
+status: experimental
+description: Converted from Sagan rule SID 5009296 (rev 2), file azureEventHub_windows-misc.rules.
+references:
+  - https://pastebin.com/raw/0SNSvyjJ
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains: PSEXEC
+  selection_2:
+    _raw|contains|cased: ' 7045: '
+  filter_3:
+    _raw|contains: ForeScout
+  filter_4:
+    _raw|contains: nxlog
+  filter_5:
+    _raw|contains: ccmsetup
+  selection_6:
+    appname|cased:
+      - System
+      - Service_Control_Manager
+  condition: selection_1 and selection_2 and selection_6 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009296'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003106
+---
+title: '[WINDOWS-MISC] Rubeus successful TGT Enumeration'
+id: e54649a5-e2bb-534b-a749-121bddf12a8e
+status: experimental
+description: Converted from Sagan rule SID 5009298 (rev 2), file azureEventHub_windows-misc.rules.
+references:
+  - https://posts.specterops.io/hunting-in-active-directory-unconstrained-delegation-forests-trusts-71f2b33688e1
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4611
+  selection_2:
+    RenderedDescription|contains: 'Logon Process Name: User32LogonProcesss'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5009298'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5006530
+---
+title: '[WINDOWS-MISC] Potential Kerberoasting Activity Detected - EID 4768 [10/1]'
+id: 683f9226-a526-548a-bceb-1037cfa06252
+name: sagan_5009299
+status: experimental
+description: Converted from Sagan rule SID 5009299 (rev 1), file azureEventHub_windows-misc.rules.
+references:
+  - https://redsiege.com/tools-techniques/2020/10/detecting-kerberoasting/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4768
+  filter_2:
+    RenderedDescription|contains|cased: 'Ticket Encryption Type: 0x12'
+  filter_3:
+    RenderedDescription|contains: 'Ticket Encryption Type: 0xFFFFFFFF'
+  filter_4:
+    RenderedDescription|contains|cased: $
+  condition: selection_1 and not (filter_2 or filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5009299'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_on=2022_11_22,old_sid=5008394
+---
+title: '[WINDOWS-MISC] Potential Kerberoasting Activity Detected - EID 4768 [10/1] (threshold 10 in 1m)'
+id: 57e391f4-b473-54b8-9466-63f28bf4946f
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5009299
+  group-by:
+    - Computer
+  timespan: 1m
+  condition:
+    gte: 10
+level: high
+---
+title: '[WINDOWS-MISC] Pass the Hash Detected'
+id: 9f67a63e-7479-575f-a158-e962463bb19a
+status: experimental
+description: Converted from Sagan rule SID 5009300 (rev 3), file azureEventHub_windows-misc.rules.
+references:
+  - https://thedfirreport.com/2021/08/29/cobalt-strike-a-defenders-guide/
+  - https://blog.netwrix.com/2021/11/30/how-to-detect-pass-the-hash-attacks/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4624
+  filter_2:
+    RenderedDescription|contains|cased: 'Account Name: SYSTEM'
+  filter_3:
+    RenderedDescription|contains|cased: 'Network Account Name: netwrix-svc'
+  selection_4:
+    RenderedDescription|contains|cased: 'Logon Type: 9'
+  selection_5:
+    RenderedDescription|contains|cased: 'Logon Process: seclogo'
+  selection_6:
+    RenderedDescription|contains|cased: 'Authentication Package: Negotiate'
+  condition: selection_1 and selection_4 and selection_5 and selection_6 and not (filter_2 or filter_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5009300'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008395
+---
+title: '[WINDOWS-MISC] Potential AS-REP Roasting Activity Detected - EID 4768'
+id: c4acac3d-c6d0-5fee-9d1a-778710545008
+status: experimental
+description: Converted from Sagan rule SID 5009301 (rev 1), file azureEventHub_windows-misc.rules.
+references:
+  - https://blog.certcube.com/as-rep-roasting-attack/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4768
+  selection_2:
+    RenderedDescription|contains|cased: 'Ticket Options: 0x4080010'
+  selection_3:
+    RenderedDescription|contains|cased: 'Ticket Encryption Type: 0x17'
+  filter_4:
+    RenderedDescription|contains|cased: $
+  selection_5:
+    RenderedDescription|contains|cased: 'Pre-Authentication Type: 0'
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5009301'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-misc.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008405

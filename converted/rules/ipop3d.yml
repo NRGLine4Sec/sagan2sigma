@@ -1,0 +1,25 @@
+title: '[IPOP3D] Excessive login failures'
+id: 910906df-0069-512d-b89d-fa068aa98927
+status: experimental
+description: Converted from Sagan rule SID 5000032 (rev 9), file ipop3d.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: Login excessive login failures
+  selection_2:
+    appname|cased:
+      - ipop3d
+      - ipop3d-ssl
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5000032'
+  sagan.rev: '9'
+  sagan.source_file: ipop3d.rules
+  rsigma.suppress: 5m

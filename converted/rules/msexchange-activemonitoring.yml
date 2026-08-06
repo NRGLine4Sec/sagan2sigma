@@ -1,0 +1,129 @@
+title: '[Exchange-ActiveMonitoring] Retrieve rules list'
+id: 8c048c57-dc31-5d50-aae2-df5eb68df9ad
+status: experimental
+description: Converted from Sagan rule SID 5012083 (rev 1), file msexchange-activemonitoring.rules.
+author: sagan2sigma
+logsource:
+  product: exchange
+detection:
+  selection_1:
+    appname|cased: Microsoft-Exchange-ActiveMonitoring?ProbeResult
+  selection_2:
+    _raw|contains|cased: /ecp/RulesEditor/InboxRules.svc/GetList
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1553
+  - attack.ta0005
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012083'
+  sagan.rev: '1'
+  sagan.source_file: msexchange-activemonitoring.rules
+  sagan.metadata: deployment=Server,created_at=2023_01_20,updated_at=2023_01_20
+---
+title: '[Exchange-ActiveMonitoring] Retrieve rules listi details'
+id: 1f12f765-f498-57fb-8dbb-fdd59a923638
+status: experimental
+description: Converted from Sagan rule SID 5012084 (rev 1), file msexchange-activemonitoring.rules.
+author: sagan2sigma
+logsource:
+  product: exchange
+detection:
+  selection_1:
+    appname|cased: Microsoft-Exchange-ActiveMonitoring?ProbeResult
+  selection_2:
+    _raw|contains|cased: /ecp/RulesEditor/ViewInboxRuleDetails.aspx
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1553
+  - attack.ta0005
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012084'
+  sagan.rev: '1'
+  sagan.source_file: msexchange-activemonitoring.rules
+  sagan.metadata: deployment=Server,created_at=2023_01_20,updated_at=2023_01_20
+---
+title: '[Exchange-ActiveMonitoring] Edit inbox rules'
+id: 3afa6792-26a8-53a9-a096-cc3bcf7b1aac
+status: experimental
+description: Converted from Sagan rule SID 5012085 (rev 1), file msexchange-activemonitoring.rules.
+author: sagan2sigma
+logsource:
+  product: exchange
+detection:
+  selection_1:
+    appname|cased: Microsoft-Exchange-ActiveMonitoring?ProbeResult
+  selection_2:
+    _raw|contains|cased: /ecp/RulesEditor/EditInboxRule.aspx
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1553
+  - attack.ta0005
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012085'
+  sagan.rev: '1'
+  sagan.source_file: msexchange-activemonitoring.rules
+  sagan.metadata: deployment=Server,created_at=2023_01_20,updated_at=2023_01_20
+---
+title: '[Exchange-ActiveMonitoring] Edit inbox rules - SetObject'
+id: a06c1b72-3a9b-5001-b9a4-06892c49ddfa
+status: experimental
+description: Converted from Sagan rule SID 5012086 (rev 1), file msexchange-activemonitoring.rules.
+author: sagan2sigma
+logsource:
+  product: exchange
+detection:
+  selection_1:
+    appname|cased: Microsoft-Exchange-ActiveMonitoring?ProbeResult
+  selection_2:
+    _raw|contains|cased: /ecp/RulesEditor/InboxRules.svc/SetObject
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1553
+  - attack.ta0005
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012086'
+  sagan.rev: '1'
+  sagan.source_file: msexchange-activemonitoring.rules
+  sagan.metadata: deployment=Server,created_at=2023_01_20,updated_at=2023_01_20
+---
+title: '[Exchange-ActiveMonitoring] Edit inbox rules - RemoveObject'
+id: 74976130-3dd4-5901-8b30-eebb78e6b907
+status: experimental
+description: Converted from Sagan rule SID 5012087 (rev 1), file msexchange-activemonitoring.rules.
+author: sagan2sigma
+logsource:
+  product: exchange
+detection:
+  selection_1:
+    appname|cased: Microsoft-Exchange-ActiveMonitoring?ProbeResult
+  selection_2:
+    _raw|contains|cased: /ecp/RulesEditor/InboxRules.svc/RemoveObjects
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1553
+  - attack.ta0005
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012087'
+  sagan.rev: '1'
+  sagan.source_file: msexchange-activemonitoring.rules
+  sagan.metadata: deployment=Server,created_at=2023_01_20,updated_at=2023_01_20

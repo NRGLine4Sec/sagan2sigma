@@ -1,0 +1,83 @@
+title: '[DELINEA] PAM authentication denied [Brute Force] [10/1]'
+id: 951c861b-8a85-5dfc-b2f0-64b455aabe59
+name: sagan_5003977
+status: experimental
+description: Converted from Sagan rule SID 5003977 (rev 3), file centrify.rules.
+references:
+  - https://docs.centrify.com/en/css/2018-html/index.html#page/server-suite%2FCentrify_Documentation_Roadmap_v5.html
+author: sagan2sigma
+logsource:
+  product: centrify
+detection:
+  selection_1:
+    _raw|contains|cased: centrifyEventID=24101
+  selection_2:
+    appname|cased: adclient
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5003977'
+  sagan.rev: '3'
+  sagan.source_file: centrify.rules
+  rsigma.suppress: 5m
+---
+title: '[DELINEA] PAM authentication denied [Brute Force] [10/1] (threshold 10 in 5m)'
+id: 2c4c50b2-2121-53c6-80aa-2226bab9d482
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5003977
+  group-by:
+    - hostname
+  timespan: 5m
+  condition:
+    gte: 10
+level: low
+---
+title: '[DELINEA] PAM open session denied [Brute Force] [10/1]'
+id: 22f0fe3b-a708-5a53-8772-4ca3aa8090cd
+name: sagan_5003979
+status: experimental
+description: Converted from Sagan rule SID 5003979 (rev 3), file centrify.rules.
+references:
+  - https://docs.centrify.com/en/css/2018-html/index.html#page/server-suite%2FCentrify_Documentation_Roadmap_v5.html
+author: sagan2sigma
+logsource:
+  product: centrify
+detection:
+  selection_1:
+    _raw|contains|cased: centrifyEventID=24501
+  selection_2:
+    appname|cased: adclient
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5003979'
+  sagan.rev: '3'
+  sagan.source_file: centrify.rules
+  rsigma.suppress: 5m
+---
+title: '[DELINEA] PAM open session denied [Brute Force] [10/1] (threshold 10 in 5m)'
+id: e07e30ec-9994-5bb4-aed8-533d0aac378a
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5003979
+  group-by:
+    - hostname
+  timespan: 5m
+  condition:
+    gte: 10
+level: low

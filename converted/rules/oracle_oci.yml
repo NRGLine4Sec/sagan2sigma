@@ -1,0 +1,703 @@
+title: '[ORACLE] OCI Audit - addprivateendpointoutboundconnection Event Detected'
+id: 76531a19-928e-5efe-b63c-309fa1028ab7
+status: experimental
+description: Converted from Sagan rule SID 5016661 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: addprivateendpointoutboundconnection
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016661'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
+---
+title: '[ORACLE] OCI Audit - AssignCloudShellHost Event Detected'
+id: b97acd06-9986-5560-b903-fe747111a016
+status: experimental
+description: Converted from Sagan rule SID 5016663 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: AssignCloudShellHost
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016663'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
+---
+title: '[ORACLE] OCI Audit - CreateCredential Event Detected'
+id: 52f70ba4-e02c-57b5-af88-fa8f4e73bbf1
+status: experimental
+description: Converted from Sagan rule SID 5016681 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: CreateCredential
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016681'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
+---
+title: '[ORACLE] OCI Audit - CreateFederatedUser Event Detected'
+id: fa799da4-c803-5ee8-af9e-98967b7da79f
+status: experimental
+description: Converted from Sagan rule SID 5016684 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: CreateFederatedUser
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016684'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
+---
+title: '[ORACLE] OCI Audit - CreateHost Event Detected'
+id: 0b0b77e4-9698-5119-941d-2f965496461b
+status: experimental
+description: Converted from Sagan rule SID 5016687 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: CreateHost
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016687'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
+---
+title: '[ORACLE] OCI Audit - CreateIdentityprovider Event Detected'
+id: 80d5fe47-4f2b-5508-bce5-91c1d657236e
+status: experimental
+description: Converted from Sagan rule SID 5016688 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: CreateIdentityprovider
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016688'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
+---
+title: '[ORACLE] OCI Audit - createintegrationinstance Event Detected'
+id: 72927853-6f01-5f8e-8d5e-5f0433ebafb7
+status: experimental
+description: Converted from Sagan rule SID 5016689 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: createintegrationinstance
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016689'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
+---
+title: '[ORACLE] OCI Audit - CreateOrResetMyPasswordRequest Event Detected'
+id: d0951dd2-19dd-50a1-8271-20ba544ac21b
+status: experimental
+description: Converted from Sagan rule SID 5016697 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: CreateOrResetMyPasswordRequest
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016697'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
+---
+title: '[ORACLE] OCI Audit - CreateOrResetPassword Event Detected'
+id: 7f2a474f-3d53-5a5d-99e8-cb5b9bc56f6b
+status: experimental
+description: Converted from Sagan rule SID 5016698 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: CreateOrResetPassword
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016698'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
+---
+title: '[ORACLE] OCI Audit - CreateTerminal Event Detected'
+id: 970493b9-ff46-5df1-9c32-b3a45348544a
+status: experimental
+description: Converted from Sagan rule SID 5016709 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: CreateTerminal
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016709'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
+---
+title: '[ORACLE] OCI Audit - CreateUser Event Detected'
+id: e771f1ef-a312-5b06-8189-71d09a572d3f
+status: experimental
+description: Converted from Sagan rule SID 5016710 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: CreateUser
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016710'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
+---
+title: '[ORACLE] OCI Audit - DeleteApp Event Detected'
+id: 5f6a0bfa-10da-5e46-9fd4-b554661b4906
+status: experimental
+description: Converted from Sagan rule SID 5016714 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: DeleteApp
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016714'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
+---
+title: '[ORACLE] OCI Audit - DeleteCredential Event Detected'
+id: 0bcc11d7-a007-5874-abd2-95ccbf40518c
+status: experimental
+description: Converted from Sagan rule SID 5016718 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: DeleteCredential
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016718'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
+---
+title: '[ORACLE] OCI Audit - DeleteDevice Event Detected'
+id: a2713366-66ea-5ac0-87fa-ac59e6510f0b
+status: experimental
+description: Converted from Sagan rule SID 5016719 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: DeleteDevice
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016719'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
+---
+title: '[ORACLE] OCI Audit - DeleteUser Event Detected'
+id: 05a52a3e-8df2-5bb7-8d76-0a9ea8d90d2c
+status: experimental
+description: Converted from Sagan rule SID 5016731 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: DeleteUser
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016731'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
+---
+title: '[ORACLE] OCI Audit - FactorMfa Event Detected'
+id: 2087b7f8-1fae-550a-887b-653efdf563f9
+status: experimental
+description: Converted from Sagan rule SID 5016737 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: FactorMfa
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016737'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
+---
+title: '[ORACLE] OCI Audit - FailureDecide Event Detected'
+id: ca4826bc-43c2-5c96-88cd-694e066dea2e
+status: experimental
+description: Converted from Sagan rule SID 5016738 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: FailureDecide
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016738'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
+---
+title: '[ORACLE] OCI Audit - listgateways Event Detected'
+id: ee338700-618a-5afb-a1d3-2245f2bc73d5
+status: experimental
+description: Converted from Sagan rule SID 5016871 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: listgateways
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016871'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
+---
+title: '[ORACLE] OCI Audit - SendVerificationEmail Event Detected'
+id: c1266ae9-0a2b-560d-87c9-9cba1b10735e
+status: experimental
+description: Converted from Sagan rule SID 5016976 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: SendVerificationEmail
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016976'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
+---
+title: '[ORACLE] OCI Audit - UpdateRule Event Detected'
+id: 6355ba5e-b777-51ad-9cb1-e11db244620f
+status: experimental
+description: Converted from Sagan rule SID 5016996 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: UpdateRule
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016996'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
+---
+title: '[ORACLE] OCI Audit - UpdateSecurityList Event Detected'
+id: 6ed8be6e-d3f8-5118-9f07-bb7944cbf707
+status: experimental
+description: Converted from Sagan rule SID 5016997 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: UpdateSecurityList
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016997'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
+---
+title: '[ORACLE] OCI Audit - VerifyRecoveryEmail Event Detected'
+id: d2abb297-cdf9-51c7-aae7-c9de2230ac8a
+status: experimental
+description: Converted from Sagan rule SID 5017003 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: VerifyRecoveryEmail
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017003'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10

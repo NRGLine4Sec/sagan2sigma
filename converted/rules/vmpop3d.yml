@@ -1,0 +1,22 @@
+title: '[VMPOP3D] Authentication failure for POP3'
+id: c457b703-f7cf-566d-a45d-f7f27cb77e72
+status: experimental
+description: Converted from Sagan rule SID 5000215 (rev 4), file vmpop3d.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: failed auth
+  selection_2:
+    appname|cased: vm-pop3d
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000215'
+  sagan.rev: '4'
+  sagan.source_file: vmpop3d.rules

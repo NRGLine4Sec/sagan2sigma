@@ -1,0 +1,182 @@
+title: '[MCAS] Activity from Infrequent Country'
+id: 194570f3-a2e8-5906-9477-64148d0e49f0
+status: experimental
+description: Converted from Sagan rule SID 5007203 (rev 2), file msapi-mcas.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    syslog_appname|cased: MCAS
+  selection_2:
+    Operation|cased: MCAS_ALERT_ANUBIS_DETECTION_NEW_COUNTRY
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - attack.t1102
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5007203'
+  sagan.rev: '2'
+  sagan.source_file: msapi-mcas.rules
+---
+title: '[MCAS] Mass Delete'
+id: 491a78d7-549f-56c6-8dcc-9d7b0398dc2a
+status: experimental
+description: Converted from Sagan rule SID 5007204 (rev 2), file msapi-mcas.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    syslog_appname|cased: MCAS
+  selection_2:
+    Operation|cased: MCAS_ALERT_ANUBIS_DETECTION_REPEATED_ACTIVITY_DELETE
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1070
+  - attack.t1107
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007204'
+  sagan.rev: '2'
+  sagan.source_file: msapi-mcas.rules
+---
+title: '[MCAS] Repeated Failed Logins'
+id: b84d3be0-d292-550f-9748-20d557f13604
+status: experimental
+description: Converted from Sagan rule SID 5007205 (rev 2), file msapi-mcas.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    syslog_appname|cased: MCAS
+  selection_2:
+    Operation|cased: MCAS_ALERT_ANUBIS_DETECTION_REPEATED_ACTIVITY_FAILED_LOGIN
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1078
+  - attack.t1110
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5007205'
+  sagan.rev: '2'
+  sagan.source_file: msapi-mcas.rules
+---
+title: '[MCAS] Activity from an Anonymous Proxy'
+id: 30f96fe4-9ad9-516e-84e0-d71eb9981db5
+status: experimental
+description: Converted from Sagan rule SID 5007206 (rev 2), file msapi-mcas.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    syslog_appname|cased: MCAS
+  selection_2:
+    Operation|cased: MCAS_ALERT_ANUBIS_DETECTION_RISKY_IP_ANONYMOUS
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - attack.t1563
+  - attack.t1564
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5007206'
+  sagan.rev: '2'
+  sagan.source_file: msapi-mcas.rules
+---
+title: '[MCAS] Suspicious Inbox Manipulation Rule'
+id: 98e2b648-f187-5f99-8510-01c93839ac41
+status: experimental
+description: Converted from Sagan rule SID 5007208 (rev 2), file msapi-mcas.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    syslog_appname|cased: MCAS
+  selection_2:
+    Operation|cased: MCAS_ALERT_ANUBIS_DETECTION_INBOX_HIDING
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - attack.t1564
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5007208'
+  sagan.rev: '2'
+  sagan.source_file: msapi-mcas.rules
+---
+title: '[MCAS] Possible Unknown MCAS Alert'
+id: ac9d539e-9e35-5bdb-b62f-7dce1b6543a1
+status: experimental
+description: Converted from Sagan rule SID 5007209 (rev 4), file msapi-mcas.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    syslog_appname|cased: MCAS
+  filter_2:
+    Operation|cased:
+      - MCAS_ALERT_ANUBIS_DETECTION_NEW_COUNTRY
+      - MCAS_ALERT_ANUBIS_DETECTION_REPEATED_ACTIVITY_DELETE
+      - MCAS_ALERT_ANUBIS_DETECTION_REPEATED_ACTIVITY_FAILED_LOGIN
+      - MCAS_ALERT_ANUBIS_DETECTION_RISKY_IP_ANONYMOUS
+      - MCAS_ALERT_ANUBIS_DETECTION_VELOCITY
+      - MCAS_ALERT_ANUBIS_DETECTION_INBOX_HIDING
+      - MCAS_ALERT_ANUBIS_DETECTION_REPEATED_ACTIVITY_DOWNLOAD
+      - MCAS_ALERT_ANUBIS_DETECTION_REPEATED_ACTIVITY_ADMIN_ACTIVITY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5007209'
+  sagan.rev: '4'
+  sagan.source_file: msapi-mcas.rules
+  sagan.metadata: mitre_technique_id=T????
+---
+title: '[MCAS] Mass Download Attempt'
+id: 9d4131fb-4c5e-5bd7-9adc-9d1bad0479a3
+status: experimental
+description: Converted from Sagan rule SID 5011309 (rev 2), file msapi-mcas.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    syslog_appname|cased: MCAS
+  selection_2:
+    Operation|contains|cased: MCAS_ALERT_ANUBIS_DETECTION_REPEATED_ACTIVITY_DOWNLOAD
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1002
+  - attack.t1048
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5011309'
+  sagan.rev: '2'
+  sagan.source_file: msapi-mcas.rules

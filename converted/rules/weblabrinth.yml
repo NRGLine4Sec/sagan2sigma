@@ -1,0 +1,46 @@
+title: '[WEBLABYRINTH] New host logged!'
+id: 1997100b-4e89-5bbd-8a26-bf33c1e460dd
+status: experimental
+description: Converted from Sagan rule SID 5001093 (rev 8), file weblabrinth.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: weblabyrinth
+  selection_2:
+    _raw|contains|cased: New host logged!
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.misc-activity
+custom_attributes:
+  sagan.sid: '5001093'
+  sagan.rev: '8'
+  sagan.source_file: weblabrinth.rules
+---
+title: '[WEBLABYRINTH] Weblabyrinth - Crawler Ensnared!'
+id: 4cc96675-5f77-55ce-9182-1a5332abe1f5
+status: experimental
+description: Converted from Sagan rule SID 5001095 (rev 5), file weblabrinth.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: weblabyrinth
+  selection_2:
+    _raw|contains|cased: Crawler Ensnared!
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.misc-activity
+custom_attributes:
+  sagan.sid: '5001095'
+  sagan.rev: '5'
+  sagan.source_file: weblabrinth.rules
+  rsigma.suppress: 5m

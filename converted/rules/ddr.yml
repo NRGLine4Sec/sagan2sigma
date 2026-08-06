@@ -1,0 +1,585 @@
+title: '[AWS] AWS ConsoleLogin'
+id: 5b8a654e-6ac7-5c4b-b349-780a51ad1b4b
+status: experimental
+description: Converted from Sagan rule SID 991001 (rev 1), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: signin.amazonaws.com
+  selection_2:
+    eventName|cased: ConsoleLogin
+  selection_3:
+    responseElements.ConsoleLogin|cased: Success
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991001'
+  sagan.rev: '1'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2025_07_30
+---
+title: '[AWS] S3 Enumeration (Multiple ListObects Events)'
+id: 8d8b3f09-03f2-54bc-92fd-5c758668a3ce
+name: sagan_5017058
+status: experimental
+description: Converted from Sagan rule SID 5017058 (rev 1), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: s3.amazonaws.com
+  selection_2:
+    eventName|cased: ListObjects
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5017058'
+  sagan.rev: '1'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2025_07_30
+---
+title: '[AWS] S3 Enumeration (Multiple ListObects Events) (threshold 10 in 1m)'
+id: d44a75ef-97f8-5a24-9978-dc7ec2bba4c3
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017058
+  group-by:
+    - userIdentity.sessionContext.sessionIssuer.userName
+  timespan: 1m
+  condition:
+    gte: 10
+level: low
+---
+title: '[AWS] S3 Enumeration (Multiple ListObectsv2 Events)'
+id: 8003c561-45c6-5bd8-ab24-65c2dbc9f64c
+name: sagan_5017059
+status: experimental
+description: Converted from Sagan rule SID 5017059 (rev 1), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: s3.amazonaws.com
+  selection_2:
+    eventName|cased: ListObjectsV2
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5017059'
+  sagan.rev: '1'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2025_07_30
+---
+title: '[AWS] S3 Enumeration (Multiple ListObectsv2 Events) (threshold 10 in 1m)'
+id: e5f140ac-34c9-5725-9428-a6211b2477ac
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017059
+  group-by:
+    - userIdentity.sessionContext.sessionIssuer.userName
+  timespan: 1m
+  condition:
+    gte: 10
+level: low
+---
+title: '[AWS] S3 Enumeration (Multiple ListBuckets Events)'
+id: cc628a8e-8610-540b-9926-a99cb5c00859
+name: sagan_5017060
+status: experimental
+description: Converted from Sagan rule SID 5017060 (rev 2), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: s3.amazonaws.com
+  selection_2:
+    eventName|cased: ListBuckets
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5017060'
+  sagan.rev: '2'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2026_04_20
+---
+title: '[AWS] S3 Enumeration (Multiple ListBuckets Events) (threshold 10 in 1m)'
+id: 5ca3d3b0-d166-58b7-8db2-9e859d5f668a
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017060
+  group-by:
+    - userIdentity.sessionContext.sessionIssuer.userName
+  timespan: 1m
+  condition:
+    gte: 10
+level: low
+---
+title: '[AWS] EC2 List Snapshots'
+id: 1aa823e2-3102-56ec-97b0-2aa96566e8a4
+name: sagan_5017064
+status: experimental
+description: Converted from Sagan rule SID 5017064 (rev 1), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: ec2.amazonaws.com
+  selection_2:
+    eventName|cased: ListSnapshots
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017064'
+  sagan.rev: '1'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2025_07_30
+---
+title: '[AWS] EC2 List Snapshots (threshold 10 in 1m)'
+id: a1a92264-b5fa-54a6-b79b-1701214813f1
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017064
+  group-by:
+    - userIdentity.sessionContext.sessionIssuer.userName
+  timespan: 1m
+  condition:
+    gte: 10
+level: medium
+---
+title: '[AWS] EC2 Describe Snapshots'
+id: 56e7a9d0-8448-5c4d-80a6-c28891cbabc5
+name: sagan_5017065
+status: experimental
+description: Converted from Sagan rule SID 5017065 (rev 1), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: ec2.amazonaws.com
+  selection_2:
+    eventName|cased: DescribeSnapshots
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017065'
+  sagan.rev: '1'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2025_07_30
+---
+title: '[AWS] EC2 Describe Snapshots (threshold 10 in 1m)'
+id: c1cb5ca1-1fad-561e-8648-c9eb0cc74820
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017065
+  group-by:
+    - userIdentity.sessionContext.sessionIssuer.userName
+  timespan: 1m
+  condition:
+    gte: 10
+level: medium
+---
+title: '[AWS] EC2 Get Snapshot'
+id: 66f2b9f8-ee43-55d1-9296-15c6dd705a88
+status: experimental
+description: Converted from Sagan rule SID 5017066 (rev 1), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: ec2.amazonaws.com
+  selection_2:
+    eventName|cased: GetSnapshot
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017066'
+  sagan.rev: '1'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2025_07_30
+---
+title: '[AWS] EC2 Copy Snapshot'
+id: 6bc842e9-e4fd-5b28-b68a-55212872453d
+status: experimental
+description: Converted from Sagan rule SID 991014 (rev 1), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: ec2.amazonaws.com
+  selection_2:
+    eventName|cased: CopySnapshot
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991014'
+  sagan.rev: '1'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2025_07_30
+---
+title: '[AWS] EC2 Create Snapshot'
+id: abab6198-6b84-560d-af6e-3e0ec1a7c096
+status: experimental
+description: Converted from Sagan rule SID 991015 (rev 1), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: ec2.amazonaws.com
+  selection_2:
+    eventName|cased: CreateSnapshot
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991015'
+  sagan.rev: '1'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2025_07_30
+---
+title: '[AWS] EC2 Create Snapshots'
+id: df564d51-4181-5a7f-a028-ea0403373b8f
+status: experimental
+description: Converted from Sagan rule SID 5017067 (rev 1), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: ec2.amazonaws.com
+  selection_2:
+    eventName|cased: CreateSnapshots
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017067'
+  sagan.rev: '1'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2025_07_30
+---
+title: '[AWS] EC2 Delete Snapshot'
+id: 1cf195b3-fcb5-55d0-b9bc-21415bf27797
+status: experimental
+description: Converted from Sagan rule SID 991017 (rev 1), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: ec2.amazonaws.com
+  selection_2:
+    eventName|cased: DeleteSnapshot
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991017'
+  sagan.rev: '1'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2025_07_30
+---
+title: '[AWS] EC2 Delete Disk Snapshot'
+id: f89f74d4-4253-50e8-90e4-e43f4a48f7b3
+status: experimental
+description: Converted from Sagan rule SID 5017068 (rev 1), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: ec2.amazonaws.com
+  selection_2:
+    eventName|cased: DeleteDiskSnapshot
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017068'
+  sagan.rev: '1'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2025_07_30
+---
+title: '[AWS] EC2 Export Snapshot'
+id: b0610467-adda-5983-a634-832e3aaa818a
+status: experimental
+description: Converted from Sagan rule SID 5017069 (rev 1), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: ec2.amazonaws.com
+  selection_2:
+    eventName|cased: ExportSnapshot
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017069'
+  sagan.rev: '1'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2025_07_30
+---
+title: '[AWS] EC2 Modify Snapshot Attribute'
+id: a68ab606-68e2-5134-b94c-5b0392c569f0
+status: experimental
+description: Converted from Sagan rule SID 5017151 (rev 1), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: ec2.amazonaws.com
+  selection_2:
+    eventName|cased: ModifySnapshotAttribute
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017151'
+  sagan.rev: '1'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2025_07_30
+---
+title: '[AWS] EC2 Shared Snapshot Volume Created'
+id: 4a60835f-d98d-5107-b4cc-8d748c1dffc0
+status: experimental
+description: Converted from Sagan rule SID 5017152 (rev 1), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: ec2.amazonaws.com
+  selection_2:
+    eventName|cased: SharedSnapshotVolumeCreated
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017152'
+  sagan.rev: '1'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2025_07_30
+---
+title: '[AWS] RDS Describe DB Snapshots'
+id: b62e5b01-2a8c-5cf5-b3ae-a51e8a52887a
+status: experimental
+description: Converted from Sagan rule SID 5017153 (rev 1), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: rds.amazonaws.com
+  selection_2:
+    eventName|cased: DescribeDBSnapshots
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017153'
+  sagan.rev: '1'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2025_07_30
+---
+title: '[AWS] RDS Delete DB Snapshot'
+id: eacc2f4f-ea27-5b92-bdea-92aceac8e8b3
+status: experimental
+description: Converted from Sagan rule SID 991023 (rev 1), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: rds.amazonaws.com
+  selection_2:
+    eventName|cased: DeleteDBSnapshot
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991023'
+  sagan.rev: '1'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2025_07_30
+---
+title: '[AWS] RDS Copy DB Snapshot'
+id: 1a2432ba-4ee2-5a13-ae87-fe519f060ffd
+status: experimental
+description: Converted from Sagan rule SID 5017154 (rev 1), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: rds.amazonaws.com
+  selection_2:
+    eventName|cased: CopyDBSnapshot
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017154'
+  sagan.rev: '1'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2025_07_30
+---
+title: '[AWS] RDS Get Relational DB Snapshot'
+id: 4e3f325a-df5b-54da-b635-0a841fa514d3
+status: experimental
+description: Converted from Sagan rule SID 5017155 (rev 1), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: rds.amazonaws.com
+  selection_2:
+    eventName|cased: GetRelationalDatabaseSnapshot
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017155'
+  sagan.rev: '1'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2025_07_30
+---
+title: '[AWS] RDS Get Relational DB Snapshots'
+id: 19d5908f-a8e5-5e6c-a1d9-dafc4a60f551
+status: experimental
+description: Converted from Sagan rule SID 5017156 (rev 1), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: rds.amazonaws.com
+  selection_2:
+    eventName|cased: GetRelationalDatabaseSnapshots
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017156'
+  sagan.rev: '1'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2025_07_30
+---
+title: '[AWS] RDS Delete Relational DB Snapshot'
+id: 0d69fd03-0b03-5a83-990c-782659518f68
+status: experimental
+description: Converted from Sagan rule SID 5017157 (rev 1), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: rds.amazonaws.com
+  selection_2:
+    eventName|cased: DeleteRelationalDatabaseSnapshot
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017157'
+  sagan.rev: '1'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2025_07_30

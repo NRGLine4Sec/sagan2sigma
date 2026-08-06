@@ -1,0 +1,1905 @@
+title: '[CARBONBLACK-APP-CONTROL] Agent database error (Error)'
+id: a5d4f39b-07a1-55e4-a463-fc0e067f70bb
+status: experimental
+description: Converted from Sagan rule SID 5010965 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Computer Management"
+  selection_3:
+    _raw|contains: subtype="Agent database error"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5010965'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Agent uninstalled (Notice)'
+id: c8347786-ac6c-5661-aee2-832da1d1faa2
+status: experimental
+description: Converted from Sagan rule SID 5010983 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Computer Management"
+  selection_3:
+    _raw|contains: subtype="Agent uninstalled"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5010983'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] CLI executed (Notice)'
+id: fc289109-c105-5cf4-bfcf-4f4cee3143b6
+status: experimental
+description: Converted from Sagan rule SID 5010991 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Computer Management"
+  selection_3:
+    _raw|contains: subtype="CLI executed"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5010991'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] File deletion failed (Error)'
+id: 66d012f7-510f-54b7-9b58-15bb4af70f43
+status: experimental
+description: Converted from Sagan rule SID 5011006 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Computer Management"
+  selection_3:
+    _raw|contains: subtype="File deletion failed"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011006'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Lockdown all computers (Warning)'
+id: 21368cf5-15b0-55f0-9ac6-56227385bc4e
+status: experimental
+description: Converted from Sagan rule SID 5011018 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Computer Management"
+  selection_3:
+    _raw|contains: subtype="Lockdown all computers"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011018'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Security Alert (Warning)'
+id: e1bbf8e9-7806-5a95-8916-ad6e1c125f66
+status: experimental
+description: Converted from Sagan rule SID 5011021 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Computer Management"
+  selection_3:
+    _raw|contains: subtype="Security Alert"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011021'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Tamper Protection changed (Warning)'
+id: ba3448b3-8124-554c-86ca-2bc3b3459d77
+status: experimental
+description: Converted from Sagan rule SID 5011022 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Computer Management"
+  selection_3:
+    _raw|contains: subtype="Tamper Protection changed"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011022'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Temporary Enforcement Level override (Warning)'
+id: 05398513-8edd-573c-9adc-01bcd41d692a
+status: experimental
+description: Converted from Sagan rule SID 5011026 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Computer Management"
+  selection_3:
+    _raw|contains: subtype="Temporary Enforcement Level override"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011026'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Temporary Policy override generated (Info)'
+id: e350d752-8405-53e5-9443-aa3c8443838a
+status: experimental
+description: Converted from Sagan rule SID 5011028 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Computer Management"
+  selection_3:
+    _raw|contains: subtype="Temporary Policy override generated"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011028'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Unauthorized computer registration (Warning)'
+id: b7b96e46-91d3-514d-96a6-cc1a593d17a8
+status: experimental
+description: Converted from Sagan rule SID 5011029 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Computer Management"
+  selection_3:
+    _raw|contains: subtype="Unauthorized computer registration"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011029'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Malicious file detected (Critical)'
+id: 0468efc6-af12-5424-b1d0-6001748bf0b9
+status: experimental
+description: Converted from Sagan rule SID 5011041 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Discovery"
+  selection_3:
+    _raw|contains: subtype="Malicious file detected"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011041'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] New device found (Notice)'
+id: 528b2de5-f0c4-5428-9596-073d4d9eb1c4
+status: experimental
+description: Converted from Sagan rule SID 5011043 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Discovery"
+  selection_3:
+    _raw|contains: subtype="New device found"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011043'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Potential risk file detected (Warning)'
+id: 0dd6979e-5374-5b21-924b-81e0b8989251
+status: experimental
+description: Converted from Sagan rule SID 5011047 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Discovery"
+  selection_3:
+    _raw|contains: subtype="Potential risk file detected"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011047'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Suspicious file found (Info)'
+id: 60dd0740-1f3f-578b-bc60-373d8dc59556
+status: experimental
+description: Converted from Sagan rule SID 5011050 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Discovery"
+  selection_3:
+    _raw|contains: subtype="Suspicious file found"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011050'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Alert triggered (Critical)'
+id: 187faecd-0762-502d-b513-bbca90945827
+status: experimental
+description: Converted from Sagan rule SID 5011056 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="General Management"
+  selection_3:
+    _raw|contains: subtype="Alert triggered"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011056'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Banned process discovered (Warning)'
+id: 7772e523-7ae6-5016-9003-bf6e69ba2837
+status: experimental
+description: Converted from Sagan rule SID 5011077 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Policy Enforcement"
+  selection_3:
+    _raw|contains: subtype="Banned process discovered"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011077'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Execution block (banned file) (Notice)'
+id: 83ac0ffd-f8a5-5f62-92c6-4a37f584c197
+status: experimental
+description: Converted from Sagan rule SID 5011084 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Policy Enforcement"
+  selection_3:
+    _raw|contains: subtype="Execution block (banned file)"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011084'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Execution block (Custom Rule) (Notice)'
+id: 92dc13e9-3838-5cc2-80f2-47e19c98b418
+status: experimental
+description: Converted from Sagan rule SID 5011085 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Policy Enforcement"
+  selection_3:
+    _raw|contains: subtype="Execution block (Custom Rule)"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011085'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Execution block (removable media) (Notice)'
+id: beaf80b2-27c1-53d0-86f3-ca5f770c5682
+status: experimental
+description: Converted from Sagan rule SID 5011088 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Policy Enforcement"
+  selection_3:
+    _raw|contains: subtype="Execution block (removable media)"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011088'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Execution prompt allowed (unapproved file) (Info)'
+id: 804542ac-ae90-5591-a3be-2fbf8c5c3a69
+status: experimental
+description: Converted from Sagan rule SID 5011093 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Policy Enforcement"
+  selection_3:
+    _raw|contains: subtype="Execution prompt allowed (unapproved file)"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011093'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Execution prompt block (unapproved file) (Info)'
+id: 6c58790b-c0cb-50cc-83a9-fc5e51e12a09
+status: experimental
+description: Converted from Sagan rule SID 5011094 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Policy Enforcement"
+  selection_3:
+    _raw|contains: subtype="Execution prompt block (unapproved file)"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011094'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Unapproved process discovered (Warning)'
+id: 3583e078-0668-570a-8bd3-3f12226ffdb0
+status: experimental
+description: Converted from Sagan rule SID 5011120 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Policy Enforcement"
+  selection_3:
+    _raw|contains: subtype="Unapproved process discovered"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011120'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] User Login denied (Warning)'
+id: f28ddffe-e0a8-5486-9f46-862958c77190
+status: experimental
+description: Converted from Sagan rule SID 5011121 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Policy Enforcement"
+  selection_3:
+    _raw|contains: subtype="User Login denied"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011121'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Custom Rule created (Info)'
+id: ce2e1173-a242-5bfd-b429-22449c29ef21
+status: experimental
+description: Converted from Sagan rule SID 5011140 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Policy Management"
+  selection_3:
+    _raw|contains: subtype="Custom Rule created"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011140'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Custom Rule deleted (Info)'
+id: 184320ec-15ce-536d-97f6-ee4964885aaf
+status: experimental
+description: Converted from Sagan rule SID 5011141 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Policy Management"
+  selection_3:
+    _raw|contains: subtype="Custom Rule deleted"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011141'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Device Rule created (Info)'
+id: dea7a716-5b81-508b-83c1-7f0d06db4679
+status: experimental
+description: Converted from Sagan rule SID 5011143 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Policy Management"
+  selection_3:
+    _raw|contains: subtype="Device Rule created"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011143'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Device Rule deleted (Info)'
+id: f3dd0c83-1a82-5a35-a532-c89b5472056f
+status: experimental
+description: Converted from Sagan rule SID 5011144 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Policy Management"
+  selection_3:
+    _raw|contains: subtype="Device Rule deleted"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011144'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] File approval created (Info)'
+id: 2b0cf36e-c27f-542e-9112-f1aff4a56a1c
+status: experimental
+description: Converted from Sagan rule SID 5011146 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Policy Management"
+  selection_3:
+    _raw|contains: subtype="File approval created"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011146'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] File ban deleted (Info)'
+id: 7b83b76b-474b-57aa-acd8-d97d20dce26a
+status: experimental
+description: Converted from Sagan rule SID 5011151 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Policy Management"
+  selection_3:
+    _raw|contains: subtype="File ban deleted"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011151'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Publisher ban deleted (Info)'
+id: 33cc35ae-9880-5351-a7f6-1b42898977d1
+status: experimental
+description: Converted from Sagan rule SID 5011175 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Policy Management"
+  selection_3:
+    _raw|contains: subtype="Publisher ban deleted"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011175'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Registry Rule created (Info)'
+id: df85055b-d682-5f54-a100-b670e1d8409c
+status: experimental
+description: Converted from Sagan rule SID 5011177 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Policy Management"
+  selection_3:
+    _raw|contains: subtype="Registry Rule created"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011177'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Registry Rule deleted (Info)'
+id: ae235fcb-b819-58eb-8845-26624c36154d
+status: experimental
+description: Converted from Sagan rule SID 5011178 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Policy Management"
+  selection_3:
+    _raw|contains: subtype="Registry Rule deleted"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011178'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Updater disabled (Info)'
+id: c5d5c81e-fdc1-5899-9eb6-f2c88f7b06f8
+status: experimental
+description: Converted from Sagan rule SID 5011194 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Policy Management"
+  selection_3:
+    _raw|contains: subtype="Updater disabled"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011194'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Communication error (Error)'
+id: 217c8af9-43b0-5b0c-a3f3-8af6db5a8b42
+status: experimental
+description: Converted from Sagan rule SID 5011208 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Server Management"
+  selection_3:
+    _raw|contains: subtype="Communication error"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011208'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Database error (Error)'
+id: b1025397-8758-5f3f-80ac-ed013a522c64
+status: experimental
+description: Converted from Sagan rule SID 5011211 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Server Management"
+  selection_3:
+    _raw|contains: subtype="Database error"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011211'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Database server reached specified limit (Critical)'
+id: bbe6b6dc-0dcb-53cc-9dcd-92d876bc71e4
+status: experimental
+description: Converted from Sagan rule SID 5011212 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Server Management"
+  selection_3:
+    _raw|contains: subtype="Database server reached specified limit"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011212'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Database verification error (Error)'
+id: bdd3407e-756a-5464-bcbb-a6cdda0b1c7b
+status: experimental
+description: Converted from Sagan rule SID 5011213 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Server Management"
+  selection_3:
+    _raw|contains: subtype="Database verification error"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011213'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Install failed (Error)'
+id: 15959f0d-9db2-573d-9e68-96628513af7f
+status: experimental
+description: Converted from Sagan rule SID 5011242 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Server Management"
+  selection_3:
+    _raw|contains: subtype="Install failed"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011242'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Notifier install failed (Error)'
+id: c9896cfb-f19c-5427-afa6-c016fbdf4d98
+status: experimental
+description: Converted from Sagan rule SID 5011250 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Server Management"
+  selection_3:
+    _raw|contains: subtype="Notifier install failed"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011250'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Server upgrade failed (Error)'
+id: 310fd2cb-0355-5e3a-9217-6fdba630e53e
+status: experimental
+description: Converted from Sagan rule SID 5011270 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Server Management"
+  selection_3:
+    _raw|contains: subtype="Server upgrade failed"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011270'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] SSL certificate CN mismatch (Critical)'
+id: d9fe5012-7cc4-57e1-8b7f-e16f8630706b
+status: experimental
+description: Converted from Sagan rule SID 5011273 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Server Management"
+  selection_3:
+    _raw|contains: subtype="SSL certificate CN mismatch"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011273'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] SSL certificate error (Critical)'
+id: 4c8cce4e-6de8-5275-84a7-1458cf7a3d9d
+status: experimental
+description: Converted from Sagan rule SID 5011274 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Server Management"
+  selection_3:
+    _raw|contains: subtype="SSL certificate error"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011274'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] SSL certificate expired (Critical)'
+id: fc8e003c-6289-5e74-b209-c55c53f20f17
+status: experimental
+description: Converted from Sagan rule SID 5011275 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Server Management"
+  selection_3:
+    _raw|contains: subtype="SSL certificate expired"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011275'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] SSL certificate expiring (Critical)'
+id: bc6aec16-3ff1-57c6-b150-189e32e8bd5a
+status: experimental
+description: Converted from Sagan rule SID 5011276 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Server Management"
+  selection_3:
+    _raw|contains: subtype="SSL certificate expiring"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011276'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Unified server error (Critical)'
+id: 3a876db5-cbf0-5240-8a27-5f1fe7f545ae
+status: experimental
+description: Converted from Sagan rule SID 5011285 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Server Management"
+  selection_3:
+    _raw|contains: subtype="Unified server error"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011285'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Multiple failed logins (Warning)'
+id: fbb3ef1d-0b6c-5c89-a3db-3a72dde1226f
+status: experimental
+description: Converted from Sagan rule SID 5011302 (rev 1), file carbonblack-app-control.rules.
+references:
+  - https://community.carbonblack.com/t5/Documentation-Downloads/CB-Protection-Events-Guide-v8-1-10/ta-p/91842
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased:
+      - cb_protect
+      - cb_app_control
+      - '1'
+      - bit9
+      - carbonblack
+  selection_2:
+    _raw|contains|cased: type="Session Management"
+  selection_3:
+    _raw|contains: subtype="Multiple failed logins"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011302'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules
+  sagan.metadata: deployment=Server,created_at=2023_02_15,updated_at=2023_02_15
+---
+title: '[CARBONBLACK-APP-CONTROL] Agent blocked an attempt to create file'
+id: a4765ce9-abf7-58fc-b42d-9ce4b09b2371
+status: experimental
+description: Converted from Sagan rule SID 5002928 (rev 3), file carbonblack-app-control.rules.
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    _raw|contains|cased: Agent blocked an attempt to create
+  selection_2:
+    _raw|contains|cased: because of tamper protection
+  selection_3:
+    appname|cased:
+      - '1'
+      - bit9
+      - carbonblack
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002928'
+  sagan.rev: '3'
+  sagan.source_file: carbonblack-app-control.rules
+---
+title: '[CARBONBLACK-APP-CONTROL] Agent blocked an attempt to delete file'
+id: d52f54e2-a6c5-5569-943f-d32a15f3a489
+status: experimental
+description: Converted from Sagan rule SID 5002929 (rev 3), file carbonblack-app-control.rules.
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    _raw|contains|cased: Agent blocked an attempt to delete
+  selection_2:
+    _raw|contains|cased: because of tamper protection
+  selection_3:
+    appname|cased:
+      - '1'
+      - bit9
+      - carbonblack
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002929'
+  sagan.rev: '3'
+  sagan.source_file: carbonblack-app-control.rules
+---
+title: '[CARBONBLACK-APP-CONTROL] Permission change was blocked'
+id: f0740f90-4ed1-5a5a-aa0e-314ed94aeea0
+status: experimental
+description: Converted from Sagan rule SID 5002930 (rev 3), file carbonblack-app-control.rules.
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    _raw|contains|cased: Permission change on
+  selection_2:
+    _raw|contains|cased: was blocked
+  selection_3:
+    _raw|contains|cased: event
+  selection_4:
+    appname|cased:
+      - '1'
+      - bit9
+      - carbonblack
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002930'
+  sagan.rev: '3'
+  sagan.source_file: carbonblack-app-control.rules
+---
+title: '[CARBONBLACK-APP-CONTROL] Modification of registry was blocked'
+id: 6b3d3527-a36e-5671-b385-f45df591e14f
+status: experimental
+description: Converted from Sagan rule SID 5002931 (rev 3), file carbonblack-app-control.rules.
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    _raw|contains|cased: of registry
+  selection_2:
+    _raw|contains|cased: was blocked because of tamper protection
+  selection_3:
+    _raw|contains|cased: event
+  selection_4:
+    appname|cased:
+      - '1'
+      - bit9
+      - carbonblack
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002931'
+  sagan.rev: '3'
+  sagan.source_file: carbonblack-app-control.rules
+---
+title: '[CARBONBLACK-APP-CONTROL] File was identified by Software Reputation Service as a potential risk'
+id: d45babdd-bf78-53c9-9e79-4394ef83a53d
+status: experimental
+description: Converted from Sagan rule SID 5002933 (rev 3), file carbonblack-app-control.rules.
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    _raw|contains|cased: Software Reputation Service as a potential risk
+  selection_2:
+    appname|cased:
+      - '1'
+      - bit9
+      - carbonblack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002933'
+  sagan.rev: '3'
+  sagan.source_file: carbonblack-app-control.rules
+---
+title: '[CARBONBLACK-APP-CONTROL] Server detected revocation of certificate'
+id: 9f2fb785-f54e-596e-a3fb-7dcbbead5b71
+status: experimental
+description: Converted from Sagan rule SID 5002934 (rev 3), file carbonblack-app-control.rules.
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    _raw|contains|cased: Server detected revocation of certificate
+  selection_2:
+    _raw|contains|cased: event
+  selection_3:
+    appname|cased:
+      - '1'
+      - bit9
+      - carbonblack
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002934'
+  sagan.rev: '3'
+  sagan.source_file: carbonblack-app-control.rules
+---
+title: '[CARBONBLACK-APP-CONTROL] Exclusive access to a file was blocked because of tamper protection'
+id: 5fafb6c6-c676-55dc-a6a6-4b76848c73c7
+status: experimental
+description: Converted from Sagan rule SID 5002936 (rev 3), file carbonblack-app-control.rules.
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    _raw|contains|cased: Exclusive access to
+  selection_2:
+    _raw|contains|cased: was blocked because of tamper protection
+  selection_3:
+    _raw|contains|cased: event
+  selection_4:
+    appname|cased:
+      - '1'
+      - bit9
+      - carbonblack
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002936'
+  sagan.rev: '3'
+  sagan.source_file: carbonblack-app-control.rules
+---
+title: '[CARBONBLACK-APP-CONTROL] Non-System Filemods to system32'
+id: 2eaf089b-f1cb-58de-b7a2-9f36c6976e02
+status: experimental
+description: Converted from Sagan rule SID 5002921 (rev 3), file carbonblack-app-control.rules.
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    _raw|contains|cased: Carbon Black process watchlist 'Non-System Filemods to system32'
+  selection_2:
+    appname|cased:
+      - '1'
+      - bit9
+      - carbonblack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002921'
+  sagan.rev: '3'
+  sagan.source_file: carbonblack-app-control.rules
+---
+title: '[CARBONBLACK-APP-CONTROL] File was executed for the first time'
+id: 31732f6a-9f3c-548a-9b4e-17d935b13c22
+status: experimental
+description: Converted from Sagan rule SID 5002924 (rev 3), file carbonblack-app-control.rules.
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    _raw|contains|cased: File
+  selection_2:
+    _raw|contains|cased: was executed for the first time
+  selection_3:
+    _raw|contains|cased: event
+  selection_4:
+    appname|cased:
+      - '1'
+      - bit9
+      - carbonblack
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002924'
+  sagan.rev: '3'
+  sagan.source_file: carbonblack-app-control.rules
+---
+title: '[CARBONBLACK-APP-CONTROL] Computer reported that signature on file is invalid'
+id: 4f77dad2-d2b5-5a27-838a-3d11a47c2ca9
+status: experimental
+description: Converted from Sagan rule SID 5002925 (rev 3), file carbonblack-app-control.rules.
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    _raw|contains|cased: reported that signature on file
+  selection_2:
+    _raw|contains|cased: is invalid
+  selection_3:
+    _raw|contains|cased: event
+  selection_4:
+    appname|cased:
+      - '1'
+      - bit9
+      - carbonblack
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002925'
+  sagan.rev: '3'
+  sagan.source_file: carbonblack-app-control.rules
+---
+title: '[CARBONBLACK-APP-CONTROL] Server discovered new certificate'
+id: 4a7178a6-784d-5d55-9ce9-d736496ea810
+status: experimental
+description: Converted from Sagan rule SID 5002926 (rev 3), file carbonblack-app-control.rules.
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    _raw|contains|cased: Server discovered new certificate
+  selection_2:
+    _raw|contains|cased: event
+  selection_3:
+    appname|cased:
+      - '1'
+      - bit9
+      - carbonblack
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002926'
+  sagan.rev: '3'
+  sagan.source_file: carbonblack-app-control.rules
+---
+title: '[CARBONBLACK-APP-CONTROL] Disk configuration change detected'
+id: 5e1087e4-b9ad-5f6f-a279-2ffb39eafc8f
+status: experimental
+description: Converted from Sagan rule SID 5002927 (rev 3), file carbonblack-app-control.rules.
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    _raw|contains|cased: Disk configuration change detected
+  selection_2:
+    _raw|contains|cased: event
+  selection_3:
+    appname|cased:
+      - '1'
+      - bit9
+      - carbonblack
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002927'
+  sagan.rev: '3'
+  sagan.source_file: carbonblack-app-control.rules
+---
+title: '[CARBONBLACK] Audit - Bypass Action Detected (on)'
+id: 185923ed-8e69-5b61-8ae7-e12e6686fb68
+status: experimental
+description: Converted from Sagan rule SID 5014939 (rev 2), file carbonblack-app-control.rules.
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    _raw|contains|cased: '"description": "Set BYPASS to on'
+  selection_2:
+    appname|cased: carbonblack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014939'
+  sagan.rev: '2'
+  sagan.source_file: carbonblack-app-control.rules
+---
+title: '[CARBONBLACK] Audit - Bypass Action Detected (off)'
+id: 5ebb6844-e9cf-577b-97e3-4402d9a526f0
+status: experimental
+description: Converted from Sagan rule SID 5014940 (rev 1), file carbonblack-app-control.rules.
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    _raw|contains|cased: '"description": "Set BYPASS to off'
+  selection_2:
+    appname|cased: carbonblack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014940'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-app-control.rules

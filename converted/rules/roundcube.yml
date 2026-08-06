@@ -1,0 +1,24 @@
+title: '[ROUNDCUBE] - Authentication failed'
+id: 43b58f38-0335-5a08-b0f3-5e5ce2b99826
+status: experimental
+description: Converted from Sagan rule SID 5000277 (rev 2), file roundcube.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: failed
+  selection_2:
+    _raw|contains|cased: LOGIN
+  selection_3:
+    appname|cased: roundcube
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000277'
+  sagan.rev: '2'
+  sagan.source_file: roundcube.rules

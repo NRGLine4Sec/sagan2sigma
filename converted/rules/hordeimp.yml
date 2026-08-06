@@ -1,0 +1,137 @@
+title: '[HORDEIMP] Informational message'
+id: 0426fafc-4cd4-5de3-8bf1-60c05cd49869
+status: experimental
+description: Converted from Sagan rule SID 5000371 (rev 3), file hordeimp.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: '[info]'
+  selection_2:
+    appname|cased: HORDE
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.unknown
+custom_attributes:
+  sagan.sid: '5000371'
+  sagan.rev: '3'
+  sagan.source_file: hordeimp.rules
+---
+title: '[HORDEIMP] Notice message'
+id: f9dc8e9d-75b9-5578-a0fc-0585e40929b6
+status: experimental
+description: Converted from Sagan rule SID 5000263 (rev 3), file hordeimp.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: '[notice]'
+  selection_2:
+    appname|cased: HORDE
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.unknown
+custom_attributes:
+  sagan.sid: '5000263'
+  sagan.rev: '3'
+  sagan.source_file: hordeimp.rules
+---
+title: '[HORDEIMP] Error message'
+id: 916e9079-fd45-5762-b6be-dbd90bc327ce
+status: experimental
+description: Converted from Sagan rule SID 5000372 (rev 3), file hordeimp.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: '[error]'
+  selection_2:
+    appname|cased: HORDE
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5000372'
+  sagan.rev: '3'
+  sagan.source_file: hordeimp.rules
+---
+title: '[HORDEIMP] Emergency message'
+id: e21d6670-08d6-5bee-836f-fbf3689b2b46
+status: experimental
+description: Converted from Sagan rule SID 5000369 (rev 3), file hordeimp.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: '[emergency]'
+  selection_2:
+    appname|cased: HORDE
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5000369'
+  sagan.rev: '3'
+  sagan.source_file: hordeimp.rules
+---
+title: '[HORDEIMP] IMP successful login'
+id: b25753ac-596f-511e-94ab-0b433b42a302
+status: experimental
+description: Converted from Sagan rule SID 5000370 (rev 3), file hordeimp.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: Login success for
+  selection_2:
+    appname|cased: HORDE
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5000370'
+  sagan.rev: '3'
+  sagan.source_file: hordeimp.rules
+---
+title: '[HORDEIMP] Failed login'
+id: 60cc1624-79f0-5f66-8511-e71fc324d405
+status: experimental
+description: Converted from Sagan rule SID 5000368 (rev 3), file hordeimp.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: FAILED LOGIN
+  selection_2:
+    appname|cased: HORDE
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000368'
+  sagan.rev: '3'
+  sagan.source_file: hordeimp.rules

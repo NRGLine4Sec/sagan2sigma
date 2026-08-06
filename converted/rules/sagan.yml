@@ -1,0 +1,41 @@
+title: '[SAGAN] System stop sending logs'
+id: a96707ee-cf14-5d25-ab7b-7836a4e83a7a
+status: experimental
+description: Converted from Sagan rule SID 5010938 (rev 1), file sagan.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: TRACK-CLIENT-NOLOGS
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5010938'
+  sagan.rev: '1'
+  sagan.source_file: sagan.rules
+---
+title: '[SAGAN] System has started sending logs again'
+id: 19bf12d6-84b2-54b5-b0bf-b84175fbdb52
+status: experimental
+description: Converted from Sagan rule SID 5010939 (rev 2), file sagan.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: TRACK-CLIENT-LOGS
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5010939'
+  sagan.rev: '2'
+  sagan.source_file: sagan.rules

@@ -1,0 +1,73 @@
+title: '[OKTA] INBOUND REQUEST FROM A BLACKLISTED IP'
+id: 007ed0de-8648-5103-93e2-4b867c9cb3b5
+status: experimental
+description: Converted from Sagan rule SID 5006601 (rev 1), file okta.rules.
+references:
+  - https://help.okta.com/en/prod/Content/Topics/Security/healthinsight/blocklist-network-zone.htm
+author: sagan2sigma
+logsource:
+  product: okta
+detection:
+  selection_1:
+    _raw|contains|cased: 'Blacklisted request from '
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5006601'
+  sagan.rev: '1'
+  sagan.source_file: okta.rules
+  rsigma.suppress: 2h
+---
+title: '[OKTA] REQUEST FROM SUSPICIOUS ACTOR'
+id: 9064491d-acc4-561b-9962-81c389e3bbcc
+status: experimental
+description: Converted from Sagan rule SID 5006608 (rev 1), file okta.rules.
+references:
+  - https://okta.github.io/okta-help/en/prod/Content/Topics/Security/threat-insight/configure-threatinsight.htm
+author: sagan2sigma
+logsource:
+  product: okta
+detection:
+  selection_1:
+    _raw|contains|cased: Request from suspicious actor
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5006608'
+  sagan.rev: '1'
+  sagan.source_file: okta.rules
+  rsigma.suppress: 4h
+---
+title: '[OKTA] INVALID SELF SERVICE RECOVERY TOKEN USED BY USER'
+id: 14b2daef-7b47-5a96-a3ac-0ba3bee9a44f
+status: experimental
+description: Converted from Sagan rule SID 5006603 (rev 1), file okta.rules.
+references:
+  - https://developer.okta.com/docs/reference/api/event-types/
+author: sagan2sigma
+logsource:
+  product: okta
+detection:
+  selection_1:
+    _raw|contains|cased: Invalid self service recovery token used by user
+  selection_2:
+    _raw|contains|cased: 'true'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5006603'
+  sagan.rev: '1'
+  sagan.source_file: okta.rules
+  rsigma.suppress: 5m

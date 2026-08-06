@@ -1,0 +1,149 @@
+title: '[LINUX-KERNEL] I/O error'
+id: 97b1f09f-ea28-57f8-9e2b-374675cf115d
+status: experimental
+description: Converted from Sagan rule SID 5001945 (rev 3), file linux-kernel.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: I/O error, dev
+  filter_2:
+    _raw|contains|cased: dev fd
+  selection_3:
+    appname|cased: kernel
+  condition: selection_1 and selection_3 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.hardware-event
+custom_attributes:
+  sagan.sid: '5001945'
+  sagan.rev: '3'
+  sagan.source_file: linux-kernel.rules
+  rsigma.suppress: 5m
+---
+title: '[LINUX-KERNEL] hostbyte=DID_ERROR'
+id: e69cecd7-a7c5-56b5-a74d-b4b8ae4e9fe1
+status: experimental
+description: Converted from Sagan rule SID 5001946 (rev 2), file linux-kernel.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: hostbyte=DID_ERROR
+  selection_2:
+    appname|cased: kernel
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.hardware-event
+custom_attributes:
+  sagan.sid: '5001946'
+  sagan.rev: '2'
+  sagan.source_file: linux-kernel.rules
+  rsigma.suppress: 5m
+---
+title: '[LINUX-KERNEL] Hard drive/RAID - FAILED abort on device'
+id: 72fabf84-1f65-51ae-a9e3-b2f2e13b8afd
+status: experimental
+description: Converted from Sagan rule SID 5002278 (rev 2), file linux-kernel.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: 'hpsa '
+  selection_2:
+    _raw|contains|cased: FAILED abort on device
+  selection_3:
+    appname|cased: kernel
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.hardware-event
+custom_attributes:
+  sagan.sid: '5002278'
+  sagan.rev: '2'
+  sagan.source_file: linux-kernel.rules
+---
+title: '[LINUX-KERNEL] Hard drive/RAID - probably means device no longer present'
+id: 4de43249-9554-5955-ae76-d8d066f624f8
+status: experimental
+description: Converted from Sagan rule SID 5002279 (rev 2), file linux-kernel.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: 'hpsa '
+  selection_2:
+    _raw|contains|cased: probably means device no longer present
+  selection_3:
+    appname|cased: kernel
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.hardware-event
+custom_attributes:
+  sagan.sid: '5002279'
+  sagan.rev: '2'
+  sagan.source_file: linux-kernel.rules
+---
+title: '[LINUX-POLKIT] POLKIT PRIVILEGE ESCALATION ARTIFACT (CVE-2021-4034)'
+id: 358dbcd3-5902-5c51-b10a-d404e0299bc3
+status: experimental
+description: Converted from Sagan rule SID 5005968 (rev 1), file linux-kernel.rules.
+references:
+  - https://github.com/berdav/CVE-2021-4034/blob/main/pwnkit.c
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains: GCONV_PATH=
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5005968'
+  sagan.rev: '1'
+  sagan.source_file: linux-kernel.rules
+  rsigma.suppress: 5m
+---
+title: '[LINUX-POLKIT] POLKIT PRIVILEGE ESCALATION ARTIFACT (CVE-2021-4034)'
+id: 5e424c16-c171-5e64-a62e-f0d1753e7613
+status: experimental
+description: Converted from Sagan rule SID 5005970 (rev 1), file linux-kernel.rules.
+references:
+  - https://zdnet.com/article/major-linux-policykit-security-vulnerability-uncovered-pwnkit/
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains: The value for environment variable
+  selection_2:
+    _raw|contains: contains suscipious content
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5005970'
+  sagan.rev: '1'
+  sagan.source_file: linux-kernel.rules
+  rsigma.suppress: 5m

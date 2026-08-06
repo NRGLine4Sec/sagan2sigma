@@ -1,0 +1,155 @@
+title: '[ATTACK] Buffer overflow attempt on rpc.statd'
+id: 089e406c-c987-56dc-ab6c-c98d601d56d7
+status: experimental
+description: Converted from Sagan rule SID 5000095 (rev 2), file attack.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|re: gethostbyname error for \W+
+  selection_2:
+    appname|cased: rpc.statd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5000095'
+  sagan.rev: '2'
+  sagan.source_file: attack.rules
+---
+title: '[ATTACK] Buffer overflow attempt on WU-FTPD version prior to 2.6'
+id: cd6d53d5-2354-5482-bafa-0d3cbd6fd84f
+status: experimental
+description: Converted from Sagan rule SID 5000096 (rev 2), file attack.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|re: \S+ FTP LOGIN FROM \.+ 0bin0sh
+  selection_2:
+    appname|cased: ftpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5000096'
+  sagan.rev: '2'
+  sagan.source_file: attack.rules
+---
+title: '[ATTACK] Possible buffer overflow attempt'
+id: 4dcf153e-3610-53bd-b073-9d33d6fcadf2
+status: experimental
+description: Converted from Sagan rule SID 5000097 (rev 3), file attack.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: \?\?\?\?\?\?\?\?\?\?\?\?\?\?\?\?\?\?\?\?\?
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000097'
+  sagan.rev: '3'
+  sagan.source_file: attack.rules
+  rsigma.suppress: 5m
+---
+title: '[ATTACK] ''Null'' user change some information'
+id: 947262b4-855b-5811-be92-5a61606e30e5
+status: experimental
+description: Converted from Sagan rule SID 5000098 (rev 2), file attack.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains: changed by null
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5000098'
+  sagan.rev: '2'
+  sagan.source_file: attack.rules
+---
+title: '[ATTACK] Possible buffer overflow attempt [yppasswd?]'
+id: 9eda3789-3fca-5b8a-9fcb-c9857b0ba756
+status: experimental
+description: Converted from Sagan rule SID 5000365 (rev 2), file attack.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: '@@@@@@@@@@@@@@@@@@@@@@@@@'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5000365'
+  sagan.rev: '2'
+  sagan.source_file: attack.rules
+---
+title: '[ATTACK] Heap overflow in the Solaris cachefsd service'
+id: 37f9bff3-7dd2-5be5-89fb-47648c92311c
+status: experimental
+description: Converted from Sagan rule SID 5000366 (rev 2), file attack.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: Segmentation Fault
+  selection_2:
+    _raw|contains|cased: core dumped
+  selection_3:
+    appname|cased: cachefsd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5000366'
+  sagan.rev: '2'
+  sagan.source_file: attack.rules
+---
+title: '[ATTACK] Stack overflow attempt with SEGV [Solaris]'
+id: f402101c-0fe0-52e9-b8ac-e1455c7d8a7e
+status: experimental
+description: Converted from Sagan rule SID 5000099 (rev 2), file attack.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains: attempt to execute code on stack by
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5000099'
+  sagan.rev: '2'
+  sagan.source_file: attack.rules

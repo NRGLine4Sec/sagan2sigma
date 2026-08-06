@@ -1,0 +1,552 @@
+title: '[AIRTABLES] downloadAttachment event detected'
+id: 67c91f10-74a6-5800-94d2-5a860029b00d
+status: experimental
+description: Converted from Sagan rule SID 5013589 (rev 2), file airtables.rules.
+references:
+  - https://airtable.com/developers/web/api/audit-log-event-types
+author: sagan2sigma
+logsource:
+  product: airtable
+detection:
+  selection_1:
+    syslog_appname|cased: airtable_audit_log_data
+  selection_2:
+    action|cased: downloadAttachment
+  filter_3:
+    type|cased: application/pdf
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013589'
+  sagan.rev: '2'
+  sagan.source_file: airtables.rules
+---
+title: '[AIRTABLES] changeBaseCollaboratorPermission event detected'
+id: 6a19d22d-f2d3-5e56-adbc-3c9d23080e3d
+status: experimental
+description: Converted from Sagan rule SID 5013597 (rev 2), file airtables.rules.
+references:
+  - https://airtable.com/developers/web/api/audit-log-event-types
+author: sagan2sigma
+logsource:
+  product: airtable
+detection:
+  selection_1:
+    syslog_appname|cased: airtable_audit_log_data
+  selection_2:
+    action|cased: changeBaseCollaboratorPermission
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013597'
+  sagan.rev: '2'
+  sagan.source_file: airtables.rules
+---
+title: '[AIRTABLES] changeBaseInvitePermission event detected'
+id: ff47da4a-b7fa-5f6e-b866-971beb1106d9
+status: experimental
+description: Converted from Sagan rule SID 5013598 (rev 2), file airtables.rules.
+references:
+  - https://airtable.com/developers/web/api/audit-log-event-types
+author: sagan2sigma
+logsource:
+  product: airtable
+detection:
+  selection_1:
+    syslog_appname|cased: airtable_audit_log_data
+  selection_2:
+    action|cased: changeBaseInvitePermission
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013598'
+  sagan.rev: '2'
+  sagan.source_file: airtables.rules
+---
+title: '[AIRTABLES] createGroup event detected'
+id: f8023642-3c83-5ba1-81bc-41c1767f0ac9
+status: experimental
+description: Converted from Sagan rule SID 5013601 (rev 2), file airtables.rules.
+references:
+  - https://airtable.com/developers/web/api/audit-log-event-types
+author: sagan2sigma
+logsource:
+  product: airtable
+detection:
+  selection_1:
+    syslog_appname|cased: airtable_audit_log_data
+  selection_2:
+    action|cased: createGroup
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013601'
+  sagan.rev: '2'
+  sagan.source_file: airtables.rules
+---
+title: '[AIRTABLES] addGroupMember event detected'
+id: 4452e6ac-094d-5deb-91ec-0a55fdbaa206
+status: experimental
+description: Converted from Sagan rule SID 5013604 (rev 2), file airtables.rules.
+references:
+  - https://airtable.com/developers/web/api/audit-log-event-types
+author: sagan2sigma
+logsource:
+  product: airtable
+detection:
+  selection_1:
+    syslog_appname|cased: airtable_audit_log_data
+  selection_2:
+    action|cased: addGroupMember
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013604'
+  sagan.rev: '2'
+  sagan.source_file: airtables.rules
+---
+title: '[AIRTABLES] changeGroupMemberRole event detected'
+id: 3ac6bdfa-e2eb-5646-bcc2-0497e73664ad
+status: experimental
+description: Converted from Sagan rule SID 5013605 (rev 2), file airtables.rules.
+references:
+  - https://airtable.com/developers/web/api/audit-log-event-types
+author: sagan2sigma
+logsource:
+  product: airtable
+detection:
+  selection_1:
+    syslog_appname|cased: airtable_audit_log_data
+  selection_2:
+    action|cased: changeGroupMemberRole
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013605'
+  sagan.rev: '2'
+  sagan.source_file: airtables.rules
+---
+title: '[AIRTABLES] loginUser event detected'
+id: af15401b-8e87-5ea9-926d-3a52bd427c44
+status: experimental
+description: Converted from Sagan rule SID 5013612 (rev 2), file airtables.rules.
+references:
+  - https://airtable.com/developers/web/api/audit-log-event-types
+author: sagan2sigma
+logsource:
+  product: airtable
+detection:
+  selection_1:
+    syslog_appname|cased: airtable_audit_log_data
+  selection_2:
+    action|cased: loginUser
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013612'
+  sagan.rev: '2'
+  sagan.source_file: airtables.rules
+---
+title: '[AIRTABLES] claimUser event detected'
+id: 57bf416c-405d-51a3-a182-421e282e820d
+status: experimental
+description: Converted from Sagan rule SID 5013613 (rev 3), file airtables.rules.
+references:
+  - https://airtable.com/developers/web/api/audit-log-event-types
+author: sagan2sigma
+logsource:
+  product: airtable
+detection:
+  selection_1:
+    syslog_appname|cased: airtable_audit_log_data
+  selection_2:
+    action|cased: claimUser
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013613'
+  sagan.rev: '3'
+  sagan.source_file: airtables.rules
+---
+title: '[AIRTABLES] unclaimUser event detected'
+id: 19cb9856-d499-5d42-ba6f-3696c3727ae8
+status: experimental
+description: Converted from Sagan rule SID 5013614 (rev 2), file airtables.rules.
+references:
+  - https://airtable.com/developers/web/api/audit-log-event-types
+author: sagan2sigma
+logsource:
+  product: airtable
+detection:
+  selection_1:
+    syslog_appname|cased: airtable_audit_log_data
+  selection_2:
+    action|cased: unclaimUser
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013614'
+  sagan.rev: '2'
+  sagan.source_file: airtables.rules
+---
+title: '[AIRTABLES] createUser event detected'
+id: c8d1fde0-d6a8-5e3e-b1b3-76a1c47c03d8
+status: experimental
+description: Converted from Sagan rule SID 5013615 (rev 2), file airtables.rules.
+references:
+  - https://airtable.com/developers/web/api/audit-log-event-types
+author: sagan2sigma
+logsource:
+  product: airtable
+detection:
+  selection_1:
+    syslog_appname|cased: airtable_audit_log_data
+  selection_2:
+    action|cased: createUser
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013615'
+  sagan.rev: '2'
+  sagan.source_file: airtables.rules
+---
+title: '[AIRTABLES] deleteUser event detected'
+id: f5d2ce51-12a8-5386-bfa2-c5b7a18ff5fa
+status: experimental
+description: Converted from Sagan rule SID 5013616 (rev 2), file airtables.rules.
+references:
+  - https://airtable.com/developers/web/api/audit-log-event-types
+author: sagan2sigma
+logsource:
+  product: airtable
+detection:
+  selection_1:
+    syslog_appname|cased: airtable_audit_log_data
+  selection_2:
+    action|cased: deleteUser
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013616'
+  sagan.rev: '2'
+  sagan.source_file: airtables.rules
+---
+title: '[AIRTABLES] provisionUser event detected'
+id: 9e9a44d9-3493-52d3-a6ff-33d2da6f552c
+status: experimental
+description: Converted from Sagan rule SID 5013617 (rev 2), file airtables.rules.
+references:
+  - https://airtable.com/developers/web/api/audit-log-event-types
+author: sagan2sigma
+logsource:
+  product: airtable
+detection:
+  selection_1:
+    syslog_appname|cased: airtable_audit_log_data
+  selection_2:
+    action|cased: provisionUser
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013617'
+  sagan.rev: '2'
+  sagan.source_file: airtables.rules
+---
+title: '[AIRTABLES] updateUserEmail event detected'
+id: 768a091c-03f0-5868-9a39-afbf238853fa
+status: experimental
+description: Converted from Sagan rule SID 5013619 (rev 2), file airtables.rules.
+references:
+  - https://airtable.com/developers/web/api/audit-log-event-types
+author: sagan2sigma
+logsource:
+  product: airtable
+detection:
+  selection_1:
+    syslog_appname|cased: airtable_audit_log_data
+  selection_2:
+    action|cased: updateUserEmail
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013619'
+  sagan.rev: '2'
+  sagan.source_file: airtables.rules
+---
+title: '[AIRTABLES] changePassword event detected'
+id: 01c557e4-dda7-504a-9f3a-a0de7707f59c
+status: experimental
+description: Converted from Sagan rule SID 5013620 (rev 2), file airtables.rules.
+references:
+  - https://airtable.com/developers/web/api/audit-log-event-types
+author: sagan2sigma
+logsource:
+  product: airtable
+detection:
+  selection_1:
+    syslog_appname|cased: airtable_audit_log_data
+  selection_2:
+    action|cased: changePassword
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013620'
+  sagan.rev: '2'
+  sagan.source_file: airtables.rules
+  sagan.metadata: updated_on=2024_04_19
+---
+title: '[AIRTABLES] createServiceAccount event detected'
+id: 7f18eb3b-c0d5-5002-8979-ebe319947600
+status: experimental
+description: Converted from Sagan rule SID 5013621 (rev 2), file airtables.rules.
+references:
+  - https://airtable.com/developers/web/api/audit-log-event-types
+author: sagan2sigma
+logsource:
+  product: airtable
+detection:
+  selection_1:
+    syslog_appname|cased: airtable_audit_log_data
+  selection_2:
+    action|cased: createServiceAccount
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013621'
+  sagan.rev: '2'
+  sagan.source_file: airtables.rules
+---
+title: '[AIRTABLES] deleteServiceAccount event detected'
+id: a07ec28c-816e-53a3-a6c4-6e1475009022
+status: experimental
+description: Converted from Sagan rule SID 5013622 (rev 2), file airtables.rules.
+references:
+  - https://airtable.com/developers/web/api/audit-log-event-types
+author: sagan2sigma
+logsource:
+  product: airtable
+detection:
+  selection_1:
+    syslog_appname|cased: airtable_audit_log_data
+  selection_2:
+    action|cased: deleteServiceAccount
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013622'
+  sagan.rev: '2'
+  sagan.source_file: airtables.rules
+---
+title: '[AIRTABLES] removeTwoFactorAuthenticationStrategy event detected'
+id: f796ed6c-d0fe-5a95-9e77-4a810d1efb8e
+status: experimental
+description: Converted from Sagan rule SID 5013625 (rev 2), file airtables.rules.
+references:
+  - https://airtable.com/developers/web/api/audit-log-event-types
+author: sagan2sigma
+logsource:
+  product: airtable
+detection:
+  selection_1:
+    syslog_appname|cased: airtable_audit_log_data
+  selection_2:
+    action|cased: removeTwoFactorAuthenticationStrategy
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013625'
+  sagan.rev: '2'
+  sagan.source_file: airtables.rules
+---
+title: '[AIRTABLES] setDefaultTwoFactorAuthenticationStrategy event detected'
+id: 49f7cb32-d0a1-5c00-9d4e-e0fd003f5097
+status: experimental
+description: Converted from Sagan rule SID 5013626 (rev 2), file airtables.rules.
+references:
+  - https://airtable.com/developers/web/api/audit-log-event-types
+author: sagan2sigma
+logsource:
+  product: airtable
+detection:
+  selection_1:
+    syslog_appname|cased: airtable_audit_log_data
+  selection_2:
+    action|cased: setDefaultTwoFactorAuthenticationStrategy
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013626'
+  sagan.rev: '2'
+  sagan.source_file: airtables.rules
+---
+title: '[AIRTABLES] regenerateTwoFactorAuthenticationBackupCodes event detected'
+id: 00c9aab7-9e52-5b53-bd95-4d8b018c2194
+status: experimental
+description: Converted from Sagan rule SID 5013627 (rev 2), file airtables.rules.
+references:
+  - https://airtable.com/developers/web/api/audit-log-event-types
+author: sagan2sigma
+logsource:
+  product: airtable
+detection:
+  selection_1:
+    syslog_appname|cased: airtable_audit_log_data
+  selection_2:
+    action|cased: regenerateTwoFactorAuthenticationBackupCodes
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013627'
+  sagan.rev: '2'
+  sagan.source_file: airtables.rules
+---
+title: '[AIRTABLES] disableTwoFactorAuthentication event detected'
+id: fc6ed907-f57e-5cd4-8e4c-531ff24030ad
+status: experimental
+description: Converted from Sagan rule SID 5013628 (rev 2), file airtables.rules.
+references:
+  - https://airtable.com/developers/web/api/audit-log-event-types
+author: sagan2sigma
+logsource:
+  product: airtable
+detection:
+  selection_1:
+    syslog_appname|cased: airtable_audit_log_data
+  selection_2:
+    action|cased: disableTwoFactorAuthentication
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013628'
+  sagan.rev: '2'
+  sagan.source_file: airtables.rules
+---
+title: '[AIRTABLES] grantEnterpriseAdminAccess event detected'
+id: 12c156c8-617e-5a18-8911-08f2224af87d
+status: experimental
+description: Converted from Sagan rule SID 5013631 (rev 2), file airtables.rules.
+references:
+  - https://airtable.com/developers/web/api/audit-log-event-types
+author: sagan2sigma
+logsource:
+  product: airtable
+detection:
+  selection_1:
+    syslog_appname|cased: airtable_audit_log_data
+  selection_2:
+    action|cased: grantEnterpriseAdminAccess
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013631'
+  sagan.rev: '2'
+  sagan.source_file: airtables.rules
+---
+title: '[AIRTABLES] grantEnterpriseUpgraderAccess event detected'
+id: ac5ffcb1-2447-5814-ba73-5b5d03d8c783
+status: experimental
+description: Converted from Sagan rule SID 5013632 (rev 2), file airtables.rules.
+references:
+  - https://airtable.com/developers/web/api/audit-log-event-types
+author: sagan2sigma
+logsource:
+  product: airtable
+detection:
+  selection_1:
+    syslog_appname|cased: airtable_audit_log_data
+  selection_2:
+    action|cased: grantEnterpriseUpgraderAccess
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013632'
+  sagan.rev: '2'
+  sagan.source_file: airtables.rules

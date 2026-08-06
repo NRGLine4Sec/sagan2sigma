@@ -1,0 +1,311 @@
+title: '[CYLANCE] AuditLog - Device Edit'
+id: 2b96ea99-1d4f-5f6c-b04c-2ede93e4c903
+status: experimental
+description: Converted from Sagan rule SID 5002567 (rev 4), file cylance.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: 'Event Name: DeviceEdit'
+  selection_2:
+    _raw|contains|cased: AuditLog
+  selection_3:
+    _raw|contains|cased: CylancePROTECT
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002567'
+  sagan.rev: '4'
+  sagan.source_file: cylance.rules
+  rsigma.suppress: 5m
+---
+title: '[CYLANCE] AuditLog - Login Success'
+id: 3efd7ff5-aa6d-5c97-8da1-e124a9fa1ce8
+status: experimental
+description: Converted from Sagan rule SID 5002568 (rev 4), file cylance.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: 'Event Name: LoginSuccess'
+  selection_2:
+    _raw|contains|cased: '"AuditLog'
+  selection_3:
+    _raw|contains|cased: CylancePROTECT
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002568'
+  sagan.rev: '4'
+  sagan.source_file: cylance.rules
+  rsigma.suppress: 5m
+---
+title: '[CYLANCE] AuditLog - Syslog Settings Saved'
+id: 86f7feed-0336-5b42-bb31-3bb5ce239f21
+status: experimental
+description: Converted from Sagan rule SID 5002569 (rev 4), file cylance.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: 'Event Name: SyslogSettingsSave'
+  selection_2:
+    _raw|contains|cased: '"AuditLog'
+  selection_3:
+    _raw|contains|cased: CylancePROTECT
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5002569'
+  sagan.rev: '4'
+  sagan.source_file: cylance.rules
+  rsigma.suppress: 5m
+---
+title: '[CYLANCE] AuditLog - Zone Add Device'
+id: 33667345-6c6f-5993-8cf6-be22c9e8cac4
+status: experimental
+description: Converted from Sagan rule SID 5002570 (rev 4), file cylance.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: 'Event Name: ZoneAddDevice'
+  selection_2:
+    _raw|contains|cased: '"AuditLog'
+  selection_3:
+    _raw|contains|cased: CylancePROTECT
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5002570'
+  sagan.rev: '4'
+  sagan.source_file: cylance.rules
+  rsigma.suppress: 5m
+---
+title: '[CYLANCE] Device - Action Taken'
+id: 06c12f93-b5dd-5aa9-a5ba-08ca9089f6df
+status: experimental
+description: Converted from Sagan rule SID 5002571 (rev 4), file cylance.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: 'Event Name: Device'
+  selection_2:
+    _raw|contains|cased: Device
+  selection_3:
+    _raw|contains|cased: CylancePROTECT
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002571'
+  sagan.rev: '4'
+  sagan.source_file: cylance.rules
+  rsigma.suppress: 5m
+---
+title: '[CYLANCE] Device - Registration'
+id: c87fb973-aa7d-54e5-81c6-4bb6074867ba
+status: experimental
+description: Converted from Sagan rule SID 5002572 (rev 4), file cylance.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: 'Event Name: Registration'
+  selection_2:
+    _raw|contains|cased: Device
+  selection_3:
+    _raw|contains|cased: CylancePROTECT
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002572'
+  sagan.rev: '4'
+  sagan.source_file: cylance.rules
+  rsigma.suppress: 5m
+---
+title: '[CYLANCE] ExploitAttempt - Blocked'
+id: 343a1ca0-470b-56f1-810b-e992cd686181
+status: experimental
+description: Converted from Sagan rule SID 5002574 (rev 4), file cylance.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: 'Event Name: blocked'
+  selection_2:
+    _raw|contains|cased: ExploitAttempt
+  selection_3:
+    _raw|contains|cased: CylancePROTECT
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002574'
+  sagan.rev: '4'
+  sagan.source_file: cylance.rules
+  rsigma.suppress: 5m
+---
+title: '[CYLANCE] ExploitAttempt - No Action Taken'
+id: 54bef8a7-b338-5fac-bb66-baafc33a5afc
+status: experimental
+description: Converted from Sagan rule SID 5002575 (rev 4), file cylance.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: 'Event Name: none'
+  selection_2:
+    _raw|contains|cased: ExploitAttempt
+  selection_3:
+    _raw|contains|cased: CylancePROTECT
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002575'
+  sagan.rev: '4'
+  sagan.source_file: cylance.rules
+  rsigma.suppress: 5m
+---
+title: '[CYLANCE] Threat - Changed'
+id: ce266606-7ceb-5034-887b-74aa85c2b34b
+status: experimental
+description: Converted from Sagan rule SID 5002576 (rev 4), file cylance.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: threat_changed
+  selection_2:
+    _raw|contains|cased: Threat
+  selection_3:
+    _raw|contains|cased: CylancePROTECT
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5002576'
+  sagan.rev: '4'
+  sagan.source_file: cylance.rules
+  rsigma.suppress: 5m
+---
+title: '[CYLANCE] Threat - Found'
+id: 7a7a1daf-0f1c-592f-9376-65e276e1897f
+status: experimental
+description: Converted from Sagan rule SID 5002577 (rev 4), file cylance.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: threat_found
+  selection_2:
+    _raw|contains|cased: Threat
+  selection_3:
+    _raw|contains|cased: CylancePROTECT
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5002577'
+  sagan.rev: '4'
+  sagan.source_file: cylance.rules
+  rsigma.suppress: 5m
+---
+title: '[CYLANCE] Threat - Quarantined'
+id: 142585b2-fc09-5d47-98c7-1228b3d2e163
+status: experimental
+description: Converted from Sagan rule SID 5002578 (rev 4), file cylance.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: threat_quarantined
+  selection_2:
+    _raw|contains|cased: Threat
+  selection_3:
+    _raw|contains|cased: CylancePROTECT
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5002578'
+  sagan.rev: '4'
+  sagan.source_file: cylance.rules
+  rsigma.suppress: 5m
+---
+title: '[CYLANCE] Threat - Removed'
+id: 78b32ddc-d5e4-597c-bcb8-9dee2bd1b3c3
+status: experimental
+description: Converted from Sagan rule SID 5002579 (rev 4), file cylance.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: threat_removed
+  selection_2:
+    _raw|contains|cased: Threat
+  selection_3:
+    _raw|contains|cased: CylancePROTECT
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5002579'
+  sagan.rev: '4'
+  sagan.source_file: cylance.rules
+  rsigma.suppress: 5m

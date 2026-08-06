@@ -1,0 +1,71 @@
+title: '[DOVECOT] Failed login'
+id: 9f32cd7a-a566-50f0-ac52-f60c7120a948
+status: experimental
+description: Converted from Sagan rule SID 5000265 (rev 2), file dovecot.rules.
+author: sagan2sigma
+logsource:
+  product: dovecot
+  service: imap
+detection:
+  selection_1:
+    _raw|contains|cased: Password mismatch
+  selection_2:
+    appname|cased: dovecot
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000265'
+  sagan.rev: '2'
+  sagan.source_file: dovecot.rules
+---
+title: '[DOVECOT] Starting up'
+id: db68ce46-c2e9-55d6-8806-fac6e6b86ba9
+status: experimental
+description: Converted from Sagan rule SID 5000266 (rev 2), file dovecot.rules.
+author: sagan2sigma
+logsource:
+  product: dovecot
+  service: imap
+detection:
+  selection_1:
+    _raw|contains|cased: starting up
+  selection_2:
+    appname|cased: dovecot
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5000266'
+  sagan.rev: '2'
+  sagan.source_file: dovecot.rules
+---
+title: '[DOVECOT] Invalid username'
+id: 1884474e-ed3e-5fd3-baa2-32c18afd425c
+status: experimental
+description: Converted from Sagan rule SID 5000268 (rev 2), file dovecot.rules.
+author: sagan2sigma
+logsource:
+  product: dovecot
+  service: imap
+detection:
+  selection_1:
+    _raw|re|i: user not found|User not known|unknown user
+  selection_2:
+    appname|cased: dovecot
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000268'
+  sagan.rev: '2'
+  sagan.source_file: dovecot.rules

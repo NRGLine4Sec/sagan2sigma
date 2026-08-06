@@ -1,0 +1,45 @@
+title: '[HP-E-SERIES-SWITCH] Invalid username/password'
+id: 7198204f-60c5-590d-b68e-9cae22586b78
+status: experimental
+description: Converted from Sagan rule SID 5001120 (rev 4), file procurve.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: auth
+  selection_2:
+    _raw|contains|cased: Invalid user name/password
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001120'
+  sagan.rev: '4'
+  sagan.source_file: procurve.rules
+---
+title: '[HP-E-SERIES-SWITCH] Port Security Violation'
+id: 0039c941-9f9b-57e6-85f4-4ed4ece649ee
+status: experimental
+description: Converted from Sagan rule SID 5001123 (rev 4), file procurve.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: FFI
+  selection_2:
+    _raw|contains: Security Violation
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5001123'
+  sagan.rev: '4'
+  sagan.source_file: procurve.rules

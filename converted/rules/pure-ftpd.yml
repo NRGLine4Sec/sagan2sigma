@@ -1,0 +1,130 @@
+title: '[PUREFTPD] Authentication failed'
+id: 578e8967-b1a1-515b-90ff-65157dbea697
+status: experimental
+description: Converted from Sagan rule SID 5005743 (rev 7), file pure-ftpd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: '[WARNING] Authentication failed for user'
+  selection_2:
+    appname|cased: pure-ftpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5005743'
+  sagan.rev: '7'
+  sagan.source_file: pure-ftpd.rules
+  rsigma.suppress: 4h
+---
+title: '[PUREFTPD] Attempt to Access Invalid Directory Detected'
+id: 7802a36d-c115-57f5-9786-2922748ad295
+status: experimental
+description: Converted from Sagan rule SID 5000221 (rev 4), file pure-ftpd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: '[INFO] Can''t change directory to'
+  selection_2:
+    appname|cased: pure-ftpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-filename-detect
+custom_attributes:
+  sagan.sid: '5000221'
+  sagan.rev: '4'
+  sagan.source_file: pure-ftpd.rules
+---
+title: '[PUREFTPD] User logged into an disabled account'
+id: 37c87d82-b29d-5a6c-a653-5184a9feaf71
+status: experimental
+description: Converted from Sagan rule SID 5000414 (rev 4), file pure-ftpd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|re: '[INFO] \S+ is now logged in'
+  selection_2:
+    _raw|contains|cased:
+      - apache
+      - mysql
+      - www
+      - nobody
+      - nogroup
+      - portmap
+      - named
+      - rpc
+      - mail
+      - ftp
+      - shutdown
+      - halt
+      - daemon
+      - bin
+      - postfix
+      - shell
+      - info
+      - guest
+      - psql
+      - user
+      - users
+      - console
+      - uucp
+      - lp
+      - sync
+      - sshd
+      - cdrom
+      - ossec
+      - sagan
+  selection_3:
+    appname|cased: sshd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5000414'
+  sagan.rev: '4'
+  sagan.source_file: pure-ftpd.rules
+---
+title: '[PUREFTPD] FTPCHK3 file accessed by user'
+id: a12ae8f5-cd5c-54eb-89f6-9778b3709333
+status: experimental
+description: Converted from Sagan rule SID 5002952 (rev 4), file pure-ftpd.rules.
+references:
+  - https://blog.ftptoday.com/ftp-password-stealing-malware
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: ftpchk3
+  selection_2:
+    _raw|contains|cased:
+      - CHMOD
+      - DELE
+      - STOR
+  selection_3:
+    appname|cased: pure-ftpd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002952'
+  sagan.rev: '4'
+  sagan.source_file: pure-ftpd.rules

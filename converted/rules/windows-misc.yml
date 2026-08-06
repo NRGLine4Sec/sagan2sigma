@@ -1,0 +1,1622 @@
+title: '[WINDOWS-MISC] Trusted Platform Module [TPM] Error. User name not found'
+id: 9722dcee-1fdf-5558-8107-e596ed0fa49f
+status: experimental
+description: Converted from Sagan rule SID 5000318 (rev 4), file windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: ' 17150: '
+  selection_2:
+    appname|cased: DAC
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000318'
+  sagan.rev: '4'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] Eventlog service was corrupted'
+id: 69df69b0-819d-53c4-9cb9-8a3cbc633d00
+status: experimental
+description: Converted from Sagan rule SID 5000319 (rev 2), file windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: was corrupted
+  selection_2:
+    appname|cased: Eventlog
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.program-error
+custom_attributes:
+  sagan.sid: '5000319'
+  sagan.rev: '2'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] MsiInstaller - RegWork - Registry clearner'
+id: 0a00a317-b1e6-57fd-b81c-38e467b712f1
+status: experimental
+description: Converted from Sagan rule SID 5000330 (rev 3), file windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: RegWork
+  selection_2:
+    _raw|contains|cased: Product
+  selection_3:
+    appname|cased: MsiInstaller
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5000330'
+  sagan.rev: '3'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] Tenable Nessus service is active [pen-test tool]'
+id: 4e48081f-ba09-5e58-b2d5-0aa325d6397b
+status: experimental
+description: Converted from Sagan rule SID 5000339 (rev 2), file windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: Tenable Nessus
+  selection_2:
+    appname|cased: Service
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5000339'
+  sagan.rev: '2'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] Tenable Nessus started [pen-test tool]'
+id: e1e49a6e-a27a-52aa-9a60-1bb570f0bf7d
+status: experimental
+description: Converted from Sagan rule SID 5000345 (rev 2), file windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: started successfully
+  selection_2:
+    appname|cased: Tenable
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000345'
+  sagan.rev: '2'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] WinVNC4 Connection blacklisted'
+id: 12ae8f0e-3c6a-5382-8729-6bc67caab0fb
+status: experimental
+description: Converted from Sagan rule SID 5000349 (rev 5), file windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: blacklisted
+  selection_2:
+    _raw|contains|cased: Connections
+  selection_3:
+    appname|cased: WinVNC4
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000349'
+  sagan.rev: '5'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] WinVNC4 Connection Authentication failure'
+id: dcdf98d5-4290-5c16-a9b0-4c08a84c65a9
+status: experimental
+description: Converted from Sagan rule SID 5000350 (rev 6), file windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: Authentication failure
+  selection_2:
+    appname|cased: WinVNC4
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000350'
+  sagan.rev: '6'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] MSSQLServer I/O error'
+id: 3e6c15b0-5a80-54da-b723-f091207acc6a
+status: experimental
+description: Converted from Sagan rule SID 5001096 (rev 4), file windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: ' 823: '
+  selection_2:
+    appname|cased: Ntfs
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.program-error
+custom_attributes:
+  sagan.sid: '5001096'
+  sagan.rev: '4'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] File system full'
+id: 1188feb8-9c00-5e28-90b4-c7506cfab76b
+status: experimental
+description: Converted from Sagan rule SID 5001191 (rev 4), file windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: ' 13570: '
+  selection_2:
+    appname|cased:
+      - NtFrs
+      - Ntfs
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-error
+custom_attributes:
+  sagan.sid: '5001191'
+  sagan.rev: '4'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] System shutdown [XBIT SET]'
+id: 4fb28d00-92ff-5b20-94e0-2cfb2bfa17b5
+status: experimental
+description: Converted from Sagan rule SID 5002014 (rev 36), file windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 1074
+      - 6006
+      - 41
+      - 6008
+      - 1076
+  selection_2:
+    appname|cased:
+      - '*Security*'
+      - '*System*'
+      - '*USER32*'
+  filter_3:
+    _raw|contains|cased: Serial Port COM
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002014'
+  sagan.rev: '36'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] Microsoft Antimalware has encountered an error trying to update signatures'
+id: 1b7cf4b1-b2a1-55af-8206-d55a65245777
+status: experimental
+description: Converted from Sagan rule SID 5002392 (rev 5), file windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Microsoft_Antimalware*'
+  selection_2:
+    EventID: 2001
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.program-error
+custom_attributes:
+  sagan.sid: '5002392'
+  sagan.rev: '5'
+  sagan.source_file: windows-misc.rules
+  rsigma.suppress: 1d
+---
+title: '[WINDOWS-MISC] Installation of new service via Security Audit'
+id: 233a12a7-1045-5f0d-8e4a-506703835d19
+status: experimental
+description: Converted from Sagan rule SID 5002818 (rev 7), file windows-misc.rules.
+references:
+  - https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4697
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4697
+      - 601
+  filter_2:
+    Message|contains|cased: 'dllhost.exe /Processid:'
+  filter_3:
+    Message|contains: Program Files
+  filter_4:
+    Message|contains:
+      - Microsoft
+      - MpEngineStore
+      - CredentialenrollmentManager
+      - CrowdStrike
+      - VeeamGuestHelper.exe
+      - .sys
+      - ManageEngine
+      - VM3DService
+      - McAfee
+      - AdminArsenal
+      - vmvss
+      - bomgar
+  selection_5:
+    Message|contains|cased:
+      - 'Service Type: 0x1 '
+      - 'Service Type: 0x2 '
+      - 'Service Type: 0x10 '
+      - 'Service Type: 0x20 '
+  selection_6:
+    Message|contains:
+      - 'Service Start Type: 2 '
+      - 'Service Start Type: 3 '
+  selection_7:
+    syslog_appname|cased: '*Security*'
+  condition: selection_1 and selection_5 and selection_6 and selection_7 and not (filter_2 or filter_3
+    or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002818'
+  sagan.rev: '7'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] VSS shutdown [XBIT SET]'
+id: 8deaa1a3-232b-5a1b-beea-4ad863940aeb
+status: experimental
+description: Converted from Sagan rule SID 5005745 (rev 2), file windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 8225
+  selection_2:
+    appname|cased: '*Application*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.program-error
+custom_attributes:
+  sagan.sid: '5005745'
+  sagan.rev: '2'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] Event log has been cleared.'
+id: 50082599-c30a-5744-b7ca-c4dcbb4bb303
+status: experimental
+description: Converted from Sagan rule SID 5002954 (rev 4), file windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 104
+  selection_2:
+    _raw|contains|cased: cleared
+  selection_3:
+    appname|cased: '*Eventlog*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002954'
+  sagan.rev: '4'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] CRITICAL - Installation of PSEXEC service via Security Audit'
+id: 5beba6ad-feab-5b7f-bd42-4954ed51dc4b
+status: experimental
+description: Converted from Sagan rule SID 5003105 (rev 8), file windows-misc.rules.
+references:
+  - https://pastebin.com/raw/0SNSvyjJ
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains:
+      - psexesvc
+      - psexec
+  filter_2:
+    _raw|contains|cased:
+      - ForeScout
+      - nxlog
+      - ccmsetup
+  selection_3:
+    EventID:
+      - 7045
+      - 4697
+      - 601
+  selection_4:
+    appname|cased:
+      - '*Security*'
+      - System
+      - Service_Control_Manager
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5003105'
+  sagan.rev: '8'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: updated_on=2023_08_02
+---
+title: '[WINDOWS-MISC] Rubeus successful TGT Enumeration'
+id: 99219151-8707-5a29-83d2-384ccdfb4871
+status: experimental
+description: Converted from Sagan rule SID 5006530 (rev 2), file windows-misc.rules.
+references:
+  - https://posts.specterops.io/hunting-in-active-directory-unconstrained-delegation-forests-trusts-71f2b33688e1
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4611
+  selection_2:
+    _raw|contains: 'Logon Process Name: User32LogonProcesss'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5006530'
+  sagan.rev: '2'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] Pass the Hash Detected'
+id: 1477bf6c-4dec-5bbf-b857-84f351c175c6
+status: experimental
+description: Converted from Sagan rule SID 5008395 (rev 3), file windows-misc.rules.
+references:
+  - https://thedfirreport.com/2021/08/29/cobalt-strike-a-defenders-guide/
+  - https://blog.netwrix.com/2021/11/30/how-to-detect-pass-the-hash-attacks/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4624
+  filter_2:
+    Message|contains|cased: 'Account Name: SYSTEM'
+  filter_3:
+    Message|contains|cased: 'Network Account Name: netwrix-svc'
+  selection_4:
+    Message|contains|cased: 'Logon Type: 9'
+  selection_5:
+    Message|contains|cased: 'Logon Process: seclogo'
+  selection_6:
+    Message|contains|cased: 'Authentication Package: Negotiate'
+  condition: selection_1 and selection_4 and selection_5 and selection_6 and not (filter_2 or filter_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5008395'
+  sagan.rev: '3'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] Potential AS-REP Roasting Activity Detected - EID 4768'
+id: 73d5d7bf-22eb-53ca-8957-f6f11f047261
+status: experimental
+description: Converted from Sagan rule SID 5008406 (rev 2), file windows-misc.rules.
+references:
+  - https://blog.certcube.com/as-rep-roasting-attack/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4768
+  selection_2:
+    _raw|contains|cased: 'Ticket Options: 0x40800010'
+  selection_3:
+    _raw|contains|cased: 'Ticket Encryption Type: 0x17'
+  filter_4:
+    _raw|contains|cased: $
+  selection_5:
+    _raw|contains|cased: 'Pre-Authentication Type: 0'
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5008406'
+  sagan.rev: '2'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] Veeam PoC Defaults (CVE-2022-26500)'
+id: 628998db-3838-5896-ae71-479b401cb902
+status: experimental
+description: Converted from Sagan rule SID 5010735 (rev 5), file windows-misc.rules.
+references:
+  - https://defense.one/d/36-cve-2022-26500-cve-2022-26501-veeam-rce-analysis
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Sysmon*'
+  selection_2:
+    _raw|contains|cased: '11: File created'
+  filter_3:
+    _raw|contains: \\VeeamRecovery\\
+  filter_4:
+    _raw|contains|cased: '4663: An attempt was made to access an object'
+  filter_5:
+    _raw|contains: msiexec.exe
+  selection_6:
+    _raw|contains:
+      - \\VeeamDeploymentDll.dll
+      - \\poc.dll
+  condition: selection_1 and selection_2 and selection_6 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5010735'
+  sagan.rev: '5'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] Response to exploit attempt (CVE-2022-26500)'
+id: d2f786f3-7e9b-566f-9e2c-817a51b0410a
+status: experimental
+description: Converted from Sagan rule SID 5010736 (rev 1), file windows-misc.rules.
+references:
+  - https://defense.one/d/36-cve-2022-26500-cve-2022-26501-veeam-rce-analysis
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: <RIResponse
+  selection_2:
+    _raw|contains|cased: PersistentConnection=
+  selection_3:
+    _raw|contains|cased: RemotePath=
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010736'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] Possible Local PrivEsc (CVE-2022-26503)'
+id: a3710da1-96f6-58fb-996c-5fbe234e5330
+status: experimental
+description: Converted from Sagan rule SID 5010737 (rev 1), file windows-misc.rules.
+references:
+  - https://defense.one/d/36-cve-2022-26500-cve-2022-26501-veeam-rce-analysis
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains: 127.0.0.1:9395/VeeamService
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010737'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] Command line options used by ExploitRemotingService'
+id: 3e92babc-0dd9-53dc-b7c9-d1b5b03f7fb7
+status: experimental
+description: Converted from Sagan rule SID 5010738 (rev 1), file windows-misc.rules.
+references:
+  - 2022-26503
+  - https://github.com/tyranid/ExploitRemotingService
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*Security*'
+      - '*Sysmon*'
+  selection_2:
+    EventID:
+      - 1
+      - 4688
+  selection_3:
+    _raw|contains|cased:
+      - -usecom
+      - -useser
+      - -uselease
+      - -autodir
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010738'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] Possible Powershell useage via IPSInvokerService'
+id: c682d2d6-58cb-5dfe-9a6f-c1839d46c26c
+status: experimental
+description: Converted from Sagan rule SID 5010739 (rev 1), file windows-misc.rules.
+references:
+  - 2022-26504
+  - https://defense.one/d/36-cve-2022-26500-cve-2022-26501-veeam-rce-analysis
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains:
+      - IPSInvokerService
+      - CpsInvokerService
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010739'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] Possible Exploitation of CVE-2022-26504'
+id: 0b12726d-7386-582f-b526-8ede1be2f433
+status: experimental
+description: Converted from Sagan rule SID 5010740 (rev 1), file windows-misc.rules.
+references:
+  - 2022-26504
+  - https://defense.one/d/36-cve-2022-26500-cve-2022-26501-veeam-rce-analysis
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains: :8732/InvokerWrapperService
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010740'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] Possible Exploitation of CVE-2022-26504'
+id: 9f319982-93f9-59a8-a153-c16aafddbd2b
+status: experimental
+description: Converted from Sagan rule SID 5010741 (rev 1), file windows-misc.rules.
+references:
+  - 2022-26504
+  - https://defense.one/d/36-cve-2022-26500-cve-2022-26501-veeam-rce-analysis
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains: servervmm.sinsinology.local
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010741'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] OWASSRF in Exchange for RCE'
+id: 3c076bba-3510-510d-93a8-318a9b1c3bb9
+status: experimental
+description: Converted from Sagan rule SID 5010904 (rev 1), file windows-misc.rules.
+references:
+  - 2022-41080
+  - 2022-41082
+  - https://www.rapid7.com/blog/post/2022/12/21/cve-2022-41080-cve-2022-41082-rapid7-observed-exploitation-of-owassrf-in-exchange-for-rce/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*Security*'
+      - '*Sysmon*'
+  selection_2:
+    EventID:
+      - 1
+      - 4688
+  selection_3:
+    _raw|contains|cased: \\powershell.exe
+  selection_4:
+    _raw|contains|cased: \\w3wp.exe
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010904'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] moveitdmz pool command (CVE-2023-34362)'
+id: 44161466-0930-5880-a65e-49c30d6f54cd
+status: experimental
+description: Converted from Sagan rule SID 5013537 (rev 1), file windows-misc.rules.
+references:
+  - 2023-34362
+  - https://www.huntress.com/blog/moveit-transfer-critical-vulnerability-rapid-response
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*Sysmon*'
+      - '*Security*'
+  selection_2:
+    EventID:
+      - 1
+      - 4688
+  selection_3:
+    _raw|contains|cased: w3wp.exe
+  selection_4:
+    _raw|contains|cased: moveitdmz pool
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.ta0011
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5013537'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: deployment=Server,affected_product=MOVEit,affected_version=13.0.6,mitigation=https://community.progress.com/s/article/MOVEit-Transfer-Critical-Vulnerability-31May2023,created_at=2023_06_12,updated_at=2023_06_12
+---
+title: '[WINDOWS-MISC] POST to machine2.aspx (CVE-2023-34362)'
+id: ba21efb2-6a11-5188-942a-0544e183627a
+status: experimental
+description: Converted from Sagan rule SID 5013538 (rev 1), file windows-misc.rules.
+references:
+  - 2023-34362
+  - https://www.huntress.com/blog/moveit-transfer-critical-vulnerability-rapid-response
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*IIS*'
+      - '*Exchange*'
+      - Microsoft_Internet_Information_Services_10.0
+  selection_2:
+    _raw|contains|cased: POST
+  selection_3:
+    _raw|contains: /machine2.aspx
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1190
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5013538'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: deployment=Server,affected_product=MOVEit,affected_version=13.0.6,mitigation=https://community.progress.com/s/article/MOVEit-Transfer-Critical-Vulnerability-31May2023,created_at=2023_06_12,updated_at=2023_06_12
+---
+title: '[WINDOWS-MISC] POST to /moveitisapi/moveitisapi.dll (CVE-2023-34362)'
+id: f7529059-1199-516a-8437-f20da5fe7060
+status: experimental
+description: Converted from Sagan rule SID 5013539 (rev 1), file windows-misc.rules.
+references:
+  - 2023-34362
+  - https://www.huntress.com/blog/moveit-transfer-critical-vulnerability-rapid-response
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*IIS*'
+      - '*Exchange*'
+      - Microsoft_Internet_Information_Services_10.0
+  selection_2:
+    _raw|contains|cased: POST
+  selection_3:
+    _raw|contains: /moveitisapi/moveitisapi.dll
+  selection_4:
+    _raw|contains: action=m2
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1190
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5013539'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: deployment=Server,affected_product=MOVEit,affected_version=13.0.6,mitigation=https://community.progress.com/s/article/MOVEit-Transfer-Critical-Vulnerability-31May2023,created_at=2023_06_12,updated_at=2023_06_12
+---
+title: '[WINDOWS-MISC] POST to /guestaccess.aspx (CVE-2023-34362)'
+id: 57cba396-b1f5-58e7-a5d5-f588a9daf0f7
+status: experimental
+description: Converted from Sagan rule SID 5013540 (rev 1), file windows-misc.rules.
+references:
+  - 2023-34362
+  - https://www.huntress.com/blog/moveit-transfer-critical-vulnerability-rapid-response
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*IIS*'
+      - '*Exchange*'
+      - Microsoft_Internet_Information_Services_10.0
+  selection_2:
+    _raw|contains|cased: POST
+  selection_3:
+    _raw|contains: /guestaccess.aspx
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1190
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5013540'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: deployment=Server,affected_product=MOVEit,affected_version=13.0.6,mitigation=https://community.progress.com/s/article/MOVEit-Transfer-Critical-Vulnerability-31May2023,created_at=2023_06_12,updated_at=2023_06_12
+---
+title: '[WINDOWS-MISC] POST to /guestaccess.aspx with parameters (CVE-2023-34362)'
+id: efbe5df5-7771-56f7-9d21-1cb1f52e0609
+status: experimental
+description: Converted from Sagan rule SID 5013541 (rev 1), file windows-misc.rules.
+references:
+  - 2023-34362
+  - https://attackerkb.com/topics/mXmV0YpC3W/cve-2023-34362/rapid7-analysis
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*IIS*'
+      - '*Exchange*'
+      - Microsoft_Internet_Information_Services_10.0
+  selection_2:
+    _raw|contains|cased: POST
+  selection_3:
+    _raw|contains: /guestaccess.aspx
+  selection_4:
+    _raw|contains: Transaction=dummy
+  selection_5:
+    _raw|contains: Arg06=accesscode
+  selection_6:
+    _raw|contains: Arg12=promptaccesscode
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1190
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5013541'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: deployment=Server,affected_product=MOVEit,affected_version=13.0.6,mitigation=https://community.progress.com/s/article/MOVEit-Transfer-Critical-Vulnerability-31May2023,created_at=2023_06_12,updated_at=2023_06_12
+---
+title: '[WINDOWS-MISC] File Upload (CVE-2023-34362)'
+id: 231df8f4-756a-55b5-a964-f2825d61fee8
+status: experimental
+description: Converted from Sagan rule SID 5013542 (rev 1), file windows-misc.rules.
+references:
+  - 2023-34362
+  - https://www.huntress.com/blog/moveit-transfer-critical-vulnerability-rapid-response
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*IIS*'
+      - '*Exchange*'
+      - Microsoft_Internet_Information_Services_10.0
+  selection_2:
+    _raw|contains|cased: PUT
+  selection_3:
+    _raw|contains: /api/v1/folders/
+  selection_4:
+    _raw|contains|cased: uploadType=resumable&fileId=
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1190
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5013542'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: deployment=Server,affected_product=MOVEit,affected_version=13.0.6,mitigation=https://community.progress.com/s/article/MOVEit-Transfer-Critical-Vulnerability-31May2023,created_at=2023_06_12,updated_at=2023_06_12
+---
+title: '[WINDOWS-MISC] GET /human2.aspx (CVE-2023-34362)'
+id: 6eed84dd-a78c-555a-b6ba-f275b82b4514
+status: experimental
+description: Converted from Sagan rule SID 5013543 (rev 1), file windows-misc.rules.
+references:
+  - 2023-34362
+  - https://www.huntress.com/blog/moveit-transfer-critical-vulnerability-rapid-response
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*IIS*'
+      - '*Exchange*'
+      - Microsoft_Internet_Information_Services_10.0
+  selection_2:
+    _raw|contains|cased: GET
+  selection_3:
+    _raw|contains: /human2.aspx
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1190
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5013543'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: deployment=Server,affected_product=MOVEit,affected_version=13.0.6,mitigation=https://community.progress.com/s/article/MOVEit-Transfer-Critical-Vulnerability-31May2023,created_at=2023_06_12,updated_at=2023_06_12
+---
+title: '[WINDOWS-FIREWALL] Firewall rule added by AnyDesk'
+id: 5be65580-c97a-523c-83c7-b9dd9112baea
+status: experimental
+description: Converted from Sagan rule SID 5013559 (rev 1), file windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*Firewall*'
+  selection_2:
+    EventID: 2004
+  selection_3:
+    Message|contains: 'Rule Name: AnyDesk'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1219
+  - attack.ta0011
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013559'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: deployment=Server,created_at=2023_07_05,updated_at=2023_07_05
+---
+title: '[WINDOWS-TERMINAL-SERVICES] RDP connection to loopback'
+id: fcf77382-82d4-5d1d-bfcf-30da2327d155
+status: experimental
+description: Converted from Sagan rule SID 5013567 (rev 1), file windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*Terminal*'
+  selection_2:
+    EventID: 1149
+  selection_3:
+    Message|contains|cased: 'Source Network Address: 127.0.0.1'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1021.001
+  - attack.ta0008
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5013567'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: deployment=Server,created_at=2023_07_05,updated_at=2023_07_05
+---
+title: '[WINDOWS-SYSTEM] The Setup Log was cleared'
+id: 49c77c8c-009c-5984-bb89-4d2180e4dca4
+status: experimental
+description: Converted from Sagan rule SID 5013575 (rev 1), file windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*System*'
+  selection_2:
+    EventID: 104
+  selection_3:
+    Message|contains|cased: The Setup log file was cleared
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1070.001
+  - attack.ta0005
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5013575'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: deployment=Server,created_at=2023_07_05,updated_at=2023_07_05
+---
+title: '[WINDOWS-SYSTEM] The System log file was cleared'
+id: 2f06df52-60b9-5888-9799-992e507d1c7b
+status: experimental
+description: Converted from Sagan rule SID 5013576 (rev 1), file windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*System*'
+  selection_2:
+    EventID: 104
+  selection_3:
+    Message|contains|cased: The System log file was cleared
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1070.001
+  - attack.ta0005
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5013576'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: deployment=Server,created_at=2023_07_05,updated_at=2023_07_05
+---
+title: '[WINDOWS-SYSTEM] The Application log file was cleared'
+id: 93fd5024-ad44-5e13-8130-c92c3cc7a1bb
+status: experimental
+description: Converted from Sagan rule SID 5013577 (rev 1), file windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*System*'
+  selection_2:
+    EventID: 104
+  selection_3:
+    Message|contains|cased: The Application log file was cleared
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1070.001
+  - attack.ta0005
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5013577'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: deployment=Server,created_at=2023_07_05,updated_at=2023_07_05
+---
+title: '[WINDOWS-MISC] Installation of new service via Security Audit'
+id: d61bb4e9-a134-5789-963e-34b61b68e1d6
+status: experimental
+description: Converted from Sagan rule SID 5013682 (rev 2), file windows-misc.rules.
+references:
+  - https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4697
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 7045
+  filter_2:
+    Message|contains:
+      - Microsoft
+      - MpEngineStore
+      - CredentialenrollmentManager
+      - CrowdStrike
+      - Program Files
+      - VeemGuestHelper.exe
+      - .sys
+      - VM3DService
+      - McAfee
+      - AdminArsenal
+      - vmvss
+      - bomgar
+  selection_3:
+    Message|contains:
+      - 'Service Start Type: auto start'
+      - 'Service Start Type: demand start'
+  selection_4:
+    Message|contains|cased: 'Service Type: user mode'
+  selection_5:
+    syslog_appname|cased: '*Security*'
+  condition: selection_1 and selection_3 and selection_4 and selection_5 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5013682'
+  sagan.rev: '2'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] A service was installed in the system with suspicious programs'
+id: 8b23033e-0c09-53bd-a9a5-74ae6598904c
+status: experimental
+description: Converted from Sagan rule SID 5013683 (rev 2), file windows-misc.rules.
+references:
+  - https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4697
+  - https://www.socinvestigation.com/hunting-for-suspicious-windows-services-mind-map/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 7045
+      - 4697
+  filter_2:
+    Message|contains: \\Microsoft\\
+  selection_3:
+    Message|contains:
+      - \\ADMIN$
+      - \\C$
+      - \\IPC$
+      - cmd /c
+      - powershell
+      - pwsh
+      - comspec
+      - screenconnect
+      - SystemDrive
+      - teamviewer
+      - psexesvc
+      - psexec
+      - rundll32.exe
+      - regsvr32.exe
+      - cscript.exe
+      - regsvcs.exe
+      - wmic.exe
+      - anydesk
+      - logmein
+      - ultravnc
+  selection_4:
+    syslog_appname|cased: '*Security*'
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5013683'
+  sagan.rev: '2'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] NetLogon event with mimikatz string (ZeroLogon)'
+id: d2aa8419-700f-5b27-9010-5a5e16cc87f9
+status: experimental
+description: Converted from Sagan rule SID 5013825 (rev 1), file windows-misc.rules.
+references:
+  - https://thedfirreport.com/2022/11/28/emotet-strikes-again-lnk-file-leads-to-domain-wide-ransomware/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*System*'
+  selection_2:
+    EventID: 5805
+  selection_3:
+    _raw|contains|cased: mimikatz
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1588.002
+  - attack.ta0004
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5013825'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_01,updated_at=2023_02_01
+---
+title: '[WINDOWS-MISC] ProcDump64 Installed as a Service'
+id: 2eb05f1f-1286-51d5-b765-190837ba6487
+status: experimental
+description: Converted from Sagan rule SID 5013868 (rev 1), file windows-misc.rules.
+references:
+  - https://thedfirreport.com/2022/09/26/bumblebee-round-two/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*System*'
+      - '*Service*'
+  selection_2:
+    EventID: 7045
+  selection_3:
+    _raw|contains|cased: 'Service File Name:'
+  selection_4:
+    _raw|contains: prodump64
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1003.001
+  - attack.ta0006
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5013868'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_02,updated_at=2023_02_02
+---
+title: '[WINDOWS-MISC] Possible ProcDump64 Installed as a Service'
+id: d42c2451-1006-5f83-a89f-da7c5f607b3c
+status: experimental
+description: Converted from Sagan rule SID 5013869 (rev 1), file windows-misc.rules.
+references:
+  - https://thedfirreport.com/2022/09/26/bumblebee-round-two/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*System*'
+      - '*Service*'
+  selection_2:
+    EventID: 7045
+  selection_3:
+    _raw|contains|cased: 'Service File Name:'
+  selection_4:
+    _raw|contains|cased: lsass.exe
+  selection_5:
+    _raw|contains:
+      - -accepteula
+      - -ma
+      - -am
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1003.001
+  - attack.ta0006
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5013869'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_02,updated_at=2023_02_02
+---
+title: '[WINDOWS-MISC] Suspicious Service Installed'
+id: ea5b795d-22e5-52f4-a88d-661184113a24
+status: experimental
+description: Converted from Sagan rule SID 5013919 (rev 1), file windows-misc.rules.
+references:
+  - https://thedfirreport.com/2022/11/28/emotet-strikes-again-lnk-file-leads-to-domain-wide-ransomware/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*System*'
+  selection_2:
+    EventID: 7045
+  selection_3:
+    _raw|contains: cmd.exe /c rundll32.exe c:\\programdata\\
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.ta0008
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5013919'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_01,updated_at=2023_02_01
+---
+title: '[WINDOWS-MISC] Potential Metasploit/MS14-068 Activity'
+id: b8a7bedf-07cf-5f1d-8652-b31084f07b4e
+status: experimental
+description: Converted from Sagan rule SID 5014544 (rev 1), file windows-misc.rules.
+references:
+  - https://github.com/rapid7/metasploit-framework/blob/0399768f3976e5b1680eeb1e78fba4a243d5946c/lib/msf/core/exploit/remote/kerberos/client/as_request.rb
+  - https://adsecurity.org/?p=763
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4768
+  selection_2:
+    _raw|contains: 'Ticket Options: 0x50800000'
+  selection_3:
+    _raw|contains: 'Ticket Encryption Type: 0x17'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1558.003
+  - attack.ta0006
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014544'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: deployment=Server,created_at=2024_03_25,updated_at=2024_03_25
+---
+title: '[WINDOWS-SYSTEM] User Certificate Is Valid But Cannot Be Mapped To A User'
+id: cb7ed248-a460-5db4-85ab-3749800d090d
+status: experimental
+description: Converted from Sagan rule SID 5015514 (rev 1), file windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Kerberos-Key-Distribution-Center
+  selection_2:
+    _raw|contains|cased: user certificate that was valid but could not be mapped to a user
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1649
+  - attack.ta0006
+  - sagan.classtype.credential-access
+custom_attributes:
+  sagan.sid: '5015514'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: created_at=2025_03_06,updated_at=2025_03_06
+---
+title: '[WINDOWS-APPLICATION] MsiInstaller Installer Exited for SentinelInstaller (3/5)'
+id: 5791817a-2608-54ad-998a-2d0eeb80f654
+status: experimental
+description: Converted from Sagan rule SID 5015961 (rev 1), file windows-misc.rules.
+references:
+  - https://www.aon.com/en/insights/cyber-labs/bring-your-own-installer-bypassing-sentinelone
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Application*'
+  selection_2:
+    EventID: 1042
+  selection_3:
+    _raw|contains: MsiInstaller
+  selection_4:
+    _raw|contains: SentinelOneInstaller
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1203
+  - attack.ta0002
+  - sagan.classtype.execution
+custom_attributes:
+  sagan.sid: '5015961'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: created_at=2025_05_07,updated_at=2025_05_07
+---
+title: '[WINDOWS-SENTINELONE] Command Type Unload Detected (5/5)'
+id: 783847de-74cc-5ec9-b5be-0dfa8cf3a41d
+status: experimental
+description: Converted from Sagan rule SID 5015963 (rev 1), file windows-misc.rules.
+references:
+  - https://www.aon.com/en/insights/cyber-labs/bring-your-own-installer-bypassing-sentinelone
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*SentinelOne*'
+  selection_2:
+    EventID: 93
+  selection_3:
+    _raw|contains|cased: 'CommandType: unload'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1203
+  - attack.ta0002
+  - sagan.classtype.execution
+custom_attributes:
+  sagan.sid: '5015963'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: created_at=2025_05_07,updated_at=2025_05_07
+---
+title: MISP - Registry Key - HKCU\SOFTWARE\Microsoft\Windows\CurrentV...
+id: 40dd6b86-d953-51b7-801d-0c4e6e55406f
+status: experimental
+description: Converted from Sagan rule SID 5016031 (rev 1), file windows-misc.rules.
+references:
+  - https://misp-event-XDSpy-DSDownloader-Campaign-July-2024
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run] pdf_20240615_00003645.exe
+      = \\C:\\Users\\Public\\pdf_20240615_00003645.exe\\
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5016031'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+---
+title: MISP - Registry Key - HKCU\SOFTWARE\Microsoft\Windows\CurrentV...
+id: cc4b276e-9917-5cc3-b598-aea975412cab
+status: experimental
+description: Converted from Sagan rule SID 5016032 (rev 1), file windows-misc.rules.
+references:
+  - https://misp-event-XDSpy-DSDownloader-Campaign-July-2024
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains|cased: HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run] pismo-22-07-2024_0001.exe
+      = \\C:\\Users\\Public\\pismo-22-07-2024_0001.exe\\
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5016032'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+---
+title: '[WINDOWS-MISC] POST to ToolPane.aspx - Critical'
+id: dc11077b-6dd1-5fa4-8b1f-3ef6927ea834
+status: experimental
+description: Converted from Sagan rule SID 5017048 (rev 2), file windows-misc.rules.
+references:
+  - 2025-49704
+  - 2025-49706
+  - https://www.cisa.gov/news-events/alerts/2025/07/20/microsoft-releases-guidance-exploitation-sharepoint-vulnerability-cve-2025-53770
+  - https://research.eye.security/sharepoint-under-siege/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*IIS*'
+      - '*Exchange*'
+      - Microsoft_Internet_Information_Services_10.0
+  selection_2:
+    _raw|contains|cased: POST
+  selection_3:
+    _raw|contains|cased: ToolPane.aspx
+  filter_4:
+    _raw|contains|cased: ' 301 0 0'
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017048'
+  sagan.rev: '2'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: created_at=2025_07_22,updated_at=2025_08_28
+---
+title: '[WINDOWS-MISC] Get Request to spinstall0.aspx - Critical'
+id: 6ee6f8c1-0d8b-5766-b816-aa5fb9770377
+status: experimental
+description: Converted from Sagan rule SID 5017049 (rev 1), file windows-misc.rules.
+references:
+  - 2025-49704
+  - 2025-49706
+  - https://www.cisa.gov/news-events/alerts/2025/07/20/microsoft-releases-guidance-exploitation-sharepoint-vulnerability-cve-2025-53770
+  - https://research.eye.security/sharepoint-under-siege/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*IIS*'
+      - '*Exchange*'
+      - Microsoft_Internet_Information_Services_10.0
+  selection_2:
+    _raw|contains|cased: GET
+  selection_3:
+    _raw|contains|cased: spinstall0.aspx
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017049'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: created_at=2025_07_22,updated_at=2025_07_22
+---
+title: '[WINDOWS-MISC] Request to /_vti_pvt/service.cnf'
+id: a66fe634-7338-5432-bc37-4601ea689fe4
+status: experimental
+description: Converted from Sagan rule SID 5017056 (rev 2), file windows-misc.rules.
+references:
+  - https://www.recordedfuture.com/blog/toolshell-exploit-chain-thousands-sharepoint-servers-risk
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*IIS*'
+      - Microsoft_Internet_Information_Services_10.0
+  selection_2:
+    _raw|contains|cased: /_vti_pvt/service.cnf
+  filter_3:
+    _raw|contains|cased: ' 301 0 0'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017056'
+  sagan.rev: '2'
+  sagan.source_file: windows-misc.rules
+  sagan.metadata: created_at=2025_07_24,updated_at=2025_08_28

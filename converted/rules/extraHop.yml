@@ -1,0 +1,53 @@
+title: '[EXTRAHOP] perf CatchAll'
+id: f30200ae-b2cf-584f-ad28-967e2b675d01
+status: experimental
+description: Converted from Sagan rule SID 5016582 (rev 1), file extraHop.rules.
+references:
+  - https://docs.extrahop.com/25.2/detections-overview/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: exabeam-api_data
+  selection_2:
+    alert_type|contains|cased: perf
+  filter_3:
+    alert_name|cased: Kerberos Client Service Unknown Errors
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5016582'
+  sagan.rev: '1'
+  sagan.source_file: extraHop.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_06_18,updated_at=2025_06_18
+---
+title: '[EXTRAHOP] sec CatchAll'
+id: c0bb7b6d-ca9c-5cc6-a00a-bbec54fb33e3
+status: experimental
+description: Converted from Sagan rule SID 5016583 (rev 1), file extraHop.rules.
+references:
+  - https://docs.extrahop.com/25.2/detections-overview/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: exabeam-api_data
+  selection_2:
+    alert_type|contains|cased: sec
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5016583'
+  sagan.rev: '1'
+  sagan.source_file: extraHop.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_06_18,updated_at=2025_06_18

@@ -1,0 +1,84 @@
+title: '[VMWARE] SSH Port Forwarding Tunnel Detected'
+id: 44f4f7f1-ae31-529f-8228-e67be17edd83
+status: experimental
+description: Converted from Sagan rule SID 5015203 (rev 1), file vmware.rules.
+references:
+  - https://www.sygnia.co/blog/esxi-ransomware-ssh-tunneling-defense-strategies/
+author: sagan2sigma
+logsource:
+  product: vmware
+detection:
+  selection_1:
+    appname|cased:
+      - '*hostd*'
+      - '*authd*'
+      - '*shell*'
+  selection_2:
+    _raw|contains: ssh
+  selection_3:
+    _raw|contains|cased: -R
+  selection_4:
+    _raw|contains|cased: '127.0.0.1:'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015203'
+  sagan.rev: '1'
+  sagan.source_file: vmware.rules
+  sagan.metadata: created_at=2024_01_27,updated_at=2024_01_27
+---
+title: '[VMWARE] SSH Access Has Been Enabled (hostd)'
+id: db163bc0-cdf8-51af-833a-ef1bd13899aa
+status: experimental
+description: Converted from Sagan rule SID 5015204 (rev 1), file vmware.rules.
+references:
+  - https://www.sygnia.co/blog/esxi-ransomware-ssh-tunneling-defense-strategies/
+author: sagan2sigma
+logsource:
+  product: vmware
+detection:
+  selection_1:
+    appname|cased: '*hostd*'
+  selection_2:
+    _raw|contains: esx.audit.ssh.enabled
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015204'
+  sagan.rev: '1'
+  sagan.source_file: vmware.rules
+  sagan.metadata: created_at=2024_01_27,updated_at=2024_01_27
+---
+title: '[VMWARE] SSH Access Has Been Enabled (authd)'
+id: c5a39b47-62af-5e35-8c83-fe7c4c0a0de8
+status: experimental
+description: Converted from Sagan rule SID 5015205 (rev 1), file vmware.rules.
+references:
+  - https://www.sygnia.co/blog/esxi-ransomware-ssh-tunneling-defense-strategies/
+author: sagan2sigma
+logsource:
+  product: vmware
+detection:
+  selection_1:
+    appname|cased: '*authd*'
+  selection_2:
+    _raw|contains: SSH login enabled
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015205'
+  sagan.rev: '1'
+  sagan.source_file: vmware.rules
+  sagan.metadata: created_at=2024_01_27,updated_at=2024_01_27

@@ -1,0 +1,1001 @@
+title: '[JUNIPER] AS group missing'
+id: 58519dfe-4713-5ce5-a6f2-a3b1eee81f50
+status: experimental
+description: Converted from Sagan rule SID 5000888 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains|cased: no group for
+  selection_2:
+    _raw|contains|cased: from AS
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5000888'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[JUNIPER] Duplicate IP address'
+id: 2fd4ed67-749f-59bb-af98-6fe3cbfdf1e8
+status: experimental
+description: Converted from Sagan rule SID 5000889 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains|cased: KERN_ARP_DUPLICATE_ADDR
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5000889'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[JUNIPER] BGP missing MD5 digest'
+id: bad7e3cf-463d-5e79-b044-1b076d5ab92c
+status: experimental
+description: Converted from Sagan rule SID 5000890 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains|cased: missing MD5 digest
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5000890'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[JUNIPER] ARP address change'
+id: 257005ad-c438-581a-ace2-c46ae88fea74
+status: experimental
+description: Converted from Sagan rule SID 5000891 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains|cased: KERN_ARP_ADDR_CHANGE
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5000891'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[JUNIPER] BGP no route to host'
+id: babb7810-e54c-5eb0-b005-7d6f27eb7b9a
+status: experimental
+description: Converted from Sagan rule SID 5000892 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains|cased: bgp_connect_start
+  selection_2:
+    _raw|contains|cased: No route to host
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5000892'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[JUNIPER] Login authentication error'
+id: b648567c-af9e-5edf-b088-8c310e80de69
+status: experimental
+description: Converted from Sagan rule SID 5000893 (rev 3), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains|cased: LOGIN_PAM_AUTHENTICATION_ERROR
+  selection_2:
+    _raw|contains|cased: PAM authentication error for user
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5000893'
+  sagan.rev: '3'
+  sagan.source_file: juniper.rules
+  rsigma.suppress: 2m
+---
+title: '[JUNIPER] Possible authentication dictionary attack'
+id: 6ed97c64-9a3d-562b-98d0-cf05c20ae4b0
+status: experimental
+description: Converted from Sagan rule SID 5000894 (rev 3), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains|cased: LOGIN_INVALID_LOCAL_USER
+  selection_2:
+    _raw|contains|cased: No entry in local password
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5000894'
+  sagan.rev: '3'
+  sagan.source_file: juniper.rules
+  rsigma.suppress: 2m
+---
+title: '[JUNIPER] SSHD_LOGIN_ATTEMPTS_THRESHOLD - Brute Force'
+id: ece5d40c-d92b-508e-82bc-a0bc7ac42dc0
+status: experimental
+description: Converted from Sagan rule SID 5001642 (rev 7), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains|cased: SSHD_LOGIN_ATTEMPTS_THRESHOLD
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5001642'
+  sagan.rev: '7'
+  sagan.source_file: juniper.rules
+  rsigma.suppress: 5m
+---
+title: '[JUNIPER] SSHD_LOGIN_FAILED_LIMIT - Brute Force'
+id: 4a15ee4e-884b-51fd-90e5-d26301f6eb5e
+status: experimental
+description: Converted from Sagan rule SID 5001643 (rev 6), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains|cased: SSHD_LOGIN_FAILED_LIMIT
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5001643'
+  sagan.rev: '6'
+  sagan.source_file: juniper.rules
+  rsigma.suppress: 5m
+---
+title: '[NETSCREEN] Fragmented traffic'
+id: 6c7d886b-161c-582e-846d-e3232cf1ef72
+status: experimental
+description: Converted from Sagan rule SID 5000396 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    appname|cased: Netscreen
+  selection_2:
+    _raw|contains|cased: Fragmented traffic
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000396'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[NETSCREEN] FIN but no ACK bit'
+id: b1578900-09b9-56c7-921a-b160c9fe887a
+status: experimental
+description: Converted from Sagan rule SID 5000397 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    appname|cased: Netscreen
+  selection_2:
+    _raw|contains|cased: FIN but no ACK bit
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000397'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[NETSCREEN] Port scan!'
+id: 793ccc9e-0556-5663-90f2-35e085831b4f
+status: experimental
+description: Converted from Sagan rule SID 5000398 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    appname|cased: Netscreen
+  selection_2:
+    _raw|contains|cased: Port scan
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.network-scan
+custom_attributes:
+  sagan.sid: '5000398'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[NETSCREEN] ICMP fragment'
+id: 14d48795-7dd2-5b1b-b5ad-952989d88a83
+status: experimental
+description: Converted from Sagan rule SID 5000399 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    appname|cased: Netscreen
+  selection_2:
+    _raw|contains|cased: ICMP fragment
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000399'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[NETSCREEN] Malicious URL'
+id: 7442cc80-d974-5da1-974f-60810acbde8d
+status: experimental
+description: Converted from Sagan rule SID 5000400 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    appname|cased: Netscreen
+  selection_2:
+    _raw|contains|cased: Malicious URL
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000400'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[NETSCREEN] Large ICMP packet'
+id: 3b6648e6-2bf2-5c78-95c9-dc6944e1ee99
+status: experimental
+description: Converted from Sagan rule SID 5000401 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    appname|cased: Netscreen
+  selection_2:
+    _raw|contains|cased: Large ICMP packet
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000401'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[NETSCREEN] No tcp flag has been detected'
+id: faa7f051-d4aa-5c76-99e5-83d969c5d7c9
+status: experimental
+description: Converted from Sagan rule SID 5000402 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    appname|cased: Netscreen
+  selection_2:
+    _raw|contains|cased: No tcp flag has been detected
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000402'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[JUNIPER] IDP Attack log generated for attack'
+id: a8d68394-4231-58fd-9770-77d132bce370
+status: experimental
+description: Converted from Sagan rule SID 5001132 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains|cased: IDP_ATTACK_LOG_EVENT
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001132'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[JUNIPER] IDP Attack log generated for attack in a logical system'
+id: 711efeb3-1f49-5a7d-8b95-b71a312b5acc
+status: experimental
+description: Converted from Sagan rule SID 5001133 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains|cased: IDP_ATTACK_LOG_EVENT_LS
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001133'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[JUNIPER] IDP policy commit has completed'
+id: e740ffbe-0208-5f29-b1ac-403bfaa5bac8
+status: experimental
+description: Converted from Sagan rule SID 5001134 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains|cased: IDP_COMMIT_COMPLETED
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001134'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[JUNIPER] IDP IPv6 support is not enabled for the rulebase'
+id: c6bc7817-5d05-54e0-854f-02978113631e
+status: experimental
+description: Converted from Sagan rule SID 5001136 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains|cased: IDP_IGNORED_IPV6_ADDRESSES
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001136'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[JUNIPER] A compiled and optimized IDP policy was loaded successfully into the IDP engine'
+id: bb6c0a17-eb8c-5ed1-9a3b-48373830e4d4
+status: experimental
+description: Converted from Sagan rule SID 5001139 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains|cased: IDP_POLICY_LOAD_SUCCEEDED
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001139'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[JUNIPER] A running IDP policy was unloaded successfully from the IDP engine'
+id: da221684-b78a-5b1d-bf41-f1f4d3c0c088
+status: experimental
+description: Converted from Sagan rule SID 5001141 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains|cased: DP_POLICY_UNLOAD_SUCCEEDED
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001141'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[JUNIPER] IDP session threshold crossing event'
+id: 250b808a-458d-51f3-8db0-3f029657d394
+status: experimental
+description: Converted from Sagan rule SID 5001144 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains|cased: IDP_SESSION_LOG_EVENT
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001144'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[JUNIPER] IDP session threshold crossing event in a logical system'
+id: dff9ea03-437d-5b59-b30d-7725abceaf3b
+status: experimental
+description: Converted from Sagan rule SID 5001145 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains|cased: IDP_SESSION_LOG_EVENT_LS
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001145'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[JUNIPER] application-level distributed denial-of-service (AppDDoS) state transition occurred'
+id: 1d2b11fc-109c-5290-9e7a-307629cb67a0
+status: experimental
+description: Converted from Sagan rule SID 5001147 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains|cased: IDP_APPDDOS_APP_STATE_EVENT
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001147'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[JUNIPER] application-level distributed denial-of-service (AppDDoS) state transition occurred
+  in logical system'
+id: 38702a1c-d3d6-556e-859c-cccfbee8e5e1
+status: experimental
+description: Converted from Sagan rule SID 5001148 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains|cased: IDP_APPDDOS_APP_STATE_EVENT_LS
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001148'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[JUNIPER] Application-level distributed denial-of-service (AppDDoS) attack in a logical system'
+id: f238e35f-f661-5965-b4d5-8775c1a140ae
+status: experimental
+description: Converted from Sagan rule SID 5001149 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains|cased: IDP_APPDDOS_APP_ATTACK_EVENT_LS
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001149'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[JUNIPER] Application-level distributed denial-of-service (AppDDoS) attack'
+id: 71012c73-921b-5da2-a53d-02b72afba7fd
+status: experimental
+description: Converted from Sagan rule SID 5001150 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains|cased: IDP_APPDDOS_APP_ATTACK_EVENT
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001150'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[NETSCREEN] SYN Flood'
+id: e85ba56f-99e6-5069-9442-45d4a003a4cf
+status: experimental
+description: Converted from Sagan rule SID 5001611 (rev 3), file juniper.rules.
+references:
+  - https://www.juniper.net/techpubs/software/screenos/screenos5.2.0/NS_Messages.pdf
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    appname|cased: Netscreen
+  selection_2:
+    _raw|contains|cased: SYN flood
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.denial-of-service
+custom_attributes:
+  sagan.sid: '5001611'
+  sagan.rev: '3'
+  sagan.source_file: juniper.rules
+---
+title: '[NETSCREEN] Teardrop attack'
+id: bf846e0d-6dab-507e-b6d3-d0d031b4ac22
+status: experimental
+description: Converted from Sagan rule SID 5001612 (rev 3), file juniper.rules.
+references:
+  - https://www.juniper.net/techpubs/software/screenos/screenos5.2.0/NS_Messages.pdf
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    appname|cased: Netscreen
+  selection_2:
+    _raw|contains|cased: Teardrop Attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.denial-of-service
+custom_attributes:
+  sagan.sid: '5001612'
+  sagan.rev: '3'
+  sagan.source_file: juniper.rules
+---
+title: '[NETSCREEN] IP spoofing'
+id: 92ed8a32-f411-5635-8190-5d32678c4570
+status: experimental
+description: Converted from Sagan rule SID 5001613 (rev 3), file juniper.rules.
+references:
+  - https://www.juniper.net/techpubs/software/screenos/screenos5.2.0/NS_Messages.pdf
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    appname|cased: Netscreen
+  selection_2:
+    _raw|contains|cased: IP spoofing
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001613'
+  sagan.rev: '3'
+  sagan.source_file: juniper.rules
+---
+title: '[NETSCREEN] ICMP flood'
+id: 2e58f9ef-9aff-523b-a3bb-01c98ca06a1a
+status: experimental
+description: Converted from Sagan rule SID 5001614 (rev 3), file juniper.rules.
+references:
+  - https://www.juniper.net/techpubs/software/screenos/screenos5.2.0/NS_Messages.pdf
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    appname|cased: Netscreen
+  selection_2:
+    _raw|contains|cased: ICMP flood
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001614'
+  sagan.rev: '3'
+  sagan.source_file: juniper.rules
+---
+title: '[NETSCREEN] SYN fragment'
+id: bff368ec-6b29-57f8-962e-84a49c98faf8
+status: experimental
+description: Converted from Sagan rule SID 5001615 (rev 3), file juniper.rules.
+references:
+  - https://www.juniper.net/techpubs/software/screenos/screenos5.2.0/NS_Messages.pdf
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    appname|cased: Netscreen
+  selection_2:
+    _raw|contains|cased: SYN fragment
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001615'
+  sagan.rev: '3'
+  sagan.source_file: juniper.rules
+---
+title: '[NETSCREEN] Unknown protocol'
+id: 44a77fee-c40a-5f00-8bcc-c0ecadf79fed
+status: experimental
+description: Converted from Sagan rule SID 5001616 (rev 3), file juniper.rules.
+references:
+  - https://www.juniper.net/techpubs/software/screenos/screenos5.2.0/NS_Messages.pdf
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    appname|cased: Netscreen
+  selection_2:
+    _raw|contains|cased: Unknown protocol
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001616'
+  sagan.rev: '3'
+  sagan.source_file: juniper.rules
+---
+title: '[NETSCREEN] Bad IP option'
+id: d53737e5-c8f5-59ac-b30d-c9348d4c9ae6
+status: experimental
+description: Converted from Sagan rule SID 5001617 (rev 3), file juniper.rules.
+references:
+  - https://www.juniper.net/techpubs/software/screenos/screenos5.2.0/NS_Messages.pdf
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    appname|cased: Netscreen
+  selection_2:
+    _raw|contains|cased: Bad IP option
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001617'
+  sagan.rev: '3'
+  sagan.source_file: juniper.rules
+---
+title: '[NETSCREEN] SYN-ACK-ACK'
+id: 9ac3abcf-c21c-5b4f-9376-e3ed51ab6854
+status: experimental
+description: Converted from Sagan rule SID 5001618 (rev 3), file juniper.rules.
+references:
+  - https://www.juniper.net/techpubs/software/screenos/screenos5.2.0/NS_Messages.pdf
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    appname|cased: Netscreen
+  selection_2:
+    _raw|contains|cased: SYN-ACK-ACK
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001618'
+  sagan.rev: '3'
+  sagan.source_file: juniper.rules
+---
+title: '[JUNIPER] Possible VPN Login bypass attempt'
+id: 48756318-600d-589c-8269-a309d0e8c8b8
+status: experimental
+description: Converted from Sagan rule SID 5002024 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    appname|cased: Juniper
+  selection_2:
+    _raw|contains|cased: not authenticated yet
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002024'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+  rsigma.suppress: 5m
+---
+title: '[JUNIPER] VPN Unable to download virus signatures'
+id: b64eda92-4cda-5e54-9c91-7ca6a2b60ac8
+status: experimental
+description: Converted from Sagan rule SID 5002025 (rev 4), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    appname|cased: Juniper
+  selection_2:
+    _raw|contains|cased: Unable to download current virus
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002025'
+  sagan.rev: '4'
+  sagan.source_file: juniper.rules
+---
+title: '[JUNIPER] VPN - Possible scan/probe'
+id: 56ed12a2-c431-5ae5-be69-b0603905e124
+status: experimental
+description: Converted from Sagan rule SID 5002026 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    appname|cased: Juniper
+  selection_2:
+    _raw|contains|cased: SSL negotiation failed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002026'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+  rsigma.suppress: 5m
+---
+title: '[JUNIPER] VPN - Policy violation'
+id: 47900480-83eb-5e5f-840d-c8d6387fc500
+status: experimental
+description: Converted from Sagan rule SID 5002027 (rev 2), file juniper.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    appname|cased: Juniper
+  selection_2:
+    _raw|contains|cased: Host Checker policy
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002027'
+  sagan.rev: '2'
+  sagan.source_file: juniper.rules
+---
+title: '[ScreenOS] Juniper ScreenOS Login for Suspicious Admin user - system'
+id: a767ccef-0ce7-5325-b64d-bbda099c58ac
+status: experimental
+description: Converted from Sagan rule SID 5002771 (rev 4), file juniper.rules.
+references:
+  - 2015-7755
+  - https://kb.juniper.net/InfoCenter/index?page=content&id=JSA10713&actp=search
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains: Admin user system has logged on via
+  selection_2:
+    _raw|contains|cased: '00515'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5002771'
+  sagan.rev: '4'
+  sagan.source_file: juniper.rules
+---
+title: '[ScreenOS] Juniper ScreenOS Login for Suspicious Admin user - username'
+id: bbc95e44-0bea-5d03-bd19-45cac3a4bf8e
+status: experimental
+description: Converted from Sagan rule SID 5002772 (rev 4), file juniper.rules.
+references:
+  - 2015-7755
+  - https://kb.juniper.net/InfoCenter/index?page=content&id=JSA10713&actp=search
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains|cased: Admin user
+  selection_2:
+    _raw|contains|cased: username
+  selection_3:
+    _raw|contains|cased: has logged on via
+  selection_4:
+    _raw|contains|cased: '00515'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5002772'
+  sagan.rev: '4'
+  sagan.source_file: juniper.rules
+---
+title: '[EXPERIMENTAL] [JUNIPER] Suspicious - Large Outbound Data Transfer with Unknown Application'
+id: 3916aeb5-ab8d-5e21-9c31-bf6e0b85a52f
+status: experimental
+description: Converted from Sagan rule SID 9870017 (rev 1), file juniper.rules.
+references:
+  - https://attack.mitre.org/techniques/T1071/001
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    _raw|contains|cased: APPTRACK_SESSION_VOL_UPDATE
+  selection_2:
+    _raw|contains|cased: application="UNKNOWN"
+  selection_3:
+    _raw|contains|cased: destination-zone-name="untrust"
+  selection_4:
+    _raw|contains|cased: source-zone-name="trust"
+  selection_5:
+    _raw|re: bytes-from-client=([5-9]\d{6}|\d{7,})
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '9870017'
+  sagan.rev: '1'
+  sagan.source_file: juniper.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_on=2026_06_17,updated_on=2026_06_17,mitreTactic=TA0011,mitreTechnique=T1071.001

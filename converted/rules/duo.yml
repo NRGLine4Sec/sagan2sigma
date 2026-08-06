@@ -1,0 +1,569 @@
+title: '[DUO] User Placed in Bypass'
+id: 170fccc3-a861-52e1-ba78-47aa4527be4c
+status: experimental
+description: Converted from Sagan rule SID 5010333 (rev 1), file duo.rules.
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    _raw|contains|cased: user_update
+  selection_2:
+    _raw|contains|cased: Bypass
+  selection_3:
+    appname|cased: duo
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5010333'
+  sagan.rev: '1'
+  sagan.source_file: duo.rules
+---
+title: '[DUO] admin activated device for duo push'
+id: b39dd6fe-c35f-53e9-8966-ed252dfae1a4
+status: experimental
+description: Converted from Sagan rule SID 5013949 (rev 1), file duo.rules.
+references:
+  - https://help.duo.com
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    syslog_appname|cased: duo
+  selection_2:
+    eventtype|cased: administrator
+  selection_3:
+    action|cased: admin_activate_duo_push
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013949'
+  sagan.rev: '1'
+  sagan.source_file: duo.rules
+---
+title: '[DUO] admin api IP access request denied'
+id: 9e069951-e395-574c-843e-3d4a1d0d8208
+status: experimental
+description: Converted from Sagan rule SID 5013950 (rev 1), file duo.rules.
+references:
+  - https://duo.com/docs/adminapi
+  - https://help.duo.com
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    syslog_appname|cased: duo
+  selection_2:
+    eventtype|cased: administrator
+  selection_3:
+    action|cased: adminapi_request_ip_denied
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013950'
+  sagan.rev: '1'
+  sagan.source_file: duo.rules
+---
+title: '[DUO] admin created an object'
+id: 5f2e8944-e063-5d82-8ab8-972357179ae6
+status: experimental
+description: Converted from Sagan rule SID 5013951 (rev 1), file duo.rules.
+references:
+  - https://help.duo.com
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    syslog_appname|cased: duo
+  selection_2:
+    eventtype|cased: administrator
+  selection_3:
+    action|cased: admin_create
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013951'
+  sagan.rev: '1'
+  sagan.source_file: duo.rules
+---
+title: '[DUO] admin deleted an object'
+id: b8e548a2-15ad-58c2-9c00-5cf60e10d4c9
+status: experimental
+description: Converted from Sagan rule SID 5013952 (rev 1), file duo.rules.
+references:
+  - https://help.duo.com
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    syslog_appname|cased: duo
+  selection_2:
+    eventtype|cased: administrator
+  selection_3:
+    action|cased: admin_delete
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013952'
+  sagan.rev: '1'
+  sagan.source_file: duo.rules
+---
+title: '[DUO] admin account locked due to too many password/passcode attempts'
+id: 565e0a39-38e6-54e8-b0d9-026ba8a4a880
+status: experimental
+description: Converted from Sagan rule SID 5013953 (rev 1), file duo.rules.
+references:
+  - https://help.duo.com
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    syslog_appname|cased: duo
+  selection_2:
+    eventtype|cased: administrator
+  selection_3:
+    action|cased: admin_lockout
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013953'
+  sagan.rev: '1'
+  sagan.source_file: duo.rules
+---
+title: '[DUO] admin password reset'
+id: 192da295-5441-5750-b744-fc7d7859231f
+status: experimental
+description: Converted from Sagan rule SID 5013958 (rev 1), file duo.rules.
+references:
+  - https://help.duo.com
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    syslog_appname|cased: duo
+  selection_2:
+    eventtype|cased: administrator
+  selection_3:
+    action|cased: admin_reset_password
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013958'
+  sagan.rev: '1'
+  sagan.source_file: duo.rules
+---
+title: '[DUO] admin self activated device'
+id: 48701fcb-0e6e-5081-8422-5a0ddd58dbeb
+status: experimental
+description: Converted from Sagan rule SID 5013959 (rev 1), file duo.rules.
+references:
+  - https://help.duo.com
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    syslog_appname|cased: duo
+  selection_2:
+    eventtype|cased: administrator
+  selection_3:
+    action|cased: admin_self_activate
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013959'
+  sagan.rev: '1'
+  sagan.source_file: duo.rules
+---
+title: '[DUO] admin email sent for password reset'
+id: 154e0709-741b-56ef-88ff-903cd1103deb
+status: experimental
+description: Converted from Sagan rule SID 5013960 (rev 1), file duo.rules.
+references:
+  - https://help.duo.com
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    syslog_appname|cased: duo
+  selection_2:
+    eventtype|cased: administrator
+  selection_3:
+    action|cased: admin_send_reset_password_email
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013960'
+  sagan.rev: '1'
+  sagan.source_file: duo.rules
+---
+title: '[DUO] bypass code created for user'
+id: 1ff2a135-0017-58c4-a5b3-f8c30a14d6ce
+status: experimental
+description: Converted from Sagan rule SID 5013968 (rev 1), file duo.rules.
+references:
+  - https://help.duo.com
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    syslog_appname|cased: duo
+  selection_2:
+    eventtype|cased: administrator
+  selection_3:
+    action|cased: bypass_create
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013968'
+  sagan.rev: '1'
+  sagan.source_file: duo.rules
+---
+title: '[DUO] bypass code deleted for user'
+id: c0641df6-9553-5fb3-940f-6a00175d0f45
+status: experimental
+description: Converted from Sagan rule SID 5013969 (rev 1), file duo.rules.
+references:
+  - https://help.duo.com
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    syslog_appname|cased: duo
+  selection_2:
+    eventtype|cased: administrator
+  selection_3:
+    action|cased: bypass_delete
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013969'
+  sagan.rev: '1'
+  sagan.source_file: duo.rules
+---
+title: '[DUO] new phone created by admin'
+id: b9cc567c-e474-514d-b6d1-ad5e3d490a6e
+status: experimental
+description: Converted from Sagan rule SID 5013979 (rev 1), file duo.rules.
+references:
+  - https://help.duo.com
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    syslog_appname|cased: duo
+  selection_2:
+    eventtype|cased: administrator
+  selection_3:
+    action|cased: phone_create
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013979'
+  sagan.rev: '1'
+  sagan.source_file: duo.rules
+---
+title: '[DUO] admin created new policy'
+id: 256b5268-a690-517c-a0ed-d35842beb8b0
+status: experimental
+description: Converted from Sagan rule SID 5013982 (rev 1), file duo.rules.
+references:
+  - https://help.duo.com
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    syslog_appname|cased: duo
+  selection_2:
+    eventtype|cased: administrator
+  selection_3:
+    action|cased: policy_create
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013982'
+  sagan.rev: '1'
+  sagan.source_file: duo.rules
+---
+title: '[DUO] admin updated policy'
+id: 53dea147-9fc9-5e71-a392-81779a4c1e63
+status: experimental
+description: Converted from Sagan rule SID 5013983 (rev 1), file duo.rules.
+references:
+  - https://help.duo.com
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    syslog_appname|cased: duo
+  selection_2:
+    eventtype|cased: administrator
+  selection_3:
+    action|cased: policy_update
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013983'
+  sagan.rev: '1'
+  sagan.source_file: duo.rules
+---
+title: '[DUO] admin authentication attempts were reset'
+id: 8e1fdadb-a34c-52a7-a6ad-40fdcc7d7389
+status: experimental
+description: Converted from Sagan rule SID 5013986 (rev 1), file duo.rules.
+references:
+  - https://help.duo.com
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    syslog_appname|cased: duo
+  selection_2:
+    eventtype|cased: administrator
+  selection_3:
+    action|cased: reset_admin_auth_attempts
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013986'
+  sagan.rev: '1'
+  sagan.source_file: duo.rules
+---
+title: '[DUO] admin created web authentication credentials'
+id: b8be4695-266f-56fd-9200-fb980da5e449
+status: experimental
+description: Converted from Sagan rule SID 5013993 (rev 1), file duo.rules.
+references:
+  - https://help.duo.com
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    syslog_appname|cased: duo
+  selection_2:
+    eventtype|cased: administrator
+  selection_3:
+    action|cased: webauthncredential_create
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013993'
+  sagan.rev: '1'
+  sagan.source_file: duo.rules
+---
+title: '[DUO] user authentication failed due to unenrolled user'
+id: 23bc3a1d-7a16-5688-86a8-ffe1627dcce2
+status: experimental
+description: Converted from Sagan rule SID 5014003 (rev 2), file duo.rules.
+references:
+  - https://help.duo.com/s/article/1023?language=en_US
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    syslog_appname|cased: duo
+  selection_2:
+    eventtype|cased: authentication
+  selection_3:
+    reason|cased: deny_unenrolled_user
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014003'
+  sagan.rev: '2'
+  sagan.source_file: duo.rules
+---
+title: '[DUO] user authentication failed due to an invalid device'
+id: b26ccc1f-2c28-52fc-8a8e-4f834f285a47
+status: experimental
+description: Converted from Sagan rule SID 5014005 (rev 2), file duo.rules.
+references:
+  - https://help.duo.com/s/article/1023?language=en_US
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    syslog_appname|cased: duo
+  selection_2:
+    eventtype|cased: authentication
+  selection_3:
+    reason|cased: invalid_device
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014005'
+  sagan.rev: '2'
+  sagan.source_file: duo.rules
+  sagan.metadata: updated_on=2024_05_03
+---
+title: '[DUO] Authentication Failed Due to Account Lock Out'
+id: e0672c4c-6834-59d7-a9ac-0e55cb8241eb
+status: experimental
+description: Converted from Sagan rule SID 5014007 (rev 5), file duo.rules.
+references:
+  - https://help.duo.com/s/article/1023?language=en_US
+  - https://help.duo.com/s/article/4963?language=en_US
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    syslog_appname|cased: duo
+  selection_2:
+    eventtype|cased: authentication
+  selection_3:
+    reason|cased: locked_out
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014007'
+  sagan.rev: '5'
+  sagan.source_file: duo.rules
+  rsigma.suppress: 4h
+---
+title: '[DUO] user marked login attempt as fraud'
+id: 831ea699-4986-5f4b-998d-6fd011776f0f
+status: experimental
+description: Converted from Sagan rule SID 5014015 (rev 4), file duo.rules.
+references:
+  - https://duo.com/docs/risk-based-auth
+  - https://help.duo.com/s/article/1023?language=en_US
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    syslog_appname|cased: duo
+  selection_2:
+    eventtype|cased: authentication
+  selection_3:
+    reason|cased: user_marked_fraud
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014015'
+  sagan.rev: '4'
+  sagan.source_file: duo.rules
+---
+title: '[DUO] user authentication verification code missing'
+id: 12a5dd24-c04e-57c6-8251-ad94f161f9f2
+status: experimental
+description: Converted from Sagan rule SID 5014019 (rev 1), file duo.rules.
+references:
+  - https://help.duo.com/s/article/1023?language=en_US
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    syslog_appname|cased: duo
+  selection_2:
+    eventtype|cased: authentication
+  selection_3:
+    reason|cased: verification_code_missing
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014019'
+  sagan.rev: '1'
+  sagan.source_file: duo.rules

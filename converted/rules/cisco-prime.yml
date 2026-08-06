@@ -1,0 +1,1249 @@
+title: '[CISCO-PRIME] BIG NAV DOS Attack'
+id: d56109b7-e0f2-50f4-84cf-772bdd5d2ba3
+status: experimental
+description: Converted from Sagan rule SID 5002122 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =AP_BIG_NAV_DOS_ATTACK(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5002122'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Rogue AP detect and contained'
+id: effb1bba-4f9b-508d-a3fc-4698184184f2
+status: experimental
+description: Converted from Sagan rule SID 5002123 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =AP_CONTAINED_AS_ROGUE(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002123'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Rogue AP detected exceed theshold'
+id: d80a4f94-8d40-5cab-96ea-9d5c4f0556c6
+status: experimental
+description: Converted from Sagan rule SID 5002124 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =AP_MAX_ROGUE_COUNT_EXCEEDED(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002124'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] SNMP Authentication failure'
+id: 7b080c88-1b7f-5c5c-b0b3-b5d28f8a1ae9
+status: experimental
+description: Converted from Sagan rule SID 5002125 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =AUTHENTICATION_FAILURE(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002125'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Authentication failure by local management user/MAC'
+id: 5113c392-6051-5c79-964e-ab7f20b3ecb5
+status: experimental
+description: Converted from Sagan rule SID 5002126 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =BSN_AUTHENTICATION_FAILURE(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002126'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Rogue AP or ADHOC detected'
+id: fa1bd2ab-866d-520d-9809-867e63305742
+status: experimental
+description: Converted from Sagan rule SID 5002127 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =ROGUE_AP_DETECTED(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002127'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Rogue AP on the network!'
+id: 07b106b8-9e63-5fa7-a80a-a2e86fdba190
+status: experimental
+description: Converted from Sagan rule SID 5002128 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =ROGUE_AP_ON_NETWORK(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002128'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Rogue AP has been removed'
+id: 0a702b1c-ae66-5389-b765-63bbb78e3abb
+status: experimental
+description: Converted from Sagan rule SID 5002129 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =ROGUE_AP_REMOVED(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002129'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Station authentication failure'
+id: f47a6d9b-558f-5e91-b3bf-96f3e257d1c7
+status: experimental
+description: Converted from Sagan rule SID 5002132 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =STATION_AUTHENTICATION_FAIL(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002132'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Station association failure'
+id: d6a39c7c-2798-557c-8097-34eed7777fe2
+status: experimental
+description: Converted from Sagan rule SID 5002133 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =STATION_ASSOCIATE_FAIL(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002133'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Station blacklisted'
+id: 350b4117-0c76-5071-b566-fc0d21fad2fc
+status: experimental
+description: Converted from Sagan rule SID 5002134 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =STATION_BLACKLISTED(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002134'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Duplicate IP address assigned to controller'
+id: 782678bc-18e4-5c9f-9ddb-f63626900449
+status: experimental
+description: Converted from Sagan rule SID 5002135 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =SWITCH_DETECTED_DUPLICATE_IP(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002135'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Possible brute force from management user!'
+id: 81126918-1d9c-573b-82c7-bc07e7e884d7
+status: experimental
+description: Converted from Sagan rule SID 5002136 (rev 4), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =TOO_MANY_USER_UNSUCCESSFUL_LOGINS(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5002136'
+  sagan.rev: '4'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Rogue ADHOC contained'
+id: ff8fd1bc-15bf-5cb6-a69a-831f1a3cdc93
+status: experimental
+description: Converted from Sagan rule SID 5002137 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =ADHOC_ROGUE_AUTO_CONTAINED(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002137'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Rogue AP auto contained'
+id: 78650c58-86c4-5d83-a91f-32ba293aea8e
+status: experimental
+description: Converted from Sagan rule SID 5002138 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =ROGUE_AP_AUTO_CONTAINED(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002138'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Trusted AP has invalid encryption'
+id: 3844c2db-6048-598c-ac0e-e3b9ad2cf04c
+status: experimental
+description: Converted from Sagan rule SID 5002140 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =TRUSTED_AP_INVALID_ENCRYPTION(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002140'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Trusted AP has invalid radio policy'
+id: 505007c4-88d9-5364-856c-1550f686ad61
+status: experimental
+description: Converted from Sagan rule SID 5002141 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =TRUSTED_AP_INVALID_RADIO_POLICY(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002141'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Trusted AP has invalid SSID'
+id: 9beafb49-6fec-57f5-b53a-26ab34ec37f1
+status: experimental
+description: Converted from Sagan rule SID 5002142 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =TRUSTED_AP_INVALID_SSID(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002142'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Trusted AP missing'
+id: f751dd14-0d9c-560b-a52f-142e13db0d24
+status: experimental
+description: Converted from Sagan rule SID 5002143 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =TRUSTED_AP_MISSING(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002143'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] AP impersionation detected!'
+id: 1459440c-f666-5a4e-b325-ecc799e1ef85
+status: experimental
+description: Converted from Sagan rule SID 5002144 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =AP_IMPERSONATION_DETECTED(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002144'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] WIDS / Signature attack detected!'
+id: 9b87f3e4-4892-509e-b1e7-65457546b826
+status: experimental
+description: Converted from Sagan rule SID 5002145 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =SIGNATURE_ATTACK_DETECTED(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002145'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] WIDS / Signature attack detected!'
+id: 1055fe7f-4684-5f8a-a18e-0578737096b7
+status: experimental
+description: Converted from Sagan rule SID 5002146 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =SIGNATURE_ATTACK_DETECTED(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002146'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] MESH Console login'
+id: bffa0fc9-e3cb-5cd0-ac24-f419e408163d
+status: experimental
+description: Converted from Sagan rule SID 5002147 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =CISCO_LWAPP_MESH_CONSOLE_LOGIN(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002147'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] MESH authorization failure'
+id: ef53c0fa-7a44-5cf5-95d8-a384b6aad12e
+status: experimental
+description: Converted from Sagan rule SID 5002148 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =CISCO_LWAPP_MESH_AUTHORIZATION_FAILURE(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002148'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Shun client alert from IDS/IPS appliance!'
+id: b6de2479-16d9-5b42-b97c-ec238fffa1ef
+status: experimental
+description: Converted from Sagan rule SID 5002149 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =IDS_SHUN_CLIENT_TRAP(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002149'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] MFP anomaly detected'
+id: 1c4d9de3-5399-570e-961a-9c43b1be3d14
+status: experimental
+description: Converted from Sagan rule SID 5002150 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =MFP_ANOMALY_DETECTED_TRAP(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002150'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] MESH authentication failure'
+id: a443ec36-29e4-5ed8-b6d3-bb16dc22d394
+status: experimental
+description: Converted from Sagan rule SID 5002151 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =MFP_ANOMALY_DETECTED_TRAP(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002151'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] GUEST user created on controller'
+id: 8ffcf2ad-7018-517c-bc73-8f2cb8b48c27
+status: experimental
+description: Converted from Sagan rule SID 5002152 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =GUEST_USER_ADDED(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002152'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] GUEST user authenticated'
+id: e891195a-bc0e-58a1-aff0-81b5681855ee
+status: experimental
+description: Converted from Sagan rule SID 5002153 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =GUEST_USER_AUTHENTICATED(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002153'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] GUEST user logoff'
+id: 3e9a4bec-7383-5171-80d9-295e02e6f4ed
+status: experimental
+description: Converted from Sagan rule SID 5002154 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =GUEST_USER_LOGOFF(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002154'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] SI Security trap raised!'
+id: 6e28f3c7-8151-5c4c-8256-cef8a5cf4859
+status: experimental
+description: Converted from Sagan rule SID 5002155 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =SI_SECURITY_TRAPS(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002155'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Friendly rogue AP detected on network'
+id: 977d953a-38d3-5ddf-9500-dd340f1d7363
+status: experimental
+description: Converted from Sagan rule SID 5002157 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =FRIENDLY_ROGUE_AP_DETECTED_ON_NETWORK(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002157'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Friendly rogue AP detected'
+id: 71d77942-508d-5b6f-8fa8-d9b525800fa2
+status: experimental
+description: Converted from Sagan rule SID 5002158 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =FRIENDLY_ROGUE_AP_DETECTED(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002158'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Unclassified rogue AP detected on network'
+id: be339f68-910f-5af3-981b-7d30a312af95
+status: experimental
+description: Converted from Sagan rule SID 5002159 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =UNCLASSIFIED_ROGUE_AP_DETECTED_ON_NETWORK(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002159'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Unclassified rogue AP detected on network contained'
+id: cfee43cb-b418-5948-8a92-68ef8c580cfd
+status: experimental
+description: Converted from Sagan rule SID 5002160 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =UNCLASSIFIED_ROGUE_AP_DETECTED_ON_NETWORK_AND_CONTAINED(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002160'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Unclassified rogue AP detected contained'
+id: 77e97dc5-c409-5da8-9788-3c5111e2fb42
+status: experimental
+description: Converted from Sagan rule SID 5002161 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =UNCLASSIFIED_ROGUE_AP_DETECTED_CONTAINED(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002161'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Unclassified rogue AP detected'
+id: b08114f1-9a09-5858-b6b0-78c6ff58b298
+status: experimental
+description: Converted from Sagan rule SID 5002162 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =UNCLASSIFIED_ROGUE_AP_DETECTED(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002162'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Malicious rogue AP detected on the network'
+id: eed03e73-e33c-5ea8-b1d2-da68f7a556cc
+status: experimental
+description: Converted from Sagan rule SID 5002163 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =MALICIOUS_ROGUE_AP_DETECTED_ON_NETWORK(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002163'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Malicious rogue AP detected on the network contained'
+id: 71e62516-b3b4-549d-bf61-9c59fe26687c
+status: experimental
+description: Converted from Sagan rule SID 5002164 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =MALICIOUS_ROGUE_AP_DETECTED_ON_NETWORK_AND_CONTAINED(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002164'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Malicious rogue AP detected contained'
+id: 62a64086-ea51-594e-a4f2-d4cc96ee5654
+status: experimental
+description: Converted from Sagan rule SID 5002165 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =MALICIOUS_ROGUE_AP_DETECTED_CONTAINED(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002165'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Malicious rogue AP'
+id: 0f89c170-267e-5257-9c95-2cd3e4ec50e8
+status: experimental
+description: Converted from Sagan rule SID 5002166 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =MALICIOUS_ROGUE_AP_DETECTED(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002166'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Rogue ADHOC detected on network'
+id: f165d2ce-2ff5-5c90-b6d4-3de09c0dba73
+status: experimental
+description: Converted from Sagan rule SID 5002167 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =ROGUE_ADHOC_DETECTED_ON_NETWORK(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002167'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Rogue ADHOC detected on network contained'
+id: fe763153-4a59-515b-a1f5-d407e7b067bb
+status: experimental
+description: Converted from Sagan rule SID 5002168 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =ROGUE_ADHOC_DETECTED_ON_NETWORK(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002168'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Rogue AP state change'
+id: ef754598-4af2-582c-835f-0eeac2dd907c
+status: experimental
+description: Converted from Sagan rule SID 5002170 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =ROGUE_AP_STATE_CHANGE(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002170'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Rogue detected'
+id: 37cd5dc9-577c-512f-9fc3-40e93794979f
+status: experimental
+description: Converted from Sagan rule SID 5002171 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =ROGUE_DETECTED(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002171'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Rogue detected contained'
+id: 82af8ff4-37c9-5856-9fb0-31fbb977eebb
+status: experimental
+description: Converted from Sagan rule SID 5002172 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =ROGUE_DETECTED_CONTAINED(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002172'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Rogue detected on network'
+id: d1a53b2e-d8d3-5dac-9e8c-9ad7fb01598e
+status: experimental
+description: Converted from Sagan rule SID 5002173 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =ROGUE_DETECTED_ON_NETWORK(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002173'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] Rogue auto contained'
+id: 8791b24e-0392-5cd7-9e21-e75dea9600b0
+status: experimental
+description: Converted from Sagan rule SID 5002174 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =ROGUE_AUTO_CONTAINED(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002174'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] User authentication failure'
+id: fc91b56c-6303-5a08-8e0b-a2409afabc75
+status: experimental
+description: Converted from Sagan rule SID 5002175 (rev 5), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =USER_AUTHENTICATION_FAILURE(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002175'
+  sagan.rev: '5'
+  sagan.source_file: cisco-prime.rules
+---
+title: '[CISCO-PRIME] WIPS Event!'
+id: e505ab3e-26e1-5c2d-ac48-51d486fc7578
+status: experimental
+description: Converted from Sagan rule SID 5002176 (rev 3), file cisco-prime.rules.
+references:
+  - https://www.cisco.com/c/en/us/td/docs/wireless/ncs/1-1/configuration/guide/NCS11cg/event.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: =WIPS_TRAPS(
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002176'
+  sagan.rev: '3'
+  sagan.source_file: cisco-prime.rules

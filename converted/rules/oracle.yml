@@ -1,0 +1,20 @@
+title: '[ORACLE] Authentication Failure'
+id: f647db9d-dbf3-5709-b26b-0c00c59f5760
+status: experimental
+description: Converted from Sagan rule SID 5001717 (rev 4), file oracle.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: RETURNCODE:[4] "1017"
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001717'
+  sagan.rev: '4'
+  sagan.source_file: oracle.rules

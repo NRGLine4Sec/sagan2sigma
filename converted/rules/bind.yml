@@ -1,0 +1,192 @@
+title: '[BIND] Invalid DNS packet. Possible attack'
+id: c66c7886-aeb9-5f87-92e9-9a6604aba896
+status: experimental
+description: Converted from Sagan rule SID 5000101 (rev 5), file bind.rules.
+author: sagan2sigma
+logsource:
+  product: bind
+  service: named
+detection:
+  selection_1:
+    _raw|contains|cased: dropping source port zero packet from
+  selection_2:
+    appname|cased: named
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5000101'
+  sagan.rev: '5'
+  sagan.source_file: bind.rules
+---
+title: '[BIND] Denied zone transfer attempt'
+id: c7d2d6a8-1b34-5cd2-a4fb-11bc96dcf4b0
+status: experimental
+description: Converted from Sagan rule SID 5000102 (rev 9), file bind.rules.
+author: sagan2sigma
+logsource:
+  product: bind
+  service: named
+detection:
+  selection_1:
+    _raw|contains|cased: denied AXFR from
+  selection_2:
+    appname|cased: named
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5000102'
+  sagan.rev: '9'
+  sagan.source_file: bind.rules
+---
+title: '[BIND] DNS update denied'
+id: 8c100f38-9c91-5f86-8e79-e954d68b88ce
+status: experimental
+description: Converted from Sagan rule SID 5000103 (rev 9), file bind.rules.
+author: sagan2sigma
+logsource:
+  product: bind
+  service: named
+detection:
+  selection_1:
+    _raw|re: denied update from|unapproved update from
+  selection_2:
+    appname|cased: named
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5000103'
+  sagan.rev: '9'
+  sagan.source_file: bind.rules
+---
+title: '[BIND] Refused notify from non-master'
+id: 35985110-c065-50e9-929c-2ba98c272062
+status: experimental
+description: Converted from Sagan rule SID 5000105 (rev 8), file bind.rules.
+author: sagan2sigma
+logsource:
+  product: bind
+  service: named
+detection:
+  selection_1:
+    _raw|contains|cased: refused notify from non-master
+  selection_2:
+    appname|cased: named
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5000105'
+  sagan.rev: '8'
+  sagan.source_file: bind.rules
+---
+title: '[BIND] DNS update using RFC2136 Dynamic protocol denied'
+id: c8fe82eb-5d7d-58f6-b551-11e15e79e0a7
+status: experimental
+description: Converted from Sagan rule SID 5000106 (rev 8), file bind.rules.
+author: sagan2sigma
+logsource:
+  product: bind
+  service: named
+detection:
+  selection_1:
+    _raw|re: update \S+ denied
+  selection_2:
+    appname|cased: named
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000106'
+  sagan.rev: '8'
+  sagan.source_file: bind.rules
+  rsigma.suppress: 5m
+---
+title: '[BIND] Serial number from master is lower than stored'
+id: b1f56316-3c8c-5341-bcad-98639a5181a5
+status: experimental
+description: Converted from Sagan rule SID 5000109 (rev 6), file bind.rules.
+author: sagan2sigma
+logsource:
+  product: bind
+  service: named
+detection:
+  selection_1:
+    _raw|re: ^zone \S+ serial number \S+ received from master \S+ \S ours
+  selection_2:
+    appname|cased: named
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-error
+custom_attributes:
+  sagan.sid: '5000109'
+  sagan.rev: '6'
+  sagan.source_file: bind.rules
+---
+title: '[BIND] Zone transfer error'
+id: 31afe9bc-0576-5b3e-96cc-f4e488fef231
+status: experimental
+description: Converted from Sagan rule SID 5000110 (rev 6), file bind.rules.
+author: sagan2sigma
+logsource:
+  product: bind
+  service: named
+detection:
+  selection_1:
+    _raw|re: '^zone \S+: expired'
+  selection_2:
+    appname|cased: named
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-error
+custom_attributes:
+  sagan.sid: '5000110'
+  sagan.rev: '6'
+  sagan.source_file: bind.rules
+---
+title: '[BIND] Version attempt'
+id: 3a7edefa-c91c-5daf-8df6-983a0a8773c2
+status: experimental
+description: Converted from Sagan rule SID 5001706 (rev 4), file bind.rules.
+author: sagan2sigma
+logsource:
+  product: bind
+  service: named
+detection:
+  selection_1:
+    _raw|contains|cased: version.bind CH TXT
+  selection_2:
+    appname|cased: named
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001706'
+  sagan.rev: '4'
+  sagan.source_file: bind.rules

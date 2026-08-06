@@ -1,0 +1,47 @@
+name: Refresh converted rules
+
+# Keeps converted/ in step with the upstream Sagan corpus. It reconverts the
+# whole corpus, so rules modified or removed upstream are reflected, not only
+# new ones, and commits the result only when it actually changed.
+
+on:
+  schedule:
+    # Daily. The upstream corpus does not move often, so a no-op run is cheap
+    # and a real change lands within a day.
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-converted-rules
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    name: Reconvert and commit if changed
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -e .
+      - name: Fetch the upstream Sagan rule corpus at its latest commit
+        run: git clone --depth 1 https://github.com/quadrantsec/sagan-rules.git /tmp/sagan-rules
+      - name: Reconvert the whole corpus and record the version
+        run: python tools/refresh_converted_rules.py --sagan-rules /tmp/sagan-rules
+      - name: Commit and push when the rule set changed
+        run: |
+          if [ -z "$(git status --porcelain converted/)" ]; then
+            echo "Converted rules are already up to date."
+            exit 0
+          fi
+          version=$(grep -m1 '^| `' converted/VERSIONS.md | cut -d'`' -f2)
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add converted/
+          git commit -m "chore: refresh converted rules (version ${version}) [skip ci]"
+          git push

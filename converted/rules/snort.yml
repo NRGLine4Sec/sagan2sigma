@@ -1,0 +1,767 @@
+title: '[SNORT] Unknown Traffic'
+id: 1f572c42-faf3-5b2c-b7cb-ec93e49e91a9
+status: experimental
+description: Converted from Sagan rule SID 5000977 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Unknown Traffic'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.unknown
+custom_attributes:
+  sagan.sid: '5000977'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] Bad Traffic'
+id: c4da89b6-fc56-53d0-abb1-083a1d1f3ce0
+status: experimental
+description: Converted from Sagan rule SID 5000978 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Bad Traffic'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5000978'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] Attempted Information Leak'
+id: 0927ce0d-c0c2-5d31-8863-0b8d8e74778c
+status: experimental
+description: Converted from Sagan rule SID 5000979 (rev 6), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Attempted Information Leak'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5000979'
+  sagan.rev: '6'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] Information Leak'
+id: 209cd8a8-e618-5d4b-8591-bd5c2e5c898f
+status: experimental
+description: Converted from Sagan rule SID 5000980 (rev 6), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Information Leak'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.successful-recon-limited
+custom_attributes:
+  sagan.sid: '5000980'
+  sagan.rev: '6'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] Large Scale Information Leak'
+id: e2994d4a-504e-55d1-92c7-3cbc4f1eec09
+status: experimental
+description: Converted from Sagan rule SID 5000981 (rev 6), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Large Scale Information Leak'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.successful-recon-largescale
+custom_attributes:
+  sagan.sid: '5000981'
+  sagan.rev: '6'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] Attempted Denial of Service'
+id: 8e8a9759-46aa-5c5f-9eec-cbf0de0c665d
+status: experimental
+description: Converted from Sagan rule SID 5000982 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Attempted Denial of Service'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5000982'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] Denial of Service'
+id: 6a1fade3-4268-5ac2-a92e-40358df3cc65
+status: experimental
+description: Converted from Sagan rule SID 5000983 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Denial of Service'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.successful-dos
+custom_attributes:
+  sagan.sid: '5000983'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] Attempted User Privilege Gain'
+id: 67500fb7-f8dc-5cdf-8f60-42d43429608f
+status: experimental
+description: Converted from Sagan rule SID 5000984 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Attempted User Privilege Gain'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-user
+custom_attributes:
+  sagan.sid: '5000984'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] Unsuccessful User Privilege Gain'
+id: 431883ed-2459-5770-b436-3a7a0c41920c
+status: experimental
+description: Converted from Sagan rule SID 5000985 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Unsuccessful User Privilege Gain'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000985'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] Successful User Privilege Gain'
+id: 1835c8ac-3b20-500a-9e64-d7792ce46d35
+status: experimental
+description: Converted from Sagan rule SID 5000986 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Successful User Privilege Gain'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5000986'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] Attempted Administrator Privilege Gain'
+id: 3a138984-0267-5109-ba2e-e4f475518965
+status: experimental
+description: Converted from Sagan rule SID 5000987 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Attempted Administrator Privilege Gain'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5000987'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] Successful Administrator Privilege Gain'
+id: 1f8940a7-dd16-5b24-a978-a2fb7b98a4c3
+status: experimental
+description: Converted from Sagan rule SID 5000988 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Successful Administrator Privilege Gain'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5000988'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] Decode of an RPC Query'
+id: c4d485c3-ad13-5e57-811f-d04d25e53c1c
+status: experimental
+description: Converted from Sagan rule SID 5000989 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Decode of an RPC Query'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.rpc-portmap-decode
+custom_attributes:
+  sagan.sid: '5000989'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] Executable code was detected'
+id: d9a05d1b-604e-5774-9b5f-5fab3178b226
+status: experimental
+description: Converted from Sagan rule SID 5000990 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Executable code was detected'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.shellcode-detect
+custom_attributes:
+  sagan.sid: '5000990'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] A suspicious string was detected'
+id: 042a73ce-785d-5a40-91ed-5cdfe67bafbf
+status: experimental
+description: Converted from Sagan rule SID 5000991 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: A suspicious string was detected'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.string-detect
+custom_attributes:
+  sagan.sid: '5000991'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] A suspicious filename was detected'
+id: 67cd4960-d32b-559b-935c-8c3e279e5782
+status: experimental
+description: Converted from Sagan rule SID 5000992 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: A suspicious filename was detected'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-filename-detect
+custom_attributes:
+  sagan.sid: '5000992'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] An attempted login using a suspicious username was detected'
+id: bfac68fa-9c06-5984-bfc2-939d701d883f
+status: experimental
+description: Converted from Sagan rule SID 5000993 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: An attempted login using a suspicious username was detected'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-login
+custom_attributes:
+  sagan.sid: '5000993'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] A system call was detected'
+id: 97ebdf9c-848c-596f-a9fa-c1bf659be8f1
+status: experimental
+description: Converted from Sagan rule SID 5000995 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: A system call was detected'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-call-detect
+custom_attributes:
+  sagan.sid: '5000995'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] A TCP connection was detected'
+id: 69b2897f-ae2f-5b76-97db-34bb21bd55bf
+status: experimental
+description: Converted from Sagan rule SID 5000996 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: A TCP connection was detected'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.tcp-connection
+custom_attributes:
+  sagan.sid: '5000996'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] A Network Trojan was detected'
+id: cbe54afc-46a3-5fd6-ac24-74ecdddac37d
+status: experimental
+description: Converted from Sagan rule SID 5000997 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: A Network Trojan was detected'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5000997'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] A client was using an unusual port'
+id: 55855576-8783-52f0-a877-157b8b009685
+status: experimental
+description: Converted from Sagan rule SID 5000998 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: A client was using an unusual port'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.unusual-client-port-connection
+custom_attributes:
+  sagan.sid: '5000998'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] Detection of a Network Scan'
+id: f83318cb-5452-5e6a-a698-b85af75176de
+status: experimental
+description: Converted from Sagan rule SID 5000999 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Detection of a Network Scan'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.network-scan
+custom_attributes:
+  sagan.sid: '5000999'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] Detection of a Denial of Service Attack'
+id: d02da97c-f961-5f0b-90f0-b6be709d2a10
+status: experimental
+description: Converted from Sagan rule SID 5001000 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Detection of a Denial of Service Attack'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.denial-of-service
+custom_attributes:
+  sagan.sid: '5001000'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] Detection of a non-standard protocol or event'
+id: 9626677c-4877-5743-9c61-028925a6d285
+status: experimental
+description: Converted from Sagan rule SID 5001001 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Detection of a non-standard protocol or event'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.non-standard-protocol
+custom_attributes:
+  sagan.sid: '5001001'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] Generic Protocol Command Decode'
+id: b3f1b862-6d8e-52c7-8885-0df28dc78c5f
+status: experimental
+description: Converted from Sagan rule SID 5001002 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Generic Protocol Command Decode'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.protocol-command-decode
+custom_attributes:
+  sagan.sid: '5001002'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] access to a potentially vulnerable web application'
+id: fd3b08b6-1915-5656-80b4-94e01e94aa01
+status: experimental
+description: Converted from Sagan rule SID 5001003 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: access to a potentially vulnerable web application'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.web-application-activity
+custom_attributes:
+  sagan.sid: '5001003'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] Web Application Attack'
+id: 2cd055e6-edc3-5155-b3ac-920f2dd2f67a
+status: experimental
+description: Converted from Sagan rule SID 5001004 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Web Application Attack'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.web-application-activity
+custom_attributes:
+  sagan.sid: '5001004'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] Misc activity'
+id: 5d97d974-1b54-563a-9ac2-4a324d59cc2e
+status: experimental
+description: Converted from Sagan rule SID 5001005 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Misc activity'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.misc-activity
+custom_attributes:
+  sagan.sid: '5001005'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] Misc Attack'
+id: 38e524b6-4292-5978-b465-b21aa31b4baf
+status: experimental
+description: Converted from Sagan rule SID 5001006 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Misc Attack'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5001006'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] Generic ICMP event'
+id: 14b72364-f2d8-53a5-9ef9-99ab13865c91
+status: experimental
+description: Converted from Sagan rule SID 5001007 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Generic ICMP event'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.icmp-event
+custom_attributes:
+  sagan.sid: '5001007'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] Potential Corporate Privacy Violation'
+id: f7e24e65-ee9d-5e25-945e-4d8e5585966d
+status: experimental
+description: Converted from Sagan rule SID 5001009 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Potential Corporate Privacy Violation'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5001009'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules
+---
+title: '[SNORT] Attempt to login by a default username and password'
+id: 7d7ca8fd-51ef-5880-abf8-7c1f1a6b93af
+status: experimental
+description: Converted from Sagan rule SID 5001010 (rev 5), file snort.rules.
+author: sagan2sigma
+logsource:
+  product: snort
+  service: alert
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    _raw|contains|cased: 'Classification: Attempt to login by a default username and password'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.default-login-attempt
+custom_attributes:
+  sagan.sid: '5001010'
+  sagan.rev: '5'
+  sagan.source_file: snort.rules

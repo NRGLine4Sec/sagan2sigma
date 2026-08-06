@@ -1,0 +1,151 @@
+title: '[MSAPI-AZUREAD] Security Operator role assigned to Member'
+id: 0e6b6e66-3431-532d-8a03-cbd91a2b37e9
+status: experimental
+description: Converted from Sagan rule SID 5014645 (rev 3), file msapi-azuread.rules.
+references:
+  - https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/permissions-reference
+  - https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/best-practices
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: AzureActiveDirectory
+  selection_2:
+    _raw|contains|cased: Add member to role
+  selection_3:
+    _raw|contains|cased: Security Operator
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1136
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014645'
+  sagan.rev: '3'
+  sagan.source_file: msapi-azuread.rules
+  sagan.metadata: created_on=2024_05_09,updated_on=2024_05_10
+---
+title: '[MSAPI-AZUREAD] CRITICAL - Security Administrator role assigned to Member'
+id: 8713e3af-049b-57d4-92c6-a692c837b73a
+status: experimental
+description: Converted from Sagan rule SID 5014646 (rev 4), file msapi-azuread.rules.
+references:
+  - https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/permissions-reference
+  - https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/best-practices
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: AzureActiveDirectory
+  selection_2:
+    _raw|contains|cased: Add member to role
+  selection_3:
+    _raw|contains|cased: Security Administrator
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1136
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014646'
+  sagan.rev: '4'
+  sagan.source_file: msapi-azuread.rules
+  sagan.metadata: created_on=2024_05_09,updated_on=2024_05_10
+---
+title: '[MSAPI-AZUREAD] CRITICAL - User Administrator role assigned to Member'
+id: 6732bade-2aa2-549c-80e4-90ebea9020ec
+status: experimental
+description: Converted from Sagan rule SID 5014647 (rev 4), file msapi-azuread.rules.
+references:
+  - https://learn.microsoft.com/en-us/azure/role-based-access-control/rbac-and-directory-admin-roles
+  - https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/best-practices
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: AzureActiveDirectory
+  selection_2:
+    _raw|contains|cased: Add member to role
+  selection_3:
+    _raw|contains|cased: User Administrator
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1136
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014647'
+  sagan.rev: '4'
+  sagan.source_file: msapi-azuread.rules
+  sagan.metadata: created_on=2024_05_09,updated_on=2024_05_10
+---
+title: '[MSAPI-AZUREAD] Partner Tier2 Support role assigned to Member'
+id: b79bb67b-343e-5a8c-b74f-9f29906d7012
+status: experimental
+description: Converted from Sagan rule SID 5014656 (rev 2), file msapi-azuread.rules.
+references:
+  - https://posts.specterops.io/microsoft-breach-what-happened-what-should-azure-admins-do-da2b7e674ebc
+  - https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/permissions-reference
+  - https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/best-practices
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: AzureActiveDirectory
+  selection_2:
+    _raw|contains|cased: Add member to role
+  selection_3:
+    _raw|contains|cased: Partner Tier2 Support
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1136
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014656'
+  sagan.rev: '2'
+  sagan.source_file: msapi-azuread.rules
+  sagan.metadata: created_on=2024_05_15
+---
+title: '[MSAPI-AZUREAD] Privileged Role Administrator role assigned to Member'
+id: 7684f5fc-9c6b-53d8-9b16-f0a3ce2e556d
+status: experimental
+description: Converted from Sagan rule SID 5014657 (rev 2), file msapi-azuread.rules.
+references:
+  - https://posts.specterops.io/microsoft-breach-what-happened-what-should-azure-admins-do-da2b7e674ebc
+  - https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/permissions-reference
+  - https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/best-practices
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: AzureActiveDirectory
+  selection_2:
+    _raw|contains|cased: Add member to role
+  selection_3:
+    _raw|contains|cased: Privileged Role Administrator
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1136
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014657'
+  sagan.rev: '2'
+  sagan.source_file: msapi-azuread.rules
+  sagan.metadata: created_on=2024_05_15

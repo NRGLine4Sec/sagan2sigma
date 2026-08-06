@@ -1,0 +1,46 @@
+title: '[OPENVPN] Authentication failure [0/5]'
+id: 42972922-9ab4-5ea1-b038-eb27c5abca07
+status: experimental
+description: Converted from Sagan rule SID 5001651 (rev 4), file openvpn.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: Decrypt packet error
+  selection_2:
+    appname|cased: openvpn
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001651'
+  sagan.rev: '4'
+  sagan.source_file: openvpn.rules
+  rsigma.suppress: 5m
+---
+title: '[OPENVPN] Unencrypted VPN connection initiated'
+id: c31683a2-cbe4-5055-951d-05669d810bc6
+status: experimental
+description: Converted from Sagan rule SID 5001653 (rev 3), file openvpn.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: tunnelled as cleartext
+  selection_2:
+    appname|cased: openvpn
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5001653'
+  sagan.rev: '3'
+  sagan.source_file: openvpn.rules

@@ -1,0 +1,41 @@
+title: '[UBIQUITI] Admin Activity - Admin Accessed UniFi Network'
+id: 6d1923c7-3218-5378-8765-16a5c760eb9f
+status: experimental
+description: Converted from Sagan rule SID 5016043 (rev 1), file ubiquiti.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: Admin Accessed UniFi Network
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016043'
+  sagan.rev: '1'
+  sagan.source_file: ubiquiti.rules
+---
+title: '[UBIQUITI] Admins - An invitation email to join UniFi Identity has been sent'
+id: ecbd7de4-385b-5992-875a-811c0905309b
+status: experimental
+description: Converted from Sagan rule SID 5016048 (rev 1), file ubiquiti.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: An invitation email to join UniFi Identity has been sent
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016048'
+  sagan.rev: '1'
+  sagan.source_file: ubiquiti.rules

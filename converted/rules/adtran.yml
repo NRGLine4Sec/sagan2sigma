@@ -1,0 +1,49 @@
+title: '[ADTRAN] TCP INTERNAL BLOCK'
+id: dcbea6e9-674e-5b70-a843-7821ebfbe066
+status: experimental
+description: Converted from Sagan rule SID 5001126 (rev 4), file adtran.rules.
+author: sagan2sigma
+logsource:
+  product: adtran
+detection:
+  selection_1:
+    _raw|contains|cased: Access Policy
+  selection_2:
+    _raw|contains|cased: tcp
+  selection_3:
+    appname|cased: FIREWALL
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5001126'
+  sagan.rev: '4'
+  sagan.source_file: adtran.rules
+---
+title: '[ADTRAN] UDP INTERNAL BLOCK'
+id: 80ddc2f0-6c5b-57c0-8ea4-5194aa0536cf
+status: experimental
+description: Converted from Sagan rule SID 5001127 (rev 4), file adtran.rules.
+author: sagan2sigma
+logsource:
+  product: adtran
+detection:
+  selection_1:
+    _raw|contains|cased: Access Policy
+  selection_2:
+    _raw|contains|cased: udp
+  selection_3:
+    appname|cased: FIREWALL
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5001127'
+  sagan.rev: '4'
+  sagan.source_file: adtran.rules

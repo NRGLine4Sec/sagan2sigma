@@ -1,0 +1,41 @@
+title: '[YUBIKEY] Invalid OTP'
+id: b58e011c-40a5-539a-94a8-fcb4c3ba2770
+name: sagan_5002735
+status: experimental
+description: Converted from Sagan rule SID 5002735 (rev 3), file yubikey.rules.
+author: sagan2sigma
+logsource:
+  product: yubikey
+detection:
+  selection_1:
+    appname|cased: yk_chkpwd
+  selection_2:
+    _raw|contains|cased: password check failed for user
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1078
+  - attack.t1110
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002735'
+  sagan.rev: '3'
+  sagan.source_file: yubikey.rules
+  rsigma.suppress: 5m
+---
+title: '[YUBIKEY] Invalid OTP (threshold 5 in 5m)'
+id: 71107932-a832-5eab-86b7-5c7884a1ffe3
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5002735
+  group-by:
+    - hostname
+  timespan: 5m
+  condition:
+    gte: 5
+level: high

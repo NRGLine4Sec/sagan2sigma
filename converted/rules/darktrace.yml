@@ -1,0 +1,1854 @@
+title: '[DARKTRACE] Potential Malicious traffic detection'
+id: 81c0c0f0-c67b-5d2a-b2a9-7150941aac1c
+status: experimental
+description: Converted from Sagan rule SID 5005840 (rev 4), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|re: ^.+}$
+  filter_3:
+    _raw|contains|cased:
+      - 'Anomalous Connection::'
+      - 'Anomalous File::'
+      - 'Anomalous Server Activity::'
+      - 'Antigena::'
+      - 'Compliance::'
+      - 'Compromise::'
+      - 'Device::'
+      - 'Infrastructure::'
+      - 'System::'
+      - 'Unusual Activity::'
+      - 'User::'
+  filter_4:
+    _raw|contains|cased: config_alert_name
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005840'
+  sagan.rev: '4'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] Potential Malicious Anomalous Connection Alert'
+id: 7e9480bb-8464-5db4-a507-c49fa58477eb
+status: experimental
+description: Converted from Sagan rule SID 5005841 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: 'Anomalous Connection::'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005841'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] Potential Malicious Anomalous File Alert'
+id: 8c129d3c-db71-5665-8c67-ceca8f376b02
+status: experimental
+description: Converted from Sagan rule SID 5005842 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: 'Anomalous File::'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005842'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] Potential Malicious Anomalous Server Activity Alert'
+id: bf3da4bb-03a3-5295-b243-324230d6db3d
+status: experimental
+description: Converted from Sagan rule SID 5005843 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: 'Anomalous Server Activity::'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005843'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] Potential Malicious Antigena Alert'
+id: 50d69532-9b9e-57a2-8524-740e313e3218
+status: experimental
+description: Converted from Sagan rule SID 5005844 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: 'Antigena::'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005844'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] Potential Malicious Compliance Alert'
+id: b2bf7757-4938-5f21-83f1-c034e9549403
+status: experimental
+description: Converted from Sagan rule SID 5005845 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: 'Compliance::'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005845'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] Potential Malicious Compromise Alert'
+id: 8d93cbc1-1aa6-5ae0-91a4-06ca8f290029
+status: experimental
+description: Converted from Sagan rule SID 5005846 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: 'Compromise::'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005846'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] Potential Malicious Device Alert'
+id: f153f8a8-c6b4-59db-8075-d189ef2476ec
+status: experimental
+description: Converted from Sagan rule SID 5005847 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: 'Device::'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005847'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] Potential Malicious Infrastructure Alert'
+id: d8263992-0c7b-5c9e-a2e9-9781310c2530
+status: experimental
+description: Converted from Sagan rule SID 5005848 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: 'Infrastructure::'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005848'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] Potential Malicious System Alert'
+id: 78449892-a108-5008-be63-0fc62c3185ba
+status: experimental
+description: Converted from Sagan rule SID 5005849 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: 'System::'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005849'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] Potential Malicious Unusual Activity Alert'
+id: 226d774f-c6f9-5591-a77a-dcb3cd979105
+status: experimental
+description: Converted from Sagan rule SID 5005850 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: 'Unusual Activity::'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005850'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] Potential Malicious User Alert'
+id: 8c47bb6a-c6ae-5557-b9af-1c5d015d5890
+status: experimental
+description: Converted from Sagan rule SID 5005851 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: 'User::'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005851'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] Potential Malicious Remote Desktop Tunnel'
+id: 90641cab-d708-5162-8495-c1930cc2c05b
+status: experimental
+description: Converted from Sagan rule SID 5005852 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous Connection
+  selection_3:
+    _raw|contains|cased: Active Remote Desktop Tunnel
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005852'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] External connection from a device over an uncommon port'
+id: b6a503b0-b9ff-5507-99a1-f085576df263
+status: experimental
+description: Converted from Sagan rule SID 5005853 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous Connection
+  selection_3:
+    _raw|contains|cased: Application Protocol on Uncommon Port
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005853'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is sending a large volume of data to an external location'
+id: 2a8853eb-8420-515d-ab00-c3c551376c6c
+status: experimental
+description: Converted from Sagan rule SID 5005854 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous Connection
+  selection_3:
+    _raw|contains|cased: Data Sent to Rare Domain
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005854'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is making an outbound VPN connection to a rare external location'
+id: 4089ba35-fd76-5da1-ab70-86528e7e9db4
+status: experimental
+description: Converted from Sagan rule SID 5005855 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous Connection
+  selection_3:
+    _raw|contains|cased: IPSec VPN to Rare IP
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005855'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] Device is connecting to new external deviecs not detected before'
+id: 8f76d4d8-c1d4-5bf0-895b-b9fcce4c2cef
+status: experimental
+description: Converted from Sagan rule SID 5005856 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous Connection
+  selection_3:
+    _raw|contains|cased: Lots of New Connections
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005856'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device has transfered a modearate to large volume of traffic over a 24 hour period'
+id: 7d6b1554-ea9f-531f-b94c-2b77d59edf54
+status: experimental
+description: Converted from Sagan rule SID 5005857 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous Connection
+  selection_3:
+    _raw|contains|cased: Low and Slow Exfiltration to IP
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005857'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device has begun communicating on a UDP port it has never used before'
+id: 5bab958a-b0b3-5c6f-9b87-dc2c91a10efa
+status: experimental
+description: Converted from Sagan rule SID 5005858 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous Connection
+  selection_3:
+    _raw|contains|cased: Multiple Connections to New External UDP Port
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005858'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is posting data out out of the network to a rare external hostname'
+id: 0c7bee7d-6006-50d9-add5-a3100f03c549
+status: experimental
+description: Converted from Sagan rule SID 5005859 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous Connection
+  selection_3:
+    _raw|contains|cased: Multiple HTTP POSTs to Rare Hostname
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005859'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is connecting directly to an IP address without a hostname using a new user
+  agent'
+id: 416ef525-9445-5345-a8d4-9c1340d0ae76
+status: experimental
+description: Converted from Sagan rule SID 5005860 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous Connection
+  selection_3:
+    _raw|contains|cased: New User Agent to IP Without Hostname
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005860'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] Suspicious charcters found in hostanme of external connection'
+id: 8906a8bc-950b-55f2-a555-3b684cda6df9
+status: experimental
+description: Converted from Sagan rule SID 5005861 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous Connection
+  selection_3:
+    _raw|contains|cased: Possible IDN Homograph Attack
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005861'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is posting data out out of the network to a rare external location without
+  a hostname'
+id: 5c5d27bb-81ec-5c5e-9ff7-8e92fe97fff2
+status: experimental
+description: Converted from Sagan rule SID 5005862 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous Connection
+  selection_3:
+    _raw|contains|cased: Posting HTTP to IP Without Hostname
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005862'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is communicating with a server using a self signed certificate'
+id: 58a4cea8-d7c8-5da3-a86d-c42d8b49db42
+status: experimental
+description: Converted from Sagan rule SID 5005863 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous Connection
+  selection_3:
+    _raw|contains|cased: Rare External SSL Self-Signed
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005863'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is communicating with a server using an expired certificate'
+id: fc1a08a1-73b2-532e-aa7e-b3c959f2f1be
+status: experimental
+description: Converted from Sagan rule SID 5005864 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous Connection
+  selection_3:
+    _raw|contains|cased: Suspicious Expired SSL
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005864'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is communicating with a server using a suspicious self signed certificate'
+id: cfda018a-7a82-52b6-87f3-f8e3244000e5
+status: experimental
+description: Converted from Sagan rule SID 5005865 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous Connection
+  selection_3:
+    _raw|contains|cased: Suspicious Self-Signed SSL
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005865'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A highly privileged credential is being used to connect between two devices that rarely
+  interact'
+id: d2956f0b-a678-500b-ad0d-eeda4d1b5406
+status: experimental
+description: Converted from Sagan rule SID 5005866 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous Connection
+  selection_3:
+    _raw|contains|cased: Unusual Admin RDP Session
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005866'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is transferring an abnormally large volume of data internally'
+id: 3aa89438-186a-56f6-b856-57a32da568c4
+status: experimental
+description: Converted from Sagan rule SID 5005867 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous Connection
+  selection_3:
+    _raw|contains|cased: Unusual Incoming Data Volume
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005867'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is making an unusual outgoing Remote Desktop connection'
+id: 04d648be-04c4-5ff8-88ba-00d022ad6474
+status: experimental
+description: Converted from Sagan rule SID 5005868 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous Connection
+  selection_3:
+    _raw|contains|cased: Unusual Internal Remote Desktop
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005868'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device downloaded a file from an uncommon external location'
+id: 5841d369-8da1-545e-bbab-90b37264d1f2
+status: experimental
+description: Converted from Sagan rule SID 5005869 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous File
+  selection_3:
+    _raw|contains|cased: Anomalous Octet Stream
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005869'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device has downloaded an executable from a location that the network does not normally
+  visit'
+id: f0452357-f434-5557-8c9d-d9784457bd9f
+status: experimental
+description: Converted from Sagan rule SID 5005870 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous File
+  selection_3:
+    _raw|contains|cased: Apple Application from Rare External Location
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005870'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device has downloaded a Windows Portable Executable (PE) via unencrypted FTP'
+id: fd3c9d79-bc34-524e-a554-e7220a58360a
+status: experimental
+description: Converted from Sagan rule SID 5005871 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous File
+  selection_3:
+    _raw|contains|cased: FTP Executable from Rare External Location
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005871'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device has written a script file to another internal device it has not connected
+  to in this way before'
+id: 61816f86-37e8-55a1-96eb-bfd7d92dba4d
+status: experimental
+description: Converted from Sagan rule SID 5005872 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous File
+  selection_3:
+    _raw|contains|cased: Internal
+  selection_4:
+    _raw|contains|cased: Unusual SMB Script Write
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005872'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device has downloaded a ZIP file from a location that the network does not normally
+  visit'
+id: 20fc98a5-84ce-5a89-9ca8-0bd8e8a20dc8
+status: experimental
+description: Converted from Sagan rule SID 5005873 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous File
+  selection_3:
+    _raw|contains|cased: Zip or Gzip from Rare External Location
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005873'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A server is making unusual external connections to destinations not frequently visited
+  by devices on the network'
+id: cdb5a4a6-9e70-53d2-ba5b-2995d6559f85
+status: experimental
+description: Converted from Sagan rule SID 5005874 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous Server Activity
+  selection_3:
+    _raw|contains|cased: Outgoing from Server
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005874'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device has begun serving protocols to a rare external endpoint, on an unusual port'
+id: cb2bcbf9-d330-51ac-b7f7-320c197ba1f1
+status: experimental
+description: Converted from Sagan rule SID 5005875 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Anomalous Server Activity
+  selection_3:
+    _raw|contains|cased: Server Activity on New Non-Standard Port
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005875'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is communicating with the Tor network privacy service'
+id: 175aef66-3b7c-5c75-921e-c84ee94750d0
+status: experimental
+description: Converted from Sagan rule SID 5005876 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Antigena
+  selection_3:
+    _raw|contains|cased: Network
+  selection_4:
+    _raw|contains|cased: Compliance
+  selection_5:
+    _raw|contains|cased: Antigena Tor Block
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005876'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is making anomalous internal file transfers'
+id: 4ba76fb7-72b0-5507-84c3-4baadd3efff2
+status: experimental
+description: Converted from Sagan rule SID 5005877 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Antigena
+  selection_3:
+    _raw|contains|cased: Network
+  selection_4:
+    _raw|contains|cased: Insider Threat
+  selection_5:
+    _raw|contains|cased: Antigena Internal Anomalous File Activity
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005877'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is persistently causing unexpected event'
+id: 39f42e9e-7854-514b-9a93-cbc68aa7eebb
+status: experimental
+description: Converted from Sagan rule SID 5005878 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Antigena
+  selection_3:
+    _raw|contains|cased: Network
+  selection_4:
+    _raw|contains|cased: Significant Anomaly
+  selection_5:
+    _raw|contains|cased: Antigena Breaches Over Time Block
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005878'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is making peer-to-peer BitTorrent connections'
+id: 84414ba3-454b-5b83-846e-69d2ad51e921
+status: experimental
+description: Converted from Sagan rule SID 5005879 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Compliance
+  selection_3:
+    _raw|contains|cased: BitTorrent
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005879'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is communicating externally with a rare location using ports normally only
+  used within the internal network'
+id: db8a9d2c-7c36-5c02-9c4c-7a9b7c974e22
+status: experimental
+description: Converted from Sagan rule SID 5005880 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Compliance
+  selection_3:
+    _raw|contains|cased: External Windows Communications
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005880'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is being remotely controlled from outside the network'
+id: c335eaf2-4e48-5d42-888b-1cddbc5c34c1
+status: experimental
+description: Converted from Sagan rule SID 5005881 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Compliance
+  selection_3:
+    _raw|contains|cased: Incoming Remote Desktop
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005881'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device has been observed receiving a number of SIP requests from a rare external
+  endpoint'
+id: 30654882-9196-5392-99cf-dbd0844645bb
+status: experimental
+description: Converted from Sagan rule SID 5005882 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Compliance
+  selection_3:
+    _raw|contains|cased: Multiple SIP Requests From Rare
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005882'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device has made an external encrypted connection to a rare endpoint on a port associated
+  with DoT'
+id: 61a613c3-17c9-5406-96b5-504ce8766889
+status: experimental
+description: Converted from Sagan rule SID 5005883 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Compliance
+  selection_3:
+    _raw|contains|cased: Possible DNS Over HTTPS/TLS
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005883'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device was observed accessing a document over SMB that appears to contain sensitive
+  information'
+id: 3d8050c8-54df-55ae-8660-c499a3e04830
+status: experimental
+description: Converted from Sagan rule SID 5005884 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Compliance
+  selection_3:
+    _raw|contains|cased: Possible Unencrypted Password File On Server
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005884'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A server is detected storing sensitive files in SMB connections'
+id: 27dfae4b-f329-5794-ba8d-3aeab9cddee1
+status: experimental
+description: Converted from Sagan rule SID 5005885 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Compliance
+  selection_3:
+    _raw|contains|cased: Sensitive Terms in New or Unusual SMB Connection
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005885'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is making SSH connections to rare external destinations'
+id: 2f76ade5-f3ec-5aa9-ac3e-2b65048cd027
+status: experimental
+description: Converted from Sagan rule SID 5005886 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Compliance
+  selection_3:
+    _raw|contains|cased: SSH to Rare External Destination
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005886'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is initiating multiple connections to a rare external endpoint in a regular
+  manner'
+id: 556cb47d-6491-5c1a-811d-008d49d30c3d
+status: experimental
+description: Converted from Sagan rule SID 5005887 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Compromise
+  selection_3:
+    _raw|contains|cased: Agent Beacon
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005887'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device has been repeatedly connecting to a rare external location - possible beaconing'
+id: 03b46e8a-79e6-5ca3-b5ca-dae5a1871d4c
+status: experimental
+description: Converted from Sagan rule SID 5005888 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Compromise
+  selection_3:
+    _raw|contains|cased: Beaconing Activity To External Rare
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005888'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] Possible beaconing to an rare external algorithmically generated endpoint'
+id: 3cfd3c6c-8c60-5be5-8ca4-573ed0bb8a9a
+status: experimental
+description: Converted from Sagan rule SID 5005889 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Compromise
+  selection_3:
+    _raw|contains|cased: DGA Beacon
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005889'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] Possible beaconing to a rare external location'
+id: d94be138-d3a9-53f7-bafc-a0d7f785327a
+status: experimental
+description: Converted from Sagan rule SID 5005890 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Compromise
+  selection_3:
+    _raw|contains|cased: High Volume of Connections with Beacon Score
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005890'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] Possible presistent connection to a rare external host'
+id: ec1d477a-8e36-5550-bd3f-edd7be61a850
+status: experimental
+description: Converted from Sagan rule SID 5005891 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Compromise
+  selection_3:
+    _raw|contains|cased: Repeating Connections Over 4 Days
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005891'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is causing repeated spikes in HTTP or SSL connections to new external location
+  for over a day'
+id: 09de6bd9-e67b-5d7d-a30f-9254d19ab1f2
+status: experimental
+description: Converted from Sagan rule SID 5005892 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Compromise
+  selection_3:
+    _raw|contains|cased:
+      - Sustained SSL or HTTP Increase
+      - SSL or HTTP Beacon
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005892'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device has made a large number of NTLM login failures'
+id: 8621c843-b135-5b86-9b2a-18e20ba7c07b
+status: experimental
+description: Converted from Sagan rule SID 5005893 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Device
+  selection_3:
+    _raw|contains|cased: Anomalous NTLM Bruteforce
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005893'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is using common penetration testing tools'
+id: b92a7c3c-f877-583e-9d58-f3789f8c7bf7
+status: experimental
+description: Converted from Sagan rule SID 5005894 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Device
+  selection_3:
+    _raw|contains|cased: Attack and Recon Tools
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005894'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A number of devices have been detected reading a suspicious executable file from an
+  internal server'
+id: 240f65f1-7ad7-5568-a7bd-ade214cb6d5b
+status: experimental
+description: Converted from Sagan rule SID 5005895 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Device
+  selection_3:
+    _raw|contains|cased: EXE Files Distributed to Multiple Devices
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005895'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device has initiated a large number of connections to unique, rare endpoints'
+id: 70f3b771-5166-5b7a-9594-f8fe67874e2f
+status: experimental
+description: Converted from Sagan rule SID 5005896 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Device
+  selection_3:
+    _raw|contains|cased: Large Number of Connections to New Endpoints
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005896'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device has made a long SSL connection to a new endpoint, with an unusual SSL client'
+id: 51a6ba4b-b0a3-5f2b-bbce-c0001be30634
+status: experimental
+description: Converted from Sagan rule SID 5005897 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Device
+  selection_3:
+    _raw|contains|cased: Long Agent Connection to New Endpoint
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005897'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is making new internal connections to a range of internal hosts consistent
+  with network scanning'
+id: 8c9bee54-be7b-5cc0-902f-319c35019cba
+status: experimental
+description: Converted from Sagan rule SID 5005898 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Device
+  selection_3:
+    _raw|contains|cased: Network Scan - Low Anomaly Score
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005898'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is making HTTP or HTTPS connections to new IP immediately following a new
+  User-Agent'
+id: 31c830af-4e34-5c09-b045-b23385de103a
+status: experimental
+description: Converted from Sagan rule SID 5005899 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Device
+  selection_3:
+    _raw|contains|cased: New User Agent and New IP
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005899'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device performed an unusual connection to a domain controller using SAMR and subsequently
+  downloaded an unusual volume of data via LDAP'
+id: 054dce11-cb35-5c25-826d-ab75b9e66616
+status: experimental
+description: Converted from Sagan rule SID 5005900 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Device
+  selection_3:
+    _raw|contains|cased: Possible Active Directory Enumeration
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005900'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is making reverse DNS lookups for a range of internal hosts consistent with
+  network reconnaissance'
+id: de59627d-d240-56ef-9eff-d18967c4bdbf
+status: experimental
+description: Converted from Sagan rule SID 5005901 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Device
+  selection_3:
+    _raw|contains|cased: Reverse DNS Sweep
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005901'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device was detected making an SMB query for a known sensitive file'
+id: 29a29c04-28a3-5054-8832-648fc43eda65
+status: experimental
+description: Converted from Sagan rule SID 5005902 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Device
+  selection_3:
+    _raw|contains|cased: Suspicious SMB Query
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005902'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is requesting DNS from a rare external location'
+id: 24fae93a-b8af-525c-b578-d165bdebb144
+status: experimental
+description: Converted from Sagan rule SID 5005903 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Device
+  selection_3:
+    _raw|contains|cased: Unusual External DNS
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005903'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A new proxy server has been detected, or an existing server has stopped'
+id: 9229d1c4-6488-52c9-8e09-81a12ce2580e
+status: experimental
+description: Converted from Sagan rule SID 5005904 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Infrastructure
+  selection_3:
+    _raw|contains|cased: Proxy Server Change
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005904'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is both receiving and making an SSH connection simultaneously creating a
+  potential tunnel'
+id: 6172d700-f621-5a48-8651-a8d36d42506d
+status: experimental
+description: Converted from Sagan rule SID 5005905 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: System
+  selection_3:
+    _raw|contains|cased: Internal Domain Name Change
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005905'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device has deleted an anomalous volume of files from a network share'
+id: 9e91c985-7214-5473-a046-43cd69b94afe
+status: experimental
+description: Converted from Sagan rule SID 5005906 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Unusual Activity
+  selection_3:
+    _raw|contains|cased: Anomalous SMB Delete Volume
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005906'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is sending an abnormally high level of data externally'
+id: 80db378a-9a9a-5436-9a3d-ad208438c7be
+status: experimental
+description: Converted from Sagan rule SID 5005907 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    _raw|contains|cased: Unusual Activity
+  selection_2:
+    appname|cased: darktrace
+  selection_3:
+    _raw|contains|cased:
+      - Enhanced Unusual External Data Transfer
+      - Unusual File Storage Data Transfer
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005907'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device is transferring an abnormally large volume of data internally'
+id: 9b11ad7a-853e-5773-b108-dd5e330edf52
+status: experimental
+description: Converted from Sagan rule SID 5005908 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    _raw|contains|cased: Unusual Activity
+  selection_2:
+    _raw|contains|cased: Internal Data Transfer
+  selection_3:
+    appname|cased: darktrace
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005908'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device has made a large number of attempts to access files on a network share that
+  it is not authorised to access'
+id: 9d4391c1-40d3-5c9d-8d6d-fc2a54fa7a15
+status: experimental
+description: Converted from Sagan rule SID 5005909 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Unusual Activity
+  selection_3:
+    _raw|contains|cased: SMB Access Failures
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005909'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device that has not been seen on the network for an extended time is now active
+  and deviating from normal network behaviour'
+id: 68194e1b-6f61-5764-92d2-bbec6723b738
+status: experimental
+description: Converted from Sagan rule SID 5005910 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: Unusual Activity
+  selection_3:
+    _raw|contains|cased: Unusual Activity from Re-Activated Device
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005910'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A device has made a large volume of Kerberos logon failures using the same credential'
+id: db203a85-8625-54c4-8afe-f6bb805ad17d
+status: experimental
+description: Converted from Sagan rule SID 5005911 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: User
+  selection_3:
+    _raw|contains|cased: Kerberos Password Bruteforce
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005911'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules
+---
+title: '[DARKTRACE] A highly privileged credential is being used for the first time on a client device'
+id: 317a3d79-3c55-5f36-a965-7c19c23d6f65
+status: experimental
+description: Converted from Sagan rule SID 5005912 (rev 2), file darktrace.rules.
+author: sagan2sigma
+logsource:
+  product: darktrace
+detection:
+  selection_1:
+    appname|cased: darktrace
+  selection_2:
+    _raw|contains|cased: User
+  selection_3:
+    _raw|contains|cased: New Admin Credentials on Client
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005912'
+  sagan.rev: '2'
+  sagan.source_file: darktrace.rules

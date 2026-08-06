@@ -1,0 +1,307 @@
+title: '[SENDMAIL] VRFY or EXPN root attempt'
+id: 01c2c18a-04ae-5d8c-a93b-317d5fd1debc
+status: experimental
+description: Converted from Sagan rule SID 5000034 (rev 11), file sendmail.rules.
+references:
+  - '31'
+  - 1999-0531
+  - '10249'
+author: sagan2sigma
+logsource:
+  product: sendmail
+  service: smtp
+detection:
+  selection_1:
+    _raw|contains: ' root'
+  selection_2:
+    _raw|contains:
+      - vrfy
+      - expn
+  selection_3:
+    appname|cased:
+      - sm-mta
+      - sendmail
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5000034'
+  sagan.rev: '11'
+  sagan.source_file: sendmail.rules
+---
+title: '[SENDMAIL] EXPN command - rejected'
+id: 3b17c123-ed2f-5cc7-abd1-afb5e7de8324
+status: experimental
+description: Converted from Sagan rule SID 5000035 (rev 10), file sendmail.rules.
+references:
+  - '31'
+  - 1999-0531
+  - '10249'
+author: sagan2sigma
+logsource:
+  product: sendmail
+  service: smtp
+detection:
+  selection_1:
+    _raw|contains: 'expn '
+  selection_2:
+    _raw|contains|cased: '[rejected]'
+  selection_3:
+    appname|cased:
+      - sm-mta
+      - sendmail
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5000035'
+  sagan.rev: '10'
+  sagan.source_file: sendmail.rules
+---
+title: '[SENDMAIL] VRFY command - rejected'
+id: ec325e95-0a39-5447-a245-9d302c277cc9
+status: experimental
+description: Converted from Sagan rule SID 5000036 (rev 10), file sendmail.rules.
+references:
+  - '31'
+  - 1999-0531
+  - '10249'
+author: sagan2sigma
+logsource:
+  product: sendmail
+  service: smtp
+detection:
+  selection_1:
+    _raw|contains: 'vrfy '
+  selection_2:
+    _raw|contains|cased: '[rejected]'
+  selection_3:
+    appname|cased:
+      - sm-mta
+      - sendmail
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5000036'
+  sagan.rev: '10'
+  sagan.source_file: sendmail.rules
+---
+title: '[SENDMAIL] EXPN command - [not rejected]'
+id: 6d4307ab-3795-56ad-b697-2ee82429b632
+status: experimental
+description: Converted from Sagan rule SID 5000223 (rev 11), file sendmail.rules.
+references:
+  - '31'
+  - 1999-0531
+  - '10249'
+author: sagan2sigma
+logsource:
+  product: sendmail
+  service: smtp
+detection:
+  selection_1:
+    _raw|contains|cased: 'expn '
+  filter_2:
+    _raw|contains: rejected
+  selection_3:
+    appname|cased:
+      - sm-mta
+      - sendmail
+  condition: selection_1 and selection_3 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5000223'
+  sagan.rev: '11'
+  sagan.source_file: sendmail.rules
+---
+title: '[SENDMAIL] VRFY command - [not rejected]'
+id: 832fb90b-61c1-5c9a-8e14-6b49874be3ac
+status: experimental
+description: Converted from Sagan rule SID 5000224 (rev 11), file sendmail.rules.
+references:
+  - '31'
+  - 1999-0531
+  - '10249'
+author: sagan2sigma
+logsource:
+  product: sendmail
+  service: smtp
+detection:
+  selection_1:
+    _raw|contains|cased: 'vrfy '
+  filter_2:
+    _raw|contains: rejected
+  selection_3:
+    appname|cased:
+      - sm-mta
+      - sendmail
+  condition: selection_1 and selection_3 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5000224'
+  sagan.rev: '11'
+  sagan.source_file: sendmail.rules
+---
+title: '[SENDMAIL] Rejected by access list'
+id: db787622-4c38-5d01-b4dc-df2f7216cc13
+status: experimental
+description: Converted from Sagan rule SID 5000137 (rev 4), file sendmail.rules.
+author: sagan2sigma
+logsource:
+  product: sendmail
+  service: smtp
+detection:
+  selection_1:
+    _raw|contains|cased: reject=
+  selection_2:
+    _raw|re: reject=550 5.0.0|reject=553 5.3.0
+  selection_3:
+    appname|cased:
+      - sm-mta
+      - sendmail
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000137'
+  sagan.rev: '4'
+  sagan.source_file: sendmail.rules
+---
+title: '[SENDMAIL] Sender address does not have domain'
+id: b21a6558-b952-5c6c-847c-f5da2b03b883
+status: experimental
+description: Converted from Sagan rule SID 5000138 (rev 3), file sendmail.rules.
+author: sagan2sigma
+logsource:
+  product: sendmail
+  service: smtp
+detection:
+  selection_1:
+    _raw|contains|cased: 'reject=553 5.5.4 '
+  selection_2:
+    appname|cased:
+      - sm-mta
+      - sendmail
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000138'
+  sagan.rev: '3'
+  sagan.source_file: sendmail.rules
+---
+title: '[SENDMAIL] Username with pipe symbol'
+id: b638f40d-a054-52ef-a971-7ee213645615
+status: experimental
+description: Converted from Sagan rule SID 5000357 (rev 6), file sendmail.rules.
+references:
+  - https://www.jochentopf.com/email/chars.html
+author: sagan2sigma
+logsource:
+  product: sendmail
+  service: smtp
+detection:
+  selection_1:
+    _raw|contains|cased: to=<
+  selection_2:
+    _raw|contains|cased: '|'
+  selection_3:
+    _raw|re: to=<[A-Za-z0-9|&'*+-.=?^_{}~]+@\x2f
+  selection_4:
+    appname|cased:
+      - sm-mta
+      - sendmail
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5000357'
+  sagan.rev: '6'
+  sagan.source_file: sendmail.rules
+---
+title: '[SENDMAIL] SpamAssassin Milter Plugin Remote Arbitrary Command Injection Attempt'
+id: fc717b7c-41e8-5cb1-9e69-0f9f18eda05c
+status: experimental
+description: Converted from Sagan rule SID 5000881 (rev 7), file sendmail.rules.
+references:
+  - http://www.securityfocus.com/bid/38578
+author: sagan2sigma
+logsource:
+  product: sendmail
+  service: smtp
+detection:
+  selection_1:
+    appname|cased:
+      - sm-mta
+      - sendmail
+  selection_2:
+    _raw|contains|cased: /bin/
+  selection_3:
+    _raw|contains|cased: 'sh '
+  selection_4:
+    _raw|contains|cased: '|'
+  selection_5:
+    _raw|contains|cased: +
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5000881'
+  sagan.rev: '7'
+  sagan.source_file: sendmail.rules
+---
+title: '[SENDMAIL] Possible open proxy'
+id: bda09eac-7558-5a02-a6cf-e103c1c31340
+status: experimental
+description: Converted from Sagan rule SID 5001013 (rev 8), file sendmail.rules.
+author: sagan2sigma
+logsource:
+  product: sendmail
+  service: smtp
+detection:
+  selection_1:
+    appname|cased:
+      - sm-mta
+      - sendmail
+  selection_2:
+    _raw|contains|cased: 'probable open proxy:'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001013'
+  sagan.rev: '8'
+  sagan.source_file: sendmail.rules

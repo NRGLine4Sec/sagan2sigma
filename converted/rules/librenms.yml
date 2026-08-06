@@ -1,0 +1,45 @@
+title: '[LibreNMS] - Warning Alert'
+id: ae337a05-b4b2-55b7-a509-204a087e6de9
+status: experimental
+description: Converted from Sagan rule SID 5008385 (rev 1), file librenms.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: ' [Warning] '
+  selection_2:
+    appname|cased: librenms
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008385'
+  sagan.rev: '1'
+  sagan.source_file: librenms.rules
+---
+title: '[LibreNMS] - Warning Alert'
+id: ee0b1058-74e0-51d7-957b-a4dab70e603d
+status: experimental
+description: Converted from Sagan rule SID 5008386 (rev 1), file librenms.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: ' [Critical] '
+  selection_2:
+    appname|cased: librenms
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008386'
+  sagan.rev: '1'
+  sagan.source_file: librenms.rules

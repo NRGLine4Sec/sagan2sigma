@@ -1,0 +1,49 @@
+title: '[NINJARMM] Bitdefender - Threat Blocked'
+id: 97e96bfc-ae4d-52ba-804a-731c10fe5e2f
+status: experimental
+description: Converted from Sagan rule SID 5007160 (rev 1), file ninjarmm.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: ninjarmm
+  selection_2:
+    type|cased: Antivirus
+  selection_3:
+    statusCode|cased: BDAS_BITDEFENDER_THREAT_BLOCKED
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5007160'
+  sagan.rev: '1'
+  sagan.source_file: ninjarmm.rules
+---
+title: '[NINJARMM] Bitdefender - Threat Deleted'
+id: 94780365-e300-5dcd-9e2e-91257458a6e1
+status: experimental
+description: Converted from Sagan rule SID 5007161 (rev 1), file ninjarmm.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: ninjarmm
+  selection_2:
+    type|cased: Antivirus
+  selection_3:
+    statusCode|cased: BDAS_BITDEFENDER_THREAT_DELETED
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5007161'
+  sagan.rev: '1'
+  sagan.source_file: ninjarmm.rules

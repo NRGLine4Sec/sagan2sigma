@@ -1,0 +1,52 @@
+title: '[SYMANTEC-EMS] Multiple authentication failures'
+id: 70a822f3-6c25-55d7-87d0-30c924758e9b
+status: experimental
+description: Converted from Sagan rule SID 5001677 (rev 6), file symantec-ems.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: failed authentication for internal PGP Desktop
+  filter_2:
+    _raw|contains|cased: 'null'
+  selection_3:
+    appname|cased: pgp/client
+  condition: selection_1 and selection_3 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5001677'
+  sagan.rev: '6'
+  sagan.source_file: symantec-ems.rules
+  rsigma.suppress: 5m
+---
+title: '[SYMANTEC-EMS] LDAP key error - name lookup failed'
+id: 81920b1b-13c8-5706-9894-3877d5de6ccb
+status: experimental
+description: Converted from Sagan rule SID 5001685 (rev 3), file symantec-ems.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: error searching for key
+  selection_2:
+    _raw|contains|cased: LDAP
+  selection_3:
+    _raw|contains|cased: name lookup failed
+  selection_4:
+    appname|cased: pgp/client
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001685'
+  sagan.rev: '3'
+  sagan.source_file: symantec-ems.rules

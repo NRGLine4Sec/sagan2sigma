@@ -1,0 +1,1618 @@
+title: '[LINUX-AUDITD] ./a.out execution attempt'
+id: da72f64d-080a-5985-8fed-38126e043340
+status: experimental
+description: Converted from Sagan rule SID 5005619 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"./a.out"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005619'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] telnet execution'
+id: 32fb3f8b-dfb5-5e69-b093-56880dd9cb22
+status: experimental
+description: Converted from Sagan rule SID 5005621 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"telnet"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005621'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] nmap execution'
+id: f5ec9ad8-b42a-5813-9601-62bf02febedb
+status: experimental
+description: Converted from Sagan rule SID 5005622 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"nmap"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005622'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] /etc/passwd access'
+id: 1441b022-50dc-5704-94a2-e49b235c0def
+status: experimental
+description: Converted from Sagan rule SID 5005623 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"/etc/passwd"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005623'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] /etc/shadow access'
+id: c7621bbc-7d32-5071-abb4-f4faac8e9fc9
+status: experimental
+description: Converted from Sagan rule SID 5005624 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"/etc/shadow"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005624'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] .bash_history access'
+id: 313c4a47-70e2-58c5-adb1-5f5994dd0cef
+status: experimental
+description: Converted from Sagan rule SID 5005626 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '".bash_history"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005626'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] /tmp/sh access'
+id: 5e9a3da2-7d89-5dc7-b8a9-a41b8ec06448
+status: experimental
+description: Converted from Sagan rule SID 5005627 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"/tmp/sh"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005627'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] suidperl access'
+id: 636b1fe3-998a-59d6-be7a-3d9d5a7085da
+status: experimental
+description: Converted from Sagan rule SID 5005628 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"suidperl"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005628'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] iptables command access'
+id: 98c6d731-fd41-5642-a994-81bc4d7a32c1
+status: experimental
+description: Converted from Sagan rule SID 5005629 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"iptables"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005629'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] .mysql_history access'
+id: b4e72500-46d6-5e7e-b9b5-120649be0edf
+status: experimental
+description: Converted from Sagan rule SID 5005631 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '".mysql_history"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005631'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] Netcat execution'
+id: 9b75fb39-a796-5ca8-8b81-3954c3972222
+status: experimental
+description: Converted from Sagan rule SID 5005632 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased:
+      - '"nc"'
+      - '"ncat"'
+      - '"netcat"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005632'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] PHP execution'
+id: f6625784-51fd-5f07-b2f3-23a6c636f968
+status: experimental
+description: Converted from Sagan rule SID 5005633 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"php"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005633'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] /dev/tcp access'
+id: ca6a6fbb-601a-54f9-a0c3-fdc9225e4b39
+status: experimental
+description: Converted from Sagan rule SID 5005634 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"/dev/tcp"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005634'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] /dev/udp access'
+id: c6d53b06-3369-5138-a678-8ffebed55a4a
+status: experimental
+description: Converted from Sagan rule SID 5005635 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"/dev/udp"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005635'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] stunnel execution'
+id: 8dcf8020-a35b-56f7-b75e-6450e7ad8527
+status: experimental
+description: Converted from Sagan rule SID 5005636 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"stunnel"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005636'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] SSH agent forwarding'
+id: 1d3b1294-449c-594a-b88b-cb4bb3a6a54c
+status: experimental
+description: Converted from Sagan rule SID 5005637 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"ssh"'
+  selection_3:
+    _raw|contains|cased: '"-A"'
+  selection_4:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005637'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] SSH dynamic forwarding'
+id: 68b732b3-8802-5e3c-95fb-da6d0882c298
+status: experimental
+description: Converted from Sagan rule SID 5005638 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"ssh"'
+  selection_3:
+    _raw|contains|cased: '"-D" '
+  selection_4:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005638'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] SSH GSSAPI forwarding'
+id: 56e4104a-f72c-5576-8585-a8846070f621
+status: experimental
+description: Converted from Sagan rule SID 5005639 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"ssh"'
+  selection_3:
+    _raw|contains|cased: '"-K"'
+  selection_4:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005639'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] SSH local forwarding'
+id: 7b3fe8f7-42bb-502c-8217-b9e681134340
+status: experimental
+description: Converted from Sagan rule SID 5005640 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"ssh"'
+  selection_3:
+    _raw|contains|cased: '"-L"'
+  selection_4:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005640'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] SSH remote forwarding'
+id: c7825e93-3f93-51fc-a683-fd7a0f6bf343
+status: experimental
+description: Converted from Sagan rule SID 5005641 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"ssh"'
+  selection_3:
+    _raw|contains|cased: '"-R"'
+  selection_4:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005641'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] SSH input and output forwarding'
+id: f658aef2-67b3-5014-b65c-72edd2d3dba2
+status: experimental
+description: Converted from Sagan rule SID 5005642 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"ssh"'
+  selection_3:
+    _raw|contains|cased: '"-W"'
+  selection_4:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005642'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] SSH tunnel forwarding'
+id: d97a77e6-ae79-5b00-8640-108123431409
+status: experimental
+description: Converted from Sagan rule SID 5005643 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"ssh"'
+  selection_3:
+    _raw|contains|cased: '"-w"'
+  selection_4:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005643'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] SSH X11 forwarding'
+id: df3a0094-52b2-5c04-a402-f6a502452c95
+status: experimental
+description: Converted from Sagan rule SID 5005644 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"ssh"'
+  selection_3:
+    _raw|contains|cased: '"-X"'
+  selection_4:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005644'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] SSH X11 trusted forwarding'
+id: ad193715-0fd5-5a7a-b87a-1f5ff79fe325
+status: experimental
+description: Converted from Sagan rule SID 5005645 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"ssh"'
+  selection_3:
+    _raw|contains|cased: '"-Y"'
+  selection_4:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005645'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] sudoedit access'
+id: 09bfed68-f300-5dc1-925e-b5324cc8cc1d
+status: experimental
+description: Converted from Sagan rule SID 5005646 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"sudoedit"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005646'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] CVE-2021-3156 sudoedit exploit attempt'
+id: 4c492f81-b16e-5a61-989d-b8458c883ed9
+status: experimental
+description: Converted from Sagan rule SID 5005647 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"sudoedit"'
+  selection_3:
+    _raw|contains|cased: '"-s"'
+  selection_4:
+    _raw|contains|cased: \\
+  selection_5:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005647'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] socat execution'
+id: cb188473-3277-55cf-895d-0582e32e5046
+status: experimental
+description: Converted from Sagan rule SID 5005648 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"socat"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005648'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] wget execution'
+id: 2c87e74a-9190-54b4-bf37-ede1eddee89c
+status: experimental
+description: Converted from Sagan rule SID 5005649 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"wget"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005649'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] curl execution'
+id: 9e441a80-e21b-5fbe-bb42-8898c02c47fa
+status: experimental
+description: Converted from Sagan rule SID 5005650 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"curl"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005650'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] base64 execution'
+id: 759ca836-7f38-54f5-8ac6-d68c33b4e137
+status: experimental
+description: Converted from Sagan rule SID 5005651 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"base64"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005651'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] /tmp/haxhax execution'
+id: c6e94e39-499a-5a1e-919f-a51a6e0e3066
+status: experimental
+description: Converted from Sagan rule SID 5005652 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"/tmp/haxhax"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005652'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] /tmp/ns_sploit execution'
+id: 37c4c586-e315-5219-8ef3-884f99cb61dc
+status: experimental
+description: Converted from Sagan rule SID 5005653 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"/tmp/ns_sploit"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005653'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] /tmp/ysocereal.jar execution'
+id: 4ad39d9b-c9db-57fb-a719-eafbbc81c675
+status: experimental
+description: Converted from Sagan rule SID 5005654 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"/tmp/ysocereal.jar"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005654'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] authorized_keys accessed'
+id: 57d92ae2-3f58-569d-849d-c0e0989861f8
+status: experimental
+description: Converted from Sagan rule SID 5005655 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"authorized_keys"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005655'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] chmod u+s execution'
+id: 185e0c47-6a0c-510e-ae31-89bc26d9c320
+status: experimental
+description: Converted from Sagan rule SID 5005656 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"chmod"'
+  selection_3:
+    _raw|contains|cased: '"u+s"'
+  selection_4:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005656'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] chmod +s execution'
+id: da4a66b5-144a-571a-8a85-3cce01a19bda
+status: experimental
+description: Converted from Sagan rule SID 5005657 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"chmod"'
+  selection_3:
+    _raw|contains|cased: '"+s"'
+  selection_4:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005657'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] chmod +s execution'
+id: 491354d7-b9e7-5b1e-a790-ed14b63a4aef
+status: experimental
+description: Converted from Sagan rule SID 5005674 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"chmod"'
+  selection_3:
+    _raw|contains|cased: '"+s"'
+  selection_4:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005674'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] ksh has been copied'
+id: 618842b3-71da-5ab5-a87e-845d0e81b623
+status: experimental
+description: Converted from Sagan rule SID 5005658 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"cp"'
+  selection_3:
+    _raw|contains|cased: '"/bin/ksh"'
+  selection_4:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005658'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] sh has been copied'
+id: b7c5ff3b-647b-5f7d-8385-9a2847edb378
+status: experimental
+description: Converted from Sagan rule SID 5005659 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"cp"'
+  selection_3:
+    _raw|contains|cased: '"/bin/sh"'
+  selection_4:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005659'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] bash has been copied'
+id: dde04f55-741e-55de-b676-ed503768b884
+status: experimental
+description: Converted from Sagan rule SID 5005660 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"cp"'
+  selection_3:
+    _raw|contains|cased: '"/bin/bash"'
+  selection_4:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005660'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] zsh has been copied'
+id: bf8e7ec9-8b8a-55f2-a627-b7927e0d7a1c
+status: experimental
+description: Converted from Sagan rule SID 5005661 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"cp"'
+  selection_3:
+    _raw|contains|cased: '"/bin/zsh"'
+  selection_4:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005661'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] zsh has been copied'
+id: 79fd5f39-c6a9-5f7e-81ff-e1dd8ad92813
+status: experimental
+description: Converted from Sagan rule SID 5005662 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"cp"'
+  selection_3:
+    _raw|contains|cased: '"/bin/zsh"'
+  selection_4:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005662'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] chmod +x of something in /tmp'
+id: d5758924-4c8c-556c-93fb-8678634ecd2b
+status: experimental
+description: Converted from Sagan rule SID 5005663 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"chmod"'
+  selection_3:
+    _raw|contains|cased: '"+x"'
+  selection_4:
+    _raw|contains|cased: '"/tmp'
+  selection_5:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005663'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] whoami execution'
+id: 48141a92-1577-563a-9afd-d4663f22dda3
+status: experimental
+description: Converted from Sagan rule SID 5005664 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"whoami"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005664'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] id execution'
+id: 10210998-a3ee-51b3-8cd4-588fd3b36856
+status: experimental
+description: Converted from Sagan rule SID 5005665 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: a0="id"
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005665'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] /etc/security/passwd access'
+id: b1cdc517-472b-5f39-adc5-91d556d38011
+status: experimental
+description: Converted from Sagan rule SID 5005666 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"/etc/security/passwd"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005666'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] getent passwd execution'
+id: d8ac6945-6a2c-55a3-a9fd-fc69c5f61850
+status: experimental
+description: Converted from Sagan rule SID 5005667 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"getent"'
+  selection_3:
+    _raw|contains|cased: '"passwd"'
+  selection_4:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005667'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] python -m SimpleHTTPServer execution'
+id: 61127764-6062-5875-b264-49e0e8506dea
+status: experimental
+description: Converted from Sagan rule SID 5005668 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"python'
+  selection_3:
+    _raw|contains|cased: '"-m"'
+  selection_4:
+    _raw|contains|cased: '"SimpleHTTPServer"'
+  selection_5:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005668'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] python3 -m http.server'
+id: aa1b3bc3-69cf-5bc8-ac42-0661331af9c2
+status: experimental
+description: Converted from Sagan rule SID 5005669 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"python'
+  selection_3:
+    _raw|contains|cased: '"-m"'
+  selection_4:
+    _raw|contains|cased: '"http.server"'
+  selection_5:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005669'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] /etc/sudoers access'
+id: 7f78cdbb-1d89-5a6f-b3f9-e9ab5b559c65
+status: experimental
+description: Converted from Sagan rule SID 5005670 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"/etc/sudoers"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005670'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] netstat execution'
+id: 8ad7952a-c583-5231-a5b4-97e8ea6343f8
+status: experimental
+description: Converted from Sagan rule SID 5005671 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"netstat"'
+  selection_3:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005671'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] mkdir starting with a space'
+id: b535ed1d-c95e-533d-a310-e8f2affc06f9
+status: experimental
+description: Converted from Sagan rule SID 5005672 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"mkdir"'
+  selection_3:
+    _raw|contains|cased: a1=20
+  selection_4:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005672'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] mkdir starting with a period'
+id: 409f68d7-a27b-5bbc-93d4-c4185df87e8a
+status: experimental
+description: Converted from Sagan rule SID 5005673 (rev 1), file linux-auditd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=EXECVE
+  selection_2:
+    _raw|contains|cased: '"mkdir"'
+  selection_3:
+    _raw|contains|cased: a1=".
+  selection_4:
+    appname|cased: audispd
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005673'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+---
+title: '[LINUX-AUDITD] Failed SUDO SU Command [3/5]'
+id: 1096d200-3e0f-513c-a683-cd9ee7671c57
+name: sagan_5014625
+status: experimental
+description: Converted from Sagan rule SID 5014625 (rev 1), file linux-auditd.rules.
+references:
+  - https://pberba.github.io/security/2021/11/23/linux-threat-hunting-for-persistence-account-creation-manipulation/
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=USER_CMD
+  selection_2:
+    _raw|contains|cased: cmd="su"
+  selection_3:
+    _raw|contains|cased: exe="/usr/bin/sudo"
+  selection_4:
+    _raw|contains|cased: res=failed
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1136.001
+  - attack.ta0003
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014625'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+  rsigma.suppress: 1d
+  sagan.metadata: deployment=Server,created_at=2024_01_25,updated_at=2024_01_25
+---
+title: '[LINUX-AUDITD] Failed SUDO SU Command [3/5] (threshold 3 in 5m)'
+id: a8c687e9-161a-5098-9cbe-58fc0e8220c6
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5014625
+  group-by:
+    - hostname
+  timespan: 5m
+  condition:
+    gte: 3
+level: medium
+---
+title: '[LINUX-AUDITD] Failed SUDO Auth'
+id: 8bf8d575-853b-5341-a290-f4baa11d7121
+status: experimental
+description: Converted from Sagan rule SID 5014626 (rev 1), file linux-auditd.rules.
+references:
+  - https://pberba.github.io/security/2021/11/23/linux-threat-hunting-for-persistence-account-creation-manipulation/
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: type=USER_AUTH
+  selection_2:
+    _raw|contains|cased: exe="/usr/bin/sudo"
+  selection_3:
+    _raw|contains|cased: res=failed
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1136.001
+  - attack.ta0003
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014626'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+  sagan.metadata: deployment=Server,created_at=2024_01_25,updated_at=2024_01_25
+---
+title: '[LINUX-AUDITD] Local Account Created'
+id: 735b60b3-e174-534e-bafe-a812ec025fe2
+status: experimental
+description: Converted from Sagan rule SID 5014627 (rev 2), file linux-auditd.rules.
+references:
+  - https://pberba.github.io/security/2021/11/23/linux-threat-hunting-for-persistence-account-creation-manipulation/
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: 'type=EXECVE '
+  selection_2:
+    _raw|contains|cased:
+      - useradd
+      - adduser
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1136.001
+  - attack.ta0003
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014627'
+  sagan.rev: '2'
+  sagan.source_file: linux-auditd.rules
+  sagan.metadata: deployment=Server,created_at=2024_01_25,updated_at=2025_09_16
+---
+title: '[LINUX-AUDITD] SSH Authorized Key File Updated'
+id: 28178b9b-8965-5145-a76b-8d94a87f15e1
+status: experimental
+description: Converted from Sagan rule SID 5014628 (rev 1), file linux-auditd.rules.
+references:
+  - https://pberba.github.io/security/2021/11/23/linux-threat-hunting-for-persistence-account-creation-manipulation/
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: syscall=257
+  selection_2:
+    _raw|contains|cased: success=yes
+  selection_3:
+    _raw|contains|cased: name=".ssh/authorized_keys"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1136.001
+  - attack.ta0003
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014628'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+  sagan.metadata: deployment=Server,created_at=2024_01_25,updated_at=2024_01_25
+---
+title: '[LINUX-AUDITD] File Permission Changed Using chown/chmod'
+id: f243f2c5-21f3-5ddd-866f-9b579067a041
+status: experimental
+description: Converted from Sagan rule SID 5014629 (rev 1), file linux-auditd.rules.
+references:
+  - https://www.socinvestigation.com/detect-most-common-malicious-actions-in-the-linux-environment/
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: syscall=59
+  selection_2:
+    _raw|contains|cased: success=yes
+  selection_3:
+    _raw|contains|cased:
+      - comm="chmod""+x
+      - comm="chown""+x
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1136.001
+  - attack.ta0003
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014629'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+  sagan.metadata: deployment=Server,created_at=2024_01_25,updated_at=2024_01_25
+---
+title: '[LINUX-AUDITD] File Overwrite using /dev/null or /dev/zero'
+id: d71acbbc-6f1f-5cb6-8fa5-0760a177f20d
+status: experimental
+description: Converted from Sagan rule SID 5014630 (rev 1), file linux-auditd.rules.
+references:
+  - https://www.socinvestigation.com/detect-most-common-malicious-actions-in-the-linux-environment/
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: syscall=59
+  selection_2:
+    _raw|contains|cased: success=yes
+  selection_3:
+    _raw|contains|cased:
+      - /dev/null
+      - /dev/zero
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1136.001
+  - attack.ta0003
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014630'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+  sagan.metadata: deployment=Server,created_at=2024_01_25,updated_at=2024_01_25
+---
+title: '[LINUX-AUDITD] Immutable File Attr Removed'
+id: 4aecccf4-afce-5822-affa-fba9903a7c27
+status: experimental
+description: Converted from Sagan rule SID 5014631 (rev 1), file linux-auditd.rules.
+references:
+  - https://www.socinvestigation.com/detect-most-common-malicious-actions-in-the-linux-environment/
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: syscall=59
+  selection_2:
+    _raw|contains|cased: success=yes
+  selection_3:
+    _raw|contains|cased: chattr
+  selection_4:
+    _raw|contains|cased: -i
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1136.001
+  - attack.ta0003
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014631'
+  sagan.rev: '1'
+  sagan.source_file: linux-auditd.rules
+  sagan.metadata: deployment=Server,created_at=2024_01_25,updated_at=2024_01_25

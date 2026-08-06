@@ -1,0 +1,112 @@
+title: '[NGINX] Nginx Initial 401 authentication request'
+id: 3f09d881-25c9-55c4-b6c3-06c9dbf0f5e2
+status: experimental
+description: Converted from Sagan rule SID 5000173 (rev 1), file nginx.rules.
+author: sagan2sigma
+logsource:
+  product: nginx
+  service: access
+detection:
+  selection_1:
+    _raw|contains|cased: no user/password was provided for basic authentication
+  selection_2:
+    appname|cased: nginx
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000173'
+  sagan.rev: '1'
+  sagan.source_file: nginx.rules
+---
+title: '[NGINX] Nginx Web authentication failed'
+id: 2a42d2c8-bab6-5a29-9010-8b6428fd0a77
+status: experimental
+description: Converted from Sagan rule SID 5000174 (rev 1), file nginx.rules.
+author: sagan2sigma
+logsource:
+  product: nginx
+  service: access
+detection:
+  selection_1:
+    _raw|re|i: password mismatch, client|was not found in
+  selection_2:
+    appname|cased: nginx
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000174'
+  sagan.rev: '1'
+  sagan.source_file: nginx.rules
+---
+title: '[NGINX] Nginx Invalid URI, file name too long'
+id: 2e9ecd00-6e17-5bc1-b173-94b9c2a71ed3
+status: experimental
+description: Converted from Sagan rule SID 5000175 (rev 1), file nginx.rules.
+author: sagan2sigma
+logsource:
+  product: nginx
+  service: access
+detection:
+  selection_1:
+    _raw|contains|cased: File name too long
+  selection_2:
+    appname|cased: nginx
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-filename-detect
+custom_attributes:
+  sagan.sid: '5000175'
+  sagan.rev: '1'
+  sagan.source_file: nginx.rules
+---
+title: '[NGINX] Nginx Brute Force authentication attempt [5/1]'
+id: 06abb0e5-3189-5ee7-b82b-772748e0571e
+name: sagan_5002948
+status: experimental
+description: Converted from Sagan rule SID 5002948 (rev 3), file nginx.rules.
+author: sagan2sigma
+logsource:
+  product: nginx
+  service: access
+detection:
+  selection_1:
+    _raw|re|i: password mismatch, client|was not found in
+  selection_2:
+    appname|cased: nginx
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5002948'
+  sagan.rev: '3'
+  sagan.source_file: nginx.rules
+  rsigma.suppress: 5m
+---
+title: '[NGINX] Nginx Brute Force authentication attempt [5/1] (threshold 5 in 5m)'
+id: 7789bc1e-29f4-5b98-8010-0f2c58cd6263
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5002948
+  group-by:
+    - hostname
+  timespan: 5m
+  condition:
+    gte: 5
+level: low

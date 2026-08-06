@@ -1,0 +1,157 @@
+title: '[PROFTPD] Attempt to bypass firewall - cannot keep state of FTP traffic'
+id: 7483bec1-7981-55bf-bf2d-892d9d0cda30
+status: experimental
+description: Converted from Sagan rule SID 5000085 (rev 3), file proftpd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: proftpd
+detection:
+  selection_1:
+    _raw|contains|cased: Refused PORT
+  selection_2:
+    appname|cased: proftpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000085'
+  sagan.rev: '3'
+  sagan.source_file: proftpd.rules
+---
+title: '[PROFTPD] Maximum login attempts reached [DoS?]'
+id: 7be202b0-e162-591f-a5f1-543c07018bea
+status: experimental
+description: Converted from Sagan rule SID 5000086 (rev 3), file proftpd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: proftpd
+detection:
+  selection_1:
+    _raw|contains|cased: Maximum login attempts
+  selection_2:
+    appname|cased: proftpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.successful-dos
+custom_attributes:
+  sagan.sid: '5000086'
+  sagan.rev: '3'
+  sagan.source_file: proftpd.rules
+---
+title: '[PROFTPD] Host name or host address mismatch'
+id: 29c10250-7389-5e30-a8de-e2c6db37faa9
+status: experimental
+description: Converted from Sagan rule SID 5000087 (rev 3), file proftpd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: proftpd
+detection:
+  selection_1:
+    _raw|re|i: name mismatch|address mismatch
+  selection_2:
+    appname|cased: proftpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000087'
+  sagan.rev: '3'
+  sagan.source_file: proftpd.rules
+---
+title: '[PROFTPD] User logged into an disabled account'
+id: 6f46032a-87fb-5c00-9865-2b31e8eeb7c9
+status: experimental
+description: Converted from Sagan rule SID 5000413 (rev 4), file proftpd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: proftpd
+detection:
+  selection_1:
+    _raw|contains|cased: Login successful
+  selection_2:
+    _raw|contains|cased:
+      - apache
+      - mysql
+      - www
+      - nobody
+      - nogroup
+      - portmap
+      - named
+      - rpc
+      - mail
+      - ftp
+      - shutdown
+      - halt
+      - daemon
+      - bin
+      - postfix
+      - shell
+      - info
+      - guest
+      - psql
+      - user
+      - users
+      - console
+      - uucp
+      - lp
+      - sync
+      - sshd
+      - cdrom
+      - ossec
+      - sagan
+  selection_3:
+    appname|cased: sshd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5000413'
+  sagan.rev: '4'
+  sagan.source_file: proftpd.rules
+---
+title: '[PROFTP] FTPCHK3 file accessed by user'
+id: fe03913f-da00-5e87-ac4c-d874938a1843
+status: experimental
+description: Converted from Sagan rule SID 5002951 (rev 4), file proftpd.rules.
+references:
+  - https://blog.ftptoday.com/ftp-password-stealing-malware
+author: sagan2sigma
+logsource:
+  product: linux
+  service: proftpd
+detection:
+  selection_1:
+    _raw|contains|cased: ftpchk3
+  selection_2:
+    _raw|contains|cased:
+      - CHMOD
+      - DELE
+      - STOR
+  selection_3:
+    appname|cased: proftpd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002951'
+  sagan.rev: '4'
+  sagan.source_file: proftpd.rules

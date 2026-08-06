@@ -1,0 +1,236 @@
+title: '[LINUX-SECURITY] Suspicious Command (> /dev/null)'
+id: 37c3976d-93f4-51a6-b355-b5e5fd213eac
+status: experimental
+description: Converted from Sagan rule SID 5014632 (rev 1), file linux-security.rules.
+references:
+  - https://blog.apnic.net/2019/10/14/how-to-basic-linux-malware-process-forensics-for-incident-responders/
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: '> /dev/null & rm'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1087
+  - attack.ta0007
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014632'
+  sagan.rev: '1'
+  sagan.source_file: linux-security.rules
+  sagan.metadata: deployment=Server,created_at=2024_01_25,updated_at=2024_01_25
+---
+title: '[LINUX-SECURITY] Suspicious Command (/proc/<PID>/cmdline)'
+id: 6447250b-fc51-5775-bd1a-85dae9ab6026
+status: experimental
+description: Converted from Sagan rule SID 5014633 (rev 1), file linux-security.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: /proc/
+  selection_2:
+    _raw|contains|cased: '"/cmdline" reference:url,https://blog.apnic.net/2019/10/14/how-to-basic-linux-malware-process-forensics-for-incident-responders/'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1087
+  - attack.ta0007
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014633'
+  sagan.rev: '1'
+  sagan.source_file: linux-security.rules
+  sagan.metadata: deployment=Server,created_at=2024_01_25,updated_at=2024_01_25
+---
+title: '[LINUX-SECURITY] Download/Use Of LinPEAS Detected - Privesc Tool'
+id: 687df603-ae24-58c9-8093-76ec6007d493
+status: experimental
+description: Converted from Sagan rule SID 5014634 (rev 1), file linux-security.rules.
+references:
+  - https://book.hacktricks.xyz/linux-hardening/linux-privilege-escalation-checklist
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains: linpeas.sh
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014634'
+  sagan.rev: '1'
+  sagan.source_file: linux-security.rules
+  sagan.metadata: created_on=2024_04_18,severity=critical
+---
+title: '[LINUX-SECURITY] Download/Use Of FRP Detected - Reverse Proxy Creation Tool'
+id: 73a5acc5-4ab0-5f13-af60-ec754c22601b
+status: experimental
+description: Converted from Sagan rule SID 5014635 (rev 1), file linux-security.rules.
+references:
+  - https://github.com/fatedier/frp
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains: frpc
+  selection_2:
+    _raw|contains|cased: frpc.toml
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014635'
+  sagan.rev: '1'
+  sagan.source_file: linux-security.rules
+  sagan.metadata: created_on=2024_04_18
+---
+title: '[LINUX-SECURITY] User Added Command Detected'
+id: 62f7ff2d-fdd4-5917-963e-11a9612ccc6c
+status: experimental
+description: Converted from Sagan rule SID 5014638 (rev 1), file linux-security.rules.
+references:
+  - https://pberba.github.io/security/2021/11/23/linux-threat-hunting-for-persistence-account-creation-manipulation/
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: COMMAND=
+  selection_2:
+    _raw|contains|cased:
+      - adduser
+      - useradd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014638'
+  sagan.rev: '1'
+  sagan.source_file: linux-security.rules
+  sagan.metadata: created_on=2024_05_06
+---
+title: '[LINUX-SECURITY] New User Detected'
+id: d8b0fbff-2723-53d3-9832-adef730a95b5
+status: experimental
+description: Converted from Sagan rule SID 5014639 (rev 1), file linux-security.rules.
+references:
+  - https://pberba.github.io/security/2021/11/23/linux-threat-hunting-for-persistence-account-creation-manipulation/
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased:
+      - useradd
+      - adduser
+  selection_2:
+    _raw|contains|cased: 'new user:'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014639'
+  sagan.rev: '1'
+  sagan.source_file: linux-security.rules
+  sagan.metadata: created_on=2024_05_06
+---
+title: '[LINUX-SECURITY] User Added to SUDO Group Command Detected'
+id: 57c30f22-233f-5239-a3b6-0daadfb58232
+status: experimental
+description: Converted from Sagan rule SID 5014640 (rev 1), file linux-security.rules.
+references:
+  - https://pberba.github.io/security/2021/11/23/linux-threat-hunting-for-persistence-account-creation-manipulation/
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: usermod -aG sudo
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014640'
+  sagan.rev: '1'
+  sagan.source_file: linux-security.rules
+  sagan.metadata: created_on=2024_05_06
+---
+title: '[LINUX-SECURITY] File Changed to Executable Permissions'
+id: 8af9aeeb-dfbf-5f4a-ad45-f91c74574dc8
+status: experimental
+description: Converted from Sagan rule SID 5014641 (rev 1), file linux-security.rules.
+references:
+  - https://pberba.github.io/security/2021/11/23/linux-threat-hunting-for-persistence-account-creation-manipulation/
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains|cased: COMMAND=
+  selection_2:
+    _raw|contains|cased: chmod +x
+  filter_3:
+    _raw|contains|cased: docker-compose
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014641'
+  sagan.rev: '1'
+  sagan.source_file: linux-security.rules
+  sagan.metadata: created_on=2024_05_06
+---
+title: '[LINUX-SECURITY] Possible CUPS RCE (CVE-2024-47177)'
+id: 4679ba84-2b92-5807-9ace-05c0958802fa
+status: experimental
+description: Converted from Sagan rule SID 5015118 (rev 1), file linux-security.rules.
+references:
+  - 2024-47177
+  - https://www.evilsocket.net/2024/09/26/Attacking-UNIX-systems-via-CUPS-Part-I/
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    _raw|contains: FoomaticRIPCommandLine
+  selection_2:
+    _raw|contains: 'cupsFilter2 '
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5015118'
+  sagan.rev: '1'
+  sagan.source_file: linux-security.rules
+  sagan.metadata: created_at=2024_09_30,updated_at=2024_09_30

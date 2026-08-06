@@ -1,0 +1,788 @@
+title: '[JAMF-PROTECT] Audit User Events auth user - Brute Force [10/5]'
+id: 1077285a-c945-5c67-b7f4-52da61ce0edc
+name: sagan_5014231
+status: experimental
+description: Converted from Sagan rule SID 5014231 (rev 2), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/compliance-reporter-documentation/page/Audit_User_Events_Log_Data.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    header.event_name|cased: AUE_auth_user
+  filter_3:
+    return.error: 0
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014231'
+  sagan.rev: '2'
+  sagan.source_file: jamf-protect.rules
+  rsigma.suppress: 1d
+---
+title: '[JAMF-PROTECT] Audit User Events auth user - Brute Force [10/5] (threshold 10 in 5m)'
+id: edb225e8-20b7-5aaf-a190-646832e5c749
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5014231
+  group-by:
+    - subject.effective_user_name
+  timespan: 5m
+  condition:
+    gte: 10
+level: medium
+---
+title: '[JAMF-PROTECT] Audit User Events lw login failed'
+id: d98dbf82-3d2c-5d23-a46c-6b4ba1a11283
+status: experimental
+description: Converted from Sagan rule SID 5014244 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/compliance-reporter-documentation/page/Audit_User_Events_Log_Data.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    header.event_name|cased: AUE_lw_login
+  filter_3:
+    return.error: 0
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014244'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] Audit User Events modify group'
+id: 149be066-0b22-5c6e-b6ae-04a3fbfa8a20
+status: experimental
+description: Converted from Sagan rule SID 5014246 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/compliance-reporter-documentation/page/Audit_User_Events_Log_Data.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    header.event_name|cased: AUE_modify_group
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014246'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] Audit User Events modify password'
+id: d80255bc-1b65-5959-b336-e2ab4cfa77cb
+status: experimental
+description: Converted from Sagan rule SID 5014247 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/compliance-reporter-documentation/page/Audit_User_Events_Log_Data.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    header.event_name|cased: AUE_modify_password
+  filter_3:
+    subject.user_name|cased: root
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014247'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] Audit User Events mount'
+id: 5da9b2be-e75e-5b34-b8a4-87bf251629b1
+status: experimental
+description: Converted from Sagan rule SID 5014249 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/compliance-reporter-documentation/page/Audit_User_Events_Log_Data.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    header.event_name|cased: AUE_mount
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014249'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] Audit User Events openssh'
+id: 051ef20d-8c19-5179-b475-67a25c9ebb4d
+status: experimental
+description: Converted from Sagan rule SID 5014250 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/compliance-reporter-documentation/page/Audit_User_Events_Log_Data.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    header.event_name|cased: AUE_openssh
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014250'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] Process Monitoring Event Detected (medium)'
+id: 7abde572-15dc-54fe-95a5-4020f1876d2b
+status: experimental
+description: Converted from Sagan rule SID 5014270 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPProcessEvent
+  selection_3:
+    input.match.severity: 2
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014270'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] Process Monitoring Event Detected (high)'
+id: 247c4075-9690-5775-aebd-135ca40960c2
+status: experimental
+description: Converted from Sagan rule SID 5014271 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPProcessEvent
+  selection_3:
+    input.match.severity: 3
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014271'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] Synthetic Mouse Event Detected (medium)'
+id: 2c82dafd-53bc-598f-8455-fe052f246f3b
+status: experimental
+description: Converted from Sagan rule SID 5014274 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPSyntheticClickEvent
+  selection_3:
+    input.match.severity: 2
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014274'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] Synthetic Mouse Event Detected (high)'
+id: 952e97e4-2928-5710-be61-7a10f2d343e1
+status: experimental
+description: Converted from Sagan rule SID 5014275 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPSyntheticClickEvent
+  selection_3:
+    input.match.severity: 3
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014275'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] USB Event Detected (medium)'
+id: 5db9b32b-8e5f-54b1-9d88-9630372a7a62
+status: experimental
+description: Converted from Sagan rule SID 5014278 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPUSBEvent
+  selection_3:
+    input.match.severity: 2
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014278'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] USB Event Detected (high)'
+id: 463a00d1-c29a-58ed-860f-ba9eb1dddc1a
+status: experimental
+description: Converted from Sagan rule SID 5014279 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPUSBEvent
+  selection_3:
+    input.match.severity: 3
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014279'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] File Download Event Detected (medium)'
+id: 8a9b4215-d741-55d8-8a9b-a5616cb51229
+status: experimental
+description: Converted from Sagan rule SID 5014282 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPDownloadEvents
+  selection_3:
+    input.match.severity: 2
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014282'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] File Download Event Detected (high)'
+id: f65b4f6d-da57-5087-add3-5653d9f5a64e
+status: experimental
+description: Converted from Sagan rule SID 5014283 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPDownloadEvents
+  selection_3:
+    input.match.severity: 3
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014283'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] Malware Removal Tool Event Detected (medium)'
+id: ccbf88d0-28e7-54f4-a60b-8bcba849fc90
+status: experimental
+description: Converted from Sagan rule SID 5014286 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPMRTEvent
+  selection_3:
+    input.match.severity: 2
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014286'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] Malware Removal Tool Event Detected (high)'
+id: e01b74db-6d07-5d01-98c9-c05377350d0b
+status: experimental
+description: Converted from Sagan rule SID 5014287 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPMRTEvent
+  selection_3:
+    input.match.severity: 3
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014287'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] Gatekeeper Event Detected (medium)'
+id: b6de7f3a-31db-5690-a0cf-25e35ead8ee4
+status: experimental
+description: Converted from Sagan rule SID 5014290 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPGatekeeperEvent
+  selection_3:
+    input.match.severity: 2
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014290'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] Gatekeeper Event Detected (high)'
+id: c78d12c9-b7b5-5368-8a90-bb792aba2d65
+status: experimental
+description: Converted from Sagan rule SID 5014291 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPGatekeeperEvent
+  selection_3:
+    input.match.severity: 3
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014291'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] Keylog Event Detected (medium)'
+id: 307b46e5-af61-545a-ac37-dbfd4306dbbf
+status: experimental
+description: Converted from Sagan rule SID 5014294 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPKeylogRegisterEvent
+  selection_3:
+    input.match.severity: 2
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014294'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] Keylog Event Detected (high)'
+id: f2a0b2af-747f-5b8b-8c48-b969993893b8
+status: experimental
+description: Converted from Sagan rule SID 5014295 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPKeylogRegisterEvent
+  selection_3:
+    input.match.severity: 3
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014295'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] Execution Prevention Event Detected (medium)'
+id: 5af00dec-3694-5222-8e34-45f9a864a345
+status: experimental
+description: Converted from Sagan rule SID 5014298 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPPreventedExecutionEvent
+  selection_3:
+    input.match.severity: 2
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014298'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] Execution Prevention Event Detected (high)'
+id: 6252ca54-d2b0-58f5-b350-bd3adb7a8bce
+status: experimental
+description: Converted from Sagan rule SID 5014299 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPPreventedExecutionEvent
+  selection_3:
+    input.match.severity: 3
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014299'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] Threat Match Event Detected (medium)'
+id: b2783139-c00b-50f3-a014-a77eec9dd419
+status: experimental
+description: Converted from Sagan rule SID 5014302 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPThreatMatchExecEvent
+  selection_3:
+    input.match.severity: 2
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014302'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] Threat Match Event Detected (high)'
+id: 9ebd4198-23a9-5ad9-b2ed-5dd3c2430dc9
+status: experimental
+description: Converted from Sagan rule SID 5014303 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPThreatMatchExecEvent
+  selection_3:
+    input.match.severity: 3
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014303'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] Unified Log Event Detected (medium)'
+id: fefb0279-92f0-573c-92d9-fd5ed0acd241
+status: experimental
+description: Converted from Sagan rule SID 5014306 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPUnifiedLogEvent
+  selection_3:
+    input.match.severity: 2
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014306'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] Unified Log Event Detected (high)'
+id: 4896ca08-7763-5dd0-9b5f-1c363af8810f
+status: experimental
+description: Converted from Sagan rule SID 5014307 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPUnifiedLogEvent
+  selection_3:
+    input.match.severity: 3
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014307'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] Custom Event Detected (medium)'
+id: 401bf027-e99c-5680-a134-035a38e32ff0
+status: experimental
+description: Converted from Sagan rule SID 5014310 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    input.match.custom|cased: 'true'
+  selection_3:
+    input.match.severity: 2
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014310'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] Custom Event Detected (high)'
+id: 4c0cbe2d-45c6-5538-b959-c136eff1e24e
+status: experimental
+description: Converted from Sagan rule SID 5014311 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: jamf_protect
+  selection_2:
+    input.match.custom|cased: 'true'
+  selection_3:
+    input.match.severity: 3
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014311'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules

@@ -1,0 +1,432 @@
+title: '[CISCO-IOS] SNMP Authentication Failure [0/5]'
+id: 52903114-35c8-5d56-81d0-61dab37ba8f9
+status: experimental
+description: Converted from Sagan rule SID 5000051 (rev 11), file cisco-ios.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    _raw|contains|cased: SNMP-3-AUTHFAIL
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5000051'
+  sagan.rev: '11'
+  sagan.source_file: cisco-ios.rules
+  rsigma.suppress: 5m
+---
+title: '[CISCO-IOS] Attempted RSHELL connection'
+id: 88e68c8d-1c1e-5348-9fc9-93e9da71e346
+status: experimental
+description: Converted from Sagan rule SID 5000052 (rev 4), file cisco-ios.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    _raw|contains|cased: RCMD-4-RSHPORTATTEMPT
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000052'
+  sagan.rev: '4'
+  sagan.source_file: cisco-ios.rules
+---
+title: '[CISCO-IOS] Configuration from console'
+id: b48929b9-eaf7-58d2-ab83-66e05ebe965c
+status: experimental
+description: Converted from Sagan rule SID 5000055 (rev 6), file cisco-ios.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    _raw|contains|cased: 'SYS-5-CONFIG_I: Configured from console'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5000055'
+  sagan.rev: '6'
+  sagan.source_file: cisco-ios.rules
+---
+title: '[CISCO-IOS] IP Packet recieved to short'
+id: f81a62dd-99b1-5ee8-b0f9-1de659a77aec
+status: experimental
+description: Converted from Sagan rule SID 5001477 (rev 3), file cisco-ios.rules.
+references:
+  - https://www.cisco.com/en/US/products/hw/switches/ps708/products_tech_note09186a00801b42bf.shtml#prob1abb
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    _raw|contains|cased: 'EARL_L3_ASIC-SP-4-INTR_THROTTLE: Throttling'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5001477'
+  sagan.rev: '3'
+  sagan.source_file: cisco-ios.rules
+---
+title: '[CISCO-IOS] IP Packet with probable bad checksum Dropped'
+id: fc624850-d896-504e-9fa9-83342ec7faea
+status: experimental
+description: Converted from Sagan rule SID 5001478 (rev 2), file cisco-ios.rules.
+references:
+  - https://www.cisco.com/en/US/products/hw/switches/ps708/products_tech_note09186a00801b42bf.shtml#EARL
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    _raw|contains|cased: EARL_L3_ASIC-SP-3-INTR_WARN
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5001478'
+  sagan.rev: '2'
+  sagan.source_file: cisco-ios.rules
+---
+title: '[CISCO-IOS] MAC/IP length inconsistencies'
+id: 1bbdb172-16c2-5652-96cb-6090b2b0e5d2
+status: experimental
+description: Converted from Sagan rule SID 5001483 (rev 2), file cisco-ios.rules.
+references:
+  - https://www.cisco.com/en/US/products/hw/switches/ps708/products_tech_note09186a00801b42bf.shtml#prob1
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    _raw|contains|cased: MLS_STAT-SP-4-IP_LEN_ERR
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5001483'
+  sagan.rev: '2'
+  sagan.source_file: cisco-ios.rules
+---
+title: '[CISCO-IOS] Invalid IP Checksum detected'
+id: 7b0a07b5-9e1a-550c-b327-337ab8d612ae
+status: experimental
+description: Converted from Sagan rule SID 5001484 (rev 2), file cisco-ios.rules.
+references:
+  - https://www.cisco.com/en/US/products/hw/switches/ps708/products_tech_note09186a00801b42bf.shtml#prob2
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    _raw|contains|cased: MLS_STAT-SP-4-IP_CSUM_ERR
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5001484'
+  sagan.rev: '2'
+  sagan.source_file: cisco-ios.rules
+---
+title: '[CISCO-IOS] Excessive Multicast Traffic to IGMP reserved address'
+id: 48dcb677-7651-5338-a17d-94babbffbc8b
+status: experimental
+description: Converted from Sagan rule SID 5001485 (rev 2), file cisco-ios.rules.
+references:
+  - https://www.cisco.com/en/US/products/hw/switches/ps708/products_tech_note09186a00801b42bf.shtml#prob3
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    _raw|contains|cased: MCAST-SP-6-ADDRESS_ALIASING_FALLBACK
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5001485'
+  sagan.rev: '2'
+  sagan.source_file: cisco-ios.rules
+---
+title: '[CISCO-IOS] Short IP Packets Detected'
+id: 5bef4601-5ec1-5ffa-8b69-334183bf5407
+status: experimental
+description: Converted from Sagan rule SID 5001489 (rev 2), file cisco-ios.rules.
+references:
+  - https://www.cisco.com/en/US/products/hw/switches/ps708/products_tech_note09186a00801b42bf.shtml#prob8
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    _raw|contains|cased: MLS_STAT-4-IP_TOO_SHRT
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5001489'
+  sagan.rev: '2'
+  sagan.source_file: cisco-ios.rules
+---
+title: '[CISCO-IOS] Switch Detected Unknown Protocol'
+id: d3ec4f0a-23fa-52c1-be2a-82d164b3916b
+status: experimental
+description: Converted from Sagan rule SID 5001519 (rev 2), file cisco-ios.rules.
+references:
+  - https://www.cisco.com/en/US/products/hw/switches/ps708/products_tech_note09186a00801b42bf.shtml#badcode
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    _raw|contains|cased: SYS-3-PORT_RX_BADCODE
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5001519'
+  sagan.rev: '2'
+  sagan.source_file: cisco-ios.rules
+---
+title: '[CISCO-IOS] High CPU usage detected'
+id: cd0610da-43e2-5e95-b192-2507ee28f982
+status: experimental
+description: Converted from Sagan rule SID 5001626 (rev 3), file cisco-ios.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    _raw|contains|cased: HIGH CPU DETECTED
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001626'
+  sagan.rev: '3'
+  sagan.source_file: cisco-ios.rules
+  rsigma.suppress: 1h
+---
+title: '[CISCO-IOS] Illegal User SSH'
+id: dbd91fb1-953b-5477-84c9-2821b97b3060
+status: experimental
+description: Converted from Sagan rule SID 5001669 (rev 7), file cisco-ios.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    _raw|contains|cased: '%DAEMON-3-SYSTEM_MSG:'
+  selection_2:
+    _raw|contains|cased: Authentication failure for illegal user
+  selection_3:
+    _raw|contains|cased: sshd[
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-admin
+custom_attributes:
+  sagan.sid: '5001669'
+  sagan.rev: '7'
+  sagan.source_file: cisco-ios.rules
+---
+title: '[CISCO-IOS] FATAL - bad tty - login (no program)'
+id: fa44e034-9d0c-5b0b-8be6-f8aabcaca85d
+status: experimental
+description: Converted from Sagan rule SID 5001671 (rev 5), file cisco-ios.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    _raw|contains|cased: '%USER-3-SYSTEM_MSG:'
+  selection_2:
+    _raw|contains|cased: 'FATAL: bad tty'
+  selection_3:
+    _raw|contains|cased: no program
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001671'
+  sagan.rev: '5'
+  sagan.source_file: cisco-ios.rules
+---
+title: '[CISCO-IOS] Auth to privilege 15 failed'
+id: d304d922-1cfb-599f-9522-b083f7a4ecae
+status: experimental
+description: Converted from Sagan rule SID 5001672 (rev 3), file cisco-ios.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    _raw|contains|cased: '%SYS-5-PRIV_AUTH_FAIL'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-admin
+custom_attributes:
+  sagan.sid: '5001672'
+  sagan.rev: '3'
+  sagan.source_file: cisco-ios.rules
+---
+title: '[CISCO-IOS] Invalid ARP'
+id: d8548114-9c85-56be-8c42-016247d0b0d0
+status: experimental
+description: Converted from Sagan rule SID 5001674 (rev 2), file cisco-ios.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    _raw|contains|cased: '%SW_DAI-4-INVALID_ARP'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5001674'
+  sagan.rev: '2'
+  sagan.source_file: cisco-ios.rules
+---
+title: '[CISCO-IOS] WebUI Accessed by cisco_tac_admin or cisco_support'
+id: 23f2edbb-4a2d-56e9-8a63-89eb46519d70
+status: experimental
+description: Converted from Sagan rule SID 5013940 (rev 1), file cisco-ios.rules.
+references:
+  - 2023-20198
+  - https://www.cisco.com/c/en/us/support/docs/csa/cisco-sa-iosxe-webui-privesc-j22SaA4z.html
+  - https://blog.talosintelligence.com/active-exploitation-of-cisco-ios-xe-software/
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    _raw|contains|cased: '%SYS-5-CONFIG_P:'
+  selection_2:
+    _raw|contains|cased: process SEP_webui_wsma_http
+  selection_3:
+    _raw|contains|cased:
+      - from console as cisco_tac_admin
+      - from console as cisco_support
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1068
+  - attack.ta0004
+  - sagan.classtype.targeted-activity
+custom_attributes:
+  sagan.sid: '5013940'
+  sagan.rev: '1'
+  sagan.source_file: cisco-ios.rules
+  sagan.metadata: deployment=Server,affected_product=cisco_ios_xe,affected_version=all,mitigation=www.cisco.com/c/en/us/support/docs/csa/cisco-sa-iosxe-webui-privesc-j22SaA4z.html,tag=cve,created_at=2023_10_17,updated_at=2023_10_17
+---
+title: '[CISCO-IOS] WebUI Accessed by any user'
+id: c8232e8f-f01e-50bc-957a-a048cd205eae
+status: experimental
+description: Converted from Sagan rule SID 5013941 (rev 1), file cisco-ios.rules.
+references:
+  - 2023-20198
+  - https://www.cisco.com/c/en/us/support/docs/csa/cisco-sa-iosxe-webui-privesc-j22SaA4z.html
+  - https://blog.talosintelligence.com/active-exploitation-of-cisco-ios-xe-software/
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    _raw|contains|cased: '%SYS-5-CONFIG_P:'
+  selection_2:
+    _raw|contains|cased: process SEP_webui_wsma_http
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1068
+  - attack.ta0004
+  - sagan.classtype.targeted-activity
+custom_attributes:
+  sagan.sid: '5013941'
+  sagan.rev: '1'
+  sagan.source_file: cisco-ios.rules
+  sagan.metadata: deployment=Server,affected_product=cisco_ios_xe,affected_version=all,mitigation=www.cisco.com/c/en/us/support/docs/csa/cisco-sa-iosxe-webui-privesc-j22SaA4z.html,tag=cve,created_at=2023_10_17,updated_at=2023_10_17
+---
+title: '[CISCO-IOS] File Added via Web User Interface'
+id: 0b5e949b-3ba2-59b9-90aa-621322c0ceef
+status: experimental
+description: Converted from Sagan rule SID 5013943 (rev 1), file cisco-ios.rules.
+references:
+  - 2023-20198
+  - https://www.cisco.com/c/en/us/support/docs/csa/cisco-sa-iosxe-webui-privesc-j22SaA4z.html
+  - https://blog.talosintelligence.com/active-exploitation-of-cisco-ios-xe-software/
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    _raw|contains|cased: '%WEBUI-6-INSTALL_OPERATION_INFO:'
+  selection_2:
+    _raw|contains|cased: 'Install Operation: ADD'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1068
+  - attack.ta0004
+  - sagan.classtype.targeted-activity
+custom_attributes:
+  sagan.sid: '5013943'
+  sagan.rev: '1'
+  sagan.source_file: cisco-ios.rules
+  sagan.metadata: deployment=Server,affected_product=cisco_ios_xe,affected_version=all,mitigation=www.cisco.com/c/en/us/support/docs/csa/cisco-sa-iosxe-webui-privesc-j22SaA4z.html,tag=cve,created_at=2023_10_17,updated_at=2023_10_17

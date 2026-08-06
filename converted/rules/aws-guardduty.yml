@@ -1,0 +1,3271 @@
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Backdoor:EC2/C&CActivity.B)'
+id: c670e8a6-37c5-51df-ba07-dc0c10cc0b9a
+status: experimental
+description: Converted from Sagan rule SID 5010341 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Backdoor:EC2/C&CActivity.B
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1036
+  - attack.t1043
+  - attack.t1485
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010341'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Backdoor:EC2/C&CActivity.B!DNS)'
+id: 65ec45b4-7f04-5df0-bb26-5f444631dc9c
+status: experimental
+description: Converted from Sagan rule SID 5010342 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Backdoor:EC2/C&CActivity.B!DNS
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1482
+  - attack.t1483
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010342'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Backdoor:EC2/DenialOfService.Dns)'
+id: 3e0e3748-826c-5601-91cb-5211d3053f71
+status: experimental
+description: Converted from Sagan rule SID 5010343 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Backdoor:EC2/DenialOfService.Dns
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1498
+  - attack.t1498.003
+  - attack.t1566.002
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010343'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Backdoor:EC2/DenialOfService.Tcp)'
+id: e262bcee-4195-5645-bbbd-6da0cdb2bfd4
+status: experimental
+description: Converted from Sagan rule SID 5010344 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Backdoor:EC2/DenialOfService.Tcp
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1498
+  - attack.t1498.001
+  - attack.t1498.002
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010344'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Backdoor:EC2/DenialOfService.Udp)'
+id: 97d2be86-ab72-5f1f-91e4-4b19ff478491
+status: experimental
+description: Converted from Sagan rule SID 5010345 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Backdoor:EC2/DenialOfService.Udp
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1498
+  - attack.t1498.001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010345'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Backdoor:EC2/DenialOfService.UdpOnTcpPorts)'
+id: c8635ac2-a13b-5086-b08a-5fa9af5f3180
+status: experimental
+description: Converted from Sagan rule SID 5010346 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Backdoor:EC2/DenialOfService.UdpOnTcpPorts
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1498
+  - attack.t1498.001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010346'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Backdoor:EC2/DenialOfService.UnusualProtocol)'
+id: b3a50afe-816b-5625-8b7d-64d54df7fed1
+status: experimental
+description: Converted from Sagan rule SID 5010347 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Backdoor:EC2/DenialOfService.UnusualProtocol
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1498
+  - attack.t1498.001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010347'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Backdoor:EC2/Spambot)'
+id: 0533c3be-0385-5ca4-a02e-5896bc749e1d
+status: experimental
+description: Converted from Sagan rule SID 5010348 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Backdoor:EC2/Spambot
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1020
+  - attack.t1071.001
+  - attack.t1119
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010348'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Behavior:EC2/NetworkPortUnusual)'
+id: f2cb00b4-735b-587b-a2d7-f3fc9f10d9ba
+status: experimental
+description: Converted from Sagan rule SID 5010349 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Behavior:EC2/NetworkPortUnusual
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1021
+  - attack.t1046
+  - attack.t1133
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010349'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Behavior:EC2/TrafficVolumeUnusual)'
+id: 79d1d860-e050-5b9d-a817-d4e0eee90cc6
+status: experimental
+description: Converted from Sagan rule SID 5010350 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Behavior:EC2/TrafficVolumeUnusual
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1041
+  - attack.t1046
+  - attack.t1498
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010350'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (CredentialAccess:IAMUser/AnomalousBehavior)'
+id: 62e5a1ef-7ce5-5fbc-bc83-222925083529
+status: experimental
+description: Converted from Sagan rule SID 5010351 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: CredentialAccess:IAMUser/AnomalousBehavior
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1003
+  - attack.t1078
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010351'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (CredentialAccess:Kubernetes/MaliciousIPCaller)'
+id: 39241317-5ec0-5c5d-8d3b-37f3adb9366b
+status: experimental
+description: Converted from Sagan rule SID 5010352 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: CredentialAccess:Kubernetes/MaliciousIPCaller
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1003
+  - attack.t1078
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010352'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (CredentialAccess:Kubernetes/MaliciousIPCaller.Custom)'
+id: cf685d9f-6df5-5c7b-bdf2-5d093716cc7a
+status: experimental
+description: Converted from Sagan rule SID 5010353 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: CredentialAccess:Kubernetes/MaliciousIPCaller.Custom
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1003
+  - attack.t1078
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010353'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (CredentialAccess:Kubernetes/SuccessfulAnonymousAccess)'
+id: a6d91417-dd24-56a6-be7e-24d95c91caf7
+status: experimental
+description: Converted from Sagan rule SID 5010354 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: CredentialAccess:Kubernetes/SuccessfulAnonymousAccess
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1003
+  - attack.t1078
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010354'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (CredentialAccess:Kubernetes/TorIPCaller)'
+id: ae3666ef-a349-5782-aeb5-d4b12e0a0b1c
+status: experimental
+description: Converted from Sagan rule SID 5010355 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: CredentialAccess:Kubernetes/TorIPCaller
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1003
+  - attack.t1078
+  - attack.t1567.002
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010355'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (CryptoCurrency:EC2/BitcoinTool.B)'
+id: 7096e32e-2f40-514c-a45a-38b6b7ec6e5b
+status: experimental
+description: Converted from Sagan rule SID 5010356 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: CryptoCurrency:EC2/BitcoinTool.B
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1030
+  - attack.t1071.001
+  - attack.t1119
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010356'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (CryptoCurrency:EC2/BitcoinTool.B!DNS)'
+id: 57c5eaa1-f681-519e-b82d-38a8794bd667
+status: experimental
+description: Converted from Sagan rule SID 5010357 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: CryptoCurrency:EC2/BitcoinTool.B!DNS
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071.001
+  - attack.t1133
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010357'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (DefenseEvasion:IAMUser/AnomalousBehavior)'
+id: b8ef965f-667d-596f-9d63-49b0b299c3cb
+status: experimental
+description: Converted from Sagan rule SID 5010358 (rev 3), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: DefenseEvasion:IAMUser/AnomalousBehavior
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1003
+  - attack.t1036
+  - attack.t1078
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010358'
+  sagan.rev: '3'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (DefenseEvasion:Kubernetes/MaliciousIPCaller)'
+id: 5a794d8a-5785-5318-9011-e799f0456ef9
+status: experimental
+description: Converted from Sagan rule SID 5010359 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: DefenseEvasion:Kubernetes/MaliciousIPCaller
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1036
+  - attack.t1567.002
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010359'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (DefenseEvasion:Kubernetes/MaliciousIPCaller.Custom)'
+id: 36b27d59-7147-5515-bebf-c65ab11eb72e
+status: experimental
+description: Converted from Sagan rule SID 5010360 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: DefenseEvasion:Kubernetes/MaliciousIPCaller.Custom
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1036
+  - attack.t1567.002
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010360'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (DefenseEvasion:Kubernetes/SuccessfulAnonymousAccess)'
+id: 0d69ec6b-86e2-583e-bff7-e8f6ba9d215b
+status: experimental
+description: Converted from Sagan rule SID 5010361 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: DefenseEvasion:Kubernetes/SuccessfulAnonymousAccess
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1036
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010361'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (DefenseEvasion:Kubernetes/TorIPCaller)'
+id: ec776ece-da6b-5fcd-928b-3f56f051d46a
+status: experimental
+description: Converted from Sagan rule SID 5010362 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: DefenseEvasion:Kubernetes/TorIPCaller
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1036
+  - attack.t1567.002
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010362'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Discovery:IAMUser/AnomalousBehavior)'
+id: c412661a-7bc7-5fd0-8d0a-58f7cbc7a5e9
+status: experimental
+description: Converted from Sagan rule SID 5010363 (rev 3), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Discovery:IAMUser/AnomalousBehavior
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1082
+  - attack.t1595
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010363'
+  sagan.rev: '3'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Discovery:Kubernetes/MaliciousIPCaller)'
+id: dc208f3b-a024-584d-91d0-0a2982acfb71
+status: experimental
+description: Converted from Sagan rule SID 5010364 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Discovery:Kubernetes/MaliciousIPCaller
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1082
+  - attack.t1595
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010364'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Discovery:Kubernetes/MaliciousIPCaller.Custom)'
+id: 5a3116b1-145b-5b7f-afdd-2cfcee5afb8a
+status: experimental
+description: Converted from Sagan rule SID 5010365 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Discovery:Kubernetes/MaliciousIPCaller.Custom
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1082
+  - attack.t1595
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010365'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Discovery:Kubernetes/SuccessfulAnonymousAccess)'
+id: b372b941-42b8-52a6-bd66-7b84fd8dd35e
+status: experimental
+description: Converted from Sagan rule SID 5010366 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Discovery:Kubernetes/SuccessfulAnonymousAccess
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1082
+  - attack.t1595
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010366'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Discovery:Kubernetes/TorIPCaller)'
+id: 865595ba-db6a-5cf5-a8d3-4568a2f8b95d
+status: experimental
+description: Converted from Sagan rule SID 5010367 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Discovery:Kubernetes/TorIPCaller
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1082
+  - attack.t1567.002
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010367'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Discovery:S3/AnomalousBehavior)'
+id: def2dd73-bfe9-5d72-9d76-02de7169a852
+status: experimental
+description: Converted from Sagan rule SID 5010368 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Discovery:S3/AnomalousBehavior
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1005
+  - attack.t1018
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010368'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Discovery:S3/MaliciousIPCaller)'
+id: 9eff23ea-6869-5b36-a479-213ab53bd89e
+status: experimental
+description: Converted from Sagan rule SID 5010369 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Discovery:S3/MaliciousIPCaller
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1530
+  - attack.t1595
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010369'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Discovery:S3/MaliciousIPCaller.Custom)'
+id: a986151d-5463-5605-b07b-b6cbb74166d2
+status: experimental
+description: Converted from Sagan rule SID 5010370 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Discovery:S3/MaliciousIPCaller.Custom
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1530
+  - attack.t1595
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010370'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Discovery:S3/TorIPCaller)'
+id: 10610b87-4d30-5c19-b72b-5e7a8217f49f
+status: experimental
+description: Converted from Sagan rule SID 5010371 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Discovery:S3/TorIPCaller
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1530
+  - attack.t1567.002
+  - attack.t1595
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010371'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Execution:Kubernetes/ExecInKubeSystemPod)'
+id: 1a97520c-2936-5f79-b88d-a056354e872d
+status: experimental
+description: Converted from Sagan rule SID 5010372 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Execution:Kubernetes/ExecInKubeSystemPod
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1036
+  - attack.t1106
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010372'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Exfiltration:IAMUser/AnomalousBehavior)'
+id: eadba0ee-61b0-5ac2-a030-ed64365658ab
+status: experimental
+description: Converted from Sagan rule SID 5010373 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Exfiltration:IAMUser/AnomalousBehavior
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1041
+  - attack.t1530
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010373'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Exfiltration:S3/AnomalousBehavior)'
+id: a473eb51-b418-5953-930e-621eda78df93
+status: experimental
+description: Converted from Sagan rule SID 5010374 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Exfiltration:S3/AnomalousBehavior
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1041
+  - attack.t1530
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010374'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Exfiltration:S3/MaliciousIPCaller)'
+id: 7a9a7311-85e1-5b27-8d18-419d8a812d12
+status: experimental
+description: Converted from Sagan rule SID 5010375 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Exfiltration:S3/MaliciousIPCaller
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1041
+  - attack.t1530
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010375'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Impact:EC2/AbusedDomainRequest.Reputation)'
+id: 7fca9a3b-330f-5fa3-82f6-b5cbc500b2f4
+status: experimental
+description: Converted from Sagan rule SID 5010376 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Impact:EC2/AbusedDomainRequest.Reputation
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010376'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Impact:EC2/BitcoinDomainRequest.Reputation)'
+id: 514372d3-9e5a-5b4b-9f96-874d7759e339
+status: experimental
+description: Converted from Sagan rule SID 5010377 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Impact:EC2/BitcoinDomainRequest.Reputation
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1485
+  - attack.t1496
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010377'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Impact:EC2/MaliciousDomainRequest.Reputation)'
+id: 9c2e554b-5b42-5051-95d2-52f317fd40d0
+status: experimental
+description: Converted from Sagan rule SID 5010378 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Impact:EC2/MaliciousDomainRequest.Reputation
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1485
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010378'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Impact:EC2/PortSweep)'
+id: e82149e9-f986-5a56-8c2b-83a208159b13
+status: experimental
+description: Converted from Sagan rule SID 5010379 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Impact:EC2/PortSweep
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1018
+  - attack.t1595
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010379'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Impact:EC2/SuspiciousDomainRequest.Reputation)'
+id: dffbc069-6dd6-5dc6-915c-607c74f3c3b4
+status: experimental
+description: Converted from Sagan rule SID 5010380 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Impact:EC2/SuspiciousDomainRequest.Reputation
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1485
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010380'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Impact:EC2/WinRMBruteForce)'
+id: c741feaf-3d3e-505c-abdc-9e68506a5af2
+status: experimental
+description: Converted from Sagan rule SID 5010381 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Impact:EC2/WinRMBruteForce
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - attack.t1110
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010381'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Impact:IAMUser/AnomalousBehavior)'
+id: 4a2f055a-3526-5134-8e71-ed33263ce183
+status: experimental
+description: Converted from Sagan rule SID 5010382 (rev 3), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Impact:IAMUser/AnomalousBehavior
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - attack.t1087
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010382'
+  sagan.rev: '3'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Impact:Kubernetes/MaliciousIPCaller)'
+id: 87ae7a47-6020-5311-ae8f-89549c7a88d8
+status: experimental
+description: Converted from Sagan rule SID 5010383 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Impact:Kubernetes/MaliciousIPCaller
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1059
+  - attack.t1133
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010383'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Impact:Kubernetes/MaliciousIPCaller.Custom)'
+id: 2aec8d5d-8ddc-504b-becc-ac897fcd6462
+status: experimental
+description: Converted from Sagan rule SID 5010384 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Impact:Kubernetes/MaliciousIPCaller.Custom
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1059
+  - attack.t1133
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010384'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Impact:Kubernetes/SuccessfulAnonymousAccess)'
+id: aad58ede-9bcd-5d6f-9ec0-cc58c09e2d44
+status: experimental
+description: Converted from Sagan rule SID 5010385 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Impact:Kubernetes/SuccessfulAnonymousAccess
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - attack.t1190
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010385'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Impact:Kubernetes/TorIPCaller)'
+id: 348eabf1-a821-5ff2-bd21-93efbde07292
+status: experimental
+description: Converted from Sagan rule SID 5010386 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Impact:Kubernetes/TorIPCaller
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566.001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010386'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Impact:S3/AnomalousBehavior.Delete)'
+id: 40ba4d6e-4de3-5641-92ab-9cf40d540240
+status: experimental
+description: Converted from Sagan rule SID 5010387 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Impact:S3/AnomalousBehavior.Delete
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1578.002
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010387'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Impact:S3/AnomalousBehavior.Permission)'
+id: ecaeea30-80f0-5e57-acd5-33bb9b87e561
+status: experimental
+description: Converted from Sagan rule SID 5010388 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Impact:S3/AnomalousBehavior.Permission
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1530.001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010388'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Impact:S3/AnomalousBehavior.Write)'
+id: 7fade582-5a26-5da7-93b6-e0df16788673
+status: experimental
+description: Converted from Sagan rule SID 5010389 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Impact:S3/AnomalousBehavior.Write
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1048
+  - attack.t1074
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010389'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+  sagan.metadata: updated_on=2024_06_14
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Impact:S3/MaliciousIPCaller)'
+id: cd8f3833-ca8e-5022-ab33-4e0c74bbd85f
+status: experimental
+description: Converted from Sagan rule SID 5010390 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Impact:S3/MaliciousIPCaller
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1133
+  - attack.t1530.004
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010390'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (InitialAccess:IAMUser/AnomalousBehavior)'
+id: 4ba70894-9c27-5455-939c-c78bcdd91787
+status: experimental
+description: Converted from Sagan rule SID 5010391 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: InitialAccess:IAMUser/AnomalousBehavior
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1003
+  - attack.t1078
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010391'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (PenTest:IAMUser/KaliLinux)'
+id: da7da949-f155-59e5-8ebb-d64cb43d0097
+status: experimental
+description: Converted from Sagan rule SID 5010392 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: PenTest:IAMUser/KaliLinux
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010392'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (PenTest:IAMUser/ParrotLinux)'
+id: 68f83695-c5f1-5ff0-806f-657b62268693
+status: experimental
+description: Converted from Sagan rule SID 5010393 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: PenTest:IAMUser/ParrotLinux
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010393'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (PenTest:IAMUser/PentooLinux)'
+id: f875b3b3-b8ce-51cd-a52f-b19e487c39a2
+status: experimental
+description: Converted from Sagan rule SID 5010394 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: PenTest:IAMUser/PentooLinux
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010394'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (PenTest:S3/KaliLinux)'
+id: 17bdcbaf-9c22-5461-b664-e6277a34325c
+status: experimental
+description: Converted from Sagan rule SID 5010395 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: PenTest:S3/KaliLinux
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010395'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (PenTest:S3/ParrotLinux)'
+id: 487d523d-bf75-566c-acd3-3e93e79d90e9
+status: experimental
+description: Converted from Sagan rule SID 5010396 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: PenTest:S3/ParrotLinux
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010396'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (PenTest:S3/PentooLinux)'
+id: 5e675051-45e8-558b-925a-dba3a38faa9d
+status: experimental
+description: Converted from Sagan rule SID 5010397 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: PenTest:S3/PentooLinux
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010397'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Persistence:IAMUser/AnomalousBehavior)'
+id: 1a60627b-9b96-5a72-ba9d-59b2aeb37b27
+status: experimental
+description: Converted from Sagan rule SID 5010398 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Persistence:IAMUser/AnomalousBehavior
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1543
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010398'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Persistence:Kubernetes/ContainerWithSensitiveMount)'
+id: e02e286e-043b-5c24-b846-43b9980c56b6
+status: experimental
+description: Converted from Sagan rule SID 5010399 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Persistence:Kubernetes/ContainerWithSensitiveMount
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1606
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010399'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Persistence:Kubernetes/MaliciousIPCaller)'
+id: 9690eabf-57c5-5eb3-8288-9a521ad4173f
+status: experimental
+description: Converted from Sagan rule SID 5010400 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Persistence:Kubernetes/MaliciousIPCaller
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1036
+  - attack.t1043
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010400'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Persistence:Kubernetes/MaliciousIPCaller.Custom)'
+id: 60da2a21-66a0-509e-9e5e-7d5715803a0b
+status: experimental
+description: Converted from Sagan rule SID 5010401 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Persistence:Kubernetes/MaliciousIPCaller.Custom
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1094
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010401'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Persistence:Kubernetes/SuccessfulAnonymousAccess)'
+id: 66ed414e-f82e-5c86-9d6c-781240537abe
+status: experimental
+description: Converted from Sagan rule SID 5010402 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Persistence:Kubernetes/SuccessfulAnonymousAccess
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010402'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Persistence:Kubernetes/TorIPCaller)'
+id: e4038826-b736-5178-b510-fbaba3c51d6e
+status: experimental
+description: Converted from Sagan rule SID 5010403 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Persistence:Kubernetes/TorIPCaller
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - attack.t1564.002
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010403'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Policy:IAMUser/RootCredentialUsage)'
+id: 7c1757ec-d447-5e9d-954c-d9f2dd3e19cc
+status: experimental
+description: Converted from Sagan rule SID 5010404 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Policy:IAMUser/RootCredentialUsage
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1003
+  - attack.t1078
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5010404'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Policy:Kubernetes/AdminAccessToDefaultServiceAccount)'
+id: 7fdf54a0-22a4-56c5-b4e1-fd24eb50557d
+status: experimental
+description: Converted from Sagan rule SID 5010405 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Policy:Kubernetes/AdminAccessToDefaultServiceAccount
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - attack.t1562
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010405'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Policy:Kubernetes/AnonymousAccessGranted)'
+id: 065c1ffd-3593-5001-8c9d-a956d0bdbb98
+status: experimental
+description: Converted from Sagan rule SID 5010406 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Policy:Kubernetes/AnonymousAccessGranted
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - attack.t1562
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010406'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Policy:Kubernetes/KubeflowDashboardExposed)'
+id: dce4a64a-f131-5e23-b20f-e8db868d1b92
+status: experimental
+description: Converted from Sagan rule SID 5010407 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Policy:Kubernetes/KubeflowDashboardExposed
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1046
+  - attack.t1133
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010407'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Policy:Kubernetes/ExposedDashboard)'
+id: 61e7fba8-d790-5b36-bae7-df47d5543a17
+status: experimental
+description: Converted from Sagan rule SID 5010408 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Policy:Kubernetes/ExposedDashboard
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1046
+  - attack.t1133
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010408'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Policy:S3/AccountBlockPublicAccessDisabled)'
+id: 9336b3d8-42c1-5578-a776-578caf5531bf
+status: experimental
+description: Converted from Sagan rule SID 5010409 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Policy:S3/AccountBlockPublicAccessDisabled
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1041
+  - attack.t1601
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010409'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Policy:S3/BucketAnonymousAccessGranted)'
+id: 57542fca-ad86-5714-af1e-eb9d30a54ff6
+status: experimental
+description: Converted from Sagan rule SID 5010410 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Policy:S3/BucketAnonymousAccessGranted
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1133
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010410'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Policy:S3/BucketBlockPublicAccessDisabled)'
+id: d7047c55-2231-5d3d-a2a1-b8ba70eecaa6
+status: experimental
+description: Converted from Sagan rule SID 5010411 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Policy:S3/BucketBlockPublicAccessDisabled
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1562.002
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010411'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+  sagan.metadata: updated_on=2024_06_14
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Policy:S3/BucketPublicAccessGranted)'
+id: 16f70218-4609-5f0e-9709-d0ed606766c8
+status: experimental
+description: Converted from Sagan rule SID 5010412 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Policy:S3/BucketPublicAccessGranted
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1562.002
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010412'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (PrivilegeEscalation:IAMUser/AnomalousBehavior)'
+id: d16f3b5c-ad5d-53da-9913-ee7b45d6c178
+status: experimental
+description: Converted from Sagan rule SID 5010413 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: PrivilegeEscalation:IAMUser/AnomalousBehavior
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010413'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (PrivilegeEscalation:Kubernetes/PrivilegedContainer)'
+id: 35652b88-6fab-5a0c-b318-580b99fa4606
+status: experimental
+description: Converted from Sagan rule SID 5010414 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: PrivilegeEscalation:Kubernetes/PrivilegedContainer
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1526
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010414'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Recon:EC2/PortProbeEMRUnprotectedPort)'
+id: 01599b0f-c810-5ed0-afaf-e84109f58112
+status: experimental
+description: Converted from Sagan rule SID 5010415 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Recon:EC2/PortProbeEMRUnprotectedPort
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1018
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010415'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Recon:EC2/PortProbeUnprotectedPort)'
+id: 32b3c0cd-f3e7-5cac-8210-f3056703336b
+status: experimental
+description: Converted from Sagan rule SID 5010416 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Recon:EC2/PortProbeUnprotectedPort
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1018
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010416'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Recon:EC2/Portscan)'
+id: 38a1271f-8598-521d-8b53-131abac24410
+status: experimental
+description: Converted from Sagan rule SID 5010417 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Recon:EC2/Portscan
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1018
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010417'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Recon:IAMUser/MaliciousIPCaller)'
+id: 9d477e65-f9ec-5434-8340-7164e85f1b19
+status: experimental
+description: Converted from Sagan rule SID 5010418 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Recon:IAMUser/MaliciousIPCaller
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1595
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010418'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Recon:IAMUser/MaliciousIPCaller.Custom)'
+id: 2046c23c-7a02-581a-9067-9f969ec06ef4
+status: experimental
+description: Converted from Sagan rule SID 5010419 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Recon:IAMUser/MaliciousIPCaller.Custom
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1595
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010419'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Recon:IAMUser/TorIPCaller)'
+id: 20a2891e-7f23-5d35-bab7-f12d712ebf0e
+status: experimental
+description: Converted from Sagan rule SID 5010420 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Recon:IAMUser/TorIPCaller
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1564.002
+  - attack.t1595
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010420'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Stealth:IAMUser/CloudTrailLoggingDisabled)'
+id: 8b5c0754-080a-5021-9b90-1f12db367ece
+status: experimental
+description: Converted from Sagan rule SID 5010421 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Stealth:IAMUser/CloudTrailLoggingDisabled
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1562.003
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010421'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Stealth:IAMUser/PasswordPolicyChange)'
+id: e1e7851a-ae22-5af7-b1e8-9b98954ad512
+status: experimental
+description: Converted from Sagan rule SID 5010422 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Stealth:IAMUser/PasswordPolicyChange
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1562
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010422'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Stealth:S3/ServerAccessLoggingDisabled)'
+id: 752186a6-cd98-56f3-b386-a88032850825
+status: experimental
+description: Converted from Sagan rule SID 5010423 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Stealth:S3/ServerAccessLoggingDisabled
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1562
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010423'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Trojan:EC2/BlackholeTraffic)'
+id: 3dbe3d26-08f2-55e3-89a2-74703fe8f8cc
+status: experimental
+description: Converted from Sagan rule SID 5010424 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Trojan:EC2/BlackholeTraffic
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1601
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010424'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Trojan:EC2/BlackholeTraffic!DNS)'
+id: 0b939c81-8e7a-5afc-838d-856fa10125c5
+status: experimental
+description: Converted from Sagan rule SID 5010425 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Trojan:EC2/BlackholeTraffic!DNS
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1601
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010425'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Trojan:EC2/DGADomainRequest.B)'
+id: 13af883b-fcbc-583f-a72b-0a1e3a469f0d
+status: experimental
+description: Converted from Sagan rule SID 5010426 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Trojan:EC2/DGADomainRequest.B
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1637.001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010426'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Trojan:EC2/DGADomainRequest.C!DNS)'
+id: 61e8772d-53d4-5893-806a-fb14e2257f2f
+status: experimental
+description: Converted from Sagan rule SID 5010427 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Trojan:EC2/DGADomainRequest.C!DNS
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.t1637.001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010427'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Trojan:EC2/DNSDataExfiltration)'
+id: 37b7cc23-4438-5975-b310-36aaf59abfa8
+status: experimental
+description: Converted from Sagan rule SID 5010428 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Trojan:EC2/DNSDataExfiltration
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1048
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010428'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Trojan:EC2/DriveBySourceTraffic!DNS)'
+id: 5842d4ce-0359-5d3f-8aa4-d6d561803030
+status: experimental
+description: Converted from Sagan rule SID 5010429 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Trojan:EC2/DriveBySourceTraffic!DNS
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1189
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010429'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Trojan:EC2/DropPoint)'
+id: 25c2c808-c19a-5b15-9e31-9011b4620048
+status: experimental
+description: Converted from Sagan rule SID 5010430 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Trojan:EC2/DropPoint
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010430'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Trojan:EC2/DropPoint!DNS)'
+id: 3f07c8ec-3943-5efb-8e4c-ce282b6b578f
+status: experimental
+description: Converted from Sagan rule SID 5010431 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Trojan:EC2/DropPoint!DNS
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1101.001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010431'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Trojan:EC2/PhishingDomainRequest!DNS)'
+id: b0e44a3b-8a6c-54d1-98fb-1e4df0f767da
+status: experimental
+description: Converted from Sagan rule SID 5010432 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Trojan:EC2/PhishingDomainRequest!DNS
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010432'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (UnauthorizedAccess:EC2/MaliciousIPCaller.Custom)'
+id: feae2a40-7df2-5aeb-a9d3-22a9aaf6533b
+status: experimental
+description: Converted from Sagan rule SID 5010433 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: UnauthorizedAccess:EC2/MaliciousIPCaller.Custom
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1133
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010433'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (UnauthorizedAccess:EC2/MetadataDNSRebind)'
+id: c5fe41da-5c16-55bc-b50c-523e8bf3fe71
+status: experimental
+description: Converted from Sagan rule SID 5010434 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: UnauthorizedAccess:EC2/MetadataDNSRebind
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1190
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010434'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (UnauthorizedAccess:EC2/RDPBruteForce)'
+id: 3f9c20f7-f150-5148-9d7c-cf05878b71ef
+status: experimental
+description: Converted from Sagan rule SID 5010435 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: UnauthorizedAccess:EC2/RDPBruteForce
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1110
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010435'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (UnauthorizedAccess:EC2/SSHBruteForce)'
+id: b25da595-0e02-5497-b100-2ddfc1a2fded
+status: experimental
+description: Converted from Sagan rule SID 5010436 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: UnauthorizedAccess:EC2/SSHBruteForce
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1110
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010436'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (UnauthorizedAccess:EC2/TorClient)'
+id: f6d5d5de-6cf6-5c7b-811c-39e32f7c4416
+status: experimental
+description: Converted from Sagan rule SID 5010437 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: UnauthorizedAccess:EC2/TorClient
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1565.001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010437'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (UnauthorizedAccess:EC2/TorRelay)'
+id: 72178db8-71b0-5ad1-b212-4aded28b87db
+status: experimental
+description: Converted from Sagan rule SID 5010438 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: UnauthorizedAccess:EC2/TorRelay
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1565.001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010438'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (UnauthorizedAccess:IAMUser/ConsoleLoginSuccess.B)'
+id: 7cf5a2e7-91a7-508c-8f28-f20b0912574a
+status: experimental
+description: Converted from Sagan rule SID 5010439 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: UnauthorizedAccess:IAMUser/ConsoleLoginSuccess.B
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010439'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (UnauthorizedAccess:IAMUser/InstanceCredentialExfiltration.InsideAWS)'
+id: 014e7b41-72c9-552a-afb0-a52449aedd06
+status: experimental
+description: Converted from Sagan rule SID 5010440 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: UnauthorizedAccess:IAMUser/InstanceCredentialExfiltration.InsideAWS
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1528
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010440'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (UnauthorizedAccess:IAMUser/InstanceCredentialExfiltration.OutsideAWS)'
+id: 3ae69f0c-a8aa-597e-ad5f-705f6cdf7f35
+status: experimental
+description: Converted from Sagan rule SID 5010441 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: UnauthorizedAccess:IAMUser/InstanceCredentialExfiltration.OutsideAWS
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1528
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010441'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (UnauthorizedAccess:IAMUser/MaliciousIPCaller)'
+id: fd7812d8-6b18-5d32-9d6d-5b8218c2578f
+status: experimental
+description: Converted from Sagan rule SID 5010442 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: UnauthorizedAccess:IAMUser/MaliciousIPCaller
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1133
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010442'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom)'
+id: 85d3b98a-5651-5250-8a37-997437c419b0
+status: experimental
+description: Converted from Sagan rule SID 5010443 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1133
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010443'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (UnauthorizedAccess:IAMUser/TorIPCaller)'
+id: 1e94afd7-6216-5930-9511-a4f3e3a2ac1f
+status: experimental
+description: Converted from Sagan rule SID 5010444 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: UnauthorizedAccess:IAMUser/TorIPCaller
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1133
+  - attack.t1565.001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010444'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (UnauthorizedAccess:S3/MaliciousIPCaller.Custom)'
+id: c0b811c6-56b5-5531-a5c7-7a426e1aa7b9
+status: experimental
+description: Converted from Sagan rule SID 5010445 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: UnauthorizedAccess:S3/MaliciousIPCaller.Custom
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1048
+  - attack.t1133
+  - attack.t1486
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010445'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (UnauthorizedAccess:S3/TorIPCaller)'
+id: 8875a3ba-ab6b-5dbc-9dd8-ed364a083a95
+status: experimental
+description: Converted from Sagan rule SID 5010446 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: UnauthorizedAccess:S3/TorIPCaller
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1048
+  - attack.t1133
+  - attack.t1565.001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010446'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Execution:EC2/MaliciousFile)'
+id: 14c3c651-b8a7-5535-8b61-354c0b4312ab
+status: experimental
+description: Converted from Sagan rule SID 5010447 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Execution:EC2/MaliciousFile
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1036
+  - attack.t1053
+  - attack.t1059
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010447'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Execution:ECS/MaliciousFile)'
+id: a173385f-ea3d-5b3b-95c5-a6e371202c76
+status: experimental
+description: Converted from Sagan rule SID 5010448 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Execution:ECS/MaliciousFile
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1036
+  - attack.t1053
+  - attack.t1059
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010448'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Execution:Kubernetes/MaliciousFile)'
+id: e05f2559-46e6-55c9-b955-8a477b608933
+status: experimental
+description: Converted from Sagan rule SID 5010449 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Execution:Kubernetes/MaliciousFile
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1036
+  - attack.t1053
+  - attack.t1059
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010449'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Execution:Container/MaliciousFile)'
+id: 6bff095d-ae12-5e55-a595-195d324c43ef
+status: experimental
+description: Converted from Sagan rule SID 5010450 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Execution:Container/MaliciousFile
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1036
+  - attack.t1053
+  - attack.t1059
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010450'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Execution:EC2/SuspiciousFile)'
+id: 82fb6db8-368a-5310-81b9-299f90f96e7e
+status: experimental
+description: Converted from Sagan rule SID 5010451 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Execution:EC2/SuspiciousFile
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1036
+  - attack.t1053
+  - attack.t1059
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010451'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Execution:ECS/SuspiciousFile)'
+id: 8c4c0c7d-65bd-5245-a9e4-cf53110c9f7f
+status: experimental
+description: Converted from Sagan rule SID 5010452 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Execution:ECS/SuspiciousFile
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1036
+  - attack.t1053
+  - attack.t1059
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010452'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Execution:Kubernetes/SuspiciousFile)'
+id: e890865e-d8d8-5cf6-8d71-23df6b264422
+status: experimental
+description: Converted from Sagan rule SID 5010453 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Execution:Kubernetes/SuspiciousFile
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1036
+  - attack.t1053
+  - attack.t1059
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010453'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules
+---
+title: '[AWS-GUARDDUTY] GuardDuty event detected (Execution:Container/SuspiciousFile)'
+id: 47a53f2a-8cef-50c4-b168-5af425348c48
+status: experimental
+description: Converted from Sagan rule SID 5010454 (rev 2), file aws-guardduty.rules.
+references:
+  - https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_finding-types-active.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: guardduty
+  selection_2:
+    _raw|contains|cased: Execution:Container/SuspiciousFile
+  filter_3:
+    _raw|contains|cased: sample\\\\\\":true
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1036
+  - attack.t1053
+  - attack.t1059
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010454'
+  sagan.rev: '2'
+  sagan.source_file: aws-guardduty.rules

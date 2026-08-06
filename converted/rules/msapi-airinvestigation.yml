@@ -1,0 +1,54 @@
+title: '[MSAPI-THREATINTEL] AirInvestigation Started'
+id: e830e7f1-5d5c-5ea6-9503-ab76fa9b5221
+status: experimental
+description: Converted from Sagan rule SID 5004862 (rev 3), file msapi-airinvestigation.rules.
+references:
+  - https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/automated-investigation-response-office?view=o365-worldwide
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    Workload|cased: AirInvestigation
+  selection_2:
+    Status|cased: Investigation Started
+  filter_3:
+    Description|cased: Email messages containing malicious URL removed after delivery
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5004862'
+  sagan.rev: '3'
+  sagan.source_file: msapi-airinvestigation.rules
+---
+title: '[MSAPI-THREATINTEL] AirInvestigation Started Due to Email Messages Containing Malicious URL Removed
+  after Delivery'
+id: 72824611-9394-520e-96ff-eabb89d48c9a
+status: experimental
+description: Converted from Sagan rule SID 5013698 (rev 1), file msapi-airinvestigation.rules.
+references:
+  - https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/automated-investigation-response-office?view=o365-worldwide
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    Workload|cased: AirInvestigation
+  selection_2:
+    Status|cased: Investigation Started
+  selection_3:
+    Description|cased: Email messages containing malicious URL removed after delivery
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5013698'
+  sagan.rev: '1'
+  sagan.source_file: msapi-airinvestigation.rules

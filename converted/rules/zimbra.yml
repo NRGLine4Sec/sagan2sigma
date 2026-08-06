@@ -1,0 +1,68 @@
+title: '[ZIMBRA] SASLAUTHD - Brute force [5/3]'
+id: 8a31af2e-b1d7-57f8-bd38-9a652612d10b
+name: sagan_5003028
+status: experimental
+description: Converted from Sagan rule SID 5003028 (rev 4), file zimbra.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: auth failure
+  selection_2:
+    _raw|contains|cased: saslauthd
+  selection_3:
+    appname|cased: zimbra
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1021
+  - attack.t1110
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5003028'
+  sagan.rev: '4'
+  sagan.source_file: zimbra.rules
+  rsigma.suppress: 15m
+---
+title: '[ZIMBRA] SASLAUTHD - Brute force [5/3] (threshold 5 in 15m)'
+id: 3cc97ce0-2e70-5665-b921-88e87272e087
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5003028
+  group-by:
+    - hostname
+  timespan: 15m
+  condition:
+    gte: 5
+level: low
+---
+title: '[ZIMBRA] Clamd - Threat Detected'
+id: f598e1a0-1797-5a5f-b14b-1178905c5536
+status: experimental
+description: Converted from Sagan rule SID 5003038 (rev 3), file zimbra.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: FOUND
+  selection_2:
+    appname|cased: misc-activity
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1047
+  - attack.t1063
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003038'
+  sagan.rev: '3'
+  sagan.source_file: zimbra.rules

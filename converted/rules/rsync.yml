@@ -1,0 +1,24 @@
+title: '[RSYNC] Authentication failure'
+id: 33681ee6-9608-58dc-bb33-f3e9ca4eefe5
+status: experimental
+description: Converted from Sagan rule SID 5001054 (rev 5), file rsync.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased:
+      - rsync
+      - rsyncd
+  selection_2:
+    _raw|contains|cased: auth failed on module
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-user
+custom_attributes:
+  sagan.sid: '5001054'
+  sagan.rev: '5'
+  sagan.source_file: rsync.rules

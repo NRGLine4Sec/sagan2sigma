@@ -1,0 +1,47 @@
+title: '[RIVERBED] Administrator Login'
+id: f6b42d35-1fc1-58eb-aa0c-2e86957ef698
+status: experimental
+description: Converted from Sagan rule SID 5002030 (rev 3), file riverbed.rules.
+author: sagan2sigma
+logsource:
+  product: riverbed
+detection:
+  selection_1:
+    _raw|contains|cased: logged in
+  selection_2:
+    _raw|contains|cased: session count
+  selection_3:
+    appname|cased: webasd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5002030'
+  sagan.rev: '3'
+  sagan.source_file: riverbed.rules
+---
+title: '[RIVERBED] Administrator Login Failure'
+id: 778ac09d-7aae-508c-ae9f-170c6c34838d
+status: experimental
+description: Converted from Sagan rule SID 5002031 (rev 2), file riverbed.rules.
+author: sagan2sigma
+logsource:
+  product: riverbed
+detection:
+  selection_1:
+    _raw|contains|cased: password is not recognized
+  selection_2:
+    appname|cased: webasd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-admin
+custom_attributes:
+  sagan.sid: '5002031'
+  sagan.rev: '2'
+  sagan.source_file: riverbed.rules

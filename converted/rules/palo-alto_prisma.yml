@@ -1,0 +1,1654 @@
+title: '[PRISMA] Prisma Access Virus Detection - Medium Severity'
+id: 88821da3-be05-5736-a598-de7bfe73f6cd
+status: experimental
+description: Converted from Sagan rule SID 5017073 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: virus
+  selection_4:
+    VendorSeverity|cased: Medium
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1204
+  - attack.ta0002
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5017073'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Virus Detection - High Severity'
+id: 9f1feebc-234b-5b53-8591-6fc04222a1a6
+status: experimental
+description: Converted from Sagan rule SID 5017074 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: virus
+  selection_4:
+    VendorSeverity|cased: High
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1204
+  - attack.ta0002
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5017074'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Virus Detection - Critical Severity'
+id: 75bae69a-0b29-5741-90ff-c4a8efd83437
+status: experimental
+description: Converted from Sagan rule SID 5017075 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: virus
+  selection_4:
+    VendorSeverity|cased: Critical
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1204
+  - attack.ta0002
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5017075'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Spyware Detection - Medium Severity'
+id: 4309eee1-fd9f-5724-a4a8-0064c854d6fe
+status: experimental
+description: Converted from Sagan rule SID 5017078 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: spyware
+  selection_4:
+    VendorSeverity|cased: Medium
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1005
+  - attack.ta0009
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017078'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Spyware Detection - High Severity'
+id: 4ba34193-16a2-5e22-b4b5-d98142314011
+status: experimental
+description: Converted from Sagan rule SID 5017079 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: spyware
+  selection_4:
+    VendorSeverity|cased: High
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1005
+  - attack.ta0009
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017079'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Spyware Detection - Critical Severity'
+id: 5ba5207f-4502-5c4d-8823-dad42b4c8815
+status: experimental
+description: Converted from Sagan rule SID 5017080 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: spyware
+  selection_4:
+    VendorSeverity|cased: Critical
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1005
+  - attack.ta0009
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017080'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Vulnerability Exploitation - Medium Severity'
+id: a2cd1c73-1a3e-5b27-9ff3-5455dbff6eb2
+status: experimental
+description: Converted from Sagan rule SID 5017083 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: vulnerability
+  selection_4:
+    VendorSeverity|cased: Medium
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1190
+  - attack.ta0001
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5017083'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Vulnerability Exploitation - High Severity'
+id: f3967fdc-a016-5d3d-8fcb-b94b75e7e537
+status: experimental
+description: Converted from Sagan rule SID 5017084 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: vulnerability
+  selection_4:
+    VendorSeverity|cased: High
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1190
+  - attack.ta0001
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5017084'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Vulnerability Exploitation - Critical Severity'
+id: ad679d87-fb96-5183-9e04-3dcc9f772c90
+status: experimental
+description: Converted from Sagan rule SID 5017085 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: vulnerability
+  selection_4:
+    VendorSeverity|cased: Critical
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1190
+  - attack.ta0001
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5017085'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Malicious URL Access - Medium Severity'
+id: 1cd1bbc2-80e8-537d-abaf-06c04e4fc394
+status: experimental
+description: Converted from Sagan rule SID 5017088 (rev 2), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: url
+  selection_4:
+    VendorSeverity|cased: Medium
+  filter_5:
+    URLCategoryList|contains|cased: low-risk
+  selection_6:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_6 and not filter_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.ta0011
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017088'
+  sagan.rev: '2'
+  sagan.source_file: palo-alto_prisma.rules
+  rsigma.suppress: 1h
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2026_04_08
+---
+title: '[PRISMA] Prisma Access Malicious URL Access - High Severity'
+id: 9b3ae724-12af-566e-8c62-50067e0b3eaf
+status: experimental
+description: Converted from Sagan rule SID 5017089 (rev 2), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: url
+  selection_4:
+    VendorSeverity|cased: High
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.ta0011
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017089'
+  sagan.rev: '2'
+  sagan.source_file: palo-alto_prisma.rules
+  rsigma.suppress: 1h
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2026_04_08
+---
+title: '[PRISMA] Prisma Access Malicious URL Access - Critical Severity'
+id: fa2883f1-ffc4-5d35-b7c0-675c2e3052b5
+status: experimental
+description: Converted from Sagan rule SID 5017090 (rev 2), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: url
+  selection_4:
+    VendorSeverity|cased: Critical
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.ta0011
+  - sagan.classtype.web-application-activity
+custom_attributes:
+  sagan.sid: '5017090'
+  sagan.rev: '2'
+  sagan.source_file: palo-alto_prisma.rules
+  rsigma.suppress: 1h
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2026_04_08
+---
+title: '[PRISMA] Prisma Access WildFire Virus Detection - Medium Severity'
+id: 99873c4c-7e7a-5358-b3d7-5dff37b1f254
+status: experimental
+description: Converted from Sagan rule SID 5017093 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: wildfire-virus
+  selection_4:
+    VendorSeverity|cased: Medium
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1204
+  - attack.ta0002
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5017093'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access WildFire Virus Detection - High Severity'
+id: 3988db0f-d9fa-5420-b395-811b70a300fb
+status: experimental
+description: Converted from Sagan rule SID 5017094 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: wildfire-virus
+  selection_4:
+    VendorSeverity|cased: High
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1204
+  - attack.ta0002
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5017094'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access WildFire Virus Detection - Critical Severity'
+id: 31912d58-4912-51e9-9e6f-ac38ca7ea87b
+status: experimental
+description: Converted from Sagan rule SID 5017095 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: wildfire-virus
+  selection_4:
+    VendorSeverity|cased: Critical
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1204
+  - attack.ta0002
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5017095'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Malware Detection - Medium Severity'
+id: 08ff7a06-9176-5ea9-81a4-c6496d37e232
+status: experimental
+description: Converted from Sagan rule SID 5017098 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: malware
+  selection_4:
+    VendorSeverity|cased: Medium
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1204
+  - attack.ta0002
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5017098'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Malware Detection - High Severity'
+id: b237d727-9c7b-539c-8b8c-960389a9f37c
+status: experimental
+description: Converted from Sagan rule SID 5017099 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: malware
+  selection_4:
+    VendorSeverity|cased: High
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1204
+  - attack.ta0002
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5017099'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Malware Detection - Critical Severity'
+id: 1bc571c4-9429-5971-ae9e-55ed2647feae
+status: experimental
+description: Converted from Sagan rule SID 5017100 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: malware
+  selection_4:
+    VendorSeverity|cased: Critical
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1204
+  - attack.ta0002
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5017100'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Data Policy Violation - Medium Severity'
+id: 4264b56e-3b89-53f2-b043-0bd2a2db7d3c
+status: experimental
+description: Converted from Sagan rule SID 5017103 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: data
+  selection_4:
+    VendorSeverity|cased: Medium
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1041
+  - attack.ta0010
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5017103'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Data Policy Violation - High Severity'
+id: 7e4f284f-499f-5e98-8d11-dca558f5f704
+status: experimental
+description: Converted from Sagan rule SID 5017104 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: data
+  selection_4:
+    VendorSeverity|cased: High
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1041
+  - attack.ta0010
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5017104'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Data Policy Violation - Critical Severity'
+id: 939e44e7-280a-5766-9d6a-1b8efd14788a
+status: experimental
+description: Converted from Sagan rule SID 5017105 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: data
+  selection_4:
+    VendorSeverity|cased: Critical
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1041
+  - attack.ta0010
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5017105'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access File Policy Violation - Medium Severity'
+id: e922e245-cf17-553e-b9f6-d07734bab53b
+status: experimental
+description: Converted from Sagan rule SID 5017108 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: file
+  selection_4:
+    VendorSeverity|cased: Medium
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1005
+  - attack.ta0009
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5017108'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access File Policy Violation - High Severity'
+id: c0d40de8-54c2-5fa3-80e5-88a343f7a244
+status: experimental
+description: Converted from Sagan rule SID 5017109 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: file
+  selection_4:
+    VendorSeverity|cased: High
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1005
+  - attack.ta0009
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5017109'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access File Policy Violation - Critical Severity'
+id: 84c36f4a-7eac-5ef5-aa55-6b84528e95f0
+status: experimental
+description: Converted from Sagan rule SID 5017110 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: file
+  selection_4:
+    VendorSeverity|cased: Critical
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1005
+  - attack.ta0009
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5017110'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Network Flood Attack - Medium Severity'
+id: 13399ac5-ae26-593b-ba16-379e4cb07c5e
+status: experimental
+description: Converted from Sagan rule SID 5017113 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: flood
+  selection_4:
+    VendorSeverity|cased: Medium
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1498
+  - attack.ta0040
+  - sagan.classtype.network-scan
+custom_attributes:
+  sagan.sid: '5017113'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Network Flood Attack - High Severity'
+id: 760ce4ef-67d6-533a-be89-7d2484060937
+status: experimental
+description: Converted from Sagan rule SID 5017114 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: flood
+  selection_4:
+    VendorSeverity|cased: High
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1498
+  - attack.ta0040
+  - sagan.classtype.network-scan
+custom_attributes:
+  sagan.sid: '5017114'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Network Flood Attack - Critical Severity'
+id: c42ee39f-aedf-5794-9130-ef59ecbb1307
+status: experimental
+description: Converted from Sagan rule SID 5017115 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: flood
+  selection_4:
+    VendorSeverity|cased: Critical
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1498
+  - attack.ta0040
+  - sagan.classtype.network-scan
+custom_attributes:
+  sagan.sid: '5017115'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Suspicious Packet Activity - Medium Severity'
+id: 65eda4b6-88a7-5143-9ba7-849bbc427fde
+status: experimental
+description: Converted from Sagan rule SID 5017118 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: packet
+  selection_4:
+    VendorSeverity|cased: Medium
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1498
+  - attack.ta0040
+  - sagan.classtype.network-scan
+custom_attributes:
+  sagan.sid: '5017118'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Suspicious Packet Activity - High Severity'
+id: af0f0fb4-f200-5411-910b-6d4efdb4ef6b
+status: experimental
+description: Converted from Sagan rule SID 5017119 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: packet
+  selection_4:
+    VendorSeverity|cased: High
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1498
+  - attack.ta0040
+  - sagan.classtype.network-scan
+custom_attributes:
+  sagan.sid: '5017119'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Suspicious Packet Activity - Critical Severity'
+id: c3c2d248-8123-531c-a634-d0fa9f74c966
+status: experimental
+description: Converted from Sagan rule SID 5017120 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: packet
+  selection_4:
+    VendorSeverity|cased: Critical
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1498
+  - attack.ta0040
+  - sagan.classtype.network-scan
+custom_attributes:
+  sagan.sid: '5017120'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Network Scanning Activity - Medium Severity'
+id: ac38a2bc-ddff-5a9d-9c72-8bb2d406ca97
+status: experimental
+description: Converted from Sagan rule SID 5017123 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: scan
+  selection_4:
+    VendorSeverity|cased: Medium
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1046
+  - attack.ta0007
+  - sagan.classtype.network-scan
+custom_attributes:
+  sagan.sid: '5017123'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Network Scanning Activity - High Severity'
+id: af3fbb85-9aaf-537c-8847-e0f10bead44a
+status: experimental
+description: Converted from Sagan rule SID 5017124 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: scan
+  selection_4:
+    VendorSeverity|cased: High
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1046
+  - attack.ta0007
+  - sagan.classtype.network-scan
+custom_attributes:
+  sagan.sid: '5017124'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Network Scanning Activity - Critical Severity'
+id: 64fcb192-bea4-5bd7-8fbe-9802970bcc5b
+status: experimental
+description: Converted from Sagan rule SID 5017125 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: scan
+  selection_4:
+    VendorSeverity|cased: Critical
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1046
+  - attack.ta0007
+  - sagan.classtype.network-scan
+custom_attributes:
+  sagan.sid: '5017125'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Web Shell Detection - Medium Severity'
+id: 6f4cb3a3-fc53-50eb-b233-81486e7693aa
+status: experimental
+description: Converted from Sagan rule SID 5017128 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: webshell
+  selection_4:
+    VendorSeverity|cased: Medium
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1505
+  - attack.ta0003
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5017128'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Web Shell Detection - High Severity'
+id: 6cf86d90-e66b-528d-93d9-0444cb111575
+status: experimental
+description: Converted from Sagan rule SID 5017129 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: webshell
+  selection_4:
+    VendorSeverity|cased: High
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1505
+  - attack.ta0003
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5017129'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Web Shell Detection - Critical Severity'
+id: 411d580a-6272-512b-a423-3dc26e2dbdcf
+status: experimental
+description: Converted from Sagan rule SID 5017130 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: webshell
+  selection_4:
+    VendorSeverity|cased: Critical
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1505
+  - attack.ta0003
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5017130'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Extortion/Ransomware Activity - Medium Severity'
+id: e4fefc8d-4ac9-5ecd-a98d-758a377c0007
+status: experimental
+description: Converted from Sagan rule SID 5017133 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: extortion
+  selection_4:
+    VendorSeverity|cased: Medium
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1486
+  - attack.ta0040
+  - sagan.classtype.ransomware
+custom_attributes:
+  sagan.sid: '5017133'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Extortion/Ransomware Activity - High Severity'
+id: df316d1f-c6f9-5739-a9a6-97419af17814
+status: experimental
+description: Converted from Sagan rule SID 5017134 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: extortion
+  selection_4:
+    VendorSeverity|cased: High
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1486
+  - attack.ta0040
+  - sagan.classtype.ransomware
+custom_attributes:
+  sagan.sid: '5017134'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Extortion/Ransomware Activity - Critical Severity'
+id: 27e8926e-6bb0-5013-b216-bcd47375c7eb
+status: experimental
+description: Converted from Sagan rule SID 5017135 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: extortion
+  selection_4:
+    VendorSeverity|cased: Critical
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1486
+  - attack.ta0040
+  - sagan.classtype.ransomware
+custom_attributes:
+  sagan.sid: '5017135'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access External Dynamic List Match - Medium Severity'
+id: 96724eaf-de44-54ab-841a-73d1a727fe66
+status: experimental
+description: Converted from Sagan rule SID 5017138 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: external-dynamic-list
+  selection_4:
+    VendorSeverity|cased: Medium
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.ta0011
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017138'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access External Dynamic List Match - High Severity'
+id: d461f4f2-6e67-56c1-ad3c-152dfdba8976
+status: experimental
+description: Converted from Sagan rule SID 5017139 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: external-dynamic-list
+  selection_4:
+    VendorSeverity|cased: High
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.ta0011
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017139'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access External Dynamic List Match - Critical Severity'
+id: 538f5414-9197-557c-b6a5-52ca3fb02091
+status: experimental
+description: Converted from Sagan rule SID 5017140 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: external-dynamic-list
+  selection_4:
+    VendorSeverity|cased: Critical
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.ta0011
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017140'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Suspicious DNS Activity - Medium Severity'
+id: 7a22602e-0014-5f15-8a59-85a59661d5ec
+status: experimental
+description: Converted from Sagan rule SID 5017143 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: dns
+  selection_4:
+    VendorSeverity|cased: Medium
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.ta0011
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017143'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Suspicious DNS Activity - High Severity'
+id: ca2aa791-1243-5c56-9d5c-31797a74e058
+status: experimental
+description: Converted from Sagan rule SID 5017144 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: dns
+  selection_4:
+    VendorSeverity|cased: High
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.ta0011
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017144'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access Suspicious DNS Activity - Critical Severity'
+id: 58ab896f-7e5b-5fed-9ad4-0a08fa44f784
+status: experimental
+description: Converted from Sagan rule SID 5017145 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: THREAT
+  selection_3:
+    Subtype|cased: dns
+  selection_4:
+    VendorSeverity|cased: Critical
+  selection_5:
+    Action|cased:
+      - alert
+      - allow
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.ta0011
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017145'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28
+---
+title: '[PRISMA] Prisma Access User Registered'
+id: 10f47b70-fe0a-5dd2-9cd3-c5f44e40c472
+status: experimental
+description: Converted from Sagan rule SID 5017148 (rev 1), file palo-alto_prisma.rules.
+references:
+  - https://docs.paloaltonetworks.com/prisma-access/administration/monitor/prisma-access-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    syslog_appname|cased: prisma
+  selection_2:
+    LogType|cased: USERID
+  selection_3:
+    Subtype|cased: register-tag
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1078
+  - attack.ta0001
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5017148'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto_prisma.rules
+  sagan.metadata: deployment=Endpoint,created_at=2025_07_28,updated_at=2025_07_28

@@ -1,0 +1,2707 @@
+title: '[SONICWALL] Possible TCP Port Scan'
+id: 0d9ad22d-a427-5364-88bf-18fa50768629
+status: experimental
+description: Converted from Sagan rule SID 5001083 (rev 4), file sonicwall.rules.
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Possible port scan detected
+  selection_2:
+    _raw|contains|cased: TCP scanned port list
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.network-scan
+custom_attributes:
+  sagan.sid: '5001083'
+  sagan.rev: '4'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Possible UDP Port Scan'
+id: 2af0ffc5-f817-5b64-a124-6507e0689000
+status: experimental
+description: Converted from Sagan rule SID 5001085 (rev 4), file sonicwall.rules.
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Possible port scan detected
+  selection_2:
+    _raw|contains|cased: UDP scanned port list
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.network-scan
+custom_attributes:
+  sagan.sid: '5001085'
+  sagan.rev: '4'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Registration Update Needed'
+id: 6936a567-5d41-5c2b-a4a9-7a3a33c01e59
+status: experimental
+description: Converted from Sagan rule SID 5002605 (rev 3), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Registration Update Needed
+  selection_2:
+    _raw|contains|cased: Restore your existing security service subscRIPtions by clicking
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002605'
+  sagan.rev: '3'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Attempted access from host out of compliance with GSC policy'
+id: 88b3a55b-257c-54ad-906e-a136920c64ab
+status: experimental
+description: Converted from Sagan rule SID 5002611 (rev 4), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Access attempt from host out of compliance with GSC policy
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-error
+custom_attributes:
+  sagan.sid: '5002611'
+  sagan.rev: '4'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Access attempt from host without Anti-Virus agent installed'
+id: 6b190787-d35a-5407-b1ba-5d4b6827c5ec
+status: experimental
+description: Converted from Sagan rule SID 5002612 (rev 4), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Access attempt from host without Anti-Virus agent installed
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-error
+custom_attributes:
+  sagan.sid: '5002612'
+  sagan.rev: '4'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Accept attempt from host without GSC'
+id: 3f334867-39f4-5bc9-b907-dd3cfc6665e0
+status: experimental
+description: Converted from Sagan rule SID 5002613 (rev 3), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Access attempt from host without GSC installed
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-error
+custom_attributes:
+  sagan.sid: '5002613'
+  sagan.rev: '3'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Firewall Rule Added'
+id: 00b53a6e-e88e-5d65-9f2c-8d8ded0a69e7
+status: experimental
+description: Converted from Sagan rule SID 5002614 (rev 3), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Access rule added
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5002614'
+  sagan.rev: '3'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Firewall Rule Deleted'
+id: 0b99c0ac-a6f8-5cf5-92ed-b490160219ee
+status: experimental
+description: Converted from Sagan rule SID 5002615 (rev 3), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Access rule deleted
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5002615'
+  sagan.rev: '3'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Firewall Rule Modified'
+id: 62bbb3e0-deb6-5872-9158-2695e69c865a
+status: experimental
+description: Converted from Sagan rule SID 5002616 (rev 3), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Access rule modified
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5002616'
+  sagan.rev: '3'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Firewall Rule reset to defaults'
+id: b7e49880-7059-55cb-91e4-a40c9398c904
+status: experimental
+description: Converted from Sagan rule SID 5002617 (rev 3), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Access rules restored to defaults
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5002617'
+  sagan.rev: '3'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Network Access to proxy server denied'
+id: 8419dcd3-9162-54cf-a80a-1c6ad16b3bef
+status: experimental
+description: Converted from Sagan rule SID 5002618 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Access to proxy server denied
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.permissions-violation
+custom_attributes:
+  sagan.sid: '5002618'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] ActiveX access denied'
+id: bf950397-fbf3-51de-909c-e4b455ebaafd
+status: experimental
+description: Converted from Sagan rule SID 5002619 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: ActiveX access denied
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002619'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] ActiveX or Java archive access denied'
+id: b217fbc2-3dad-5b88-9ef2-eddfd95f19bb
+status: experimental
+description: Converted from Sagan rule SID 5002620 (rev 3), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: ActiveX or Java archive access denied
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002620'
+  sagan.rev: '3'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Administrator Access not allowed on this interface'
+id: 650a605b-1d62-5a39-bdd6-1ec8f5353f99
+status: experimental
+description: Converted from Sagan rule SID 5002623 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Administrator login denied from
+  selection_2:
+    _raw|contains|cased: logins disabled from this interface
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-admin
+custom_attributes:
+  sagan.sid: '5002623'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Administrator Account Name Changed'
+id: 77410878-7305-5ef8-ad87-1080a0974243
+status: experimental
+description: Converted from Sagan rule SID 5002624 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Administrator name changed
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002624'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Allowed LDAP server certificate with wrong host name'
+id: 2b6c0ecd-716a-5468-9cfd-5f84207905db
+status: experimental
+description: Converted from Sagan rule SID 5002626 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Allowed LDAP server certificate with wrong host name
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-admin
+custom_attributes:
+  sagan.sid: '5002626'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Possible Intrusion detection - Anti-Spyware detected'
+id: dcde2a8c-c501-5e5f-a410-c7f4d28c041b
+status: experimental
+description: Converted from Sagan rule SID 5002627 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Anti-Spyware Detection Alert
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002627'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Possible Intrusion detection - Anti-Spyware detected'
+id: 026ca931-3248-5e6b-a1f8-aa61cb8c9cb0
+status: experimental
+description: Converted from Sagan rule SID 5002628 (rev 4), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Anti-Spyware Prevention Alert
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002628'
+  sagan.rev: '4'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - Suspicious Application detected'
+id: 7f7de3d0-53b9-536f-9c29-effc00e0b7f0
+status: experimental
+description: Converted from Sagan rule SID 5002629 (rev 3), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Application Filter Detection Alert
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002629'
+  sagan.rev: '3'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - Suspicious Application detected'
+id: b1a1f6d0-f315-59bd-94da-1cf3e37e304c
+status: experimental
+description: Converted from Sagan rule SID 5002630 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Application Filters Block Alert
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002630'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] ASOC Flood detected from WLAN station'
+id: c666884b-9624-5184-9817-93231c8c382e
+status: experimental
+description: Converted from Sagan rule SID 5002631 (rev 3), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Association Flood from WLAN station
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002631'
+  sagan.rev: '3'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - Back Orifice Attack Dropped'
+id: 1aa94c40-cc1b-570b-96bb-22507f06dd87
+status: experimental
+description: Converted from Sagan rule SID 5002632 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Back Orifice attack dropped
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002632'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] High Availability - Backup active'
+id: 0ee48218-4720-5304-aa27-97d1ab4b33d5
+status: experimental
+description: Converted from Sagan rule SID 5002633 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Backup active
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.hardware-event
+custom_attributes:
+  sagan.sid: '5002633'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] High Availability/Failover - Backup Firewall Active'
+id: dde10650-c75b-5c94-9651-cf69c7340ef2
+status: experimental
+description: Converted from Sagan rule SID 5002634 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Backup firewall has transitioned to Active
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.hardware-event
+custom_attributes:
+  sagan.sid: '5002634'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] High Availability/Failover - Backup Firewall transitioned to idle'
+id: 3d68b2de-d7c7-57bc-97a6-a79907b43403
+status: experimental
+description: Converted from Sagan rule SID 5002635 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Backup firewall has transitioned to Idle
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.hardware-event
+custom_attributes:
+  sagan.sid: '5002635'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] High Availability - Backup Firewall Rebooting'
+id: 25d01924-3580-5bac-8b68-4e1665e37d11
+status: experimental
+description: Converted from Sagan rule SID 5002636 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Backup firewall rebooting itself as it transitioned from Active to Idle while
+      Preempt
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.hardware-event
+custom_attributes:
+  sagan.sid: '5002636'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] High Availability - Backup WAN link down'
+id: 2f2ef8a7-679e-5012-9a0c-8a90cfa3b976
+status: experimental
+description: Converted from Sagan rule SID 5002637 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Backup WAN link down, Primary going Active
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.hardware-event
+custom_attributes:
+  sagan.sid: '5002637'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] VPN PKI - Bad CRL format'
+id: 267801f3-a4ab-5fe6-a59e-c85005aa89d0
+status: experimental
+description: Converted from Sagan rule SID 5002638 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Bad CRL format
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002638'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] VPN PKI - Blacklisted Certificate'
+id: 07613c00-2fe0-5965-964f-1385161397bb
+status: experimental
+description: Converted from Sagan rule SID 5002639 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Certificate on Revoked list(CRL)
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002639'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Administrator Login - Commandline login successful'
+id: 6e265127-f850-5abc-aa51-104abe20e3a2
+status: experimental
+description: Converted from Sagan rule SID 5002640 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: CLI administrator login allowed
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5002640'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Administrator login failed due to bad credentials'
+id: a64a4755-4a1d-51ef-a3a1-96a3b89ace1e
+status: experimental
+description: Converted from Sagan rule SID 5002641 (rev 4), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: CLI administrator login denied due to bad credentials
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-admin
+custom_attributes:
+  sagan.sid: '5002641'
+  sagan.rev: '4'
+  sagan.source_file: sonicwall.rules
+  rsigma.suppress: 1m
+---
+title: '[SONICWALL] Intrusion Detection - Possible FIN Flood'
+id: 99eb7d56-0fd0-5772-9334-3d01ff3ac4eb
+status: experimental
+description: Converted from Sagan rule SID 5002658 (rev 3), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: FIN Flood Blacklist on
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5002658'
+  sagan.rev: '3'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - Possible FIN Flood'
+id: a3705b92-3b65-54da-bc39-64f9f6124669
+status: experimental
+description: Converted from Sagan rule SID 5002659 (rev 3), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: FIN-Flooding machine
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5002659'
+  sagan.rev: '3'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] WLAN IDS - Rouge Access Point'
+id: d57f5adc-785b-574d-9fb9-4d56fbad264f
+status: experimental
+description: Converted from Sagan rule SID 5002660 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Found Rogue Access Point
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002660'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - Fraudulent Microsoft Certificate'
+id: 53599dc8-a7d0-571f-8428-dd68d8606f63
+status: experimental
+description: Converted from Sagan rule SID 5002661 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Fraudulent Microsoft certificate found
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002661'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] FTP - Login Failed'
+id: c3c21730-bebd-59cc-bbb0-3d5bf7497d59
+status: experimental
+description: Converted from Sagan rule SID 5002662 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: FTP client user logged in failed
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002662'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Network Access - Dropped access from non-default port'
+id: adcee399-c6d7-578f-8c73-c453bced0ac7
+status: experimental
+description: Converted from Sagan rule SID 5002663 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Data connection from non default port dropped
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002663'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - Bounce attack dropped'
+id: 921b475f-1e94-5396-8843-ab1909599e4f
+status: experimental
+description: Converted from Sagan rule SID 5002664 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: PASV response bounce attack dropped
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002664'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - Spoof attack dropped'
+id: acde6ba7-0990-5785-bbdc-357da7998074
+status: experimental
+description: Converted from Sagan rule SID 5002665 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: PASV response spoof attack dropped
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002665'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Guest account created'
+id: 41f99519-3a52-53e1-8edd-e8a0b2cd38ac
+status: experimental
+description: Converted from Sagan rule SID 5002666 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Guest account
+  selection_2:
+    _raw|contains|cased: created
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002666'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Guest account deleted'
+id: 13ff4b30-1bf9-5cfe-b1fa-8160ebd27c65
+status: experimental
+description: Converted from Sagan rule SID 5002667 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Guest account
+  selection_2:
+    _raw|contains|cased: deleted
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002667'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Guest account disabled'
+id: 057354b8-6794-5311-a66b-8815c52f0854
+status: experimental
+description: Converted from Sagan rule SID 5002668 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Guest account
+  selection_2:
+    _raw|contains|cased: disabled
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002668'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Guest account pruned'
+id: d138adfa-5f17-56fc-b154-a37baa3d4592
+status: experimental
+description: Converted from Sagan rule SID 5002669 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Guest account
+  selection_2:
+    _raw|contains|cased: pruned
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002669'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Guest account re-enabled'
+id: d75fb301-90f4-5e01-b574-51b5ac6bc2c2
+status: experimental
+description: Converted from Sagan rule SID 5002670 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Guest account
+  selection_2:
+    _raw|contains|cased: re-enabled
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002670'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Guest account re-generated'
+id: ae1d9dca-3c76-525b-8cc6-2120d4664bbc
+status: experimental
+description: Converted from Sagan rule SID 5002671 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Guest account
+  selection_2:
+    _raw|contains|cased: re-generated
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002671'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Heartbeat detected from incompatable source'
+id: 5015e821-b94e-5296-bdf8-af3e5c911378
+status: experimental
+description: Converted from Sagan rule SID 5002672 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Heartbeat received from incompatible source
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002672'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] HTTP management port has changed'
+id: 544ac6b8-a68a-51b1-adc0-55257c2b7f7b
+status: experimental
+description: Converted from Sagan rule SID 5002673 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: HTTP management port has changed
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002673'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Wireless - Unauthorized user'
+id: 98b614d0-0a76-5c76-b40a-5417e2115f38
+status: experimental
+description: Converted from Sagan rule SID 5002674 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Internet Access restricted to authorized users
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.permissions-violation
+custom_attributes:
+  sagan.sid: '5002674'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Possible IP spoof detected'
+id: 32cdfa2d-4e16-52c3-a196-0b0bbdb734d4
+status: experimental
+description: Converted from Sagan rule SID 5002675 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: IP spoof detected on packet to Central Gateway
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002675'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Possible IP spoof dropped'
+id: 96085d72-0de9-5d1a-b56c-b914b1acdc47
+status: experimental
+description: Converted from Sagan rule SID 5002676 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: IP spoof dropped
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002676'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] IPS Prevention Alert'
+id: c4931a03-5cdd-5201-a6c0-b7317ea6d77f
+status: experimental
+description: Converted from Sagan rule SID 5002678 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: IPS Prevention Alert
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002678'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - Land attack dropped'
+id: efe70f61-9594-5edf-9b6d-5fa65702cb7e
+status: experimental
+description: Converted from Sagan rule SID 5002679 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Land attack dropped
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002679'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - removed from FIN flood blacklist'
+id: 8e465324-50d9-5d8b-a289-f330efe456f9
+status: experimental
+description: Converted from Sagan rule SID 5002680 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: removed from FIN flood blacklist
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002680'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - removed from RST flood blacklist'
+id: 26ad0733-6257-5340-8a70-e1ee620aace4
+status: experimental
+description: Converted from Sagan rule SID 5002681 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: removed from RST flood blacklist
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002681'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - removed from SYN flood blacklist'
+id: 26c00442-32ce-5558-aa70-2c789ca4243e
+status: experimental
+description: Converted from Sagan rule SID 5002682 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: removed from SYN flood blacklist
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002682'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Firewall logging - Maximum events per second threshold exceeded'
+id: a70278fc-402e-5ae5-b725-e5e81ea62c77
+status: experimental
+description: Converted from Sagan rule SID 5002683 (rev 3), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Maximum events per second threshold exceeded
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002683'
+  sagan.rev: '3'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] PPP dialup - Maximum sequential failed dial attempts'
+id: 5a2b2066-4750-5f0d-8269-68526b946730
+status: experimental
+description: Converted from Sagan rule SID 5002684 (rev 3), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Maximum sequential failed dial attempts
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002684'
+  sagan.rev: '3'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Firewall logging - Maximum syslog data per second threshold exceeded'
+id: 0a0471e4-fd17-557a-8a5a-c84a54d65032
+status: experimental
+description: Converted from Sagan rule SID 5002685 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Maximum syslog data per second threshold exceeded
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5002685'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Multiple DHCP servers detected on network'
+id: bdfb78fb-e8db-5e42-adec-ed8956cf86c9
+status: experimental
+description: Converted from Sagan rule SID 5002686 (rev 3), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Multiple DHCP Servers are detected on network
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5002686'
+  sagan.rev: '3'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - Net Spy attack dropped'
+id: 69076329-7cc9-5fc6-a3c0-1e8dc1429ab0
+status: experimental
+description: Converted from Sagan rule SID 5002687 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Net Spy attack dropped
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002687'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - NetBus attack dropped'
+id: f1f55a63-83c8-545c-9aae-993d394884c2
+status: experimental
+description: Converted from Sagan rule SID 5002688 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: NetBus attack dropped
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002688'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] No firewall rule exists for VPN policy'
+id: 8adf4cc5-66cb-5c12-bef7-e3c3e51ef847
+status: experimental
+description: Converted from Sagan rule SID 5002690 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: ' No firewall rule associated with VPN policy'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002690'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - Ping of Death dropped'
+id: c6287cf0-6479-5208-a9a2-ee0ef611103a
+status: experimental
+description: Converted from Sagan rule SID 5002691 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Ping of death dropped
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002691'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - Possible DNS rebind attack detected'
+id: d7696d5c-801f-53e9-b44b-cb6004288cfa
+status: experimental
+description: Converted from Sagan rule SID 5002692 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Possible DNS rebind attack detected
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002692'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - Possible FIN Flood'
+id: 87c7396c-9510-5777-be6b-2212b74159ac
+status: experimental
+description: Converted from Sagan rule SID 5002693 (rev 5), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Possible FIN Flood
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5002693'
+  sagan.rev: '5'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - Possible RST Flood'
+id: 3de57ef4-253a-59ec-af3a-702d802f14dd
+status: experimental
+description: Converted from Sagan rule SID 5002695 (rev 4), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Possible RST Flood
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5002695'
+  sagan.rev: '4'
+  sagan.source_file: sonicwall.rules
+  rsigma.suppress: 5m
+---
+title: '[SONICWALL] Intrusion Detection - Priority attack dropped'
+id: 2b4e844a-e37d-5663-8408-424963598f56
+status: experimental
+description: Converted from Sagan rule SID 5002697 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Priority attack dropped
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002697'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - Probable port scan detected'
+id: 2b33b49d-c9ab-50d0-a7fe-89f76ad6bda5
+status: experimental
+description: Converted from Sagan rule SID 5002698 (rev 4), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Probable port scan detected
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.network-scan
+custom_attributes:
+  sagan.sid: '5002698'
+  sagan.rev: '4'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - Probable TCP FIN scan detected'
+id: 4c55f935-c1a1-5c3a-a1a5-74e0a096abdf
+status: experimental
+description: Converted from Sagan rule SID 5002699 (rev 4), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Probable TCP FIN scan detected
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.network-scan
+custom_attributes:
+  sagan.sid: '5002699'
+  sagan.rev: '4'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - Probable TCP NULL scan detected'
+id: 8ce4691d-a278-564c-bdb6-440c08742f20
+status: experimental
+description: Converted from Sagan rule SID 5002700 (rev 4), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Probable TCP NULL scan detected
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.network-scan
+custom_attributes:
+  sagan.sid: '5002700'
+  sagan.rev: '4'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - Probable TCP XMAS scan detected'
+id: 68f9024a-1d3e-5f74-95d0-1193e4b6dd10
+status: experimental
+description: Converted from Sagan rule SID 5002701 (rev 4), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Probable TCP XMAS scan detected
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.network-scan
+custom_attributes:
+  sagan.sid: '5002701'
+  sagan.rev: '4'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Wan Failover - Possible recon attempt'
+id: a153ab3b-3026-50fb-aff6-13578879bfce
+status: experimental
+description: Converted from Sagan rule SID 5002702 (rev 4), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Probing failure on
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5002702'
+  sagan.rev: '4'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Wan Failover - Recon attempt'
+id: 004af884-9803-59ff-a86b-634df34e1adf
+status: experimental
+description: Converted from Sagan rule SID 5002703 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Probing suceeded on
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.successful-recon-limited
+custom_attributes:
+  sagan.sid: '5002703'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Wan Failover - Possible recon'
+id: f599c8d7-250c-50b3-9ba5-d4da05cc3056
+status: experimental
+description: Converted from Sagan rule SID 5002705 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Probing suceeded on
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.successful-recon-limited
+custom_attributes:
+  sagan.sid: '5002705'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Sonicwall License Expired'
+id: 61ac896b-9610-5cc2-bc49-32de6281b732
+status: experimental
+description: Converted from Sagan rule SID 5002706 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: SonicWALL
+  selection_2:
+    _raw|contains|cased: expired
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002706'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Firewall rebooting'
+id: 0653b927-0049-5483-a4bd-677828a48021
+status: experimental
+description: Converted from Sagan rule SID 5002707 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Restarting SonicWALL
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002707'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - RIPper attack dropped'
+id: c58d6eed-e82b-5e5b-bb07-cd316a963844
+status: experimental
+description: Converted from Sagan rule SID 5002708 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: RIPper attack dropped
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002708'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - RST Flood Blacklist'
+id: 56caad08-89f5-5b78-880b-f94c5e968435
+status: experimental
+description: Converted from Sagan rule SID 5002709 (rev 3), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: RST Flood Blacklist on IF
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5002709'
+  sagan.rev: '3'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - RST Flood'
+id: 9accf463-7e98-5e66-9b6b-259f35f22712
+status: experimental
+description: Converted from Sagan rule SID 5002710 (rev 3), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: RST
+  selection_2:
+    _raw|contains|cased: Flooding machine
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5002710'
+  sagan.rev: '3'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - Senna Spy attack dropped'
+id: da7192b6-7e3a-53df-ac0a-a4ad5dd3a66f
+status: experimental
+description: Converted from Sagan rule SID 5002711 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Senna Spy attack dropped
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002711'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Domain name too long'
+id: 1dd1b068-a2f2-5087-b6fb-532da53e1870
+status: experimental
+description: Converted from Sagan rule SID 5002716 (rev 3), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: SonicWALL SSO agent returned domain name too long
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002716'
+  sagan.rev: '3'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] User name too long'
+id: 8ff9902f-582f-5400-9eaf-2c95d3bf1ca8
+status: experimental
+description: Converted from Sagan rule SID 5002718 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: SonicWALL SSO agent returned user name too long
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002718'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - Source routed IP packet dropped'
+id: e3b8dc4a-721a-5a4a-bf82-a1607727a6b6
+status: experimental
+description: Converted from Sagan rule SID 5002719 (rev 3), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Source routed IP packet dropped
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002719'
+  sagan.rev: '3'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - Spank attack dropped'
+id: 83f3886e-258e-5e2a-9804-b23b2593504c
+status: experimental
+description: Converted from Sagan rule SID 5002720 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Spank attack multicast packet dropped
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002720'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - Striker attack dropped'
+id: 7939690d-f338-527e-8345-f938b60b2447
+status: experimental
+description: Converted from Sagan rule SID 5002722 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Striker attack dropped
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002722'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - Sub Seven attack dropped'
+id: 2007fd23-ba24-5948-b5b7-129082ab72fc
+status: experimental
+description: Converted from Sagan rule SID 5002723 (rev 4), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Sub Seven attack dropped
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002723'
+  sagan.rev: '4'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - SYN Flood blacklisting enabled by user'
+id: f786f559-75a7-56e0-b687-79a52effda55
+status: experimental
+description: Converted from Sagan rule SID 5002724 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: SYN Flood blacklisting enabled by user
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5002724'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - SYN flood ceased or flooding machines blacklisted'
+id: 2a9adbae-19cc-5548-8a2a-193ee19d3f11
+status: experimental
+description: Converted from Sagan rule SID 5002725 (rev 3), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: SYN flood ceased or flooding machines blacklisted
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5002725'
+  sagan.rev: '3'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - SYN Flood Mode changed by user'
+id: 3a076bae-8d25-5b5f-8299-caeaf1ba5b29
+status: experimental
+description: Converted from Sagan rule SID 5002726 (rev 3), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: SYN Flood Mode changed by user to
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5002726'
+  sagan.rev: '3'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Intrusion Detection - TCP Xmas Tree dropped'
+id: fdd5b8b8-d4fa-5cfe-ad7d-7ccb3866294f
+status: experimental
+description: Converted from Sagan rule SID 5002728 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: TCP Xmas Tree dropped
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.network-scan
+custom_attributes:
+  sagan.sid: '5002728'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Radio frequency threat detected'
+id: 355cecb0-bee4-57e2-a5f1-1e64b3eaf175
+status: experimental
+description: Converted from Sagan rule SID 5002733 (rev 2), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/downloads/SonicOS_Log_Event_Reference_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: WLAN radio frequency threat detected
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002733'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] IP Spoof Detected'
+id: 42287e2b-6d3c-5bac-8a93-51cd039d9013
+status: experimental
+description: Converted from Sagan rule SID 5012101 (rev 1), file sonicwall.rules.
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: IP Spoof Detected
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5012101'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Wrong Admin Password'
+id: 0941809d-1948-5e35-ae0f-a7036824f0e1
+status: experimental
+description: Converted from Sagan rule SID 5012102 (rev 1), file sonicwall.rules.
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Wrong Admin Password
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5012102'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Admin Login Disabled'
+id: 1c488770-73f3-597f-864a-6f5b3462801f
+status: experimental
+description: Converted from Sagan rule SID 5012103 (rev 1), file sonicwall.rules.
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Admin Login Disabled
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5012103'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Smurf Attack'
+id: 8290a9e5-18d6-5bc1-8cdb-4c1fc1277355
+status: experimental
+description: Converted from Sagan rule SID 5012104 (rev 1), file sonicwall.rules.
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Smurf Attack
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5012104'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Forbidden E-Mail Attachment'
+id: e74ff64c-0e70-5f76-8a5f-165f3308db52
+status: experimental
+description: Converted from Sagan rule SID 5012105 (rev 2), file sonicwall.rules.
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: E-Mail Attachment
+  selection_2:
+    _raw|contains|cased: sn=
+  filter_3:
+    _raw|contains|cased: MCAS
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5012105'
+  sagan.rev: '2'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Using LDAP Without TLS'
+id: ad786306-1dc8-5022-ab03-fe8f62f8b2c3
+status: experimental
+description: Converted from Sagan rule SID 5012106 (rev 1), file sonicwall.rules.
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: Using LDAP Without TLS
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5012106'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] VPN Login Detected for Admin User'
+id: 9a0e0581-e4fc-5e5e-9659-b0720e24c6f8
+status: experimental
+description: Converted from Sagan rule SID 5015140 (rev 1), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/techdocs/pdf/SonicOS-X_7.0.1_LogEvents_ReferenceGuide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: 'm=235 '
+  selection_2:
+    _raw|contains|cased: fw_action=
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015140'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] VPN Login Detected for Admin User'
+id: d5cf914b-ca9c-56c0-932e-bee297dc4548
+status: experimental
+description: Converted from Sagan rule SID 5015141 (rev 1), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/techdocs/pdf/SonicOS-X_7.0.1_LogEvents_ReferenceGuide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    appname|cased: sonicwall
+  selection_2:
+    _raw|contains|cased: '"msgid": 235,'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015141'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Admin Login from External IP detected'
+id: 75132fba-3419-5efe-a895-05575175a695
+status: experimental
+description: Converted from Sagan rule SID 5015142 (rev 1), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/techdocs/pdf/SonicOS-X_7.0.1_LogEvents_ReferenceGuide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: 'm=236 '
+  selection_2:
+    _raw|contains|cased: fw_action=
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015142'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Admin Login from External IP detected'
+id: 13934048-5bf3-571a-bc5e-caf8aa44db71
+status: experimental
+description: Converted from Sagan rule SID 5015143 (rev 1), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/techdocs/pdf/SonicOS-X_7.0.1_LogEvents_ReferenceGuide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    appname|cased: sonicwall
+  selection_2:
+    _raw|contains|cased: '"msgid": 236,'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015143'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] User Login from External IP detected'
+id: 75180319-82f1-544e-9405-43b56071a449
+status: experimental
+description: Converted from Sagan rule SID 5015144 (rev 1), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/techdocs/pdf/SonicOS-X_7.0.1_LogEvents_ReferenceGuide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: 'm=238 '
+  selection_2:
+    _raw|contains|cased: fw_action=
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015144'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] User Login from External IP detected'
+id: 964b3664-f59e-5617-9c2e-c63982f5cca8
+status: experimental
+description: Converted from Sagan rule SID 5015145 (rev 1), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/techdocs/pdf/SonicOS-X_7.0.1_LogEvents_ReferenceGuide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    appname|cased: sonicwall
+  selection_2:
+    _raw|contains|cased: '"msgid": 238,'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015145'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] User Login from Unauthorized Location Detected'
+id: b0125099-0f6f-5c45-8f75-7f1138bbec49
+status: experimental
+description: Converted from Sagan rule SID 5015150 (rev 1), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/techdocs/pdf/SonicOS-X_7.0.1_LogEvents_ReferenceGuide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: 'm=246 '
+  selection_2:
+    _raw|contains|cased: fw_action=
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5015150'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] User Login from Unauthorized Location Detected'
+id: 4e936e7a-250e-5104-8bdc-cdad1e98216f
+status: experimental
+description: Converted from Sagan rule SID 5015151 (rev 1), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/techdocs/pdf/SonicOS-X_7.0.1_LogEvents_ReferenceGuide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    appname|cased: sonicwall
+  selection_2:
+    _raw|contains|cased: '"msgid": 246,'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5015151'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] VPN Certificate Was Found on revocation List'
+id: 85026a69-9504-5186-ba7b-e0e3d497e6a1
+status: experimental
+description: Converted from Sagan rule SID 5015152 (rev 1), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/techdocs/pdf/SonicOS-X_7.0.1_LogEvents_ReferenceGuide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: 'm=279 '
+  selection_2:
+    _raw|contains|cased: fw_action=
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015152'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] VPN Certificate Was Found on revocation List'
+id: 2312e074-ceb2-5fd2-8624-f4150a6df0b7
+status: experimental
+description: Converted from Sagan rule SID 5015153 (rev 1), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/techdocs/pdf/SonicOS-X_7.0.1_LogEvents_ReferenceGuide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    appname|cased: sonicwall
+  selection_2:
+    _raw|contains|cased: '"msgid": 279,'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015153'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] A Rogue Access Point Was Detected on the Network'
+id: 38456027-e20e-5166-8bac-e6f18fc76906
+status: experimental
+description: Converted from Sagan rule SID 5015154 (rev 1), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/techdocs/pdf/SonicOS-X_7.0.1_LogEvents_ReferenceGuide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: 'm=546 '
+  selection_2:
+    _raw|contains|cased: fw_action=
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015154'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] A Rogue Access Point Was Detected on the Network'
+id: b54b8f3c-53eb-5d0a-ae5e-5b0dbf342b68
+status: experimental
+description: Converted from Sagan rule SID 5015155 (rev 1), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/techdocs/pdf/SonicOS-X_7.0.1_LogEvents_ReferenceGuide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    appname|cased: sonicwall
+  selection_2:
+    _raw|contains|cased: '"msgid": 546,'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015155'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] A Guest Account Was Created on Appliance'
+id: cea886e5-939e-5fda-b9dc-96e45d9079ce
+status: experimental
+description: Converted from Sagan rule SID 5015156 (rev 1), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/techdocs/pdf/SonicOS-X_7.0.1_LogEvents_ReferenceGuide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: 'm=558 '
+  selection_2:
+    _raw|contains|cased: fw_action=
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015156'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] A Guest Account Was Created on Appliance'
+id: e51c9704-cba0-5a32-8710-965f49cce180
+status: experimental
+description: Converted from Sagan rule SID 5015157 (rev 1), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/techdocs/pdf/SonicOS-X_7.0.1_LogEvents_ReferenceGuide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    appname|cased: sonicwall
+  selection_2:
+    _raw|contains|cased: '"msgid": 558,'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015157'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] A Guest Account Was Re-Enabled on Appliance'
+id: 6eb8068b-3c6e-505d-9f25-f7f677cf6cd2
+status: experimental
+description: Converted from Sagan rule SID 5015158 (rev 1), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/techdocs/pdf/SonicOS-X_7.0.1_LogEvents_ReferenceGuide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: 'm=561 '
+  selection_2:
+    _raw|contains|cased: fw_action=
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015158'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] A Guest Account Was Re-Enabled on Appliance'
+id: 06678b0a-6540-54f5-8d9f-2e42b044215a
+status: experimental
+description: Converted from Sagan rule SID 5015159 (rev 1), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/techdocs/pdf/SonicOS-X_7.0.1_LogEvents_ReferenceGuide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    appname|cased: sonicwall
+  selection_2:
+    _raw|contains|cased: '"msgid": 561,'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015159'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+---
+title: '[EXPERIMENTAL] [SONICWALL] Suspicious - Unknown Application on Standard Web Port'
+id: 81ce8e8f-a553-5219-a4b6-8143484ec642
+status: experimental
+description: Converted from Sagan rule SID 9870023 (rev 1), file sonicwall.rules.
+references:
+  - https://attack.mitre.org/techniques/T1071/001
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: msg="Connection Closed"
+  selection_2:
+    _raw|contains|cased: appName="Unknown"
+  selection_3:
+    _raw|re: proto=tcp\/(80|443)[^\d]
+  selection_4:
+    _raw|re: src=(10\.\d+\.\d+\.\d+|172\.(1[6-9]|2[0-9]|3[0-1])\.\d+\.\d+|192\.168\.\d+\.\d+)
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '9870023'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_on=2026_06_17,updated_on=2026_06_17,mitreTactic=TA0011,mitreTechnique=T1071.001
+---
+title: '[EXPERIMENTAL] [SONICWALL] Suspicious - Large Outbound Data Transfer with Unknown Application'
+id: b6e5b9f1-3305-5356-82d3-62afac55c277
+status: experimental
+description: Converted from Sagan rule SID 9870025 (rev 1), file sonicwall.rules.
+references:
+  - https://attack.mitre.org/techniques/T1071/001
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    _raw|contains|cased: msg="Connection Closed"
+  selection_2:
+    _raw|contains|cased: appName="Unknown"
+  selection_3:
+    _raw|re: sent=([5-9]\d{6}|\d{7,})[^\d]
+  selection_4:
+    _raw|re: src=(10\.\d+\.\d+\.\d+|172\.(1[6-9]|2[0-9]|3[0-1])\.\d+\.\d+|192\.168\.\d+\.\d+)
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '9870025'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_on=2026_06_17,updated_on=2026_06_17,mitreTactic=TA0011,mitreTechnique=T1071.001

@@ -1,0 +1,72 @@
+title: '[HOSTAPD] Possible downgrade attack'
+id: e9d68573-0d5a-5d3a-8b74-796e26cd2381
+status: experimental
+description: Converted from Sagan rule SID 5001041 (rev 2), file hostapd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: hostapd
+  selection_2:
+    _raw|contains|cased: downgrade attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001041'
+  sagan.rev: '2'
+  sagan.source_file: hostapd.rules
+---
+title: '[HOSTAPD] Possible downgrade attack'
+id: fb25b6a1-fc10-5f96-8812-7df71869ce3f
+status: experimental
+description: Converted from Sagan rule SID 5001042 (rev 2), file hostapd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: hostapd
+  selection_2:
+    _raw|contains|cased: TLSv1
+  selection_3:
+    _raw|contains|cased: Failed to decrypt
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001042'
+  sagan.rev: '2'
+  sagan.source_file: hostapd.rules
+---
+title: '[HOSTAPD] UPnP DoS excessive addresses [DoS]'
+id: 09174205-6af8-5635-b477-b19743c00c96
+status: experimental
+description: Converted from Sagan rule SID 5001043 (rev 2), file hostapd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: hostapd
+  selection_2:
+    _raw|contains|cased: UPnP
+  selection_3:
+    _raw|contains|cased: Ignoring excessive addresses
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5001043'
+  sagan.rev: '2'
+  sagan.source_file: hostapd.rules

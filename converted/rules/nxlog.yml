@@ -1,0 +1,126 @@
+title: '[NXLOG] Missing Windows Log Message'
+id: 1da55d02-c399-5ba5-9e0e-1d7980410837
+name: sagan_5003111
+status: experimental
+description: Converted from Sagan rule SID 5003111 (rev 7), file nxlog.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|re: ' [0-9][0-9][0-9][0-9]?: $'
+  selection_2:
+    appname|cased:
+      - '*Security*'
+      - AppLocker
+      - Application
+      - Backup
+      - Bonjour
+      - CPQCISSE
+      - Citrix
+      - DAC
+      - DHCP-Server
+      - EMET
+      - Eventlog
+      - MSSQL*
+      - MsiInstaller
+      - NtFrs
+      - Ntfs
+      - RemoteAccess
+      - Service
+      - Service_Control_Manager
+      - Symantec
+      - Sysmon
+      - System
+      - USER32
+      - Tenable
+      - TermService
+      - The
+      - WinVNC4
+      - crypt32
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.program-error
+custom_attributes:
+  sagan.sid: '5003111'
+  sagan.rev: '7'
+  sagan.source_file: nxlog.rules
+  rsigma.suppress: 1d
+---
+title: '[NXLOG] Missing Windows Log Message (threshold 30 in 5m)'
+id: 296a22da-793a-5283-8179-564ee3b8e4e4
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5003111
+  group-by:
+    - hostname
+  timespan: 5m
+  condition:
+    gte: 30
+level: medium
+---
+title: '[NXLOG] Problem nxlog system has recovered'
+id: 054823f0-8f9f-55ab-8335-bd7ef62a9790
+name: sagan_5003985
+status: experimental
+description: Converted from Sagan rule SID 5003985 (rev 2), file nxlog.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: connecting to
+  selection_2:
+    appname|cased: nxlog
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5003985'
+  sagan.rev: '2'
+  sagan.source_file: nxlog.rules
+---
+title: '[NXLOG] Problem nxlog system has recovered (correlated with nxlog_problem)'
+id: 124dd57d-d313-55e2-b0b7-6bafc3a969fd
+status: experimental
+description: Reconstruction of the Sagan 'nxlog_problem' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_nxlog_problem
+    - sagan_5003985
+  group-by:
+    - hostname
+  timespan: 1d
+level: medium
+---
+title: '[NXLOG-FIM] A critical file was changed'
+id: 500fa1a1-fd0b-56f4-890d-2224edf4f734
+status: experimental
+description: Converted from Sagan rule SID 5007693 (rev 1), file nxlog.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: nxlog-fim-crit
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007693'
+  sagan.rev: '1'
+  sagan.source_file: nxlog.rules

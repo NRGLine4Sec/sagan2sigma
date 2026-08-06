@@ -1,0 +1,2435 @@
+title: '[AWS-COGNITO] AWS Cognito event detected (AddCustomAttributes)'
+id: 7c6ebb7a-8835-54f8-b1ca-96cdf5d808b2
+status: experimental
+description: Converted from Sagan rule SID 5011969 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AddCustomAttributes'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011969'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminAddUserToGroup)'
+id: a2062b03-73c4-5d53-9a15-67139eef581b
+status: experimental
+description: Converted from Sagan rule SID 5011970 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminAddUserToGroup'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011970'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminConfirmSignUp)'
+id: c9b3b193-d940-5d38-8a10-eb156f13229c
+status: experimental
+description: Converted from Sagan rule SID 5011971 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminConfirmSignUp'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011971'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminCreateUser)'
+id: c79b6739-e4d0-5f72-ac8a-02f58ba515d4
+status: experimental
+description: Converted from Sagan rule SID 5011972 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminCreateUser'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011972'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminDeleteUser)'
+id: 55dca18d-1723-5c46-87a5-f8f82463b3b4
+status: experimental
+description: Converted from Sagan rule SID 5011973 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminDeleteUser'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011973'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminDeleteUserAttributes)'
+id: 30ff3615-ffba-59c3-a050-1b0d60e3ec42
+status: experimental
+description: Converted from Sagan rule SID 5011974 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminDeleteUserAttributes'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011974'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminDisableProviderForUser)'
+id: 44ed9bcb-3589-59bb-8d12-5f877b49058b
+status: experimental
+description: Converted from Sagan rule SID 5011975 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminDisableProviderForUser'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011975'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminDisableUser)'
+id: ce1af6f2-93c8-55cd-a915-d69501689eba
+status: experimental
+description: Converted from Sagan rule SID 5011976 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminDisableUser'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011976'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminEnableUser)'
+id: cbed943b-0301-5ebe-bfa9-907b819d0e0a
+status: experimental
+description: Converted from Sagan rule SID 5011977 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminEnableUser'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011977'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminForgetDevice)'
+id: 74af4b27-1bdc-597f-8cb7-c90552ab4ceb
+status: experimental
+description: Converted from Sagan rule SID 5011978 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminForgetDevice'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011978'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminGetDevice)'
+id: d384dc1d-8b32-53b8-bb72-4cc183e2e5ec
+status: experimental
+description: Converted from Sagan rule SID 5011979 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminGetDevice'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011979'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminGetUser)'
+id: 1aecf2ea-53d0-5433-b7c3-b8cd03b90e67
+status: experimental
+description: Converted from Sagan rule SID 5011980 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminGetUser'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011980'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminInitiateAuth)'
+id: 34ee2cc9-431a-5c48-9040-7d6686d3b383
+status: experimental
+description: Converted from Sagan rule SID 5011981 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminInitiateAuth'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011981'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminLinkProviderForUser)'
+id: 36dfa0c5-3817-55b9-915a-95d99b66a895
+status: experimental
+description: Converted from Sagan rule SID 5011982 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminLinkProviderForUser'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011982'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminListDevices)'
+id: fee5e3e0-59bf-5cb6-8fa1-c524762e210f
+status: experimental
+description: Converted from Sagan rule SID 5011983 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminListDevices'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011983'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminListGroupsForUser)'
+id: 18c93b4d-e49f-589f-85a6-1a920c66e240
+status: experimental
+description: Converted from Sagan rule SID 5011984 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminListGroupsForUser'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011984'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminListUserAuthEvents)'
+id: 348b81b2-32c2-5894-8889-33c2ae8f47a6
+status: experimental
+description: Converted from Sagan rule SID 5011985 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminListUserAuthEvents'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011985'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminRemoveUserFromGroup)'
+id: 1e218390-c107-5b4a-8831-ada7c9282211
+status: experimental
+description: Converted from Sagan rule SID 5011986 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminRemoveUserFromGroup'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011986'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminResetUserPassword)'
+id: cdf9a511-8c30-5ab2-91c9-7cae495d04e6
+status: experimental
+description: Converted from Sagan rule SID 5011987 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminResetUserPassword'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011987'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminRespondToAuthChallenge)'
+id: 23dfea5f-fb3e-5dbe-86fe-2a079c2639b0
+status: experimental
+description: Converted from Sagan rule SID 5011988 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminRespondToAuthChallenge'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011988'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminSetUserMFAPreference)'
+id: f1f22413-949b-5e30-b40c-9034ad165904
+status: experimental
+description: Converted from Sagan rule SID 5011989 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminSetUserMFAPreference'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011989'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminSetUserPassword)'
+id: 0ae5c22b-0a07-5811-b941-38b1b00139d1
+status: experimental
+description: Converted from Sagan rule SID 5011990 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminSetUserPassword'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011990'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminSetUserSettings)'
+id: 4b92c1ba-0b02-5f8c-b3d8-95c2626fe88a
+status: experimental
+description: Converted from Sagan rule SID 5011991 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminSetUserSettings'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011991'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminUpdateAuthEventFeedback)'
+id: 3e54ed04-be65-5e3d-a1bd-31f71d695fa4
+status: experimental
+description: Converted from Sagan rule SID 5011992 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminUpdateAuthEventFeedback'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011992'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminUpdateDeviceStatus)'
+id: d2f4507a-0d01-528c-8be0-c9a50cce1131
+status: experimental
+description: Converted from Sagan rule SID 5011993 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminUpdateDeviceStatus'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011993'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminUpdateUserAttributes)'
+id: 91f1705f-ee52-5f08-9883-a1f00b029325
+status: experimental
+description: Converted from Sagan rule SID 5011994 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminUpdateUserAttributes'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011994'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AdminUserGlobalSignOut)'
+id: 54751351-17c3-55ad-ba5a-2bc003fe41c5
+status: experimental
+description: Converted from Sagan rule SID 5011995 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AdminUserGlobalSignOut'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011995'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (AssociateSoftwareToken)'
+id: c9a0bbd0-146e-550b-a0bb-58191ba76cc4
+status: experimental
+description: Converted from Sagan rule SID 5011996 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "AssociateSoftwareToken'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011996'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (ChangePassword)'
+id: 10bcc554-8122-5543-88cc-b246c62e00cd
+status: experimental
+description: Converted from Sagan rule SID 5011997 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "ChangePassword'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011997'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (ConfirmDevice)'
+id: 49b23795-b6b2-5a68-8e99-6f103d6325dd
+status: experimental
+description: Converted from Sagan rule SID 5011998 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "ConfirmDevice'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011998'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (ConfirmForgotPassword)'
+id: 10477480-0e27-51a7-b20d-cf2996541984
+status: experimental
+description: Converted from Sagan rule SID 5011999 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "ConfirmForgotPassword'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011999'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (ConfirmSignUp)'
+id: 820fd7a7-815a-579e-967b-8b18e08b5533
+status: experimental
+description: Converted from Sagan rule SID 5012000 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "ConfirmSignUp'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012000'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (CreateGroup)'
+id: 93e2870a-b7ab-547b-9205-6fd53d9f637e
+status: experimental
+description: Converted from Sagan rule SID 5012001 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "CreateGroup'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012001'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (CreateIdentityProvider)'
+id: d3e050fb-076e-52f1-aff3-a364d940b855
+status: experimental
+description: Converted from Sagan rule SID 5012002 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "CreateIdentityProvider'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012002'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (CreateResourceServer)'
+id: 057daf33-3e27-5e29-8bb9-2a081824a6c2
+status: experimental
+description: Converted from Sagan rule SID 5012003 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "CreateResourceServer'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012003'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (CreateUserImportJob)'
+id: f8253302-0e9d-5a01-8112-21064d2d09cc
+status: experimental
+description: Converted from Sagan rule SID 5012004 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "CreateUserImportJob'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012004'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (CreateUserPool)'
+id: 21a41ba3-48ff-5770-9134-27da5394fa51
+status: experimental
+description: Converted from Sagan rule SID 5012005 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "CreateUserPool'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012005'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (CreateUserPoolClient)'
+id: edb4be66-13fa-5950-868f-41161a57beb6
+status: experimental
+description: Converted from Sagan rule SID 5012006 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "CreateUserPoolClient'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012006'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (CreateUserPoolDomain)'
+id: 36bb0bdd-9fce-56af-a41b-42cfe1fdb48d
+status: experimental
+description: Converted from Sagan rule SID 5012007 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "CreateUserPoolDomain'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012007'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (DeleteGroup)'
+id: d98fd66b-2df6-518d-9821-6463cafcac96
+status: experimental
+description: Converted from Sagan rule SID 5012008 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "DeleteGroup'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012008'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (DeleteIdentityProvider)'
+id: dd5d244e-cadb-5924-9eff-26e578add6ab
+status: experimental
+description: Converted from Sagan rule SID 5012009 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "DeleteIdentityProvider'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012009'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (DeleteResourceServer)'
+id: 5b728c42-4798-5dcb-908c-b91269f2b191
+status: experimental
+description: Converted from Sagan rule SID 5012010 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "DeleteResourceServer'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012010'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (DeleteUser)'
+id: 2ad6f740-19ce-5329-9aab-fee4b24e1319
+status: experimental
+description: Converted from Sagan rule SID 5012011 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "DeleteUser'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012011'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (DeleteUserAttributes)'
+id: d3af0ff3-2871-501b-8a7a-1a6a78721f3b
+status: experimental
+description: Converted from Sagan rule SID 5012012 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "DeleteUserAttributes'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012012'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (DeleteUserPool)'
+id: 9258ea97-21dd-551f-a0c8-017176493097
+status: experimental
+description: Converted from Sagan rule SID 5012013 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "DeleteUserPool'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012013'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (DeleteUserPoolClient)'
+id: 43394194-9d55-5bde-9939-04cf2ab68235
+status: experimental
+description: Converted from Sagan rule SID 5012014 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "DeleteUserPoolClient'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012014'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (DeleteUserPoolDomain)'
+id: e19e4fd9-4f82-5b9e-8c9c-799de915169e
+status: experimental
+description: Converted from Sagan rule SID 5012015 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "DeleteUserPoolDomain'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012015'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (ForgetDevice)'
+id: e5ba7fbc-2e93-58fb-bdf9-32d4ccf1077a
+status: experimental
+description: Converted from Sagan rule SID 5012023 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "ForgetDevice'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012023'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (ForgotPassword)'
+id: 46bbaca2-e633-5813-a2b2-56fdbfb0cbcf
+status: experimental
+description: Converted from Sagan rule SID 5012024 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "ForgotPassword'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012024'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (GetCSVHeader)'
+id: 019e2797-2408-5c2f-a6b5-5f9202bf4155
+status: experimental
+description: Converted from Sagan rule SID 5012025 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "GetCSVHeader'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012025'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (GetDevice)'
+id: 4fdf274f-795f-5de2-a258-59ef126113f1
+status: experimental
+description: Converted from Sagan rule SID 5012026 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "GetDevice'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012026'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (GetGroup)'
+id: 11410def-1853-568e-aa84-e8151666260d
+status: experimental
+description: Converted from Sagan rule SID 5012027 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "GetGroup'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012027'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (GetIdentityProviderByIdentifier)'
+id: 2298de0e-31fc-527a-a5e4-2c765116ea30
+status: experimental
+description: Converted from Sagan rule SID 5012028 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "GetIdentityProviderByIdentifier'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012028'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (GetSigningCertificate)'
+id: 8314608d-458e-5dc4-90bf-9143e0493ecd
+status: experimental
+description: Converted from Sagan rule SID 5012029 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "GetSigningCertificate'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012029'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (GetUICustomization)'
+id: c7888906-93fb-5a8a-8995-125da81ba248
+status: experimental
+description: Converted from Sagan rule SID 5012030 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "GetUICustomization'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012030'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (GetUser)'
+id: b5515f6b-24b4-54a7-9d56-4d230d9e99d4
+status: experimental
+description: Converted from Sagan rule SID 5012031 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "GetUser'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012031'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (GetUserAttributeVerificationCode)'
+id: 49daf83f-8569-5105-8ae2-c4eb30cd6205
+status: experimental
+description: Converted from Sagan rule SID 5012032 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "GetUserAttributeVerificationCode'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012032'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (GetUserPoolMfaConfig)'
+id: bdb39047-e49d-5385-8019-35bb0b3a9a20
+status: experimental
+description: Converted from Sagan rule SID 5012033 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "GetUserPoolMfaConfig'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012033'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (GlobalSignOut)'
+id: a1f1aade-d2b9-55c4-ab3b-dc15a3f3aa18
+status: experimental
+description: Converted from Sagan rule SID 5012034 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "GlobalSignOut'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012034'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (InitiateAuth)'
+id: df86f066-017f-540c-80c4-3c09d1fe440c
+status: experimental
+description: Converted from Sagan rule SID 5012035 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "InitiateAuth'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012035'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (ResendConfirmationCode)'
+id: 3555c85f-bf9f-558f-b6a6-6967375db88b
+status: experimental
+description: Converted from Sagan rule SID 5012046 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "ResendConfirmationCode'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012046'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (RespondToAuthChallenge)'
+id: 98a56b47-f880-5269-913d-ed761398130b
+status: experimental
+description: Converted from Sagan rule SID 5012047 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "RespondToAuthChallenge'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012047'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (RevokeToken)'
+id: c54dc1f7-67e3-537a-a2d4-935bf85ebc20
+status: experimental
+description: Converted from Sagan rule SID 5012048 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "RevokeToken'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012048'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (SetRiskConfiguration)'
+id: 6720efae-fdb8-5537-985e-6aa8070aebe6
+status: experimental
+description: Converted from Sagan rule SID 5012049 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "SetRiskConfiguration'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012049'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (SetUICustomization)'
+id: 4d6da86b-d76f-514a-99ab-2e070e4c58ce
+status: experimental
+description: Converted from Sagan rule SID 5012050 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "SetUICustomization'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012050'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (SetUserMFAPreference)'
+id: ce7050b6-1840-515d-934d-97620b1ba289
+status: experimental
+description: Converted from Sagan rule SID 5012051 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "SetUserMFAPreference'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012051'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (SetUserPoolMfaConfig)'
+id: f016ae3d-afb5-56cd-954b-95325af16198
+status: experimental
+description: Converted from Sagan rule SID 5012052 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "SetUserPoolMfaConfig'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012052'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (SetUserSettings)'
+id: 9a487a79-b307-5875-96b0-bdd07d7e8425
+status: experimental
+description: Converted from Sagan rule SID 5012053 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "SetUserSettings'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012053'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (SignUp)'
+id: 6023b621-ac97-5660-9f21-d69e6f39dbd4
+status: experimental
+description: Converted from Sagan rule SID 5012054 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "SignUp'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012054'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (StartUserImportJob)'
+id: 1190aa51-5171-55c3-b1d9-7251e07f7390
+status: experimental
+description: Converted from Sagan rule SID 5012055 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "StartUserImportJob'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012055'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (StopUserImportJob)'
+id: f819564b-2490-5800-b71b-f31cdb2e9f31
+status: experimental
+description: Converted from Sagan rule SID 5012056 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "StopUserImportJob'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012056'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (TagResource)'
+id: 876db16c-09a7-5827-ad06-582f4873c454
+status: experimental
+description: Converted from Sagan rule SID 5012057 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "TagResource'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012057'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (UntagResource)'
+id: bbc36695-23f0-5976-b15e-bbd9d062addb
+status: experimental
+description: Converted from Sagan rule SID 5012058 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "UntagResource'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012058'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (UpdateAuthEventFeedback)'
+id: f6bb05b2-6bea-5d9c-980e-ab92102321be
+status: experimental
+description: Converted from Sagan rule SID 5012059 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "UpdateAuthEventFeedback'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012059'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (UpdateDeviceStatus)'
+id: c327feab-4ec5-5c15-aa1a-8126392dc3d4
+status: experimental
+description: Converted from Sagan rule SID 5012060 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "UpdateDeviceStatus'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012060'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (UpdateGroup)'
+id: 1801ddc8-4db5-594b-a44f-e5870958c5f8
+status: experimental
+description: Converted from Sagan rule SID 5012061 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "UpdateGroup'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012061'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (UpdateIdentityProvider)'
+id: 40a5c67e-64ea-53ba-88e2-376d06229aa0
+status: experimental
+description: Converted from Sagan rule SID 5012062 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "UpdateIdentityProvider'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012062'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (UpdateResourceServer)'
+id: ecc2918a-7fce-5a46-8fbd-9296a862a5f7
+status: experimental
+description: Converted from Sagan rule SID 5012063 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "UpdateResourceServer'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012063'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (UpdateUserAttributes)'
+id: 560ba2b6-aebb-57ed-8684-dd757279d765
+status: experimental
+description: Converted from Sagan rule SID 5012064 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "UpdateUserAttributes'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012064'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (UpdateUserPool)'
+id: 14c53ee1-7b9d-5ced-ac97-ffe72d3c2f8b
+status: experimental
+description: Converted from Sagan rule SID 5012065 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "UpdateUserPool'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012065'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (UpdateUserPoolClient)'
+id: 214d394c-ddfd-52c1-b5a2-1f3c6b252bf9
+status: experimental
+description: Converted from Sagan rule SID 5012066 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "UpdateUserPoolClient'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012066'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (UpdateUserPoolDomain)'
+id: cae2a922-91b8-5fb6-916e-2617f71d3561
+status: experimental
+description: Converted from Sagan rule SID 5012067 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "UpdateUserPoolDomain'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012067'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (VerifySoftwareToken)'
+id: 9f249990-52e7-56b6-a11e-37dbd3dbf9e5
+status: experimental
+description: Converted from Sagan rule SID 5012068 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "VerifySoftwareToken'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012068'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules
+---
+title: '[AWS-COGNITO] AWS Cognito event detected (VerifyUserAttribute)'
+id: e303597c-2dc1-512b-8e86-b1a8814d856c
+status: experimental
+description: Converted from Sagan rule SID 5012069 (rev 3), file aws-cognito.rules.
+references:
+  - https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cognito*
+  selection_2:
+    _raw|contains|cased: 'eventName": "VerifyUserAttribute'
+  filter_3:
+    _raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+  filter_4:
+    _raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5012069'
+  sagan.rev: '3'
+  sagan.source_file: aws-cognito.rules

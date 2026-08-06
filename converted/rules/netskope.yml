@@ -1,0 +1,2020 @@
+title: '[NETSKOPE] Malware alert'
+id: 853ef71a-202a-56e4-aeed-82c38d5c55ff
+status: experimental
+description: Converted from Sagan rule SID 5005675 (rev 2), file netskope.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    event_type|cased: Malware
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5005675'
+  sagan.rev: '2'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Compromised Credential alert'
+id: 82041844-7637-5452-8a4d-50b61fac3973
+status: experimental
+description: Converted from Sagan rule SID 5005676 (rev 2), file netskope.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    event_type|cased: Compromised Credential
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-login
+custom_attributes:
+  sagan.sid: '5005676'
+  sagan.rev: '2'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Data Loss Prevention alert'
+id: ba411979-b18f-5bf2-b858-6de03f946bff
+status: experimental
+description: Converted from Sagan rule SID 5005677 (rev 2), file netskope.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    event_type|cased: DLP
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005677'
+  sagan.rev: '2'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] malsite alert'
+id: 0f8d0ac7-afa5-535b-b1dc-0ffa84eb18ef
+status: experimental
+description: Converted from Sagan rule SID 5005678 (rev 2), file netskope.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    event_type|cased: malsite
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5005678'
+  sagan.rev: '2'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Policy alert'
+id: 03f7016f-3a4d-5293-b713-116c1bae2c81
+status: experimental
+description: Converted from Sagan rule SID 5005679 (rev 2), file netskope.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    event_type|cased: policy
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5005679'
+  sagan.rev: '2'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Security Assessment alert'
+id: 392ec1d3-9ce8-5e4a-b457-c73379c03694
+status: experimental
+description: Converted from Sagan rule SID 5005680 (rev 2), file netskope.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    event_type|cased: Security Assessment
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5005680'
+  sagan.rev: '2'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] User Behavior Anaytics [uba] alert'
+id: fa62b12c-e939-5427-8a11-bb7c285dd990
+status: experimental
+description: Converted from Sagan rule SID 5005681 (rev 2), file netskope.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    event_type|cased: uba
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005681'
+  sagan.rev: '2'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] watchlist alert'
+id: e971ba42-a17c-5c69-b41d-432898e9f8c3
+status: experimental
+description: Converted from Sagan rule SID 5005682 (rev 2), file netskope.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    event_type|cased: watchlist
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005682'
+  sagan.rev: '2'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] anomaly alert - data_exfiltration'
+id: ce0b5b4f-0477-5ce6-b200-f7336c95aca3
+status: experimental
+description: Converted from Sagan rule SID 5005684 (rev 2), file netskope.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    event_type|cased: anomaly
+  selection_2:
+    alert_name|cased: data_exfiltration
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005684'
+  sagan.rev: '2'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] anomaly alert - mlad'
+id: c8ffa579-d34e-58af-b244-7883d22a65ff
+status: experimental
+description: Converted from Sagan rule SID 5005685 (rev 2), file netskope.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    event_type|cased: anomaly
+  selection_2:
+    alert_name|cased: mlad
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005685'
+  sagan.rev: '2'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] anomaly alert - user_shared_credentials'
+id: f4b14eff-6d6d-5cb1-9964-7ab91c9fe928
+status: experimental
+description: Converted from Sagan rule SID 5005686 (rev 2), file netskope.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    event_type|cased: anomaly
+  selection_2:
+    alert_name|cased: user_shared_credentials
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005686'
+  sagan.rev: '2'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Access Denied Event Detected'
+id: b446444f-0e0b-515f-a311-ad2f4159436b
+status: experimental
+description: Converted from Sagan rule SID 5015237 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event: Access Denied
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015237'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Multiple Login Failed Events Detected'
+id: a153475d-b3b1-5720-82c7-55a84bb4404a
+name: sagan_5015238
+status: experimental
+description: Converted from Sagan rule SID 5015238 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event|cased: Login Failed
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015238'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Multiple Login Failed Events Detected (threshold 5 in 5m)'
+id: fe9c4808-728f-578c-b281-3fe1d7025a41
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5015238
+  group-by:
+    - user
+  timespan: 5m
+  condition:
+    gte: 5
+level: medium
+---
+title: '[NETSKOPE] Multiple SSO Login Failed Events Detected'
+id: 61b223fc-2cb8-585a-880f-a7234b2752f8
+name: sagan_5015239
+status: experimental
+description: Converted from Sagan rule SID 5015239 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event: SSO Login Failed
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015239'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Multiple SSO Login Failed Events Detected (threshold 5 in 5m)'
+id: 1a1f783a-f632-5855-907a-6acfe083503c
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5015239
+  group-by:
+    - user
+  timespan: 5m
+  condition:
+    gte: 5
+level: medium
+---
+title: '[NETSKOPE] Admin logged out because of successive login failures Event Detected'
+id: 2c6cd79c-4442-50bc-9b04-3eac2644c55e
+status: experimental
+description: Converted from Sagan rule SID 5015241 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event: Admin logged out because of successive login failures
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015241'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Login Successful After Brute Force Event Detected'
+id: 3f5dcf44-d04d-5d29-87f6-f432f19d0ae7
+name: sagan_5015242
+status: experimental
+description: Converted from Sagan rule SID 5015242 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event: Login Successful
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015242'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Login Successful After Brute Force Event Detected (correlated with brute-force)'
+id: 6e10a93d-2503-5b58-9a9c-3f53e634f91a
+status: experimental
+description: Reconstruction of the Sagan 'brute-force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute-force
+    - sagan_5015242
+  group-by:
+    - srcip
+  timespan: 1d
+level: medium
+---
+title: '[NETSKOPE] SSO Login Successful After Brute Force Event Detected'
+id: d43ffb4f-c2f6-547f-bd67-17588704dfd9
+name: sagan_5015243
+status: experimental
+description: Converted from Sagan rule SID 5015243 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event: SSO Login Successful
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015243'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] SSO Login Successful After Brute Force Event Detected (correlated with brute-force)'
+id: 87712df1-559e-5bcc-95a0-cc8133e3d995
+status: experimental
+description: Reconstruction of the Sagan 'brute-force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute-force
+    - sagan_5015243
+  group-by:
+    - srcip
+  timespan: 1d
+level: medium
+---
+title: '[NETSKOPE] Password Change Failed Attempt Event Detected'
+id: 3b069c12-c669-57c1-b039-53e1a010058b
+name: sagan_5015244
+status: experimental
+description: Converted from Sagan rule SID 5015244 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event: Password Change Failed Attempt
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015244'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Password Change Failed Attempt Event Detected (threshold 3 in 5m)'
+id: 52ad14ff-ef88-56f3-bf9c-f68621c18c92
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5015244
+  group-by:
+    - user
+  timespan: 5m
+  condition:
+    gte: 3
+level: medium
+---
+title: '[NETSKOPE] Password Change Successful Event Detected'
+id: 31cd0546-303a-5ad3-b361-45c6cea47f88
+status: experimental
+description: Converted from Sagan rule SID 5015245 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event: Password Change Successful
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015245'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Created new admin Event Detected'
+id: 9b5f8827-91f8-51d5-87cf-908ea1dab8b9
+status: experimental
+description: Converted from Sagan rule SID 5015246 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event: Created new admin
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015246'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Added SSO Admin Event Detected'
+id: 21588c44-1477-51b4-b359-a4878366cdda
+status: experimental
+description: Converted from Sagan rule SID 5015247 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event: Added SSO Admin
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015247'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Created new support admin Event Detected'
+id: cd4058c4-d8ae-5362-8ab4-4b4d73d81436
+status: experimental
+description: Converted from Sagan rule SID 5015249 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event: Created new support admin
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015249'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Enabled admin Event Detected'
+id: 7ffa7a31-6db8-5ebd-bfca-458cc80a9216
+status: experimental
+description: Converted from Sagan rule SID 5015252 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event: Enabled admin
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015252'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Unlocked admin Event Detected'
+id: 1adbf7eb-f6a3-5031-9663-1152e92b2edb
+status: experimental
+description: Converted from Sagan rule SID 5015254 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event: Unlocked admin
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015254'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Enabled Netskope Support SSO Event Detected'
+id: 3b709820-f384-5a2b-87d6-92a75695dbf6
+status: experimental
+description: Converted from Sagan rule SID 5015256 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event: Enabled Netskope Support SSO
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015256'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Deleted Netskope SSO admin Event Detected'
+id: f588f387-1959-57a6-80e8-5c7ae16755a7
+status: experimental
+description: Converted from Sagan rule SID 5015258 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event: Deleted Netskope SSO admin
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015258'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] SSO Login Successful by Netskope Support Event Detected'
+id: 5248b325-f543-5c72-82d2-a2e2d3a9d764
+status: experimental
+description: Converted from Sagan rule SID 5015259 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event: SSO Login Successful by Netskope Support
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015259'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] SSO Login Failed by Netskope Support Event Detected'
+id: 0754b7fd-bd5b-5197-b3de-a188bdd28bae
+status: experimental
+description: Converted from Sagan rule SID 5015260 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event: SSO Login Failed by Netskope Support
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015260'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Resend Verification Email Event Detected'
+id: 5a4cd300-d026-5d8b-8337-5de41f6330ae
+status: experimental
+description: Converted from Sagan rule SID 5015261 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event: Resend Verification Email
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015261'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Reset password Event Detected'
+id: c054317d-7fc6-5dd7-9563-4b3941a8dabe
+status: experimental
+description: Converted from Sagan rule SID 5015262 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event: Reset password
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015262'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Request OTP for Account Verification Event Detected'
+id: ce4a3265-ad48-5ddb-8d12-3f3f6b22a389
+status: experimental
+description: Converted from Sagan rule SID 5015263 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event: Request OTP for Account Verification
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015263'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Account activation link validation failed Event Detected'
+id: ad8ed795-7d39-5785-8b54-a91d95769e9f
+status: experimental
+description: Converted from Sagan rule SID 5015264 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event: Account activation link validation failed
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015264'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] OTP validation failed Event Detected'
+id: 625ecd26-2154-506a-9cae-153cff10c659
+status: experimental
+description: Converted from Sagan rule SID 5015265 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event: OTP validation failed
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015265'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Account Verification Successful Event Detected'
+id: de15bfc9-13e0-50bb-84a8-afe58a24b650
+status: experimental
+description: Converted from Sagan rule SID 5015266 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event: Account Verification Successful
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015266'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Set dedicated egress ip policy Event Detected'
+id: 8e4d69de-b133-57c5-bc8b-fb264f94feb8
+status: experimental
+description: Converted from Sagan rule SID 5015271 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/audit-log-1/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: audit
+  selection_3:
+    audit_log_event: Set dedicated egress ip policy
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015271'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+---
+title: '[NETSKOPE] Watchlist Alert Detected (Low)'
+id: 883804d1-95c4-5bbe-afb4-afb4bcbd0158
+status: experimental
+description: Converted from Sagan rule SID 5015288 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: watchlist
+  selection_4:
+    severity: Low
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015288'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Watchlist Alert Detected (Medium)'
+id: ffaaccaa-260e-52fa-992d-c88389605859
+status: experimental
+description: Converted from Sagan rule SID 5015289 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: watchlist
+  selection_4:
+    severity: Medium
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015289'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Watchlist Alert Detected (High)'
+id: 8aa5e0a7-f4a9-5435-ac69-74d67be559df
+status: experimental
+description: Converted from Sagan rule SID 5015290 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: watchlist
+  selection_4:
+    severity: High
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015290'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Policy Alert Detected (Low)'
+id: daa21e75-b310-5b9b-a3d2-064b3a514681
+status: experimental
+description: Converted from Sagan rule SID 5015292 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: policy
+  selection_4:
+    severity: Low
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015292'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Policy Alert Detected (Medium)'
+id: d883f7c7-f83c-590f-bf0a-6bce683bd450
+status: experimental
+description: Converted from Sagan rule SID 5015293 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: policy
+  selection_4:
+    severity: Medium
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015293'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Policy Alert Detected (High)'
+id: 98962b2e-d358-5705-8c97-4e35b03b0119
+status: experimental
+description: Converted from Sagan rule SID 5015294 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: policy
+  selection_4:
+    severity: High
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015294'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] DLP Alert Detected (Low)'
+id: 4b37167e-5224-5b47-a8d3-fca3d53b8848
+status: experimental
+description: Converted from Sagan rule SID 5015296 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: DLP
+  selection_4:
+    severity: Low
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015296'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] DLP Alert Detected (Medium)'
+id: 6264e17b-0283-5098-8f57-34989e0aaca5
+status: experimental
+description: Converted from Sagan rule SID 5015297 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: DLP
+  selection_4:
+    severity: Medium
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015297'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] DLP Alert Detected (High)'
+id: c1241cf4-bb1d-57d1-9682-0299e0b07682
+status: experimental
+description: Converted from Sagan rule SID 5015298 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: DLP
+  selection_4:
+    severity: High
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015298'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Legal Hold Alert Detected (Low)'
+id: 7b3a0aa0-5dc3-56c5-9f67-f04d4a8659d7
+status: experimental
+description: Converted from Sagan rule SID 5015300 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: legal hold
+  selection_4:
+    severity: Low
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015300'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Legal Hold Alert Detected (Medium)'
+id: 3adccbbe-b5e2-5e0b-bd41-0e57ae710045
+status: experimental
+description: Converted from Sagan rule SID 5015301 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: legal hold
+  selection_4:
+    severity: Medium
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015301'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Legal Hold Alert Detected (High)'
+id: 7b339c79-5f04-5dd4-acca-ad11f785d80b
+status: experimental
+description: Converted from Sagan rule SID 5015302 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: legal hold
+  selection_4:
+    severity: High
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015302'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Quarantine Alert Detected (Low)'
+id: d3c9e50d-f1c8-5d22-950f-94cf5d17d2ed
+status: experimental
+description: Converted from Sagan rule SID 5015304 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: quarantine
+  selection_4:
+    severity: Low
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015304'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Quarantine Alert Detected (Medium)'
+id: 762c8be9-b6e5-5d6c-9449-05d0aaf61983
+status: experimental
+description: Converted from Sagan rule SID 5015305 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: quarantine
+  selection_4:
+    severity: Medium
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015305'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Quarantine Alert Detected (High)'
+id: cd6c1b04-4e22-5868-b7a0-42d0fb00037e
+status: experimental
+description: Converted from Sagan rule SID 5015306 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: quarantine
+  selection_4:
+    severity: High
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015306'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Malware Alert Detected (Low)'
+id: 5f5522f4-83d3-51ad-a7fa-e1e2b3537448
+status: experimental
+description: Converted from Sagan rule SID 5015308 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  filter_3:
+    action: block
+  selection_4:
+    alert_type: malware
+  selection_5:
+    severity: Low
+  condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015308'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Malware Alert Detected (Medium)'
+id: 3ad07d12-a573-537e-b017-ed2cacc68595
+status: experimental
+description: Converted from Sagan rule SID 5015309 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  filter_3:
+    action: block
+  selection_4:
+    alert_type: malware
+  selection_5:
+    severity: Medium
+  condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015309'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Malware Alert Detected (High)'
+id: 11343bc9-bd86-5149-813a-655c969041a1
+status: experimental
+description: Converted from Sagan rule SID 5015310 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  filter_3:
+    action: block
+  selection_4:
+    alert_type: malware
+  selection_5:
+    severity: High
+  condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015310'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Malsite Alert Detected (Low)'
+id: 7a1e9ec2-34ad-5101-84b1-6a1730f532a7
+status: experimental
+description: Converted from Sagan rule SID 5015312 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: malsite
+  selection_4:
+    severity: Low
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015312'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Malsite Alert Detected (Medium)'
+id: 11f9dfd5-33eb-561a-b6fc-550dcea93f78
+status: experimental
+description: Converted from Sagan rule SID 5015313 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: malsite
+  selection_4:
+    severity: Medium
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015313'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Malsite Alert Detected (High)'
+id: 334b2f50-e346-59f8-b8bb-0def9bbb42e5
+status: experimental
+description: Converted from Sagan rule SID 5015314 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: malsite
+  selection_4:
+    severity: High
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015314'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Anomaly Alert Detected (Low)'
+id: a02992a4-76e8-5364-ac12-062da329bb47
+status: experimental
+description: Converted from Sagan rule SID 5015316 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: anomaly
+  selection_4:
+    severity: Low
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015316'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Anomaly Alert Detected (Medium)'
+id: 50270525-5a81-5c7c-a855-5cdbefa05347
+status: experimental
+description: Converted from Sagan rule SID 5015317 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: anomaly
+  selection_4:
+    severity: Medium
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015317'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Anomaly Alert Detected (High)'
+id: cbf38e24-0ca1-5778-a486-7e101dddedb2
+status: experimental
+description: Converted from Sagan rule SID 5015318 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: anomaly
+  selection_4:
+    severity: High
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015318'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Compromised Credential Alert Detected (Low)'
+id: e59aad08-9d7d-5c60-a426-c6e03b450fcc
+status: experimental
+description: Converted from Sagan rule SID 5015320 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: Compromised Credential
+  selection_4:
+    severity: Low
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015320'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Compromised Credential Alert Detected (Medium)'
+id: 4e880894-9281-5513-8153-04af523b4b1f
+status: experimental
+description: Converted from Sagan rule SID 5015321 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: Compromised Credential
+  selection_4:
+    severity: Medium
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015321'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Compromised Credential Alert Detected (High)'
+id: 496486e5-7a46-5bcd-9379-41cc75df336e
+status: experimental
+description: Converted from Sagan rule SID 5015322 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: Compromised Credential
+  selection_4:
+    severity: High
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015322'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Security Assessment Alert Detected (Low)'
+id: b057effd-b1ee-55ed-9933-6747c154d84e
+status: experimental
+description: Converted from Sagan rule SID 5015324 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: Security Assessment
+  selection_4:
+    severity: Low
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015324'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Security Assessment Alert Detected (Medium)'
+id: f088bb73-0c11-5d52-9302-413732051540
+status: experimental
+description: Converted from Sagan rule SID 5015325 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: Security Assessment
+  selection_4:
+    severity: Medium
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015325'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Security Assessment Alert Detected (High)'
+id: 78772ee4-e07f-517b-9350-22d6a64be0c9
+status: experimental
+description: Converted from Sagan rule SID 5015326 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/get-alerts-data
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: alert
+  selection_3:
+    alert_type: Security Assessment
+  selection_4:
+    severity: High
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015326'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Application Event Detected (poor)'
+id: 3b839dfb-9c24-562b-a5ca-188310249990
+status: experimental
+description: Converted from Sagan rule SID 5015327 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/application-risk-exchange-custom-plugin-developers-guide/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: application
+  selection_3:
+    action: alert
+  selection_4:
+    ccl: poor
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015327'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Application Event Detected (low)'
+id: 6dad65d5-b01b-5528-969f-13ceac2ae494
+status: experimental
+description: Converted from Sagan rule SID 5015328 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/application-risk-exchange-custom-plugin-developers-guide/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: application
+  selection_3:
+    action: alert
+  selection_4:
+    ccl: low
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015328'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Application Event Detected (medium)'
+id: 6951974b-7d2f-56c7-8fcb-3e59ba685454
+status: experimental
+description: Converted from Sagan rule SID 5015329 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/application-risk-exchange-custom-plugin-developers-guide/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: application
+  selection_3:
+    action: alert
+  selection_4:
+    ccl: medium
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015329'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Application Event Detected (high)'
+id: f367f2af-c11a-5d5c-9e03-55003c661443
+status: experimental
+description: Converted from Sagan rule SID 5015330 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/application-risk-exchange-custom-plugin-developers-guide/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: application
+  selection_3:
+    action: alert
+  selection_4:
+    ccl: high
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015330'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21
+---
+title: '[NETSKOPE] Application Event Detected (excellent)'
+id: 1597db64-f37c-5c3d-b71b-a3d3655de448
+status: experimental
+description: Converted from Sagan rule SID 5015331 (rev 1), file netskope.rules.
+references:
+  - https://docs.netskope.com/en/application-risk-exchange-custom-plugin-developers-guide/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: netskope-api_data
+  selection_2:
+    record_type: application
+  selection_3:
+    action: alert
+  selection_4:
+    ccl: excellent
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015331'
+  sagan.rev: '1'
+  sagan.source_file: netskope.rules
+  sagan.metadata: created_at=2025_01_21,updated_at=2025_01_21

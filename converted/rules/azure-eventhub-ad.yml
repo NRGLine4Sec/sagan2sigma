@@ -1,0 +1,351 @@
+title: '[AZURE-EVENTHUB-AD] Risk Event Detected - anonymizedIPAddress'
+id: b1a5e333-c3f7-5a8e-ba61-e7ec88811a3f
+status: experimental
+description: Converted from Sagan rule SID 5004761 (rev 4), file azure-eventhub-ad.rules.
+references:
+  - https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/reference-azure-monitor-sign-ins-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    syslog_appname|cased: azureEventHub
+  selection_2:
+    properties.riskEventTypes|contains|cased: anonymizedIPAddress
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5004761'
+  sagan.rev: '4'
+  sagan.source_file: azure-eventhub-ad.rules
+---
+title: '[AZURE-EVENTHUB-AD] Risk Event Detected - maliciousIPAddress'
+id: ece872df-2418-5f64-b060-72b8ec51d620
+status: experimental
+description: Converted from Sagan rule SID 5004762 (rev 4), file azure-eventhub-ad.rules.
+references:
+  - https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/reference-azure-monitor-sign-ins-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    syslog_appname|cased: azureEventHub
+  selection_2:
+    properties.riskEventTypes|contains|cased: maliciousIPAddress
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5004762'
+  sagan.rev: '4'
+  sagan.source_file: azure-eventhub-ad.rules
+---
+title: '[AZURE-EVENTHUB-AD] Risk Event Detected - unfamiliarFeatures'
+id: 8bfe7b42-24e3-5f15-9a22-9a95e066cc42
+status: experimental
+description: Converted from Sagan rule SID 5004763 (rev 4), file azure-eventhub-ad.rules.
+references:
+  - https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/reference-azure-monitor-sign-ins-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    syslog_appname|cased: azureEventHub
+  selection_2:
+    properties.riskEventTypes|contains|cased: unfamiliarFeatures
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5004763'
+  sagan.rev: '4'
+  sagan.source_file: azure-eventhub-ad.rules
+---
+title: '[AZURE-EVENTHUB-AD] Risk Event Detected - malwareInfectedIPAddress'
+id: 3d534359-87bd-55cd-a914-36a3a9e42239
+status: experimental
+description: Converted from Sagan rule SID 5004764 (rev 4), file azure-eventhub-ad.rules.
+references:
+  - https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/reference-azure-monitor-sign-ins-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    syslog_appname|cased: azureEventHub
+  selection_2:
+    properties.riskEventTypes|contains|cased: malwareInfectedIPAddress
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5004764'
+  sagan.rev: '4'
+  sagan.source_file: azure-eventhub-ad.rules
+---
+title: '[AZURE-EVENTHUB-AD] Risk Event Detected - suspiciousIPAddress'
+id: 1669c09d-d9be-5e59-a40f-022c883da15d
+status: experimental
+description: Converted from Sagan rule SID 5004765 (rev 4), file azure-eventhub-ad.rules.
+references:
+  - https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/reference-azure-monitor-sign-ins-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    syslog_appname|cased: azureEventHub
+  selection_2:
+    properties.riskEventTypes|contains|cased: suspiciousIPAddress
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5004765'
+  sagan.rev: '4'
+  sagan.source_file: azure-eventhub-ad.rules
+---
+title: '[AZURE-EVENTHUB-AD] Risk Event Detected - leakedCredentials'
+id: 365a9120-12e7-59de-a32f-efed43f1a2f6
+status: experimental
+description: Converted from Sagan rule SID 5004766 (rev 5), file azure-eventhub-ad.rules.
+references:
+  - https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/reference-azure-monitor-sign-ins-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    syslog_appname|cased: azureEventHub
+  selection_2:
+    properties.riskEventTypes|contains|cased: leakedCredentials
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5004766'
+  sagan.rev: '5'
+  sagan.source_file: azure-eventhub-ad.rules
+---
+title: '[AZURE-EVENTHUB-AD] Risk Event Detected - investigationsThreatIntelligence'
+id: de1cc4cd-9002-5097-a357-cc8473dd70e2
+status: experimental
+description: Converted from Sagan rule SID 5004767 (rev 4), file azure-eventhub-ad.rules.
+references:
+  - https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/reference-azure-monitor-sign-ins-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    syslog_appname|cased: azureEventHub
+  selection_2:
+    properties.riskEventTypes|contains|cased: investigationsThreatIntelligence
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5004767'
+  sagan.rev: '4'
+  sagan.source_file: azure-eventhub-ad.rules
+---
+title: '[AZURE-EVENTHUB-AD] Risk Event Detected - generic'
+id: 978ed905-29e1-5d35-81d5-a512c77908c2
+status: experimental
+description: Converted from Sagan rule SID 5004768 (rev 4), file azure-eventhub-ad.rules.
+references:
+  - https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/reference-azure-monitor-sign-ins-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    syslog_appname|cased: azureEventHub
+  selection_2:
+    properties.riskEventTypes|contains|cased: generic
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5004768'
+  sagan.rev: '4'
+  sagan.source_file: azure-eventhub-ad.rules
+---
+title: '[AZURE-EVENTHUB-AD] Risk Event Detected - unknownFutureValue'
+id: 0df0928c-22e7-5752-b928-c0d6aedb2683
+status: experimental
+description: Converted from Sagan rule SID 5004769 (rev 4), file azure-eventhub-ad.rules.
+references:
+  - https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/reference-azure-monitor-sign-ins-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    syslog_appname|cased: azureEventHub
+  selection_2:
+    properties.riskEventTypes|contains|cased: unknownFutureValue
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5004769'
+  sagan.rev: '4'
+  sagan.source_file: azure-eventhub-ad.rules
+---
+title: '[AZURE-EVENTHUB-AD] atRisk Event Detected'
+id: 16402555-7abe-5276-a8ef-5c37aa4baa94
+status: experimental
+description: Converted from Sagan rule SID 5004770 (rev 7), file azure-eventhub-ad.rules.
+references:
+  - https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/reference-azure-monitor-sign-ins-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    syslog_appname|cased: azureEventHub
+  selection_2:
+    properties.riskState|cased: atRisk
+  filter_3:
+    properties.riskEventTypes[]|cased: unfamiliarFeatures
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5004770'
+  sagan.rev: '7'
+  sagan.source_file: azure-eventhub-ad.rules
+---
+title: '[AZURE-EVENTHUB-AD] confirmedCompromised Event Detected'
+id: 2cc2af39-d7b1-56c6-8fe1-c1467a062c7c
+status: experimental
+description: Converted from Sagan rule SID 5004771 (rev 4), file azure-eventhub-ad.rules.
+references:
+  - https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/reference-azure-monitor-sign-ins-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    syslog_appname|cased: azureEventHub
+  selection_2:
+    properties.riskState|contains|cased: confirmedCompromised
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5004771'
+  sagan.rev: '4'
+  sagan.source_file: azure-eventhub-ad.rules
+---
+title: '[AZURE-EVENTHUB-AD] unknownFutureValue Event Detected'
+id: b5bd4c5c-7222-5b76-a3eb-d9133a848f99
+status: experimental
+description: Converted from Sagan rule SID 5004772 (rev 4), file azure-eventhub-ad.rules.
+references:
+  - https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/reference-azure-monitor-sign-ins-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    syslog_appname|cased: azureEventHub
+  selection_2:
+    properties.riskState|contains|cased: unknownFutureValue
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5004772'
+  sagan.rev: '4'
+  sagan.source_file: azure-eventhub-ad.rules
+---
+title: '[AZURE-EVENTHUB-AD] High Risk During Sign in'
+id: 39e59088-5bd9-53e8-b9f6-2f6f58061bd1
+status: experimental
+description: Converted from Sagan rule SID 5004773 (rev 4), file azure-eventhub-ad.rules.
+references:
+  - https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/reference-azure-monitor-sign-ins-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    syslog_appname|cased: azureEventHub
+  selection_2:
+    properties.riskLevelDuringSignIn|cased: high
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5004773'
+  sagan.rev: '4'
+  sagan.source_file: azure-eventhub-ad.rules
+---
+title: '[AZURE-EVENTHUB-AD] Brute Force (Invalid username or password)'
+id: 91329631-446c-515d-b861-9345509498c6
+status: experimental
+description: Converted from Sagan rule SID 5004776 (rev 6), file azure-eventhub-ad.rules.
+references:
+  - https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/reference-sign-ins-error-codes
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    syslog_appname|cased: azureEventHub
+  selection_2:
+    resulttype: 50126
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5004776'
+  sagan.rev: '6'
+  sagan.source_file: azure-eventhub-ad.rules

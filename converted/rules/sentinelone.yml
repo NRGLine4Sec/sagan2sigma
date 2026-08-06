@@ -1,0 +1,354 @@
+title: '[SentinelOne] New active threat'
+id: 06c42f4c-4492-51ca-9771-951f450e76e8
+status: experimental
+description: Converted from Sagan rule SID 5006615 (rev 3), file sentinelone.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: SentinelOne
+  selection_2:
+    _raw|contains|cased: activityType=19
+  selection_3:
+    _raw|re: activityType=[\d]{2}\b
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5006615'
+  sagan.rev: '3'
+  sagan.source_file: sentinelone.rules
+---
+title: '[SentinelOne] New blocked threat'
+id: 05f6d832-7ce1-5cdb-aa11-b64d38a7d919
+status: experimental
+description: Converted from Sagan rule SID 5006616 (rev 3), file sentinelone.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: SentinelOne
+  selection_2:
+    _raw|contains|cased: activityType=20
+  selection_3:
+    _raw|re: activityType=[\d]{2}\b
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5006616'
+  sagan.rev: '3'
+  sagan.source_file: sentinelone.rules
+---
+title: '[SentinelOne] User role assigned'
+id: e83a7bbb-9865-527f-aad1-8c266aabd96d
+status: experimental
+description: Converted from Sagan rule SID 5006621 (rev 2), file sentinelone.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: SentinelOne
+  selection_2:
+    _raw|contains|cased: activityType=37
+  selection_3:
+    _raw|re: activityType=[\d]{2}\b
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006621'
+  sagan.rev: '2'
+  sagan.source_file: sentinelone.rules
+---
+title: '[SentinelOne] Machine was uninstalled'
+id: 8ebf5aeb-9708-5df8-a36f-cf5d5d7d7662
+status: experimental
+description: Converted from Sagan rule SID 5006626 (rev 2), file sentinelone.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: SentinelOne
+  selection_2:
+    _raw|contains|cased: activityType=51
+  selection_3:
+    _raw|re: activityType=[\d]{2}\b
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006626'
+  sagan.rev: '2'
+  sagan.source_file: sentinelone.rules
+---
+title: '[SentinelOne] Agent disabled'
+id: 11c6cc1b-a382-5c37-985f-6740e2f72511
+status: experimental
+description: Converted from Sagan rule SID 5006637 (rev 2), file sentinelone.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: SentinelOne
+  selection_2:
+    _raw|contains|cased: activityType=128
+  selection_3:
+    _raw|re: activityType=[\d]{3}\b
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006637'
+  sagan.rev: '2'
+  sagan.source_file: sentinelone.rules
+---
+title: '[SentinelOne] Network quarantine performed successfully'
+id: 7ce17d2a-684f-5a5f-a887-dd196969b3b6
+status: experimental
+description: Converted from Sagan rule SID 5006639 (rev 1), file sentinelone.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: SentinelOne
+  selection_2:
+    _raw|contains|cased: activityType=1001
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5006639'
+  sagan.rev: '1'
+  sagan.source_file: sentinelone.rules
+---
+title: '[SentinelOne] Kill performed successful (Process Terminated'
+id: 8428315c-bd7c-57d4-a531-bede7ee6c8a5
+status: experimental
+description: Converted from Sagan rule SID 5006640 (rev 1), file sentinelone.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: SentinelOne
+  selection_2:
+    _raw|contains|cased: activityType=2001
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5006640'
+  sagan.rev: '1'
+  sagan.source_file: sentinelone.rules
+---
+title: '[SentinelOne] Remediate performed successfully'
+id: e54697f6-bdb4-51fd-bdea-52d49e34a04d
+status: experimental
+description: Converted from Sagan rule SID 5006641 (rev 1), file sentinelone.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: SentinelOne
+  selection_2:
+    _raw|contains|cased: activityType=2002
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5006641'
+  sagan.rev: '1'
+  sagan.source_file: sentinelone.rules
+---
+title: '[SentinelOne] Quarantine performed successfully'
+id: cb53b876-923a-596c-8913-f5a5edb9c771
+status: experimental
+description: Converted from Sagan rule SID 5006642 (rev 2), file sentinelone.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: SentinelOne
+  selection_2:
+    _raw|contains|cased: activityType=2004
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006642'
+  sagan.rev: '2'
+  sagan.source_file: sentinelone.rules
+---
+title: '[SentinelOne] Kill failed'
+id: df1ad3e2-779f-559a-9429-1a541d65e6cb
+status: experimental
+description: Converted from Sagan rule SID 5006643 (rev 3), file sentinelone.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: SentinelOne
+  selection_2:
+    _raw|contains|cased: activityType=2006
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.system-error
+custom_attributes:
+  sagan.sid: '5006643'
+  sagan.rev: '3'
+  sagan.source_file: sentinelone.rules
+---
+title: '[SentinelOne] Quarantine failed'
+id: f2d949bb-2bff-53c2-8074-b6b88e0ad749
+status: experimental
+description: Converted from Sagan rule SID 5006644 (rev 2), file sentinelone.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: SentinelOne
+  selection_2:
+    _raw|contains|cased: activityType=2009
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.system-error
+custom_attributes:
+  sagan.sid: '5006644'
+  sagan.rev: '2'
+  sagan.source_file: sentinelone.rules
+---
+title: '[SentinelOne] Kill pending to reboot'
+id: 7ec6db75-1255-55a3-9969-2b79ecea4da8
+status: experimental
+description: Converted from Sagan rule SID 5006648 (rev 1), file sentinelone.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: SentinelOne
+  selection_2:
+    _raw|contains|cased: activityType=2031
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5006648'
+  sagan.rev: '1'
+  sagan.source_file: sentinelone.rules
+---
+title: '[SentinelOne] Quarantine pending to reboot'
+id: 7b5aa92e-cdbb-54e3-adfa-78dd6b925986
+status: experimental
+description: Converted from Sagan rule SID 5006649 (rev 1), file sentinelone.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: SentinelOne
+  selection_2:
+    _raw|contains|cased: activityType=2034
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5006649'
+  sagan.rev: '1'
+  sagan.source_file: sentinelone.rules
+---
+title: '[SentinelOne] Exclusion was added/modified by user'
+id: 930656f8-7f59-5c57-b55a-fd0252bd4d6b
+status: experimental
+description: Converted from Sagan rule SID 5006650 (rev 1), file sentinelone.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: SentinelOne
+  selection_2:
+    _raw|contains|cased: activityType=3001
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006650'
+  sagan.rev: '1'
+  sagan.source_file: sentinelone.rules
+---
+title: '[SentinelOne] New Suspicious threat detected'
+id: f08484a4-a17a-5112-978f-b4bb85337109
+status: experimental
+description: Converted from Sagan rule SID 5006658 (rev 3), file sentinelone.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: SentinelOne
+  selection_2:
+    _raw|contains|cased: activityType=4003
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5006658'
+  sagan.rev: '3'
+  sagan.source_file: sentinelone.rules

@@ -1,0 +1,521 @@
+title: '[WINDOWS-CLIPBOARD] Get-ADGroupMember Command'
+id: 8fdf59ba-b9a2-5ef8-8ad2-547d8d397f76
+status: experimental
+description: Converted from Sagan rule SID 5008633 (rev 1), file azureEventHub_windows-clipboard.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Clipboard
+  selection_2:
+    _raw|contains|cased: Get-ADGroupMember
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5008633'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-clipboard.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008362
+---
+title: '[WINDOWS-CLIPBOARD] Get-ADUser Command'
+id: 9fa56cb8-121b-5b37-8b1a-b90c33ac673f
+status: experimental
+description: Converted from Sagan rule SID 5008634 (rev 1), file azureEventHub_windows-clipboard.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Clipboard
+  selection_2:
+    _raw|contains|cased: Get-ADUser
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5008634'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-clipboard.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008363
+---
+title: '[WINDOWS-CLIPBOARD] Service being stopped'
+id: 888c6a7b-379d-58fa-b1a0-471c82605e3c
+status: experimental
+description: Converted from Sagan rule SID 5008635 (rev 1), file azureEventHub_windows-clipboard.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Clipboard
+  selection_2:
+    _raw|contains|cased: net stop
+  filter_3:
+    _raw|contains|cased: SnowInventoryClient
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5008635'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-clipboard.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008364
+---
+title: '[WINDOWS-CLIPBOARD] Powershell Policy Bypass Command'
+id: 192cb3d1-410c-5ff7-b4aa-933cfc4c19fd
+status: experimental
+description: Converted from Sagan rule SID 5008636 (rev 1), file azureEventHub_windows-clipboard.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Clipboard
+  selection_2:
+    _raw|contains|cased: powershell -ExecutionPolicy Bypass
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5008636'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-clipboard.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008365
+---
+title: '[WINDOWS-CLIPBOARD] Disable Windows Defender Command'
+id: 58184509-eb4a-5ba6-a4ab-a99e7f6ab88e
+status: experimental
+description: Converted from Sagan rule SID 5008637 (rev 1), file azureEventHub_windows-clipboard.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Clipboard
+  selection_2:
+    _raw|contains|cased: \\\\SOFTWARE\\\\Policies\\\\Microsoft\\\\Windows Defender
+  selection_3:
+    _raw|contains|cased: DisableAntiSpyware
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5008637'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-clipboard.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008366
+---
+title: '[WINDOWS-CLIPBOARD] Disable Realtime Monitoring Command'
+id: dea170f2-7dda-53f9-8678-3110e58b8d95
+status: experimental
+description: Converted from Sagan rule SID 5008638 (rev 1), file azureEventHub_windows-clipboard.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Clipboard
+  selection_2:
+    _raw|contains: Set-MpPreference -DisableRealtimeMonitoring
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5008638'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-clipboard.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008367
+---
+title: '[WINDOWS-CLIPBOARD] Uninstall Windows Defender Command'
+id: 4e623782-ee91-51b7-979e-52264d15836f
+status: experimental
+description: Converted from Sagan rule SID 5008639 (rev 1), file azureEventHub_windows-clipboard.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Clipboard
+  selection_2:
+    _raw|contains: Uninstall-WindowsFeature -Name Windows-Defender
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5008639'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-clipboard.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008368
+---
+title: '[WINDOWS-CLIPBOARD] Remoe-exec psexec command'
+id: f78dfe5c-6463-592f-a879-7867aaf90268
+status: experimental
+description: Converted from Sagan rule SID 5008640 (rev 1), file azureEventHub_windows-clipboard.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Clipboard
+  selection_2:
+    _raw|contains: remote-exec psexec
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5008640'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-clipboard.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008369
+---
+title: '[WINDOWS-CLIPBOARD] Powershell encodedcommand'
+id: a54da43d-1ada-5d9a-b1d0-2de023e1a8f8
+status: experimental
+description: Converted from Sagan rule SID 5008641 (rev 1), file azureEventHub_windows-clipboard.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Clipboard
+  selection_2:
+    _raw|contains: powershell
+  selection_3:
+    _raw|contains: -encodedcommand
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5008641'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-clipboard.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008370
+---
+title: '[WINDOWS-CLIPBOARD] rundll32 command'
+id: 77e29d5d-411b-5dc6-abb0-fb9a781e58ce
+status: experimental
+description: Converted from Sagan rule SID 5008642 (rev 1), file azureEventHub_windows-clipboard.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Clipboard
+  selection_2:
+    _raw|contains: rundll32.exe
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5008642'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-clipboard.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008371
+---
+title: '[WINDOWS-CLIPBOARD] rundll32 command with DllRegisterServer'
+id: 02fe4f89-1f87-59f1-90a9-0a50f8fc8e5d
+status: experimental
+description: Converted from Sagan rule SID 5008643 (rev 1), file azureEventHub_windows-clipboard.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Clipboard
+  selection_2:
+    _raw|contains: rundll32.exe
+  selection_3:
+    _raw|contains: DllRegisterServer
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5008643'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-clipboard.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008372
+---
+title: '[WINDOWS-CLIPBOARD] net commands'
+id: cef64243-da82-555d-9643-7f76de6ddf43
+status: experimental
+description: Converted from Sagan rule SID 5008644 (rev 1), file azureEventHub_windows-clipboard.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Clipboard
+  selection_2:
+    _raw|contains:
+      - net group
+      - net user
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5008644'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-clipboard.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008373
+---
+title: '[WINDOWS-CLIPBOARD] net commands'
+id: 298fbe15-b42f-51b9-ba29-2632003d07cf
+status: experimental
+description: Converted from Sagan rule SID 5008645 (rev 1), file azureEventHub_windows-clipboard.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Clipboard
+  selection_2:
+    _raw|contains:
+      - net group
+      - net user
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5008645'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-clipboard.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008374
+---
+title: '[WINDOWS-CLIPBOARD] query user command'
+id: de46699c-4530-59b8-aabc-7a1e93ba8866
+status: experimental
+description: Converted from Sagan rule SID 5008646 (rev 1), file azureEventHub_windows-clipboard.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Clipboard
+  selection_2:
+    _raw|contains: query user
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5008646'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-clipboard.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008375
+---
+title: '[WINDOWS-CLIPBOARD] rwinsta command'
+id: 0885dedf-71b3-563d-8502-14343c1fb520
+status: experimental
+description: Converted from Sagan rule SID 5008647 (rev 1), file azureEventHub_windows-clipboard.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Clipboard
+  selection_2:
+    _raw|contains: rwinsta /server
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5008647'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-clipboard.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008376
+---
+title: '[WINDOWS-CLIPBOARD] nltest command'
+id: 0bd0f911-db10-5ab9-bc12-7ec2c4fc757f
+status: experimental
+description: Converted from Sagan rule SID 5008648 (rev 1), file azureEventHub_windows-clipboard.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Clipboard
+  selection_2:
+    _raw|contains: nltest /dclist
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5008648'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-clipboard.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008377
+---
+title: '[WINDOWS-CLIPBOARD] netstat output v1'
+id: 39729a16-22ec-518b-960e-fecdedcf4473
+status: experimental
+description: Converted from Sagan rule SID 5008649 (rev 1), file azureEventHub_windows-clipboard.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Clipboard
+  selection_2:
+    _raw|contains|cased: Active Connections
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5008649'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-clipboard.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008378
+---
+title: '[WINDOWS-CLIPBOARD] netstat output v2'
+id: c1f9664b-a04e-5973-a23b-e4f72de2536e
+status: experimental
+description: Converted from Sagan rule SID 5008650 (rev 1), file azureEventHub_windows-clipboard.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Clipboard
+  selection_2:
+    _raw|contains|cased: TCP
+  selection_3:
+    _raw|contains|cased: ESTABLISHED
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5008650'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-clipboard.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008379
+---
+title: '[WINDOWS-CLIPBOARD] copy from share drive to local C: command'
+id: 590bf2cb-972f-596b-ab14-4226323a773b
+status: experimental
+description: Converted from Sagan rule SID 5008651 (rev 1), file azureEventHub_windows-clipboard.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Clipboard
+  selection_2:
+    _raw|contains: copy \\\\
+  selection_3:
+    _raw|contains: \\\\C$\\\\
+  selection_4:
+    _raw|contains|cased: C:\\\\
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5008651'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-clipboard.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008380
+---
+title: '[WINDOWS-CLIPBOARD] bitsadmin file transfer command'
+id: 23fae4b9-d672-52a1-8698-2e58bfafc377
+status: experimental
+description: Converted from Sagan rule SID 5008652 (rev 1), file azureEventHub_windows-clipboard.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Clipboard
+  selection_2:
+    _raw|contains: bitsadmin /transfer
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5008652'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-clipboard.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008381
+---
+title: '[WINDOWS-CLIPBOARD] proxychains command'
+id: 88e471dd-5740-5a17-afa2-1d3e4f0ed06a
+status: experimental
+description: Converted from Sagan rule SID 5008653 (rev 1), file azureEventHub_windows-clipboard.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Clipboard
+  selection_2:
+    _raw|contains: 'proxychains '
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5008653'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-clipboard.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008382

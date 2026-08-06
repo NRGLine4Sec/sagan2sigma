@@ -1,0 +1,25 @@
+title: '[COURIER] Authentication failure'
+id: 983a15b6-102c-5315-ade3-a485dd701ce4
+status: experimental
+description: Converted from Sagan rule SID 5000259 (rev 4), file courier.rules.
+author: sagan2sigma
+logsource:
+  product: courier
+  service: imap
+detection:
+  selection_1:
+    _raw|contains|cased: LOGIN FAILED,
+  selection_2:
+    appname|cased:
+      - imapd
+      - imapd-sslcourierlogger
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000259'
+  sagan.rev: '4'
+  sagan.source_file: courier.rules

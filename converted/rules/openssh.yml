@@ -1,0 +1,302 @@
+title: '[OPENSSH] Possible break-in attempt'
+id: 1ee7ead5-3912-5e22-bebf-09b0aab4e611
+status: experimental
+description: Converted from Sagan rule SID 5000018 (rev 9), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    _raw|contains|cased: POSSIBLE BREAK-IN ATTEMPT
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000018'
+  sagan.rev: '9'
+  sagan.source_file: openssh.rules
+  rsigma.suppress: 5m
+---
+title: '[OPENSSH] Not executable shell - login attempt'
+id: 07ca56da-badd-5b61-b4aa-0eb5b149442a
+status: experimental
+description: Converted from Sagan rule SID 5000020 (rev 4), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    _raw|contains|cased: is not executable
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000020'
+  sagan.rev: '4'
+  sagan.source_file: openssh.rules
+---
+title: '[OPENSSH] Out-of-Band challenge failure'
+id: 1c06757c-f936-5c60-961f-dac075e4dad8
+status: experimental
+description: Converted from Sagan rule SID 5000023 (rev 4), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    _raw|contains|cased: Failed auth
+  selection_2:
+    _raw|contains|cased: out-of-band challenge
+  selection_3:
+    _raw|contains|cased: pam_obc
+  selection_4:
+    appname|cased: sshd
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000023'
+  sagan.rev: '4'
+  sagan.source_file: openssh.rules
+---
+title: '[OPENSSH] Bad protocol version - network scan or possible attack [0/3]'
+id: 6069fe6e-3793-557a-b85a-3ec42437dfaa
+status: experimental
+description: Converted from Sagan rule SID 5000068 (rev 9), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    _raw|contains|cased: Bad protocol version identification
+  filter_2:
+    _raw|contains|cased: UNKNOWN
+  selection_3:
+    appname|cased: sshd
+  condition: selection_1 and selection_3 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.non-standard-protocol
+custom_attributes:
+  sagan.sid: '5000068'
+  sagan.rev: '9'
+  sagan.source_file: openssh.rules
+  rsigma.suppress: 5m
+---
+title: '[OPENSSH] No identification string - possible scan'
+id: e9880a56-61d4-52e1-8d47-fcc391a599b3
+status: experimental
+description: Converted from Sagan rule SID 5000070 (rev 7), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    _raw|contains|cased: Did not receive identification string
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.network-scan
+custom_attributes:
+  sagan.sid: '5000070'
+  sagan.rev: '7'
+  sagan.source_file: openssh.rules
+  rsigma.suppress: 5m
+---
+title: '[OPENSSH] OpenSSH challenge-response exploit'
+id: c85b840b-7780-5f20-b76b-b27c86baeeae
+status: experimental
+description: Converted from Sagan rule SID 5000071 (rev 9), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    _raw|contains|cased: buffer_get_stringX bad string
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5000071'
+  sagan.rev: '9'
+  sagan.source_file: openssh.rules
+---
+title: '[OPENSSH] Message without user-IP and context'
+id: b69b2e90-35e3-5ac1-b396-e3c6a29eebec
+status: experimental
+description: Converted from Sagan rule SID 5000072 (rev 3), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    _raw|contains|cased: Could not get shadow information for NOUSER
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5000072'
+  sagan.rev: '3'
+  sagan.source_file: openssh.rules
+---
+title: '[OPENSSH] Corrupted traffic'
+id: bad34bc6-c3d2-5df7-b27e-7be372aeadb9
+status: experimental
+description: Converted from Sagan rule SID 5000073 (rev 3), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    _raw|contains|cased: Corrupted check bytes on
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5000073'
+  sagan.rev: '3'
+  sagan.source_file: openssh.rules
+---
+title: '[OPENSSH] CRC32 compensation attack'
+id: 57cf9462-8205-5ccd-83a9-29295057a2c8
+status: experimental
+description: Converted from Sagan rule SID 5000074 (rev 6), file openssh.rules.
+references:
+  - http://www.securityfocus.com/bid/2347/info/
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    _raw|contains: crc32 compensation attack
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.shellcode-detect
+custom_attributes:
+  sagan.sid: '5000074'
+  sagan.rev: '6'
+  sagan.source_file: openssh.rules
+---
+title: '[OPENSSH] Attempt to login using a denied user'
+id: a36dc298-e00b-51ca-9953-fc98aa490fe8
+status: experimental
+description: Converted from Sagan rule SID 5000077 (rev 5), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    _raw|contains|cased: not allowed because
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000077'
+  sagan.rev: '5'
+  sagan.source_file: openssh.rules
+  rsigma.suppress: 1h
+---
+title: '[OPENSSH] Fail2Ban SSH Suspicious Activity'
+id: f0837d9b-e3ed-55eb-88a8-faa5941f2b30
+status: experimental
+description: Converted from Sagan rule SID 5001974 (rev 5), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    _raw|contains|cased: Fail2Ban
+  filter_2:
+    _raw|contains|cased: Fail2Ban Service
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5001974'
+  sagan.rev: '5'
+  sagan.source_file: openssh.rules
+---
+title: '[OPENSSH] Bad protocol version from UNKNOWN IP - network scan or possible attack [0/3]'
+id: 4f3512c9-a296-55f1-8813-6fd06111496f
+status: experimental
+description: Converted from Sagan rule SID 5003986 (rev 1), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    _raw|contains|cased: Bad protocol version identification
+  selection_2:
+    _raw|contains|cased: UNKNOWN
+  selection_3:
+    appname|cased: sshd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.non-standard-protocol
+custom_attributes:
+  sagan.sid: '5003986'
+  sagan.rev: '1'
+  sagan.source_file: openssh.rules
+  rsigma.suppress: 5m

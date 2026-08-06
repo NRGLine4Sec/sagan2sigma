@@ -18,6 +18,15 @@ fields Sagan derived from raw text, the rate rises to **84.3%**.
 Everything it does not convert is reported with a stable code and the reasoning
 behind it, so the gap in your coverage is explicit rather than silent.
 
+## Just want the rules?
+
+The upstream corpus, already converted with the default profile, is committed
+under [`converted/`](converted). Take the Sigma rules from
+[`converted/rules/`](converted/rules) without installing anything. A scheduled
+job keeps them in step with the upstream corpus, reconverting the whole set on
+each change, and [`converted/VERSIONS.md`](converted/VERSIONS.md) records which
+snapshot they were built from and how old it is.
+
 ## Install
 
 Not published to PyPI yet, so install from source:
@@ -193,6 +202,8 @@ it; the detection engineering is theirs.
 - [`docs/OVERLAP-INVENTORY.md`](docs/OVERLAP-INVENTORY.md) for the merged,
   confidence-tiered list of overlapping rules, pinned to a commit of each corpus
   (a point-in-time snapshot; regenerate with `sagan2sigma-inventory`)
+- [`converted/`](converted) for the pre-converted rules and how they are kept
+  current
 - [`docs/PIPELINE.md`](docs/PIPELINE.md) to get the output running under RSigma
 - [`docs/MAPPING.md`](docs/MAPPING.md) for the keyword-by-keyword mapping
 - [`docs/DESIGN-DECISIONS.md`](docs/DESIGN-DECISIONS.md) for the traps this

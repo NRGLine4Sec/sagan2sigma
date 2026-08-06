@@ -1,0 +1,179 @@
+title: '[KEY9] Unauthorized Access Attempted'
+id: f4be66ae-4f18-5c87-b474-9ec0875a22ab
+name: sagan_5015945
+status: experimental
+description: Converted from Sagan rule SID 5015945 (rev 2), file key9.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: k9
+  selection_2:
+    event_type|cased: access
+  selection_3:
+    description|cased: Unauthorized Access Attempt.
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-user
+custom_attributes:
+  sagan.sid: '5015945'
+  sagan.rev: '2'
+  sagan.source_file: key9.rules
+  sagan.metadata: created_at=2025_05_05,updated_at=2025_11_18
+---
+title: '[KEY9] Unauthorized Access Attempted (threshold 2 in 1m)'
+id: e384adb2-d33b-5dbb-8c53-189c645ed201
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5015945
+  group-by:
+    - ip_address
+  timespan: 1m
+  condition:
+    gte: 2
+level: high
+---
+title: '[KEY9] Restricted Access Attempted'
+id: 1bc9bc34-36e4-55a8-bbdc-ab1bd8f01b89
+status: experimental
+description: Converted from Sagan rule SID 5015946 (rev 1), file key9.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: k9
+  selection_2:
+    event_type|cased: restricted_access_attempt
+  selection_3:
+    description|cased: User attempted to access admin.
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5015946'
+  sagan.rev: '1'
+  sagan.source_file: key9.rules
+  sagan.metadata: created_at=2025_05_05,updated_at=2025_06_17
+---
+title: '[KEY9] Administrative - User Created'
+id: 7396076a-052b-52b8-8e8f-f018b4d75ed3
+status: experimental
+description: Converted from Sagan rule SID 5015947 (rev 1), file key9.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: k9
+  selection_2:
+    event_type|cased: administrative
+  selection_3:
+    description|cased: User created.
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.admin-activity
+custom_attributes:
+  sagan.sid: '5015947'
+  sagan.rev: '1'
+  sagan.source_file: key9.rules
+  sagan.metadata: created_at=2025_05_05,updated_at=2025_06_17
+---
+title: '[KEY9] Administrative - Multiple resend_activation detected [5/300sec]'
+id: 1b94b039-ff42-5522-918c-92bbf31036c6
+name: sagan_5015951
+status: experimental
+description: Converted from Sagan rule SID 5015951 (rev 1), file key9.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: k9
+  selection_2:
+    event_type|cased: administrative
+  selection_3:
+    target.action|cased: resend_activation
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.admin-activity
+custom_attributes:
+  sagan.sid: '5015951'
+  sagan.rev: '1'
+  sagan.source_file: key9.rules
+  sagan.metadata: created_at=2025_05_05,updated_at=2025_06_17
+---
+title: '[KEY9] Administrative - Multiple resend_activation detected [5/300sec] (threshold 3 in 5m)'
+id: 57e63c19-cec8-589c-8b67-613fe00d449c
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5015951
+  group-by:
+    - ip_address
+  timespan: 5m
+  condition:
+    gte: 3
+level: low
+---
+title: '[KEY9] Authentication - Multiple Console Login Failed Attempts [3/120sec]'
+id: 5832f2bc-eead-55c1-8419-4510d2ed53f3
+name: sagan_5015952
+status: experimental
+description: Converted from Sagan rule SID 5015952 (rev 1), file key9.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    syslog_appname|cased: k9
+  selection_2:
+    event_type|cased: authentication
+  selection_3:
+    access_type|cased: console
+  selection_4:
+    sub_type|cased: failed
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.admin-activity
+custom_attributes:
+  sagan.sid: '5015952'
+  sagan.rev: '1'
+  sagan.source_file: key9.rules
+  sagan.metadata: created_at=2025_05_05,updated_at=2025_06_17
+---
+title: '[KEY9] Authentication - Multiple Console Login Failed Attempts [3/120sec] (threshold 3 in 2m)'
+id: 544337bb-f20a-5581-98ec-3f1e08f00220
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5015952
+  group-by:
+    - ip_address
+  timespan: 2m
+  condition:
+    gte: 3
+level: low

@@ -1,0 +1,206 @@
+title: '[AWS-STS] Security Token Service event detected (AssumeRoleWithSAML)'
+id: 6e4af95f-6ef4-5cfe-b58d-6fb5b7ae6453
+status: experimental
+description: Converted from Sagan rule SID 5011430 (rev 2), file aws-sts.rules.
+references:
+  - https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: sts.amazonaws.com
+  selection_2:
+    _raw|contains|cased: 'eventName": "AssumeRoleWithSAML'
+  filter_3:
+    _raw|contains|cased: AWSReservedSSO_
+  filter_4:
+    _raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011430'
+  sagan.rev: '2'
+  sagan.source_file: aws-sts.rules
+---
+title: '[AWS-STS] Security Token Service event detected (AssumeRoleWithWebIdentity)'
+id: 50ac11fb-1f80-5757-9832-fa06af75ff02
+status: experimental
+description: Converted from Sagan rule SID 5011431 (rev 2), file aws-sts.rules.
+references:
+  - https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: sts.amazonaws.com
+  selection_2:
+    _raw|contains|cased: 'eventName": "AssumeRoleWithWebIdentity'
+  filter_3:
+    _raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_4:
+    _raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011431'
+  sagan.rev: '2'
+  sagan.source_file: aws-sts.rules
+---
+title: '[AWS-STS] Security Token Service event detected (DecodeAuthorizationMessage)'
+id: 507ec11b-05d3-53b6-ab95-0c6346bcade8
+status: experimental
+description: Converted from Sagan rule SID 5011432 (rev 2), file aws-sts.rules.
+references:
+  - https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: sts.amazonaws.com
+  selection_2:
+    _raw|contains|cased: 'eventName": "DecodeAuthorizationMessage'
+  filter_3:
+    _raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_4:
+    _raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011432'
+  sagan.rev: '2'
+  sagan.source_file: aws-sts.rules
+---
+title: '[AWS-STS] Security Token Service event detected (GetAccessKeyInfo)'
+id: cff2ec99-0f3e-598e-b68d-abb3c9aa3505
+status: experimental
+description: Converted from Sagan rule SID 5011433 (rev 2), file aws-sts.rules.
+references:
+  - https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: sts.amazonaws.com
+  selection_2:
+    _raw|contains|cased: 'eventName": "GetAccessKeyInfo'
+  filter_3:
+    _raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_4:
+    _raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011433'
+  sagan.rev: '2'
+  sagan.source_file: aws-sts.rules
+---
+title: '[AWS-STS] Security Token Service event detected (GetFederationToken)'
+id: 16704b1d-367c-50ea-bd4b-538ecdffd795
+status: experimental
+description: Converted from Sagan rule SID 5011435 (rev 2), file aws-sts.rules.
+references:
+  - https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: sts.amazonaws.com
+  selection_2:
+    _raw|contains|cased: 'eventName": "GetFederationToken'
+  filter_3:
+    _raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_4:
+    _raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011435'
+  sagan.rev: '2'
+  sagan.source_file: aws-sts.rules
+---
+title: '[AWS-STS] Security Token Service event detected (GetSessionToken)'
+id: b5181861-b38c-5781-b3dc-8f852032f2f8
+status: experimental
+description: Converted from Sagan rule SID 5011436 (rev 2), file aws-sts.rules.
+references:
+  - https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: sts.amazonaws.com
+  selection_2:
+    _raw|contains|cased: 'eventName": "GetSessionToken'
+  filter_3:
+    _raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_4:
+    _raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011436'
+  sagan.rev: '2'
+  sagan.source_file: aws-sts.rules
+---
+title: '[AWS-STS] Security Token Service Discovery Command Event Detected (GetCallerIdentity)'
+id: 029c49a1-4a97-5db0-b353-7a6e4411cb46
+status: experimental
+description: Converted from Sagan rule SID 5015085 (rev 3), file aws-sts.rules.
+references:
+  - https://unit42.paloaltonetworks.com/large-scale-cloud-extortion-operation/
+  - https://docs.aws.amazon.com/STS/latest/APIReference/welcome.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: sts.amazonaws.com
+  selection_2:
+    _raw|contains|cased: 'eventName": "GetCallerIdentity"'
+  filter_3:
+    _raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_4:
+    _raw|contains|cased: AWSServiceRole
+  filter_5:
+    _raw|contains|cased: terraform
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.ta0007
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015085'
+  sagan.rev: '3'
+  sagan.source_file: aws-sts.rules

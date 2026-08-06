@@ -1,0 +1,1474 @@
+title: '[APACHE] Attempt to access forbidden file or directory [0/5]'
+id: 94d16173-37e4-514a-bf52-50b95b8ad696
+status: experimental
+description: Converted from Sagan rule SID 5000156 (rev 12), file apache.rules.
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: denied by server configuration
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1059
+  - attack.t1070
+  - attack.t1210
+  - sagan.classtype.permissions-violation
+custom_attributes:
+  sagan.sid: '5000156'
+  sagan.rev: '12'
+  sagan.source_file: apache.rules
+  rsigma.suppress: 5m
+---
+title: '[APACHE] Attempt to access forbidden directory index'
+id: 32868b70-2c9f-5b03-b5f2-4e2635c7963e
+status: experimental
+description: Converted from Sagan rule SID 5000157 (rev 13), file apache.rules.
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: Directory index forbidden by rule [0/5]
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1059
+  - attack.t1070
+  - attack.t1210
+  - sagan.classtype.permissions-violation
+custom_attributes:
+  sagan.sid: '5000157'
+  sagan.rev: '13'
+  sagan.source_file: apache.rules
+  rsigma.suppress: 5m
+---
+title: '[APACHE] Client sent malformed Host header'
+id: 56a2dc64-7a8a-5a16-b327-88709d2c9848
+status: experimental
+description: Converted from Sagan rule SID 5000158 (rev 8), file apache.rules.
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: Client sent malformed Host header
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1071
+  - attack.t1497
+  - attack.t1539
+  - sagan.classtype.string-detect
+custom_attributes:
+  sagan.sid: '5000158'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] User authentication failed'
+id: 0d60e9e8-57b4-54d9-b2ce-99c27689bd7a
+status: experimental
+description: Converted from Sagan rule SID 5000159 (rev 9), file apache.rules.
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains: authentication failed
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1051
+  - attack.t1078
+  - attack.t1110
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000159'
+  sagan.rev: '9'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Attempt to login using a non-existent user'
+id: fa544b7c-0f42-5536-9768-fa314c189d4d
+status: experimental
+description: Converted from Sagan rule SID 5000160 (rev 11), file apache.rules.
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|re|i: user \S+ not found
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1051
+  - attack.t1110
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000160'
+  sagan.rev: '11'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Rapid attempt to access a non-existent file or directory'
+id: 18e989f1-a282-53e0-b3f7-dfc8bcb0d80e
+status: experimental
+description: Converted from Sagan rule SID 5000161 (rev 12), file apache.rules.
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|re|i: file does not exist|No such file or directory
+  filter_2:
+    _raw|contains|cased: favicon.ico
+  selection_3:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_3 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1040
+  - attack.t1065
+  - attack.t1100
+  - sagan.classtype.suspicious-filename-detect
+custom_attributes:
+  sagan.sid: '5000161'
+  sagan.rev: '12'
+  sagan.source_file: apache.rules
+  rsigma.suppress: 1m
+---
+title: '[APACHE] Attempt to access a non-existent file or stream'
+id: 1896fb84-c13b-55fd-adff-c3fdcd67996b
+status: experimental
+description: Converted from Sagan rule SID 5000378 (rev 9), file apache.rules.
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|re|i: failed opening|failed to open stream
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1040
+  - attack.t1070
+  - attack.t1100
+  - sagan.classtype.suspicious-filename-detect
+custom_attributes:
+  sagan.sid: '5000378'
+  sagan.rev: '9'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Invalid URI in request'
+id: fd970adb-cc4b-58da-8855-2e8994a8e0d2
+status: experimental
+description: Converted from Sagan rule SID 5000162 (rev 8), file apache.rules.
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: Invalid URI in request
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1070
+  - attack.t1071
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000162'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Invalid URI, file name too long'
+id: d9570a24-53b9-565a-8d32-25b8e0af2d94
+status: experimental
+description: Converted from Sagan rule SID 5000163 (rev 8), file apache.rules.
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: file name too long
+  selection_2:
+    _raw|contains|cased: URI too long
+  selection_3:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1070
+  - attack.t1071
+  - sagan.classtype.suspicious-filename-detect
+custom_attributes:
+  sagan.sid: '5000163'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Mod_Security Access denied'
+id: 64fbd0ce-b8d8-504b-85e3-372567ef1df2
+status: experimental
+description: Converted from Sagan rule SID 5000165 (rev 9), file apache.rules.
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased:
+      - modsecurity
+      - mod_security
+      - mod_security-message
+  selection_2:
+    _raw|contains: access denied
+  selection_3:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1059
+  - attack.t1100
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5000165'
+  sagan.rev: '9'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Directory traversal attempt - 1'
+id: 5c0b6cdc-5edc-5cc3-80b4-3f028a51c208
+status: experimental
+description: Converted from Sagan rule SID 5000359 (rev 11), file apache.rules.
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: \?C=S;O=A
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1100
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000359'
+  sagan.rev: '11'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Directory traversal attempt - 2'
+id: 74e7216a-34ea-551e-bb17-3e2ff247884f
+status: experimental
+description: Converted from Sagan rule SID 5000360 (rev 11), file apache.rules.
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: \?C=M;O=A
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1100
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000360'
+  sagan.rev: '11'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Robots.txt access'
+id: 54f8e102-924e-58db-8f5e-87108965e8ff
+status: experimental
+description: Converted from Sagan rule SID 5000361 (rev 11), file apache.rules.
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: robots.txt
+  filter_2:
+    _raw|contains|cased: ' 404 '
+  selection_3:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_3 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1070
+  - sagan.classtype.unknown
+custom_attributes:
+  sagan.sid: '5000361'
+  sagan.rev: '11'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] PHPinfo access attempt [0/5]'
+id: 45aee1a2-976e-5fa9-a777-d9a8b57295a6
+status: experimental
+description: Converted from Sagan rule SID 5000362 (rev 15), file apache.rules.
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: phpinfo
+  filter_2:
+    _raw|contains|cased: ' 404 '
+  selection_3:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_3 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1070
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5000362'
+  sagan.rev: '15'
+  sagan.source_file: apache.rules
+  rsigma.suppress: 5m
+---
+title: '[APACHE] Php-my-admin access attempt [0/5]'
+id: 281c4b52-435a-5657-8a78-840e96490f14
+status: experimental
+description: Converted from Sagan rule SID 5000364 (rev 11), file apache.rules.
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains: phpmyadmin
+  filter_2:
+    _raw|contains|cased: ' 404 '
+  selection_3:
+    appname|cased: apachehttpd
+  condition: selection_1 and selection_3 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1070
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5000364'
+  sagan.rev: '11'
+  sagan.source_file: apache.rules
+  rsigma.suppress: 5m
+---
+title: '[APACHE] Remote execution attempt via CVE-2014-6271'
+id: 111170e5-b262-563e-af8a-8c3ce2ef9683
+status: experimental
+description: Converted from Sagan rule SID 5002180 (rev 8), file apache.rules.
+references:
+  - https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2014-6271
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '() { '
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002180'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 1'
+id: 096cb094-a080-5925-ac60-a0cbf3009f7d
+status: experimental
+description: Converted from Sagan rule SID 5002181 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '%28%29 { '
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002181'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 2'
+id: b72ef8cf-152b-5b39-b8c7-dd55c5873c1b
+status: experimental
+description: Converted from Sagan rule SID 5002182 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '%28%29 {%20'
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002182'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 3'
+id: 842b451a-149a-5848-991f-1c03ef7a1aa0
+status: experimental
+description: Converted from Sagan rule SID 5002183 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '%28%29 %7b '
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002183'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 4'
+id: 1eec374a-2f2e-55e6-80cb-c25b60f0e054
+status: experimental
+description: Converted from Sagan rule SID 5002184 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '%28%29 %7b%20'
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002184'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 5'
+id: e9d889da-5f37-5be7-b8b8-209e9b0d160c
+status: experimental
+description: Converted from Sagan rule SID 5002185 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '%28%29%20{ '
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002185'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 6'
+id: 658d58af-bced-5385-b8a1-9836c84fd10c
+status: experimental
+description: Converted from Sagan rule SID 5002186 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '%28%29%20{%20'
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002186'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 7'
+id: 8c60c1be-0663-5cf7-98f9-dd01f5cb21ea
+status: experimental
+description: Converted from Sagan rule SID 5002187 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '%28%29%20%7b '
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002187'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 8'
+id: 93895a71-23fc-59fd-91f6-04bb8d1915f6
+status: experimental
+description: Converted from Sagan rule SID 5002188 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '%28%29%20%7b%20'
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002188'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 9'
+id: db0ba778-72d7-5c13-93ec-8fec7f1407a9
+status: experimental
+description: Converted from Sagan rule SID 5002189 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '%28 { '
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002189'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 10'
+id: ff48bd08-f8aa-5469-bc04-9d527d9d98ab
+status: experimental
+description: Converted from Sagan rule SID 5002190 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '%28 {%20'
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002190'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 11'
+id: 954c0c4a-cc27-5482-be64-588b5f1c0f3c
+status: experimental
+description: Converted from Sagan rule SID 5002212 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '%28 %7b '
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002212'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 12'
+id: 67fbab79-67de-5ae1-8e71-be42ff28764e
+status: experimental
+description: Converted from Sagan rule SID 5002191 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '%28 %7b%20'
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002191'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 13'
+id: 0683ee77-ce2f-5d32-b1ea-78f6fab40ea7
+status: experimental
+description: Converted from Sagan rule SID 5002192 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '%28%20{ '
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002192'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 14'
+id: df02a3ea-6e84-5946-a33e-8859d9c4e852
+status: experimental
+description: Converted from Sagan rule SID 5002193 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '%28%20{%20'
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002193'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 15'
+id: 7c81c0c0-dcfa-5ee7-bc57-15598f5ed401
+status: experimental
+description: Converted from Sagan rule SID 5002194 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '%28%20%7b '
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002194'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 16'
+id: 34b1f01a-edb8-56f8-9bbc-233525bdee6f
+status: experimental
+description: Converted from Sagan rule SID 5002195 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '%28%20%7b%20'
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002195'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 17'
+id: aeeadbd7-b6f6-5589-a518-12471a8dff50
+status: experimental
+description: Converted from Sagan rule SID 5002196 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '(%29 { '
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002196'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 18'
+id: f1a43e62-b05a-55f4-9e5b-ae32115aaff5
+status: experimental
+description: Converted from Sagan rule SID 5002197 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: (%29 {%20
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002197'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 19'
+id: 4d130105-f751-5fd4-9af2-24ef40bf5a86
+status: experimental
+description: Converted from Sagan rule SID 5002198 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '(%29 %7b '
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002198'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 20'
+id: 5a5dc783-868f-53b1-95f9-774657514128
+status: experimental
+description: Converted from Sagan rule SID 5002199 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: (%29 %7b%20
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002199'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 21'
+id: 56549933-4136-591c-955d-2519467ffc17
+status: experimental
+description: Converted from Sagan rule SID 5002200 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '(%29%20{ '
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002200'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 22'
+id: 4f901579-ea20-59c0-a704-4fb2d35b173d
+status: experimental
+description: Converted from Sagan rule SID 5002201 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: (%29%20{%20
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002201'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 23'
+id: 9ba8f385-084b-57cd-a99e-cc5cedb13b1b
+status: experimental
+description: Converted from Sagan rule SID 5002202 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '(%29%20%7b '
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002202'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 24'
+id: 2b9d5b86-508a-52ad-9eaa-85f7eebcc701
+status: experimental
+description: Converted from Sagan rule SID 5002203 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: (%29%20%7b%20
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002203'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 25'
+id: dcb20477-7f12-5c39-b52d-dab3919dec72
+status: experimental
+description: Converted from Sagan rule SID 5002204 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: () {%20
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002204'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 26'
+id: 559594d0-1f79-510a-bdbc-5ce20621c9b5
+status: experimental
+description: Converted from Sagan rule SID 5002205 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '() %7b '
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002205'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 27'
+id: 0d8c3879-19d8-51d2-b870-e4afc8d4b5e6
+status: experimental
+description: Converted from Sagan rule SID 5002206 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: () %7b%20
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002206'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 28'
+id: 76a11f5e-2582-522c-9ac8-ce47a3717e95
+status: experimental
+description: Converted from Sagan rule SID 5002207 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '))%20{ '
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002207'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 29'
+id: f9efd842-7b6f-5055-b90c-00990eefdd3f
+status: experimental
+description: Converted from Sagan rule SID 5002208 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: '()%20%7b '
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002208'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Possible CVE-2014-6271 Attempt in HTTP URLENCODE Generic 30'
+id: 5fff5649-dc19-5d56-a871-8c00178d07ae
+status: experimental
+description: Converted from Sagan rule SID 5002209 (rev 8), file apache.rules.
+references:
+  - https://blogs.akamai.com/2014/09/environment-bashing.html
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: ()%20%7b%20
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002209'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] CVE-2014-6271 Attempt In HTTP Headers Line Continuation Evasion LF'
+id: 2cdff617-de65-58a3-9c81-b7279ff5b94a
+status: experimental
+description: Converted from Sagan rule SID 5002210 (rev 8), file apache.rules.
+references:
+  - https://www.invisiblethreat.ca/2014/09/cve-2014-6271/
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: |-
+      ()
+       {
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002210'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] CVE-2014-6271 Attempt In HTTP Headers Line Continuation Evasion CRLF'
+id: 460bee0a-d99f-5f84-b99b-df55bfe371cf
+status: experimental
+description: Converted from Sagan rule SID 5002211 (rev 8), file apache.rules.
+references:
+  - https://www.invisiblethreat.ca/2014/09/cve-2014-6271/
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: "()\r\n {"
+  selection_2:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5002211'
+  sagan.rev: '8'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Log4j exploit attempt - CVE-2021-44228'
+id: 54bf97c1-3f6d-5d07-a2fe-07af27998c2f
+status: experimental
+description: Converted from Sagan rule SID 5005960 (rev 3), file apache.rules.
+references:
+  - https://lunasec.io/docs/blog/log4j-zero-day/
+  - 2021-44228
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: 'jndi:'
+  selection_2:
+    _raw|contains|cased: '{'
+  selection_3:
+    _raw|contains|cased: ' 200 '
+  filter_4:
+    _raw|contains: Rule
+  filter_5:
+    _raw|contains|cased: drop
+  filter_6:
+    _raw|contains: tmm
+  selection_7:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2 and selection_3 and selection_7 and not (filter_4 or filter_5
+    or filter_6)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5005960'
+  sagan.rev: '3'
+  sagan.source_file: apache.rules
+---
+title: '[APACHE] Log4j exploit attempt via hex encoding - CVE-2021-44228'
+id: 17a33558-e199-5cd6-9182-86ef82a10c93
+status: experimental
+description: Converted from Sagan rule SID 5005961 (rev 3), file apache.rules.
+references:
+  - https://lunasec.io/docs/blog/log4j-zero-day/
+  - 2021-44228
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    _raw|contains|cased: jndi
+  selection_2:
+    _raw|contains: '%3A'
+  selection_3:
+    _raw|contains: '%7B'
+  selection_4:
+    _raw|contains|cased: ' 200 '
+  selection_5:
+    appname|cased:
+      - '*apache*'
+      - httpd
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1210
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5005961'
+  sagan.rev: '3'
+  sagan.source_file: apache.rules

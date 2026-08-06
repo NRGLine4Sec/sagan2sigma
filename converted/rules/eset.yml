@@ -1,0 +1,1248 @@
+title: '[ESET] Threat Event Detected (Severity:Notice)'
+id: 8c677351-f98d-5a26-9f2c-3edd45e03179
+status: experimental
+description: Converted from Sagan rule SID 5017057 (rev 3), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"Threat_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Notice"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017057'
+  sagan.rev: '3'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_30
+---
+title: '[ESET] Threat Event Detected (Severity:Warning)'
+id: d7bbc0ff-4cda-5e6a-9412-dc7819db11a5
+status: experimental
+description: Converted from Sagan rule SID 5015985 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"Threat_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Warning"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015985'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Threat Event Detected (Severity:Error)'
+id: 0cabac95-c2f7-56ce-abaf-61ea1a6f9802
+status: experimental
+description: Converted from Sagan rule SID 5015986 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"Threat_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Error"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015986'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Threat Event Detected (Severity:Critical)'
+id: 64fb0104-0e43-54bd-9a9c-6169360048ae
+status: experimental
+description: Converted from Sagan rule SID 5015987 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"Threat_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Critical"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015987'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Threat Event Detected (Severity:Fatal)'
+id: 1fe06c77-7bef-59ff-a14d-8b02328c2a3c
+status: experimental
+description: Converted from Sagan rule SID 5015988 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"Threat_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Fatal"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015988'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Firewall Aggregated Event Detected (Severity:Notice)'
+id: c1cc94d1-e7c2-5073-bd94-4f69d93c5267
+status: experimental
+description: Converted from Sagan rule SID 5015990 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"FirewallAggregated_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Notice"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015990'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Firewall Aggregated Event Detected (Severity:Warning)'
+id: 88dbc226-0e35-5280-9822-4ba8b94f48a0
+status: experimental
+description: Converted from Sagan rule SID 5015991 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"FirewallAggregated_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Warning"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015991'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Firewall Aggregated Event Detected (Severity:Error)'
+id: 0616d0e3-9584-5a75-add6-8beac445b20b
+status: experimental
+description: Converted from Sagan rule SID 5015992 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"FirewallAggregated_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Error"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015992'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Firewall Aggregated Event Detected (Severity:Critical)'
+id: 09b73ec6-f0d4-5e3c-9ea9-cae8892705b9
+status: experimental
+description: Converted from Sagan rule SID 5015993 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"FirewallAggregated_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Critical"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015993'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Firewall Aggregated Event Detected (Severity:Fatal)'
+id: a4781a31-8849-50d8-be53-72b28927a68c
+status: experimental
+description: Converted from Sagan rule SID 5015994 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"FirewallAggregated_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Fatal"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015994'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Hips Aggregated Event Detected (Severity:Notice)'
+id: 46d9fac6-d787-5fcd-94bc-c91d5e35ce69
+status: experimental
+description: Converted from Sagan rule SID 5015996 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"HipsAggregated_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Notice"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015996'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Hips Aggregated Event Detected (Severity:Warning)'
+id: ea93c04b-4810-5140-a33e-d6d5adf963c8
+status: experimental
+description: Converted from Sagan rule SID 5015997 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"HipsAggregated_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Warning"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015997'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Hips Aggregated Event Detected (Severity:Error)'
+id: eb938207-d497-5b94-a11c-f31938ca32b1
+status: experimental
+description: Converted from Sagan rule SID 5015998 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"HipsAggregated_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Error"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015998'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Hips Aggregated Event Detected (Severity:Critical)'
+id: f0d35557-c81e-59f4-9f37-0204aa7055e2
+status: experimental
+description: Converted from Sagan rule SID 5015999 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"HipsAggregated_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Critical"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015999'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Hips Aggregated Event Detected (Severity:Fatal)'
+id: 6364e72d-3179-553c-8e95-049857374995
+status: experimental
+description: Converted from Sagan rule SID 5016000 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"HipsAggregated_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Fatal"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016000'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Audit Event Detected (Severity:Notice)'
+id: b87b8e03-d299-5795-b997-fb5f70d73563
+status: experimental
+description: Converted from Sagan rule SID 5016002 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"Audit_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Notice"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016002'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Audit Event Detected (Severity:Warning)'
+id: aa6df02b-98bd-5f33-bae8-b755d579a523
+status: experimental
+description: Converted from Sagan rule SID 5016003 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"Audit_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Warning"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016003'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Audit Event Detected (Severity:Error)'
+id: 1c249dcf-cb99-562a-9e36-8cba13630a53
+status: experimental
+description: Converted from Sagan rule SID 5016004 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"Audit_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Error"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016004'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Audit Event Detected (Severity:Critical)'
+id: f0b368ec-c8a8-5216-982b-34f3d3a5f857
+status: experimental
+description: Converted from Sagan rule SID 5016005 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"Audit_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Critical"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016005'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Audit Event Detected (Severity:Fatal)'
+id: 67277a78-7de2-52fd-80ac-c6b3536e1ae6
+status: experimental
+description: Converted from Sagan rule SID 5016006 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"Audit_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Fatal"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016006'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Filtered Websites Event Detected (Severity:Notice)'
+id: b0610a14-fe74-5a2f-821c-588298bddc93
+status: experimental
+description: Converted from Sagan rule SID 5016008 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"FilteredWebsites_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Notice"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016008'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Filtered Websites Event Detected (Severity:Warning)'
+id: 90c00f8c-47de-5e29-b818-2ca6b71d24f7
+status: experimental
+description: Converted from Sagan rule SID 5016009 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"FilteredWebsites_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Warning"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016009'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Filtered Websites Event Detected (Severity:Error)'
+id: 32453775-748a-57fd-a09f-77cd1c529d71
+status: experimental
+description: Converted from Sagan rule SID 5016010 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"FilteredWebsites_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Error"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016010'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Filtered Websites Event Detected (Severity:Critical)'
+id: d2702323-407e-567b-a219-a84351173a18
+status: experimental
+description: Converted from Sagan rule SID 5016011 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"FilteredWebsites_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Critical"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016011'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Filtered Websites Event Detected (Severity:Fatal)'
+id: 86c60ecc-df9f-5a6f-9132-fc3fc0c3376e
+status: experimental
+description: Converted from Sagan rule SID 5016012 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"FilteredWebsites_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Fatal"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016012'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Enterprise Inspector Alert Event Detected (Severity:Notice)'
+id: 5baad6ed-2afd-544f-aa85-00b37a18f4f6
+status: experimental
+description: Converted from Sagan rule SID 5016014 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"EnterpriseInspectorAlert_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Notice"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016014'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Enterprise Inspector Alert Event Detected (Severity:Warning)'
+id: 3cdf23ac-f132-5dd5-a818-72c56a5a4cfc
+status: experimental
+description: Converted from Sagan rule SID 5016015 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"EnterpriseInspectorAlert_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Warning"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016015'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Enterprise Inspector Alert Event Detected (Severity:Error)'
+id: 65709426-77f3-5cff-8845-a44d3c7b45c5
+status: experimental
+description: Converted from Sagan rule SID 5016016 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"EnterpriseInspectorAlert_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Error"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016016'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Enterprise Inspector Alert Event Detected (Severity:Critical)'
+id: aa9dbed7-180a-5a9e-b966-db451c1d5090
+status: experimental
+description: Converted from Sagan rule SID 5016017 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"EnterpriseInspectorAlert_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Critical"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016017'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Enterprise Inspector Alert Event Detected (Severity:Fatal)'
+id: 734fe499-1afe-5955-abfa-4924a8958cd9
+status: experimental
+description: Converted from Sagan rule SID 5016018 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"EnterpriseInspectorAlert_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Fatal"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016018'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Blocked Files Event Detected (Severity:Notice)'
+id: 7d992810-f00e-5f9f-a115-ac83a33d9529
+status: experimental
+description: Converted from Sagan rule SID 5016020 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"BlockedFiles_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Notice"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016020'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Blocked Files Event Detected (Severity:Warning)'
+id: beddd900-32a9-541b-a147-be18cbf54b22
+status: experimental
+description: Converted from Sagan rule SID 5016021 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"BlockedFiles_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Warning"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016021'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Blocked Files Event Detected (Severity:Error)'
+id: a62a28a0-a51a-51de-acb4-aadbbf4bd2e3
+status: experimental
+description: Converted from Sagan rule SID 5016022 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"BlockedFiles_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Error"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016022'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Blocked Files Event Detected (Severity:Critical)'
+id: 9cee2d37-4cd2-55b0-b505-6d77d85b5fd9
+status: experimental
+description: Converted from Sagan rule SID 5016023 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"BlockedFiles_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Critical"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016023'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Blocked Files Event Detected (Severity:Fatal)'
+id: df0a8f8a-1a60-59ec-b720-1a93bad08b48
+status: experimental
+description: Converted from Sagan rule SID 5016024 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"BlockedFiles_Event
+  selection_3:
+    _raw|contains|cased: '"severity":"Fatal"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016024'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Incident Detected (Severity:Notice)'
+id: 6186f353-18ec-57ae-91e1-6b20a4d5c5c3
+status: experimental
+description: Converted from Sagan rule SID 5016026 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"Incidents
+  selection_3:
+    _raw|contains|cased: '"severity":"Notice"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016026'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Incident Detected (Severity:Warning)'
+id: 9c0ce767-0ab4-5782-9a64-8dc5066ed13c
+status: experimental
+description: Converted from Sagan rule SID 5016027 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"Incidents
+  selection_3:
+    _raw|contains|cased: '"severity":"Warning"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016027'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Incident Detected (Severity:Error)'
+id: 84c7057f-b66c-51d8-b895-4bdfcf12d8f3
+status: experimental
+description: Converted from Sagan rule SID 5016028 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"Incidents
+  selection_3:
+    _raw|contains|cased: '"severity":"Error"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016028'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Incident Detected (Severity:Critical)'
+id: e5d05cc7-b544-53c9-9931-8a85c5aee0d3
+status: experimental
+description: Converted from Sagan rule SID 5016029 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"Incidents
+  selection_3:
+    _raw|contains|cased: '"severity":"Critical"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016029'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] Incident Detected (Severity:Fatal)'
+id: e89bd6a4-a32d-5cf9-858a-ff028e0a41ae
+status: experimental
+description: Converted from Sagan rule SID 5016030 (rev 2), file eset.rules.
+references:
+  - https://help.eset.com/protect_cloud/en-US/events-exported-to-json-format.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event_type":"Incidents
+  selection_3:
+    _raw|contains|cased: '"severity":"Fatal"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016030'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  sagan.metadata: created_at=2025_06_02,updated_at=2025_07_25
+---
+title: '[ESET] An attempt to connect to URL Blocked by Anti-Phishing blacklist'
+id: ced90398-5786-5a08-af9d-a596479da836
+status: experimental
+description: Converted from Sagan rule SID 5017051 (rev 2), file eset.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: rule_id":"Blocked by Anti-Phishing blacklist
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017051'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  rsigma.suppress: 4h
+  sagan.metadata: created_at=2025_07_25
+---
+title: '[ESET] An attempt to connect to URL Blocked by internal IP blacklist'
+id: 50a50d30-b676-549e-8b30-910d5cc30867
+status: experimental
+description: Converted from Sagan rule SID 5017052 (rev 2), file eset.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: rule_id":"Blocked by internal IP blacklist
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017052'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  rsigma.suppress: 4h
+  sagan.metadata: created_at=2025_07_25
+---
+title: '[ESET] An attempt to connect to URL Blocked by PUA blacklist'
+id: 3b03b747-39ba-5a06-876d-8ae437a66cea
+status: experimental
+description: Converted from Sagan rule SID 5017053 (rev 2), file eset.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: rule_id":"Blocked by PUA blacklist
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017053'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  rsigma.suppress: 4h
+  sagan.metadata: created_at=2025_07_25
+---
+title: '[ESET] Security vulnerability exploitation attempt'
+id: 025b70d0-e7be-5d3e-a20e-fdf9886231d7
+status: experimental
+description: Converted from Sagan rule SID 5017054 (rev 2), file eset.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event":"Security vulnerability exploitation attempt
+  filter_3:
+    _raw|contains|cased: Blocked
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017054'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  rsigma.suppress: 5m
+  sagan.metadata: created_at=2025_07_25
+---
+title: '[ESET] TCP Port Scanning attack'
+id: 4a8ce42d-31c8-56f5-ae51-e80cf1825392
+status: experimental
+description: Converted from Sagan rule SID 5017055 (rev 2), file eset.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: eset
+  selection_2:
+    _raw|contains|cased: event":"TCP Port Scanning attack
+  filter_3:
+    _raw|contains|cased: Blocked
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017055'
+  sagan.rev: '2'
+  sagan.source_file: eset.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_at=2025_07_25

@@ -1,0 +1,2555 @@
+title: '[WINDOWS-POWERSHELL] Powershell History Cleared Detected [1/4]'
+id: c696c46d-77a8-51a9-adf7-908b25988f9b
+status: experimental
+description: Converted from Sagan rule SID 5009305 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/powershell
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*PowerShell*'
+  selection_2:
+    _raw|contains|cased: HistorySave
+  selection_3:
+    _raw|contains|cased: del (Get-PSReadlineOption).HistorySavePath
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009305'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005747
+---
+title: '[WINDOWS-POWERSHELL] Powershell History Cleared Detected [2/4]'
+id: 994c2fbb-f179-5dd7-bb5d-7a2a7603db96
+status: experimental
+description: Converted from Sagan rule SID 5009306 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/powershell
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*PowerShell*'
+  selection_2:
+    _raw|contains|cased: HistorySave
+  selection_3:
+    _raw|contains|cased: Set-PSReadlineOption -HistorySaveStyle SaveNothing
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009306'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005748
+---
+title: '[WINDOWS-POWERSHELL] Powershell History Cleared Detected [3/4]'
+id: 9068ba3f-9b60-58ca-9bdb-20ebbe59df4b
+status: experimental
+description: Converted from Sagan rule SID 5009307 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/powershell
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*PowerShell*'
+  selection_2:
+    _raw|contains|cased: HistorySave
+  selection_3:
+    _raw|contains|cased: Remove-Item (Get-PSReadlineOption).HistorySavePath
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009307'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005749
+---
+title: '[WINDOWS-POWERSHELL] Powershell History Cleared Detected [4/4]'
+id: db1c8d27-c486-5c1e-a660-6cea0d9f1df6
+status: experimental
+description: Converted from Sagan rule SID 5009308 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/powershell
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*PowerShell*'
+  selection_2:
+    _raw|contains|cased: HistorySave
+  selection_3:
+    _raw|contains|cased: rm (Get-PSReadlineOption).HistorySavePath
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009308'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005750
+---
+title: '[WINDOWS-POWERSHELL] Powershell created local user [1/3]'
+id: 88fc8593-0b00-57be-9801-c6a80015cf3d
+status: experimental
+description: Converted from Sagan rule SID 5009309 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/powershell
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4104
+  selection_2:
+    syslog_appname|cased: '*PowerShell*'
+  selection_3:
+    RenderedDescription|contains|cased: New-LocalUser -Name
+  selection_4:
+    RenderedDescription|contains|cased: -NoPassword
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009309'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005751
+---
+title: '[WINDOWS-POWERSHELL] Powershell created local user [2/3]'
+id: e0423a6c-6801-5d09-ac1c-a302127c07c7
+status: experimental
+description: Converted from Sagan rule SID 5009310 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/powershell
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4104
+  selection_2:
+    syslog_appname|cased: '*PowerShell*'
+  selection_3:
+    RenderedDescription|contains|cased: net user /add
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009310'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005752
+---
+title: '[WINDOWS-POWERSHELL] Powershell created local user [3/3]'
+id: df5ef3d6-0cc6-5a7b-abaa-b0c54267c4cf
+status: experimental
+description: Converted from Sagan rule SID 5009311 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/powershell
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4104
+  selection_2:
+    syslog_appname|cased: '*PowerShell*'
+  selection_3:
+    RenderedDescription|contains|cased: net localgroup administrators
+  selection_4:
+    RenderedDescription|contains|cased: /add
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009311'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005753
+---
+title: '[WINDOWS-POWERSHELL] DNSCAT VPN over DNS start up detected *CRITICAL AND CALL*'
+id: ffe3fb90-3b10-5b59-9186-406402980328
+status: experimental
+description: Converted from Sagan rule SID 5009312 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/powershell
+  - https://github.com/iagox86/dnscat2
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4104
+  selection_2:
+    syslog_appname|cased: '*PowerShell*'
+  selection_3:
+    RenderedDescription|contains: Start-Dnscat2
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009312'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005754
+---
+title: '[WINDOWS-POWERSHELL] Powershell Possible Downgrade Attempt'
+id: c3c9fba0-493a-5708-b58d-92c4d2772779
+status: experimental
+description: Converted from Sagan rule SID 5009313 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/powershell
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 800
+      - 4104
+  selection_2:
+    syslog_appname|cased: '*PowerShell*'
+  selection_3:
+    RenderedDescription|contains|cased: PowerShell -Version
+  selection_4:
+    RenderedDescription|re: PowerShell |2D|Version [0-6]
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009313'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005755
+---
+title: '[WINDOWS-POWERSHELL] PowerShell Auto Login Enabled, Possible Persistance Attempt [1/2]'
+id: d9fa64dc-1268-5c17-b583-624a16586747
+status: experimental
+description: Converted from Sagan rule SID 5009314 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/powershell
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4104
+  selection_2:
+    syslog_appname|cased: '*PowerShell*'
+  selection_3:
+    RenderedDescription|contains|cased: CurrentVersion\\Winlogon
+  selection_4:
+    RenderedDescription|contains|cased: Set-ItemProperty
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009314'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005756
+---
+title: '[WINDOWS-POWERSHELL] PowerShell Auto Login Enabled, Possible Persistance Attempt [2/2]'
+id: 4b56f607-a565-5fab-8b97-8a5ab08cb6ea
+status: experimental
+description: Converted from Sagan rule SID 5009315 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/powershell
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4104
+  selection_2:
+    syslog_appname|cased: '*PowerShell*'
+  selection_3:
+    RenderedDescription|contains|cased: CurrentVersion\\Winlogon
+  selection_4:
+    RenderedDescription|contains|cased: New-Item
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009315'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005757
+---
+title: '[WINDOWS-POWERSHELL] HostVersion and EngineVersion MixMatched [1/7]'
+id: 6ac27a02-1e14-599d-a4ac-e018a8e10e71
+status: experimental
+description: Converted from Sagan rule SID 5009316 (rev 7), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/powershell
+  - https://adsecurity.org/?p=2921
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID: 400
+  selection_3:
+    RenderedDescription|contains|cased: HostVersion=1
+  filter_4:
+    RenderedDescription|contains|cased: 'EngineVersion= '
+  filter_5:
+    RenderedDescription|contains|cased: EngineVersion=1
+  filter_6:
+    RenderedDescription|contains: ServerRemoteHost
+  filter_7:
+    RenderedDescription|contains: Veeam
+  filter_8:
+    RenderedDescription|contains: wsmprovhost.exe
+  filter_9:
+    RenderedDescription|contains: SolarWinds.APM.Probes
+  filter_10:
+    RenderedDescription|contains: HostName=ApmPSHost
+  filter_11:
+    RenderedDescription|contains: MonitoringHost.exe
+  filter_12:
+    RenderedDescription|contains: HostName=OpsMgr
+  filter_13:
+    RenderedDescription|contains: mmc.exe
+  filter_14:
+    RenderedDescription|contains: LegacyVSTSPowerShellHost.exe
+  filter_15:
+    RenderedDescription|contains: MSExchangePowerShell
+  filter_16:
+    RenderedDescription|contains: JAMSHost
+  filter_17:
+    RenderedDescription|contains: Citrix
+  filter_18:
+    RenderedDescription|contains: Ivanti\\\\Automation
+  filter_19:
+    RenderedDescription|contains: PowerShellEditorServices.VSCode
+  filter_20:
+    RenderedDescription|contains: BigfinPSHostImplementation
+  filter_21:
+    RenderedDescription|contains: dsac.exe
+  filter_22:
+    RenderedDescription|contains: ADMUX
+  filter_23:
+    RenderedDescription|contains: WaPSHost
+  filter_24:
+    RenderedDescription|contains: Ivanti Cloud Agent
+  filter_25:
+    RenderedDescription|contains: N-able Technologies
+  filter_26:
+    RenderedDescription|contains: Microsoft BizTalk Server
+  filter_27:
+    RenderedDescription|contains: stealthbits
+  selection_28:
+    RenderedDescription|re: EngineVersion=[2-7]
+  condition: selection_1 and selection_2 and selection_3 and selection_28 and not (filter_4 or filter_5
+    or filter_6 or filter_7 or filter_8 or filter_9 or filter_10 or filter_11 or filter_12 or filter_13
+    or filter_14 or filter_15 or filter_16 or filter_17 or filter_18 or filter_19 or filter_20 or filter_21
+    or filter_22 or filter_23 or filter_24 or filter_25 or filter_26 or filter_27)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009316'
+  sagan.rev: '7'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005758
+---
+title: '[WINDOWS-POWERSHELL] HostVersion and EngineVersion MixMatched [2/7]'
+id: 6f8013d6-89cf-57c7-b25e-8225c561ffb1
+status: experimental
+description: Converted from Sagan rule SID 5009317 (rev 6), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/powershell
+  - https://adsecurity.org/?p=2921
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID: 400
+  selection_3:
+    RenderedDescription|contains|cased: HostVersion=2
+  filter_4:
+    RenderedDescription|contains|cased: 'EngineVersion= '
+  filter_5:
+    RenderedDescription|contains|cased: EngineVersion=2
+  filter_6:
+    RenderedDescription|contains|cased: ServerRemoteHost
+  filter_7:
+    RenderedDescription|contains: Veeam
+  filter_8:
+    RenderedDescription|contains: wsmprovhost.exe
+  filter_9:
+    RenderedDescription|contains: SolarWinds.APM.Probes
+  filter_10:
+    RenderedDescription|contains: HostName=ApmPSHost
+  filter_11:
+    RenderedDescription|contains: MonitoringHost.exe
+  filter_12:
+    RenderedDescription|contains: HostName=OpsMgr
+  filter_13:
+    RenderedDescription|contains: mmc.exe
+  filter_14:
+    RenderedDescription|contains: LegacyVSTSPowerShellHost.exe
+  filter_15:
+    RenderedDescription|contains: MSExchangePowerShell
+  filter_16:
+    RenderedDescription|contains: JAMSHost
+  filter_17:
+    RenderedDescription|contains: Citrix
+  filter_18:
+    RenderedDescription|contains: Ivanti\\\\Automation
+  filter_19:
+    RenderedDescription|contains: PowerShellEditorServices.VSCode
+  filter_20:
+    RenderedDescription|contains: BigfinPSHostImplementation
+  filter_21:
+    RenderedDescription|contains: dsac.exe
+  filter_22:
+    RenderedDescription|contains: ADMUX
+  filter_23:
+    RenderedDescription|contains: WaPSHost
+  filter_24:
+    RenderedDescription|contains: Ivanti Cloud Agent
+  filter_25:
+    RenderedDescription|contains: N-able Technologies
+  filter_26:
+    RenderedDescription|contains: Microsoft BizTalk Server
+  filter_27:
+    RenderedDescription|contains: stealthbits
+  selection_28:
+    RenderedDescription|re: EngineVersion=[1,3-7]
+  condition: selection_1 and selection_2 and selection_3 and selection_28 and not (filter_4 or filter_5
+    or filter_6 or filter_7 or filter_8 or filter_9 or filter_10 or filter_11 or filter_12 or filter_13
+    or filter_14 or filter_15 or filter_16 or filter_17 or filter_18 or filter_19 or filter_20 or filter_21
+    or filter_22 or filter_23 or filter_24 or filter_25 or filter_26 or filter_27)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009317'
+  sagan.rev: '6'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005759
+---
+title: '[WINDOWS-POWERSHELL] HostVersion and EngineVersion MixMatched [3/7]'
+id: 377b5646-a34b-549b-bd3f-b66899cf2914
+status: experimental
+description: Converted from Sagan rule SID 5009318 (rev 6), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/powershell
+  - https://adsecurity.org/?p=2921
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID: 400
+  selection_3:
+    RenderedDescription|contains|cased: HostVersion=3
+  filter_4:
+    RenderedDescription|contains|cased: 'EngineVersion= '
+  filter_5:
+    RenderedDescription|contains|cased: EngineVersion=3
+  filter_6:
+    RenderedDescription|contains: ServerRemoteHost
+  filter_7:
+    RenderedDescription|contains: Veeam
+  filter_8:
+    RenderedDescription|contains: wsmprovhost.exe
+  filter_9:
+    RenderedDescription|contains: SolarWinds.APM.Probes
+  filter_10:
+    RenderedDescription|contains: HostName=ApmPSHost
+  filter_11:
+    RenderedDescription|contains: MonitoringHost.exe
+  filter_12:
+    RenderedDescription|contains: HostName=OpsMgr
+  filter_13:
+    RenderedDescription|contains: mmc.exe
+  filter_14:
+    RenderedDescription|contains: LegacyVSTSPowerShellHost.exe
+  filter_15:
+    RenderedDescription|contains: MSExchangePowerShell
+  filter_16:
+    RenderedDescription|contains: JAMSHost
+  filter_17:
+    RenderedDescription|contains: Citrix
+  filter_18:
+    RenderedDescription|contains: Ivanti\\\\Automation
+  filter_19:
+    RenderedDescription|contains: PowerShellEditorServices.VSCode
+  filter_20:
+    RenderedDescription|contains: BigfinPSHostImplementation
+  filter_21:
+    RenderedDescription|contains: dsac.exe
+  filter_22:
+    RenderedDescription|contains: ADMUX
+  filter_23:
+    RenderedDescription|contains: WaPSHost
+  filter_24:
+    RenderedDescription|contains: Ivanti Cloud Agent
+  filter_25:
+    RenderedDescription|contains: N-able Technologies
+  filter_26:
+    RenderedDescription|contains: Microsoft BizTalk Server
+  filter_27:
+    RenderedDescription|contains: stealthbits
+  selection_28:
+    RenderedDescription|re: EngineVersion=[1,2,4-7]
+  condition: selection_1 and selection_2 and selection_3 and selection_28 and not (filter_4 or filter_5
+    or filter_6 or filter_7 or filter_8 or filter_9 or filter_10 or filter_11 or filter_12 or filter_13
+    or filter_14 or filter_15 or filter_16 or filter_17 or filter_18 or filter_19 or filter_20 or filter_21
+    or filter_22 or filter_23 or filter_24 or filter_25 or filter_26 or filter_27)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009318'
+  sagan.rev: '6'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005760
+---
+title: '[WINDOWS-POWERSHELL] HostVersion and EngineVersion MixMatched[4/7]'
+id: 44063dee-f1b1-556e-96d8-4c510a07a439
+status: experimental
+description: Converted from Sagan rule SID 5009319 (rev 6), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/powershell
+  - https://adsecurity.org/?p=2921
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID: 400
+  selection_3:
+    RenderedDescription|contains|cased: HostVersion=4
+  filter_4:
+    RenderedDescription|contains|cased: 'EngineVersion= '
+  filter_5:
+    RenderedDescription|contains|cased: EngineVersion=4
+  filter_6:
+    RenderedDescription|contains: ServerRemoteHost
+  filter_7:
+    RenderedDescription|contains: Veeam
+  filter_8:
+    RenderedDescription|contains: wsmprovhost.exe
+  filter_9:
+    RenderedDescription|contains: SolarWinds.APM.Probes
+  filter_10:
+    RenderedDescription|contains: HostName=ApmPSHost
+  filter_11:
+    RenderedDescription|contains: MonitoringHost.exe
+  filter_12:
+    RenderedDescription|contains: HostName=OpsMgr
+  filter_13:
+    RenderedDescription|contains: mmc.exe
+  filter_14:
+    RenderedDescription|contains: LegacyVSTSPowerShellHost.exe
+  filter_15:
+    RenderedDescription|contains: MSExchangePowerShell
+  filter_16:
+    RenderedDescription|contains: JAMSHost
+  filter_17:
+    RenderedDescription|contains: Citrix
+  filter_18:
+    RenderedDescription|contains: Ivanti\\\\Automation
+  filter_19:
+    RenderedDescription|contains: PowerShellEditorServices.VSCode
+  filter_20:
+    RenderedDescription|contains: BigfinPSHostImplementation
+  filter_21:
+    RenderedDescription|contains: dsac.exe
+  filter_22:
+    RenderedDescription|contains: ADMUX
+  filter_23:
+    RenderedDescription|contains: WaPSHost
+  filter_24:
+    RenderedDescription|contains: Ivanti Cloud Agent
+  filter_25:
+    RenderedDescription|contains: N-able Technologies
+  filter_26:
+    RenderedDescription|contains: Microsoft BizTalk Server
+  filter_27:
+    RenderedDescription|contains: stealthbits
+  selection_28:
+    RenderedDescription|re: EngineVersion=[1-3,5-7]
+  condition: selection_1 and selection_2 and selection_3 and selection_28 and not (filter_4 or filter_5
+    or filter_6 or filter_7 or filter_8 or filter_9 or filter_10 or filter_11 or filter_12 or filter_13
+    or filter_14 or filter_15 or filter_16 or filter_17 or filter_18 or filter_19 or filter_20 or filter_21
+    or filter_22 or filter_23 or filter_24 or filter_25 or filter_26 or filter_27)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009319'
+  sagan.rev: '6'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005761
+---
+title: '[WINDOWS-POWERSHELL] HostVersion and EngineVersion MixMatched[5/7]'
+id: 8d4e524a-291e-5b09-8ec2-ffb4c8290d8e
+status: experimental
+description: Converted from Sagan rule SID 5009320 (rev 6), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/powershell
+  - https://adsecurity.org/?p=2921
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID: 400
+  selection_3:
+    RenderedDescription|contains|cased: HostVersion=5
+  filter_4:
+    RenderedDescription|contains|cased: 'EngineVersion= '
+  filter_5:
+    RenderedDescription|contains|cased: EngineVersion=5
+  filter_6:
+    RenderedDescription|contains: ServerRemoteHost
+  filter_7:
+    RenderedDescription|contains: Veeam
+  filter_8:
+    RenderedDescription|contains: wsmprovhost.exe
+  filter_9:
+    RenderedDescription|contains: SolarWinds.APM.Probes
+  filter_10:
+    RenderedDescription|contains: HostName=ApmPSHost
+  filter_11:
+    RenderedDescription|contains: MonitoringHost.exe
+  filter_12:
+    RenderedDescription|contains: HostName=OpsMgr
+  filter_13:
+    RenderedDescription|contains: mmc.exe
+  filter_14:
+    RenderedDescription|contains: LegacyVSTSPowerShellHost.exe
+  filter_15:
+    RenderedDescription|contains: MSExchangePowerShell
+  filter_16:
+    RenderedDescription|contains: JAMSHost
+  filter_17:
+    RenderedDescription|contains: Citrix
+  filter_18:
+    RenderedDescription|contains: Ivanti\\\\Automation
+  filter_19:
+    RenderedDescription|contains: PowerShellEditorServices.VSCode
+  filter_20:
+    RenderedDescription|contains: BigfinPSHostImplementation
+  filter_21:
+    RenderedDescription|contains: dsac.exe
+  filter_22:
+    RenderedDescription|contains: ADMUX
+  filter_23:
+    RenderedDescription|contains: WaPSHost
+  filter_24:
+    RenderedDescription|contains: Ivanti Cloud Agent
+  filter_25:
+    RenderedDescription|contains: N-able Technologies
+  filter_26:
+    RenderedDescription|contains: Microsoft BizTalk Server
+  filter_27:
+    RenderedDescription|contains: stealthbits
+  selection_28:
+    RenderedDescription|re: EngineVersion=[1-4,6,7]
+  condition: selection_1 and selection_2 and selection_3 and selection_28 and not (filter_4 or filter_5
+    or filter_6 or filter_7 or filter_8 or filter_9 or filter_10 or filter_11 or filter_12 or filter_13
+    or filter_14 or filter_15 or filter_16 or filter_17 or filter_18 or filter_19 or filter_20 or filter_21
+    or filter_22 or filter_23 or filter_24 or filter_25 or filter_26 or filter_27)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009320'
+  sagan.rev: '6'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005762
+---
+title: '[WINDOWS-POWERSHELL] HostVersion and EngineVersion MixMatched[6/7]'
+id: 61f393a2-1d55-50eb-a1bb-30423b81796c
+status: experimental
+description: Converted from Sagan rule SID 5009321 (rev 6), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/powershell
+  - https://adsecurity.org/?p=2921
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID: 400
+  selection_3:
+    RenderedDescription|contains|cased: HostVersion=6
+  filter_4:
+    RenderedDescription|contains|cased: 'EngineVersion= '
+  filter_5:
+    RenderedDescription|contains|cased: EngineVersion=6
+  filter_6:
+    RenderedDescription|contains: ServerRemoteHost
+  filter_7:
+    RenderedDescription|contains: Veeam
+  filter_8:
+    RenderedDescription|contains: wsmprovhost.exe
+  filter_9:
+    RenderedDescription|contains: SolarWinds.APM.Probes
+  filter_10:
+    RenderedDescription|contains: HostName=ApmPSHost
+  filter_11:
+    RenderedDescription|contains: MonitoringHost.exe
+  filter_12:
+    RenderedDescription|contains: HostName=OpsMgr
+  filter_13:
+    RenderedDescription|contains: mmc.exe
+  filter_14:
+    RenderedDescription|contains: LegacyVSTSPowerShellHost.exe
+  filter_15:
+    RenderedDescription|contains: MSExchangePowerShell
+  filter_16:
+    RenderedDescription|contains: JAMSHost
+  filter_17:
+    RenderedDescription|contains: Citrix
+  filter_18:
+    RenderedDescription|contains: Ivanti\\\\Automation
+  filter_19:
+    RenderedDescription|contains: PowerShellEditorServices.VSCode
+  filter_20:
+    RenderedDescription|contains: BigfinPSHostImplementation
+  filter_21:
+    RenderedDescription|contains: dsac.exe
+  filter_22:
+    RenderedDescription|contains: ADMUX
+  filter_23:
+    RenderedDescription|contains: WaPSHost
+  filter_24:
+    RenderedDescription|contains: Ivanti Cloud Agent
+  filter_25:
+    RenderedDescription|contains: N-able Technologies
+  filter_26:
+    RenderedDescription|contains: Microsoft BizTalk Server
+  filter_27:
+    RenderedDescription|contains: stealthbits
+  selection_28:
+    RenderedDescription|re: EngineVersion=[1-5,7]
+  condition: selection_1 and selection_2 and selection_3 and selection_28 and not (filter_4 or filter_5
+    or filter_6 or filter_7 or filter_8 or filter_9 or filter_10 or filter_11 or filter_12 or filter_13
+    or filter_14 or filter_15 or filter_16 or filter_17 or filter_18 or filter_19 or filter_20 or filter_21
+    or filter_22 or filter_23 or filter_24 or filter_25 or filter_26 or filter_27)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009321'
+  sagan.rev: '6'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005763
+---
+title: '[WINDOWS-POWERSHELL] HostVersion and EngineVersion MixMatched[7/7]'
+id: 6a6d504b-7d2a-58e9-954c-73cab0e7e602
+status: experimental
+description: Converted from Sagan rule SID 5009322 (rev 7), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/powershell
+  - https://adsecurity.org/?p=2921
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID: 400
+  selection_3:
+    RenderedDescription|contains|cased: HostVersion=7
+  filter_4:
+    RenderedDescription|contains|cased: 'EngineVersion= '
+  filter_5:
+    RenderedDescription|contains|cased: EngineVersion=7
+  filter_6:
+    RenderedDescription|contains: ServerRemoteHost
+  filter_7:
+    RenderedDescription|contains: Veeam
+  filter_8:
+    RenderedDescription|contains: wsmprovhost.exe
+  filter_9:
+    RenderedDescription|contains: SolarWinds.APM.Probes
+  filter_10:
+    RenderedDescription|contains: HostName=ApmPSHost
+  filter_11:
+    RenderedDescription|contains: MonitoringHost.exe
+  filter_12:
+    RenderedDescription|contains: HostName=OpsMgr
+  filter_13:
+    RenderedDescription|contains: mmc.exe
+  filter_14:
+    RenderedDescription|contains: LegacyVSTSPowerShellHost.exe
+  filter_15:
+    RenderedDescription|contains: MSExchangePowerShell
+  filter_16:
+    RenderedDescription|contains: JAMSHost
+  filter_17:
+    RenderedDescription|contains: Citrix
+  filter_18:
+    RenderedDescription|contains: Ivanti\\\\Automation
+  filter_19:
+    RenderedDescription|contains: PowerShellEditorServices.VSCode
+  filter_20:
+    RenderedDescription|contains: BigfinPSHostImplementation
+  filter_21:
+    RenderedDescription|contains: dsac.exe
+  filter_22:
+    RenderedDescription|contains: ADMUX
+  filter_23:
+    RenderedDescription|contains: WaPSHost
+  filter_24:
+    RenderedDescription|contains: Ivanti Cloud Agent
+  filter_25:
+    RenderedDescription|contains: N-able Technologies
+  filter_26:
+    RenderedDescription|contains: Microsoft BizTalk Server
+  filter_27:
+    RenderedDescription|contains: stealthbits
+  selection_28:
+    RenderedDescription|re: EngineVersion=[1-6]
+  condition: selection_1 and selection_2 and selection_3 and selection_28 and not (filter_4 or filter_5
+    or filter_6 or filter_7 or filter_8 or filter_9 or filter_10 or filter_11 or filter_12 or filter_13
+    or filter_14 or filter_15 or filter_16 or filter_17 or filter_18 or filter_19 or filter_20 or filter_21
+    or filter_22 or filter_23 or filter_24 or filter_25 or filter_26 or filter_27)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009322'
+  sagan.rev: '7'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005764
+---
+title: '[WINDOWS-POWERSHELL] Suspicious Download using IEX'
+id: f953037f-0d97-5cc7-942d-1d8765928dde
+status: experimental
+description: Converted from Sagan rule SID 5009323 (rev 3), file azureEventHub_windows-powershell.rules.
+references:
+  - https://fireeye.com/blog/threat-research/2018/07/malicious-powershell-detection-via-machine-learning.html
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*PowerShell*'
+  selection_2:
+    _raw|contains: IEX (New-Object Net.WebClient).downloadstring
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5009323'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005765
+---
+title: '[WINDOWS-POWERSHELL] Powershell DisableIntrusionPreventionSystem detected'
+id: e9e216b8-d58c-506f-af32-62e852e59d3c
+status: experimental
+description: Converted from Sagan rule SID 5009324 (rev 1), file azureEventHub_windows-powershell.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*PowerShell*'
+  selection_2:
+    _raw|contains|cased: DisableIntrusionPreventionSystem
+  filter_3:
+    _raw|contains: _cmdletization_defaultValueIsPresent
+  filter_4:
+    _raw|contains: ValidateNotNullOrEmpty
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009324'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005914
+---
+title: '[WINDOWS-POWERSHELL] Powershell DisableScriptScanning detected'
+id: 40e13dc8-b455-5c70-94a5-6103e679eb8e
+status: experimental
+description: Converted from Sagan rule SID 5009325 (rev 3), file azureEventHub_windows-powershell.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*PowerShell*'
+  selection_2:
+    _raw|contains|cased: DisableScriptScanning
+  filter_3:
+    _raw|contains|cased: this.AntiVirusSignatureVersion = antiVirusSignatureVersion
+  filter_4:
+    _raw|contains|cased: |
+      [System.IO.File]::Open('C:\\ProgramData\\Microsoft\\Windows Defender Advanced Threat Protection\\DataCollection
+  filter_5:
+    _raw|contains: _cmdletization_defaultValueIsPresent
+  filter_6:
+    _raw|contains: ValidateNotNullOrEmpty
+  filter_7:
+    _raw|contains|cased: 'Path: C:\\\\ProgramData\\\\Microsoft\\\\Windows Defender Advanced Threat Protection\\\\'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6 or filter_7)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009325'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005915
+---
+title: '[WINDOWS-POWERSHELL] Powershell DisableRealtimeMonitoring detected'
+id: 1157e4b3-0e13-59ed-8bb0-a37265905415
+status: experimental
+description: Converted from Sagan rule SID 5009326 (rev 3), file azureEventHub_windows-powershell.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*PowerShell*'
+  selection_2:
+    _raw|contains: Set-MpPreference
+  selection_3:
+    _raw|contains: DisableRealtimeMonitoring $true
+  filter_4:
+    _raw|contains: _cmdletization_defaultValueIsPresent
+  filter_5:
+    _raw|contains: ValidateNotNullOrEmpty
+  filter_6:
+    _raw|contains|cased: 'Path: C:\\\\ProgramData\\\\Microsoft\\\\Windows Defender Advanced Threat Protection\\\\'
+  condition: selection_1 and selection_2 and selection_3 and not (filter_4 or filter_5 or filter_6)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009326'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005916
+---
+title: '[WINDOWS-POWERSHELL] Powershell MAPSReporting Disabled detected'
+id: e70da4fe-50df-5d81-8d4e-e459b579a9ce
+status: experimental
+description: Converted from Sagan rule SID 5009327 (rev 1), file azureEventHub_windows-powershell.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*PowerShell*'
+  selection_2:
+    _raw|contains|cased: MAPSReporting Disabled
+  filter_3:
+    _raw|contains: _cmdletization_defaultValueIsPresent
+  filter_4:
+    _raw|contains: ValidateNotNullOrEmpty
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009327'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005917
+---
+title: '[WINDOWS-POWERSHELL] Powershell Command to Export Secret Key Detected [1/2]'
+id: 3499be62-da1d-5fdd-b2c4-80186362d5e6
+status: experimental
+description: Converted from Sagan rule SID 5009328 (rev 2), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/powershell
+  - https://sygnia.co/golden-saml-advisory
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4103
+      - 4104
+  selection_2:
+    syslog_appname|cased: '*PowerShell*'
+  selection_3:
+    RenderedDescription|contains: Export-PfxCertificate
+  filter_4:
+    RenderedDescription|contains|cased: CmdletsToExport
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009328'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005954
+---
+title: '[WINDOWS-POWERSHELL] Powershell Command to Export Secret Key Detected [2/2]'
+id: 2375b9b4-a22c-5db8-8412-f442475c05ae
+status: experimental
+description: Converted from Sagan rule SID 5009329 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/powershell
+  - https://sygnia.co/golden-saml-advisory
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4103
+      - 4104
+  selection_2:
+    syslog_appname|cased: '*PowerShell*'
+  selection_3:
+    RenderedDescription|contains: certutil -exportPFX
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009329'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005955
+---
+title: '[WINDOWS-POWERSHELL] Obfuscated New-Object Command (1/2)'
+id: de50e8e3-4b68-55d2-9373-f1af90ebc19d
+status: experimental
+description: Converted from Sagan rule SID 5009331 (rev 2), file azureEventHub_windows-powershell.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*PowerShell*'
+  selection_2:
+    _raw|contains: RightToLeft
+  selection_3:
+    _raw|contains|cased: '''eW.teN ct'' + ''ejbO-weN('''
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009331'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005985
+---
+title: '[WINDOWS-POWERSHELL] Obfuscated New-Object Command (2/2)'
+id: 22195950-b4a6-52ed-bf90-d4608cb6046f
+status: experimental
+description: Converted from Sagan rule SID 5009332 (rev 2), file azureEventHub_windows-powershell.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*PowerShell*'
+  selection_2:
+    _raw|contains: RightToLeft
+  selection_3:
+    _raw|contains|cased: tneilCbeW.teN ctejbO-weN
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009332'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005986
+---
+title: '[WINDOWS-POWERSHELL] MSDT PCWDiagnostic Call to Powershell Detected (CVE-2022-30190)'
+id: 4f8d7240-5aea-5469-a185-116b4c5cb852
+status: experimental
+description: Converted from Sagan rule SID 5009335 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://www.huntress.com/blog/microsoft-office-remote-code-execution-follina-msdt-bug
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    _raw|contains: ms-msd:/id
+  selection_2:
+    _raw|contains: PCWDiagnostic
+  selection_3:
+    _raw|contains:
+      - Invoke
+      - IT_RebrowseForFile
+      - IT_LaunchMethod
+      - IT_SelectProgram
+      - IEX
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009335'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5006520
+---
+title: '[WINDOWS-POWERSHELL] Anti-virus Has Blocked Malicious Content'
+id: 75902112-5249-5c58-a9e2-be5221c29771
+status: experimental
+description: Converted from Sagan rule SID 5009336 (rev 1), file azureEventHub_windows-powershell.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*PowerShell*'
+  selection_2:
+    _raw|contains: malicious content
+  selection_3:
+    _raw|contains: blocked
+  selection_4:
+    _raw|contains: antivirus software
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5009336'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_on=2022_11_22,old_sid=5006609
+---
+title: '[WINDOWS-POWERSHELL] Suspicious Download using IEX'
+id: ee7ea632-910c-575c-bb26-9359ffcef564
+status: experimental
+description: Converted from Sagan rule SID 5009337 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://fireeye.com/blog/threat-research/2018/07/malicious-powershell-detection-via-machine-learning.html
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*PowerShell*'
+  selection_2:
+    _raw|contains: IEX
+  selection_3:
+    _raw|contains: New-Object
+  selection_4:
+    _raw|contains: Net.WebClient).downloadstring
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009337'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_on=2022_11_22,old_sid=5006610
+---
+title: '[WINDOWS-POWERSHELL] Possible Ransomware Script Detected'
+id: 6641032d-b0c5-5c03-9ee1-691f036f6074
+status: experimental
+description: Converted from Sagan rule SID 5009338 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://bazaar.abuse.ch/sample/565da2dc95c58ad79201ec83ca77bf0e5814b7ccefe168778b02679fd872ae40/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains: System.Security.Cryptography
+  selection_4:
+    RenderedDescription|contains: .CreateKeyExchange
+  selection_5:
+    RenderedDescription|contains: get-childitem
+  selection_6:
+    RenderedDescription|contains: -Path
+  selection_7:
+    RenderedDescription|contains|cased: -Recurse
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+    and selection_7
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009338'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007125
+---
+title: '[WINDOWS-POWERSHELL] Microsoft Defender Security Registry Access'
+id: e39f68ea-64f2-59a3-bba7-3b03eba26191
+status: experimental
+description: Converted from Sagan rule SID 5009339 (rev 3), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/mdecrevoisier/SIGMA-detection-rules/blob/main/windows-defender/defender-critical%20security%20components%20disabled%20(PowerShell).yaml
+  - https://bidouillesecurity.com/disable-windows-defender-in-powershell/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+      - 800
+  selection_3:
+    RenderedDescription|contains:
+      - Set-ItemProperty
+      - query
+  selection_4:
+    RenderedDescription|contains:
+      - DisableRealtimeMonitoring
+      - DisableAntiSpyware
+      - DisableBehaviorMonitoring
+      - DisableIOAVProtection
+      - DisableIntrusionPreventionSystem
+      - DisableInboundConnectionFiltering
+  selection_5:
+    RenderedDescription|contains: \\\\Microsoft\\\\Windows Defender
+  selection_6:
+    RenderedDescription|contains|cased: 'Path: C:\\\\ProgramData\\\\Microsoft\\\\Windows Defender Advanced
+      Threat Protection\\\\'
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009339'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007126
+---
+title: '[WINDOWS-POWERSHELL] IEX Command Encoded as Base64'
+id: 1175a84b-e423-5b7d-b46c-a59cfa07201e
+status: experimental
+description: Converted from Sagan rule SID 5009341 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://bazaar.abuse.ch/sample/62949e30ce539616cb75d980c8e03ce4b45a2a1f2f52cbee620e52aae5c4b9c9/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains|cased: -e
+  selection_4:
+    RenderedDescription|contains|cased: SQBFAFgA
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009341'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007128
+---
+title: '[WINDOWS-POWERSHELL] Suspicious Rundll32.exe Execution'
+id: f20ed4c1-497d-5a73-ae24-28c11358c11a
+status: experimental
+description: Converted from Sagan rule SID 5009342 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://bazaar.abuse.ch/sample/2166c66f90ef87f21dc4f2b48f2b47ec3b401caca1ad068c2093fff713ef73bc/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains:
+      - c:\\\\Windows\\\\SysWow64\\\\rundll32.exe
+      - c:\\\\Windows\\\\System32\\\\rundll32.exe
+  selection_4:
+    RenderedDescription|contains:
+      - \\\\AppData\\\\
+      - \\\\ProgramData\\\\
+      - \\\\Public\\\\
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009342'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007129
+---
+title: '[WINDOWS-POWERSHELL] Possible Keylogger Detected'
+id: 4582ff4b-8655-59c2-8f07-dbc96d526123
+status: experimental
+description: Converted from Sagan rule SID 5009343 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://isc.sans.edu/diary/Simple+Powershell+Keyloggers+are+Back/24676
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains: DllImport("user32.dll
+  selection_4:
+    RenderedDescription|contains: GetAsyncKeyState(
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009343'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007130
+---
+title: '[WINDOWS-POWERSHELL] Keylogger Detected'
+id: 491df9ff-3f1e-579d-8ce1-0eefb399a48c
+status: experimental
+description: Converted from Sagan rule SID 5009344 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://isc.sans.edu/diary/Simple+Powershell+Keyloggers+are+Back/24676
+  - https://bazaar.abuse.ch/sample/d43651ebd0e9e15930fae7a88faa919a509f2d90c31a196d1533fb2548b2a6e2/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains: $SMTPServer
+  selection_4:
+    RenderedDescription|contains: $credentials
+  selection_5:
+    RenderedDescription|contains: function Start-Keylogger
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009344'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007131
+---
+title: '[WINDOWS-POWERSHELL] Powershell StrReverse Obfuscation'
+id: 4c14e99a-79e4-5c45-9787-d2056524341f
+status: experimental
+description: Converted from Sagan rule SID 5009348 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://bazaar.abuse.ch/download/aa87d136aacebb0496371be929657834d541209ef53695e45dc0acc8b65663a7/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains: StrReverse(
+  selection_4:
+    RenderedDescription|contains: llehSrewoP
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009348'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007135
+---
+title: '[WINDOWS-POWERSHELL] Suspicious Shorten Get-Variable and Set-Variable Commands'
+id: 57ead88d-dc8d-542b-b125-19f326bfc28a
+status: experimental
+description: Converted from Sagan rule SID 5009349 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://tria.ge/220615-hsm8vseed2/behavioral2
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains: Hidden
+  selection_4:
+    RenderedDescription|contains|cased: sv
+  selection_5:
+    RenderedDescription|contains|cased: gv
+  selection_6:
+    RenderedDescription|contains:
+      - -Command
+      - -c
+  selection_7:
+    RenderedDescription|re: sv\s\w{1,3}\s\\-
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+    and selection_7
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009349'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007136
+---
+title: '[WINDOWS-POWERSHELL] Suspicious .docx.lnk file created via Powershell'
+id: 681da09b-1403-5103-84e7-68dc9ad21050
+status: experimental
+description: Converted from Sagan rule SID 5009350 (rev 2), file azureEventHub_windows-powershell.rules.
+references:
+  - https://tria.ge/220426-cazahsafg2/behavioral2
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID: 4104
+  selection_3:
+    RenderedDescription|contains:
+      - -Command Out-String -InputObject
+      - -c Out-String -InputObject
+  selection_4:
+    RenderedDescription|contains|cased: .docx.lnk
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009350'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007137
+---
+title: '[WINDOWS-POWERSHELL] .NET Assembly Loaded'
+id: 04eb73aa-2fab-5d36-abc6-5acbb2cce739
+status: experimental
+description: Converted from Sagan rule SID 5009351 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://bazaar.abuse.ch/sample/fa74335c09c138eab6256c1fbb176aee9a8334aac65cff3bf9b602d9dc9dd554/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains|cased: '>Reflection.Assembly<'
+  selection_4:
+    RenderedDescription|contains|cased: aspnet_compiler.exe
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009351'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007138
+---
+title: '[WINDOWS-POWERSHELL] Powershell Options StrReverse Obfuscation'
+id: 750e8df1-bc79-5b44-bd79-0bd3416543d8
+status: experimental
+description: Converted from Sagan rule SID 5009352 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://bazaar.abuse.ch/download/aa87d136aacebb0496371be929657834d541209ef53695e45dc0acc8b65663a7/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains: StrReverse(
+  selection_4:
+    RenderedDescription|contains: ssapyB yciloPnoitucexE-
+  selection_5:
+    RenderedDescription|contains: eliforPoN-
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009352'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007139
+---
+title: '[WINDOWS-POWERSHELL] Path to ProgramData PS1 Script'
+id: 061aac2d-787b-5632-a71c-e60e66e085c7
+status: experimental
+description: Converted from Sagan rule SID 5009353 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://bazaar.abuse.ch/download/aa87d136aacebb0496371be929657834d541209ef53695e45dc0acc8b65663a7/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains: -Path
+  selection_4:
+    RenderedDescription|contains: c:\\\\ProgramData
+  selection_5:
+    RenderedDescription|re|i: C:\\ProgramDatai\(?:[\-\w]+\)+\w+.ps1
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009353'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007140
+---
+title: '[WINDOWS-POWERSHELL] Suspicious XOR Command'
+id: 69c421ab-de6a-5618-9731-8fd848ef3d57
+status: experimental
+description: Converted from Sagan rule SID 5009354 (rev 2), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/windows/powershell/powershell_classic/posh_pc_xor_commandline.yml
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  filter_3:
+    RenderedDescription|contains|cased: SentinelOne
+  selection_4:
+    RenderedDescription|contains: ' -bxor '
+  selection_5:
+    RenderedDescription|contains: char
+  selection_6:
+    RenderedDescription|contains|cased: ' -join '
+  condition: selection_1 and selection_2 and selection_4 and selection_5 and selection_6 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009354'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007141
+---
+title: '[WINDOWS-POWERSHELL] Suspicious Base64 Encoded Commands [2/2]'
+id: 82b8b3a7-d721-533a-8f2c-5319a3dc7b4e
+status: experimental
+description: Converted from Sagan rule SID 5009355 (rev 3), file azureEventHub_windows-powershell.rules.
+references:
+  - https://gist.github.com/Neo23x0/6af876ee72b51676c82a2db8d2cd3639
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains|cased:
+      - ' -e '
+      - ' -ec '
+      - ' -enc '
+      - ' -EncodedCommand '
+  selection_4:
+    RenderedDescription|contains|cased:
+      - ' TVq'
+      - ' TVo'
+      - ' TVr'
+      - ' SUVY'
+      - ' aWV4'
+      - ' Y21k'
+      - ' Q01e'
+      - ' UEs'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009355'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007142
+---
+title: '[WINDOWS-POWERSHELL] Suspicious FromBase64String Encoded Commands'
+id: c3e7458b-fd77-5570-b233-5fb3cfd08632
+status: experimental
+description: Converted from Sagan rule SID 5009356 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://gist.github.com/Neo23x0/6af876ee72b51676c82a2db8d2cd3639
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains|cased: FromBase64String
+  selection_4:
+    RenderedDescription|contains|cased:
+      - JAB
+      - TVq
+      - SUVY
+      - SQBFAF
+      - SQBuAH
+      - aWV4
+      - aQBlA
+      - Y21k
+      - Qzpc
+      - Yzpc
+      - UEs
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009356'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007143
+---
+title: '[WINDOWS-POWERSHELL] Registry Query for WDigest UseLogonCredential'
+id: 3abb2fdf-a916-59a5-ae86-d214d9c48a07
+status: experimental
+description: Converted from Sagan rule SID 5009358 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://thedfirreport.com/2022/06/06/will-the-real-msiexec-please-stand-up-exploit-leads-to-data-exfiltration/
+  - https://github.com/The-DFIR-Report/Sigma-Rules/blob/75260568a7ffe61b2458ca05f6f25914efb44337/Enable
+    WDigest using PowerShell
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains|cased: reg query
+  selection_4:
+    RenderedDescription|contains|cased: HKLM\\\\
+  selection_5:
+    RenderedDescription|contains: WDigest
+  selection_6:
+    RenderedDescription|contains: UseLogonCredential
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009358'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007145
+---
+title: '[WINDOWS-POWERSHELL] Registry Set Value for WDigest UseLogonCredential'
+id: ffab5f84-3710-57fc-b15c-12c746088d3f
+status: experimental
+description: Converted from Sagan rule SID 5009359 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://thedfirreport.com/2022/06/06/will-the-real-msiexec-please-stand-up-exploit-leads-to-data-exfiltration/
+  - https://github.com/The-DFIR-Report/Sigma-Rules/blob/75260568a7ffe61b2458ca05f6f25914efb44337/Enable
+    WDigest using PowerShell
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains: Set-ItemProperty
+  selection_4:
+    RenderedDescription|contains|cased: HKLM\\\\
+  selection_5:
+    RenderedDescription|contains: WDigest
+  selection_6:
+    RenderedDescription|contains: UseLogonCredential
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009359'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007146
+---
+title: '[WINDOWS-POWERSHELL] Suspicious Invoke-RestMethod Command (IRM)'
+id: 25ee5a85-5222-5856-be50-2188aead5a7d
+status: experimental
+description: Converted from Sagan rule SID 5009360 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/The-DFIR-Report/Sigma-Rules/blob/75260568a7ffe61b2458ca05f6f25914efb44337/custom_cobalt_strike_command_execution
+  - https://thedfirreport.com/2022/05/09/seo-poisoning-a-gootloader-story/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains|cased: http://
+  selection_4:
+    RenderedDescription|contains|cased: '%{(IRM $_)}'
+  selection_5:
+    RenderedDescription|contains: Invoke
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009360'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007147
+---
+title: '[WINDOWS-POWERSHELL] Schtask Created to Base64 Decode Payload from Registy'
+id: 1a3963a9-b4c4-53a0-9dfc-5a46fb890543
+status: experimental
+description: Converted from Sagan rule SID 5009361 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains: FromBase64String
+  selection_4:
+    RenderedDescription|contains: Get-ItemProperty
+  selection_5:
+    RenderedDescription|contains|cased: HKCU:\\\\
+  selection_6:
+    RenderedDescription|contains|cased: /SC
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009361'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007148
+---
+title: '[WINDOWS-POWERSHELL] Access to Opera Login/Cookie Data'
+id: 0addd15f-0a4a-5b2b-b9b3-3cb5cdb64611
+status: experimental
+description: Converted from Sagan rule SID 5009362 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/windows/powershell/powershell_script/posh_ps_access_to_browser_login_data.yml
+  - https://kylemistele.medium.com/stealing-saved-browser-passwords-your-new-favorite-post-exploitation-technique-c5e72c86159
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains:
+      - \\\\Opera Software\\\\Opera Stable\\\\Login Data
+      - \\\\Opera Software\\\\Opera Stable\\\\Cookies
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009362'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007149
+---
+title: '[WINDOWS-POWERSHELL] Access to Chrome Login/Cookie Data'
+id: 5e213f84-9111-59ae-9746-9bac807c2950
+status: experimental
+description: Converted from Sagan rule SID 5009363 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/windows/powershell/powershell_script/posh_ps_access_to_browser_login_data.yml
+  - https://kylemistele.medium.com/stealing-saved-browser-passwords-your-new-favorite-post-exploitation-technique-c5e72c86159
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains:
+      - \\\\google\\\\chrome\\\\user data\\\\PROFILE\\\\Login Data
+      - \\\\google\\\\chrome\\\\user data\\\\PROFILE\\\\Cookies
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009363'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007150
+---
+title: '[WINDOWS-POWERSHELL] Access to Brave Login/Cookie Data'
+id: f64ecb0f-cd51-5c48-a1c2-00ffd76b26dc
+status: experimental
+description: Converted from Sagan rule SID 5009364 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/windows/powershell/powershell_script/posh_ps_access_to_browser_login_data.yml
+  - https://kylemistele.medium.com/stealing-saved-browser-passwords-your-new-favorite-post-exploitation-technique-c5e72c86159
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains:
+      - \\\\BraveSoftware\\\\Brave-Browser\\\\user data\\\\PROFILE\\\\Login Data
+      - \\\\BraveSoftware\\\\Brave-Browser\\\\user data\\\\PROFILE\\\\Cookies
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009364'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007151
+---
+title: '[WINDOWS-POWERSHELL] Access to Firefox Login/Cookie Data'
+id: 6640b3c8-a106-57b7-b350-d83fc8a1e5e4
+status: experimental
+description: Converted from Sagan rule SID 5009365 (rev 2), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/windows/powershell/powershell_script/posh_ps_access_to_browser_login_data.yml
+  - https://kylemistele.medium.com/stealing-saved-browser-passwords-your-new-favorite-post-exploitation-technique-c5e72c86159a
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains: \\\\Mozilla\\\\Firefox\\\\Profiles
+  selection_4:
+    RenderedDescription|contains: .default
+  filter_5:
+    RenderedDescription|contains: 'Path: C:\\\\ProgramData\\\\Microsoft\\\\Windows Defender Advanced Threat
+      Protection'
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009365'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007152
+---
+title: '[WINDOWS-POWERSHELL] Access to Microsoft Edge Login/Cookie Data'
+id: 2d142b69-29a6-58ba-afc4-aa0940073846
+status: experimental
+description: Converted from Sagan rule SID 5009366 (rev 2), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/windows/powershell/powershell_script/posh_ps_access_to_browser_login_data.yml
+  - https://kylemistele.medium.com/stealing-saved-browser-passwords-your-new-favorite-post-exploitation-technique-c5e72c86159
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains: \\\\Microsoft\\\\Edge\\\\User Data\\\\Default
+  filter_4:
+    RenderedDescription|contains|cased: Windows Defender Advanced Threat Protection\\DataCollection\\
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009366'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007153
+---
+title: '[WINDOWS-POWERSHELL] Local User Created'
+id: 87d7553e-edbf-59ba-b478-d437592beaa9
+status: experimental
+description: Converted from Sagan rule SID 5009367 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/windows/powershell/powershell_script/posh_ps_create_local_user.yml
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains: New-LocalUser
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009367'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007154
+---
+title: '[WINDOWS-POWERSHELL] Cmdlet Scheduled Task Created'
+id: 7624fb77-41fb-5aea-a81a-b25b1568f70c
+status: experimental
+description: Converted from Sagan rule SID 5009368 (rev 2), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/windows/powershell/powershell_script/posh_ps_cmdlet_scheduled_task.yml
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains: New-ScheduledTask
+  selection_4:
+    RenderedDescription|contains: Register-ScheduledTask
+  selection_5:
+    RenderedDescription|contains:
+      - Invoke-CimMethod
+      - -ClassName
+      - PS_ScheduledTask
+      - -NameSpace
+      - Root\\\\Microsoft\\\\Windows\\\\TaskScheduler
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009368'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007155
+---
+title: '[WINDOWS-POWERSHELL] Dnscat Exfil Tool Execution'
+id: eb65d5d4-424a-5206-b990-5308243d12f3
+status: experimental
+description: Converted from Sagan rule SID 5009369 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/windows/powershell/powershell_script/posh_ps_dnscat_execution.yml
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains: Start-Dnscat2
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009369'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007156
+---
+title: '[WINDOWS-POWERSHELL] Create Volume Shadow Copy'
+id: bcea5829-278e-5787-8793-2e2aa24c87f0
+status: experimental
+description: Converted from Sagan rule SID 5009370 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://www.powershellgallery.com/packages/CPolydorou.ShadowCopy/1.1.2/Content/ShadowCopy.psm1
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/windows/powershell/powershell_script/posh_ps_create_volume_shadow_copy.yml
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains: Win32_ShadowCopy
+  selection_4:
+    RenderedDescription|contains: .Create(
+  selection_5:
+    RenderedDescription|contains: ClientAccessible
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009370'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007157
+---
+title: '[WINDOWS-POWERSHELL] Possible nslookup command stager'
+id: d27989c7-6c69-50f2-aea6-37fded01eca7
+status: experimental
+description: Converted from Sagan rule SID 5009371 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://twitter.com/bugch3ck/status/1566850989927399425
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 600
+      - 800
+      - 4104
+  selection_3:
+    RenderedDescription|contains|cased: powershell
+  selection_4:
+    RenderedDescription|contains: nslookup -q=txt
+  selection_5:
+    RenderedDescription|contains|cased: )[-
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009371'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007690
+---
+title: '[WINDOWS-POWERSHELL] Possible Resolve-DnsName IEX command stager'
+id: f14b112f-75ea-5470-9267-3b8a9227b3fb
+status: experimental
+description: Converted from Sagan rule SID 5009372 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://twitter.com/bugch3ck/status/1566850989927399425
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 600
+      - 800
+      - 4104
+  selection_3:
+    RenderedDescription|contains: iex
+  selection_4:
+    RenderedDescription|contains: Resolve-DnsName
+  selection_5:
+    RenderedDescription|contains: ).Strings[
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009372'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007691
+---
+title: '[WINDOWS-POWERSHELL] Possible Resolve-DnsName Invoke-Expression command stager'
+id: 17a8c154-8089-59b0-a742-0989cba89020
+status: experimental
+description: Converted from Sagan rule SID 5009373 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://twitter.com/bugch3ck/status/1566850989927399425
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    syslog_appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 600
+      - 800
+      - 4104
+  selection_3:
+    RenderedDescription|contains: Invoke-Expression
+  selection_4:
+    RenderedDescription|contains: Resolve-DnsName
+  selection_5:
+    RenderedDescription|contains: ).Strings[
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009373'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007692
+---
+title: '[WINDOWS-POWERSHELL] Possible ProxyShell V2 execution'
+id: d1d73221-9331-556e-aa4e-1bf903ee1015
+status: experimental
+description: Converted from Sagan rule SID 5009374 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://gteltsc.vn/blog/warning-new-attack-campaign-utilized-a-new-0day-rce-vulnerability-on-microsoft-exchange-server-12715.html
+  - https://msrc-blog.microsoft.com/2022/09/29/customer-guidance-for-reported-zero-day-vulnerabilities-in-microsoft-exchange-server
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*Exchange*'
+      - '*IIs*'
+      - '*PowerShell*'
+      - '*Sysmon*'
+  selection_2:
+    _raw|contains: '"cmd" /c cd /d "c:\\\\PerfLogs"&certutil.exe -urlcache -split -f http://'
+  selection_3:
+    _raw|contains: :8080/themes.aspx c:\\perflogs\\\\t&echo [S]&cd&echo [E]
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009374'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_on=2022_11_22,old_sid=5007709
+---
+title: '[WINDOWS-POWERSHELL] Possible ProxyShell V2 execution'
+id: 8e93dace-ea6e-57bd-a4fb-f32e31e16a3e
+status: experimental
+description: Converted from Sagan rule SID 5009375 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://gteltsc.vn/blog/warning-new-attack-campaign-utilized-a-new-0day-rce-vulnerability-on-microsoft-exchange-server-12715.html
+  - https://msrc-blog.microsoft.com/2022/09/29/customer-guidance-for-reported-zero-day-vulnerabilities-in-microsoft-exchange-server
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*Exchange*'
+      - '*IIs*'
+      - '*PowerShell*'
+      - '*Sysmon*'
+  selection_2:
+    _raw|contains: '"cmd" /c cd /d "c:\\\\PerfLogs"&certutil.exe -urlcache -split -f https://'
+  selection_3:
+    _raw|contains: c:\\test&echo [S]&cd&echo [E]
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009375'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_on=2022_11_22,old_sid=5007710
+---
+title: '[WINDOWS-POWERSHELL] Possible ProxyShell V2 request'
+id: f480b27c-3f10-526e-9259-bb99aab2d91b
+status: experimental
+description: Converted from Sagan rule SID 5009376 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://gteltsc.vn/blog/warning-new-attack-campaign-utilized-a-new-0day-rce-vulnerability-on-microsoft-exchange-server-12715.html
+  - https://msrc-blog.microsoft.com/2022/09/29/customer-guidance-for-reported-zero-day-vulnerabilities-in-microsoft-exchange-server
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*Exchange*'
+      - '*IIs*'
+      - '*PowerShell*'
+  selection_2:
+    _raw|contains: autodiscover/autodiscover.json\?@
+  selection_3:
+    _raw|contains: '&Email=autodiscover/autodiscover.json%3f@'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009376'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_on=2022_11_22,old_sid=5007711
+---
+title: '[WINDOWS-POWERSHELL] Possible Proxyshell Webshell Command Post-exploit'
+id: 95dd1f67-9145-55e7-99c0-df627583eef7
+status: experimental
+description: Converted from Sagan rule SID 5009377 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://gteltsc.vn/blog/warning-new-attack-campaign-utilized-a-new-0day-rce-vulnerability-on-microsoft-exchange-server-12715.html
+  - https://msrc-blog.microsoft.com/2022/09/29/customer-guidance-for-reported-zero-day-vulnerabilities-in-microsoft-exchange-server
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*Exchange*'
+      - '*IIs*'
+      - '*PowerShell*'
+  selection_2:
+    _raw|contains: '%eval(System.Text.Encoding.GetEncoding(936).GetString(System.Convert.FromBase64String('''
+  selection_3:
+    _raw|contains: char(837-763)+
+  selection_4:
+    _raw|contains: System.Text.Encoding.GetEncoding(936).GetString(System.Convert.FromBase64String(
+  selection_5:
+    _raw|contains: +char(51450/525)+'
+  selection_6:
+    _raw|contains: '''+char(0640-0462)+char(0x8c28/0x1cc)'
+  selection_7:
+    _raw|contains: +char(0212100/01250)+System.Text.Encoding.GetEncoding(936).GetString(System.Convert.FromBase64String('
+  selection_8:
+    _raw|contains|cased: ''')));%'
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+    and selection_7 and selection_8
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009377'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_on=2022_11_22,old_sid=5007712

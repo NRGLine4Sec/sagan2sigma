@@ -1,0 +1,25 @@
+title: '[RANSOMCARE][CRITICAL & CALL] Critical Alert'
+id: 27c80422-e33b-5487-8e42-22732924f30a
+status: experimental
+description: Converted from Sagan rule SID 5013731 (rev 1), file ransomcare.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: RansomCare
+  selection_2:
+    _raw|contains|cased: Critical Alert
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1486
+  - attack.ta0040
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5013731'
+  sagan.rev: '1'
+  sagan.source_file: ransomcare.rules
+  sagan.metadata: deployment=Both,tag=ransomware,created_at=2023_09_22,updated_at=2023_09_22

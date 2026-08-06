@@ -1,0 +1,236 @@
+title: '[ARTILLERY] FTP brute force violation'
+id: 4bbc3db1-15d1-582d-b181-a397e9c10e6e
+status: experimental
+description: Converted from Sagan rule SID 5002081 (rev 9), file artillery.rules.
+references:
+  - https://www.trustedsec.com/downloads/artillery
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: FTP brute forcing
+  selection_2:
+    appname|cased: Artillery
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5002081'
+  sagan.rev: '9'
+  sagan.source_file: artillery.rules
+---
+title: '[ARTILLERY] Issue identified - Permissions not set as root'
+id: 6fc68d33-60f0-5e9f-9f7c-3a14e6e12f91
+status: experimental
+description: Converted from Sagan rule SID 5002082 (rev 3), file artillery.rules.
+references:
+  - https://www.trustedsec.com/downloads/artillery
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: not set to root
+  selection_2:
+    _raw|contains|cased: 'Issue identified:'
+  selection_3:
+    appname|cased: Artillery
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-error
+custom_attributes:
+  sagan.sid: '5002082'
+  sagan.rev: '3'
+  sagan.source_file: artillery.rules
+---
+title: '[ARTILLERY] Issue identified - vsftp.conf Anonymous FTP allowed'
+id: c145c620-e812-55ce-ae24-60db17461910
+status: experimental
+description: Converted from Sagan rule SID 5002083 (rev 3), file artillery.rules.
+references:
+  - https://www.trustedsec.com/downloads/artillery
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: vsftpd.conf allows Anonymous login
+  selection_2:
+    _raw|contains|cased: 'Issue identified:'
+  selection_3:
+    appname|cased: Artillery
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-error
+custom_attributes:
+  sagan.sid: '5002083'
+  sagan.rev: '3'
+  sagan.source_file: artillery.rules
+---
+title: '[ARTILLERY] Issue identified - SSH running on default TCP port 22'
+id: 457a6611-ea75-5e3b-bad9-8a6c20c94c5f
+status: experimental
+description: Converted from Sagan rule SID 5002084 (rev 2), file artillery.rules.
+references:
+  - https://www.trustedsec.com/downloads/artillery
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: 'Issue identified:'
+  selection_2:
+    _raw|contains|cased: SSH is running on the default port 22
+  selection_3:
+    appname|cased: Artillery
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-error
+custom_attributes:
+  sagan.sid: '5002084'
+  sagan.rev: '2'
+  sagan.source_file: artillery.rules
+---
+title: '[ARTILLERY] Issue identified - sshd_config allows RootLogin'
+id: 5e9940f3-6a73-5abf-b27d-5a5672c6f85d
+status: experimental
+description: Converted from Sagan rule SID 5002085 (rev 3), file artillery.rules.
+references:
+  - https://www.trustedsec.com/downloads/artillery
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: sshd_config allows RootLogin
+  selection_2:
+    _raw|contains|cased: 'Issue identified:'
+  selection_3:
+    appname|cased: Artillery
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-error
+custom_attributes:
+  sagan.sid: '5002085'
+  sagan.rev: '3'
+  sagan.source_file: artillery.rules
+---
+title: '[ARTILLERY] Honeyport blocked/blacklisted address'
+id: 1748d0e7-5aed-5a09-8f43-c386beff9a35
+status: experimental
+description: Converted from Sagan rule SID 5002086 (rev 5), file artillery.rules.
+references:
+  - https://www.trustedsec.com/downloads/artillery
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: honeypot restricted port
+  selection_2:
+    _raw|contains|cased: blocked
+  selection_3:
+    appname|cased: Artillery
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002086'
+  sagan.rev: '5'
+  sagan.source_file: artillery.rules
+---
+title: '[ARTILLERY] Honeyport attack detected'
+id: 15476319-3b16-5c18-826b-628cfd7c0f29
+status: experimental
+description: Converted from Sagan rule SID 5002087 (rev 4), file artillery.rules.
+references:
+  - https://www.trustedsec.com/downloads/artillery
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: detected an attack
+  selection_2:
+    _raw|contains|cased: honeypot
+  selection_3:
+    appname|cased: Artillery
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002087'
+  sagan.rev: '4'
+  sagan.source_file: artillery.rules
+---
+title: '[ARTILLERY] File changes have occured'
+id: b75587dd-c90a-598a-9b52-f29a624d569e
+status: experimental
+description: Converted from Sagan rule SID 5002088 (rev 2), file artillery.rules.
+references:
+  - https://www.trustedsec.com/downloads/artillery
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: following changes were detect
+  selection_2:
+    appname|cased: Artillery
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002088'
+  sagan.rev: '2'
+  sagan.source_file: artillery.rules
+---
+title: '[ARTILLERY] SSH brute force violation'
+id: 0e91d583-9ea7-56c7-816a-c9e86a03d2ed
+status: experimental
+description: Converted from Sagan rule SID 5002089 (rev 5), file artillery.rules.
+references:
+  - https://www.trustedsec.com/downloads/artillery
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: SSH brute forcing violations
+  selection_2:
+    appname|cased: Artillery
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5002089'
+  sagan.rev: '5'
+  sagan.source_file: artillery.rules

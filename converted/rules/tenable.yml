@@ -1,0 +1,124 @@
+title: '[TENABLE] An administrator started a session where they impersonated another user'
+id: e7bc9332-234b-5926-8177-d8c1a756890b
+status: experimental
+description: Converted from Sagan rule SID 5010895 (rev 1), file tenable.rules.
+references:
+  - https://developer.tenable.com/reference/audit-log-events
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: tenable_io_data
+  selection_2:
+    _raw|contains|cased: '"action": "session.impersonation.start"'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5010895'
+  sagan.rev: '1'
+  sagan.source_file: tenable.rules
+---
+title: '[TENABLE] An administrator created a new user account'
+id: a043a6e9-867d-5fee-83dd-37de2518c940
+status: experimental
+description: Converted from Sagan rule SID 5010898 (rev 1), file tenable.rules.
+references:
+  - https://developer.tenable.com/reference/audit-log-events
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: tenable_io_data
+  selection_2:
+    _raw|contains|cased: '"action": "user.create"'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5010898'
+  sagan.rev: '1'
+  sagan.source_file: tenable.rules
+---
+title: '[TENABLE] An administrator deleted a user account'
+id: 2cad2e0b-c7c4-5bcb-9aed-57094a5d95fc
+status: experimental
+description: Converted from Sagan rule SID 5010899 (rev 1), file tenable.rules.
+references:
+  - https://developer.tenable.com/reference/audit-log-events
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: tenable_io_data
+  selection_2:
+    _raw|contains|cased: '"action": "users.delete"'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5010899'
+  sagan.rev: '1'
+  sagan.source_file: tenable.rules
+---
+title: '[TENABLE] An administrator started impersonating another user'
+id: 89ab3be4-5f8f-5ff6-ab05-8e36e18252ac
+status: experimental
+description: Converted from Sagan rule SID 5010901 (rev 1), file tenable.rules.
+references:
+  - https://developer.tenable.com/reference/audit-log-events
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: tenable_io_data
+  selection_2:
+    _raw|contains|cased: '"action": "user.impersonation.start"'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5010901'
+  sagan.rev: '1'
+  sagan.source_file: tenable.rules
+---
+title: '[TENABLE] Either an administrator or the user updated the user''s account'
+id: 4562fe1b-17db-504c-925e-afcf1a87e0bc
+status: experimental
+description: Converted from Sagan rule SID 5010903 (rev 1), file tenable.rules.
+references:
+  - https://developer.tenable.com/reference/audit-log-events
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: tenable_io_data
+  selection_2:
+    _raw|contains|cased: '"action": "user.update"'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5010903'
+  sagan.rev: '1'
+  sagan.source_file: tenable.rules

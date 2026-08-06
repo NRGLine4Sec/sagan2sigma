@@ -1,0 +1,473 @@
+title: '[CISCO-WLC] Rogue AP detected [0/5]'
+id: a1d98b1e-0a43-598a-a56d-52b34b64cc57
+status: experimental
+description: Converted from Sagan rule SID 5001689 (rev 3), file cisco-wlc.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: 14179.2.6.3.36
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001689'
+  sagan.rev: '3'
+  sagan.source_file: cisco-wlc.rules
+  rsigma.suppress: 5m
+---
+title: '[CISCO-WLC] Bcast Deauth'
+id: 8c741ed0-a96f-57a8-8eb6-2dd28b0e005a
+status: experimental
+description: Converted from Sagan rule SID 5002104 (rev 2), file cisco-wlc.rules.
+references:
+  - https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/69366-controller-ids-sig.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: signatureName=Bcast deauth
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002104'
+  sagan.rev: '2'
+  sagan.source_file: cisco-wlc.rules
+---
+title: '[CISCO-WLC] Null probe resp 1'
+id: 7926ac65-6568-529b-8251-e6a0ca5de2a5
+status: experimental
+description: Converted from Sagan rule SID 5002105 (rev 2), file cisco-wlc.rules.
+references:
+  - https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/69366-controller-ids-sig.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: signatureName=NULL probe resp 1
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002105'
+  sagan.rev: '2'
+  sagan.source_file: cisco-wlc.rules
+---
+title: '[CISCO-WLC] Null probe resp 2'
+id: 5b010b4c-5786-5f49-ab23-f81f491e5f9b
+status: experimental
+description: Converted from Sagan rule SID 5002106 (rev 2), file cisco-wlc.rules.
+references:
+  - https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/69366-controller-ids-sig.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: signatureName=NULL probe resp 2
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002106'
+  sagan.rev: '2'
+  sagan.source_file: cisco-wlc.rules
+---
+title: '[CISCO-WLC] Assoc Flood'
+id: 212b138b-bff5-541a-ab6f-82cc32ccf901
+status: experimental
+description: Converted from Sagan rule SID 5002107 (rev 2), file cisco-wlc.rules.
+references:
+  - https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/69366-controller-ids-sig.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: signatureName=Assoc flood
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002107'
+  sagan.rev: '2'
+  sagan.source_file: cisco-wlc.rules
+---
+title: '[CISCO-WLC] Reassoc Flood'
+id: 55325f93-840b-505e-abc3-83c1f6bac361
+status: experimental
+description: Converted from Sagan rule SID 5002108 (rev 2), file cisco-wlc.rules.
+references:
+  - https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/69366-controller-ids-sig.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: signatureName=Reassoc flood
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002108'
+  sagan.rev: '2'
+  sagan.source_file: cisco-wlc.rules
+---
+title: '[CISCO-WLC] Broadcast Probe flood'
+id: 1959a060-e2ca-5d9a-953c-7810a92a48b0
+status: experimental
+description: Converted from Sagan rule SID 5002109 (rev 2), file cisco-wlc.rules.
+references:
+  - https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/69366-controller-ids-sig.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: signatureName=Broadcast Probe flood
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002109'
+  sagan.rev: '2'
+  sagan.source_file: cisco-wlc.rules
+---
+title: '[CISCO-WLC] Disassoc flood'
+id: 48031ad6-1185-5101-a988-4eacc320767e
+status: experimental
+description: Converted from Sagan rule SID 5002110 (rev 2), file cisco-wlc.rules.
+references:
+  - https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/69366-controller-ids-sig.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: signatureName=Disassoc flood
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002110'
+  sagan.rev: '2'
+  sagan.source_file: cisco-wlc.rules
+---
+title: '[CISCO-WLC] Deauth flood'
+id: 70427758-8376-53a6-bcda-f21fc92c5bad
+status: experimental
+description: Converted from Sagan rule SID 5002111 (rev 2), file cisco-wlc.rules.
+references:
+  - https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/69366-controller-ids-sig.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: signatureName=Deauth flood
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002111'
+  sagan.rev: '2'
+  sagan.source_file: cisco-wlc.rules
+---
+title: '[CISCO-WLC] Res mgmt 6 & 7'
+id: 7f928236-6b2c-5694-844e-dd5f5cd69680
+status: experimental
+description: Converted from Sagan rule SID 5002112 (rev 2), file cisco-wlc.rules.
+references:
+  - https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/69366-controller-ids-sig.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: signatureName=Res mgmt 6 & 7
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002112'
+  sagan.rev: '2'
+  sagan.source_file: cisco-wlc.rules
+---
+title: '[CISCO-WLC] Res mgmt D'
+id: 7f72a585-8f0f-5c58-8d77-51ae9b6035fe
+status: experimental
+description: Converted from Sagan rule SID 5002113 (rev 2), file cisco-wlc.rules.
+references:
+  - https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/69366-controller-ids-sig.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: signatureName=Res mgmt D
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002113'
+  sagan.rev: '2'
+  sagan.source_file: cisco-wlc.rules
+---
+title: '[CISCO-WLC] Res mgmt E & F'
+id: 875b338c-c5bf-54e5-9b24-4b4556411ebe
+status: experimental
+description: Converted from Sagan rule SID 5002114 (rev 2), file cisco-wlc.rules.
+references:
+  - https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/69366-controller-ids-sig.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: signatureName=Res mgmt E & F
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002114'
+  sagan.rev: '2'
+  sagan.source_file: cisco-wlc.rules
+---
+title: '[CISCO-WLC] EAPOL flood'
+id: 42a6d07d-e16f-55dd-8430-17b67cbaa356
+status: experimental
+description: Converted from Sagan rule SID 5002115 (rev 2), file cisco-wlc.rules.
+references:
+  - https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/69366-controller-ids-sig.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: signatureName=EAPOL flood
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002115'
+  sagan.rev: '2'
+  sagan.source_file: cisco-wlc.rules
+---
+title: '[CISCO-WLC] NetStumbler 3.2.0 detected'
+id: abcc322f-cd67-5c7a-8f63-6aaae47cd998
+status: experimental
+description: Converted from Sagan rule SID 5002116 (rev 2), file cisco-wlc.rules.
+references:
+  - https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/69366-controller-ids-sig.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: signatureName=NetStumbler 3.2.0
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002116'
+  sagan.rev: '2'
+  sagan.source_file: cisco-wlc.rules
+---
+title: '[CISCO-WLC] NetStumbler 3.2.3 detected'
+id: e007df09-22d1-5d79-a9e2-211f6ad625bc
+status: experimental
+description: Converted from Sagan rule SID 5002117 (rev 2), file cisco-wlc.rules.
+references:
+  - https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/69366-controller-ids-sig.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: signatureName=NetStumbler 3.2.3
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002117'
+  sagan.rev: '2'
+  sagan.source_file: cisco-wlc.rules
+---
+title: '[CISCO-WLC] NetStumbler 3.3.0 detected'
+id: a8cc5aab-196c-5c29-b31e-d1dd91f5f35e
+status: experimental
+description: Converted from Sagan rule SID 5002118 (rev 2), file cisco-wlc.rules.
+references:
+  - https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/69366-controller-ids-sig.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: signatureName=NetStumbler 3.3.0
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002118'
+  sagan.rev: '2'
+  sagan.source_file: cisco-wlc.rules
+---
+title: '[CISCO-WLC] NetStumbler generic detected'
+id: 50907366-66d9-5728-8689-11732f3ac794
+status: experimental
+description: Converted from Sagan rule SID 5002119 (rev 2), file cisco-wlc.rules.
+references:
+  - https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/69366-controller-ids-sig.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: signatureName=NetStumbler generic
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002119'
+  sagan.rev: '2'
+  sagan.source_file: cisco-wlc.rules
+---
+title: '[CISCO-WLC] Wellenreiter detected'
+id: 49c46e5c-aba2-5cb2-ac53-4ead89e3fe25
+status: experimental
+description: Converted from Sagan rule SID 5002120 (rev 2), file cisco-wlc.rules.
+references:
+  - https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/69366-controller-ids-sig.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: signatureName=Wellenreiter
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002120'
+  sagan.rev: '2'
+  sagan.source_file: cisco-wlc.rules
+---
+title: '[CISCO-WLC] Big NAV Dos attack'
+id: 43658356-aa9b-5fec-b3eb-7699db405387
+status: experimental
+description: Converted from Sagan rule SID 5002121 (rev 2), file cisco-wlc.rules.
+references:
+  - https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/69366-controller-ids-sig.html
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: snmptrapd
+  selection_2:
+    _raw|contains|cased: Big NAV Dos attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002121'
+  sagan.rev: '2'
+  sagan.source_file: cisco-wlc.rules

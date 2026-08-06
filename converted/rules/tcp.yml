@@ -1,0 +1,22 @@
+title: TCP Treason uncloaked
+id: 17a8e612-449c-57ce-95ef-65a657614965
+status: experimental
+description: Converted from Sagan rule SID 5000031 (rev 4), file tcp.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: Treason uncloaked
+  selection_2:
+    appname|cased: TCP
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5000031'
+  sagan.rev: '4'
+  sagan.source_file: tcp.rules

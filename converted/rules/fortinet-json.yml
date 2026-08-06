@@ -1,0 +1,1916 @@
+title: '[FORTINET] Protect profile changed'
+id: 9ae2c8a7-d348-55f9-8472-cdfcb57e9d19
+status: experimental
+description: Converted from Sagan rule SID 5014368 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 32151","type
+  selection_2:
+    _raw|contains|cased: changed protection profile
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5014368'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Login from LCD'
+id: 0c2b354f-da4b-523a-9646-e1747c0bcf49
+status: experimental
+description: Converted from Sagan rule SID 5014370 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 32001","type
+  selection_2:
+    _raw|contains|cased: from LCD
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5014370'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Admin login from LCD failed'
+id: de0e838f-8ab6-5d3c-8379-68f0f29c0982
+status: experimental
+description: Converted from Sagan rule SID 5014372 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 32002","type
+  selection_2:
+    _raw|contains|cased: LCD failed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5014372'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] To many bad admin login attempts'
+id: 14032560-91d9-5d66-b2f4-2efad858089c
+status: experimental
+description: Converted from Sagan rule SID 5014374 (rev 3), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 32002","type
+  selection_2:
+    _raw|contains|cased: bad attempts
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5014374'
+  sagan.rev: '3'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Login accepted'
+id: 615b9857-960a-5c3a-a5bb-c768ddfd07c4
+status: experimental
+description: Converted from Sagan rule SID 5014378 (rev 4), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 32006","type
+  selection_2:
+    _raw|contains|cased: login
+  selection_3:
+    _raw|contains|cased:
+      - accepted
+      - successfully
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5014378'
+  sagan.rev: '4'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Administrator is clearing/deleting logs'
+id: f03a8d47-7697-5237-9227-4bb07f41e7d0
+status: experimental
+description: Converted from Sagan rule SID 5014386 (rev 3), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 32007","type
+  selection_2:
+    _raw|re: has removed|has deleted|has cleared
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5014386'
+  sagan.rev: '3'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Administrator removed logs'
+id: cfa14fe3-5ae0-546d-be50-2b1beb82e02f
+status: experimental
+description: Converted from Sagan rule SID 5014394 (rev 4), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 32013","type
+  selection_2:
+    _raw|contains|cased:
+      - cleared
+      - deleted
+      - removed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5014394'
+  sagan.rev: '4'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] License about to expired'
+id: 9f29fda1-4b91-5e0c-aa17-fd7258d57a4f
+status: experimental
+description: Converted from Sagan rule SID 5014395 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 32014","type
+  selection_2:
+    _raw|contains|cased: license will expire
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.program-error
+custom_attributes:
+  sagan.sid: '5014395'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Corrupted MAC packet detected'
+id: 3b124605-8552-5026-908d-8da20ebd6a66
+status: experimental
+description: Converted from Sagan rule SID 5014397 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 32020","type
+  selection_2:
+    _raw|contains|cased: Corrupted MAC packet detected
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5014397'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Action factory_reset'
+id: fec8cc3d-99ef-532a-aa89-c6f49781b575
+status: experimental
+description: Converted from Sagan rule SID 5014400 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 32095","type
+  selection_2:
+    _raw|contains|cased: action":"actory_reset
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5014400'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] New access profile added'
+id: a085c0c9-e80b-519e-aaa9-98fbec942136
+status: experimental
+description: Converted from Sagan rule SID 5014401 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 32101","type
+  selection_2:
+    _raw|contains|cased: added new access profile
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5014401'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Configuration change'
+id: 1ceb4aa2-b5ed-5669-accd-bd5809902811
+status: experimental
+description: Converted from Sagan rule SID 5014402 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 32102","type
+  selection_2:
+    _raw|contains|cased: made a change
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5014402'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Access profile changed'
+id: 39156286-49af-5d67-a819-d1684200d0db
+status: experimental
+description: Converted from Sagan rule SID 5014403 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 32102","type
+  selection_2:
+    _raw|contains|cased: setting of access profile
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5014403'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Access profile deleted'
+id: 6ce166f0-cb5a-5429-b7ef-19a564c387a0
+status: experimental
+description: Converted from Sagan rule SID 5014404 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 32103","type
+  selection_2:
+    _raw|contains|cased: deleted an access profile
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5014404'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] New admin user added'
+id: 3836ddb7-ea65-52b7-8365-fd516d7587a2
+status: experimental
+description: Converted from Sagan rule SID 5014405 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 32120","type
+  selection_2:
+    _raw|contains|cased: added an admin user
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5014405'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] New user group added'
+id: 712269bf-4ac2-517a-8d08-a4e809388b31
+status: experimental
+description: Converted from Sagan rule SID 5014406 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 32120","type
+  selection_2:
+    _raw|contains|cased: added an user group
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5014406'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Admin changed another admin''s password'
+id: d18bd0fb-8cfd-5600-962d-d16b24a87838
+status: experimental
+description: Converted from Sagan rule SID 5014407 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 32150","type
+  selection_2:
+    _raw|contains|cased: changed password of admin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5014407'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] L2TP/PPTP/PPPoE Authentication success'
+id: 3a38a32f-56c9-590a-a911-7e4c368043ab
+status: experimental
+description: Converted from Sagan rule SID 5014419 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 29002","type
+  selection_2:
+    _raw|contains|cased: action":"uth_success
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5014419'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] L2TP/PPTP/PPPoE Authentication failed'
+id: df905195-24dc-5baa-ab8b-07a789684d15
+status: experimental
+description: Converted from Sagan rule SID 5014420 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 29003","type
+  selection_2:
+    _raw|contains|cased: action":"uth_failed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5014420'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] L2TP/PPTP/PPPoE Max connection reached'
+id: 16b2102d-4174-5325-b8bc-46173c11d4f4
+status: experimental
+description: Converted from Sagan rule SID 5014421 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 29004","type
+  selection_2:
+    _raw|contains|cased: No more clients can connect
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014421'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Data Leak Prevention Rule Matched'
+id: 67313bc7-4d21-59a2-9235-da3033b82f0f
+status: experimental
+description: Converted from Sagan rule SID 5014423 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 11000","type
+  selection_2:
+    _raw|contains|cased: Data Leak Prevention Rule matched
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5014423'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Application control instant messaging message'
+id: a219c277-1eef-5491-b3ab-6acc8cc9f64f
+status: experimental
+description: Converted from Sagan rule SID 5014424 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 11600","type
+  selection_2:
+    _raw|contains|cased: kind":"
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5014424'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Application control instant message file tranfer message'
+id: 76801c5a-304a-5a1b-9339-efccff2acfcc
+status: experimental
+description: Converted from Sagan rule SID 5014425 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 116001","type
+  selection_2:
+    _raw|contains|cased: kind":"
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5014425'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Application control instant message chat message'
+id: 96ee83a8-1b5b-5e16-99cc-4d8f1cb26dce
+status: experimental
+description: Converted from Sagan rule SID 5014426 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 116002","type
+  selection_2:
+    _raw|contains|cased: kind":"
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5014426'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Control instant message SIP session blocked message'
+id: 072e3fa9-7686-5c56-9358-3c756e8b24ed
+status: experimental
+description: Converted from Sagan rule SID 5014427 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 116003","type
+  selection_2:
+    _raw|contains|cased: kind":"
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5014427'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Application control instant message message'
+id: 2854b442-c3e3-576e-ae06-66855919ac74
+status: experimental
+description: Converted from Sagan rule SID 5014428 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 116010","type
+  selection_2:
+    _raw|contains|cased: kind":"
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5014428'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] An application control VoIP-SIP session blocked message'
+id: 9d82209c-5e04-56f8-8c0e-7de672508470
+status: experimental
+description: Converted from Sagan rule SID 5014429 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 116011","type
+  selection_2:
+    _raw|contains|cased: kind":"
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5014429'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] E-mail of an infected file'
+id: 06cc5a4e-47e3-58bc-96d9-5dd472d64560
+status: experimental
+description: Converted from Sagan rule SID 5014430 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 60000","type
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014430'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] File blocked via e-mail'
+id: dc7e868d-f068-5844-b0b3-8a852762e4d5
+status: experimental
+description: Converted from Sagan rule SID 5014431 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 63000","type
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014431'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] File intercepted via e-mail'
+id: 0c04f5af-c0b7-5123-a79e-645a408b8860
+status: experimental
+description: Converted from Sagan rule SID 5014432 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 63002","type
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014432'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Attack signature matched [see content] [1]'
+id: eea864bc-5679-500d-8fcc-215d6bc80dc1
+status: experimental
+description: Converted from Sagan rule SID 5014433 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 70000","type
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5014433'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Attack signature matched [see content] [2]'
+id: 7f16ebf3-f16e-50e5-a6f0-6d5f4847e46f
+status: experimental
+description: Converted from Sagan rule SID 5014434 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 73001","type
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5014434'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Banned word was found'
+id: 7d5d4fa5-0c3e-5972-8812-8b725e8ab3c6
+status: experimental
+description: Converted from Sagan rule SID 5014435 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 90000","type
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5014435'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Cookie was removed'
+id: 046da262-aa28-51b0-b520-828e32948f6a
+status: experimental
+description: Converted from Sagan rule SID 5014436 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 91000","type
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.web-application-activity
+custom_attributes:
+  sagan.sid: '5014436'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Java applet was removed'
+id: 8ffb8b54-efc8-527a-9a9d-d0d03f20a83b
+status: experimental
+description: Converted from Sagan rule SID 5014437 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 91005","type
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.web-application-activity
+custom_attributes:
+  sagan.sid: '5014437'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] ActiveX script was removed'
+id: 84a318a8-6369-5798-9e67-b77673c464b9
+status: experimental
+description: Converted from Sagan rule SID 5014438 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 91010","type
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.web-application-activity
+custom_attributes:
+  sagan.sid: '5014438'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] URL was in blacklist'
+id: 441d77d3-9894-5a9a-9d1e-3b89b650eb9c
+status: experimental
+description: Converted from Sagan rule SID 5014439 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 93002","type
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5014439'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] URL belongs to a denied category'
+id: fcb41dec-343d-50e9-866a-0485fecc30aa
+status: experimental
+description: Converted from Sagan rule SID 5014440 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 99501","type
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5014440'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] FTP attempt'
+id: 5370e9e3-423f-56b3-8595-58d8270a2187
+status: experimental
+description: Converted from Sagan rule SID 5014442 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: 80000","type
+  selection_2:
+    _raw|contains|cased: user":"
+  selection_3:
+    _raw|contains|cased: group":"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014442'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] General CRITICAL event'
+id: 50cfb344-be4b-5939-81f0-410e1ebf8f1e
+status: experimental
+description: Converted from Sagan rule SID 5014445 (rev 4), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: devname":"
+  selection_2:
+    _raw|contains|cased: pri":"ritical
+  filter_3:
+    _raw|contains|cased: Alarm Cleared
+  filter_4:
+    _raw|contains|cased: logged out from
+  filter_5:
+    _raw|contains|cased: physical-port-change
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.hardware-event
+custom_attributes:
+  sagan.sid: '5014445'
+  sagan.rev: '4'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Botnet traffic detected'
+id: 503702d9-c0a0-58aa-8d36-43702d63f64c
+status: experimental
+description: Converted from Sagan rule SID 5014446 (rev 3), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: app_list":"BotnetOnly" app_type":"Botnet"
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014446'
+  sagan.rev: '3'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] IPS Session Scan Paused'
+id: 401cd2a8-5d3a-500a-99a6-4e275a9f2158
+status: experimental
+description: Converted from Sagan rule SID 5014449 (rev 1), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 100022700
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-error
+custom_attributes:
+  sagan.sid: '5014449'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Compromised Host Detected By IOC'
+id: 0397f7bf-1a3c-52d3-96ac-53cb9b7904f4
+status: experimental
+description: Converted from Sagan rule SID 5014450 (rev 1), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 100022953
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5014450'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] IPv6 firewall inbound policy added'
+id: eb140f58-8f73-5162-abc9-1fe9d1a31643
+status: experimental
+description: Converted from Sagan rule SID 5014451 (rev 1), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 100032151
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5014451'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Admin Login Failed [5/5]'
+id: 71c76e73-fbdd-5a6f-8a1a-49c73b6ddd7b
+name: sagan_5014452
+status: experimental
+description: Converted from Sagan rule SID 5014452 (rev 1), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 100032002
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5014452'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+  rsigma.suppress: 1d
+---
+title: '[FORTINET] Admin Login Failed [5/5] (threshold 5 in 5m)'
+id: e4c4e1c2-1a26-569d-93c7-022b35527af7
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5014452
+  group-by:
+    - srcip
+    - user
+  timespan: 5m
+  condition:
+    gte: 5
+level: high
+---
+title: '[FORTINET] Support License expiring'
+id: 42902e6d-2d0a-58df-8e23-e27c31aa695a
+status: experimental
+description: Converted from Sagan rule SID 5014453 (rev 1), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 100032014
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.program-error
+custom_attributes:
+  sagan.sid: '5014453'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Data Leak Prevention Rule Matched'
+id: 00576f1b-cafd-5845-8c4b-b791d01c6a6e
+status: experimental
+description: Converted from Sagan rule SID 5014454 (rev 1), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 954024576
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5014454'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Application control instant message - file tranfer'
+id: d7ad95f6-f484-5ad4-8f38-02db1c2189a8
+status: experimental
+description: Converted from Sagan rule SID 5014455 (rev 1), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 1059028675
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5014455'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Infected File Detected Within Email'
+id: 53c59a5a-a0ca-5297-8898-905e23f6aa72
+status: experimental
+description: Converted from Sagan rule SID 5014456 (rev 1), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 211008194
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014456'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Attack Detected by UDP/TCP Signature'
+id: 5db1f177-067a-5a93-a3d9-04e344d36e2c
+status: experimental
+description: Converted from Sagan rule SID 5014457 (rev 1), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 419016384
+  filter_2:
+    action|cased: dropped
+  filter_3:
+    severity|cased:
+      - info
+      - low
+      - medium
+  condition: selection_1 and not (filter_2 or filter_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5014457'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Attack detected by ICMP Signature'
+id: fd65825b-9e14-5524-affa-2dc02fb704eb
+status: experimental
+description: Converted from Sagan rule SID 5014458 (rev 1), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 419016385
+  filter_2:
+    severity|cased:
+      - info
+      - low
+      - medium
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5014458'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Attack detected by Other Signature'
+id: c0f4792e-a45d-551d-b77b-d9bf797ff650
+status: experimental
+description: Converted from Sagan rule SID 5014459 (rev 1), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 419016386
+  filter_2:
+    severity|cased:
+      - info
+      - low
+      - medium
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5014459'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Botnet C&C Communication - Warning'
+id: d634a05d-b188-57b0-a6f8-5c95f0183bac
+status: experimental
+description: Converted from Sagan rule SID 5014461 (rev 1), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 402016400
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5014461'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Infected File Detected and Blocked'
+id: dcfe4570-24a8-572e-ac9c-85d62e085fb8
+status: experimental
+description: Converted from Sagan rule SID 5014464 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 211008192
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014464'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+  sagan.metadata: updated_on=2024_06_20
+---
+title: '[FORTINET] Infected File Detected and Passed'
+id: 071d131b-893a-50fc-ab65-d5aabd92d4bd
+status: experimental
+description: Converted from Sagan rule SID 5014465 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 211008193
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5014465'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+  sagan.metadata: updated_on=2025_01_21
+---
+title: '[FORTINET] Virus Command Blocked'
+id: 8657843e-5f48-5f4b-9ee8-febd3bb2d7ea
+status: experimental
+description: Converted from Sagan rule SID 5014466 (rev 1), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 206008452
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014466'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] SSL Certificate Anomaly - Blacklisted'
+id: 42b77eb6-80e4-596e-b01d-ec831414b7a8
+status: experimental
+description: Converted from Sagan rule SID 5014470 (rev 1), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 1700062300
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014470'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] SSL Certificate Anomaly - SNI Mismatched'
+id: 0cf6078e-d368-58c4-a8cb-04ef0f330753
+status: experimental
+description: Converted from Sagan rule SID 5014471 (rev 1), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 1700062304
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014471'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Attack Detected by UDP/TCP Anomaly'
+id: 8b47467b-6498-508c-8d28-229bb842bb6f
+status: experimental
+description: Converted from Sagan rule SID 5014474 (rev 1), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 720018432
+  filter_2:
+    severity|cased:
+      - info
+      - low
+      - medium
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5014474'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Attack Detected by ICMP Anomaly'
+id: d52b946e-9809-5559-a949-467ddd65ce20
+status: experimental
+description: Converted from Sagan rule SID 5014475 (rev 1), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 720018433
+  filter_2:
+    severity|cased:
+      - info
+      - low
+      - medium
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5014475'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Attack Detected by Other Anomaly'
+id: 7a9b99cf-7706-520c-957d-7b50c5064ce7
+status: experimental
+description: Converted from Sagan rule SID 5014476 (rev 1), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 720018434
+  filter_2:
+    severity|cased:
+      - info
+      - low
+      - medium
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5014476'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Login Failed via VPN - Brute Force [10/5]'
+id: b45bc1b5-fd52-5842-a904-df5feaaf2ee6
+name: sagan_5014478
+status: experimental
+description: Converted from Sagan rule SID 5014478 (rev 1), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 101039426
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5014478'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+  rsigma.suppress: 6h
+---
+title: '[FORTINET] Login Failed via VPN - Brute Force [10/5] (threshold 10 in 5m)'
+id: 2e5f9e1d-f75c-5c5f-8cfb-16cfad345961
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5014478
+  group-by:
+    - remip
+  timespan: 5m
+  condition:
+    gte: 10
+level: low
+---
+title: '[FORTINET] VPN Login After Brute Force'
+id: 7d81850b-ce4b-5e0e-bded-2b72ccb5a934
+name: sagan_5014479
+status: experimental
+description: Converted from Sagan rule SID 5014479 (rev 1), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 101039424
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5014479'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+  rsigma.suppress: 1h
+---
+title: '[FORTINET] VPN Login After Brute Force (correlated with brute_force)'
+id: 7947850e-6b8d-561d-868b-26bde65e7994
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5014479
+  group-by:
+    - srcip
+  timespan: 1d
+level: high
+---
+title: '[FORTINET] Possible CVE-2022-40684 Indicators Detected'
+id: e1492a8a-3d52-5e08-9304-0de3e5ca4aa8
+status: experimental
+description: Converted from Sagan rule SID 5014480 (rev 1), file fortinet-json.rules.
+references:
+  - https://www.horizon3.ai/fortinet-iocs-cve-2022-40684/
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    type|cased: event
+  selection_2:
+    user|cased: Local_Process_Access
+  selection_3:
+    ui|cased:
+      - Node.js
+      - Report Runner
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5014480'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Filesystem Write Violation'
+id: 8c043397-2a9f-511b-a63b-a0cbb5f76e24
+status: experimental
+description: Converted from Sagan rule SID 5014481 (rev 1), file fortinet-json.rules.
+references:
+  - https://docs.fortinet.com/document/fortigate/7.4.0/new-features/226732/real-time-file-system-integrity-checking
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 100020230
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5014481'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Attempt to replace symlink'
+id: 35deae8e-fb93-5f93-8e59-4fbb0b13b4c3
+status: experimental
+description: Converted from Sagan rule SID 5014482 (rev 1), file fortinet-json.rules.
+references:
+  - https://docs.fortinet.com/document/fortigate/7.4.0/new-features/226732/real-time-file-system-integrity-checking
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 100020231
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5014482'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] Non-Kernel module loaded'
+id: 181e05bc-35d0-541f-a0c7-de96b6f049ba
+status: experimental
+description: Converted from Sagan rule SID 5014483 (rev 1), file fortinet-json.rules.
+references:
+  - https://docs.fortinet.com/document/fortigate/7.4.0/new-features/226732/real-time-file-system-integrity-checking
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 100020232
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5014483'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] File Hash does not match'
+id: efe8a509-cd2a-57b4-92c0-a80d1897cf74
+status: experimental
+description: Converted from Sagan rule SID 5014484 (rev 1), file fortinet-json.rules.
+references:
+  - https://docs.fortinet.com/document/fortigate/7.4.0/new-features/226732/real-time-file-system-integrity-checking
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 100020233
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5014484'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] UTM Virus Event Detected (Catch All)'
+id: e06f4146-cb85-5308-9fa1-e6309b3766ce
+status: experimental
+description: Converted from Sagan rule SID 5014486 (rev 1), file fortinet-json.rules.
+references:
+  - https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/efa7b0eb-45bc-11ee-8e6d-fa163e15d75b/FortiOS_7.4.1_Log_Reference.pdf
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    type|cased: utm
+  selection_2:
+    subtype|cased: virus
+  filter_3:
+    level|cased:
+      - notice
+      - information
+  filter_4:
+    logid:
+      - 211008192
+      - 211008193
+  filter_5:
+    eventtype|cased: analytics
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014486'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] UTM app-ctl Event Detected'
+id: c0d6c1b7-efe4-5c24-9e7d-99484d28dfa4
+status: experimental
+description: Converted from Sagan rule SID 5014489 (rev 1), file fortinet-json.rules.
+references:
+  - https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/efa7b0eb-45bc-11ee-8e6d-fa163e15d75b/FortiOS_7.4.1_Log_Reference.pdf
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    type|cased: utm
+  selection_2:
+    subtype|cased: app-ctl
+  filter_3:
+    severity|cased: low
+  filter_4:
+    level|cased:
+      - information
+      - notice
+  filter_5:
+    apprisk|cased:
+      - low
+      - medium
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014489'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] UTM WAF Custom Event Detected'
+id: e7b5d2af-f80c-5589-aae4-9c8fe126d336
+status: experimental
+description: Converted from Sagan rule SID 5014491 (rev 1), file fortinet-json.rules.
+references:
+  - https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/efa7b0eb-45bc-11ee-8e6d-fa163e15d75b/FortiOS_7.4.1_Log_Reference.pdf
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    type|cased: utm
+  selection_2:
+    subtype|cased: waf
+  selection_3:
+    eventtype|cased: waf-custom-signature
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014491'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] UTM gtp Event Detected'
+id: 200d8d97-88ea-5695-8af2-20d887b8d0c8
+status: experimental
+description: Converted from Sagan rule SID 5014492 (rev 1), file fortinet-json.rules.
+references:
+  - https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/efa7b0eb-45bc-11ee-8e6d-fa163e15d75b/FortiOS_7.4.1_Log_Reference.pdf
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    type|cased: utm
+  selection_2:
+    subtype|cased: gtp
+  filter_3:
+    severity|cased: low
+  filter_4:
+    level|cased: low
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014492'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] UTM ssh Event Detected'
+id: 54b5538c-f3f4-5370-b142-e61d76129e9b
+status: experimental
+description: Converted from Sagan rule SID 5014494 (rev 1), file fortinet-json.rules.
+references:
+  - https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/efa7b0eb-45bc-11ee-8e6d-fa163e15d75b/FortiOS_7.4.1_Log_Reference.pdf
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    type|cased: utm
+  selection_2:
+    subtype|cased: ssh
+  filter_3:
+    severity|cased: low
+  filter_4:
+    level|cased: low
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014494'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] UTM icap Event Detected'
+id: 5fb16edd-e2a6-555a-a46a-f3f0b7c748aa
+status: experimental
+description: Converted from Sagan rule SID 5014497 (rev 1), file fortinet-json.rules.
+references:
+  - https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/efa7b0eb-45bc-11ee-8e6d-fa163e15d75b/FortiOS_7.4.1_Log_Reference.pdf
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    type|cased: utm
+  selection_2:
+    subtype|cased: icap
+  filter_3:
+    severity|cased: low
+  filter_4:
+    level|cased: low
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014497'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] UTM forti-switch Event Detected'
+id: e7c757d7-7917-5725-9ddc-79c9b13d5441
+status: experimental
+description: Converted from Sagan rule SID 5014498 (rev 1), file fortinet-json.rules.
+references:
+  - https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/efa7b0eb-45bc-11ee-8e6d-fa163e15d75b/FortiOS_7.4.1_Log_Reference.pdf
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    type|cased: utm
+  selection_2:
+    subtype|cased: forti-switch
+  filter_3:
+    severity|cased: low
+  filter_4:
+    level|cased: low
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014498'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] UTM virtual-patch Event Detected'
+id: e5f21bcf-e8c4-5d56-a0e5-030d8e716851
+status: experimental
+description: Converted from Sagan rule SID 5014499 (rev 1), file fortinet-json.rules.
+references:
+  - https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/efa7b0eb-45bc-11ee-8e6d-fa163e15d75b/FortiOS_7.4.1_Log_Reference.pdf
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    type|cased: utm
+  selection_2:
+    subtype|cased: virtual-patch
+  filter_3:
+    severity|cased: low
+  filter_4:
+    level|cased: low
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014499'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] UTM casb Event Detected'
+id: 4150b3e9-9361-5c5d-8af6-31500a286ba3
+status: experimental
+description: Converted from Sagan rule SID 5014500 (rev 1), file fortinet-json.rules.
+references:
+  - https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/efa7b0eb-45bc-11ee-8e6d-fa163e15d75b/FortiOS_7.4.1_Log_Reference.pdf
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    type|cased: utm
+  selection_2:
+    subtype|cased: casb
+  filter_3:
+    severity|cased: low
+  filter_4:
+    level|cased: low
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014500'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] DNS Request to Monitored Domain Detected'
+id: 5bd3554a-4088-5ee0-892e-7a74224c18ed
+status: experimental
+description: Converted from Sagan rule SID 5015494 (rev 3), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 1501054802
+  selection_2:
+    msg|cased: Domain is monitored
+  selection_3:
+    action|cased: pass
+  selection_4:
+    catdesc:
+      - Instant Messaging
+      - File Sharing and Storage
+      - Freeware and Software Downloads
+      - Remote Access
+      - Malicious Websites
+      - Proxy Avoidance
+      - Illegal or Unethical
+      - Hacking
+      - Crypto Mining
+      - Child Sexual Abuse
+      - Gambling
+      - Nudity and Risque
+      - Pornography
+      - Peer-to-peer File Sharing
+      - URL Shortening
+      - Potentially Unwanted Program
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5015494'
+  sagan.rev: '3'
+  sagan.source_file: fortinet-json.rules

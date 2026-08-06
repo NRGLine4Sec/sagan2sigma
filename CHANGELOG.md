@@ -44,6 +44,15 @@ All notable changes to this project are documented here. The format follows
   exact commit of each rule corpus it was built from, since both change daily
   and an unpinned list rots silently. A generated snapshot is committed at
   `docs/OVERLAP-INVENTORY.md`.
+- The upstream corpus, already converted with the default `rsigma-syslog`
+  profile, is committed under `converted/`, so the rules can be used without
+  installing the project. `converted/VERSIONS.md` records each iteration by a
+  version id (the short hash of the `sagan-rules` and `sagan2sigma` commits it
+  was built from) with that corpus commit's date, so a reader sees how old the
+  rules are. A scheduled workflow, `.github/workflows/convert-rules.yml`, and
+  the `tools/refresh_converted_rules.py` script it runs, reconvert the whole
+  corpus whenever it moves and commit only when the output changes, so rules
+  modified or removed upstream are reflected, not only new ones.
 
 ### Changed
 

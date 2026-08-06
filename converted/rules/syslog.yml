@@ -1,0 +1,576 @@
+title: '[SYSLOG] Kernel TCP/IP redirect attempt'
+id: e285c791-02b1-53c2-b1bb-96ea09b616f5
+status: experimental
+description: Converted from Sagan rule SID 5000056 (rev 1), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: Redirect from
+  selection_2:
+    appname|cased: Redirect
+  selection_3:
+    facility: kern
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5000056'
+  sagan.rev: '1'
+  sagan.source_file: syslog.rules
+---
+title: '[SYSLOG] Kernel TCP/IP redirect attempt'
+id: 10e4b2b2-6d96-5ed5-a1f7-be22763f048c
+status: experimental
+description: Converted from Sagan rule SID 5000057 (rev 1), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: Advised path
+  selection_2:
+    appname|cased: Advised
+  selection_3:
+    facility: kern
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5000057'
+  sagan.rev: '1'
+  sagan.source_file: syslog.rules
+---
+title: '[SYSLOG] init respawning to fast'
+id: 59b7c857-5828-5e1e-b320-d9682030bed6
+status: experimental
+description: Converted from Sagan rule SID 5000058 (rev 2), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: respawning too fast
+  selection_2:
+    appname|cased: init
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.program-error
+custom_attributes:
+  sagan.sid: '5000058'
+  sagan.rev: '2'
+  sagan.source_file: syslog.rules
+  rsigma.suppress: 1m
+---
+title: '[SYSLOG] Martian source packet'
+id: 168a57f4-2d83-5d8d-8fc8-4978f357af3b
+status: experimental
+description: Converted from Sagan rule SID 5000059 (rev 2), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: martian source
+  selection_2:
+    appname|cased: martian
+  selection_3:
+    facility: kern
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5000059'
+  sagan.rev: '2'
+  sagan.source_file: syslog.rules
+---
+title: '[SYSLOG] Possible unknown problem on a system'
+id: ce2a5986-100f-5174-9bb6-11a3c1703333
+status: experimental
+description: Converted from Sagan rule SID 5000114 (rev 7), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    _raw|re|i: ' fatal |segmentation fault| corrupt '
+  filter_2:
+    _raw|contains|cased: 'File Path: '
+  filter_3:
+    _raw|contains|cased: '36888: '
+  filter_4:
+    _raw|contains: subject
+  filter_5:
+    _raw|contains|cased: '36887: '
+  filter_6:
+    _raw|contains|cased: Phoenix BIOS
+  filter_7:
+    _raw|contains|cased: GET
+  filter_8:
+    _raw|contains: heart attack
+  filter_9:
+    _raw|contains|cased: alert tcp
+  filter_10:
+    _raw|contains|cased: alert http
+  filter_11:
+    _raw|contains:
+      - abcnews
+      - cnn
+      - cbsnews
+      - foxnews
+      - msnbc
+  condition: selection_1 and not (filter_2 or filter_3 or filter_4 or filter_5 or filter_6 or filter_7
+    or filter_8 or filter_9 or filter_10 or filter_11)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.program-error
+custom_attributes:
+  sagan.sid: '5000114'
+  sagan.rev: '7'
+  sagan.source_file: syslog.rules
+  rsigma.suppress: 5m
+---
+title: '[SYSLOG] System out of disk space'
+id: c97a2e0e-86ef-573c-af29-b362bd29b7b8
+status: experimental
+description: Converted from Sagan rule SID 5000116 (rev 2), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    _raw|re|i: file system full|No space left on device
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.hardware-event
+custom_attributes:
+  sagan.sid: '5000116'
+  sagan.rev: '2'
+  sagan.source_file: syslog.rules
+  rsigma.suppress: 5m
+---
+title: '[SYSLOG] Illegal root login'
+id: 8a41ee70-7ded-548f-b383-0e94e1b0c5c8
+status: experimental
+description: Converted from Sagan rule SID 5000120 (rev 1), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    _raw|re: ILLEGAL ROOT LOGIN|ROOT LOGIN REFUSED
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-admin
+custom_attributes:
+  sagan.sid: '5000120'
+  sagan.rev: '1'
+  sagan.source_file: syslog.rules
+---
+title: '[SYSLOG] Connection blocked by TCP Wrappers'
+id: b7d2ae19-9a6e-534d-be17-250f3dd3d39c
+status: experimental
+description: Converted from Sagan rule SID 5000121 (rev 2), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    _raw|re|i: refused connect from|libwrap refused connection|connection from \S+ denied
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.tcp-connection
+custom_attributes:
+  sagan.sid: '5000121'
+  sagan.rev: '2'
+  sagan.source_file: syslog.rules
+---
+title: '[SYSLOG] Physical root login'
+id: 764a7507-c4ea-5986-a98e-7a6e9496030b
+status: experimental
+description: Converted from Sagan rule SID 5000122 (rev 1), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    _raw|contains: ROOT LOGIN  on
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5000122'
+  sagan.rev: '1'
+  sagan.source_file: syslog.rules
+---
+title: '[SYSLOG] Oversized packet - ping of death?'
+id: e8fb2339-685b-54e9-a363-a61e592f4a3a
+status: experimental
+description: Converted from Sagan rule SID 5000123 (rev 1), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: Oversized packet received from
+  selection_2:
+    facility: kern
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5000123'
+  sagan.rev: '1'
+  sagan.source_file: syslog.rules
+---
+title: '[SYSLOG] Interface entered promiscuous mode'
+id: 58de9957-2dd9-538d-a7ec-f527bd5b2730
+status: experimental
+description: Converted from Sagan rule SID 5000124 (rev 1), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    _raw|re|i: Promiscuous mode enabled|device \S+ entered promiscuous mode
+  selection_2:
+    facility: kern
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000124'
+  sagan.rev: '1'
+  sagan.source_file: syslog.rules
+---
+title: '[SYSLOG] Kernel log daemon terminating'
+id: 71dc88d2-85d1-5c98-8bde-1b9c975512af
+status: experimental
+description: Converted from Sagan rule SID 5000126 (rev 1), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    _raw|contains: kernel log daemon terminating
+  selection_2:
+    facility: kern
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5000126'
+  sagan.rev: '1'
+  sagan.source_file: syslog.rules
+---
+title: '[SYSLOG] New group added to the system'
+id: 404f46e0-ed49-582b-acc5-a245c60b638b
+status: experimental
+description: Converted from Sagan rule SID 5000130 (rev 2), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    _raw|contains: new group
+  selection_2:
+    appname|cased:
+      - useradd
+      - adduser
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5000130'
+  sagan.rev: '2'
+  sagan.source_file: syslog.rules
+---
+title: '[SYSLOG] User or group was deleted from the system'
+id: d8440021-949e-5941-a46c-0484944f1bde
+status: experimental
+description: Converted from Sagan rule SID 5000376 (rev 2), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    _raw|re|i: delete user|account deleted|remove group
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5000376'
+  sagan.rev: '2'
+  sagan.source_file: syslog.rules
+---
+title: '[SYSLOG] Information for a user was changed'
+id: bfbf3b9f-b261-5fcf-b18e-d473b09edbc9
+status: experimental
+description: Converted from Sagan rule SID 5000377 (rev 1), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    _raw|contains: changed user
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5000377'
+  sagan.rev: '1'
+  sagan.source_file: syslog.rules
+---
+title: '[SYSLOG] syslog-ng I/O error'
+id: 6b426681-46b0-5053-978b-542c18dd9cb9
+status: experimental
+description: Converted from Sagan rule SID 5001011 (rev 1), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    appname|cased: syslog-ng
+  selection_2:
+    _raw|contains|cased: I/O error occurred while writing
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001011'
+  sagan.rev: '1'
+  sagan.source_file: syslog.rules
+---
+title: '[SYSLOG] syslog-ng suspend write'
+id: b48ddeaa-a1d4-5a9b-9e38-89a1c077d4a7
+status: experimental
+description: Converted from Sagan rule SID 5001012 (rev 1), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    appname|cased: syslog-ng
+  selection_2:
+    _raw|contains|cased: Suspending write operation
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001012'
+  sagan.rev: '1'
+  sagan.source_file: syslog.rules
+---
+title: '[SYSLOG] SCSI task abort'
+id: f36ef0cc-dd4b-5928-80b2-c90659a3ab5c
+status: experimental
+description: Converted from Sagan rule SID 5001972 (rev 1), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: scsi
+  selection_2:
+    _raw|contains|cased: task abort
+  selection_3:
+    appname|cased: kernel
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.hardware-event
+custom_attributes:
+  sagan.sid: '5001972'
+  sagan.rev: '1'
+  sagan.source_file: syslog.rules
+---
+title: '[SYSLOG] SSH Service in Restart Loop (25)'
+id: 5c37de80-b5c0-5db6-8ae3-6c3510360b95
+status: experimental
+description: Converted from Sagan rule SID 5015341 (rev 1), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    _raw|contains: starting ssh (count 25)
+  selection_2:
+    facility: kern
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.hardware-event
+custom_attributes:
+  sagan.sid: '5015341'
+  sagan.rev: '1'
+  sagan.source_file: syslog.rules
+---
+title: '[SYSLOG] SSH Service in Restart Loop (50)'
+id: 5eb13eb7-c88e-54de-87a0-0dc4a22f8d6a
+status: experimental
+description: Converted from Sagan rule SID 5015342 (rev 1), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    _raw|contains: starting ssh (count 50)
+  selection_2:
+    facility: kern
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.hardware-event
+custom_attributes:
+  sagan.sid: '5015342'
+  sagan.rev: '1'
+  sagan.source_file: syslog.rules
+---
+title: '[SYSLOG] SSH Service in Restart Loop (100)'
+id: b3d8e595-96d1-588a-a943-ec6a5d75fd37
+status: experimental
+description: Converted from Sagan rule SID 5015343 (rev 1), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    _raw|contains: starting ssh (count 100)
+  selection_2:
+    facility: kern
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.hardware-event
+custom_attributes:
+  sagan.sid: '5015343'
+  sagan.rev: '1'
+  sagan.source_file: syslog.rules
+---
+title: '[SYSLOG] SSH Service in Restart Loop (250)'
+id: ac876f78-180c-5e1f-b946-4c0a29cf2857
+status: experimental
+description: Converted from Sagan rule SID 5015344 (rev 1), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    _raw|contains: starting ssh (count 250)
+  selection_2:
+    facility: kern
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.hardware-event
+custom_attributes:
+  sagan.sid: '5015344'
+  sagan.rev: '1'
+  sagan.source_file: syslog.rules
+---
+title: '[SYSLOG] SSH Service in Restart Loop (500)'
+id: e6f44f94-a143-5b4d-a29d-ae38db9931ca
+status: experimental
+description: Converted from Sagan rule SID 5015345 (rev 1), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    _raw|contains: starting ssh (count 500)
+  selection_2:
+    facility: kern
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.hardware-event
+custom_attributes:
+  sagan.sid: '5015345'
+  sagan.rev: '1'
+  sagan.source_file: syslog.rules

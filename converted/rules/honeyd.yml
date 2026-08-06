@@ -1,0 +1,170 @@
+title: '[HONEYD] Connection made to honeypot'
+id: 37ed9ae8-6299-5bca-858e-948ad9e7854c
+status: experimental
+description: Converted from Sagan rule SID 5001846 (rev 5), file honeyd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: tcp
+  selection_2:
+    appname|cased: honeydconnect
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001846'
+  sagan.rev: '5'
+  sagan.source_file: honeyd.rules
+---
+title: '[HONEYD] Attempt to login to honeypot Telnet server [0/10]'
+id: f7e8ac5a-a429-5ae8-b034-63fc0653b84c
+status: experimental
+description: Converted from Sagan rule SID 5001847 (rev 7), file honeyd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: 'Attempted '
+  selection_2:
+    appname|cased: honeyd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-user
+custom_attributes:
+  sagan.sid: '5001847'
+  sagan.rev: '7'
+  sagan.source_file: honeyd.rules
+  rsigma.suppress: 5m
+---
+title: '[HONEYD] Attempt to login to honeypot Telnet server as admin user [0/10]'
+id: ceae51ca-2b16-5d0d-bcaf-6424e39629ac
+status: experimental
+description: Converted from Sagan rule SID 5001848 (rev 8), file honeyd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: 'Attempted '
+  selection_2:
+    _raw|contains|cased:
+      - ' root '
+      - ' admin '
+  selection_3:
+    appname|cased: honeyd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-admin
+custom_attributes:
+  sagan.sid: '5001848'
+  sagan.rev: '8'
+  sagan.source_file: honeyd.rules
+  rsigma.suppress: 5m
+---
+title: '[HONEYD] Attempt to login to honeypot FTP server [0/10]'
+id: 43ef9e3c-5a80-5806-a771-34f43541ed1a
+status: experimental
+description: Converted from Sagan rule SID 5001849 (rev 7), file honeyd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|re: ^a-z | ^0-9
+  selection_2:
+    appname|cased: honeydftp
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-user
+custom_attributes:
+  sagan.sid: '5001849'
+  sagan.rev: '7'
+  sagan.source_file: honeyd.rules
+  rsigma.suppress: 5m
+---
+title: '[HONEYD] Connection to honeypot IIS server [0/10]'
+id: 46360159-3f63-5038-af4c-40320fed7c82
+status: experimental
+description: Converted from Sagan rule SID 5001850 (rev 6), file honeyd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|re: ^a-z | ^0-9
+  selection_2:
+    appname|cased: honeydwebiis
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5001850'
+  sagan.rev: '6'
+  sagan.source_file: honeyd.rules
+  rsigma.suppress: 5m
+---
+title: '[HONEYD] Connection to honeypot Apache server [0/10]'
+id: f1452976-9662-5bf0-a8a0-c9073b06ff8f
+status: experimental
+description: Converted from Sagan rule SID 5001851 (rev 6), file honeyd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|re: ^a-z | ^0-9
+  selection_2:
+    appname|cased: honeydwebapache
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5001851'
+  sagan.rev: '6'
+  sagan.source_file: honeyd.rules
+  rsigma.suppress: 5m
+---
+title: '[HONEYD] Connection to honeypot SMTP server [0/10]'
+id: ef07166c-8504-5922-8c53-3d618003ed5e
+status: experimental
+description: Converted from Sagan rule SID 5001852 (rev 6), file honeyd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|re: ^a-z | ^0-9
+  selection_2:
+    appname|cased: honeydsmtp
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5001852'
+  sagan.rev: '6'
+  sagan.source_file: honeyd.rules
+  rsigma.suppress: 5m

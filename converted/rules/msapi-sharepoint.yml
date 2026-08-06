@@ -1,0 +1,47 @@
+title: '[MSAPI-SHAREPOINT] Data loss prevention rule match.'
+id: 77d20e2d-3647-5bd0-a23a-21083fcacdc6
+status: experimental
+description: Converted from Sagan rule SID 5005158 (rev 2), file msapi-sharepoint.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    Workload|cased: SharePoint
+  selection_2:
+    Operation|cased: DlpRuleMatch
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005158'
+  sagan.rev: '2'
+  sagan.source_file: msapi-sharepoint.rules
+---
+title: '[MSAPI-SHAREPOINT] SharePoint Site Enumeration via Search'
+id: f7c3fd69-8f3e-5776-8c2b-0b2931336ea9
+status: experimental
+description: Converted from Sagan rule SID 5017909 (rev 1), file msapi-sharepoint.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    Operation|cased: SearchQueryPerformed
+  selection_2:
+    SearchQueryText|cased:
+      - contentclass:STS_Site
+      - contentclass:STS_Web
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017909'
+  sagan.rev: '1'
+  sagan.source_file: msapi-sharepoint.rules

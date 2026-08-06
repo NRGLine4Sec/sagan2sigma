@@ -1,0 +1,2261 @@
+title: '[ONELOGIN] USER_ASSUMED_USER'
+id: 5bfa5245-bf0e-5213-9a64-2f7a4e127427
+status: experimental
+description: Converted from Sagan rule SID 5006110 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 3
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006110'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] USER_FAILED_ONELOGIN_LOGIN - Brute force [5/5]'
+id: 3213899d-ffa6-5c25-9f3c-e4ee71e31dc7
+name: sagan_5006113
+status: experimental
+description: Converted from Sagan rule SID 5006113 (rev 5), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 6
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5006113'
+  sagan.rev: '5'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] USER_FAILED_ONELOGIN_LOGIN - Brute force [5/5] (threshold 5 in 5m)'
+id: f4d1e763-5336-50c8-942c-1837943e0b5f
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5006113
+  group-by:
+    - ipaddr
+    - user_name
+  timespan: 5m
+  condition:
+    gte: 5
+level: low
+---
+title: '[ONELOGIN] USER_FAILED_APP_LOGIN [5/1]'
+id: 8a572e89-e341-579e-924a-2984ebc44ef8
+name: sagan_5006116
+status: experimental
+description: Converted from Sagan rule SID 5006116 (rev 6), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    syslog_appname|cased: onelogin
+  selection_2:
+    event_type_id: 9
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006116'
+  sagan.rev: '6'
+  sagan.source_file: onelogin.rules
+  rsigma.suppress: 1h
+---
+title: '[ONELOGIN] USER_FAILED_APP_LOGIN [5/1] (threshold 5 in 1m)'
+id: cd2f3792-e261-5342-9847-190254ddaaba
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5006116
+  group-by:
+    - user_name
+  timespan: 1m
+  condition:
+    gte: 5
+level: medium
+---
+title: '[ONELOGIN] USER_CHANGED_PASSWORD'
+id: a5187e34-ba23-549e-84ef-a7135e6592c5
+status: experimental
+description: Converted from Sagan rule SID 5006118 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 11
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006118'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] CREATED_USER'
+id: 3a6d6656-6211-5388-a0e4-750ed7bdc100
+status: experimental
+description: Converted from Sagan rule SID 5006120 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 13
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006120'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] USER_BULK_OPERATION'
+id: d63d5a3d-0d53-50b2-bb59-70e60e2a2dbb
+status: experimental
+description: Converted from Sagan rule SID 5006130 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 23
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006130'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] USER_DOWNLOADED_CERT'
+id: a2ff92c2-18ca-5fb5-9336-1439fbc325d1
+status: experimental
+description: Converted from Sagan rule SID 5006134 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 27
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006134'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] USERS_IMPORTED_FROM_DIRECTORY'
+id: ad446c7c-940d-5869-a275-1ad8ad89e92a
+status: experimental
+description: Converted from Sagan rule SID 5006140 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 33
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006140'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] USER_JOIN_REQUEST'
+id: 85ae4829-1aab-547a-9e17-f306fb9ef03f
+status: experimental
+description: Converted from Sagan rule SID 5006144 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 37
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006144'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] CONNECTOR_BROKEN'
+id: 987da579-b05b-5d8c-a9f0-c46789e4f431
+status: experimental
+description: Converted from Sagan rule SID 5006146 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 39
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006146'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] AD_CONNECTOR_STARTED'
+id: 1a1baaf1-a64f-5794-97bd-6ef3af77ea04
+status: experimental
+description: Converted from Sagan rule SID 5006148 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 41
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006148'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] AD_CONNECTOR_STOPPED'
+id: e1095a5d-7d85-59ed-9977-d19001341607
+status: experimental
+description: Converted from Sagan rule SID 5006149 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 42
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006149'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] AD_CONNECTOR_CONFIG_RELOAD'
+id: bf2821c3-b0ad-599f-a7e4-19787cb5d476
+status: experimental
+description: Converted from Sagan rule SID 5006150 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 43
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006150'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] AD_CONNECTOR_NOTIFICATION'
+id: 7881f68e-7695-5dc5-b2b1-6e121d355558
+status: experimental
+description: Converted from Sagan rule SID 5006151 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 44
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006151'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] AD_CONNECTOR_FAIL_OVER'
+id: 43156e63-2973-5854-8449-15bd90314c17
+status: experimental
+description: Converted from Sagan rule SID 5006153 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 46
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006153'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] AD_CONNECTOR_EXCEPTION'
+id: db015311-ff2b-51d1-a836-b5eaf6260ba2
+status: experimental
+description: Converted from Sagan rule SID 5006154 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 47
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006154'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] IMPORTED_USER'
+id: 26dad2ac-8f61-56b5-b27a-c10d657c7223
+status: experimental
+description: Converted from Sagan rule SID 5006155 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 48
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006155'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] UNMATCHED_USERS'
+id: 1f8b4a96-49de-5d4c-82b6-0bdd29dbb119
+status: experimental
+description: Converted from Sagan rule SID 5006163 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 56
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006163'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] RABBIT_DOWN'
+id: 33ebdced-52c0-5ec8-911e-4bad59445b5b
+status: experimental
+description: Converted from Sagan rule SID 5006164 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 57
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006164'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] USER_LINKED_IN_APP'
+id: b6de633a-926b-58be-9b73-996f1b3b1539
+status: experimental
+description: Converted from Sagan rule SID 5006166 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 59
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006166'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] NO_USERS_TO_IMPORT_FROM_DIRECTORY'
+id: 3648e9db-01b4-5938-b3d2-5eecac7774d0
+status: experimental
+description: Converted from Sagan rule SID 5006173 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 66
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006173'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] DIRECTORY_IMPORT_EXCEPTION'
+id: d59ed9f9-0fb7-5e6a-a412-b57dd49684a9
+status: experimental
+description: Converted from Sagan rule SID 5006174 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 67
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006174'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] PRIVILEGE_GRANTED_TO_ACCOUNT'
+id: 7a3e4310-db27-57fb-8141-0d685c6b45af
+status: experimental
+description: Converted from Sagan rule SID 5006177 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 70
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006177'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] PRIVILEGE_REVOKED_FROM_ACCOUNT'
+id: 6198b7c0-b8a0-5c74-aa73-4c3d3037257e
+status: experimental
+description: Converted from Sagan rule SID 5006178 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 71
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006178'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] PRIVILEGE_GRANTED_TO_USER'
+id: 31ed6908-2d32-52a0-98c4-23c42a982d99
+status: experimental
+description: Converted from Sagan rule SID 5006179 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 72
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006179'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] PRIVILEGE_REVOKED_FROM_USER'
+id: e1531cd4-04b0-54d8-96b2-074d2ef59d35
+status: experimental
+description: Converted from Sagan rule SID 5006180 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 73
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006180'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] TRUSTED_IDP_ADDED'
+id: 3a488295-294a-558b-bf01-3cb1d3adf193
+status: experimental
+description: Converted from Sagan rule SID 5006181 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 74
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006181'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] TRUSTED_IDP_REMOVED'
+id: a9fe3e1d-a016-527e-bf21-9897d3b4f3dd
+status: experimental
+description: Converted from Sagan rule SID 5006182 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 75
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006182'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] TRUSTED_IDP_MODIFIED'
+id: 3974be93-40fd-5da2-8ab8-603c3f6ede61
+status: experimental
+description: Converted from Sagan rule SID 5006183 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 76
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006183'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] USER_FAILED_PROXY_LOGIN'
+id: d931332d-e259-5ade-a246-5e1d21305375
+status: experimental
+description: Converted from Sagan rule SID 5006184 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 77
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006184'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] AD_CONNECTOR_PROVISIONING_ERROR'
+id: 25da057b-9c83-5655-88b3-50acdc93fe9f
+status: experimental
+description: Converted from Sagan rule SID 5006186 (rev 4), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 79
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006186'
+  sagan.rev: '4'
+  sagan.source_file: onelogin.rules
+  rsigma.suppress: 1d
+---
+title: '[ONELOGIN] USER_CREATED_IN_DIRECTORY'
+id: f66d21d2-6d9f-58eb-89ae-e55f67e606e0
+status: experimental
+description: Converted from Sagan rule SID 5006187 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 80
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006187'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] USER_DELETED_IN_DIRECTORY'
+id: 5b51a92b-684a-5642-b023-e43ee8858f33
+status: experimental
+description: Converted from Sagan rule SID 5006191 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 84
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006191'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] SELF_REGISTRATION_DENIED'
+id: e4ba145b-cca4-5711-a6ed-3fac61f40f88
+status: experimental
+description: Converted from Sagan rule SID 5006201 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 102
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006201'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] SELF_REGISTRATION_REQUEST_UNVERIFIED'
+id: 93a2df52-8854-5636-abf1-e51f99afb337
+status: experimental
+description: Converted from Sagan rule SID 5006202 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 103
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006202'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] TRUSTED_IDP_MADE_DEFAULT'
+id: 7fc6722c-42db-5159-978d-2e606325fb08
+status: experimental
+description: Converted from Sagan rule SID 5006208 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 112
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006208'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] DIRECTORY_IMPORT_STARTED'
+id: 2262a667-1cb9-5499-b556-2d234642694e
+status: experimental
+description: Converted from Sagan rule SID 5006209 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 113
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006209'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] CREATE_USER_FAILED'
+id: ad790262-626d-5278-9788-199c23f9712c
+status: experimental
+description: Converted from Sagan rule SID 5006212 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 116
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006212'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] DIRECTORY_SYNC_RUN_ID'
+id: 30b79469-f5ef-5167-95b9-d7e7c2bc3aad
+status: experimental
+description: Converted from Sagan rule SID 5006213 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 117
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006213'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] TRUSTED_IDP_REMOVED_AS_DEFAULT'
+id: 6d9970bd-5c1a-55e2-8bdf-90e57c49d144
+status: experimental
+description: Converted from Sagan rule SID 5006215 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 119
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006215'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] SCRIPTLET_ERROR'
+id: 76495e8d-782d-5145-accc-4620824e851e
+status: experimental
+description: Converted from Sagan rule SID 5006217 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 121
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006217'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] USER_REJECTED_BY_API'
+id: c12ba4c4-f5bb-50e8-8b1f-77af112a6000
+status: experimental
+description: Converted from Sagan rule SID 5006219 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 123
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006219'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] DIRECTORY_CONNECTOR_ENABLED'
+id: c20adb70-2dd5-56ee-a571-81090e0eb02d
+status: experimental
+description: Converted from Sagan rule SID 5006222 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 126
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006222'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] DIRECTORY_CONNECTOR_DISABLED'
+id: cca75338-9d42-57ec-b5b0-bca29ae13e16
+status: experimental
+description: Converted from Sagan rule SID 5006223 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 127
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006223'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] NO_ACTIVE_ACTIVE_DIRECTORY_CONNECTORS'
+id: 98084170-014a-5dcf-8cfd-4d669463ed90
+status: experimental
+description: Converted from Sagan rule SID 5006224 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 128
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006224'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] VLDAP_BIND_FAILURE'
+id: 4e3a39e3-54db-5761-b621-86572d04442f
+status: experimental
+description: Converted from Sagan rule SID 5006225 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 129
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006225'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] DIRECTORY_FIELDS_IMPORT_STARTED'
+id: fe42ee42-2ee0-5722-a0b9-fbd1fd81bc47
+status: experimental
+description: Converted from Sagan rule SID 5006232 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 136
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006232'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] USER_APP_REQUEST_DENIED'
+id: b9fb4ec1-14d8-5e74-a58a-c94415a46e7c
+status: experimental
+description: Converted from Sagan rule SID 5006234 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 138
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006234'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] SOCIAL_SIGN_IN_FAILURE'
+id: 1559b674-5601-5d46-bcef-ee9bdaa88aed
+status: experimental
+description: Converted from Sagan rule SID 5006237 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 141
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006237'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] USER_SMART_PASSWORD_UPDATED'
+id: 9c1788a0-f15d-5984-acd1-8088d8df658d
+status: experimental
+description: Converted from Sagan rule SID 5006238 (rev 4), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 145
+  filter_2:
+    actor_user_name|cased: OneLogin Cloud Directory Smart Password
+  selection_3:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_3 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006238'
+  sagan.rev: '4'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] USER_MANUALLY_ADDED_TO_ROLE'
+id: 357c450b-5ae9-5c64-8d77-2c774f436169
+status: experimental
+description: Converted from Sagan rule SID 5006240 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 147
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006240'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] USER_ROLE_MANAGEMENT_GRANTED'
+id: 1035b05b-56d6-5738-8bd6-97f4a760998f
+status: experimental
+description: Converted from Sagan rule SID 5006244 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 151
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006244'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] MAC_LOGIN_FAILURE'
+id: 95613dfe-34bf-52f7-8c91-b563408510af
+status: experimental
+description: Converted from Sagan rule SID 5006247 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 154
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006247'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] POLICY_CREATED'
+id: 47f0e8ed-2d2a-5232-bb25-c8257068486d
+status: experimental
+description: Converted from Sagan rule SID 5006249 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 156
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006249'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] PROXY_AGENT_CREATED'
+id: a56aaeec-1bb0-5d83-b2c3-bcdc18b07161
+status: experimental
+description: Converted from Sagan rule SID 5006252 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 159
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006252'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] VPN_ENABLED'
+id: e3d0ed9a-41cb-52d4-a619-ae034b1f7f0b
+status: experimental
+description: Converted from Sagan rule SID 5006257 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 164
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006257'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] VPN_DISABLED'
+id: f5cece35-7537-599c-856e-fb1b67be6444
+status: experimental
+description: Converted from Sagan rule SID 5006259 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 166
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006259'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] AUTHENTICATION_FACTOR_CREATED'
+id: d854dbd8-7f11-5c91-81fc-b04ae3aef763
+status: experimental
+description: Converted from Sagan rule SID 5006263 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 170
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006263'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] AUTHENTICATION_FACTOR_UPDATED'
+id: 84a13ca7-0ca9-5c97-b1f2-6389c3bd4d33
+status: experimental
+description: Converted from Sagan rule SID 5006264 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 171
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006264'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] AUTHENTICATION_FACTOR_DELETED'
+id: c7b01574-0b95-515e-a81b-66293a9196c1
+status: experimental
+description: Converted from Sagan rule SID 5006265 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 172
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006265'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] DESKTOP_SSO_DISABLED'
+id: 0df17c97-94d7-5e69-ac4c-4b27118d01e1
+status: experimental
+description: Converted from Sagan rule SID 5006269 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 176
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006269'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] CERTIFICATE_CREATED'
+id: 5807baf2-2404-57b8-b304-ae8c5ada58af
+status: experimental
+description: Converted from Sagan rule SID 5006270 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 177
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006270'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] CERTIFICATE_DELETED'
+id: 66b296e7-2543-569d-9039-76df12ba5f9c
+status: experimental
+description: Converted from Sagan rule SID 5006271 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 178
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006271'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] API_CREDENTIAL_CREATED'
+id: 87d87caf-3a88-55db-9a4d-b3fd2495a6fc
+status: experimental
+description: Converted from Sagan rule SID 5006272 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 179
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006272'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] API_CREDENTIAL_DELETED'
+id: 66dbcc44-6780-56e3-a3ed-373bb91388e4
+status: experimental
+description: Converted from Sagan rule SID 5006273 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 180
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006273'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] API_CREDENTIAL_ENABLED'
+id: 410c7b5c-4b16-5809-b482-1e0d72e6cbaf
+status: experimental
+description: Converted from Sagan rule SID 5006274 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 181
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006274'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] API_CREDENTIAL_DISABLED'
+id: b24257d0-4c7d-57bd-a587-1accd5afa036
+status: experimental
+description: Converted from Sagan rule SID 5006275 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 182
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006275'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] VLDAP_ENABLED'
+id: 02cf0de1-2b0f-519e-ac3e-19a7db95c2a8
+status: experimental
+description: Converted from Sagan rule SID 5006276 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 183
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006276'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] VLDAP_DISABLED'
+id: aea589fc-54e3-54ad-a267-ccabd7c37f4f
+status: experimental
+description: Converted from Sagan rule SID 5006277 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 184
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006277'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] DIRECTORY_CREATED'
+id: deb90333-b369-59f3-9b8c-45797be0414c
+status: experimental
+description: Converted from Sagan rule SID 5006291 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 198
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006291'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] DIRECTORY_DESTROYED'
+id: 52f2e5b5-139c-5909-bbdd-39f29c27410c
+status: experimental
+description: Converted from Sagan rule SID 5006292 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 199
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006292'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] DIRECTORY_CONNECTOR_INSTANCE_ADDED'
+id: 5fbd3695-9d40-5f31-a582-1ddc05d81fcb
+status: experimental
+description: Converted from Sagan rule SID 5006293 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 200
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006293'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] DIRECTORY_CONNECTOR_INSTANCE_DELETED'
+id: 4645fb85-4754-5bf6-9f77-9b7fdc25c04f
+status: experimental
+description: Converted from Sagan rule SID 5006294 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 201
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006294'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] SELF_REGISTRATION_PROFILE_CREATED'
+id: d5973a44-6c4e-5796-b6a7-10f9d824968e
+status: experimental
+description: Converted from Sagan rule SID 5006296 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 203
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006296'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] SELF_REGISTRATION_PROFILE_DESTROYED'
+id: d59f2794-ef47-5df9-8634-a01ca051b83d
+status: experimental
+description: Converted from Sagan rule SID 5006298 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 205
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006298'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] MANUALLY_ADDED_LOGIN'
+id: 25af41a9-c405-5914-abfc-07806afce284
+status: experimental
+description: Converted from Sagan rule SID 5006299 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 206
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006299'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] MANUALLY_REMOVED_LOGIN'
+id: 8a1ec1b7-7afb-5683-81fe-cd1453331d4b
+status: experimental
+description: Converted from Sagan rule SID 5006300 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 207
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006300'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] DIRECTORY_LOCKED'
+id: 946f3e48-09c1-5c7b-b752-a2841fee479c
+status: experimental
+description: Converted from Sagan rule SID 5006305 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 212
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006305'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] DIRECTORY_IMPORT_LIMIT_REACHED'
+id: 14a2afcf-9fcf-52a9-bfef-16e7c884e0d3
+status: experimental
+description: Converted from Sagan rule SID 5006310 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 217
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006310'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] USER_REVEALED_PASSWORD'
+id: 0ed094dd-c9e6-5b8a-b687-263740d16c12
+status: experimental
+description: Converted from Sagan rule SID 5006333 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 240
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006333'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] LDAP_CONNECTOR_STARTED'
+id: c7809517-0119-54e6-97d7-e9812ec206e9
+status: experimental
+description: Converted from Sagan rule SID 5006351 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 300
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006351'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] LDAP_CONNECTOR_STOPPED'
+id: a396d946-2171-5cfd-957e-b7fb3a14b2ad
+status: experimental
+description: Converted from Sagan rule SID 5006354 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 304
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006354'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] API_SET_PWD_CLEAR_TEXT'
+id: 2c22f353-1cdb-5fcc-a2d6-7329f49dc745
+status: experimental
+description: Converted from Sagan rule SID 5006372 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 511
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006372'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] API_ADD_ROLES'
+id: 1f11277e-5c2d-5a48-b138-18e497690e37
+status: experimental
+description: Converted from Sagan rule SID 5006374 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 513
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006374'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] API_DESTROY_USER'
+id: 4fad7ae9-be2e-5a8f-8bc4-95a7000d1691
+status: experimental
+description: Converted from Sagan rule SID 5006391 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 530
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006391'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] API_CREATE_USER'
+id: 14b07c70-9d3f-5693-ad72-a1661bd6139e
+status: experimental
+description: Converted from Sagan rule SID 5006394 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 533
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006394'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] DIRECTORY_OUS_CHANGED'
+id: d4e585c0-50da-547f-91fb-7e5f9323ab6f
+status: experimental
+description: Converted from Sagan rule SID 5006403 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 542
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006403'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] CONNECTOR_CREATED'
+id: d0030ea6-7636-588b-bbd8-fe9e924a87ba
+status: experimental
+description: Converted from Sagan rule SID 5006415 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 700
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006415'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] CONNECTOR_DELETED'
+id: 7dc0fbb0-5cb2-5644-a56d-f7c07f7bd4df
+status: experimental
+description: Converted from Sagan rule SID 5006419 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 704
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006419'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] ONELOGIN_DESKTOP_LOGIN_FAILURE'
+id: c84f488a-bf9c-5542-b6ad-85b54dd36834
+status: experimental
+description: Converted from Sagan rule SID 5006433 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 905
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006433'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] USER_LOGIN_OTP_CHALLENGE_FAILED'
+id: ae11df83-7b92-5a91-ae1c-2ddbda4bc4f1
+name: sagan_5006442
+status: experimental
+description: Converted from Sagan rule SID 5006442 (rev 4), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 1002
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5006442'
+  sagan.rev: '4'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] USER_LOGIN_OTP_CHALLENGE_FAILED (threshold 10 in 5m)'
+id: c94a6a27-611b-5c70-a083-bf27920b0785
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5006442
+  group-by:
+    - ipaddr
+    - user_name
+  timespan: 5m
+  condition:
+    gte: 10
+level: low
+---
+title: '[ONELOGIN] TEMP_OTP_TOKEN_GENERATED'
+id: 3de7075f-c827-5774-af8f-f60c3d2f6a6e
+status: experimental
+description: Converted from Sagan rule SID 5006443 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 1100
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006443'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] SANDBOX_SYNC_STARTED'
+id: 657d78bd-a50e-5765-80bf-271d0fc5be95
+status: experimental
+description: Converted from Sagan rule SID 5006478 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 1500
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006478'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] SANDBOX_DELETED'
+id: 0fa98917-10a6-5823-95f1-77fd1cd0914c
+status: experimental
+description: Converted from Sagan rule SID 5006481 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 1503
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006481'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] SANDBOX_CREATED'
+id: a864d2cd-1052-5282-ba45-5b9b8819de87
+status: experimental
+description: Converted from Sagan rule SID 5006483 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 1505
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006483'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] SANDBOX_CREATED_BY_API'
+id: 0be00237-6966-5222-856c-96f666d1b7a4
+status: experimental
+description: Converted from Sagan rule SID 5006489 (rev 3), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 1511
+  selection_2:
+    syslog_appname|cased: onelogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006489'
+  sagan.rev: '3'
+  sagan.source_file: onelogin.rules

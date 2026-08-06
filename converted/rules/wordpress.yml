@@ -1,0 +1,102 @@
+title: '[WORDPRESS] - Wordpress authentication failed'
+id: 807566ab-bacb-522a-823d-6a04f7fc3f78
+status: experimental
+description: Converted from Sagan rule SID 5000198 (rev 4), file wordpress.rules.
+author: sagan2sigma
+logsource:
+  product: wordpress
+  service: application
+detection:
+  selection_1:
+    _raw|contains|cased: User authentication failed
+  selection_2:
+    appname|cased: WPsyslog
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1078
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000198'
+  sagan.rev: '4'
+  sagan.source_file: wordpress.rules
+---
+title: '[WORDPRESS] - Wordpress WPsyslog Plugin deactivated'
+id: 38580e54-c1c2-57ce-91ac-157580070759
+status: experimental
+description: Converted from Sagan rule SID 5000201 (rev 4), file wordpress.rules.
+author: sagan2sigma
+logsource:
+  product: wordpress
+  service: application
+detection:
+  selection_1:
+    _raw|contains|cased: Plugin deactivated
+  selection_2:
+    appname|cased: WPsyslog
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1070
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5000201'
+  sagan.rev: '4'
+  sagan.source_file: wordpress.rules
+---
+title: '[WORDPRESS] - Wordpress Wordpress Comment Flood Attempt'
+id: 65ad3e61-fbea-5ca3-aa29-d09a66423499
+status: experimental
+description: Converted from Sagan rule SID 5000202 (rev 4), file wordpress.rules.
+author: sagan2sigma
+logsource:
+  product: wordpress
+  service: application
+detection:
+  selection_1:
+    _raw|contains|cased: Comment flood attempt
+  selection_2:
+    appname|cased: WPsyslog
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1498
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5000202'
+  sagan.rev: '4'
+  sagan.source_file: wordpress.rules
+---
+title: '[WORDPRESS] - Attack against Wordpress detected'
+id: b5f3d8ac-adf3-5dbb-a6d5-6cf98e9c1cf0
+status: experimental
+description: Converted from Sagan rule SID 5000203 (rev 4), file wordpress.rules.
+author: sagan2sigma
+logsource:
+  product: wordpress
+  service: application
+detection:
+  selection_1:
+    _raw|contains|cased: Warning
+  selection_2:
+    _raw|contains|cased: IDS
+  selection_3:
+    appname|cased: WPsyslog
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1059
+  - attack.t1102
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5000203'
+  sagan.rev: '4'
+  sagan.source_file: wordpress.rules
