@@ -34,20 +34,67 @@ appliances ──syslog──► vector ──JSON──► rsigma ──► ale
 sagan2sigma sagan-rules -o converted --profile vector-enriched
 ```
 
-This is the profile to use if you want the correlations. It converts **89.5%**
+This is the profile to use if you want the correlations. It converts **89.4%**
 of the corpus against 86.6% for the plain profiles, because the 313 rules
-refused with `E_GROUPBY_UNRESOLVED` drop to 14.
+refused with `E_GROUPBY_UNRESOLVED` drop to 14. With a `$HOME_COUNTRY` value and
+the GeoIP database in place, the `country_code` rules convert too and the rate
+reaches **90.8%**.
 
 It also writes `converted/vector/`, a runnable pipeline carrying the transforms
 those rules depend on. Two placeholders in `vector.yaml` need your values, the
-listen address and the RSigma endpoint; everything else is ready:
+listen address and the RSigma endpoint; a third, the IP-to-country database path,
+appears only when the corpus has `country_code` rules. Everything else is ready:
 
 ```sh
 cd converted/vector
 $EDITOR vector.yaml          # set sources.appliances.address and sinks.rsigma.uri
+                             # and, if present, enrichment_tables.sagan_geoip.path
 vector validate --no-environment vector.yaml
 vector --config vector.yaml
 ```
+
+### Choosing an IP-to-country database
+
+The database is not bundled: every provider carries a licence, and MaxMind's in
+particular needs a signed-up licence key. So the enrichment table is declared as
+Vector's provider-agnostic `mmdb` type, and any of these MMDB databases drops in
+by setting `enrichment_tables.sagan_geoip.path`. No code changes between them.
+
+| Provider | Licence | Update | Download | Notes |
+| --- | --- | --- | --- | --- |
+| **DB-IP IP-to-Country Lite** (default) | CC BY 4.0 | monthly | direct `.mmdb.gz`, no signup | recommended: cleanest licence, simplest download |
+| MaxMind GeoLite2-Country | MaxMind EULA | weekly | signup + licence key | the original, if you already run it |
+| IPLocate ip-to-country | CC BY-SA 4.0 | daily | GitHub LFS mirror, no signup | freshest; share-alike licence |
+
+Trade-offs: DB-IP is the least friction to obtain and its CC BY licence carries no
+share-alike obligation, which is why it is the default; monthly is ample for
+country-level geolocation. IPLocate updates daily and is the pick if freshness
+matters, at the cost of a Git-LFS download and a share-alike licence. MaxMind is
+supported for those already licensed to it. All three attach an attribution
+requirement when you display results; check each provider's terms.
+
+Getting the default, DB-IP:
+
+```sh
+# Current month; DB-IP publishes a new file at the start of each month.
+month=$(date +%Y-%m)
+curl -sL "https://download.db-ip.com/free/dbip-country-lite-${month}.mmdb.gz" \
+  | gunzip > /etc/vector/ip-to-country.mmdb
+```
+
+IPLocate, if you prefer daily updates (needs a Git-LFS-aware fetch):
+
+```sh
+curl -sL "https://media.githubusercontent.com/media/iplocate/ip-address-databases/main/ip-to-country/ip-to-country.mmdb" \
+  -o /etc/vector/ip-to-country.mmdb
+```
+
+Whichever you choose, point `enrichment_tables.sagan_geoip.path` at it. Without a
+database Vector refuses to start when `country_code` rules are present, which is
+why the transform is emitted only then. The providers disagree on the record
+schema, MaxMind and DB-IP nesting the ISO code at `country.iso_code` and IPLocate
+exposing it at the top level as `country_code`; `sagan-geoip.vrl` reads both, so
+the swap really is code-free.
 
 **The rules and the transforms are one deliverable.** A rule grouped on
 `sagan_ip_2` is valid Sigma that never fires if nothing produces
@@ -79,6 +126,21 @@ each converted rule targets the index it actually declared. `src_ip` and
 conventions in the corpus, and are never used where a rule asked for something
 else.
 
+`sagan-geoip.vrl` enriches each parsed address with its country. For every
+`sagan_ip_N` it looks the address up in the `sagan_geoip` enrichment table (type
+`geoip`, pointing at the MaxMind database) and sets `sagan_geoip_country_N` to
+the ISO code. A private or unresolved address has no country, which is left
+unset, matching how `country_code: ... isnot` still fires on it. It is emitted
+only when the corpus has `country_code` rules, so a pipeline that does not need a
+GeoIP database is not made to require one.
+
+`sagan-time.vrl` derives the weekday (`sagan_event_weekday`, 0=Sunday) and the
+time as an HHMM integer (`sagan_event_hhmm`) from the event timestamp, the two
+values `alert_time` rules match a recurring window on. It is emitted only when
+the corpus has `alert_time` rules. Note the timestamp is read in the timezone
+Vector formats in, which must match the Sagan host's local time for the window
+to align; see `D_ALERT_TIME_EVENT_CLOCK` in the report.
+
 `username-extraction.vrl` is **not** a port and says so at the top of the file.
 Sagan derives usernames through liblognorm rulebases, which are per-format data
 files with no algorithm to reproduce. It is a starter kit of patterns for the
@@ -86,8 +148,14 @@ formats the corpus groups by user: FortiGate and similar `user="..."`, Windows
 Security `Account Name:`, OpenSSH, sudo and IBM i. Validate them against your
 own logs before relying on them.
 
-Both are executed against a real Vector binary in CI, so the behaviour above is
-tested rather than asserted.
+All four transforms are executed against a real Vector binary in CI, so the
+behaviour above is tested rather than asserted. `sagan-geoip.vrl` is exercised end
+to end too: CI downloads the free DB-IP and IPLocate databases and runs the
+transform through Vector against both, which is what proves the provider-agnostic
+schema handling works and not merely that it compiles. Choosing databases with a
+permissive, key-free licence is what makes that test possible. The Sigma the
+`country_code` handler produces is additionally checked against the RSigma engine
+directly.
 
 ### What it still does not recover
 

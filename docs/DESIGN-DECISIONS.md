@@ -138,6 +138,77 @@ precisely the failure this project refuses everywhere else, so
 `--emit-vector-config` is implied by the enriched profile rather than left as
 an option, and CI executes the transforms against a real Vector binary.
 
+### GeoIP `country_code` rides on the same enrichment
+
+`country_code: track by_src, isnot $HOME_COUNTRY;` looks the source address up
+in an IP-to-country database and fires when its country is not in the list. The
+lookup is external, so under the default profile the rule is refused, recoverably,
+with `E_EXTERNAL_ENRICHMENT`. But it is exactly the kind of derived field the
+enriched profile exists to supply: the bundled `sagan-geoip.vrl` enriches each
+parsed address with its country (`sagan_geoip_country_N`), so under
+`--profile vector-enriched` the rule converts to a match on that field. Since
+`country_code` tracks the same address `parse_src_ip` selected, the country
+follows the same position.
+
+Two details from `src/geoip.c` and `src/processors/engine.c` decide the exact
+Sigma. First, `isnot` requires the address to be **present**, not the country: a
+private or unresolved address has no country, which Sagan reads as "not in the
+list", so it fires. The converted rule reproduces this by keying the presence
+test on the address field (`sagan_ip_N|exists: true`) and negating the country
+list, rather than requiring the country field, which would wrongly drop the
+private-address case.
+
+Second, the database is not bundled, and the enrichment is deliberately
+**provider-agnostic**. GeoIP databases carry a licence, and MaxMind's GeoLite2
+in particular needs a signed-up licence key, which is friction and a single point
+of failure for anyone deploying the rules. So the emitted `vector.yaml` declares
+the enrichment table as Vector's `mmdb` type, not its `geoip` type: `geoip`
+hard-codes the MaxMind schema and rejects any other provider's database, whereas
+`mmdb` returns the raw record of any database in the MaxMind file format, whatever
+its `database_type`. The default the docs lead with is **DB-IP IP-to-Country
+Lite** (CC BY 4.0, a plain monthly download, no key), but MaxMind GeoLite2-Country
+and IPLocate drop in with no code change. The one wrinkle is that the providers
+disagree on where the ISO code sits: MaxMind and DB-IP nest it at
+`country.iso_code` (the GeoIP2 schema), while IPLocate puts it top-level at
+`country_code`. `sagan-geoip.vrl` reads `country_code` and overrides it with
+`country.iso_code` when the record carries a nested `country` object, so all three
+resolve without the pipeline knowing which is loaded. (It cannot use VRL's `??`
+for this: `??` coalesces on error, and a missing path yields null, not an error.)
+The country therefore reflects the database loaded at ingestion time, which is
+recorded as the `D_GEOIP_COUNTRY_ENRICHMENT` degradation. Because these databases
+are freely downloadable, CI can and does run the transform against real Vector
+with real DB-IP and IPLocate data, so the provider-agnostic claim is tested, not
+asserted.
+
+### `alert_time` becomes a match on derived time fields
+
+`alert_time: days 12345, hours 1800-0800;` fires only on a recurring weekday and
+hour window (`src/aetas.c`, `Check_Time`). Sigma has no recurring-time operator,
+so under the default profile the rule is refused with `E_TIME_WINDOW`. Under the
+enriched profile the bundled `sagan-time.vrl` derives the two values `Check_Time`
+actually compares, the weekday (0=Sunday, matching the engine's day bitmask) and
+the time as an HHMM integer, and the window becomes a match on them.
+
+The engine reads the time with `atoi("HHMM")` and compares it as an integer, so
+`sagan_event_hhmm|gte: 1800` and `|lte: 800` reproduce the window **exactly**,
+minute boundaries and all: there is no precision loss here, only the clock
+divergence below. What needs care is the midnight crossing. When the start is
+after the end, `Check_Time` fires in the evening on the alert days and in the
+morning on the alert days **and the day after each** (its `next_day` roll: a
+window that opened last night is still open this morning even if today is an off
+day). That is a disjunction of conjunctions a flat predicate list cannot express,
+so the handler emits a `ConditionGroup`, the one construct in the IR that carries
+its own sub-condition: `(days and evening) or (days-and-the-morning-after and
+morning)`. The emitter folds it into the rule's condition with `and (...)`.
+
+Two things do not follow, both recorded as `D_ALERT_TIME_EVENT_CLOCK`. Sagan
+evaluates the window against the wall clock at the moment it processes the line,
+not against the event's own timestamp; the transform uses the event timestamp,
+which is what "activity at a suspicious time" usually means and coincides with
+Sagan's value under near-real-time ingestion. And `Check_Time` uses `localtime()`,
+so the pipeline must format timestamps in the Sagan host's timezone for the window
+to line up.
+
 ## Where the documentation and the engine disagree
 
 The rule-keywords documentation is the best available description of the

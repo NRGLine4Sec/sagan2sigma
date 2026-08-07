@@ -159,6 +159,12 @@ class TestPriority:
         assert draft.level == "high"
         assert draft.level_locked
 
+    def test_pri_is_an_alias_of_priority(self, draft: RuleDraft, context) -> None:
+        """`pri` and `priority` both set s_pri in the engine (src/rules.c)."""
+        run(handle_priority, make_rule('msg:"t"; pri: 1; sid:1;'), draft, context)
+        assert draft.level == "high"
+        assert draft.level_locked
+
     def test_locked_level_survives_a_later_classtype(
         self, draft: RuleDraft, context
     ) -> None:

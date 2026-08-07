@@ -1,0 +1,89 @@
+# GeoIP country enrichment for the addresses sagan-parse-ip.vrl extracted.
+#
+# Why this exists
+# ---------------
+# Sagan's `country_code` keyword looks the address up in a country database and
+# fires on membership, or non-membership, of a user list (src/geoip.c). Sigma
+# can only match a field, so sagan2sigma refuses those rules unless a country
+# field exists. This transform creates it, which turns the roughly 380 refused
+# `country_code` rules of the upstream corpus into working detections.
+#
+# Provider-agnostic by design
+# ---------------------------
+# The `sagan_geoip` enrichment table is declared in vector.yaml as type `mmdb`,
+# which returns the raw record of any MaxMind-format database, whatever its
+# provider. Three free country databases are known to work, and this transform
+# reads whichever schema each one uses:
+#
+#   * MaxMind GeoLite2-Country and DB-IP IP-to-Country Lite nest the ISO code at
+#     .country.iso_code (the GeoIP2 schema);
+#   * IPLocate's ip-to-country puts it at the top level, .country_code.
+#
+# So the lookup takes `.country.iso_code ?? .country_code`, which resolves the
+# code from any of them without the pipeline having to know which is loaded.
+#
+# What it reproduces
+# ------------------
+# For each address .sagan_ip_N produced upstream by sagan-parse-ip.vrl, it sets
+# .sagan_geoip_country_N to the ISO country code.
+#
+# Fidelity notes, each observable in the engine source:
+#
+#   * Sagan tracks by_src / by_dst, which map to the address parse_src_ip /
+#     parse_dst_ip selected; the converted rule reads the matching position, so
+#     the country here is attached per position, not once per event;
+#   * a private or unresolved address is absent from the database. Sagan then
+#     treats it as "not in the list", so an `isnot` rule fires on it. This
+#     transform leaves .sagan_geoip_country_N unset in that case, and the
+#     converted rule keys its presence test on the address field, reproducing
+#     that behaviour;
+#   * the lookup happens in the pipeline, not in the rule, so the country
+#     reflects the database loaded at ingestion time.
+#
+# Output
+# ------
+#   .sagan_geoip_country_1 .. .sagan_geoip_country_5   ISO country codes
+
+if exists(.sagan_ip_1) {
+    record, err = get_enrichment_table_record("sagan_geoip", {"ip": .sagan_ip_1})
+    if err == null {
+        # Default to the top-level code (IPLocate); override with the nested one
+        # (MaxMind, DB-IP) when the record carries a country object. Path access
+        # on a missing key returns null, not an error, so ?? cannot be used here.
+        code = record.country_code
+        if is_object(record.country) { code = record.country.iso_code }
+        if code != null { .sagan_geoip_country_1 = code }
+    }
+}
+if exists(.sagan_ip_2) {
+    record, err = get_enrichment_table_record("sagan_geoip", {"ip": .sagan_ip_2})
+    if err == null {
+        code = record.country_code
+        if is_object(record.country) { code = record.country.iso_code }
+        if code != null { .sagan_geoip_country_2 = code }
+    }
+}
+if exists(.sagan_ip_3) {
+    record, err = get_enrichment_table_record("sagan_geoip", {"ip": .sagan_ip_3})
+    if err == null {
+        code = record.country_code
+        if is_object(record.country) { code = record.country.iso_code }
+        if code != null { .sagan_geoip_country_3 = code }
+    }
+}
+if exists(.sagan_ip_4) {
+    record, err = get_enrichment_table_record("sagan_geoip", {"ip": .sagan_ip_4})
+    if err == null {
+        code = record.country_code
+        if is_object(record.country) { code = record.country.iso_code }
+        if code != null { .sagan_geoip_country_4 = code }
+    }
+}
+if exists(.sagan_ip_5) {
+    record, err = get_enrichment_table_record("sagan_geoip", {"ip": .sagan_ip_5})
+    if err == null {
+        code = record.country_code
+        if is_object(record.country) { code = record.country.iso_code }
+        if code != null { .sagan_geoip_country_5 = code }
+    }
+}

@@ -183,7 +183,7 @@ def handle_tag(
     )
 
 
-@handler("priority")
+@handler("priority", "pri")
 def handle_priority(
     rule: SaganRule,
     draft: RuleDraft,
@@ -193,10 +193,12 @@ def handle_priority(
 ) -> None:
     """``priority: 1`` overrides the level derived from ``classtype``.
 
-    The override is sticky: option order inside a rule is arbitrary, so a
-    ``classtype`` appearing after ``priority`` must not win.
+    ``pri`` is an exact alias of ``priority`` in the engine (``src/rules.c``,
+    where ``strcmp(rulesplit, "pri")`` and ``"priority"`` both set ``s_pri``), so
+    both are handled here. The override is sticky: option order inside a rule is
+    arbitrary, so a ``classtype`` appearing after it must not win.
     """
-    raw = rule.first("priority")
+    raw = rule.first("priority") or rule.first("pri")
     if raw is None:
         return
     try:
@@ -205,7 +207,7 @@ def handle_priority(
         raise Refusal(
             code=RefusalCode.PARSE,
             detail=f"non-numeric priority: {raw!r}",
-            keywords=("priority",),
+            keywords=("priority", "pri"),
         ) from error
     level = PRIORITY_TO_LEVEL.get(priority)
     if level is not None:

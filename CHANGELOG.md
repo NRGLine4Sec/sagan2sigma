@@ -54,6 +54,39 @@ All notable changes to this project are documented here. The format follows
   corpus whenever it moves and commit only when the output changes, so rules
   modified or removed upstream are reflected, not only new ones.
 
+### Added
+
+- `alert_time` rules now convert under `--profile vector-enriched` instead of
+  being refused. The bundled `sagan-time.vrl` transform derives the weekday and
+  the HHMM-integer time from the event timestamp, exactly the two values Sagan's
+  `Check_Time` compares (`src/aetas.c`), and the window becomes a match on them.
+  The engine compares HHMM as an integer, so the hour range is reproduced exactly,
+  minute boundaries included. A window crossing midnight fires in the evening on
+  the alert days and in the morning on those days and the day after each, which a
+  flat conjunction cannot express, so a new `ConditionGroup` in the IR carries the
+  disjunction and the emitter folds it into the condition. The clock is the one
+  loss: Sagan reads the wall clock at processing time in local time, so the
+  converted rule carries `D_ALERT_TIME_EVENT_CLOCK`. Verified case by case against
+  the RSigma engine, boundaries and the midnight rollover included.
+- `country_code` (GeoIP) rules now convert under `--profile vector-enriched`
+  instead of being refused. The bundled `sagan-geoip.vrl` transform enriches each
+  parsed address with its country (`sagan_geoip_country_N`), and the rule becomes
+  a match on that field. `isnot` keys its presence test on the address, not the
+  country, so it still fires on a private or unresolved address whose country is
+  empty, matching `src/geoip.c`. The enrichment is provider-agnostic: the emitted
+  `vector.yaml` uses Vector's `mmdb` enrichment type, which reads any database in
+  the MaxMind file format, so DB-IP IP-to-Country Lite (the documented default,
+  CC BY 4.0, no licence key), MaxMind GeoLite2-Country and IPLocate all drop in by
+  path alone. The transform reads the ISO code from either the nested
+  `country.iso_code` (MaxMind, DB-IP) or the top-level `country_code` (IPLocate).
+  The database is not bundled; the config points at a placeholder path, and the
+  transform is emitted only when the corpus uses `country_code`. This adds 134
+  rules under the enriched profile (89.4% to 90.8%) once a `$HOME_COUNTRY` value
+  and the database are supplied, and the converted rules carry the new
+  `D_GEOIP_COUNTRY_ENRICHMENT` degradation. CI runs the transform through real
+  Vector against both DB-IP and IPLocate data, and the emitted Sigma is checked
+  against the RSigma engine directly. See `docs/DESIGN-DECISIONS.md`.
+
 ### Changed
 
 - `pass` rules are now converted as ordinary `alert` rules instead of being

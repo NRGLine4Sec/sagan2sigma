@@ -21,9 +21,17 @@ fields:
   facility: facility
   level: severity
   username: sagan_username
+  # Weekday (0=Sunday) and HHMM of the event, from data/vrl/sagan-time.vrl.
+  # alert_time rules match a recurring day-and-hour window on these.
+  event_weekday: sagan_event_weekday
+  event_hhmm: sagan_event_hhmm
 positional:
   src_ip: sagan_ip_{position}
   dest_ip: sagan_ip_{position}
+  # GeoIP country of the Nth parsed address, produced by data/vrl/sagan-geoip.vrl.
+  # country_code tracks the same address parse_src_ip / parse_dst_ip selected.
+  src_country: sagan_geoip_country_{position}
+  dest_country: sagan_geoip_country_{position}
 # Vector emits one flat JSON object either way, so the envelope keeps the same
 # names whether or not the body was itself JSON. No prefixed variant is needed.
 json_envelope: {}

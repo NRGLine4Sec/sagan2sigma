@@ -12,6 +12,7 @@ failure mode this project refuses elsewhere.
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import subprocess
 from pathlib import Path
@@ -31,6 +32,20 @@ pytestmark = pytest.mark.skipif(
 VRL_DIR = Path(__file__).parents[2] / "src" / "sagan2sigma" / "data" / "vrl"
 PARSE_IP = VRL_DIR / "sagan-parse-ip.vrl"
 USERNAME = VRL_DIR / "username-extraction.vrl"
+TIME = VRL_DIR / "sagan-time.vrl"
+GEOIP = VRL_DIR / "sagan-geoip.vrl"
+
+#: IP-to-country databases CI downloads and points these variables at, one per
+#: provider so the provider-agnostic transform is proven against each real schema
+#: (DB-IP nests the code at country.iso_code, IPLocate exposes it at top level).
+GEOIP_DATABASES = {
+    name: path
+    for name, env in (
+        ("dbip", "SAGAN2SIGMA_GEOIP_MMDB_DBIP"),
+        ("iplocate", "SAGAN2SIGMA_GEOIP_MMDB_IPLOCATE"),
+    )
+    if (path := os.environ.get(env)) and Path(path).is_file()
+}
 
 
 def run_vrl(program: Path, events: list[dict], tmp_path: Path) -> list[dict]:
@@ -154,10 +169,123 @@ class TestUsernameExtraction:
         assert event["sagan_username"] == "real"
 
 
+def run_geoip_pipeline(
+    database: str, messages: list[str], tmp_path: Path
+) -> list[dict]:
+    """Run stdin -> parse-ip -> geoip -> console through Vector with a database.
+
+    The whole enrichment path is exercised, not the VRL alone, because the geoip
+    transform depends on the ``mmdb`` enrichment table that only a full pipeline
+    provides.
+    """
+    config = tmp_path / "geoip.yaml"
+    config.write_text(
+        "enrichment_tables:\n"
+        "  sagan_geoip:\n"
+        "    type: mmdb\n"
+        f"    path: {database}\n"
+        "sources:\n"
+        "  in: {type: stdin}\n"
+        "transforms:\n"
+        "  sagan_parse_ip:\n"
+        "    type: remap\n"
+        "    inputs: [in]\n"
+        f"    file: {PARSE_IP}\n"
+        "    drop_on_error: false\n"
+        "  sagan_geoip:\n"
+        "    type: remap\n"
+        "    inputs: [sagan_parse_ip]\n"
+        f"    file: {GEOIP}\n"
+        "    drop_on_error: false\n"
+        "sinks:\n"
+        "  out: {type: console, inputs: [sagan_geoip], encoding: {codec: json}}\n",
+        encoding="utf-8",
+    )
+    process = subprocess.Popen(
+        [str(VECTOR), "--config", str(config), "--quiet"],
+        stdin=subprocess.PIPE,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+    )
+    try:
+        out, _ = process.communicate(input="\n".join(messages) + "\n", timeout=60)
+    except subprocess.TimeoutExpired:
+        process.kill()
+        out, _ = process.communicate()
+    return [
+        json.loads(line) for line in out.splitlines() if line.strip().startswith("{")
+    ]
+
+
+@pytest.mark.skipif(
+    not GEOIP_DATABASES,
+    reason="set SAGAN2SIGMA_GEOIP_MMDB_DBIP / _IPLOCATE to an .mmdb to run",
+)
+class TestGeoipEnrichment:
+    """The same transform must resolve every provider's schema, run for real."""
+
+    @pytest.mark.parametrize("provider", sorted(GEOIP_DATABASES))
+    def test_country_is_resolved_for_public_addresses(
+        self, provider: str, tmp_path: Path
+    ) -> None:
+        database = GEOIP_DATABASES[provider]
+        events = run_geoip_pipeline(
+            database,
+            [
+                "Accepted publickey for admin from 8.8.8.8 port 44231 ssh2",
+                "login attempt from 5.255.255.5 rejected",
+                "internal service on 10.0.0.1 restarted",
+            ],
+            tmp_path,
+        )
+        by_ip = {e.get("sagan_ip_1"): e for e in events}
+        # A US and a RU public address resolve regardless of the record schema.
+        assert by_ip["8.8.8.8"].get("sagan_geoip_country_1") == "US"
+        assert by_ip["5.255.255.5"].get("sagan_geoip_country_1") == "RU"
+        # A private address has no country, so the field stays unset, which is
+        # what lets an `isnot` rule fire on it.
+        assert "sagan_geoip_country_1" not in by_ip["10.0.0.1"]
+
+
+class TestTimeDerivation:
+    """sagan-time.vrl derives the two values aetas.c's Check_Time compares."""
+
+    def test_weekday_and_hhmm_from_the_timestamp(self, tmp_path: Path) -> None:
+        # 2026-08-05 is a Wednesday; %w numbers Sunday 0 .. Saturday 6.
+        events = run_vrl(TIME, [{"timestamp": "2026-08-05T22:30:00Z"}], tmp_path)
+        assert events[0]["sagan_event_weekday"] == 3
+        assert events[0]["sagan_event_hhmm"] == 2230
+
+    def test_midnight_is_zero_not_2400(self, tmp_path: Path) -> None:
+        events = run_vrl(TIME, [{"timestamp": "2026-08-09T00:05:00Z"}], tmp_path)
+        assert events[0]["sagan_event_weekday"] == 0  # Sunday
+        assert events[0]["sagan_event_hhmm"] == 5
+
+    def test_missing_timestamp_leaves_the_fields_unset(self, tmp_path: Path) -> None:
+        """Rather than fire on a guessed clock, an event with no time is silent."""
+        events = run_vrl(TIME, [{"message": "no timestamp here"}], tmp_path)
+        assert "sagan_event_weekday" not in events[0]
+        assert "sagan_event_hhmm" not in events[0]
+
+
 class TestGeneratedPipeline:
     def test_vector_accepts_the_generated_configuration(self, tmp_path: Path) -> None:
         """Vector compiles VRL at validate time, so this checks both."""
         write_pipeline(tmp_path, __version__)
+        completed = subprocess.run(
+            [str(VECTOR), "validate", "--no-environment", "vector.yaml"],
+            cwd=tmp_path,
+            capture_output=True,
+            text=True,
+        )
+        assert completed.returncode == 0, completed.stdout + completed.stderr
+
+    def test_configuration_with_the_time_transform_validates(
+        self, tmp_path: Path
+    ) -> None:
+        """The time transform has no external dependency, so it validates alone."""
+        write_pipeline(tmp_path, __version__, time=True)
         completed = subprocess.run(
             [str(VECTOR), "validate", "--no-environment", "vector.yaml"],
             cwd=tmp_path,

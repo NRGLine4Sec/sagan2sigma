@@ -49,6 +49,8 @@ class DegradationCode(str, Enum):
     EVENT_ID_HEURISTIC = "D_EVENT_ID_HEURISTIC"
     NORMALIZE_PRECEDENCE = "D_NORMALIZE_PRECEDENCE"
     POSITIONAL_IP_FIELD = "D_POSITIONAL_IP_FIELD"
+    GEOIP_COUNTRY_ENRICHMENT = "D_GEOIP_COUNTRY_ENRICHMENT"
+    ALERT_TIME_EVENT_CLOCK = "D_ALERT_TIME_EVENT_CLOCK"
 
 
 REFUSAL_HELP: dict[RefusalCode, str] = {
@@ -68,12 +70,17 @@ REFUSAL_HELP: dict[RefusalCode, str] = {
     ),
     RefusalCode.EXTERNAL_ENRICHMENT: (
         "The rule queries an external source (Bluedot threat intelligence, "
-        "GeoIP country codes, blacklists, Zeek Intel). Those lookups belong "
-        "in an enrichment pipeline, not in Sigma detection logic."
+        "blacklists, Zeek Intel). Those lookups belong in an enrichment "
+        "pipeline, not in Sigma detection logic. GeoIP country_code is the "
+        "exception: it converts under --profile vector-enriched, whose bundled "
+        "GeoIP transform supplies the country field; it is refused here only "
+        "when that profile is not in use or the tracked address is not parsed."
     ),
     RefusalCode.TIME_WINDOW: (
         "The rule only fires on given weekdays or hour ranges (alert_time). "
-        "Sigma has date-part modifiers but no recurring time window."
+        "Sigma has no recurring-time operator, so this is refused unless "
+        "--profile vector-enriched is used, whose bundled time transform "
+        "supplies the weekday and hour-of-day fields the window matches on."
     ),
     RefusalCode.STATE_ABSENCE: (
         "The rule requires that an earlier event did NOT happen (xbits or "
@@ -188,6 +195,22 @@ DEGRADATION_HELP: dict[DegradationCode, str] = {
         "The group-by key comes from the bundled VRL transform rather than "
         "from the log itself. The correlation only works if that transform "
         "runs in the ingestion pipeline."
+    ),
+    DegradationCode.GEOIP_COUNTRY_ENRICHMENT: (
+        "country_code is resolved against a GeoIP country field produced by the "
+        "bundled Vector enrichment, not from the log itself. The rule only fires "
+        "if that enrichment, and its IP-to-country database (DB-IP by default; "
+        "MaxMind or IPLocate also work), run in the ingestion pipeline. Sagan "
+        "evaluates GeoIP on the address at processing time; the converted rule "
+        "evaluates it on the extracted address field."
+    ),
+    DegradationCode.ALERT_TIME_EVENT_CLOCK: (
+        "alert_time matches against weekday and hour-of-day fields the bundled "
+        "Vector time transform derives from the event timestamp. Sagan evaluates "
+        "the window against the wall clock at processing time, not the event's "
+        "own time; the two coincide in near-real-time ingestion. The comparison "
+        "uses the timezone Vector formats in, which must match the Sagan host's "
+        "local time for the window to align."
     ),
 }
 

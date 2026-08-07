@@ -119,6 +119,9 @@ def build_rule_document(
 ) -> dict[str, Any]:
     """Assemble the Sigma detection document for one rule."""
     blocks, condition = build_detection(draft.predicates)
+    for group in draft.condition_groups:
+        blocks.update(group.blocks)
+        condition = f"{condition} and ({group.condition})"
 
     document: dict[str, Any] = {
         "title": draft.title,

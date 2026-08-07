@@ -129,8 +129,6 @@ BLOCKING: dict[str, RefusalCode] = {
     "zeek-intel": RefusalCode.EXTERNAL_ENRICHMENT,
     "zeekintel": RefusalCode.EXTERNAL_ENRICHMENT,
     "bro-intel": RefusalCode.EXTERNAL_ENRICHMENT,
-    "country_code": RefusalCode.EXTERNAL_ENRICHMENT,
-    "alert_time": RefusalCode.TIME_WINDOW,
 }
 
 

@@ -10,10 +10,12 @@ rules to a format other engines can run, notably
 [RSigma](https://github.com/timescale/rsigma).
 
 On the upstream corpus (10,000 active rules across 337 files) it converts
-**86.6%** into 9,466 Sigma documents, with zero parse failures, zero documents
+**86.6%** into 9,465 Sigma documents, with zero parse failures, zero documents
 rejected by pySigma, and zero rules the RSigma engine refuses to load. With
 `--profile vector-enriched`, which ships the transforms needed to recreate the
-fields Sagan derived from raw text, the rate rises to **89.5%**.
+fields Sagan derived from raw text, the rate rises to **89.4%**, and to **90.8%**
+once its GeoIP transform and a `$HOME_COUNTRY` value let the `country_code` rules
+convert.
 
 Everything it does not convert is reported with a stable code and the reasoning
 behind it, so the gap in your coverage is explicit rather than silent.
@@ -136,8 +138,10 @@ a rule that looks right and matches the wrong thing is not. It will not convert:
 - **effective positional matching**, a non-zero `offset`, `depth` or `distance`,
   which pins a pattern to a byte position Sigma string modifiers cannot express.
   A zero-valued positional is a no-op in the Sagan engine and is converted.
-- **external enrichment** (Bluedot, GeoIP, blacklists, Zeek Intel), which
-  belongs in an ingestion pipeline.
+- **external enrichment** (Bluedot, blacklists, Zeek Intel), which belongs in
+  an ingestion pipeline. GeoIP `country_code` is the exception: it converts
+  under `--profile vector-enriched`, whose bundled GeoIP transform supplies the
+  country field.
 - **negative correlations** (`xbits isnotset`), which Sigma cannot express.
 - **group-by keys that only liblognorm produced**, since its rulebases are
   per-format data files with no algorithm to reproduce. The regex-extracted

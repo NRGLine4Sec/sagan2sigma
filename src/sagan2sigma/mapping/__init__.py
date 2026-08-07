@@ -5,6 +5,24 @@ Importing this package registers every handler shipped with the tool.
 
 from __future__ import annotations
 
-from . import content, correlation, json_ops, metadata, regexes, selectors
+from . import (
+    aetas,
+    content,
+    correlation,
+    geoip,
+    json_ops,
+    metadata,
+    regexes,
+    selectors,
+)
 
-__all__ = ["content", "correlation", "json_ops", "metadata", "regexes", "selectors"]
+__all__ = [
+    "aetas",
+    "content",
+    "correlation",
+    "geoip",
+    "json_ops",
+    "metadata",
+    "regexes",
+    "selectors",
+]

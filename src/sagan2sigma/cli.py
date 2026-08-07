@@ -20,6 +20,7 @@ from .converter import (
 )
 from .emit.vector import write_pipeline
 from .emit.yaml_io import dump_collection, dump_document
+from .errors import DegradationCode
 from .mapping.context import Context, available_profiles, load_catalog, load_profile
 from .mapping.values import CasePolicy
 from .report import json_report, markdown
@@ -203,7 +204,17 @@ def main(argv: list[str] | None = None) -> int:
     # pipeline is emitted with it rather than left as an opt-in nobody reads.
     emit_pipeline = args.emit_vector_config or bool(context.profile.positional)
     if emit_pipeline:
-        write_pipeline(args.output / "vector", __version__)
+        codes = {
+            degradation.code
+            for rule in result.converted
+            for degradation in rule.degradations
+        }
+        write_pipeline(
+            args.output / "vector",
+            __version__,
+            geoip=DegradationCode.GEOIP_COUNTRY_ENRICHMENT in codes,
+            time=DegradationCode.ALERT_TIME_EVENT_CLOCK in codes,
+        )
 
     print(
         f"{len(result.converted_rules)}/{result.total_rules} rules converted "

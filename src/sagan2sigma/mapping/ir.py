@@ -9,12 +9,14 @@ serialisation.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from typing import Any
 
 from ..errors import Degradation
 
 #: Value carried by a predicate. Sigma distinguishes integers from strings: an
-#: ``EventID: 4624`` does not compare like ``EventID: "4624"``.
-Scalar = str | int
+#: ``EventID: 4624`` does not compare like ``EventID: "4624"``. A ``bool`` carries
+#: the argument of the ``exists`` modifier, which is ``field|exists: true``.
+Scalar = str | int | bool
 
 
 @dataclass(frozen=True, slots=True)
@@ -51,6 +53,24 @@ class Predicate:
 
 
 @dataclass(frozen=True, slots=True)
+class ConditionGroup:
+    """A self-contained detection sub-expression AND-ed into a rule's condition.
+
+    Most keywords produce a flat conjunction of predicates, which the emitter
+    joins with ``and``. A few, such as ``alert_time`` with a window crossing
+    midnight, need a disjunction of conjunctions that the flat form cannot carry.
+    Such a handler builds its own named blocks and the ``condition`` fragment
+    over them, and the emitter folds the fragment in with ``and (...)``.
+
+    ``blocks`` names must not collide with the ``selection_N`` / ``filter_N`` the
+    predicate emitter generates, so a handler prefixes them distinctively.
+    """
+
+    blocks: dict[str, Any]
+    condition: str
+
+
+@dataclass(frozen=True, slots=True)
 class CorrelationSpec:
     """A Sigma correlation rule to emit alongside the detection rule."""
 
@@ -73,6 +93,9 @@ class RuleDraft:
     custom_attributes: dict[str, str] = field(default_factory=dict)
     degradations: list[Degradation] = field(default_factory=list)
     correlations: list[CorrelationSpec] = field(default_factory=list)
+    #: Self-contained detection sub-expressions AND-ed into the condition, for
+    #: constructs a flat conjunction of predicates cannot express.
+    condition_groups: list[ConditionGroup] = field(default_factory=list)
     #: Bits this rule sets, consumed on the second pass.
     sets_bits: dict[str, int] = field(default_factory=dict)
     #: Bits this rule tests, consumed on the second pass.

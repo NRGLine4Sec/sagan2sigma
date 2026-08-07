@@ -105,9 +105,31 @@ jobs:
             https://packages.timber.io/vector/0.39.0/vector-0.39.0-x86_64-unknown-linux-gnu.tar.gz \
             | tar xz -C /tmp
           echo "/tmp/vector-x86_64-unknown-linux-gnu/bin" >> "$GITHUB_PATH"
+      # Free IP-to-country databases, one per schema, so the provider-agnostic
+      # geoip transform is exercised against both the nested (DB-IP) and the
+      # top-level (IPLocate) record layout. Best-effort: a provider that fails to
+      # download simply leaves its test skipped rather than failing the build.
+      - name: Fetch free GeoIP databases
+        run: |
+          mkdir -p /tmp/geoip
+          # DB-IP IP-to-Country Lite (CC BY 4.0). New file each month; fall back
+          # to the previous month early in a month before the new one is posted.
+          for m in "$(date -u +%Y-%m)" "$(date -u -d '1 month ago' +%Y-%m)"; do
+            if curl -fsSL "https://download.db-ip.com/free/dbip-country-lite-${m}.mmdb.gz" \
+                 | gunzip > /tmp/geoip/dbip.mmdb 2>/dev/null && [ -s /tmp/geoip/dbip.mmdb ]; then
+              echo "SAGAN2SIGMA_GEOIP_MMDB_DBIP=/tmp/geoip/dbip.mmdb" >> "$GITHUB_ENV"
+              break
+            fi
+          done
+          # IPLocate ip-to-country (CC BY-SA 4.0), from the Git-LFS media mirror.
+          if curl -fsSL "https://media.githubusercontent.com/media/iplocate/ip-address-databases/main/ip-to-country/ip-to-country.mmdb" \
+               -o /tmp/geoip/iplocate.mmdb && [ -s /tmp/geoip/iplocate.mmdb ]; then
+            echo "SAGAN2SIGMA_GEOIP_MMDB_IPLOCATE=/tmp/geoip/iplocate.mmdb" >> "$GITHUB_ENV"
+          fi
       # The vector-enriched profile promises fields the VRL has to create. This
       # job is what stops that promise from drifting: it executes the transforms
-      # and checks the addresses they extract against Sagan's own semantics.
+      # and checks the addresses they extract against Sagan's own semantics, and
+      # the country enrichment against real data from both providers.
       - name: Run the bundled VRL against Vector
         run: pytest tests/integration/test_vector_vrl.py -v
 

@@ -128,8 +128,15 @@ load-bearing for correlation group-by resolution: their presence is what makes
 | --- | --- |
 | `offset`, `depth`, `distance`, `within` | `E_POSITIONAL` |
 | `meta_offset`, `meta_depth`, `meta_distance`, `meta_within` | `E_POSITIONAL` |
-| `bluedot`, `blacklist`, `zeek-intel`, `bro-intel`, `country_code` | `E_EXTERNAL_ENRICHMENT` |
-| `alert_time` | `E_TIME_WINDOW` |
+| `bluedot`, `blacklist`, `zeek-intel`, `bro-intel` | `E_EXTERNAL_ENRICHMENT` |
+
+`country_code` and `alert_time` are not blocking either. Under
+`--profile vector-enriched` they convert against fields the bundled transforms
+add: `country_code` matches the GeoIP country of each parsed address
+(`sagan-geoip.vrl`, `D_GEOIP_COUNTRY_ENRICHMENT`), and `alert_time` matches the
+weekday and hour-of-day of the event (`sagan-time.vrl`, `D_ALERT_TIME_EVENT_CLOCK`).
+Under any other profile they are refused, recoverably, with `E_EXTERNAL_ENRICHMENT`
+and `E_TIME_WINDOW`. See `docs/DESIGN-DECISIONS.md`.
 
 The rule header's `pass` action is not blocking. A matching `pass` rule alerts
 in the Sagan engine and only then short-circuits the remaining rules, so it
