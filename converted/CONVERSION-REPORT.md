@@ -7,11 +7,11 @@
 | Rule files processed | 337 |
 | Active rules parsed | 9997 |
 | Commented-out rules skipped | 9438 |
-| Rules converted | 8143 (81.5%) |
-| Rules refused | 1854 (18.5%) |
+| Rules converted | 8142 (81.4%) |
+| Rules refused | 1855 (18.6%) |
 | Lines that failed to parse | 0 |
 | Synthetic rules added | 9 |
-| Sigma documents emitted | 8952 |
+| Sigma documents emitted | 8951 |
 | pySigma validation issues | 0 |
 | Output profile | `rsigma-syslog` |
 | Case policy | `faithful` |
@@ -29,7 +29,7 @@ logsource catalog. It answers which kinds of device caused trouble.
 | Endpoint and EDR | 983 | 57 | 94.5% | 976 |
 | Google Cloud | 66 | 10 | 86.8% | 60 |
 | Infrastructure | 189 | 25 | 88.3% | 189 |
-| Network and firewalls | 1115 | 335 | 76.9% | 1038 |
+| Network and firewalls | 1114 | 336 | 76.8% | 1037 |
 | Network detection | 241 | 20 | 92.3% | 241 |
 | SaaS and identity | 308 | 36 | 89.5% | 152 |
 | State correlations | 9 | 0 | 100.0% | 0 |
@@ -44,7 +44,7 @@ logsource catalog. It answers which kinds of device caused trouble.
 | `E_EXTERNAL_ENRICHMENT` | 659 | 35.5% | The rule queries an external source (Bluedot threat intelligence, GeoIP country codes, blacklists, Zeek Intel). Those lookups belong in an enrichment pipeline, not in Sigma detection logic. |
 | `E_PASS_RULE` | 515 | 27.8% | Sagan pass rules short-circuit the whole engine: when one matches, no further signature is evaluated. Sigma's nearest construct is a global filter, which targets named rules rather than aborting evaluation, and RSigma does not implement filters. Emitting these as alert rules would invert their meaning. |
 | `E_GROUPBY_UNRESOLVED` | 301 | 16.2% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
-| `E_RAW_TEXT_ON_JSON_EVENT` | 256 | 13.8% | The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Add a json_map binding message to the key that carries the text, and the rule converts. |
+| `E_RAW_TEXT_ON_JSON_EVENT` | 257 | 13.9% | The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Add a json_map binding message to the key that carries the text, and the rule converts. |
 | `E_PCRE_UNSUPPORTED` | 47 | 2.5% | The regular expression uses a PCRE construct outside the subset Sigma accepts (recursion, subroutine calls, control verbs). |
 | `E_POSITIONAL` | 37 | 2.0% | The rule constrains where a pattern sits in the log line with a non-zero offset, depth or distance. Sigma string modifiers cannot express a byte position, so no faithful translation exists. A zero-valued positional is a no-op in the Sagan engine and is converted. |
 | `E_TIME_WINDOW` | 30 | 1.6% | The rule only fires on given weekdays or hour ranges (alert_time). Sigma has date-part modifiers but no recurring time window. |
@@ -58,7 +58,7 @@ reproduced. They are worth reviewing before the ruleset goes live.
 
 | Code | Rules | Meaning | Example SIDs |
 | --- | ---: | --- | --- |
-| `D_RAW_TEXT_MATCH` | 5770 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
+| `D_RAW_TEXT_MATCH` | 5769 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
 | `D_EVENT_ID_HEURISTIC` | 1856 | Without a json_map for event_id, Sagan looks for ' <id>: ' in the first 10 bytes of the message. The converted rule assumes a proper EventID field instead. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
 | `D_LOGSOURCE_FALLBACK` | 1351 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
 | `D_THRESHOLD_SUPPRESS` | 1091 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
@@ -1201,7 +1201,7 @@ The group-by key required by after does not exist as a field in any event: Sagan
 | `5003033` | `zimbra.rules` | Applications and web | [ZIMBRA] SYNC - Brute force invalid username or password [5/3] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5003037` | `zimbra.rules` | Applications and web | [ZIMBRA] SYNC - User password mismatch [5/3] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 
-### `E_RAW_TEXT_ON_JSON_EVENT` (256 rules)
+### `E_RAW_TEXT_ON_JSON_EVENT` (257 rules)
 
 The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Add a json_map binding message to the key that carries the text, and the rule converts.
 
@@ -1328,6 +1328,7 @@ The rule searches the raw message body while also using JSON operators. When the
 | `5017924` | `azureEventHub_entra.rules` | Azure and Microsoft 365 | [AZURE-EVENTHUB-ENTRA] User Risk Detected - Details Hidden | `meta_content` | meta_content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding |
 | `5004304` | `centrify.rules` | SaaS and identity | [DELINEA] Successful dzdo to user ROOT executed | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5003879` | `cisco-amp.rules` | Network and firewalls | [CISCO-SECUREENDPOINT] Threat Detected | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
+| `5000055` | `cisco-ios.rules` | Network and firewalls | [CISCO-IOS] Configuration from console | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5000111` | `cisco-ios.rules` | Network and firewalls | [CISCO-IOS] IOS configuration changed | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5010582` | `cisco-sca-alarms.rules` | Network and firewalls | [CISCO-SCA] Non-Service Port Scanner | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5017063` | `ddr.rules` | Unclassified | [AWS] S3 File Transfer (GetObject) | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |

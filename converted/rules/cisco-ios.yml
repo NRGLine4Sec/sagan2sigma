@@ -41,27 +41,6 @@ custom_attributes:
   sagan.rev: '4'
   sagan.source_file: cisco-ios.rules
 ---
-title: '[CISCO-IOS] Configuration from console'
-id: b48929b9-eaf7-58d2-ab83-66e05ebe965c
-status: experimental
-description: Converted from Sagan rule SID 5000055 (rev 6), file cisco-ios.rules.
-author: sagan2sigma
-logsource:
-  product: cisco
-detection:
-  selection_1:
-    _raw|contains|cased: 'SYS-5-CONFIG_I: Configured from console'
-  condition: selection_1
-falsepositives:
-  - 'Unassessed: automatically converted, not yet tuned'
-level: medium
-tags:
-  - sagan.classtype.configuration-change
-custom_attributes:
-  sagan.sid: '5000055'
-  sagan.rev: '6'
-  sagan.source_file: cisco-ios.rules
----
 title: '[CISCO-IOS] IP Packet recieved to short'
 id: f81a62dd-99b1-5ee8-b0f9-1de659a77aec
 status: experimental
