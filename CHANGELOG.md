@@ -34,7 +34,7 @@ All notable changes to this project are documented here. The format follows
   their shared ATT&CK techniques, which the behavioural analysis cannot reach
   because raw-text and structured-field rules never fire the same event. It is
   explicitly not tested equivalence and never grounds for retiring a rule; the
-  two analyses are almost disjoint on the upstream corpora (11 of 1,469
+  two analyses are almost disjoint on the upstream corpora (11 of 1,794
   conceptual candidates also appear behaviourally). Pure standard library, no
   engine, deterministic. Documented in `docs/CONCEPTUAL-OVERLAP.md`.
 - `sagan2sigma-inventory`, which merges the behavioural and conceptual reports
@@ -56,6 +56,21 @@ All notable changes to this project are documented here. The format follows
 
 ### Changed
 
+- `pass` rules are now converted as ordinary `alert` rules instead of being
+  refused with `E_PASS_RULE`. The previous refusal assumed `pass` was a silent
+  whitelist, the Snort and Suricata reading. The Sagan engine disagrees: the
+  detection loop in `src/processors/engine.c` calls `Send_Alert` for a matching
+  rule and only afterwards checks the action, and `Send_Alert` (`src/send-alert.c`)
+  never consults the rule type, so a matching `pass` rule emits an alert and then
+  short-circuits the rules that follow it for that event. Its detection is
+  therefore faithful; only the short-circuit, the suppression of other rules on
+  the same event, cannot be reproduced under RSigma's independent evaluation, and
+  it is recorded as the new `D_PASS_SHORT_CIRCUIT` degradation. This recovers 515
+  rules, the single largest block the tool used to drop, and lifts the upstream
+  conversion rate from 81.5% to 86.6% (89.5% with `vector-enriched`). The
+  differential harness covers the recovered rules and reports no disagreement.
+  `E_PASS_RULE` is retained in the taxonomy for compatibility but is no longer
+  emitted. See `docs/DESIGN-DECISIONS.md`.
 - Rules whose only positional constraints are zero-valued are now converted
   rather than refused. The Sagan engine guards every `offset`, `depth`,
   `distance` and `within` with `if (value != 0)` (`src/content.c`,
@@ -157,8 +172,6 @@ First public release.
 
 ### Known limitations
 
-- Sagan `pass` rules are refused rather than converted; see
-  `docs/DESIGN-DECISIONS.md`.
 - Positional keywords (`offset`, `depth`, `distance`, `within`) have no Sigma
   equivalent and are refused.
 - External enrichment lookups (Bluedot, GeoIP, blacklists, Zeek Intel) are out

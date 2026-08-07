@@ -19,7 +19,7 @@ import yaml
 
 from sagan2sigma.converter import Converter
 from sagan2sigma.emit.yaml_io import dump_collection
-from sagan2sigma.errors import RefusalCode
+from sagan2sigma.errors import DegradationCode, RefusalCode
 from sagan2sigma.mapping.context import Context, load_catalog, load_profile
 from sagan2sigma.sagan.config import load_config
 from sagan2sigma.validate.pysigma import validate_all
@@ -128,8 +128,21 @@ class TestRefusalTaxonomy:
     def test_every_refusal_carries_a_detail(self, corpus_result) -> None:
         assert all(refused.detail for refused in corpus_result.refused)
 
-    def test_pass_rules_are_all_refused(self, corpus_result) -> None:
-        """Converting a pass rule into an alert would invert its meaning."""
-        assert any(
+    def test_pass_rules_convert_with_the_short_circuit_degradation(
+        self, corpus_result
+    ) -> None:
+        """Pass rules alert and short-circuit in Sagan, so they convert as alerts.
+
+        The engine emits the alert before the pass check (src/processors/engine.c
+        and src/send-alert.c), so a pass rule's detection is faithful. Only the
+        suppression of other rules on the same event is lost, recorded as the
+        D_PASS_SHORT_CIRCUIT degradation rather than a refusal.
+        """
+        assert not any(
             refused.code is RefusalCode.PASS_RULE for refused in corpus_result.refused
+        )
+        assert any(
+            degradation.code is DegradationCode.PASS_SHORT_CIRCUIT
+            for converted in corpus_result.converted
+            for degradation in converted.degradations
         )

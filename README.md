@@ -10,10 +10,10 @@ rules to a format other engines can run, notably
 [RSigma](https://github.com/timescale/rsigma).
 
 On the upstream corpus (10,000 active rules across 337 files) it converts
-**81.5%** into 8,952 Sigma documents, with zero parse failures, zero documents
+**86.6%** into 9,466 Sigma documents, with zero parse failures, zero documents
 rejected by pySigma, and zero rules the RSigma engine refuses to load. With
 `--profile vector-enriched`, which ships the transforms needed to recreate the
-fields Sagan derived from raw text, the rate rises to **84.3%**.
+fields Sagan derived from raw text, the rate rises to **89.5%**.
 
 Everything it does not convert is reported with a stable code and the reasoning
 behind it, so the gap in your coverage is explicit rather than silent.
@@ -133,9 +133,6 @@ retiring a rule, and the two analyses are almost disjoint by design; see
 The converter refuses rather than approximates. A missing rule is recoverable;
 a rule that looks right and matches the wrong thing is not. It will not convert:
 
-- **`pass` rules**, which abort evaluation of every remaining signature. Sigma
-  has no equivalent short-circuit, and emitting them as alerts would invert
-  their meaning.
 - **effective positional matching**, a non-zero `offset`, `depth` or `distance`,
   which pins a pattern to a byte position Sigma string modifiers cannot express.
   A zero-valued positional is a no-op in the Sagan engine and is converted.

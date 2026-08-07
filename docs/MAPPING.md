@@ -131,7 +131,11 @@ load-bearing for correlation group-by resolution: their presence is what makes
 | `bluedot`, `blacklist`, `zeek-intel`, `bro-intel`, `country_code` | `E_EXTERNAL_ENRICHMENT` |
 | `alert_time` | `E_TIME_WINDOW` |
 
-The rule header's `pass` action is also blocking, with `E_PASS_RULE`.
+The rule header's `pass` action is not blocking. A matching `pass` rule alerts
+in the Sagan engine and only then short-circuits the remaining rules, so it
+converts as a normal `alert` rule and carries the `D_PASS_SHORT_CIRCUIT`
+degradation for the suppression that cannot follow. See `docs/DESIGN-DECISIONS.md`.
+The `drop` action converts likewise, with `D_DROP_ACTION`.
 
 ## Refusal and degradation codes
 

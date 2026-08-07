@@ -169,7 +169,7 @@ SigmaHQ rule must target the same product. A covering co-firing across
 incompatible log sources is still recorded in the JSON report, flagged
 `logsource_compatible: false`, but it is kept out of the actionable "covered"
 count, because acting on it would be a mistake. This gate alone took the covered
-count in the run below from 521 co-firings to 58 deployable ones.
+count in the run below from 555 co-firings to 58 deployable ones.
 
 ## 3. The taxonomy
 
@@ -201,18 +201,18 @@ excluded, using RSigma 0.21.0.
 
 | Metric | Converted (Sagan) | SigmaHQ |
 | --- | ---: | ---: |
-| Rules with a detection block | 8,152 | 4,013 |
-| With an engine-confirmed test event | 8,119 | 3,870 |
+| Rules with a detection block | 8,665 | 4,013 |
+| With an engine-confirmed test event | 8,632 | 3,870 |
 | Refused by the engine (uncompilable) | 0 | 0 |
 | Absence matchers, excluded | 0 | 1 |
 | Synthesised no candidate event at all | 1 | 61 |
 
-21,472 events were evaluated in one engine pass, producing 598 recorded verdicts:
+21,985 events were evaluated in one engine pass, producing 632 recorded verdicts:
 
 | Relation | Pairs |
 | --- | ---: |
 | `EQUIVALENT` | 6 |
-| `SAGAN_REDUNDANT` | 515 |
+| `SAGAN_REDUNDANT` | 549 |
 | `SAGAN_BROADER` | 19 |
 | `OVERLAP` | 58 |
 
@@ -298,12 +298,12 @@ you to believe a similarity score.
   between a product-scoped and a category-scoped rule. Those survive as
   `logsource_compatible: false` entries for manual review.
 - **Field vocabulary.** Two rules can only fire on one event if they agree on
-  field names. Of the 8,152 converted rules carrying a detection block, 2,291
-  match only named fields and 5,770 search the raw syslog body; SigmaHQ, by
+  field names. Of the 8,665 converted rules carrying a detection block, 2,833
+  match only named fields and 5,832 search the raw syslog body; SigmaHQ, by
   contrast, is overwhelmingly structured Windows telemetry. The two corpora
-  share just 23 field names, dominated by `EventID` (1,851 converted rules,
-  355 SigmaHQ), then a long tail of `category`, `action`, `status`,
-  `operationName` (Azure) and `eventName` (CloudTrail). Overlap therefore
+  share few field names, dominated by `EventID`, then a long tail of `category`,
+  `action`, `status`, `operationName` (Azure) and `eventName` (CloudTrail).
+  Overlap therefore
   concentrates in that shared vocabulary; a converted rule matching the raw body
   and a SigmaHQ rule matching a structured field are reported as unrelated,
   which is correct for single-event evaluation but is not a statement that no

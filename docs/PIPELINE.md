@@ -34,8 +34,8 @@ appliances ──syslog──► vector ──JSON──► rsigma ──► ale
 sagan2sigma sagan-rules -o converted --profile vector-enriched
 ```
 
-This is the profile to use if you want the correlations. It converts **84.8%**
-of the corpus against 81.8% for the plain profiles, because the 313 rules
+This is the profile to use if you want the correlations. It converts **89.5%**
+of the corpus against 86.6% for the plain profiles, because the 313 rules
 refused with `E_GROUPBY_UNRESOLVED` drop to 14.
 
 It also writes `converted/vector/`, a runnable pipeline carrying the transforms

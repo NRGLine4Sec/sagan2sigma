@@ -45,6 +45,7 @@ class DegradationCode(str, Enum):
     GROUPBY_SYSLOG_HOST = "D_GROUPBY_SYSLOG_HOST"
     APPEND_PROGRAM = "D_APPEND_PROGRAM"
     DROP_ACTION = "D_DROP_ACTION"
+    PASS_SHORT_CIRCUIT = "D_PASS_SHORT_CIRCUIT"
     EVENT_ID_HEURISTIC = "D_EVENT_ID_HEURISTIC"
     NORMALIZE_PRECEDENCE = "D_NORMALIZE_PRECEDENCE"
     POSITIONAL_IP_FIELD = "D_POSITIONAL_IP_FIELD"
@@ -98,11 +99,11 @@ REFUSAL_HELP: dict[RefusalCode, str] = {
         "when the encoding aligns on byte boundaries, which is not guaranteed."
     ),
     RefusalCode.PASS_RULE: (
-        "Sagan pass rules short-circuit the whole engine: when one matches, no "
-        "further signature is evaluated. Sigma's nearest construct is a global "
-        "filter, which targets named rules rather than aborting evaluation, "
-        "and RSigma does not implement filters. Emitting these as alert rules "
-        "would invert their meaning."
+        "Retained for backward compatibility; no longer emitted. Pass rules were "
+        "once refused on the assumption that they suppressed silently. The Sagan "
+        "engine source shows a matching pass rule still emits an alert and only "
+        "then stops evaluating the remaining signatures, so pass rules now "
+        "convert as alerts and carry the D_PASS_SHORT_CIRCUIT degradation."
     ),
     RefusalCode.RAW_TEXT_ON_JSON_EVENT: (
         "The rule searches the raw message body while also using JSON "
@@ -164,6 +165,14 @@ DEGRADATION_HELP: dict[DegradationCode, str] = {
     DegradationCode.DROP_ACTION: (
         "The rule used the drop action. Sigma has no action concept; it was "
         "converted as a normal detection rule."
+    ),
+    DegradationCode.PASS_SHORT_CIRCUIT: (
+        "The rule used the pass action. In Sagan a matching pass rule still "
+        "emits an alert (Send_Alert runs before the pass check) and then stops "
+        "evaluating the remaining signatures for that event. The detection is "
+        "converted faithfully; only the short-circuit, the suppression of other "
+        "rules on the same event, is not reproduced, since Sigma evaluates every "
+        "rule independently."
     ),
     DegradationCode.EVENT_ID_HEURISTIC: (
         "Without a json_map for event_id, Sagan looks for ' <id>: ' in the "

@@ -65,7 +65,6 @@ class TestRefusals:
             ("9000017", RefusalCode.STATE_ABSENCE),
             ("9000018", RefusalCode.GROUPBY_UNRESOLVED),
             ("9000019", RefusalCode.BASE64_FIELD_DECODE),
-            ("9000020", RefusalCode.PASS_RULE),
             ("9000022", RefusalCode.RAW_TEXT_ON_JSON_EVENT),
         ],
     )
@@ -78,6 +77,28 @@ class TestRefusals:
         refused = next(item for item in result.refused if item.sid == "9000014")
         assert refused.source_file == "synthetic.rules"
         assert refused.line_number > 0
+
+
+class TestPassRule:
+    """A pass rule converts as an alert and records the lost short-circuit.
+
+    In Sagan a matching pass rule still emits an alert and only then stops
+    evaluating the remaining signatures, so its detection is faithful; only the
+    suppression of other rules on the same event cannot be reproduced.
+    """
+
+    def test_pass_rule_is_converted_not_refused(self, result: ConversionResult) -> None:
+        assert "9000020" in sids(result.converted)
+        assert "9000020" not in sids(result.refused)
+
+    def test_pass_rule_records_the_short_circuit_degradation(
+        self, result: ConversionResult
+    ) -> None:
+        converted = next(item for item in result.converted if item.sid == "9000020")
+        assert any(
+            degradation.code is DegradationCode.PASS_SHORT_CIRCUIT
+            for degradation in converted.degradations
+        )
 
 
 class TestConvertedContent:

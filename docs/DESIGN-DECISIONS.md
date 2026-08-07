@@ -273,21 +273,58 @@ either; the stray closing quote a rule leaves on its last value is part of what
 the engine searches for. All of this is validated by the differential harness,
 which now judges these rules and reports no disagreement.
 
-## Refusals that are architectural, not gaps
+## `pass` rules alert first, then short-circuit
 
-### `pass` rules
+The rule-syntax documentation says only this about the `pass` action:
 
 > When using the `pass` option and the signature's conditions are met, no other
 > signatures are processed.
 
-That is a global short-circuit of the whole engine, not a per-rule exception.
-Sigma's nearest construct is a global filter, which suppresses named rules
-rather than aborting evaluation, and RSigma does not implement filters at all.
-Emitting a `pass` rule as an `alert` inverts its meaning: a suppression becomes
-a detection.
+Read on its own, that sentence invites the Snort and Suricata reading, where
+`pass` means "accept the packet, do not alert, stop." On that reading a `pass`
+rule is a silent whitelist, and emitting it as a Sigma `alert` would invert its
+meaning, turning suppression into detection. This project refused `pass` rules on
+exactly that reasoning, and it was wrong. The engine does not behave that way.
 
-515 corpus rules, refused with `E_PASS_RULE`. This is the single largest
-refusal category that is not a genuine expressiveness gap, and it is deliberate.
+The detection loop in `src/processors/engine.c` sends the alert for a matching
+rule **before** it consults the action:
+
+```c
+if ( rulestruct[b].type == NORMAL_RULE )
+{
+    Send_Alert(...);                                    /* the alert is emitted */
+
+    /* If this is a "pass" signature, we can stop processing now */
+    if ( rulestruct[b].rule_type == RULE_TYPE_PASS )
+        break;                                          /* stop the remaining rules */
+}
+```
+
+`Send_Alert` (`src/send-alert.c`) builds a `_Sagan_Event` and hands it to
+`Output(...)`; it never looks at `rule_type`, so nothing suppresses the alert for
+a `pass` rule. A matching `pass` rule therefore **alerts, and only then stops the
+engine from evaluating the rules that come after it for that same event.** It is
+not a silent whitelist. It is a normal detection with a first-match-wins
+short-circuit: an optimisation (do not scan the rest of the ruleset once a
+definitive match is in hand) and a precedence device (make this classification
+win over any broader rule that would also match). The 515 corpus `pass` rules are
+re-ingested, already-classified ExtraHop alerts (`program: exabeam-api_data`, a
+specific `.alert_name`); the intent is plainly to surface them, not to hide them.
+
+So a `pass` rule converts as an ordinary `alert` rule, faithful to its detection.
+The one behaviour that cannot follow is the short-circuit, the suppression of
+*other* rules on the same event, because RSigma evaluates every rule
+independently. That loss is recorded as the `D_PASS_SHORT_CIRCUIT` degradation
+rather than a refusal. For these rules the loss is close to theoretical: another
+rule would have to match the same `exabeam-api_data` event for the suppression to
+have changed anything. Converting them lifts the conversion rate by about five
+points and recovers the single largest block of rules the tool used to drop.
+
+This is the clearest case in the project of the "match the engine, not the
+documentation" rule earning its place: the documentation was accurate but
+incomplete, and only the C source settled what `pass` actually does.
+
+## Refusals that are architectural, not gaps
 
 ### Base64 field decoding
 

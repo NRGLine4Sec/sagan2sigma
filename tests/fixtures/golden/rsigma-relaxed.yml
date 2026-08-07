@@ -364,6 +364,29 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: synthetic.rules
 ---
+title: '[TEST] Global suppression'
+id: 6acf23d8-89b9-57d1-890c-b2ec26fa7001
+status: experimental
+description: Converted from Sagan rule SID 9000020 (rev 1), file synthetic.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname: test
+  selection_2:
+    _raw|contains: ignore me
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '9000020'
+  sagan.rev: '1'
+  sagan.source_file: synthetic.rules
+---
 title: Aggregate of rules setting Sagan bit brute_force
 id: d096d8bc-eae7-5535-9ff1-02c0aeca8e2c
 name: sagan_xbit_brute_force

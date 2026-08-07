@@ -148,7 +148,6 @@ class Converter:
         handler runs: there is no point half-converting a rule that will be
         refused.
         """
-        self._reject_pass_action(rule)
         self._reject_blocking_keywords(rule)
         self._reject_effective_positional(rule)
         self._reject_unknown_keywords(rule)
@@ -161,6 +160,19 @@ class Converter:
                     detail=(
                         "the rule used the drop action; Sigma has no action "
                         "concept, so it was converted as a normal detection rule"
+                    ),
+                )
+            )
+        elif rule.header.action == "pass":
+            draft.degrade(
+                Degradation(
+                    code=DegradationCode.PASS_SHORT_CIRCUIT,
+                    detail=(
+                        "the rule used the pass action; in Sagan a matching pass "
+                        "rule still alerts and then stops evaluating the remaining "
+                        "signatures for that event. The detection is converted "
+                        "faithfully; only the suppression of other rules on the "
+                        "same event is not reproduced"
                     ),
                 )
             )
@@ -196,29 +208,6 @@ class Converter:
                 keywords=tuple(sorted(rule.keywords)),
             )
         return draft
-
-    @staticmethod
-    def _reject_pass_action(rule: SaganRule) -> None:
-        """Refuse ``pass`` rules, which short-circuit the whole engine.
-
-        The rule-syntax documentation is explicit: "When using the pass option
-        and the signature's conditions are met, no other signatures are
-        processed." That is a global abort, not a per-rule exception. Sigma's
-        nearest construct is a global filter, which suppresses named rules and
-        which RSigma does not implement. Emitting these as ``alert`` rules would
-        invert their meaning, turning suppression into detection.
-        """
-        if rule.header.action != "pass":
-            return
-        raise Refusal(
-            code=RefusalCode.PASS_RULE,
-            detail=(
-                "pass rules abort evaluation of every remaining signature; "
-                "Sigma has no equivalent short-circuit and emitting the rule as "
-                "an alert would invert its meaning"
-            ),
-            keywords=("pass",),
-        )
 
     @staticmethod
     def _reject_blocking_keywords(rule: SaganRule) -> None:
