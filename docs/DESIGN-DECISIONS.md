@@ -209,6 +209,41 @@ Sagan's value under near-real-time ingestion. And `Check_Time` uses `localtime()
 so the pipeline must format timestamps in the Sagan host's timezone for the window
 to line up.
 
+### `blacklist` and `zeek-intel` become a threat-intel flag
+
+`blacklist` fires when a parsed address is on a denylist of bad IPs or networks
+(`src/processors/blacklist.c`); `zeek-intel` fires when it is in a Zeek
+Intelligence Framework feed (`src/processors/zeek-intel.c`). Both are external
+data, so under the default profile they are refused with `E_EXTERNAL_ENRICHMENT`.
+Under the enriched profile the bundled `sagan-denylist.vrl` and
+`sagan-zeek-intel.vrl` flag each parsed address a feed lists
+(`sagan_denylist_N` / `sagan_zeek_intel_N`), and the rule becomes a match on that
+flag. The engine (`src/processors/engine.c`) decides which address: `by_src` and
+`by_dst` test one position, `both` tests the source or the destination, and `all`
+tests every parsed address, which the converter renders as a disjunction over the
+flags through a `ConditionGroup`.
+
+Three engine details shape this. First, `zeek-intel`'s rule keyword only ever
+tests IP indicators, so the domain, hash and URL indicators a Zeek feed also
+carries are not reproduced. Second, the denylist processor matches IP addresses
+only, so `blacklist: by_username` sets no flag and is inert: it is dropped and the
+rest of the rule converts, flagged with `D_DENYLIST_USERNAME_INERT`, exactly as
+the engine evaluates it. Third, the feeds are external and change constantly, so
+nothing is bundled and the enrichment is feed-agnostic in the same way GeoIP is:
+the tables are declared as Vector's `mmdb` type, and `tools/build_denylist_mmdb.py`
+turns a feed into the MMDB Vector reads. An MMDB is the right shape because the
+lookup is a longest-prefix network match, so DShield's `/24` blocks match every
+host inside them, which a plain exact-match table could not do.
+
+The public feeds matter here. Sagan's own sample config recommends SANS DShield's
+`block.txt` for the denylist, and it is still live. For `zeek-intel` the source
+the config names, Critical Stack, closed its free feed, but CriticalPathSecurity
+publishes a maintained public equivalent in the same Zeek Intel format, so the
+capability survives. Because these feeds are freely downloadable, CI builds a
+database with the tool and runs the transforms against real Vector, so the intel
+path is tested end to end rather than asserted. The match reflects the feed loaded
+at ingestion time, recorded as `D_DENYLIST_ENRICHMENT` / `D_ZEEK_INTEL_ENRICHMENT`.
+
 ## Where the documentation and the engine disagree
 
 The rule-keywords documentation is the best available description of the

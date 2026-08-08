@@ -11,6 +11,7 @@ failure mode this project refuses elsewhere.
 
 from __future__ import annotations
 
+import importlib.util
 import json
 import os
 import shutil
@@ -34,6 +35,20 @@ PARSE_IP = VRL_DIR / "sagan-parse-ip.vrl"
 USERNAME = VRL_DIR / "username-extraction.vrl"
 TIME = VRL_DIR / "sagan-time.vrl"
 GEOIP = VRL_DIR / "sagan-geoip.vrl"
+DENYLIST = VRL_DIR / "sagan-denylist.vrl"
+ZEEK_INTEL = VRL_DIR / "sagan-zeek-intel.vrl"
+
+_BUILDER_PATH = Path(__file__).parents[2] / "tools" / "build_denylist_mmdb.py"
+
+
+def _load_builder():
+    """Load the denylist MMDB builder script as a module."""
+    spec = importlib.util.spec_from_file_location("build_denylist_mmdb", _BUILDER_PATH)
+    assert spec and spec.loader
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
 
 #: IP-to-country databases CI downloads and points these variables at, one per
 #: provider so the provider-agnostic transform is proven against each real schema
@@ -246,6 +261,93 @@ class TestGeoipEnrichment:
         # A private address has no country, so the field stays unset, which is
         # what lets an `isnot` rule fire on it.
         assert "sagan_geoip_country_1" not in by_ip["10.0.0.1"]
+
+
+def run_intel_pipeline(
+    vrl: Path, table: str, database: str, messages: list[str], tmp_path: Path
+) -> list[dict]:
+    """Run stdin -> parse-ip -> intel flag transform -> console through Vector."""
+    config = tmp_path / f"{table}.yaml"
+    config.write_text(
+        "enrichment_tables:\n"
+        f"  {table}:\n"
+        "    type: mmdb\n"
+        f"    path: {database}\n"
+        "sources:\n"
+        "  in: {type: stdin}\n"
+        "transforms:\n"
+        "  sagan_parse_ip:\n"
+        "    type: remap\n"
+        "    inputs: [in]\n"
+        f"    file: {PARSE_IP}\n"
+        "    drop_on_error: false\n"
+        f"  {table}:\n"
+        "    type: remap\n"
+        "    inputs: [sagan_parse_ip]\n"
+        f"    file: {vrl}\n"
+        "    drop_on_error: false\n"
+        "sinks:\n"
+        f"  out: {{type: console, inputs: [{table}], encoding: {{codec: json}}}}\n",
+        encoding="utf-8",
+    )
+    process = subprocess.Popen(
+        [str(VECTOR), "--config", str(config), "--quiet"],
+        stdin=subprocess.PIPE,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+    )
+    try:
+        out, _ = process.communicate(input="\n".join(messages) + "\n", timeout=60)
+    except subprocess.TimeoutExpired:
+        process.kill()
+        out, _ = process.communicate()
+    return [
+        json.loads(line) for line in out.splitlines() if line.strip().startswith("{")
+    ]
+
+
+@pytest.mark.skipif(
+    importlib.util.find_spec("mmdbwriter") is None,
+    reason="pip install mmdbwriter to run the intel enrichment test",
+)
+class TestIntelEnrichment:
+    """A denylist or Zeek-intel MMDB, built by our own tool, flags a listed IP.
+
+    Self-contained: the database is built from fixed CIDRs, so a listed address
+    is known ahead of time and the test does not depend on a live feed.
+    """
+
+    @pytest.mark.parametrize(
+        ("vrl", "table", "flag"),
+        [
+            (DENYLIST, "sagan_denylist", "sagan_denylist_1"),
+            (ZEEK_INTEL, "sagan_zeek_intel", "sagan_zeek_intel_1"),
+        ],
+    )
+    def test_listed_address_sets_the_flag(
+        self, vrl: Path, table: str, flag: str, tmp_path: Path
+    ) -> None:
+        builder = _load_builder()
+        database = tmp_path / f"{table}.mmdb"
+        builder.build_mmdb(
+            [("203.0.113.0/24", "test"), ("198.51.100.7/32", "test")],
+            database,
+            f"{table}-test",
+        )
+        events = run_intel_pipeline(
+            vrl,
+            table,
+            str(database),
+            [
+                "connection from 203.0.113.42 blocked",  # inside the listed /24
+                "internal service on 10.0.0.1 restarted",  # not listed
+            ],
+            tmp_path,
+        )
+        by_ip = {e.get("sagan_ip_1"): e for e in events}
+        assert by_ip["203.0.113.42"].get(flag) is True
+        assert flag not in by_ip["10.0.0.1"]
 
 
 class TestTimeDerivation:

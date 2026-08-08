@@ -1,74 +1,108 @@
 """Emission of a ready-to-run Vector pipeline carrying the VRL library.
 
-The ``vector-enriched`` profile converts correlations that group on ``src_ip``,
-``dest_ip`` or ``username``, but only because it assumes those fields exist.
-Shipping the profile without the transforms that create them would produce
-rules that validate cleanly and never fire, which is the failure mode this
-project refuses everywhere else.
+The ``vector-enriched`` profile converts constructs that need fields Sagan
+derives from the raw message: correlations grouped on an address, GeoIP country,
+a recurring time window, and threat-intel denylist or Zeek-intel membership. The
+profile is only correct when the transforms that create those fields run, so the
+transforms travel with the rules. ``--emit-vector-config`` writes a pipeline that
+is complete enough to start and obvious about the placeholders it still needs.
 
-So the transforms travel with the rules. ``--emit-vector-config`` writes a
-pipeline that is complete enough to start, and obvious enough about its two
-placeholders that nobody starts it by accident.
+The optional transforms are emitted only when the converted corpus uses the
+construct they serve, so a pipeline is never made to carry an unused step, nor to
+require a database it will never read.
 """
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 from importlib import resources
 from pathlib import Path
 
 _VRL_PACKAGE = "sagan2sigma.data.vrl"
 
-#: Transforms shipped with the tool, in pipeline order.
-TRANSFORMS: tuple[tuple[str, str], ...] = (
-    (
-        "sagan_parse_ip",
-        "sagan-parse-ip.vrl",
-    ),
-    (
-        "sagan_username",
-        "username-extraction.vrl",
-    ),
-)
+#: Base transforms, always emitted: address parsing first, username last.
+_PARSE_IP: tuple[str, str] = ("sagan_parse_ip", "sagan-parse-ip.vrl")
+_USERNAME: tuple[str, str] = ("sagan_username", "username-extraction.vrl")
 
-#: GeoIP country transform, inserted after ``sagan_parse_ip`` only when the
-#: converted corpus uses ``country_code``. It is opt-in because it needs an
-#: IP-to-country database present, without which Vector refuses to start.
-GEOIP_TRANSFORM: tuple[str, str] = ("sagan_geoip", "sagan-geoip.vrl")
+#: The always-present transforms, kept as a name for tests and callers.
+TRANSFORMS: tuple[tuple[str, str], ...] = (_PARSE_IP, _USERNAME)
 
-#: Weekday and hour-of-day transform, inserted only when the corpus uses
-#: ``alert_time``. It has no external dependency, so it is omitted purely to
-#: keep a pipeline that does not need it free of an unused step.
-TIME_TRANSFORM: tuple[str, str] = ("sagan_time", "sagan-time.vrl")
-
-#: Default IP-to-country database path in the emitted config. A placeholder: the
-#: database is supplied by the user, so any provider's MMDB can be dropped in.
+#: Default database paths in the emitted config. Placeholders: the databases are
+#: supplied by the user, so any provider's or feed's MMDB can be dropped in.
 GEOIP_DATABASE_PATH = "/etc/vector/ip-to-country.mmdb"
+DENYLIST_DATABASE_PATH = "/etc/vector/denylist.mmdb"
+ZEEK_DATABASE_PATH = "/etc/vector/zeek-intel.mmdb"
 
-# The ``mmdb`` table type, not ``geoip``: it returns the raw MMDB record for any
-# MaxMind-format database regardless of its ``database_type``, so a MaxMind,
-# DB-IP or IPLocate country database all work. The ``geoip`` type hard-codes the
-# MaxMind schema and rejects the others. sagan-geoip.vrl reads the country code
-# from whichever path the provider uses.
-_ENRICHMENT_TABLES = """\
-enrichment_tables:
+
+@dataclass(frozen=True)
+class _Optional:
+    """A transform inserted between IP parsing and username extraction.
+
+    ``table`` is the mmdb enrichment table block it needs, already carrying a
+    ``{path}`` placeholder, or ``None`` for a transform with no external data.
+    """
+
+    flag: str
+    transform: tuple[str, str]
+    table: str | None
+    default_path: str
+
+
+_GEOIP_TABLE = """\
   sagan_geoip:
     type: mmdb
-    # CHANGE ME: path to an IP-to-country database in MaxMind MMDB format.
-    # Any provider works; it is not bundled. See docs/PIPELINE.md for MaxMind
-    # GeoLite2-Country, DB-IP IP-to-Country Lite and IPLocate download steps.
-    path: {database}
-
+    # CHANGE ME: path to an IP-to-country database in MaxMind MMDB format. The
+    # mmdb table type reads any provider, so MaxMind GeoLite2-Country, DB-IP
+    # IP-to-Country Lite and IPLocate all work. See docs/PIPELINE.md.
+    path: {path}
 """
+
+_DENYLIST_TABLE = """\
+  sagan_denylist:
+    type: mmdb
+    # CHANGE ME: an IP denylist as a MaxMind-format MMDB, built from a feed such
+    # as SANS DShield with tools/build_denylist_mmdb.py. See docs/PIPELINE.md.
+    path: {path}
+"""
+
+_ZEEK_TABLE = """\
+  sagan_zeek_intel:
+    type: mmdb
+    # CHANGE ME: a Zeek Intel feed as a MaxMind-format MMDB, built from a feed
+    # such as CriticalPathSecurity's with tools/build_denylist_mmdb.py.
+    path: {path}
+"""
+
+#: Optional transforms, in pipeline order after ``sagan_parse_ip``.
+_OPTIONALS: tuple[_Optional, ...] = (
+    _Optional(
+        "geoip", ("sagan_geoip", "sagan-geoip.vrl"), _GEOIP_TABLE, GEOIP_DATABASE_PATH
+    ),
+    _Optional(
+        "denylist",
+        ("sagan_denylist", "sagan-denylist.vrl"),
+        _DENYLIST_TABLE,
+        DENYLIST_DATABASE_PATH,
+    ),
+    _Optional(
+        "zeek",
+        ("sagan_zeek_intel", "sagan-zeek-intel.vrl"),
+        _ZEEK_TABLE,
+        ZEEK_DATABASE_PATH,
+    ),
+    _Optional("time", ("sagan_time", "sagan-time.vrl"), None, ""),
+)
 
 _CONFIG_TEMPLATE = """\
 # Vector pipeline generated by sagan2sigma {version}.
 #
 # It recreates the fields Sagan derives from the raw message so that rules
-# converted with --profile vector-enriched have something to group on.
+# converted with --profile vector-enriched have something to match on.
 #
 # Two values below are placeholders and must be set before this runs:
 #   * sources.appliances.address
 #   * sinks.rsigma.uri
+# Any enrichment_tables below carry a database path placeholder too.
 #
 # Everything else is ready as-is. Check the pipeline before deploying it:
 #
@@ -119,11 +153,14 @@ def read_transform(filename: str) -> str:
         return handle.read()
 
 
-def _pipeline_transforms(geoip: bool, time: bool) -> tuple[tuple[str, str], ...]:
-    """Transforms in pipeline order, optional ones inserted after IP parsing."""
-    parse_ip, *rest = TRANSFORMS
-    optional = [t for t, on in ((GEOIP_TRANSFORM, geoip), (TIME_TRANSFORM, time)) if on]
-    return (parse_ip, *optional, *rest)
+def _enabled(flags: dict[str, bool]) -> list[_Optional]:
+    """Optional transforms turned on, in pipeline order."""
+    return [option for option in _OPTIONALS if flags.get(option.flag)]
+
+
+def _pipeline_transforms(flags: dict[str, bool]) -> list[tuple[str, str]]:
+    """Every transform to write, in pipeline order."""
+    return [_PARSE_IP, *(option.transform for option in _enabled(flags)), _USERNAME]
 
 
 def build_config(
@@ -131,24 +168,32 @@ def build_config(
     source: str = "appliances",
     geoip: bool = False,
     time: bool = False,
+    denylist: bool = False,
+    zeek: bool = False,
 ) -> str:
-    """Render the Vector configuration referencing every bundled transform.
+    """Render the Vector configuration referencing every needed transform.
 
-    ``geoip`` adds the IP-to-country enrichment table and the country transform,
-    and ``time`` the weekday-and-hour transform. Both are omitted otherwise so a
-    pipeline that needs neither carries no unused step, and, for GeoIP, no
-    database requirement.
+    Each optional transform, and its enrichment table when it has one, is added
+    only when its flag is set, so a pipeline that needs none of them carries no
+    unused step and no database requirement.
     """
+    flags = {"geoip": geoip, "denylist": denylist, "zeek": zeek, "time": time}
+
     blocks: list[str] = []
     previous = source
-    for name, filename in _pipeline_transforms(geoip, time):
+    for name, filename in _pipeline_transforms(flags):
         blocks.append(
             _TRANSFORM_BLOCK.format(name=name, previous=previous, filename=filename)
         )
         previous = name
-    enrichment = (
-        _ENRICHMENT_TABLES.format(database=GEOIP_DATABASE_PATH) if geoip else ""
-    )
+
+    tables = [
+        option.table.format(path=option.default_path)
+        for option in _enabled(flags)
+        if option.table is not None
+    ]
+    enrichment = "enrichment_tables:\n" + "".join(tables) + "\n" if tables else ""
+
     return _CONFIG_TEMPLATE.format(
         version=version,
         enrichment=enrichment,
@@ -158,22 +203,30 @@ def build_config(
 
 
 def write_pipeline(
-    output: Path, version: str, geoip: bool = False, time: bool = False
+    output: Path,
+    version: str,
+    geoip: bool = False,
+    time: bool = False,
+    denylist: bool = False,
+    zeek: bool = False,
 ) -> list[Path]:
     """Write the configuration and the VRL transforms under ``output``.
 
     Returns the paths written, configuration first.
     """
+    flags = {"geoip": geoip, "denylist": denylist, "zeek": zeek, "time": time}
+
     transforms_dir = output / "transforms"
     transforms_dir.mkdir(parents=True, exist_ok=True)
 
     config_path = output / "vector.yaml"
     config_path.write_text(
-        build_config(version, geoip=geoip, time=time), encoding="utf-8"
+        build_config(version, geoip=geoip, time=time, denylist=denylist, zeek=zeek),
+        encoding="utf-8",
     )
 
     written = [config_path]
-    for _, filename in _pipeline_transforms(geoip, time):
+    for _, filename in _pipeline_transforms(flags):
         path = transforms_dir / filename
         path.write_text(read_transform(filename), encoding="utf-8")
         written.append(path)

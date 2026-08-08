@@ -56,6 +56,25 @@ All notable changes to this project are documented here. The format follows
 
 ### Added
 
+- `blacklist` and `zeek-intel` rules now convert under `--profile vector-enriched`
+  instead of being refused. Both fire when a parsed address is on an external
+  feed: `blacklist` an IP denylist (`src/processors/blacklist.c`), `zeek-intel` a
+  Zeek Intelligence Framework feed (`src/processors/zeek-intel.c`). The bundled
+  `sagan-denylist.vrl` and `sagan-zeek-intel.vrl` flag each parsed address a feed
+  lists, and the rule matches that flag; `by_src`/`by_dst`/`both`/`all` map to the
+  positions the engine tests, `all` and `both` as a disjunction through a new
+  `ConditionGroup`. The feeds are external and change constantly, so nothing is
+  bundled: the enrichment tables are Vector's `mmdb` type, and
+  `tools/fetch_cti.py` downloads the recommended public feeds and builds both
+  MMDBs, with `tools/build_denylist_mmdb.py` doing the feed-to-MMDB step for a
+  feed of your own, feed-agnostic like GeoIP. The Sagan docs' own public feeds
+  still work, SANS DShield for the denylist and, since Critical Stack closed,
+  CriticalPathSecurity's Zeek-Intelligence-Feeds for zeek-intel, plus a CC0
+  alternative (abuse.ch Feodo Tracker); CI builds a database with the tool and
+  runs the transforms against real Vector. A `blacklist: by_username` sets no flag
+  in the engine and is inert, so it is dropped (`D_DENYLIST_USERNAME_INERT`); the
+  address forms carry `D_DENYLIST_ENRICHMENT` / `D_ZEEK_INTEL_ENRICHMENT`. See
+  `docs/DESIGN-DECISIONS.md` and `docs/PIPELINE.md`.
 - `alert_time` rules now convert under `--profile vector-enriched` instead of
   being refused. The bundled `sagan-time.vrl` transform derives the weekday and
   the HHMM-integer time from the event timestamp, exactly the two values Sagan's

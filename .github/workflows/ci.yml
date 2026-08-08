@@ -98,7 +98,9 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
-      - run: pip install -e ".[dev]"
+      # mmdbwriter builds the denylist / Zeek-intel MMDBs the intel transforms
+      # read, so the enrichment path can be tested end to end.
+      - run: pip install -e ".[dev]" mmdbwriter
       - name: Install Vector
         run: |
           curl -sL --proto '=https' --tlsv1.2 \

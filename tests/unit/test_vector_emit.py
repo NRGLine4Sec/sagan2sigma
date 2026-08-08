@@ -43,6 +43,36 @@ class TestGeoipConfig:
         assert yaml.safe_load(build_config("1.0", geoip=True)) is not None
 
 
+class TestIntelConfig:
+    def test_denylist_and_zeek_declare_their_own_mmdb_tables(self) -> None:
+        config = yaml.safe_load(build_config("1.0", denylist=True, zeek=True))
+        tables = config["enrichment_tables"]
+        assert tables["sagan_denylist"]["type"] == "mmdb"
+        assert tables["sagan_zeek_intel"]["type"] == "mmdb"
+        transforms = config["transforms"]
+        assert "sagan_denylist" in transforms
+        assert "sagan_zeek_intel" in transforms
+
+    def test_only_requested_tables_appear(self) -> None:
+        config = yaml.safe_load(build_config("1.0", denylist=True))
+        assert "sagan_denylist" in config["enrichment_tables"]
+        assert "sagan_zeek_intel" not in config["enrichment_tables"]
+
+    def test_all_optionals_together_chain_and_validate(self) -> None:
+        config = yaml.safe_load(
+            build_config("1.0", geoip=True, denylist=True, zeek=True, time=True)
+        )
+        # Every optional transform is present and the sink still ends the chain.
+        for name in ("sagan_geoip", "sagan_denylist", "sagan_zeek_intel", "sagan_time"):
+            assert name in config["transforms"]
+        assert config["sinks"]["rsigma"]["inputs"] == ["sagan_username"]
+        assert set(config["enrichment_tables"]) == {
+            "sagan_geoip",
+            "sagan_denylist",
+            "sagan_zeek_intel",
+        }
+
+
 class TestWritePipeline:
     def test_writes_base_transforms(self, tmp_path: Path) -> None:
         written = write_pipeline(tmp_path, "1.0")

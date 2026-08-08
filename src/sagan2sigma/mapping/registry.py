@@ -125,10 +125,6 @@ IGNORED: dict[str, bool] = {
 #: the converter, not on the keyword's mere presence.
 BLOCKING: dict[str, RefusalCode] = {
     "bluedot": RefusalCode.EXTERNAL_ENRICHMENT,
-    "blacklist": RefusalCode.EXTERNAL_ENRICHMENT,
-    "zeek-intel": RefusalCode.EXTERNAL_ENRICHMENT,
-    "zeekintel": RefusalCode.EXTERNAL_ENRICHMENT,
-    "bro-intel": RefusalCode.EXTERNAL_ENRICHMENT,
 }
 
 

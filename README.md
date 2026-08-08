@@ -138,10 +138,11 @@ a rule that looks right and matches the wrong thing is not. It will not convert:
 - **effective positional matching**, a non-zero `offset`, `depth` or `distance`,
   which pins a pattern to a byte position Sigma string modifiers cannot express.
   A zero-valued positional is a no-op in the Sagan engine and is converted.
-- **external enrichment** (Bluedot, blacklists, Zeek Intel), which belongs in
-  an ingestion pipeline. GeoIP `country_code` is the exception: it converts
-  under `--profile vector-enriched`, whose bundled GeoIP transform supplies the
-  country field.
+- **Bluedot** threat-intelligence lookups, which query a closed Quadrant
+  service. GeoIP `country_code`, `blacklist` denylists and `zeek-intel` feeds are
+  no longer refused outright: under `--profile vector-enriched` they convert to a
+  match on a field the bundled transforms derive from a database or public feed
+  (DShield, CriticalPathSecurity), refused only when that profile is not in use.
 - **negative correlations** (`xbits isnotset`), which Sigma cannot express.
 - **group-by keys that only liblognorm produced**, since its rulebases are
   per-format data files with no algorithm to reproduce. The regex-extracted

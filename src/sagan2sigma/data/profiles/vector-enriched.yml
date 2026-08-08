@@ -32,6 +32,11 @@ positional:
   # country_code tracks the same address parse_src_ip / parse_dst_ip selected.
   src_country: sagan_geoip_country_{position}
   dest_country: sagan_geoip_country_{position}
+  # Per-address threat-intel hit flags, from data/vrl/sagan-intel.vrl. blacklist
+  # and zeek-intel match the parsed address against a denylist and a Zeek Intel
+  # feed respectively; the flag is set only when the address is listed.
+  denylist: sagan_denylist_{position}
+  zeek_intel: sagan_zeek_intel_{position}
 # Vector emits one flat JSON object either way, so the envelope keeps the same
 # names whether or not the body was itself JSON. No prefixed variant is needed.
 json_envelope: {}

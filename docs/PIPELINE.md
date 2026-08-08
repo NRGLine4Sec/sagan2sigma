@@ -96,6 +96,49 @@ schema, MaxMind and DB-IP nesting the ISO code at `country.iso_code` and IPLocat
 exposing it at the top level as `country_code`; `sagan-geoip.vrl` reads both, so
 the swap really is code-free.
 
+### Choosing threat-intel feeds
+
+`blacklist` and `zeek-intel` rules need a denylist and a Zeek Intel feed, in the
+same `mmdb` form. The feeds change constantly and carry their own licences, so
+none is bundled with this project. Instead, `tools/fetch_cti.py` downloads the
+recommended public feeds and builds both MMDBs in one step, run before you start
+the pipeline (it needs `pip install mmdbwriter`):
+
+```sh
+pip install mmdbwriter
+# DShield -> denylist.mmdb, CriticalPathSecurity ThreatFox -> zeek-intel.mmdb
+python tools/fetch_cti.py --output-dir /etc/vector
+python tools/fetch_cti.py --list      # every known feed, its role and licence
+```
+
+The feeds it knows are the ones the Sagan docs point at, still public, plus a CC0
+alternative:
+
+| Feed | Role | Licence | Notes |
+| --- | --- | --- | --- |
+| SANS DShield `block.txt` | denylist | CC BY-NC-SA | Sagan's own recommendation; CIDR blocks |
+| abuse.ch Feodo Tracker | denylist | CC0 | botnet C2 IPs; unrestricted use |
+| [CriticalPathSecurity/Zeek-Intelligence-Feeds](https://github.com/CriticalPathSecurity/Zeek-Intelligence-Feeds) | zeek | MIT code, mixed data | maintained public replacement for the closed Critical Stack, same Zeek Intel format |
+
+Pick feeds with `--denylist-feed` / `--zeek-feed`; for example
+`--denylist-feed feodotracker` uses only the CC0 feed. Point
+`enrichment_tables.sagan_denylist.path` and `.sagan_zeek_intel.path` at the
+results. For an air-gapped install, run the fetch on a connected host and copy the
+two MMDBs across; re-run it on a schedule to keep the feeds current.
+
+The lower-level `tools/build_denylist_mmdb.py` builds one MMDB from a feed file you
+already have (`--format dshield|zeek|cidr`), which is what `fetch_cti.py` calls and
+how you load a feed of your own. The `cidr` format is a plain IP or CIDR list, so a
+private-range allowlist or any other IP list drops in the same way. Every lookup is
+a longest-prefix network match, so CIDR entries cover every host inside them.
+
+A note on why nothing is shipped in-repo: bundling a feed means redistributing it,
+and the licences do not allow it. DShield's `block.txt` is CC BY-NC-SA, whose
+non-commercial clause is incompatible with a repository that may be used
+commercially; the CriticalPathSecurity aggregation is MIT for its code but collects
+feeds under mixed, sometimes undefined terms. Fetching a feed for your own use, as
+`fetch_cti.py` does, is not redistribution, so it is unaffected.
+
 **The rules and the transforms are one deliverable.** A rule grouped on
 `sagan_ip_2` is valid Sigma that never fires if nothing produces
 `sagan_ip_2`. That is why the pipeline is emitted automatically with this
@@ -140,6 +183,12 @@ values `alert_time` rules match a recurring window on. It is emitted only when
 the corpus has `alert_time` rules. Note the timestamp is read in the timezone
 Vector formats in, which must match the Sagan host's local time for the window
 to align; see `D_ALERT_TIME_EVENT_CLOCK` in the report.
+
+`sagan-denylist.vrl` and `sagan-zeek-intel.vrl` flag each parsed address a threat
+feed lists (`sagan_denylist_N`, `sagan_zeek_intel_N`), which is what `blacklist`
+and `zeek-intel` rules match on. Each reads its own `mmdb` enrichment table, so
+they are emitted, with the table, only when the corpus has those rules. See
+"Choosing threat-intel feeds" below for building the databases.
 
 `username-extraction.vrl` is **not** a port and says so at the top of the file.
 Sagan derives usernames through liblognorm rulebases, which are per-format data

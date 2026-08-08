@@ -51,6 +51,9 @@ class DegradationCode(str, Enum):
     POSITIONAL_IP_FIELD = "D_POSITIONAL_IP_FIELD"
     GEOIP_COUNTRY_ENRICHMENT = "D_GEOIP_COUNTRY_ENRICHMENT"
     ALERT_TIME_EVENT_CLOCK = "D_ALERT_TIME_EVENT_CLOCK"
+    DENYLIST_USERNAME_INERT = "D_DENYLIST_USERNAME_INERT"
+    DENYLIST_ENRICHMENT = "D_DENYLIST_ENRICHMENT"
+    ZEEK_INTEL_ENRICHMENT = "D_ZEEK_INTEL_ENRICHMENT"
 
 
 REFUSAL_HELP: dict[RefusalCode, str] = {
@@ -69,12 +72,12 @@ REFUSAL_HELP: dict[RefusalCode, str] = {
         "zero-valued positional is a no-op in the Sagan engine and is converted."
     ),
     RefusalCode.EXTERNAL_ENRICHMENT: (
-        "The rule queries an external source (Bluedot threat intelligence, "
-        "blacklists, Zeek Intel). Those lookups belong in an enrichment "
-        "pipeline, not in Sigma detection logic. GeoIP country_code is the "
-        "exception: it converts under --profile vector-enriched, whose bundled "
-        "GeoIP transform supplies the country field; it is refused here only "
-        "when that profile is not in use or the tracked address is not parsed."
+        "The rule queries an external source. Bluedot threat intelligence is out "
+        "of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds "
+        "do convert under --profile vector-enriched, whose bundled transforms "
+        "supply the country and threat-intel fields from a database; they are "
+        "refused here only when that profile is not in use or the tracked address "
+        "is not parsed."
     ),
     RefusalCode.TIME_WINDOW: (
         "The rule only fires on given weekdays or hour ranges (alert_time). "
@@ -203,6 +206,28 @@ DEGRADATION_HELP: dict[DegradationCode, str] = {
         "MaxMind or IPLocate also work), run in the ingestion pipeline. Sagan "
         "evaluates GeoIP on the address at processing time; the converted rule "
         "evaluates it on the extracted address field."
+    ),
+    DegradationCode.DENYLIST_USERNAME_INERT: (
+        "The blacklist keyword tracked by_username, which the engine's denylist "
+        "processor ignores: it matches IP addresses only (src/processors/"
+        "blacklist.c), and the rule parser sets no flag for by_username "
+        "(src/rules.c), so the option is inert. It is dropped and the rest of the "
+        "rule is converted, exactly as the engine evaluates it."
+    ),
+    DegradationCode.DENYLIST_ENRICHMENT: (
+        "blacklist matches the address against an IP denylist the bundled Vector "
+        "enrichment carries, not the log itself. The rule only fires if that "
+        "enrichment, built from a feed such as SANS DShield, runs in the ingestion "
+        "pipeline. Sagan evaluates the denylist on the address at processing time; "
+        "the converted rule evaluates it on the extracted address field."
+    ),
+    DegradationCode.ZEEK_INTEL_ENRICHMENT: (
+        "zeek-intel matches the address against a Zeek Intelligence Framework feed "
+        "the bundled Vector enrichment carries, not the log itself. The rule only "
+        "fires if that enrichment, built from a feed such as CriticalPathSecurity's "
+        "Zeek-Intelligence-Feeds, runs in the ingestion pipeline. Only the address "
+        "indicators the rule keyword uses are reproduced, not the domain, hash or "
+        "URL indicators the feed may also carry."
     ),
     DegradationCode.ALERT_TIME_EVENT_CLOCK: (
         "alert_time matches against weekday and hour-of-day fields the bundled "

@@ -1,0 +1,43 @@
+# Zeek Intelligence address flags for the addresses sagan-parse-ip.vrl extracted.
+#
+# Why this exists
+# ---------------
+# Sagan's `zeek-intel` keyword fires when a parsed address is present in a Zeek
+# Intelligence Framework feed (src/processors/zeek-intel.c). The rule keyword
+# only tests IP indicators, even though the feed also carries domain, hash and
+# URL indicators. Sigma can only match a field, so this transform flags the
+# addresses the feed lists.
+#
+# What it reproduces
+# ------------------
+# For each address .sagan_ip_N produced upstream, it looks the address up in the
+# `sagan_zeek_intel` enrichment table (declared in vector.yaml as type mmdb,
+# built from a Zeek Intel feed such as CriticalPathSecurity's
+# Zeek-Intelligence-Feeds) and sets .sagan_zeek_intel_N to true when the address
+# is listed. An unlisted address leaves the flag unset, so the converted rule
+# does not fire on it, matching the engine's miss.
+#
+# Output
+# ------
+#   .sagan_zeek_intel_1 .. .sagan_zeek_intel_5   true when the address is listed
+
+if exists(.sagan_ip_1) {
+    _, err = get_enrichment_table_record("sagan_zeek_intel", {"ip": .sagan_ip_1})
+    if err == null { .sagan_zeek_intel_1 = true }
+}
+if exists(.sagan_ip_2) {
+    _, err = get_enrichment_table_record("sagan_zeek_intel", {"ip": .sagan_ip_2})
+    if err == null { .sagan_zeek_intel_2 = true }
+}
+if exists(.sagan_ip_3) {
+    _, err = get_enrichment_table_record("sagan_zeek_intel", {"ip": .sagan_ip_3})
+    if err == null { .sagan_zeek_intel_3 = true }
+}
+if exists(.sagan_ip_4) {
+    _, err = get_enrichment_table_record("sagan_zeek_intel", {"ip": .sagan_ip_4})
+    if err == null { .sagan_zeek_intel_4 = true }
+}
+if exists(.sagan_ip_5) {
+    _, err = get_enrichment_table_record("sagan_zeek_intel", {"ip": .sagan_ip_5})
+    if err == null { .sagan_zeek_intel_5 = true }
+}

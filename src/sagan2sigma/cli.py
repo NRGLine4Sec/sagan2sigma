@@ -214,6 +214,8 @@ def main(argv: list[str] | None = None) -> int:
             __version__,
             geoip=DegradationCode.GEOIP_COUNTRY_ENRICHMENT in codes,
             time=DegradationCode.ALERT_TIME_EVENT_CLOCK in codes,
+            denylist=DegradationCode.DENYLIST_ENRICHMENT in codes,
+            zeek=DegradationCode.ZEEK_INTEL_ENRICHMENT in codes,
         )
 
     print(

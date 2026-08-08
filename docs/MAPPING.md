@@ -128,7 +128,7 @@ load-bearing for correlation group-by resolution: their presence is what makes
 | --- | --- |
 | `offset`, `depth`, `distance`, `within` | `E_POSITIONAL` |
 | `meta_offset`, `meta_depth`, `meta_distance`, `meta_within` | `E_POSITIONAL` |
-| `bluedot`, `blacklist`, `zeek-intel`, `bro-intel` | `E_EXTERNAL_ENRICHMENT` |
+| `bluedot` | `E_EXTERNAL_ENRICHMENT` |
 
 `country_code` and `alert_time` are not blocking either. Under
 `--profile vector-enriched` they convert against fields the bundled transforms
@@ -137,6 +137,15 @@ add: `country_code` matches the GeoIP country of each parsed address
 weekday and hour-of-day of the event (`sagan-time.vrl`, `D_ALERT_TIME_EVENT_CLOCK`).
 Under any other profile they are refused, recoverably, with `E_EXTERNAL_ENRICHMENT`
 and `E_TIME_WINDOW`. See `docs/DESIGN-DECISIONS.md`.
+
+`blacklist` and `zeek-intel` (and its old name `bro-intel`) are not blocking
+either. Under `--profile vector-enriched` they convert to a match on a flag the
+bundled transforms set when a parsed address is on a feed: `sagan-denylist.vrl`
+(`D_DENYLIST_ENRICHMENT`, feed such as SANS DShield) and `sagan-zeek-intel.vrl`
+(`D_ZEEK_INTEL_ENRICHMENT`, feed such as CriticalPathSecurity's). A
+`blacklist: by_username` is inert in the engine and is dropped
+(`D_DENYLIST_USERNAME_INERT`). The address forms are refused, recoverably, with
+`E_EXTERNAL_ENRICHMENT` under other profiles. See `docs/DESIGN-DECISIONS.md`.
 
 The rule header's `pass` action is not blocking. A matching `pass` rule alerts
 in the Sagan engine and only then short-circuits the remaining rules, so it

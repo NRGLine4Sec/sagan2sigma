@@ -13,4 +13,4 @@ The **version** is the short hash of the `sagan-rules` commit and the
 
 | Version | sagan-rules commit | sagan-rules date | sagan2sigma | Generated | Rules |
 | --- | --- | --- | --- | --- | ---: |
-| `pending` | [`a6dfb7d7f865`](https://github.com/quadrantsec/sagan-rules/commit/a6dfb7d7f865c01c0cfc7f10bfa0bda8d1c05f55) | 2026-08-06 | `pending` | 2026-08-07 | 8655 / 9997 (86.6%) |
+| `pending` | [`a6dfb7d7f865`](https://github.com/quadrantsec/sagan-rules/commit/a6dfb7d7f865c01c0cfc7f10bfa0bda8d1c05f55) | 2026-08-06 | `pending` | 2026-08-07 | 8659 / 9997 (86.6%) |
