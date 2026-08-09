@@ -1,0 +1,355 @@
+title: '[MIMECAST] Internal/Outbound Virus Found and Rejected'
+id: a4d1492b-5b89-5389-a663-e4790cba17a7
+status: experimental
+description: Converted from Sagan rule SID 5017363 (rev 1), file mimecast_v2.rules.
+references:
+  - https://developer.services.mimecast.com/siem-tutorial-cg
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: mimecast
+  selection_2:
+    eventType|cased: receipt
+  selection_3:
+    action|cased: Rej
+  selection_4:
+    direction|cased:
+      - outbound
+      - internal
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017363'
+  sagan.rev: '1'
+  sagan.source_file: mimecast_v2.rules
+  sagan.metadata: created_at=2026_01_16,updated_at=2026_01_16
+---
+title: '[MIMECAST] AV Module Detected a Malicious Inbound/Internal File'
+id: 1e18d822-1b1a-579c-8991-5cd77527c2fe
+status: experimental
+description: Converted from Sagan rule SID 5017367 (rev 1), file mimecast_v2.rules.
+references:
+  - https://developer.services.mimecast.com/siem-tutorial-cg
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: mimecast
+  selection_2:
+    eventType|cased: av
+  selection_3:
+    route|cased:
+      - inbound
+      - internal
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017367'
+  sagan.rev: '1'
+  sagan.source_file: mimecast_v2.rules
+  sagan.metadata: created_at=2026_01_16,updated_at=2026_01_16
+---
+title: '[MIMECAST] AV Module Detected a Malicious Outbound/External File'
+id: dd297c50-5bbb-537d-98cc-140a7c8b67ae
+status: experimental
+description: Converted from Sagan rule SID 5017368 (rev 1), file mimecast_v2.rules.
+references:
+  - https://developer.services.mimecast.com/siem-tutorial-cg
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: mimecast
+  selection_2:
+    eventType|cased: av
+  selection_3:
+    route|cased:
+      - outbound
+      - external
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017368'
+  sagan.rev: '1'
+  sagan.source_file: mimecast_v2.rules
+  sagan.metadata: created_at=2026_01_16,updated_at=2026_01_16
+---
+title: '[MIMECAST] Internal Email Protect Log Detected'
+id: 9f46fc07-61d0-5a70-afd9-4bf7ec32314e
+status: experimental
+description: Converted from Sagan rule SID 5017370 (rev 1), file mimecast_v2.rules.
+references:
+  - https://developer.services.mimecast.com/siem-tutorial-cg
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: mimecast
+  selection_2:
+    eventType|cased: internal email protect
+  filter_3:
+    urlCategory|cased: Blocked
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017370'
+  sagan.rev: '1'
+  sagan.source_file: mimecast_v2.rules
+  sagan.metadata: created_at=2026_01_16,updated_at=2026_01_16
+---
+title: '[MIMECAST] Impersonation Protection Tagged Malicious By Threat Dictionary'
+id: a4fa274a-200c-558c-b9de-742ec86ae1a3
+status: experimental
+description: Converted from Sagan rule SID 5017371 (rev 1), file mimecast_v2.rules.
+references:
+  - https://developer.services.mimecast.com/siem-tutorial-cg
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: mimecast
+  selection_2:
+    eventType|cased: impersonation protection
+  selection_3:
+    action|cased: Acc
+  selection_4:
+    mimecastThreatDictionary|cased: 'true'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017371'
+  sagan.rev: '1'
+  sagan.source_file: mimecast_v2.rules
+  sagan.metadata: created_at=2026_01_16,updated_at=2026_01_16
+---
+title: '[MIMECAST] Impersonation Protection Tagged Malicious By Custom Threat Dictionary'
+id: 111b6d29-0f4b-5777-bf36-5f803808fd7d
+status: experimental
+description: Converted from Sagan rule SID 5017372 (rev 1), file mimecast_v2.rules.
+references:
+  - https://developer.services.mimecast.com/siem-tutorial-cg
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: mimecast
+  selection_2:
+    eventType|cased: impersonation protection
+  selection_3:
+    action|cased: Acc
+  selection_4:
+    customThreatDictionary|cased: 'true'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017372'
+  sagan.rev: '1'
+  sagan.source_file: mimecast_v2.rules
+  sagan.metadata: created_at=2026_01_16,updated_at=2026_01_16
+---
+title: '[MIMECAST] Impersonation Protection Tagged Malicious By Similar External Domain'
+id: 7e05a1d8-05b6-523d-bbba-b1d9488f57ba
+status: experimental
+description: Converted from Sagan rule SID 5017373 (rev 1), file mimecast_v2.rules.
+references:
+  - https://developer.services.mimecast.com/siem-tutorial-cg
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: mimecast
+  selection_2:
+    eventType|cased: impersonation protection
+  selection_3:
+    action|cased: Acc
+  selection_4:
+    similarMimecastExternalDomain|cased: 'true'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017373'
+  sagan.rev: '1'
+  sagan.source_file: mimecast_v2.rules
+  sagan.metadata: created_at=2026_01_16,updated_at=2026_01_16
+---
+title: '[MIMECAST] Impersonation Protection Tagged Malicious By Similar Custom External Domain'
+id: 981fa254-5d35-5f8a-8a6b-3166c4227bfa
+status: experimental
+description: Converted from Sagan rule SID 5017374 (rev 1), file mimecast_v2.rules.
+references:
+  - https://developer.services.mimecast.com/siem-tutorial-cg
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: mimecast
+  selection_2:
+    eventType|cased: impersonation protection
+  selection_3:
+    action|cased: Acc
+  selection_4:
+    similarCustomExternalDomain|cased: 'true'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017374'
+  sagan.rev: '1'
+  sagan.source_file: mimecast_v2.rules
+  sagan.metadata: created_at=2026_01_16,updated_at=2026_01_16
+---
+title: '[MIMECAST] Impersonation Protection Tagged Malicious By Similar Internal Domain'
+id: 7a661d91-0a24-5f4e-ae4a-2119ebc25656
+status: experimental
+description: Converted from Sagan rule SID 5017375 (rev 1), file mimecast_v2.rules.
+references:
+  - https://developer.services.mimecast.com/siem-tutorial-cg
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: mimecast
+  selection_2:
+    eventType|cased: impersonation protection
+  selection_3:
+    action|cased: Acc
+  selection_4:
+    similarInternalDomain|cased: 'true'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017375'
+  sagan.rev: '1'
+  sagan.source_file: mimecast_v2.rules
+  sagan.metadata: created_at=2026_01_16,updated_at=2026_01_16
+---
+title: '[MIMECAST] Impersonation Protection Tagged Malicious By Custom Name Match'
+id: 8c158254-34af-5b64-a416-931ff881cdb8
+status: experimental
+description: Converted from Sagan rule SID 5017376 (rev 1), file mimecast_v2.rules.
+references:
+  - https://developer.services.mimecast.com/siem-tutorial-cg
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: mimecast
+  selection_2:
+    eventType|cased: impersonation protection
+  selection_3:
+    action|cased: Acc
+  selection_4:
+    similarInternalDomain|cased: 'true'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017376'
+  sagan.rev: '1'
+  sagan.source_file: mimecast_v2.rules
+  sagan.metadata: created_at=2026_01_16,updated_at=2026_01_16
+---
+title: '[MIMECAST] URL Protect Blocked Outbound/External Email'
+id: 904853d2-f271-5eb1-8191-3c52072ad9d1
+status: experimental
+description: Converted from Sagan rule SID 5017377 (rev 1), file mimecast_v2.rules.
+references:
+  - https://developer.services.mimecast.com/siem-tutorial-cg
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: mimecast
+  selection_2:
+    eventType|cased: url protect
+  selection_3:
+    route|cased:
+      - outbound
+      - external
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017377'
+  sagan.rev: '1'
+  sagan.source_file: mimecast_v2.rules
+  sagan.metadata: created_at=2026_01_16,updated_at=2026_01_16
+---
+title: '[MIMECAST] Malicious File Detected'
+id: b809ac7e-0a80-5de7-9647-c8d3d3585ec2
+status: experimental
+description: Converted from Sagan rule SID 5017381 (rev 1), file mimecast_v2.rules.
+references:
+  - https://developer.services.mimecast.com/siem-tutorial-cg
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: mimecast
+  selection_2:
+    eventType|cased: attachment protection
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017381'
+  sagan.rev: '1'
+  sagan.source_file: mimecast_v2.rules
+  sagan.metadata: created_at=2026_01_16,updated_at=2026_01_16

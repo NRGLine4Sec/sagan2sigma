@@ -2,7 +2,9 @@
 
 This directory holds the [`quadrantsec/sagan-rules`](https://github.com/quadrantsec/sagan-rules)
 corpus already converted to Sigma with the default `rsigma-syslog` profile, so
-you can take the rules without installing or running anything.
+you can take the rules without installing or running anything. The same corpus
+converted with the `vector-enriched` profile, which recovers more of it, is in
+[`converted-vector-enriched/`](../converted-vector-enriched).
 
 - [`rules/`](rules) is the converted Sigma rules, one file per Sagan source
   file, ready to load into RSigma.
@@ -30,6 +32,7 @@ git clone --depth 1 https://github.com/quadrantsec/sagan-rules.git /tmp/sagan-ru
 python tools/refresh_converted_rules.py --sagan-rules /tmp/sagan-rules
 ```
 
-That regenerates `rules/`, `CONVERSION-REPORT.md` and the `VERSIONS.md` row for
-the current pair of commits. It needs only the package installed
-(`pip install .`), not the RSigma engine, since conversion is pure Python.
+That regenerates both snapshots, `converted/` and `converted-vector-enriched/`,
+and the shared `VERSIONS.md` row for the current pair of commits. It needs only
+the package installed (`pip install .`), not the RSigma engine, since conversion
+is pure Python.

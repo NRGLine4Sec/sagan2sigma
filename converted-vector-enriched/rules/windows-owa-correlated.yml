@@ -1,0 +1,173 @@
+title: '[WINDOWS-OWA-CORRELATED] Login after recon activity'
+id: 6a81cba0-f1bd-5aaf-876e-946c078d525f
+name: sagan_5003337
+status: experimental
+description: Converted from Sagan rule SID 5003337 (rev 11), file windows-owa-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    message|contains: /ews/exchange.asmx
+  filter_2:
+    message|contains|cased:
+      - ' 127.0.0.1 '
+      - ' ::1 '
+      - ' 4002: '
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003337'
+  sagan.rev: '11'
+  sagan.source_file: windows-owa-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[WINDOWS-OWA-CORRELATED] Login after recon activity (correlated with recon)'
+id: 00babcfd-69ed-5abe-b24d-a6d835e5fd4a
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003337
+  group-by:
+    - sagan_ip_2
+  timespan: 1d
+level: high
+---
+title: '[WINDOWS-OWA-CORRELATED] Login after honeypot activity'
+id: a6af1bdf-9fc4-517c-8596-43622fcaf683
+name: sagan_5003338
+status: experimental
+description: Converted from Sagan rule SID 5003338 (rev 10), file windows-owa-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    message|contains: /ews/exchange.asmx
+  filter_2:
+    message|contains|cased:
+      - ' 127.0.0.1 '
+      - ' ::1 '
+      - ' 4002: '
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003338'
+  sagan.rev: '10'
+  sagan.source_file: windows-owa-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[WINDOWS-OWA-CORRELATED] Login after honeypot activity (correlated with honeypot)'
+id: d1a3b497-0e7d-5312-8325-f7ec682454c4
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003338
+  group-by:
+    - sagan_ip_2
+  timespan: 1d
+level: high
+---
+title: '[WINDOWS-OWA-CORRELATED] Login after exploit attempt'
+id: 0139182f-b0a4-5dd7-bc76-2305739cd20a
+name: sagan_5003339
+status: experimental
+description: Converted from Sagan rule SID 5003339 (rev 10), file windows-owa-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    message|contains: /ews/exchange.asmx
+  filter_2:
+    message|contains|cased:
+      - ' 127.0.0.1 '
+      - ' ::1 '
+      - ' 4002: '
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003339'
+  sagan.rev: '10'
+  sagan.source_file: windows-owa-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[WINDOWS-OWA-CORRELATED] Login after exploit attempt (correlated with exploit_attempt)'
+id: 83faefc7-f2c3-5af7-9718-f36c4be70032
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003339
+  group-by:
+    - sagan_ip_2
+  timespan: 1d
+level: high
+---
+title: '[WINDOWS-OWA-CORRELATED] Login after brute force activity'
+id: 93c68296-1d04-57a7-969c-ef57ba566372
+name: sagan_5003340
+status: experimental
+description: Converted from Sagan rule SID 5003340 (rev 11), file windows-owa-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    message|contains: /ews/exchange.asmx
+  selection_2:
+    message|contains|cased: ' 200'
+  filter_3:
+    message|contains|cased:
+      - ' 127.0.0.1 '
+      - ' ::1 '
+      - ' 4002: '
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003340'
+  sagan.rev: '11'
+  sagan.source_file: windows-owa-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[WINDOWS-OWA-CORRELATED] Login after brute force activity (correlated with brute_force)'
+id: 0e9f259b-2227-5e77-bad6-f6a845ca303c
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003340
+  group-by:
+    - sagan_ip_2
+  timespan: 1d
+level: high

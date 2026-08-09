@@ -1,0 +1,83 @@
+title: '[NFCAPD] PUSH/ACK Traffic Detected - Port 2222 [5/5]'
+id: 0534edf3-dd6c-5d3b-af9a-5bd8c89eae96
+name: sagan_5001997
+status: experimental
+description: Converted from Sagan rule SID 5001997 (rev 9), file nfcapd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: nfcapd
+  selection_2:
+    message|contains|cased: '/2222, protocol: TCP,'
+  selection_3:
+    message|contains|cased: 'flags: |.AP...|,'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001997'
+  sagan.rev: '9'
+  sagan.source_file: nfcapd.rules
+  rsigma.suppress: 2m
+---
+title: '[NFCAPD] PUSH/ACK Traffic Detected - Port 2222 [5/5] (threshold 5 in 5m)'
+id: 056147c7-299f-50c4-9c05-c5416d9f0ac5
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5001997
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 5
+level: medium
+---
+title: '[NFCAPD] Telnet Traffic Detected via PUSH/ACK [5/5]'
+id: b940a954-7dae-50e9-83b2-2f7582dd5a08
+name: sagan_5001998
+status: experimental
+description: Converted from Sagan rule SID 5001998 (rev 8), file nfcapd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: nfcapd
+  selection_2:
+    message|contains|cased: '/23, protocol: TCP,'
+  selection_3:
+    message|contains|cased: 'flags: |.AP...|,'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001998'
+  sagan.rev: '8'
+  sagan.source_file: nfcapd.rules
+  rsigma.suppress: 2m
+---
+title: '[NFCAPD] Telnet Traffic Detected via PUSH/ACK [5/5] (threshold 5 in 5m)'
+id: d5ae94f0-1c46-5672-9a29-9a7172e4f125
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5001998
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 5
+level: medium

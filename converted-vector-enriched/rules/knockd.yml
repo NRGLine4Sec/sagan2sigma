@@ -1,0 +1,45 @@
+title: '[KNOCKD] Open Sesame'
+id: a88641ea-74f2-5268-b820-cce6924962f5
+status: experimental
+description: Converted from Sagan rule SID 5000383 (rev 3), file knockd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: OPEN SESAME
+  selection_2:
+    appname|cased: knockd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5000383'
+  sagan.rev: '3'
+  sagan.source_file: knockd.rules
+---
+title: '[KNOCKD] Sequence timeout'
+id: 126bb26c-6547-5a7e-a72d-69def9198aa7
+status: experimental
+description: Converted from Sagan rule SID 5000384 (rev 2), file knockd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: sequence timeout
+  selection_2:
+    appname|cased: knockd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000384'
+  sagan.rev: '2'
+  sagan.source_file: knockd.rules

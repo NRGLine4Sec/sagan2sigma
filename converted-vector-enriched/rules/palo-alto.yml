@@ -1,0 +1,1343 @@
+title: '[PALO-ALTO] Certificate has illegal URL'
+id: 66b14884-4c68-50b6-8c65-005b6279b8c0
+status: experimental
+description: Converted from Sagan rule SID 5002580 (rev 3), file palo-alto.rules.
+references:
+  - https://live.paloaltonetworks.com/twzvq79624/attachments/twzvq79624/learning_tkb/428/1/System_log_PANOS4.1rev3.xlsx
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: Certificate
+  selection_2:
+    message|contains|cased: has illegal URL
+  selection_3:
+    message|contains|cased: ',vsys'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5002580'
+  sagan.rev: '3'
+  sagan.source_file: palo-alto.rules
+---
+title: '[PALO-ALTO] Authorization failed - Brute Force [25/1]'
+id: 4a12e53f-aef4-532e-bbdf-7c034c8cce9e
+name: sagan_5002583
+status: experimental
+description: Converted from Sagan rule SID 5002583 (rev 6), file palo-alto.rules.
+references:
+  - https://live.paloaltonetworks.com/twzvq79624/attachments/twzvq79624/learning_tkb/428/1/System_log_PANOS4.1rev3.xlsx
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: 'Authorization failed for user '
+  selection_2:
+    message|contains|cased: ',vsys'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5002583'
+  sagan.rev: '6'
+  sagan.source_file: palo-alto.rules
+  rsigma.suppress: 1d
+---
+title: '[PALO-ALTO] Authorization failed - Brute Force [25/1] (threshold 25 in 5m)'
+id: 41265187-71a3-565b-986c-8eb56f092007
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5002583
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[PALO-ALTO] Failed Interactive Login - Brute Force [15/1]'
+id: 37797d2a-a726-52bb-a950-d6e595c711d4
+name: sagan_5002586
+status: experimental
+description: Converted from Sagan rule SID 5002586 (rev 7), file palo-alto.rules.
+references:
+  - https://live.paloaltonetworks.com/twzvq79624/attachments/twzvq79624/learning_tkb/428/1/System_log_PANOS4.1rev3.xlsx
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: Failed keyboard-interactive/pam for invalid user
+  selection_2:
+    message|contains|cased: ',vsys'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5002586'
+  sagan.rev: '7'
+  sagan.source_file: palo-alto.rules
+  rsigma.suppress: 1d
+---
+title: '[PALO-ALTO] Failed Interactive Login - Brute Force [15/1] (threshold 15 in 5m)'
+id: 6d8fc2d8-b493-5244-87c6-7e0af99206a9
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5002586
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 15
+level: low
+---
+title: '[PALO-ALTO] NTLM Authentication Brute Force - [25/1]'
+id: 2384f861-448d-5c75-8723-7881f865d2e5
+name: sagan_5002588
+status: experimental
+description: Converted from Sagan rule SID 5002588 (rev 6), file palo-alto.rules.
+references:
+  - https://live.paloaltonetworks.com/twzvq79624/attachments/twzvq79624/learning_tkb/428/1/System_log_PANOS4.1rev3.xlsx
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: NTLM authentication failed for user
+  selection_2:
+    message|contains|cased: ',vsys'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5002588'
+  sagan.rev: '6'
+  sagan.source_file: palo-alto.rules
+  rsigma.suppress: 1d
+---
+title: '[PALO-ALTO] NTLM Authentication Brute Force - [25/1] (threshold 15 in 5m)'
+id: d755da6f-c31c-573b-96a3-3ed5cd6b99a8
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5002588
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 15
+level: low
+---
+title: '[PALO-ALTO] User Authentication - Brute Force [25/1]'
+id: ee70f57a-5c47-5311-add5-ffab9f16be71
+name: sagan_5002591
+status: experimental
+description: Converted from Sagan rule SID 5002591 (rev 8), file palo-alto.rules.
+references:
+  - https://live.paloaltonetworks.com/twzvq79624/attachments/twzvq79624/learning_tkb/428/1/System_log_PANOS4.1rev3.xlsx
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: User
+  selection_2:
+    message|contains|cased: failed authentication
+  selection_3:
+    message|contains|cased: ',vsys'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5002591'
+  sagan.rev: '8'
+  sagan.source_file: palo-alto.rules
+  rsigma.suppress: 1d
+---
+title: '[PALO-ALTO] User Authentication - Brute Force [25/1] (threshold 25 in 5m)'
+id: 82aeab9e-bdc1-590b-b8e2-53649d84b006
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5002591
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[PALO-ALTO] Possible Replay Attempt Caused Disconnection'
+id: 854d5908-033b-527b-b597-c21b145663f0
+status: experimental
+description: Converted from Sagan rule SID 5002592 (rev 3), file palo-alto.rules.
+references:
+  - https://live.paloaltonetworks.com/twzvq79624/attachments/twzvq79624/learning_tkb/428/1/System_log_PANOS4.1rev3.xlsx
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: Disconnecting due to possible replay attempt
+  selection_2:
+    message|contains|cased: ',vsys'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5002592'
+  sagan.rev: '3'
+  sagan.source_file: palo-alto.rules
+---
+title: '[PALO-ALTO] PPPoE Brute Force Attempt - [25/1]'
+id: 9adf9a4d-3a36-5e18-808b-e916ee8780ba
+name: sagan_5002595
+status: experimental
+description: Converted from Sagan rule SID 5002595 (rev 7), file palo-alto.rules.
+references:
+  - https://live.paloaltonetworks.com/twzvq79624/attachments/twzvq79624/learning_tkb/428/1/System_log_PANOS4.1rev3.xlsx
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: PPPoE session failed to connect
+  selection_2:
+    message|contains|cased: ',vsys'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5002595'
+  sagan.rev: '7'
+  sagan.source_file: palo-alto.rules
+  rsigma.suppress: 1d
+---
+title: '[PALO-ALTO] PPPoE Brute Force Attempt - [25/1] (threshold 25 in 5m)'
+id: ba2af052-fd29-5ee9-9183-58a9520d9ff1
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5002595
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[PALO-ALTO] SSL VPN User Authentication Failure - Brute Force [25/1]'
+id: 9485692c-28b2-5dfc-9df6-a816ec675ed6
+name: sagan_5002596
+status: experimental
+description: Converted from Sagan rule SID 5002596 (rev 7), file palo-alto.rules.
+references:
+  - https://ive.paloaltonetworks.com/twzvq79624/attachments/twzvq79624/learning_tkb/428/1/System_log_PANOS4.1rev3.xlsx
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: SSL VPN user authentication failed
+  selection_2:
+    message|contains|cased: ',vsys'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5002596'
+  sagan.rev: '7'
+  sagan.source_file: palo-alto.rules
+  rsigma.suppress: 1d
+---
+title: '[PALO-ALTO] SSL VPN User Authentication Failure - Brute Force [25/1] (threshold 25 in 5m)'
+id: b93b8cc9-690f-53cb-83a8-290ef532d464
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5002596
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[PALO-ALTO] SSL VPN Login - Brute Force [25/1]'
+id: bf8c2c1e-0d0a-5fca-8cbb-1ffa6a726363
+name: sagan_5002598
+status: experimental
+description: Converted from Sagan rule SID 5002598 (rev 6), file palo-alto.rules.
+references:
+  - https://live.paloaltonetworks.com/twzvq79624/attachments/twzvq79624/learning_tkb/428/1/System_log_PANOS4.1rev3.xlsx
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: SSL VPN user login failed
+  selection_2:
+    message|contains|cased: ',vsys'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5002598'
+  sagan.rev: '6'
+  sagan.source_file: palo-alto.rules
+  rsigma.suppress: 1d
+---
+title: '[PALO-ALTO] SSL VPN Login - Brute Force [25/1] (threshold 25 in 5m)'
+id: 9febcad4-3c07-559a-88db-4244bbd03e53
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5002598
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[PALO-ALTO] Traffic To Website With Expired Certificate Detected - Not Secure'
+id: 15046ae4-a8c8-589c-93cf-d8902cd1c22a
+status: experimental
+description: Converted from Sagan rule SID 5002600 (rev 1), file palo-alto.rules.
+references:
+  - https://cwe.mitre.org/data/definitions/324.html
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: DECRYPTION
+  selection_2:
+    message|contains|cased: ',vsys'
+  selection_3:
+    message|contains|cased: Expired server certificate
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002600'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto.rules
+---
+title: '[PALO-ALTO] Malware URL Identified'
+id: b5533e8a-9421-5984-a7d4-c47c8307f324
+status: experimental
+description: Converted from Sagan rule SID 5002749 (rev 7), file palo-alto.rules.
+references:
+  - https://www.brightcloud.com/tools/url-ip-lookup.php
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: ',THREAT,url,'
+  filter_2:
+    message|contains|cased: ',online-personal-storage,'
+  filter_3:
+    message|contains|cased: ',block-url,'
+  selection_4:
+    message|contains|cased: ',malware,'
+  selection_5:
+    message|contains|cased: ',vsys'
+  condition: selection_1 and selection_4 and selection_5 and not (filter_2 or filter_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002749'
+  sagan.rev: '7'
+  sagan.source_file: palo-alto.rules
+  rsigma.suppress: 1h
+---
+title: '[PALO-ALTO] Phishing URL Blocked'
+id: 1a83010c-7c37-565d-b41c-a9bdba90e653
+status: experimental
+description: Converted from Sagan rule SID 5002750 (rev 4), file palo-alto.rules.
+references:
+  - https://www.brightcloud.com/tools/url-ip-lookup.php
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: ',THREAT,url,'
+  selection_2:
+    message|contains|cased: ',block-url,'
+  filter_3:
+    message|contains|cased: ',online-personal-storage,'
+  selection_4:
+    message|contains|cased: ',phishing-and-other-frauds,'
+  selection_5:
+    message|contains|cased: ',vsys'
+  condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002750'
+  sagan.rev: '4'
+  sagan.source_file: palo-alto.rules
+  rsigma.suppress: 10m
+---
+title: '[PALO-ALTO] Spyware or Adware URL Blocked'
+id: b4b62545-66cc-59d0-82d9-50c84b554159
+status: experimental
+description: Converted from Sagan rule SID 5002751 (rev 4), file palo-alto.rules.
+references:
+  - https://www.brightcloud.com/tools/url-ip-lookup.php
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: ',THREAT,url,'
+  selection_2:
+    message|contains|cased: ',block-url,'
+  filter_3:
+    message|contains|cased: ',online-personal-storage,'
+  selection_4:
+    message|contains|cased: ',spyware-and-adware,'
+  selection_5:
+    message|contains|cased: ',vsys'
+  condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002751'
+  sagan.rev: '4'
+  sagan.source_file: palo-alto.rules
+  rsigma.suppress: 30m
+---
+title: '[PALO-ALTO] Potential Bad URL Identified'
+id: e96f2bf9-d0e3-5467-b702-2ba025cb7831
+status: experimental
+description: Converted from Sagan rule SID 5002752 (rev 3), file palo-alto.rules.
+references:
+  - https://docs.paloaltonetworks.com/pan-os/10-1/pan-os-admin/monitoring/use-syslog-for-monitoring/syslog-field-descriptions/url-filtering-log-fields
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: ',THREAT,url,'
+  filter_2:
+    message|contains: ',informational,'
+  filter_3:
+    message|contains: ',command-and-control,'
+  filter_4:
+    message|contains|cased: ',online-personal-storage,'
+  filter_5:
+    message|contains|cased: ',malware-sites,'
+  filter_6:
+    message|contains|cased: ',phishing-and-other-frauds,'
+  filter_7:
+    message|contains|cased: ',spyware-and-adware,'
+  selection_8:
+    message|contains|cased: ',vsys'
+  condition: selection_1 and selection_8 and not (filter_2 or filter_3 or filter_4 or filter_5 or filter_6
+    or filter_7)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002752'
+  sagan.rev: '3'
+  sagan.source_file: palo-alto.rules
+  rsigma.suppress: 30m
+---
+title: '[PALO-ALTO] Virus Detected'
+id: 1c1fc86c-7c00-5315-9b7b-a7ac6db5b7f6
+status: experimental
+description: Converted from Sagan rule SID 5002755 (rev 2), file palo-alto.rules.
+references:
+  - https://threatvault.paloaltonetworks.com
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: THREAT,virus
+  selection_2:
+    message|contains|cased: ',vsys'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002755'
+  sagan.rev: '2'
+  sagan.source_file: palo-alto.rules
+---
+title: '[PALO-ALTO] Suspicious DNS Request'
+id: 4f779456-7390-5865-944d-8d6871d5259d
+status: experimental
+description: Converted from Sagan rule SID 5002763 (rev 6), file palo-alto.rules.
+references:
+  - https://threatvault.paloaltonetworks.com
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: THREAT,
+  selection_2:
+    message|contains|cased: ',Suspicious DNS Query'
+  selection_3:
+    message|contains|cased: ',vsys'
+  selection_4:
+    message|contains|cased:
+      - ',alert,'
+      - ',continue,'
+      - ',allow,'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5002763'
+  sagan.rev: '6'
+  sagan.source_file: palo-alto.rules
+  rsigma.suppress: 4h
+---
+title: '[PALO-ALTO] SMB DoublePulsar Ping Detection'
+id: c77ba933-4604-5a63-b9d9-86fdf869536c
+status: experimental
+description: Converted from Sagan rule SID 5003976 (rev 2), file palo-alto.rules.
+references:
+  - https://threatvault.paloaltonetworks.com
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: THREAT,vulnerability
+  selection_2:
+    message|contains|cased: SMB DoublePulsar Ping Detection
+  selection_3:
+    message|contains|cased: ',vsys'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5003976'
+  sagan.rev: '2'
+  sagan.source_file: palo-alto.rules
+  rsigma.suppress: 1d
+---
+title: '[PALO-ALTO] Critical Severity L3-Trusted to L3-Untrusted'
+id: 71808641-5c99-5fd8-9be5-e14a44fa251b
+status: experimental
+description: Converted from Sagan rule SID 5013934 (rev 1), file palo-alto.rules.
+references:
+  - https://docs.paloaltonetworks.com/pan-os/10-1/pan-os-admin/monitoring/use-syslog-for-monitoring/syslog-field-descriptions/threat-log-fields
+  - https://threatvault.paloaltonetworks.com
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: THREAT,vulnerability
+  selection_2:
+    message|contains|cased: ',L3-Trusted,L3-Untrusted'
+  selection_3:
+    message|contains|cased: ',critical,'
+  filter_4:
+    message|contains|cased: ',reset-both,'
+  selection_5:
+    message|contains|cased: ',vsys'
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5013934'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto.rules
+---
+title: '[PALO-ALTO] Critical Severity L3-Untrusted to L3-Trusted'
+id: 7ed50e1e-17ff-597e-90c2-92240fe298b0
+status: experimental
+description: Converted from Sagan rule SID 5013935 (rev 1), file palo-alto.rules.
+references:
+  - https://docs.paloaltonetworks.com/pan-os/10-1/pan-os-admin/monitoring/use-syslog-for-monitoring/syslog-field-descriptions/threat-log-fields
+  - https://threatvault.paloaltonetworks.com
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: THREAT,vulnerability
+  selection_2:
+    message|contains|cased: ',L3-UnTrusted,L3-Trusted'
+  selection_3:
+    message|contains|cased: ',critical,'
+  filter_4:
+    message|contains|cased: ',reset-both,'
+  selection_5:
+    message|contains|cased: ',vsys'
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5013935'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto.rules
+---
+title: '[PALO-ALTO] High Severity L3-Trusted to L3-Untrusted'
+id: 1d95df83-1dcd-57dc-89d9-3b42f0a143f9
+status: experimental
+description: Converted from Sagan rule SID 5013936 (rev 1), file palo-alto.rules.
+references:
+  - https://docs.paloaltonetworks.com/pan-os/10-1/pan-os-admin/monitoring/use-syslog-for-monitoring/syslog-field-descriptions/threat-log-fields
+  - https://threatvault.paloaltonetworks.com
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: THREAT,vulnerability
+  selection_2:
+    message|contains|cased: ',L3-Trusted,L3-Untrusted'
+  selection_3:
+    message|contains|cased: ',high,'
+  filter_4:
+    message|contains|cased: ',reset-both,'
+  selection_5:
+    message|contains|cased: ',vsys'
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5013936'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto.rules
+---
+title: '[PALO-ALTO] High Severity L3-Untrusted to L3-Trusted'
+id: a8abc181-4590-5e67-b1ef-38940e423866
+status: experimental
+description: Converted from Sagan rule SID 5013937 (rev 1), file palo-alto.rules.
+references:
+  - https://docs.paloaltonetworks.com/pan-os/10-1/pan-os-admin/monitoring/use-syslog-for-monitoring/syslog-field-descriptions/threat-log-fields
+  - https://threatvault.paloaltonetworks.com
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: THREAT,vulnerability
+  selection_2:
+    message|contains|cased: ',L3-UnTrusted,L3-Trusted'
+  selection_3:
+    message|contains|cased: ',high,'
+  filter_4:
+    message|contains|cased: ',reset-both,'
+  selection_5:
+    message|contains|cased: ',vsys'
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5013937'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto.rules
+---
+title: '[PALO-ALTO] Medium Severity L3-Untrusted to L3-Trusted'
+id: 006fc5f0-342d-5f93-9b3d-4de515032918
+status: experimental
+description: Converted from Sagan rule SID 5013939 (rev 1), file palo-alto.rules.
+references:
+  - https://docs.paloaltonetworks.com/pan-os/10-1/pan-os-admin/monitoring/use-syslog-for-monitoring/syslog-field-descriptions/threat-log-fields
+  - https://threatvault.paloaltonetworks.com
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: THREAT,vulnerability
+  selection_2:
+    message|contains|cased: ',L3-UnTrusted,L3-Trusted'
+  selection_3:
+    message|contains|cased: ',medium,'
+  filter_4:
+    message|contains|cased: ',reset-both,'
+  selection_5:
+    message|contains|cased: ',vsys'
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5013939'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto.rules
+---
+title: '[PALO-ALTO] Threat Detected and Client IP was Blocked'
+id: 03d12ad7-5d68-5cbd-bf72-5385a6017483
+status: experimental
+description: Converted from Sagan rule SID 5014070 (rev 5), file palo-alto.rules.
+references:
+  - https://threatvault.paloaltonetworks.com
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: THREAT,
+  selection_2:
+    message|contains|cased: ',block-ip,'
+  selection_3:
+    message|contains|cased: ',vsys'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5014070'
+  sagan.rev: '5'
+  sagan.source_file: palo-alto.rules
+---
+title: '[PALO-ALTO] Multiple Threats Detected From a Single Internal IP'
+id: 3383632e-c722-5de6-aaa1-537abe7fbb04
+name: sagan_5014071
+status: experimental
+description: Converted from Sagan rule SID 5014071 (rev 2), file palo-alto.rules.
+references:
+  - https://threatvault.paloaltonetworks.com
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  filter_1:
+    message|contains|cased:
+      - THREAT,url,
+      - THREAT,vulnerability,
+  filter_2:
+    message|contains|cased:
+      - ',low-risk'
+      - ',low'
+      - ',informational'
+  selection_3:
+    message|contains|cased: THREAT,
+  selection_4:
+    message|contains|cased: ',vsys'
+  selection_5:
+    message|re: ^(?:[^,]+,){6}(10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3}|172\.(1[6-9]|2[0-9]|3[0-1])\.\d{1,3}\.\d{1,3}),[^,]+
+  condition: selection_3 and selection_4 and selection_5 and not (filter_1 or filter_2)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5014071'
+  sagan.rev: '2'
+  sagan.source_file: palo-alto.rules
+  rsigma.suppress: 4h
+---
+title: '[PALO-ALTO] Multiple Threats Detected From a Single Internal IP (threshold 50 in 30m)'
+id: ef271d57-a8fa-5987-9aa6-40e7b012b1b0
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5014071
+  group-by:
+    - sagan_ip_1
+  timespan: 30m
+  condition:
+    gte: 50
+level: medium
+---
+title: '[PALO-ALTO] Multiple Bad URL Queries From a Single Internal IP'
+id: 199364a7-536a-59f2-93b2-9c5a249b37f9
+name: sagan_5014073
+status: experimental
+description: Converted from Sagan rule SID 5014073 (rev 1), file palo-alto.rules.
+references:
+  - https://threatvault.paloaltonetworks.com
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: THREAT,url,
+  selection_2:
+    message|contains|cased: ',vsys'
+  filter_3:
+    message|contains|cased:
+      - ',low-risk'
+      - ',low'
+      - ',informational'
+      - ',allow'
+  selection_4:
+    message|re: ^(?:[^,]+,){7}(10\.\d{1,3}\.\d{1,3}\.\d{1,3}|192\.168\.\d{1,3}\.\d{1,3}|172\.(1[6-9]|2[0-9]|3[0-1])\.\d{1,3}\.\d{1,3}),[^,]+
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5014073'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto.rules
+  rsigma.suppress: 1d
+---
+title: '[PALO-ALTO] Multiple Bad URL Queries From a Single Internal IP (threshold 50 in 30m)'
+id: 8f72ec19-4822-5b8c-975a-6698901159af
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5014073
+  group-by:
+    - sagan_ip_1
+  timespan: 30m
+  condition:
+    gte: 50
+level: medium
+---
+title: '[PALO-ALTO] ML-Virus High Threat Detected'
+id: 4fb2307c-4e2b-56ff-9e8b-ca8f5f0e9a7a
+status: experimental
+description: Converted from Sagan rule SID 5014075 (rev 1), file palo-alto.rules.
+references:
+  - https://docs.paloaltonetworks.com/pan-os/10-1/pan-os-admin/monitoring/use-syslog-for-monitoring/syslog-field-descriptions/threat-log-fields
+  - https://threatvault.paloaltonetworks.com
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: THREAT,ml-virus
+  filter_2:
+    message|contains|cased: ',benign,'
+  selection_3:
+    message|contains|cased: ',high,'
+  filter_4:
+    message|contains|cased: ',email-link,'
+  selection_5:
+    message|contains|cased: ',vsys'
+  filter_6:
+    message|contains|cased:
+      - ',reset-both,'
+      - ',drop,'
+      - ',block,'
+  condition: selection_1 and selection_3 and selection_5 and not (filter_2 or filter_4 or filter_6)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5014075'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto.rules
+---
+title: '[PALO-ALTO] ML-Virus Critical Threat Detected'
+id: c5f24e15-3187-564c-9d2c-2fdbbbab7361
+status: experimental
+description: Converted from Sagan rule SID 5014076 (rev 1), file palo-alto.rules.
+references:
+  - https://docs.paloaltonetworks.com/pan-os/10-1/pan-os-admin/monitoring/use-syslog-for-monitoring/syslog-field-descriptions/threat-log-fields
+  - https://threatvault.paloaltonetworks.com
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: THREAT,ml-virus
+  filter_2:
+    message|contains|cased: ',benign,'
+  selection_3:
+    message|contains|cased: ',critical,'
+  filter_4:
+    message|contains|cased: ',email-link,'
+  selection_5:
+    message|contains|cased: ',vsys'
+  filter_6:
+    message|contains|cased:
+      - ',reset-both,'
+      - ',drop,'
+      - ',block,'
+  condition: selection_1 and selection_3 and selection_5 and not (filter_2 or filter_4 or filter_6)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5014076'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto.rules
+---
+title: '[PALO-ALTO] Wildfire High Threat Detected'
+id: 40df2b75-3752-561d-a470-8931a308d11c
+status: experimental
+description: Converted from Sagan rule SID 5014078 (rev 1), file palo-alto.rules.
+references:
+  - https://docs.paloaltonetworks.com/pan-os/10-1/pan-os-admin/monitoring/use-syslog-for-monitoring/syslog-field-descriptions/threat-log-fields
+  - https://threatvault.paloaltonetworks.com
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: THREAT,wildfire,
+  filter_2:
+    message|contains|cased: ',benign,'
+  selection_3:
+    message|contains|cased: ',high,'
+  filter_4:
+    message|contains|cased: ',email-link,'
+  selection_5:
+    message|contains|cased: ',vsys'
+  filter_6:
+    message|contains|cased:
+      - ',reset-both,'
+      - ',drop,'
+      - ',block,'
+  condition: selection_1 and selection_3 and selection_5 and not (filter_2 or filter_4 or filter_6)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5014078'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto.rules
+---
+title: '[PALO-ALTO] Wildfire Critical Threat Detected'
+id: 3c37e9e5-5ae1-5254-bdb6-a2c33db71196
+status: experimental
+description: Converted from Sagan rule SID 5014079 (rev 1), file palo-alto.rules.
+references:
+  - https://docs.paloaltonetworks.com/pan-os/10-1/pan-os-admin/monitoring/use-syslog-for-monitoring/syslog-field-descriptions/threat-log-fields
+  - https://threatvault.paloaltonetworks.com
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: THREAT,wildfire,
+  filter_2:
+    message|contains|cased: ',benign,'
+  selection_3:
+    message|contains|cased: ',critical,'
+  selection_4:
+    message|contains|cased: ',vsys'
+  filter_5:
+    message|contains|cased:
+      - ',reset-both,'
+      - ',drop,'
+      - ',block,'
+  condition: selection_1 and selection_3 and selection_4 and not (filter_2 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5014079'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto.rules
+---
+title: '[PALO-ALTO] Wildfire-Virus High Threat Detected'
+id: a3bfb1ae-b39d-58f6-93ff-8ceff357da5d
+status: experimental
+description: Converted from Sagan rule SID 5014081 (rev 1), file palo-alto.rules.
+references:
+  - https://docs.paloaltonetworks.com/pan-os/10-1/pan-os-admin/monitoring/use-syslog-for-monitoring/syslog-field-descriptions/threat-log-fields
+  - https://threatvault.paloaltonetworks.com
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: THREAT,wildfire-virus,
+  filter_2:
+    message|contains|cased: ',benign,'
+  selection_3:
+    message|contains|cased: ',high,'
+  filter_4:
+    message|contains|cased: ',email-link,'
+  selection_5:
+    message|contains|cased: ',vsys'
+  filter_6:
+    message|contains|cased:
+      - ',reset-both,'
+      - ',drop,'
+      - ',block,'
+  condition: selection_1 and selection_3 and selection_5 and not (filter_2 or filter_4 or filter_6)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5014081'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto.rules
+---
+title: '[PALO-ALTO] Wildfire-Virus Critical Threat Detected'
+id: 35ec852e-85ac-5a4c-8181-2a03a75aabef
+status: experimental
+description: Converted from Sagan rule SID 5014082 (rev 1), file palo-alto.rules.
+references:
+  - https://docs.paloaltonetworks.com/pan-os/10-1/pan-os-admin/monitoring/use-syslog-for-monitoring/syslog-field-descriptions/threat-log-fields
+  - https://threatvault.paloaltonetworks.com
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: THREAT,wildfire-virus,
+  filter_2:
+    message|contains|cased: ',benign,'
+  selection_3:
+    message|contains|cased: ',critical,'
+  filter_4:
+    message|contains|cased: ',email-link,'
+  selection_5:
+    message|contains|cased: ',vsys'
+  filter_6:
+    message|contains|cased:
+      - ',reset-both,'
+      - ',drop,'
+      - ',block,'
+  condition: selection_1 and selection_3 and selection_5 and not (filter_2 or filter_4 or filter_6)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5014082'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto.rules
+---
+title: '[PALO-ALTO] GlobalProtect VPN Authentication Failed Possible Brute-Force [10/1]'
+id: 9b462f4a-aa59-555a-91df-815d00b5bab7
+name: sagan_5014086
+status: experimental
+description: Converted from Sagan rule SID 5014086 (rev 3), file palo-alto.rules.
+references:
+  - https://docs.paloaltonetworks.com/pan-os/9-1/pan-os-admin/monitoring/view-and-manage-logs/log-types-and-severity-levels/authentication-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: ',SYSTEM,auth,'
+  selection_2:
+    message|contains|cased: ',auth-fail,'
+  selection_3:
+    message|contains|cased: ',vsys'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1110
+  - attack.ta0006
+  - sagan.classtype.attempted-user
+custom_attributes:
+  sagan.sid: '5014086'
+  sagan.rev: '3'
+  sagan.source_file: palo-alto.rules
+  rsigma.suppress: 1d
+  sagan.metadata: deployment=Server,created_at=2023_12_06,updated_at=2024_06_06
+---
+title: '[PALO-ALTO] GlobalProtect VPN Authentication Failed Possible Brute-Force [10/1] (threshold 10
+  in 5m)'
+id: e6b51097-29e6-52f0-9c48-e55f121215c1
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5014086
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 10
+level: high
+---
+title: '[PALO-ALTO] GlobalProtect VPN Successful Login After Brute Force'
+id: f2d210fb-2408-5770-b3c8-12d44b2e2e42
+name: sagan_5014087
+status: experimental
+description: Converted from Sagan rule SID 5014087 (rev 1), file palo-alto.rules.
+references:
+  - https://docs.paloaltonetworks.com/pan-os/9-1/pan-os-admin/monitoring/view-and-manage-logs/log-types-and-severity-levels/authentication-logs
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: ',SYSTEM,auth,'
+  selection_2:
+    message|contains|cased: ',auth-success,'
+  selection_3:
+    message|contains|cased: ',vsys'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1110
+  - attack.ta0006
+  - sagan.classtype.attempted-user
+custom_attributes:
+  sagan.sid: '5014087'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto.rules
+  sagan.metadata: deployment=Server,created_at=2023_12_06,updated_at=2023_12_06
+---
+title: '[PALO-ALTO] GlobalProtect VPN Successful Login After Brute Force (correlated with brute-force)'
+id: 0dae5faa-cf77-5beb-9677-a30234bf9edd
+status: experimental
+description: Reconstruction of the Sagan 'brute-force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute-force
+    - sagan_5014087
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[PALO-ALTO] Potential Authentication Bypass Attempt CVE-2025-0108 [1]'
+id: 71c74ec5-32aa-5cb4-b8ec-5aeaba744181
+status: experimental
+description: Converted from Sagan rule SID 5015333 (rev 1), file palo-alto.rules.
+references:
+  - https://thehackernews.com/2025/02/palo-alto-networks-patches.html
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: /unauth/..
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1556.004
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5015333'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto.rules
+---
+title: '[PALO-ALTO] Potential Authentication Bypass Attempt CVE-2025-0108 [2]'
+id: 6939b87c-edd8-5697-a03c-a0f77dbd99df
+status: experimental
+description: Converted from Sagan rule SID 5015334 (rev 1), file palo-alto.rules.
+references:
+  - https://thehackernews.com/2025/02/palo-alto-networks-patches.html
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: /unauth/%252e%252e/php
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1556.004
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5015334'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto.rules
+---
+title: '[PALO-ALTO] Potential Authentication Bypass Attempt CVE-2025-0108 [3]'
+id: 8a4cb0a0-36f8-52aa-95cd-492f07006485
+status: experimental
+description: Converted from Sagan rule SID 5015335 (rev 1), file palo-alto.rules.
+references:
+  - https://thehackernews.com/2025/02/palo-alto-networks-patches.html
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: /unauth/%252E%252E/php
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1556.004
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5015335'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto.rules
+---
+title: '[PALO-ALTO] Potential Authentication Bypass Attempt CVE-2025-0108 [4]'
+id: 3114109d-f68d-555a-9695-d080d3386674
+status: experimental
+description: Converted from Sagan rule SID 5015336 (rev 1), file palo-alto.rules.
+references:
+  - https://thehackernews.com/2025/02/palo-alto-networks-patches.html
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: /unauth/..
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1556.004
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5015336'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto.rules
+---
+title: '[PALO-ALTO] Potential Authentication Bypass Attempt CVE-2025-0108 [5]'
+id: eea0c3d9-35fa-50c3-9e0d-9844c7e2b505
+status: experimental
+description: Converted from Sagan rule SID 5015337 (rev 1), file palo-alto.rules.
+references:
+  - https://thehackernews.com/2025/02/palo-alto-networks-patches.html
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: /unauth/%%.%%./php
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1556.004
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5015337'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto.rules
+---
+title: '[PALO-ALTO] Potential Authentication Bypass Attempt CVE-2025-0108 [6]'
+id: e8b30db1-cfcf-5714-9b97-35984e9a2fbe
+status: experimental
+description: Converted from Sagan rule SID 5015338 (rev 1), file palo-alto.rules.
+references:
+  - https://thehackernews.com/2025/02/palo-alto-networks-patches.html
+author: sagan2sigma
+logsource:
+  product: paloalto
+detection:
+  selection_1:
+    message|contains|cased: /unauth/%%.%%./php
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1556.004
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5015338'
+  sagan.rev: '1'
+  sagan.source_file: palo-alto.rules

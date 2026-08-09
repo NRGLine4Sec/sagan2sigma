@@ -1,0 +1,184 @@
+title: '[SCREENCONNECT] Suspicious Discovery Command (ipconfig)'
+id: 2376ad55-9b49-53e8-a1ab-2715688f8e8f
+status: experimental
+description: Converted from Sagan rule SID 5015120 (rev 2), file screenconnect.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: screenconnect-restful-api_data
+  selection_2:
+    message|contains|cased:
+      - '"EventType":44'
+      - '"EventType":70'
+  selection_3:
+    message|contains|cased: ipconfig
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5015120'
+  sagan.rev: '2'
+  sagan.source_file: screenconnect.rules
+  sagan.metadata: created_at=2024_09_03,updated_at=2024_10_10
+---
+title: '[SCREENCONNECT] Suspicious Discovery Command (net)'
+id: 22958a6b-943e-50a6-a291-33ef9c59cc50
+status: experimental
+description: Converted from Sagan rule SID 5015121 (rev 2), file screenconnect.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: screenconnect-restful-api_data
+  selection_2:
+    message|contains|cased:
+      - '"EventType":44'
+      - '"EventType":70'
+  selection_3:
+    message|contains:
+      - net view
+      - net config
+      - net group
+      - net user
+      - net localgroup
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5015121'
+  sagan.rev: '2'
+  sagan.source_file: screenconnect.rules
+  sagan.metadata: created_at=2024_09_03,updated_at=2024_10_10
+---
+title: '[SCREENCONNECT] Suspicious Discovery Command (systeminfo)'
+id: 600ce282-c0eb-51b4-9b3b-3c2e148cddfa
+status: experimental
+description: Converted from Sagan rule SID 5015122 (rev 2), file screenconnect.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: screenconnect-restful-api_data
+  selection_2:
+    message|contains|cased:
+      - '"EventType":44'
+      - '"EventType":70'
+  selection_3:
+    message|contains:
+      - nltest /domain_trusts
+      - nltest /all_trusts
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5015122'
+  sagan.rev: '2'
+  sagan.source_file: screenconnect.rules
+  sagan.metadata: created_at=2024_09_03,updated_at=2024_10_10
+---
+title: '[SCREENCONNECT] Suspicious Batch File Executed (cmd.exe /c)'
+id: 33f59c14-3688-5e68-9916-fd09b189525b
+status: experimental
+description: Converted from Sagan rule SID 5015123 (rev 2), file screenconnect.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: screenconnect-restful-api_data
+  selection_2:
+    message|contains|cased:
+      - '"EventType":44'
+      - '"EventType":70'
+  selection_3:
+    message|contains: cmd.exe /c
+  selection_4:
+    message|contains|cased: .bat
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5015123'
+  sagan.rev: '2'
+  sagan.source_file: screenconnect.rules
+  sagan.metadata: created_at=2024_09_03,updated_at=2024_10_10
+---
+title: '[SCREENCONNECT] Suspicious File Transferred to Client'
+id: f1c5b816-d4fe-54eb-a5eb-d3a5aa13ab1a
+status: experimental
+description: Converted from Sagan rule SID 5015124 (rev 1), file screenconnect.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: screenconnect-restful-api_data
+  selection_2:
+    message|contains|cased:
+      - '"EventType":83'
+      - '"EventType":84'
+      - '"EventType":86'
+  selection_3:
+    message|contains|cased:
+      - .exe"},
+      - .bat"},
+      - .dll"},
+      - .ps1"},
+  selection_4:
+    message|re: \"Data\x22\:\x22[a-zA-Z0-9\-\.]+\.(?:exe|bat|dll|ps1)\x22
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5015124'
+  sagan.rev: '1'
+  sagan.source_file: screenconnect.rules
+  sagan.metadata: created_at=2024_09_03,updated_at=2024_10_10
+---
+title: '[SCREENCONNECT] Multiple Files Transferred - Possible Exfil'
+id: df1d1bc4-99f3-5f81-a9c9-a1425b737f37
+status: experimental
+description: Converted from Sagan rule SID 5015125 (rev 1), file screenconnect.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: screenconnect-restful-api_data
+  selection_2:
+    message|contains|cased:
+      - '"EventType":83'
+      - '"EventType":84'
+      - '"EventType":86'
+  selection_3:
+    message|re: Data\x22\:\s\x22(?:[^\:,]+:){20}.*?\"}
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5015125'
+  sagan.rev: '1'
+  sagan.source_file: screenconnect.rules
+  sagan.metadata: created_at=2024_09_03,updated_at=2024_10_10

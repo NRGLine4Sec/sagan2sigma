@@ -1,0 +1,405 @@
+title: '[AZURE ACTIVITY] Administrative category Level Critical'
+id: 78455f52-cac2-5f83-85b6-036486de82f1
+status: experimental
+description: Converted from Sagan rule SID 5011317 (rev 1), file azureEventHub_azureActivity.rules.
+references:
+  - https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    message|contains|cased: 'category": "Administrative"'
+  selection_3:
+    message|contains|cased: 'level": "Critical"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011317'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_azureActivity.rules
+---
+title: '[AZURE ACTIVITY] Service Health category Level Critical'
+id: 703ebab8-94f9-51e4-80a7-4b0456bc6d46
+status: experimental
+description: Converted from Sagan rule SID 5011321 (rev 1), file azureEventHub_azureActivity.rules.
+references:
+  - https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    message|contains|cased: 'category": "Service Health"'
+  selection_3:
+    message|contains|cased: 'level": "Critical"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011321'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_azureActivity.rules
+---
+title: '[AZURE ACTIVITY] Service Health category Level Error'
+id: c7d8805b-43de-5693-8fe2-cce3158a83e6
+status: experimental
+description: Converted from Sagan rule SID 5011322 (rev 1), file azureEventHub_azureActivity.rules.
+references:
+  - https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    message|contains|cased: 'category": "Service Health"'
+  selection_3:
+    message|contains|cased: 'level": "Error"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011322'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_azureActivity.rules
+---
+title: '[AZURE ACTIVITY] Resource Health category Level Critical'
+id: 1e5ac79b-a750-56c8-897d-71f70e7375ae
+status: experimental
+description: Converted from Sagan rule SID 5011325 (rev 1), file azureEventHub_azureActivity.rules.
+references:
+  - https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    message|contains|cased: 'category": "Resource Health"'
+  selection_3:
+    message|contains|cased: 'level": "Critical"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011325'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_azureActivity.rules
+---
+title: '[AZURE ACTIVITY] Resource Health category Level Error'
+id: b8d10b92-7009-5b4e-b378-f1869fefcda8
+status: experimental
+description: Converted from Sagan rule SID 5011326 (rev 1), file azureEventHub_azureActivity.rules.
+references:
+  - https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    message|contains|cased: 'category": "Resource Health"'
+  selection_3:
+    message|contains|cased: 'level": "Error"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011326'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_azureActivity.rules
+---
+title: '[AZURE ACTIVITY] Alert category Level Critical'
+id: d0c7c306-34eb-59c3-be67-642b535c39be
+status: experimental
+description: Converted from Sagan rule SID 5011329 (rev 1), file azureEventHub_azureActivity.rules.
+references:
+  - https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    message|contains|cased: 'category": "Alert"'
+  selection_3:
+    message|contains|cased: 'level": "Critical"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011329'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_azureActivity.rules
+---
+title: '[AZURE ACTIVITY] Alert category Level Error'
+id: 37939910-68c7-5695-ba9e-631bca4c994a
+status: experimental
+description: Converted from Sagan rule SID 5011330 (rev 1), file azureEventHub_azureActivity.rules.
+references:
+  - https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    message|contains|cased: 'category": "Alert"'
+  selection_3:
+    message|contains|cased: 'level": "Error"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011330'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_azureActivity.rules
+---
+title: '[AZURE ACTIVITY] Autoscale category Level Critical'
+id: 507e6563-ffff-58d3-9b43-3fe6f7d39909
+status: experimental
+description: Converted from Sagan rule SID 5011333 (rev 1), file azureEventHub_azureActivity.rules.
+references:
+  - https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    message|contains|cased: 'category": "Autoscale"'
+  selection_3:
+    message|contains|cased: 'level": "Critical"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011333'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_azureActivity.rules
+---
+title: '[AZURE ACTIVITY] Autoscale category Level Error'
+id: 61cfa797-8252-5d0b-9aa9-ce27331a4432
+status: experimental
+description: Converted from Sagan rule SID 5011334 (rev 1), file azureEventHub_azureActivity.rules.
+references:
+  - https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    message|contains|cased: 'category": "Autoscale"'
+  selection_3:
+    message|contains|cased: 'level": "Error"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011334'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_azureActivity.rules
+---
+title: '[AZURE ACTIVITY] Recommendation category Level Critical'
+id: af2671cf-27e6-5944-8d97-0cf4b6ec2e5f
+status: experimental
+description: Converted from Sagan rule SID 5011337 (rev 1), file azureEventHub_azureActivity.rules.
+references:
+  - https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    message|contains|cased: 'category": "Recommendation"'
+  selection_3:
+    message|contains|cased: 'level": "Critical"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011337'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_azureActivity.rules
+---
+title: '[AZURE ACTIVITY] Recommendation category Level Error'
+id: e05b84d5-be24-553d-9b80-ff347194e6c6
+status: experimental
+description: Converted from Sagan rule SID 5011338 (rev 1), file azureEventHub_azureActivity.rules.
+references:
+  - https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    message|contains|cased: 'category": "Recommendation"'
+  selection_3:
+    message|contains|cased: 'level": "Error"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011338'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_azureActivity.rules
+---
+title: '[AZURE ACTIVITY] Security category Level Critical'
+id: 37d95217-4b3c-5f01-8366-2888de0700c4
+status: experimental
+description: Converted from Sagan rule SID 5011341 (rev 1), file azureEventHub_azureActivity.rules.
+references:
+  - https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    message|contains|cased: 'category": "Security"'
+  selection_3:
+    message|contains|cased: 'level": "Critical"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011341'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_azureActivity.rules
+---
+title: '[AZURE ACTIVITY] Security category Level Error'
+id: 3d5ef457-ac41-5d6a-92e0-90a27dcc9a76
+status: experimental
+description: Converted from Sagan rule SID 5011342 (rev 1), file azureEventHub_azureActivity.rules.
+references:
+  - https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    message|contains|cased: 'category": "Security"'
+  selection_3:
+    message|contains|cased: 'level": "Error"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011342'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_azureActivity.rules
+---
+title: '[AZURE ACTIVITY] Policy category Level Critical'
+id: 00f35aca-cb47-57cc-bb6d-39d61fe842c5
+status: experimental
+description: Converted from Sagan rule SID 5011345 (rev 1), file azureEventHub_azureActivity.rules.
+references:
+  - https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    message|contains|cased: 'category": "Policy"'
+  selection_3:
+    message|contains|cased: 'level": "Critical"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011345'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_azureActivity.rules
+---
+title: '[AZURE ACTIVITY] Policy category Level Error'
+id: cba99aa3-a8a1-54e1-ac79-c283efbe7bae
+status: experimental
+description: Converted from Sagan rule SID 5011346 (rev 1), file azureEventHub_azureActivity.rules.
+references:
+  - https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    message|contains|cased: 'category": "Policy"'
+  selection_3:
+    message|contains|cased: 'level": "Error"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5011346'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_azureActivity.rules
+  rsigma.suppress: 1d

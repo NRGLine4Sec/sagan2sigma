@@ -1,0 +1,214 @@
+title: '[ASTERISK] Login session failed [0/5]'
+id: 0528de37-004e-53fb-bf5b-5445006188f4
+status: experimental
+description: Converted from Sagan rule SID 5000179 (rev 5), file asterisk.rules.
+author: sagan2sigma
+logsource:
+  product: asterisk
+detection:
+  selection_1:
+    message|contains|cased: Wrong password
+  selection_2:
+    appname|cased: asterisk
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000179'
+  sagan.rev: '5'
+  sagan.source_file: asterisk.rules
+  rsigma.suppress: 15m
+---
+title: '[ASTERISK] Login session failed [invalid user] [0/5]'
+id: eb44dea2-01af-5d70-be64-75acb274d919
+status: experimental
+description: Converted from Sagan rule SID 5000180 (rev 5), file asterisk.rules.
+author: sagan2sigma
+logsource:
+  product: asterisk
+detection:
+  selection_1:
+    message|contains|cased: Username/auth name mismatch
+  selection_2:
+    appname|cased: asterisk
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000180'
+  sagan.rev: '5'
+  sagan.source_file: asterisk.rules
+  rsigma.suppress: 15m
+---
+title: '[ASTERISK] Login session failed [invalid extension] [0/5]'
+id: 6262f252-2428-5168-a8e2-f50a1f343408
+status: experimental
+description: Converted from Sagan rule SID 5000181 (rev 5), file asterisk.rules.
+author: sagan2sigma
+logsource:
+  product: asterisk
+detection:
+  selection_1:
+    message|contains|cased: No matching peer found
+  selection_2:
+    appname|cased: asterisk
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000181'
+  sagan.rev: '5'
+  sagan.source_file: asterisk.rules
+  rsigma.suppress: 15m
+---
+title: '[ASTERISK] Invalid to address'
+id: ce31b8ce-36b3-5800-bda2-7366045943f0
+status: experimental
+description: Converted from Sagan rule SID 5001065 (rev 2), file asterisk.rules.
+author: sagan2sigma
+logsource:
+  product: asterisk
+detection:
+  selection_1:
+    message|contains|cased: Invalid to address
+  selection_2:
+    appname|cased: asterisk
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001065'
+  sagan.rev: '2'
+  sagan.source_file: asterisk.rules
+---
+title: '[ASTERISK] Brute force login session failed [5/5]'
+id: f5da74e1-1d85-50c3-8ed8-8eff5b44e551
+name: sagan_5002942
+status: experimental
+description: Converted from Sagan rule SID 5002942 (rev 5), file asterisk.rules.
+author: sagan2sigma
+logsource:
+  product: asterisk
+detection:
+  selection_1:
+    message|contains|cased: Wrong password
+  selection_2:
+    appname|cased: asterisk
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5002942'
+  sagan.rev: '5'
+  sagan.source_file: asterisk.rules
+  rsigma.suppress: 15m
+---
+title: '[ASTERISK] Brute force login session failed [5/5] (threshold 5 in 5m)'
+id: f5029c6f-9d89-5967-969f-170fe89b699b
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5002942
+  group-by:
+    - sagan_ip_2
+  timespan: 5m
+  condition:
+    gte: 5
+level: low
+---
+title: '[ASTERISK] Brute force login session failed [invalid user] [5/5]'
+id: 18e24f45-359c-5b6f-bfa4-0851e7a48a20
+name: sagan_5002943
+status: experimental
+description: Converted from Sagan rule SID 5002943 (rev 4), file asterisk.rules.
+author: sagan2sigma
+logsource:
+  product: asterisk
+detection:
+  selection_1:
+    message|contains|cased: Username/auth name mismatch
+  selection_2:
+    appname|cased: asterisk
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002943'
+  sagan.rev: '4'
+  sagan.source_file: asterisk.rules
+  rsigma.suppress: 15m
+---
+title: '[ASTERISK] Brute force login session failed [invalid user] [5/5] (threshold 5 in 5m)'
+id: 01ecfbaf-5479-5a74-8e9f-e0f6b5980d60
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5002943
+  group-by:
+    - hostname
+  timespan: 5m
+  condition:
+    gte: 5
+level: high
+---
+title: '[ASTERISK] Brute force login session failed [invalid extension] [5/5]'
+id: 6f1c4855-11c9-5351-87a1-7a00ae26a212
+name: sagan_5002944
+status: experimental
+description: Converted from Sagan rule SID 5002944 (rev 5), file asterisk.rules.
+author: sagan2sigma
+logsource:
+  product: asterisk
+detection:
+  selection_1:
+    message|contains|cased: No matching peer found
+  selection_2:
+    appname|cased: asterisk
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5002944'
+  sagan.rev: '5'
+  sagan.source_file: asterisk.rules
+  rsigma.suppress: 15m
+---
+title: '[ASTERISK] Brute force login session failed [invalid extension] [5/5] (threshold 5 in 5m)'
+id: 2a597ad1-ea84-53df-b817-cdab4912c8ba
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5002944
+  group-by:
+    - hostname
+  timespan: 5m
+  condition:
+    gte: 5
+level: low

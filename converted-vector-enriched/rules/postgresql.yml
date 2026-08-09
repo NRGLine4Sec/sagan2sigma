@@ -1,0 +1,22 @@
+title: '[POSTGRESQL] Database authentication failure'
+id: 6a08467f-6a6c-5f90-b0cc-bb66e6a25286
+status: experimental
+description: Converted from Sagan rule SID 5000234 (rev 2), file postgresql.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: authentication failed
+  selection_2:
+    appname|cased: postgres
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000234'
+  sagan.rev: '2'
+  sagan.source_file: postgresql.rules

@@ -1,0 +1,2142 @@
+title: '[ZSCALER] known Malicious user agent - MSIE 9.0 in version 10 format'
+id: 8dd478ae-3d88-5270-b440-79bf43bd4e73
+status: experimental
+description: Converted from Sagan rule SID 5003126 (rev 3), file zscaler.rules.
+references:
+  - https://www.virustotal.com/en/file/aaf9b99314eb5201407bc82ee948c0a3a1c6b0a3288e230bc03e4c2a2b4287e3/analysis/
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: "requestClientApplication=MSIE 9.0\r\n"
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003126'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] known malicious user-agent string - MSIE 7.0 na - Win.Trojan.Koobface'
+id: 2305b5bb-3efd-5312-81f2-caa721531ffe
+status: experimental
+description: Converted from Sagan rule SID 5003127 (rev 3), file zscaler.rules.
+references:
+  - https://www.virustotal.com/en/file/ef420005a10d73b840604b517c4760400ccfc6c5baba0ae5d05ec6f88e56821e/analysis/
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=Mozilla/4.0 (compatible; MSIE 7.0; na; )
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003127'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] known malicious user-agent string - Downloader 1.8 - Win.Trojan.Graftor'
+id: 5288aa64-dde2-5b15-9954-bca2f11e6ce7
+status: experimental
+description: Converted from Sagan rule SID 5003128 (rev 2), file zscaler.rules.
+references:
+  - https://www.virustotal.com/en/file/0F45FB61856437CB3123C4DEAC68942C17ADC6534719E583F22E3DE1F31C1CA5/analysis/
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: "requestClientApplication=Downloader 1.8\r\n"
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003128'
+  sagan.rev: '2'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] known malicious User-Agent string - HttpCall - Win.Trojan.Rukypee'
+id: d54abbbd-0501-5915-a350-133d244b8939
+status: experimental
+description: Converted from Sagan rule SID 5003129 (rev 3), file zscaler.rules.
+references:
+  - https://www.virustotal.com/en/file/74f22eced680ca26b767b4b07ba26b98536a385249d751586915b15b56509e0d/analysis/
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=HttpCall
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003129'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] known malicious User-Agent string - MyProgramm - Win.Trojan.Rukypee'
+id: 88d36791-6ebd-58bc-a7e7-eaf60d5d9a4c
+status: experimental
+description: Converted from Sagan rule SID 5003130 (rev 3), file zscaler.rules.
+references:
+  - https://www.virustotal.com/en/file/74f22eced680ca26b767b4b07ba26b98536a385249d751586915b15b56509e0d/analysis/
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=MyProgramm
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003130'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] known malicious User-Agent string - Skypee - Win.Trojan.Rukypee'
+id: 2237165e-4f0e-55a8-8578-2a41b404beda
+status: experimental
+description: Converted from Sagan rule SID 5003131 (rev 3), file zscaler.rules.
+references:
+  - https://www.virustotal.com/en/file/74f22eced680ca26b767b4b07ba26b98536a385249d751586915b15b56509e0d/analysis/
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=Skypee
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003131'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] known malicous user agent string - XAgent - Operation Pawn Storm'
+id: 28668e1a-02af-5922-b8eb-e6ac68039d2d
+status: experimental
+description: Converted from Sagan rule SID 5003132 (rev 3), file zscaler.rules.
+references:
+  - https://www.virustotal.com/en/file/7313eaf95a8a8b4c206b9afe306e7c0675a21999921a71a5a16456894571d21d/analysis/
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=XAgent
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003132'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] known malicious user-agent string crackim'
+id: 1534f457-ed71-5797-a3c8-64feda372b03
+status: experimental
+description: Converted from Sagan rule SID 5003133 (rev 3), file zscaler.rules.
+references:
+  - https://www.virustotal.com/en/file/27fa65a3166def75feb75f8feb25dd9784b8f2518c73defcc4ed3e9f46868e76/analysis/
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=crackim
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003133'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Win.Trojan.Darkcpn outbound connection'
+id: 2f84ff50-1bbf-59c4-93cd-afeb70895d33
+status: experimental
+description: Converted from Sagan rule SID 5003134 (rev 3), file zscaler.rules.
+references:
+  - https://virustotal.com/file/cab7cd418b1114c277f84c4fe59d05bcf53babf64f16ebe86ab11641bd6bbd94/analysis/
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: "requestClientApplication=Mozilla/4.0+(compatible;+MSIE+6.0;+Windows+NT+5.1;+SV1;+.NET+CLR+2.0.50727)\r\
+      \n"
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003134'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Suspicious User Agent (agent)'
+id: 2f854953-fdbd-5d62-bae1-36a818aded27
+status: experimental
+description: Converted from Sagan rule SID 5003136 (rev 3), file zscaler.rules.
+references:
+  - https://doc.emergingthreats.net/bin/view/Main/2001891
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=agent
+  filter_2:
+    message|contains|cased: .battle.net
+  selection_3:
+    message|contains|cased: Zscaler
+  selection_4:
+    message|contains|cased: act=Allowed
+  selection_5:
+    appname|cased: CEF
+  condition: selection_1 and selection_3 and selection_4 and selection_5 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003136'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Drivecleaner.com Spyware User-Agent (DriveCleaner Updater)'
+id: 35677da8-498b-508f-8fc6-61df34a13d62
+status: experimental
+description: Converted from Sagan rule SID 5003137 (rev 3), file zscaler.rules.
+references:
+  - https://www.drivecleaner.com
+  - https://research.sunbelt-software.com/threatdisplay.aspx?name=DriveCleaner&threatid=44533
+  - https://doc.emergingthreats.net/2003486
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=DriveCleaner Updater
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003137'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Winfixmaster.com Fake Anti-Spyware User-Agent 2 (WinFix Master)'
+id: a9d3b6a5-9bca-5ae0-bede-5e827a0e168b
+status: experimental
+description: Converted from Sagan rule SID 5003138 (rev 3), file zscaler.rules.
+references:
+  - https://doc.emergingthreats.net/2003545
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains: requestClientApplication=WinFix Master
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003138'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Vaccineprogram.co.kr Related Spyware User-Agent (Museon)'
+id: bc47cff7-2c79-5675-ae13-50c0ab31d81a
+status: experimental
+description: Converted from Sagan rule SID 5003139 (rev 3), file zscaler.rules.
+references:
+  - https://doc.emergingthreats.net/2006418
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=Museon
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003139'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Vaccineprogram.co.kr Related Spyware User Agent (pcsafe)'
+id: 4f69cd1f-70e4-52c7-9515-f06602aa3ca5
+status: experimental
+description: Converted from Sagan rule SID 5003140 (rev 3), file zscaler.rules.
+references:
+  - https://doc.emergingthreats.net/2006420
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=pcsafe
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003140'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Suspicious User Agent (_)'
+id: 15c1e0ab-fd90-5fc9-9278-59309b787521
+status: experimental
+description: Converted from Sagan rule SID 5003142 (rev 3), file zscaler.rules.
+references:
+  - https://doc.emergingthreats.net/bin/view/Main/2007942
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: "requestClientApplication=_\r\n"
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003142'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Casino Related Spyware User-Agent Detected (Viper 4.0)'
+id: 11d6c301-ffc3-5910-a434-999d3f2ca957
+status: experimental
+description: Converted from Sagan rule SID 5003143 (rev 3), file zscaler.rules.
+references:
+  - https://doc.emergingthreats.net/2008586
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: "requestClientApplication=Mozilla/5.0 (compatible, Viper 4.0)\r\n"
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003143'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Suspicious User Agent (BlackSun)'
+id: d9a83fd1-5c6e-534f-8411-d1e4800f51e9
+status: experimental
+description: Converted from Sagan rule SID 5003144 (rev 3), file zscaler.rules.
+references:
+  - https://www.bitdefender.com/VIRUS-1000328-en--Trojan.Pws.Wow.NCY.html
+  - https://doc.emergingthreats.net/bin/view/Main/2008983
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=BlackSun
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003144'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Win32.Tdss User Agent Detected (Mozzila)'
+id: eeb71f31-588c-5fa6-91bc-34b6632560f9
+status: experimental
+description: Converted from Sagan rule SID 5003145 (rev 4), file zscaler.rules.
+references:
+  - https://doc.emergingthreats.net/2010889
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=Mozzila
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003145'
+  sagan.rev: '4'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Suspicious User Agent (ScrapeBox)'
+id: f4919c8b-9446-5768-95b2-e993b431ecd9
+status: experimental
+description: Converted from Sagan rule SID 5003146 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=ScrapeBox
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003146'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Malware Related msndown'
+id: 344993ae-25f8-5fb2-a8ad-462cfe5523a1
+status: experimental
+description: Converted from Sagan rule SID 5003147 (rev 3), file zscaler.rules.
+references:
+  - https://www.sunbeltsecurity.com/partnerresources/cwsandbox/md5.aspx?id=17fdf0cb5970b71b81b1a5406e017ac1
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: "requestClientApplication=msndown\r\n"
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003147'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] W32/Goolbot.E Checkin UA Detected iamx'
+id: a90ea52e-9d6c-54bf-8086-7ecb95df770e
+status: experimental
+description: Converted from Sagan rule SID 5003148 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=iamx/
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003148'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Suspicious Win32 User Agent'
+id: 8d5c7740-3717-55a2-a28b-30af44ba932d
+status: experimental
+description: Converted from Sagan rule SID 5003149 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=Win32
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003149'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Suspicious User-Agent (Our_Agent)'
+id: e512c3bb-406f-5a79-a339-f333c8e213f6
+status: experimental
+description: Converted from Sagan rule SID 5003150 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: ' Our_Agent'
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003150'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] suspicious user-agent (REKOM)'
+id: 1dc238eb-eed5-5e71-8270-baf4958d026f
+status: experimental
+description: Converted from Sagan rule SID 5003151 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: GET
+  selection_2:
+    message|contains|cased: requestClientApplication=REKOM
+  selection_3:
+    message|contains|cased: Zscaler
+  selection_4:
+    message|contains|cased: act=Allowed
+  selection_5:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003151'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Suspicious User-Agent Moxilla'
+id: c33ab51b-0dba-509e-b690-f5708d91f57d
+status: experimental
+description: Converted from Sagan rule SID 5003152 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=Moxilla
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003152'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Suspicious User-Agent VCTestClient'
+id: 67a24831-a091-5284-927c-8279330e86c2
+status: experimental
+description: Converted from Sagan rule SID 5003153 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=VCTestClient
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003153'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Suspicious User-Agent PrivacyInfoUpdate'
+id: 25d8b7ee-a5cc-5f57-a668-5c47b1f82f4e
+status: experimental
+description: Converted from Sagan rule SID 5003154 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=PrivacyInfoUpdate
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003154'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Suspicious User-Agent (VMozilla)'
+id: ff7a3915-ecbf-583d-b111-fbb611f3c6ef
+status: experimental
+description: Converted from Sagan rule SID 5003155 (rev 3), file zscaler.rules.
+references:
+  - https://www.microsoft.com/security/portal/Threat/Encyclopedia/Entry.aspx?Name=Worm%3aWin32%2fNeeris.BF
+  - https://www.avira.com/en/support-threats-description/tid/6259/tlang/en
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=VMozilla
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003155'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Suspicious User-Agent Sample'
+id: ed543294-47ca-57d3-aed3-19a8bbe8c484
+status: experimental
+description: Converted from Sagan rule SID 5003156 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=sample
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003156'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Suspicious User-Agent Mozilla/3.0'
+id: c8fbe7ea-2d45-5ac6-bb72-b0bf32befd5c
+status: experimental
+description: Converted from Sagan rule SID 5003157 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: "requestClientApplication=Mozilla/3.0\r\n"
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003157'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Optimum Installer User-Agent IE6 on Windows XP'
+id: 1ea1607c-1c5c-592c-b15d-f040e11a68f0
+status: experimental
+description: Converted from Sagan rule SID 5003158 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=IE6 on Windows XP
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003158'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] suspicious User Agent (Lotto)'
+id: ea53073d-73a5-5a36-8bc2-444dee0aec42
+status: experimental
+description: Converted from Sagan rule SID 5003159 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=Lotto
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003159'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Suspicious User-Agent String (AskPartnerCobranding)'
+id: 817fab18-27c8-59e5-92eb-5f35cbb1b7e2
+status: experimental
+description: Converted from Sagan rule SID 5003160 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=AskPartner
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003160'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Backdoor.Win32.Vertexbot.A User-Agent (VERTEXNET)'
+id: 5658c027-c406-5e22-a9fd-df08f4429922
+status: experimental
+description: Converted from Sagan rule SID 5003161 (rev 3), file zscaler.rules.
+references:
+  - https://www.symantec.com/business/security_response/writeup.jsp?docid=2011-032315-2902-99&tabid=2
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=VERTEXNET
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003161'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] suspicious user agent string (changhuatong)'
+id: 91196eb8-6b26-5d45-9b3e-e82e271df1ea
+status: experimental
+description: Converted from Sagan rule SID 5003162 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: "requestClientApplication=changhuatong\r\n"
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003162'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] suspicious user agent string (CholTBAgent)'
+id: 9e384ae2-e8f0-5811-bb40-12f20129f267
+status: experimental
+description: Converted from Sagan rule SID 5003163 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=CholTBAgent
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003163'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Suspicious user agent (mdms)'
+id: 7a3a2206-e880-5dac-9c3b-35698ccbf34e
+status: experimental
+description: Converted from Sagan rule SID 5003164 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: GET
+  selection_2:
+    message|contains|cased: "requestClientApplication=mdms\r\n"
+  selection_3:
+    message|contains|cased: Zscaler
+  selection_4:
+    message|contains|cased: act=Allowed
+  selection_5:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003164'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Suspicious user agent (asd)'
+id: 0e9212f5-ae29-5d6e-8108-3c5e68099539
+status: experimental
+description: Converted from Sagan rule SID 5003165 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: GET
+  selection_2:
+    message|contains|cased: "requestClientApplication=asd\r\n"
+  selection_3:
+    message|contains|cased: Zscaler
+  selection_4:
+    message|contains|cased: act=Allowed
+  selection_5:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003165'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Suspicious User-Agent SimpleClient 1.0'
+id: 76f500f6-5ada-591e-a85d-0480202a929d
+status: experimental
+description: Converted from Sagan rule SID 5003166 (rev 3), file zscaler.rules.
+references:
+  - https://www.fortiguard.com/encyclopedia/virus/symbos_sagasi.a!tr.html
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: 'requestClientApplication=SimpleClient '
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5003166'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Known Skunkx DDOS Bot User-Agent Cyberdog'
+id: b5e1e647-c256-5546-8a7b-b1662f4a5fc9
+status: experimental
+description: Converted from Sagan rule SID 5003167 (rev 3), file zscaler.rules.
+references:
+  - https://asert.arbornetworks.com/2011/03/skunkx-ddos-bot-analysis/
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=Cyberdog
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003167'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] EmailSiphon Suspicious User-Agent Inbound'
+id: 066ee5a9-15ee-52e5-a7dd-4dd82fa94c87
+status: experimental
+description: Converted from Sagan rule SID 5003168 (rev 4), file zscaler.rules.
+references:
+  - https://www.useragentstring.com/pages/useragentstring.php
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=EmailSiphon
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5003168'
+  sagan.rev: '4'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] EmailSiphon Suspicious User-Agent Outbound'
+id: 72db75b5-df2e-5026-955b-6c1f1ff1c4dd
+status: experimental
+description: Converted from Sagan rule SID 5003169 (rev 3), file zscaler.rules.
+references:
+  - https://www.useragentstring.com/pages/useragentstring.php
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=EmailSiphon
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5003169'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Binget PHP Library User Agent Outbound'
+id: 35e1f1cb-c9b9-512c-9d59-07be2cb47215
+status: experimental
+description: Converted from Sagan rule SID 5003170 (rev 3), file zscaler.rules.
+references:
+  - https://www.bin-co.com/php/scripts/load/
+  - https://www.useragentstring.com/pages/useragentstring.php
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=Binget/
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5003170'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] pxyscand/ Suspicious User Agent Outbound'
+id: ca758d9b-cd45-51ec-9e95-4ff2a8a91ca8
+status: experimental
+description: Converted from Sagan rule SID 5003171 (rev 3), file zscaler.rules.
+references:
+  - https://www.useragentstring.com/pages/useragentstring.php
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=pxyscand/
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5003171'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] PyCurl Suspicious User Agent Outbound'
+id: 25305d07-1666-5eff-87d3-e23fc0774d25
+status: experimental
+description: Converted from Sagan rule SID 5003172 (rev 3), file zscaler.rules.
+references:
+  - https://www.useragentstring.com/pages/useragentstring.php
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=PyCurl
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5003172'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Atomic_Email_Hunter User-Agent Inbound'
+id: c8ffe3e8-80d9-5c74-a0c6-7897c65d7a7e
+status: experimental
+description: Converted from Sagan rule SID 5003173 (rev 4), file zscaler.rules.
+references:
+  - https://www.useragentstring.com/pages/useragentstring.php
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=Atomic_Email_Hunter/
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5003173'
+  sagan.rev: '4'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Atomic_Email_Hunter User-Agent Outbound'
+id: e50244c0-9a32-5efc-8021-03a6ab564b86
+status: experimental
+description: Converted from Sagan rule SID 5003174 (rev 3), file zscaler.rules.
+references:
+  - https://www.useragentstring.com/pages/useragentstring.php
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=Atomic_Email_Hunter/
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5003174'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Win32/OnLineGames User-Agent (Revolution Win32)'
+id: 478563d3-d918-5142-9961-7dac996f6e63
+status: experimental
+description: Converted from Sagan rule SID 5003176 (rev 3), file zscaler.rules.
+references:
+  - https://threatexpert.com/report.aspx?md5=1431f4ab4bbe3ad1087eb14cf4d7dff9
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=Revolution
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003176'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Trojan Downloader User-Agent BGroom'
+id: 4403df81-769c-50d7-ae55-821f6c462f68
+status: experimental
+description: Converted from Sagan rule SID 5003177 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=BGroom
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003177'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Trojan Downloader User-Agent (Tiny)'
+id: f3304cc2-2ec8-5a64-986a-7910dd205c3e
+status: experimental
+description: Converted from Sagan rule SID 5003178 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: "requestClientApplication=tiny\r\n"
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003178'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Suspicious User-Agent (adlib)'
+id: fc3d328e-eaff-59f2-8c78-33ec8d1c9789
+status: experimental
+description: Converted from Sagan rule SID 5003179 (rev 3), file zscaler.rules.
+references:
+  - https://blog.trendmicro.com/connections-between-droiddreamlight-and-droidkungfu/
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  filter_1:
+    message|contains|cased: econtrolsystems
+  selection_2:
+    message|contains|cased: requestClientApplication=adlib/
+  selection_3:
+    message|contains|cased: Zscaler
+  selection_4:
+    message|contains|cased: act=Allowed
+  selection_5:
+    appname|cased: CEF
+  condition: selection_2 and selection_3 and selection_4 and selection_5 and not filter_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003179'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] W32/Kazy User-Agent (Windows NT 5.1 - space infront of semi-colon'
+id: 76765e28-6348-5a85-960a-81a1bb6faf71
+status: experimental
+description: Converted from Sagan rule SID 5003180 (rev 4), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=Mozilla/5.0 (Windows NT 5.1 ; v.
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003180'
+  sagan.rev: '4'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] W32/Renos.Downloader User Agent zeroup'
+id: 57442af7-72d9-5b6e-99a2-f6d714479f46
+status: experimental
+description: Converted from Sagan rule SID 5003181 (rev 3), file zscaler.rules.
+references:
+  - https://www.f-secure.com/v-descs/trojan_w32_renos_h.shtml
+  - 35ba53f6aeb6b38c1107018f271189af
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=zeroup
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003181'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Suspicious User-Agent (DownloadMR)'
+id: ef0d8ae6-fb7c-5089-ba78-fa342a4a4ff6
+status: experimental
+description: Converted from Sagan rule SID 5003182 (rev 3), file zscaler.rules.
+references:
+  - https://www.virustotal.com/en/file/93236b781e147e3ac983be1374a5f807fabd27ee2b92e6d99e293a6eb070ac2b/analysis/
+  - 0da0d8e664f44400c19898b4c9e71456
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains: requestClientApplication=DownloadMR
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003182'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] User-Agent (ChilkatUpload)'
+id: 03ed55f1-2097-53e1-a87b-0674eae8a11f
+status: experimental
+description: Converted from Sagan rule SID 5003183 (rev 3), file zscaler.rules.
+references:
+  - https://chilkatsoft.com
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains: requestClientApplication=ChilkatUpload
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003183'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Suspicious user agent (Google page)'
+id: 9d37dec0-ada2-59f3-96a6-2c41d951f174
+status: experimental
+description: Converted from Sagan rule SID 5003184 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains: requestClientApplication=Google page
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003184'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] FOCA User-Agent'
+id: e38cabae-727d-5c10-836e-e84de9042c1c
+status: experimental
+description: Converted from Sagan rule SID 5003185 (rev 3), file zscaler.rules.
+references:
+  - https://blog.bannasties.com/2013/08/vulnerability-scans/
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: "requestClientApplication=FOCA\r\n"
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5003185'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] MSF Meterpreter Default User Agent'
+id: 67a9cfcb-5fbb-5df6-a4ff-a04a69788a66
+status: experimental
+description: Converted from Sagan rule SID 5003186 (rev 3), file zscaler.rules.
+references:
+  - https://blog.didierstevens.com/2015/03/16/quickpost-metasploit-user-agent-strings
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: "requestClientApplication=Mozilla/4.0 (compatible; MSIE 6.1; Windows NT)\r\
+      \n"
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5003186'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] WildTangent User-Agent (WT Games App)'
+id: e729e3bd-5ae0-564f-a352-732c8558f9bd
+status: experimental
+description: Converted from Sagan rule SID 5003187 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: 'requestClientApplication=WT Games App '
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5003187'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] BLEXBot User-Agent'
+id: a7819947-7543-508d-a8cc-204251c259ac
+status: experimental
+description: Converted from Sagan rule SID 5003188 (rev 4), file zscaler.rules.
+references:
+  - https://webmeup.com/about.html
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=Mozilla/5.0 (compatible; BLEXBot/
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.misc-activity
+custom_attributes:
+  sagan.sid: '5003188'
+  sagan.rev: '4'
+  sagan.source_file: zscaler.rules
+  rsigma.suppress: 5m
+---
+title: '[ZSCALER] Microsoft Edge on Windows 10 SET'
+id: 58995fb2-0d2b-5344-b7b0-83b5cc4ab242
+status: experimental
+description: Converted from Sagan rule SID 5003189 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=Windows NT 10.
+  selection_2:
+    message|contains|cased: Edge/12.
+  selection_3:
+    message|contains|cased: Zscaler
+  selection_4:
+    message|contains|cased: act=Allowed
+  selection_5:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.misc-activity
+custom_attributes:
+  sagan.sid: '5003189'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Fake Opera 8.11 UA related to Trojan Activity'
+id: 36142fc1-9646-5c85-9ee7-d9f3793dc575
+status: experimental
+description: Converted from Sagan rule SID 5003190 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: "requestClientApplication=opera/8.11\r\n"
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003190'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Gator Agent Traffic'
+id: b0a58d60-08ba-55ab-ac30-6236035dcc3b
+status: experimental
+description: Converted from Sagan rule SID 5003191 (rev 3), file zscaler.rules.
+references:
+  - https://doc.emergingthreats.net/2000026
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=Gator
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5003191'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] ISearchTech.com XXXPornToolbar Activity (IST)'
+id: cc9b33a9-32b3-59d0-ada5-a2fdc622e7e2
+status: experimental
+description: Converted from Sagan rule SID 5003192 (rev 3), file zscaler.rules.
+references:
+  - https://www.isearchtech.com
+  - https://doc.emergingthreats.net/2001493
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=IST
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003192'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Better Internet Spyware User-Agent (poller)'
+id: f43afcd5-7fe4-526a-8ea1-0438e9233bc4
+status: experimental
+description: Converted from Sagan rule SID 5003193 (rev 3), file zscaler.rules.
+references:
+  - https://doc.emergingthreats.net/2002005
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=Poller
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003193'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] SideStep User-Agent'
+id: 1fac96c5-ed24-58b3-b172-251eacb59bf9
+status: experimental
+description: Converted from Sagan rule SID 5003194 (rev 3), file zscaler.rules.
+references:
+  - https://doc.emergingthreats.net/2002078
+  - https://github.com/chetan51/sidestep/
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=SideStep
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.misc-activity
+custom_attributes:
+  sagan.sid: '5003194'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] 180 Solutions (Zango Installer) User Agent'
+id: 46be4d50-5047-5e22-a27c-757eafba7d58
+status: experimental
+description: Converted from Sagan rule SID 5003195 (rev 3), file zscaler.rules.
+references:
+  - https://doc.emergingthreats.net/2003062
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=SAIv
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003195'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Suspicious User-Agent Fragment (WORKED)'
+id: 7366a695-87f6-5112-8013-da71fbfb542a
+status: experimental
+description: Converted from Sagan rule SID 5003196 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    message|contains|cased: requestClientApplication=WORKED
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003196'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Detected known Malware Category'
+id: df03d7e5-bbb3-523c-915e-2f348e7c37bb
+status: experimental
+description: Converted from Sagan rule SID 5003197 (rev 3), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  filter_1:
+    message|contains|cased: cs4=Clean Transaction
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  selection_4:
+    appname|cased: CEF
+  condition: selection_2 and selection_3 and selection_4 and not filter_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003197'
+  sagan.rev: '3'
+  sagan.source_file: zscaler.rules
+---
+title: '[ZSCALER] Detected known Threat Name'
+id: 49885024-072d-5c70-ac3c-99353b4e830d
+status: experimental
+description: Converted from Sagan rule SID 5003198 (rev 4), file zscaler.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  filter_1:
+    message|contains|cased: cs5=None
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  filter_4:
+    message|contains|cased: Mobile Device information leakage
+  filter_5:
+    message|contains|cased: Mobile PII Information Leakage
+  selection_6:
+    appname|cased: CEF
+  condition: selection_2 and selection_3 and selection_6 and not (filter_1 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003198'
+  sagan.rev: '4'
+  sagan.source_file: zscaler.rules

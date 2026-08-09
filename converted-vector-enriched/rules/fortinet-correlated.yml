@@ -1,0 +1,639 @@
+title: '[FORTINET-CORRELATED] Login accepted after recon activity'
+id: 91df5c2e-5c1a-51a8-89d1-ead85beb6c49
+name: sagan_5003265
+status: experimental
+description: Converted from Sagan rule SID 5003265 (rev 4), file fortinet-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: 32006 type=
+  selection_2:
+    message|contains|cased: login
+  selection_3:
+    message|contains|cased:
+      - accepted
+      - successfully
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003265'
+  sagan.rev: '4'
+  sagan.source_file: fortinet-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FORTINET-CORRELATED] Login accepted after recon activity (correlated with recon)'
+id: 0dcabfc6-776b-5404-8d1c-a85ba5ac8a88
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003265
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[FORTINET-CORRELATED] Login accepted after honeypot activity'
+id: e26de619-a413-57db-bc9f-a07238239ee2
+name: sagan_5003266
+status: experimental
+description: Converted from Sagan rule SID 5003266 (rev 4), file fortinet-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: 32006 type=
+  selection_2:
+    message|contains|cased: login
+  selection_3:
+    message|contains|cased:
+      - accepted
+      - successfully
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003266'
+  sagan.rev: '4'
+  sagan.source_file: fortinet-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FORTINET-CORRELATED] Login accepted after honeypot activity (correlated with honeypot)'
+id: a623b364-94f1-5aaf-a4be-a2e54231e167
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003266
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[FORTINET-CORRELATED] Login accepted after exploit attempt'
+id: 3a269e4c-fb2e-56a8-8a96-c7abf6a84ba7
+name: sagan_5003267
+status: experimental
+description: Converted from Sagan rule SID 5003267 (rev 4), file fortinet-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: 32006 type=
+  selection_2:
+    message|contains|cased: login
+  selection_3:
+    message|contains|cased:
+      - accepted
+      - successfully
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003267'
+  sagan.rev: '4'
+  sagan.source_file: fortinet-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FORTINET-CORRELATED] Login accepted after exploit attempt (correlated with exploit_attempt)'
+id: 1ef78e8a-cbad-56dc-a40c-273ada4e4b10
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003267
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[FORTINET-CORRELATED] Login accepted brute force activity'
+id: a235e336-6928-5710-8831-7356120ae4ad
+status: experimental
+description: Converted from Sagan rule SID 5003268 (rev 4), file fortinet-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: 32006 type=
+  selection_2:
+    message|contains|cased: login
+  selection_3:
+    message|contains|cased:
+      - accepted
+      - successfully
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003268'
+  sagan.rev: '4'
+  sagan.source_file: fortinet-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FORTINET-CORRELATED] Administrator Login after recon activity'
+id: 88d1813e-c7b3-51d3-8015-8cc6fd8fbafb
+name: sagan_5003269
+status: experimental
+description: Converted from Sagan rule SID 5003269 (rev 3), file fortinet-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: 32001 type=
+  selection_2:
+    message|contains|cased: logged in
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003269'
+  sagan.rev: '3'
+  sagan.source_file: fortinet-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FORTINET-CORRELATED] Administrator Login after recon activity (correlated with recon)'
+id: 6b9d43bf-9816-568e-a6cb-f4d9108f187b
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003269
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[FORTINET-CORRELATED] Administrator Login after honeypot activity'
+id: 204616c4-2f97-5497-a6d7-205677e7e006
+name: sagan_5003270
+status: experimental
+description: Converted from Sagan rule SID 5003270 (rev 3), file fortinet-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: 32001 type=
+  selection_2:
+    message|contains|cased: logged in
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003270'
+  sagan.rev: '3'
+  sagan.source_file: fortinet-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FORTINET-CORRELATED] Administrator Login after honeypot activity (correlated with honeypot)'
+id: e455bc9b-85df-51e2-ae4f-5424de2fc47f
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003270
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[FORTINET-CORRELATED] Administrator Login after exploit attempt'
+id: c2d57135-e29b-59c9-970f-908820be6a8b
+name: sagan_5003271
+status: experimental
+description: Converted from Sagan rule SID 5003271 (rev 3), file fortinet-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: 32001 type=
+  selection_2:
+    message|contains|cased: logged in
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003271'
+  sagan.rev: '3'
+  sagan.source_file: fortinet-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FORTINET-CORRELATED] Administrator Login after exploit attempt (correlated with exploit_attempt)'
+id: aee5a80a-649e-5aee-8124-29c8728c28e2
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003271
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[FORTINET-CORRELATED] Administrator Login after brute force activity'
+id: c3fbaebc-49da-582a-aa4a-4f048b5b41e9
+name: sagan_5003272
+status: experimental
+description: Converted from Sagan rule SID 5003272 (rev 3), file fortinet-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: 32001 type=
+  selection_2:
+    message|contains|cased: logged in
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003272'
+  sagan.rev: '3'
+  sagan.source_file: fortinet-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FORTINET-CORRELATED] Administrator Login after brute force activity (correlated with brute_force)'
+id: 9ca94311-5b31-57a6-9150-435a768fc365
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003272
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[FORTINET-CORRELATED] Admin authentication success after recon activity'
+id: 89b6e579-0c3e-5279-91fa-36e1fd41c976
+name: sagan_5003273
+status: experimental
+description: Converted from Sagan rule SID 5003273 (rev 3), file fortinet-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: 38001 type=
+  selection_2:
+    message|contains|cased: succeeded in authentication
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003273'
+  sagan.rev: '3'
+  sagan.source_file: fortinet-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FORTINET-CORRELATED] Admin authentication success after recon activity (correlated with recon)'
+id: 76f2f569-a1c8-5bd5-93ef-542934d98a0a
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003273
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[FORTINET-CORRELATED] Admin authentication success after honeypot activity'
+id: f64a964e-a625-5f72-b1b0-d1492263ab53
+name: sagan_5003274
+status: experimental
+description: Converted from Sagan rule SID 5003274 (rev 3), file fortinet-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: 38001 type=
+  selection_2:
+    message|contains|cased: succeeded in authentication
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003274'
+  sagan.rev: '3'
+  sagan.source_file: fortinet-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FORTINET-CORRELATED] Admin authentication success after honeypot activity (correlated with honeypot)'
+id: 2873ed05-163e-5ae9-a956-88faaea694f7
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003274
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[FORTINET-CORRELATED] Admin authentication success after exploit attempt'
+id: 3a4afb07-f034-55ea-9a83-afca376f4763
+name: sagan_5003275
+status: experimental
+description: Converted from Sagan rule SID 5003275 (rev 3), file fortinet-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: 38001 type=
+  selection_2:
+    message|contains|cased: succeeded in authentication
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003275'
+  sagan.rev: '3'
+  sagan.source_file: fortinet-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FORTINET-CORRELATED] Admin authentication success after exploit attempt (correlated with exploit_attempt)'
+id: 1f7ce1b6-3d95-5244-ba50-11099362c21a
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003275
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[FORTINET-CORRELATED] Admin authentication success after brute force'
+id: 9b55e10e-b86d-53ce-9ae5-abe13b562c33
+name: sagan_5003276
+status: experimental
+description: Converted from Sagan rule SID 5003276 (rev 3), file fortinet-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: 38001 type=
+  selection_2:
+    message|contains|cased: succeeded in authentication
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003276'
+  sagan.rev: '3'
+  sagan.source_file: fortinet-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FORTINET-CORRELATED] Admin authentication success after brute force (correlated with brute_force)'
+id: 18908ecc-67fc-570c-97e6-3db48a219d90
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003276
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[FORTINET-CORRELATED] SSH traffic detected after recon activity'
+id: b207efea-156a-5aec-ba74-6a2fcd7c8bbe
+name: sagan_5003277
+status: experimental
+description: Converted from Sagan rule SID 5003277 (rev 3), file fortinet-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: ' service=SSH '
+  filter_2:
+    message|contains|cased: duration=0 sentbyte=0 rcvdbyte=0
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003277'
+  sagan.rev: '3'
+  sagan.source_file: fortinet-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FORTINET-CORRELATED] SSH traffic detected after recon activity (correlated with recon)'
+id: 208cfe9a-a0a6-5541-adc1-d5afa4e046ca
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003277
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[FORTINET-CORRELATED] SSH traffic detected after honeypot activity'
+id: d026fdb4-7e9a-5d45-b22b-5dd7e7724f54
+name: sagan_5003278
+status: experimental
+description: Converted from Sagan rule SID 5003278 (rev 3), file fortinet-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: ' service=SSH '
+  filter_2:
+    message|contains|cased: duration=0 sentbyte=0 rcvdbyte=0
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003278'
+  sagan.rev: '3'
+  sagan.source_file: fortinet-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FORTINET-CORRELATED] SSH traffic detected after honeypot activity (correlated with honeypot)'
+id: 20d8f9b4-f9eb-5847-8440-5ff94ef139b0
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003278
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[FORTINET-CORRELATED] SSH traffic detected after exploit attempt'
+id: 0f608eb1-79b6-518e-b3e9-4dcb9879b5fe
+name: sagan_5003279
+status: experimental
+description: Converted from Sagan rule SID 5003279 (rev 3), file fortinet-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: ' service=SSH '
+  filter_2:
+    message|contains|cased: duration=0 sentbyte=0 rcvdbyte=0
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003279'
+  sagan.rev: '3'
+  sagan.source_file: fortinet-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FORTINET-CORRELATED] SSH traffic detected after exploit attempt (correlated with exploit_attempt)'
+id: 7ff1583c-e53d-5a5a-bceb-42f9b467c444
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003279
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[FORTINET-CORRELATED] SSH traffic detected after brute force activity'
+id: cb35449e-6f22-5159-aff7-bb27d3311de3
+name: sagan_5003280
+status: experimental
+description: Converted from Sagan rule SID 5003280 (rev 3), file fortinet-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: ' service=SSH '
+  filter_2:
+    message|contains|cased: duration=0 sentbyte=0 rcvdbyte=0
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003280'
+  sagan.rev: '3'
+  sagan.source_file: fortinet-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FORTINET-CORRELATED] SSH traffic detected after brute force activity (correlated with brute_force)'
+id: 86c111ed-fb64-5974-981e-82fc8ae60f8e
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003280
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high

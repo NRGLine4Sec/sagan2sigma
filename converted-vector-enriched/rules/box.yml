@@ -1,0 +1,837 @@
+title: '[BOX] Admin console used to log in to a managed user''s account'
+id: 35ffd42d-3f0f-5f05-9c27-557532619570
+status: experimental
+description: Converted from Sagan rule SID 5015207 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: ADMIN_LOGIN
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.admin-activity
+custom_attributes:
+  sagan.sid: '5015207'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] When an admin role changes for a user'
+id: 2daf7d75-0417-5c3a-a5da-cb64da2e169a
+status: experimental
+description: Converted from Sagan rule SID 5015208 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: CHANGE_ADMIN_ROLE
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5015208'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] A policy set in the Admin console is triggered'
+id: f3db6aa8-c21b-52d5-a13c-ae6ae0ae4c8b
+status: experimental
+description: Converted from Sagan rule SID 5015210 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: CONTENT_WORKFLOW_ABNORMAL_DOWNLOAD_ACTIVITY
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015210'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] Files Copied in Excess (100/5Mins)'
+id: f0c9196b-1eec-56ea-8d09-4890b66e6fd7
+name: sagan_5015211
+status: experimental
+description: Converted from Sagan rule SID 5015211 (rev 2), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: COPY
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015211'
+  sagan.rev: '2'
+  sagan.source_file: box.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_at=2025_01_14,updated_at=2026_06_16
+---
+title: '[BOX] Files Copied in Excess (100/5Mins) (threshold 100 in 5m)'
+id: df112b87-67d4-5c0d-a710-dd95eff31a90
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5015211
+  group-by:
+    - ip_address
+    - created_by.login
+  timespan: 5m
+  condition:
+    gte: 100
+level: medium
+---
+title: '[BOX] Files Deleted in Excess (50/5Mins)'
+id: ee7f23e1-8c8e-56ae-bbf8-da1b04a3468e
+name: sagan_5015212
+status: experimental
+description: Converted from Sagan rule SID 5015212 (rev 3), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: DELETE
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015212'
+  sagan.rev: '3'
+  sagan.source_file: box.rules
+  rsigma.suppress: 10m
+  sagan.metadata: created_at=2025_01_14,updated_at=2026_06_16
+---
+title: '[BOX] Files Deleted in Excess (50/5Mins) (threshold 50 in 5m)'
+id: 592032fe-016c-5181-9f6b-a59659f5624d
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5015212
+  group-by:
+    - ip_address
+    - created_by.login
+  timespan: 5m
+  condition:
+    gte: 50
+level: medium
+---
+title: '[BOX] Files Downloaded in Excess (50/5Mins)'
+id: 90b1f57f-d0c3-5971-bfd6-36a91220c2f8
+name: sagan_5015213
+status: experimental
+description: Converted from Sagan rule SID 5015213 (rev 2), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: DOWNLOAD
+  filter_3:
+    service_name|cased: CloudAlly
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015213'
+  sagan.rev: '2'
+  sagan.source_file: box.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_at=2025_01_14,updated_at=2026_06_16
+---
+title: '[BOX] Files Downloaded in Excess (50/5Mins) (threshold 50 in 5m)'
+id: 3b5e7959-35b6-5652-b55c-52d6c91be5a5
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5015213
+  group-by:
+    - ip_address
+    - created_by.login
+  timespan: 5m
+  condition:
+    gte: 50
+level: medium
+---
+title: '[BOX] Device Trust check failed'
+id: 78da7c11-e9c3-5d06-9833-68b4d70279fe
+status: experimental
+description: Converted from Sagan rule SID 5015214 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: DEVICE_TRUST_CHECK_FAILED
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5015214'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] Multifactor authentication has been disabled'
+id: 2752e0a3-607c-5ebb-bec7-b3c6adb84eb6
+status: experimental
+description: Converted from Sagan rule SID 5015215 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: DISABLE_MULTI_FACTOR_AUTH
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5015215'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] Device detected by the CrowdStrike Falcon platform'
+id: 1746d5ba-5ab7-5139-a685-90e79d06d53f
+status: experimental
+description: Converted from Sagan rule SID 5015216 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: EDR_CROWDSTRIKE_DEVICE_DETECTED
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5015216'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] Access allowed to a device not identified by the CrowdStrike Falcon platform'
+id: c13b1eeb-fa41-5445-aaf4-83b061d5295e
+status: experimental
+description: Converted from Sagan rule SID 5015217 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: EDR_CROWDSTRIKE_ACCESS_ALLOWED_NO_CROWDSTRIKE_DEVICE
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5015217'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] Access revoked to a device identified by the CrowdStrike Falcon platform'
+id: 207d97d5-3479-52a0-bdf3-6f236ce544dc
+status: experimental
+description: Converted from Sagan rule SID 5015218 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: EDR_CROWDSTRIKE_ACCESS_REVOKED
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5015218'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] Multiple Failed Login Attempts By IP&Username (10/300sec)'
+id: 3843ccce-ba8d-57e4-88c8-2a1042109b26
+name: sagan_5015219
+status: experimental
+description: Converted from Sagan rule SID 5015219 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: FAILED_LOGIN
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5015219'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] Multiple Failed Login Attempts By IP&Username (10/300sec) (threshold 10 in 5m)'
+id: d255cd1d-15e7-582c-8467-fd82f45dfd6d
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5015219
+  group-by:
+    - ip_address
+    - created_by.login
+  timespan: 5m
+  condition:
+    gte: 10
+level: low
+---
+title: '[BOX] Multiple Failed Login Attempts By IP (10/300sec)'
+id: 81209aab-443b-515d-83d3-0d552a007faf
+name: sagan_5015220
+status: experimental
+description: Converted from Sagan rule SID 5015220 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: FAILED_LOGIN
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5015220'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] Multiple Failed Login Attempts By IP (10/300sec) (threshold 10 in 5m)'
+id: 356b86e6-c6f1-5231-893e-8a930bc70904
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5015220
+  group-by:
+    - ip_address
+    - sagan_username
+  timespan: 5m
+  condition:
+    gte: 10
+level: low
+---
+title: '[BOX] File marked as malicious'
+id: 4249fb4e-0f0f-5d3e-a9f0-470f02fd6afe
+status: experimental
+description: Converted from Sagan rule SID 5015221 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: FILE_MARKED_MALICIOUS
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5015221'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] A watermarked file is downloaded'
+id: 047ab25b-dece-5406-a7d4-0e5344de8609
+status: experimental
+description: Converted from Sagan rule SID 5015222 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: FILE_WATERMARKED_DOWNLOAD
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015222'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] A group admin is created'
+id: 998fbf91-bf8e-5430-8442-1b9e8e81fed1
+status: experimental
+description: Converted from Sagan rule SID 5015223 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: GROUP_ADMIN_CREATED
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015223'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] A new group has been created'
+id: a541925c-7b70-54b8-b37c-e1bfe336a497
+status: experimental
+description: Converted from Sagan rule SID 5015224 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: GROUP_CREATION
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015224'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] Successful Login After Brute Force'
+id: dbfdd3a5-decf-5ce1-9c83-2a32b059230c
+name: sagan_5015226
+status: experimental
+description: Converted from Sagan rule SID 5015226 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: LOGIN
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015226'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] Successful Login After Brute Force (correlated with brute-force)'
+id: 85a84750-fce2-5a64-bd69-c94942518aee
+status: experimental
+description: Reconstruction of the Sagan 'brute-force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute-force
+    - sagan_5015226
+  group-by:
+    - ip_address
+  timespan: 1d
+level: medium
+---
+title: '[BOX] New user created'
+id: 7b962d8d-e861-5167-a86b-7675e3f9ed40
+status: experimental
+description: Converted from Sagan rule SID 5015227 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: NEW_USER
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015227'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] An OAuth 2.0 access token has been revoked'
+id: 1430fe65-533e-568c-aab4-bf42a980f742
+status: experimental
+description: Converted from Sagan rule SID 5015228 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: OAUTH2_ACCESS_TOKEN_REVOKE
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015228'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] Shield detected an anomalous download, session, location, or malicious content'
+id: 5759581e-f553-515c-ae57-edf995cd4c34
+status: experimental
+description: Converted from Sagan rule SID 5015229 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: SHIELD_ALERT
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015229'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] End user blocked from downloading a file based on a shield access policy'
+id: b314637a-30ae-5139-a0da-b6acc5c3210c
+status: experimental
+description: Converted from Sagan rule SID 5015230 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: SHIELD_DOWNLOAD_BLOCKED
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015230'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] Access to an external collaboration is blocked'
+id: 4b576b01-af88-5018-b5ac-ab7a9e5aebaf
+status: experimental
+description: Converted from Sagan rule SID 5015231 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: SHIELD_EXTERNAL_COLLAB_ACCESS_BLOCKED
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015231'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] An invite to externally collaborate is blocked'
+id: 62407152-7d41-5828-95d5-4f4be86e0766
+status: experimental
+description: Converted from Sagan rule SID 5015232 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: SHIELD_EXTERNAL_COLLAB_INVITE_BLOCKED
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015232'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] Access to a shared link is blocked'
+id: c8cb8797-5fa9-5e7a-9a48-37209185f49e
+status: experimental
+description: Converted from Sagan rule SID 5015233 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: SHIELD_SHARED_LINK_ACCESS_BLOCKED
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015233'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] Copying items blocked due to information barrier restrictions'
+id: 0e373dec-b343-56c3-bed9-ff266807a2d2
+status: experimental
+description: Converted from Sagan rule SID 5015234 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: SHIELD_INFORMATION_BARRIER_ITEM_COPY_BLOCKED
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015234'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] Transferring items blocked due to information barrier restrictions'
+id: 7c63d9ea-4352-5094-ab05-de7a29b62dba
+status: experimental
+description: Converted from Sagan rule SID 5015235 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: SHIELD_INFORMATION_BARRIER_ITEM_OWNER_TRANSFER_BLOCKED
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015235'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] Suspicious File Uploaded'
+id: b99daa39-c43d-5c1e-b864-1a087d9cf329
+status: experimental
+description: Converted from Sagan rule SID 5015236 (rev 1), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    appname|cased: box-api_data
+  selection_2:
+    event_type|cased: UPLOAD
+  selection_3:
+    source.item_name|contains|cased:
+      - .exe"
+      - .dll"
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015236'
+  sagan.rev: '1'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_09_08

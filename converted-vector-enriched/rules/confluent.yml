@@ -1,0 +1,665 @@
+title: '[CONFLUENT] Authorization to create Kafka Cluster'
+id: 05133463-980d-5bf1-8bc5-6a2e1d7f8848
+status: experimental
+description: Converted from Sagan rule SID 5005921 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: mds.Authorize
+  selection_2:
+    data.authorizationInfo.granted|cased: 'true'
+  selection_3:
+    data.authorizationInfo.operation|cased: CreateCloudCluster
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005921'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+---
+title: '[CONFLUENT] Kafka Successful Authentication'
+id: d3a10125-bf20-51f0-9642-ef9ef0b6e3ad
+status: experimental
+description: Converted from Sagan rule SID 5005922 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.Authentication
+  selection_2:
+    data.result.status|cased: SUCCESS
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005922'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+---
+title: '[CONFLUENT] Kafka Successful Authentication using API Key'
+id: c961fed9-410d-5f4e-bca9-e2c0a9eab41e
+status: experimental
+description: Converted from Sagan rule SID 5005923 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.Authentication
+  selection_2:
+    data.result.status|cased: SUCCESS
+  selection_3:
+    data.authenticationInfo.metadata.mechanism|cased: SASL_SSL/OAUTHBEARER
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005923'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+---
+title: '[CONFLUENT] Kafka Successful Authentication using Interactive Token'
+id: 8840b2d6-d24f-545b-92e8-9e5a02021089
+status: experimental
+description: Converted from Sagan rule SID 5005924 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.Authentication
+  selection_2:
+    data.result.status|cased: SUCCESS
+  selection_3:
+    data.authenticationInfo.metadata.mechanism|cased: SASL_SSL/PLAIN
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005924'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+---
+title: '[CONFLUENT] Kafka Failed Authentication'
+id: 9f970b67-1fd4-5d19-a509-2d3dbc24602b
+status: experimental
+description: Converted from Sagan rule SID 5005925 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.Authentication
+  selection_2:
+    data.result.status|cased: UNAUTHENTICATED
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5005925'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+---
+title: '[CONFLUENT] Kafka Failed Authentication using Interactive Token'
+id: 05b1b57b-d1c6-50e4-82ed-189b792ed1c7
+status: experimental
+description: Converted from Sagan rule SID 5005926 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.Authentication
+  selection_2:
+    data.result.status|cased: UNAUTHENTICATED
+  selection_3:
+    data.authenticationInfo.metadata.mechanism|cased: SASL_SSL/PLAIN
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5005926'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+---
+title: '[CONFLUENT] Kafka Failed Authentication using API Key'
+id: 1e19c624-3380-5cc2-ac07-d63efbb5c6b0
+status: experimental
+description: Converted from Sagan rule SID 5005927 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.Authentication
+  selection_2:
+    data.result.status|cased: UNAUTHENTICATED
+  selection_3:
+    data.authenticationInfo.metadata.mechanism|cased: SASL_SSL/OAUTHBEARER
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5005927'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+---
+title: '[CONFLUENT] Login failure- Brute Force [5/5]'
+id: 82efce8f-03d4-5c43-ab92-1e59326fedaa
+name: sagan_5005928
+status: experimental
+description: Converted from Sagan rule SID 5005928 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.Authentication
+  selection_2:
+    data.result.status|cased: UNAUTHENTICATED
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5005928'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+  rsigma.suppress: 1d
+---
+title: '[CONFLUENT] Login failure- Brute Force [5/5] (threshold 5 in 5m)'
+id: acf58e38-967a-5c3a-98b3-66d2104fe6da
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5005928
+  group-by:
+    - hostname
+  timespan: 5m
+  condition:
+    gte: 5
+level: high
+---
+title: '[CONFLUENT] Kafka Configuration Altered/Updated'
+id: 24165d03-7f1b-5324-beba-a132874b788c
+status: experimental
+description: Converted from Sagan rule SID 5005929 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.AlterConfigs
+  selection_2:
+    data.authorizationInfo.granted|cased: 'true'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5005929'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+---
+title: '[CONFLUENT] Kafka Mirror Topic Properties Altered/Updated'
+id: 57069276-6610-590d-aee8-fa077131a8a1
+status: experimental
+description: Converted from Sagan rule SID 5005930 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.AlterMirrors
+  selection_2:
+    data.authorizationInfo.granted|cased: 'true'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5005930'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+---
+title: '[CONFLUENT] Kafka Broker ACL Created'
+id: e71c54ed-09cc-50f3-9e8e-d2401eb26fe3
+status: experimental
+description: Converted from Sagan rule SID 5005931 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.CreateAcls
+  selection_2:
+    data.authorizationInfo.granted|cased: 'true'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5005931'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+---
+title: '[CONFLUENT] Kafka Cluster Link Created'
+id: 64dcf518-3eda-5619-a5e6-ff09ff05b723
+status: experimental
+description: Converted from Sagan rule SID 5005932 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.CreateClusterLinks
+  selection_2:
+    data.authorizationInfo.granted|cased: 'true'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5005932'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+---
+title: '[CONFLUENT] Kafka Partition Created'
+id: 8f03e5e3-6333-5232-86e3-a9d2e24c0d10
+status: experimental
+description: Converted from Sagan rule SID 5005933 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.CreatePartitions
+  selection_2:
+    data.authorizationInfo.granted|cased: 'true'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5005933'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+---
+title: '[CONFLUENT] Kafka Topic Created'
+id: 5359484a-9a55-5836-9915-b89772623e90
+status: experimental
+description: Converted from Sagan rule SID 5005934 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.CreateTopics
+  selection_2:
+    data.authorizationInfo.granted|cased: 'true'
+  selection_3:
+    data.authorizationInfo.operation|cased: Create
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5005934'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+---
+title: '[CONFLUENT] Specific Kafka Topic Created'
+id: 49efaa4f-3655-51d7-8965-13e22950e7f9
+status: experimental
+description: Converted from Sagan rule SID 5005935 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.CreateTopics
+  selection_2:
+    data.authorizationInfo.granted|cased: 'true'
+  selection_3:
+    data.authorizationInfo.operation|cased: DescribeConfigs
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5005935'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+---
+title: '[CONFLUENT] Specific Kafka Topic Creation Not Allowed'
+id: c1e8c84f-4962-5667-9ab4-2dc42aca6c34
+status: experimental
+description: Converted from Sagan rule SID 5005936 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.CreateTopics
+  selection_2:
+    data.authorizationInfo.granted|cased: 'false'
+  selection_3:
+    data.authorizationInfo.operation|cased: Create
+  selection_4:
+    data.authorizationInfo.superUserAuthorization|cased: 'false'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5005936'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+---
+title: '[CONFLUENT] Kafka Broker ACL Deleted'
+id: 0911d4a9-30bd-5384-8c56-473dc049a608
+status: experimental
+description: Converted from Sagan rule SID 5005937 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.DeleteAcls
+  selection_2:
+    data.authorizationInfo.granted|cased: 'true'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5005937'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+---
+title: '[CONFLUENT] Kafka Cluster Link Deleted'
+id: 200bf002-475a-518c-a91c-52dfd05bf65b
+status: experimental
+description: Converted from Sagan rule SID 5005938 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.DeleteClusterLinks
+  selection_2:
+    data.authorizationInfo.granted|cased: 'true'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5005938'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+---
+title: '[CONFLUENT] Kafka Group Deleted'
+id: f89ebb8e-6280-51a0-80ca-5c8b371b5364
+status: experimental
+description: Converted from Sagan rule SID 5005939 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.DeleteGroups
+  selection_2:
+    data.authorizationInfo.granted|cased: 'true'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5005939'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+---
+title: '[CONFLUENT] Kafka Record Deleted'
+id: ae132047-cffd-5832-bc8d-3dee4218aa56
+status: experimental
+description: Converted from Sagan rule SID 5005940 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.DeleteRecords
+  selection_2:
+    data.authorizationInfo.granted|cased: 'true'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5005940'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+---
+title: '[CONFLUENT] Kafka Topic Deleted'
+id: 84d29340-ea64-5e0c-9604-1f7e065862d7
+status: experimental
+description: Converted from Sagan rule SID 5005941 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.DeleteTopics
+  selection_2:
+    data.authorizationInfo.granted|cased: 'true'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5005941'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+---
+title: '[CONFLUENT] Kafka Broker Dynamic Configuration Altered'
+id: e62eebb5-cef5-5fb5-a4e0-f25be693c56f
+status: experimental
+description: Converted from Sagan rule SID 5005942 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.IncrementalAlterConfigs
+  selection_2:
+    data.authorizationInfo.granted|cased: 'true'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5005942'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+---
+title: '[CONFLUENT] Kafka Broker Dynamic Configuration Altered (SuperUser)'
+id: 90e3a5e0-dbdb-5aa9-9e90-6f65887ce019
+status: experimental
+description: Converted from Sagan rule SID 5005943 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.IncrementalAlterConfigs
+  selection_2:
+    data.authorizationInfo.granted|cased: 'true'
+  selection_3:
+    data.authorizationInfo.superUserAuthorization|cased: 'true'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5005943'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+---
+title: '[CONFLUENT] Kafka Broker Dynamic Configuration Altered (ACL)'
+id: 0fca4a30-8cd2-5a72-9a6b-b64ae93839cb
+status: experimental
+description: Converted from Sagan rule SID 5005944 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.IncrementalAlterConfigs
+  selection_2:
+    data.authorizationInfo.granted|cased: 'true'
+  selection_3:
+    data.authorizationInfo.superUserAuthorization|cased: 'false'
+  selection_4:
+    data.authorizationInfo.aclAuthorization.permissionType|cased: ALLOW
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5005944'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules
+---
+title: '[CONFLUENT] Kafka Committed Offset for Partition in Consumer Group Deleted'
+id: 786aa885-4991-539d-a238-7e27f8d6573a
+status: experimental
+description: Converted from Sagan rule SID 5005945 (rev 1), file confluent.rules.
+references:
+  - https://docs.confluent.io/cloud/current/access-management/audit-logging/cloud-audit-log-concepts.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    data.methodName|cased: kafka.OffsetDelete
+  selection_2:
+    data.authorizationInfo.granted|cased: 'true'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5005945'
+  sagan.rev: '1'
+  sagan.source_file: confluent.rules

@@ -1,0 +1,111 @@
+title: '[MONGODB] Auth: Could not find user'
+id: 09839738-776b-528d-b80d-a6c6c2a5ebf9
+status: experimental
+description: Converted from Sagan rule SID 5001604 (rev 2), file mongodb.rules.
+references:
+  - https://www.mongodb.org
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: auth
+  selection_2:
+    message|contains|cased: couldn't
+  selection_3:
+    message|contains|cased: user
+  selection_4:
+    appname|cased: mongod
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001604'
+  sagan.rev: '2'
+  sagan.source_file: mongodb.rules
+---
+title: '[MONGODB] Admin command received from client'
+id: fc8c5099-b297-571e-94d3-d512b4455ef1
+status: experimental
+description: Converted from Sagan rule SID 5001605 (rev 2), file mongodb.rules.
+references:
+  - https://www.mongodb.org
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: admin
+  selection_2:
+    message|contains|cased: received
+  selection_3:
+    message|contains|cased: client
+  selection_4:
+    appname|cased: mongod
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5001605'
+  sagan.rev: '2'
+  sagan.source_file: mongodb.rules
+---
+title: '[MONGODB] Replauthenticate failed: Requires Admin permissions'
+id: 2795fe7e-787a-51d4-b7bb-81c0151a464c
+status: experimental
+description: Converted from Sagan rule SID 5001607 (rev 2), file mongodb.rules.
+references:
+  - https://www.mongodb.org
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: requires admin
+  selection_2:
+    message|contains|cased: failing
+  selection_3:
+    appname|cased: mongod
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-admin
+custom_attributes:
+  sagan.sid: '5001607'
+  sagan.rev: '2'
+  sagan.source_file: mongodb.rules
+---
+title: '[MONGODB] Cannot authenticate to master server'
+id: c34110d5-4381-5732-b012-08738b5d3ab1
+status: experimental
+description: Converted from Sagan rule SID 5001608 (rev 2), file mongodb.rules.
+references:
+  - https://www.mongodb.org
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: can't authenticate
+  selection_2:
+    message|contains|cased: master server
+  selection_3:
+    appname|cased: mongod
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001608'
+  sagan.rev: '2'
+  sagan.source_file: mongodb.rules

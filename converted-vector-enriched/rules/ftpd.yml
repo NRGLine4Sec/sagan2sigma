@@ -1,0 +1,432 @@
+title: '[FTPD] FTP Login refused'
+id: 60670cef-d64d-5177-85b0-a40aecaccdcd
+status: experimental
+description: Converted from Sagan rule SID 5000182 (rev 6), file ftpd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: FTP LOGIN REFUSED
+  selection_2:
+    appname|cased:
+      - ftpd
+      - ftp
+      - FTP
+      - FTPD
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000182'
+  sagan.rev: '6'
+  sagan.source_file: ftpd.rules
+---
+title: '[FTPD] File created'
+id: b39d101a-b9ba-560b-a1c0-3ab6eabdc03f
+status: experimental
+description: Converted from Sagan rule SID 5000183 (rev 7), file ftpd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ' created '
+  selection_2:
+    appname|cased:
+      - ftpd
+      - ftp
+      - FTP
+      - FTPD
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5000183'
+  sagan.rev: '7'
+  sagan.source_file: ftpd.rules
+---
+title: '[FTPD] File deleted'
+id: 2740aba7-9803-5bba-a164-6690db23ba12
+status: experimental
+description: Converted from Sagan rule SID 5000184 (rev 6), file ftpd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ' deleted '
+  selection_2:
+    appname|cased:
+      - ftpd
+      - ftp
+      - FTP
+      - FTPD
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5000184'
+  sagan.rev: '6'
+  sagan.source_file: ftpd.rules
+---
+title: '[FTPD] User uploaded a file to server'
+id: 5aa6c96c-7ada-5cb1-9439-e3396e18bb4e
+status: experimental
+description: Converted from Sagan rule SID 5000185 (rev 6), file ftpd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: IMPORT file
+  selection_2:
+    appname|cased:
+      - ftpd
+      - ftp
+      - FTP
+      - FTPD
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5000185'
+  sagan.rev: '6'
+  sagan.source_file: ftpd.rules
+---
+title: '[FTPD] User downloaded a file to server'
+id: 55126551-1083-501d-baa9-8cfe6963330e
+status: experimental
+description: Converted from Sagan rule SID 5000186 (rev 6), file ftpd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: EXPORT file
+  selection_2:
+    appname|cased:
+      - ftpd
+      - ftp
+      - FTP
+      - FTPD
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5000186'
+  sagan.rev: '6'
+  sagan.source_file: ftpd.rules
+---
+title: '[FTPD] Remote host connected to FTP server'
+id: 1e4ec5ec-8f5a-54be-8ead-1203a42f7efe
+status: experimental
+description: Converted from Sagan rule SID 5000187 (rev 6), file ftpd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|re: FTP LOGIN FROM|connection from|connect from
+  selection_2:
+    appname|cased:
+      - ftpd
+      - ftp
+      - FTP
+      - FTPD
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5000187'
+  sagan.rev: '6'
+  sagan.source_file: ftpd.rules
+---
+title: '[FTPD] Connection blocked by TCP Wrappers'
+id: ebb140b5-7a36-5c8e-95e3-decd69552f68
+status: experimental
+description: Converted from Sagan rule SID 5000188 (rev 6), file ftpd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: refused connect from
+  selection_2:
+    appname|cased:
+      - ftpd
+      - ftp
+      - FTP
+      - FTPD
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.tcp-connection
+custom_attributes:
+  sagan.sid: '5000188'
+  sagan.rev: '6'
+  sagan.source_file: ftpd.rules
+---
+title: '[FTPD] Reverse lookup failure'
+id: f425b9b3-92c5-562f-ad54-1e3eef3822d1
+status: experimental
+description: Converted from Sagan rule SID 5000189 (rev 6), file ftpd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|re: can't verify hostname|gethostbyaddr
+  selection_2:
+    appname|cased:
+      - ftpd
+      - ftp
+      - FTP
+      - FTPD
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5000189'
+  sagan.rev: '6'
+  sagan.source_file: ftpd.rules
+---
+title: '[FTPD] Multiple failed login attempts'
+id: 4d711360-a2b8-5d63-af76-c56beb16a609
+status: experimental
+description: Converted from Sagan rule SID 5000190 (rev 8), file ftpd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: repeated login failures
+  selection_2:
+    appname|cased:
+      - ftpd
+      - ftp
+      - FTP
+      - FTPD
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5000190'
+  sagan.rev: '8'
+  sagan.source_file: ftpd.rules
+---
+title: '[FTPD] User disconnected due to time out'
+id: f2b07ab0-f244-5a39-9443-a7f23fd877ac
+status: experimental
+description: Converted from Sagan rule SID 5000191 (rev 6), file ftpd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: timed out after
+  selection_2:
+    appname|cased:
+      - ftpd
+      - ftp
+      - FTP
+      - FTPD
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5000191'
+  sagan.rev: '6'
+  sagan.source_file: ftpd.rules
+---
+title: '[FTPD] Attempted access to a disabled account'
+id: 8dd712dc-6d1e-5d79-9914-cc056992b362
+status: experimental
+description: Converted from Sagan rule SID 5000192 (rev 6), file ftpd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Account is disabled
+  selection_2:
+    appname|cased:
+      - ftpd
+      - ftp
+      - FTP
+      - FTPD
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000192'
+  sagan.rev: '6'
+  sagan.source_file: ftpd.rules
+---
+title: '[FTPD] Failed authentication - Brute force [5/5]'
+id: 48ff79a1-992c-51bd-adcb-00e2d13ff17c
+name: sagan_5000193
+status: experimental
+description: Converted from Sagan rule SID 5000193 (rev 13), file ftpd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains: failed authentication from
+  selection_2:
+    appname|cased:
+      - ftpd
+      - ftp
+      - FTP
+      - FTPD
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5000193'
+  sagan.rev: '13'
+  sagan.source_file: ftpd.rules
+  rsigma.suppress: 5m
+---
+title: '[FTPD] Failed authentication - Brute force [5/5] (threshold 5 in 5m)'
+id: fc967949-77c5-5c74-9448-fd50ae951b3c
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5000193
+  group-by:
+    - hostname
+  timespan: 5m
+  condition:
+    gte: 5
+level: low
+---
+title: '[FTPD] User logged into an disabled account'
+id: e900fdd4-2684-5ce1-8a8c-37ec048c1ee2
+status: experimental
+description: Converted from Sagan rule SID 5000412 (rev 10), file ftpd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: FTP LOGIN FROM
+  selection_2:
+    message|contains|cased:
+      - ' apache '
+      - ' mysql '
+      - ' www '
+      - ' nobody '
+      - ' nogroup '
+      - ' portmap '
+      - ' named '
+      - ' rpc '
+      - ' mail '
+      - ' ftp '
+      - ' shutdown '
+      - ' halt '
+      - ' daemon '
+      - ' bin '
+      - ' postfix '
+      - ' shell '
+      - ' info '
+      - ' guest '
+      - ' psql '
+      - ' user '
+      - ' users '
+      - ' console '
+      - ' uucp '
+      - ' lp '
+      - ' sync '
+      - ' sshd '
+      - ' cdrom '
+      - ' ossec '
+      - ' sagan '
+  selection_3:
+    appname|cased:
+      - ftpd
+      - ftp
+      - FTP
+      - FTPD
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5000412'
+  sagan.rev: '10'
+  sagan.source_file: ftpd.rules
+---
+title: '[FTPD] FTPCHK3 file accessed by user'
+id: 7844a531-3b91-52dc-84f7-44b58b30d0b6
+status: experimental
+description: Converted from Sagan rule SID 5002950 (rev 5), file ftpd.rules.
+references:
+  - https://blog.ftptoday.com/ftp-password-stealing-malware
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ftpchk3
+  selection_2:
+    message|contains|cased:
+      - CHMOD
+      - DELE
+      - STOR"
+  selection_3:
+    appname|cased:
+      - ftp
+      - ftpd
+      - FTP
+      - FTPD
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002950'
+  sagan.rev: '5'
+  sagan.source_file: ftpd.rules

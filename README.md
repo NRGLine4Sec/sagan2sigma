@@ -22,12 +22,14 @@ behind it, so the gap in your coverage is explicit rather than silent.
 
 ## Just want the rules?
 
-The upstream corpus, already converted with the default profile, is committed
-under [`converted/`](converted). Take the Sigma rules from
-[`converted/rules/`](converted/rules) without installing anything. A scheduled
-job keeps them in step with the upstream corpus, reconverting the whole set on
-each change, and [`converted/VERSIONS.md`](converted/VERSIONS.md) records which
-snapshot they were built from and how old it is.
+The upstream corpus, already converted, is committed so you can take the Sigma
+rules without installing anything: [`converted/`](converted) is the default
+`rsigma-syslog` profile, and [`converted-vector-enriched/`](converted-vector-enriched)
+is the `vector-enriched` profile, which recovers more of the corpus but needs the
+Vector pipeline it ships to run. A scheduled job keeps both in step with the
+upstream corpus, reconverting the whole set on each change, and
+[`converted/VERSIONS.md`](converted/VERSIONS.md) records which snapshot they were
+built from, for both profiles, and how old it is.
 
 ## Install
 

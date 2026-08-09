@@ -1,0 +1,26 @@
+title: '[MSDNS] Suspicious DNS Query for deepseek[.]com'
+id: 12c99e25-830f-5b0f-94f5-69177617cfa8
+status: experimental
+description: Converted from Sagan rule SID 5015934 (rev 1), file msdns-audit.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: msdns
+  selection_2:
+    QueryResponseIndicator|cased: Query
+  selection_3:
+    QuestionName|contains|cased: deepseek.com
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5015934'
+  sagan.rev: '1'
+  sagan.source_file: msdns-audit.rules
+  rsigma.suppress: 6h
+  sagan.metadata: createdOn=2025_04_29,suspiciousToolUse=Chinese

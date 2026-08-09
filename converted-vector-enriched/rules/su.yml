@@ -1,0 +1,29 @@
+title: '[SU] root password change attempt'
+id: 8aa8726c-cd6e-52e2-9e31-adc81a7b3089
+status: experimental
+description: Converted from Sagan rule SID 5002566 (rev 3), file su.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: su
+detection:
+  selection_1:
+    message|contains|cased: passwd
+  selection_2:
+    message|contains|cased: root
+  selection_3:
+    message|contains|cased: HISTORY
+  selection_4:
+    appname|cased:
+      - -su
+      - su
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002566'
+  sagan.rev: '3'
+  sagan.source_file: su.rules

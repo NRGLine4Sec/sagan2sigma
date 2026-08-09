@@ -1,0 +1,627 @@
+title: '[CISCO-CORRELATED] Console login after recon activity'
+id: 2ae61eac-70d1-57dd-a8ee-96f996af168c
+name: sagan_5003210
+status: experimental
+description: Converted from Sagan rule SID 5003210 (rev 3), file cisco-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: '%SEC_LOGIN-5-LOGIN_SUCCESS'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003210'
+  sagan.rev: '3'
+  sagan.source_file: cisco-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[CISCO-CORRELATED] Console login after recon activity (correlated with recon)'
+id: 4af20dd9-e0bf-5282-918a-f53e011fdcd0
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003210
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[CISCO-CORRELATED] Console login after honeypot activity'
+id: 77fbb019-2f1c-51aa-a721-b7f63e046d82
+name: sagan_5003211
+status: experimental
+description: Converted from Sagan rule SID 5003211 (rev 3), file cisco-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: '%SEC_LOGIN-5-LOGIN_SUCCESS'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003211'
+  sagan.rev: '3'
+  sagan.source_file: cisco-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[CISCO-CORRELATED] Console login after honeypot activity (correlated with honeypot)'
+id: 5004d0ab-736c-5cc3-a519-dffee576c0b9
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003211
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[CISCO-CORRELATED] Console login after exploit attempt'
+id: 8ab024d9-c917-5458-9f3c-3985cdb8544f
+name: sagan_5003212
+status: experimental
+description: Converted from Sagan rule SID 5003212 (rev 3), file cisco-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: '%SEC_LOGIN-5-LOGIN_SUCCESS'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003212'
+  sagan.rev: '3'
+  sagan.source_file: cisco-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[CISCO-CORRELATED] Console login after exploit attempt (correlated with exploit_attempt)'
+id: 7074e62a-44fc-548b-b828-a199cbf45579
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003212
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[CISCO-CORRELATED] Console login after brute force activity'
+id: e18f3341-dd04-588b-8749-721c3b87f521
+name: sagan_5003232
+status: experimental
+description: Converted from Sagan rule SID 5003232 (rev 3), file cisco-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: '%SEC_LOGIN-5-LOGIN_SUCCESS'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003232'
+  sagan.rev: '3'
+  sagan.source_file: cisco-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[CISCO-CORRELATED] Console login after brute force activity (correlated with brute_force)'
+id: 135b9e9c-6dc4-52d1-89d1-ea011dec028d
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003232
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[CISCO-CORRELATED] Login permitted after recon activity'
+id: e6fe45b2-ea36-5350-9251-4aadfef55e06
+name: sagan_5003213
+status: experimental
+description: Converted from Sagan rule SID 5003213 (rev 3), file cisco-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: '%*-6-605005'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003213'
+  sagan.rev: '3'
+  sagan.source_file: cisco-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[CISCO-CORRELATED] Login permitted after recon activity (correlated with recon)'
+id: 1a3908dc-13e3-53f7-b14e-88639f01460d
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003213
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[CISCO-CORRELATED] Login permitted after honeypot activity'
+id: 3c30021f-854e-541b-811d-899e2a5da0bb
+name: sagan_5003214
+status: experimental
+description: Converted from Sagan rule SID 5003214 (rev 3), file cisco-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: '%*-6-605005'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003214'
+  sagan.rev: '3'
+  sagan.source_file: cisco-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[CISCO-CORRELATED] Login permitted after honeypot activity (correlated with honeypot)'
+id: a4508899-d551-5623-9065-c9dfcd54beb7
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003214
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[CISCO-CORRELATED] Login permitted after exploit attempt'
+id: 387f4bb6-7de8-5132-bc53-c56a89ddd4b0
+name: sagan_5003215
+status: experimental
+description: Converted from Sagan rule SID 5003215 (rev 3), file cisco-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: '%*-6-605005'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003215'
+  sagan.rev: '3'
+  sagan.source_file: cisco-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[CISCO-CORRELATED] Login permitted after exploit attempt (correlated with exploit_attempt)'
+id: 7d792611-d0f0-5cce-b6cf-4e525f92a760
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003215
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[CISCO-CORRELATED] Login permitted after brute force activity'
+id: c78b4e44-4a30-58c4-90f3-d369f24d14d3
+name: sagan_5003233
+status: experimental
+description: Converted from Sagan rule SID 5003233 (rev 3), file cisco-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: '%*-6-605005'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003233'
+  sagan.rev: '3'
+  sagan.source_file: cisco-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[CISCO-CORRELATED] Login permitted after brute force activity (correlated with brute_force)'
+id: 5e210923-8306-53eb-9ebd-4db7396d99ae
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003233
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[CISCO-CORRELATED] VPN login after recon activity'
+id: 94e0bea7-6e7f-58f1-a2f4-9e67824ccfd2
+name: sagan_5003216
+status: experimental
+description: Converted from Sagan rule SID 5003216 (rev 3), file cisco-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased:
+      - '%*-6-716001'
+      - '%*-6-716038'
+      - '%*-6-734001'
+      - '%*-6-722022'
+      - '%*-6-722023'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003216'
+  sagan.rev: '3'
+  sagan.source_file: cisco-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[CISCO-CORRELATED] VPN login after recon activity (correlated with recon)'
+id: 264d081c-772e-54fa-9091-0dbec728f689
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003216
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[CISCO-CORRELATED] VPN login after honey activity'
+id: 709625f9-5248-58da-8ba9-27704f299fe0
+name: sagan_5003217
+status: experimental
+description: Converted from Sagan rule SID 5003217 (rev 3), file cisco-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased:
+      - '%*-6-716001'
+      - '%*-6-716038'
+      - '%*-6-734001'
+      - '%*-6-722022'
+      - '%*-6-722023'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003217'
+  sagan.rev: '3'
+  sagan.source_file: cisco-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[CISCO-CORRELATED] VPN login after honey activity (correlated with honeypot)'
+id: 986d2c96-dbe1-587f-a489-1d8929490368
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003217
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[CISCO-CORRELATED] VPN login after exploit attempt'
+id: 71a1c5b4-68c0-56cd-91a4-b30273005ea7
+name: sagan_5003218
+status: experimental
+description: Converted from Sagan rule SID 5003218 (rev 3), file cisco-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased:
+      - '%*-6-716001'
+      - '%*-6-716038'
+      - '%*-6-734001'
+      - '%*-6-722022'
+      - '%*-6-722023'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003218'
+  sagan.rev: '3'
+  sagan.source_file: cisco-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[CISCO-CORRELATED] VPN login after exploit attempt (correlated with exploit_attempt)'
+id: d5a03a07-b3cc-591d-a0b1-6db2599e1079
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003218
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[CISCO-CORRELATED] VPN login after brute force activity'
+id: af08f0fd-f036-59e4-82b8-44515e54f93b
+name: sagan_5003234
+status: experimental
+description: Converted from Sagan rule SID 5003234 (rev 3), file cisco-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased:
+      - '%*-6-716001'
+      - '%*-6-716038'
+      - '%*-6-734001'
+      - '%*-6-722022'
+      - '%*-6-722023'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003234'
+  sagan.rev: '3'
+  sagan.source_file: cisco-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[CISCO-CORRELATED] VPN login after brute force activity (correlated with brute_force)'
+id: 816cce45-68bc-567f-bb24-0a1f25dcf943
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003234
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[CISCO-CORRELATED] ACS Login success after recon activity'
+id: 0cbc9977-722d-506e-bd34-eca933c6a7a4
+name: sagan_5003222
+status: experimental
+description: Converted from Sagan rule SID 5003222 (rev 3), file cisco-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: CisACS_01_PassedAuth
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003222'
+  sagan.rev: '3'
+  sagan.source_file: cisco-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[CISCO-CORRELATED] ACS Login success after recon activity (correlated with recon)'
+id: 8e44bdbf-cb36-5d50-99fc-26955705b92a
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003222
+  group-by:
+    - sagan_ip_2
+  timespan: 1d
+level: high
+---
+title: '[CISCO-CORRELATED] ACS Login success after honeypot activity'
+id: 6ac406cc-3575-516a-b82b-b948930f508d
+name: sagan_5003223
+status: experimental
+description: Converted from Sagan rule SID 5003223 (rev 3), file cisco-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: CisACS_01_PassedAuth
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003223'
+  sagan.rev: '3'
+  sagan.source_file: cisco-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[CISCO-CORRELATED] ACS Login success after honeypot activity (correlated with honeypot)'
+id: 50a85dc4-3d3f-53d1-a70c-5d373235f4d9
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003223
+  group-by:
+    - sagan_ip_2
+  timespan: 1d
+level: high
+---
+title: '[CISCO-CORRELATED] ACS Login success after exploit attempt'
+id: 838b88c3-6ad1-5f2d-a1d4-66a286622dad
+name: sagan_5003224
+status: experimental
+description: Converted from Sagan rule SID 5003224 (rev 3), file cisco-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: CisACS_01_PassedAuth
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003224'
+  sagan.rev: '3'
+  sagan.source_file: cisco-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[CISCO-CORRELATED] ACS Login success after exploit attempt (correlated with exploit_attempt)'
+id: d133cbd4-c0e5-5954-b9e2-493710a6cb6f
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003224
+  group-by:
+    - sagan_ip_2
+  timespan: 1d
+level: high
+---
+title: '[CISCO-CORRELATED] ACS Login success brute force activity'
+id: 00561c09-d3ae-56f9-ad02-73c8f618fec1
+name: sagan_5003236
+status: experimental
+description: Converted from Sagan rule SID 5003236 (rev 3), file cisco-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: CisACS_01_PassedAuth
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003236'
+  sagan.rev: '3'
+  sagan.source_file: cisco-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[CISCO-CORRELATED] ACS Login success brute force activity (correlated with brute_force)'
+id: 7a203bdc-a9ba-535c-924a-532c84445328
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003236
+  group-by:
+    - sagan_ip_2
+  timespan: 1d
+level: high

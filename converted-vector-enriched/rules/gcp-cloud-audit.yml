@@ -1,0 +1,1473 @@
+title: '[GCP] Instance - Access Configuration Added'
+id: 62d66d80-bedb-5055-84e1-abef20ffdd0c
+status: experimental
+description: Converted from Sagan rule SID 5005994 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: '"method":"compute.instances.addAccessConfig"'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5005994'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Suspicious Login'
+id: f554bf57-a1e4-5a8e-983f-b4d3f1ef9af1
+status: experimental
+description: Converted from Sagan rule SID 5005999 (rev 3), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: google.login.LoginService.suspiciousLogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5005999'
+  sagan.rev: '3'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Firewall Policy - List Associations'
+id: fecd4afb-091a-5249-a652-8b4252d23a7b
+status: experimental
+description: Converted from Sagan rule SID 5006002 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: '"method":"compute.firewallPolicies.listAssociations"'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006002'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Firewall Policy - Rule Added'
+id: 35ff4885-76e7-5683-a6ec-2f0a03409d7e
+status: experimental
+description: Converted from Sagan rule SID 5006003 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: '"method":"compute.firewallPolicies.addRule"'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006003'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Firewall Policy - Rule Deleted'
+id: 85a61b45-c77c-5ba7-af3b-06d34ed44900
+status: experimental
+description: Converted from Sagan rule SID 5006004 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: '"method":"compute.firewallPolicies.removeRule"'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006004'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Firewall Policy - Rule Patched'
+id: ba4bba21-710c-5369-b53a-b6bf5fd21809
+status: experimental
+description: Converted from Sagan rule SID 5006005 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: '"method":"compute.firewallPolicies.patchRule"'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006005'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Firewall Policy Deleted'
+id: 42c7e57d-b862-5d15-8d30-de45c62c38b0
+status: experimental
+description: Converted from Sagan rule SID 5006006 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: '"method":"compute.firewallPolicies.delete"'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006006'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Firewall Policy Was Patched'
+id: 9210e3b7-9f9c-550f-bcb2-15951da874ab
+status: experimental
+description: Converted from Sagan rule SID 5006007 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: '"method":"compute.firewallPolicies.patch"'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006007'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Instance Deleted'
+id: 9f25af62-e13f-53fd-b47e-f1c7ddb2a079
+status: experimental
+description: Converted from Sagan rule SID 5006008 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: '"method":"compute.instances.delete"'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006008'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Instance - Access Configuration Deleted'
+id: d0936ea2-e874-5e69-a682-2db9fda6a165
+status: experimental
+description: Converted from Sagan rule SID 5006009 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: '"method":"compute.instances.deleteAccessConfig"'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006009'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Instance - Disk Attached'
+id: 4513b1ce-6f53-57c7-b436-f8eb0e060a1a
+status: experimental
+description: Converted from Sagan rule SID 5006010 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: '"method":"compute.instances.attachDisk"'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006010'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Instance - Disk Detached'
+id: a232a323-ae74-5008-8b36-8bb1cdc49fe7
+status: experimental
+description: Converted from Sagan rule SID 5006011 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: '"method":"compute.instances.detachDisk"'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006011'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Instance Started'
+id: 97fcf02c-acfb-519e-97fb-b9789b60bf20
+status: experimental
+description: Converted from Sagan rule SID 5006012 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: '"method":"compute.instances.start"'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006012'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Instance Stopped Gracefully'
+id: 06a3d689-d15c-5f5c-b4d6-8506d68ce50b
+status: experimental
+description: Converted from Sagan rule SID 5006013 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: '"method":"compute.instances.stop"'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006013'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Instance Suspended'
+id: 05f1e4a3-6026-5bda-ad2d-bb898bf15a10
+status: experimental
+description: Converted from Sagan rule SID 5006014 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: '"method":"compute.instances.suspend"'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006014'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Instance Resumed'
+id: 31ca12ab-80c7-5c8b-983e-7485c975b2e4
+status: experimental
+description: Converted from Sagan rule SID 5006015 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: '"method":"compute.instances.resume"'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006015'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Instance Reset'
+id: bb55096d-8695-5f25-8a54-6c630626258a
+status: experimental
+description: Converted from Sagan rule SID 5006016 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: '"method":"compute.instances.reset"'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006016'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Login activity - User Failed MFA'
+id: f590c6b9-bd6b-54b6-9359-b8375b45efae
+status: experimental
+description: Converted from Sagan rule SID 5006017 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: google.login.LoginService.loginVerification
+  selection_3:
+    message|contains|cased: login_challenge_status
+  selection_4:
+    message|contains|cased: '"value":"failed"'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006017'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] *Critical and Call* Email Forwarding Outside Domain'
+id: 04a925e8-8bb6-57ca-a2c5-b9e14be5de5c
+status: experimental
+description: Converted from Sagan rule SID 5006018 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: google.login.LoginService.emailForwardingOutOfDomain
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006018'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Account Recovery Email Change'
+id: 309c1470-4763-593c-8fc7-2df2d24aeff4
+status: experimental
+description: Converted from Sagan rule SID 5006019 (rev 3), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: google.login.LoginService.recoveryEmailEdit
+  filter_3:
+    message|contains|cased: 'sid:'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006019'
+  sagan.rev: '3'
+  sagan.source_file: gcp-cloud-audit.rules
+  sagan.metadata: updatedOn=2026_04_08
+---
+title: '[GCP] Account Recovery Phone Change'
+id: ad4b381a-3939-572d-86c1-ccd50ed6d916
+status: experimental
+description: Converted from Sagan rule SID 5006020 (rev 3), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: google.login.LoginService.recoveryPhoneEdit
+  filter_3:
+    message|contains|cased: 'sid:'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006020'
+  sagan.rev: '3'
+  sagan.source_file: gcp-cloud-audit.rules
+  sagan.metadata: updatedOn=2026_04_08
+---
+title: '[GCP] Suspicious Login Blocked'
+id: da271e86-95c5-5995-ba43-2f2f40a732b3
+status: experimental
+description: Converted from Sagan rule SID 5006022 (rev 3), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: google.login.LoginService.suspiciousLogin
+  filter_3:
+    message|contains|cased: 'sid:'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006022'
+  sagan.rev: '3'
+  sagan.source_file: gcp-cloud-audit.rules
+  sagan.metadata: updatedOn=2026_04_08
+---
+title: '[GCP] Potential Government Attack Warning'
+id: c19aa5c9-a280-5735-9550-65ba3174b3d4
+status: experimental
+description: Converted from Sagan rule SID 5006023 (rev 3), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: google.login.LoginService.govAttackWarning
+  filter_3:
+    message|contains|cased: 'sid:'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006023'
+  sagan.rev: '3'
+  sagan.source_file: gcp-cloud-audit.rules
+  sagan.metadata: updatedOn=2026_04_08
+---
+title: '[GCP] User was granted Super Admin Role'
+id: 6d0ed038-1e52-540c-ba9b-952c54371f32
+status: experimental
+description: Converted from Sagan rule SID 5006024 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: google.admin.AdminService.assignRole
+  selection_3:
+    message|contains|cased: _SEED_ADMIN_ROLE
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006024'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Admin activity Detected - User Suspended'
+id: d4d940a4-2057-5ea2-9d7d-3ef6b236a78f
+status: experimental
+description: Converted from Sagan rule SID 5006029 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: google.admin.AdminService.suspendUser
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006029'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Admin activity Detected - Group Setting Changed'
+id: 91b12f27-69ae-5329-8d53-7da6db523773
+status: experimental
+description: Converted from Sagan rule SID 5006527 (rev 3), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: google.admin.AdminService.changeGroupSetting
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006527'
+  sagan.rev: '3'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Admin activity Detected - Group Created'
+id: 99a01992-1cd2-5cb2-91dc-3784b8d3764f
+status: experimental
+description: Converted from Sagan rule SID 5006521 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: google.admin.AdminService.createGroup
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5006521'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Admin activity Detected - Rule Updated'
+id: 42e14400-7ee6-5066-8aa7-9ae23268c258
+status: experimental
+description: Converted from Sagan rule SID 5007685 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    message|contains|cased: google.admin.AdminService.updateRule
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007685'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Google Admin authorizeApiClientAccess event detected'
+id: d6e8c4ed-d0a4-5543-a0f8-12d2b7782d68
+status: experimental
+description: Converted from Sagan rule SID 991003 (rev 1), file gcp-cloud-audit.rules.
+references:
+  - https://www.datadoghq.com/blog/monitoring-gcp-audit-logs/
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.admin.AdminService.authorizeApiClientAccess
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991003'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Google IAM GetServiceAccount event detected'
+id: 8b7225f8-bbae-587c-baea-60d03244ea75
+status: experimental
+description: Converted from Sagan rule SID 991019 (rev 1), file gcp-cloud-audit.rules.
+references:
+  - https://www.datadoghq.com/blog/monitoring-gcp-audit-logs/
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.iam.admin.v1.GetServiceAccount
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991019'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Google IAM ListServiceAccounts event detected'
+id: 62a08c0f-4a7a-5faf-8cdc-2345dbf0aac4
+status: experimental
+description: Converted from Sagan rule SID 991020 (rev 1), file gcp-cloud-audit.rules.
+references:
+  - https://www.datadoghq.com/blog/monitoring-gcp-audit-logs/
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.iam.admin.v1.ListServiceAccounts
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991020'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Google IAM QueryGrantableRoles event detected'
+id: 4d59f932-b498-5b9e-8841-f0f073e6c7a6
+status: experimental
+description: Converted from Sagan rule SID 991021 (rev 1), file gcp-cloud-audit.rules.
+references:
+  - https://www.datadoghq.com/blog/monitoring-gcp-audit-logs/
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.iam.admin.v1.QueryGrantableRoles
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991021'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Google Audit 2svDisable event detected'
+id: 084ae6e5-8889-5273-92e1-d236620fea3c
+status: experimental
+description: Converted from Sagan rule SID 991039 (rev 1), file gcp-cloud-audit.rules.
+references:
+  - https://www.datadoghq.com/blog/monitoring-gcp-audit-logs/
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.login.LoginService.2svDisable
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991039'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Google Audit recoverySecretQaEdit event detected'
+id: a2d7a2f8-c2e4-5573-9058-b09aca647e5e
+status: experimental
+description: Converted from Sagan rule SID 991044 (rev 1), file gcp-cloud-audit.rules.
+references:
+  - https://www.datadoghq.com/blog/monitoring-gcp-audit-logs/
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.login.LoginService.recoverySecretQaEdit
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991044'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Google Audit accountDisabledPasswordLeak event detected'
+id: 480115fc-2cbb-5440-b92f-ddc91615ff85
+status: experimental
+description: Converted from Sagan rule SID 991045 (rev 1), file gcp-cloud-audit.rules.
+references:
+  - https://www.datadoghq.com/blog/monitoring-gcp-audit-logs/
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.login.LoginService.accountDisabledPasswordLeak
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991045'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Risky Sensitive Action Allowed'
+id: 30012978-6e6d-56f1-acf4-e1dabe8d4494
+status: experimental
+description: Converted from Sagan rule SID 991046 (rev 3), file gcp-cloud-audit.rules.
+references:
+  - https://www.datadoghq.com/blog/monitoring-gcp-audit-logs/
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.login.LoginService.riskySensitiveActionAllowed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '991046'
+  sagan.rev: '3'
+  sagan.source_file: gcp-cloud-audit.rules
+  sagan.metadata: updatedOn=20251019
+---
+title: '[GCP] Risky Sensitive Action Blocked'
+id: f8a58d0f-1c5c-5970-879f-d079b3f0bba8
+status: experimental
+description: Converted from Sagan rule SID 991047 (rev 3), file gcp-cloud-audit.rules.
+references:
+  - https://www.datadoghq.com/blog/monitoring-gcp-audit-logs/
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.login.LoginService.riskySensitiveActionBlocked
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '991047'
+  sagan.rev: '3'
+  sagan.source_file: gcp-cloud-audit.rules
+  rsigma.suppress: 1m
+  sagan.metadata: updatedOn=20251019
+---
+title: '[GCP] Google Audit suspiciousLoginLessSecureApp event detected'
+id: 1f319179-b963-540c-8e36-a6abca59e533
+status: experimental
+description: Converted from Sagan rule SID 991049 (rev 1), file gcp-cloud-audit.rules.
+references:
+  - https://www.datadoghq.com/blog/monitoring-gcp-audit-logs/
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.login.LoginService.suspiciousLoginLessSecureApp
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991049'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Google Audit suspiciousProgrammaticLogin event detected'
+id: cb2267ac-f8ae-5475-8888-cd9e822b498c
+status: experimental
+description: Converted from Sagan rule SID 991050 (rev 1), file gcp-cloud-audit.rules.
+references:
+  - https://www.datadoghq.com/blog/monitoring-gcp-audit-logs/
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.login.LoginService.suspiciousProgrammaticLogin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991050'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Google Audit accountDisabledGeneric event detected'
+id: b3cd3a1e-e360-5643-8b31-7d59f9df240a
+status: experimental
+description: Converted from Sagan rule SID 991051 (rev 1), file gcp-cloud-audit.rules.
+references:
+  - https://www.datadoghq.com/blog/monitoring-gcp-audit-logs/
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.login.LoginService.accountDisabledGeneric
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991051'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Google Audit accountDisabledSpammingThroughRelay event detected'
+id: 7f5b506e-f2a4-58c3-87b5-41ecff7ffe5b
+status: experimental
+description: Converted from Sagan rule SID 991052 (rev 1), file gcp-cloud-audit.rules.
+references:
+  - https://www.datadoghq.com/blog/monitoring-gcp-audit-logs/
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.login.LoginService.accountDisabledSpammingThroughRelay
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991052'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Google Audit accountDisabledSpamming event detected'
+id: a166455d-cc80-5e69-b3de-528ad7818e18
+status: experimental
+description: Converted from Sagan rule SID 991053 (rev 1), file gcp-cloud-audit.rules.
+references:
+  - https://www.datadoghq.com/blog/monitoring-gcp-audit-logs/
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.login.LoginService.accountDisabledSpamming
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991053'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Google Audit accountDisabledHijacked event detected'
+id: db0c9216-18a2-5f79-b8f6-2208c03021eb
+status: experimental
+description: Converted from Sagan rule SID 991054 (rev 1), file gcp-cloud-audit.rules.
+references:
+  - https://www.datadoghq.com/blog/monitoring-gcp-audit-logs/
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.login.LoginService.accountDisabledHijacked
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991054'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Google Audit titaniumEnroll event detected'
+id: af3c5772-071e-5546-8de1-841233f211d8
+status: experimental
+description: Converted from Sagan rule SID 991055 (rev 1), file gcp-cloud-audit.rules.
+references:
+  - https://www.datadoghq.com/blog/monitoring-gcp-audit-logs/
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.login.LoginService.titaniumEnroll
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991055'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Google Audit titaniumUnenroll event detected'
+id: 77865e88-b10f-522f-a5db-9100ad23ac82
+status: experimental
+description: Converted from Sagan rule SID 991056 (rev 1), file gcp-cloud-audit.rules.
+references:
+  - https://www.datadoghq.com/blog/monitoring-gcp-audit-logs/
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.login.LoginService.titaniumUnenroll
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991056'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Google Audit Brute Force Attempt [25/5]'
+id: f13b2042-4498-579c-b94a-58a94f701715
+name: sagan_991059
+status: experimental
+description: Converted from Sagan rule SID 991059 (rev 2), file gcp-cloud-audit.rules.
+references:
+  - https://www.datadoghq.com/blog/monitoring-gcp-audit-logs/
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.login.LoginService.loginFailure
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991059'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+  rsigma.suppress: 1h
+  sagan.metadata: updatedOn=2025_08_13
+---
+title: '[GCP] Google Audit Brute Force Attempt [25/5] (threshold 25 in 10m)'
+id: 7605f577-f853-504b-9b4a-92195bee82bb
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_991059
+  group-by:
+    - sagan_ip_1
+    - protoPayload.authenticationInfo.principalEmail
+  timespan: 10m
+  condition:
+    gte: 25
+level: medium
+---
+title: '[GCP] Google Audit Multiple loginChallenge events detected [5/10]'
+id: 41bad043-01ea-52ca-bdd6-37c87116b80c
+name: sagan_991065
+status: experimental
+description: Converted from Sagan rule SID 991065 (rev 2), file gcp-cloud-audit.rules.
+references:
+  - https://www.datadoghq.com/blog/monitoring-gcp-audit-logs/
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.login.LoginService.loginChallenge
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991065'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Google Audit Multiple loginChallenge events detected [5/10] (threshold 5 in 10m)'
+id: 5a871479-2a09-58d3-837c-31cdb2bbf33e
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_991065
+  group-by:
+    - sagan_ip_1
+    - protoPayload.authenticationInfo.principalEmail
+  timespan: 10m
+  condition:
+    gte: 5
+level: medium
+---
+title: '[GCP] Google Audit Login After Brute Force'
+id: 09444738-8d29-5320-9987-264d011e76cc
+name: sagan_991063
+status: experimental
+description: Converted from Sagan rule SID 991063 (rev 2), file gcp-cloud-audit.rules.
+references:
+  - https://www.datadoghq.com/blog/monitoring-gcp-audit-logs/
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.login.LoginService.loginSuccess
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991063'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+  rsigma.suppress: 8h
+  sagan.metadata: updatedOn=2025_08_13
+---
+title: '[GCP] Google Audit Login After Brute Force (correlated with brute_force)'
+id: d009d650-dfe7-5638-bed6-1730a298b0c0
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_991063
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: medium
+---
+title: '[GCP] Google Scratch Codes Generated (Account Recovery)'
+id: eba49a31-32e0-50ef-9c26-a07551fe9d9c
+status: experimental
+description: Converted from Sagan rule SID 991067 (rev 1), file gcp-cloud-audit.rules.
+references:
+  - https://www.datadoghq.com/blog/monitoring-gcp-audit-logs/
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.admin.AdminService.generate2svScratchCodes
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991067'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Google User put in 2-Step Verification Grace Period'
+id: 138c7774-4f78-5e9c-b787-3986a4f746eb
+status: experimental
+description: Converted from Sagan rule SID 991068 (rev 1), file gcp-cloud-audit.rules.
+references:
+  - https://www.datadoghq.com/blog/monitoring-gcp-audit-logs/
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.admin.AdminService.userPutInTwoStepVerificationGracePeriod
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991068'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Google Identity Oauth2 Deny event detected [10/5]'
+id: 16296697-ea42-5597-8dea-3f45c5e9b4bc
+name: sagan_991070
+status: experimental
+description: Converted from Sagan rule SID 991070 (rev 3), file gcp-cloud-audit.rules.
+references:
+  - https://www.datadoghq.com/blog/monitoring-gcp-audit-logs/
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.identity.oauth2.Deny
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991070'
+  sagan.rev: '3'
+  sagan.source_file: gcp-cloud-audit.rules
+  rsigma.suppress: 1h
+---
+title: '[GCP] Google Identity Oauth2 Deny event detected [10/5] (threshold 10 in 5m)'
+id: 65e222f2-b495-5cc6-bc5b-744f78dc1e7f
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_991070
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 10
+level: medium
+---
+title: '[GCP] Google Passkey Enrollment Detected'
+id: b74b36bf-e993-5347-9e7c-df3d3292128b
+status: experimental
+description: Converted from Sagan rule SID 5017818 (rev 1), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.login.LoginService.passkeyEnrolled
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017818'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Google Login Challenge Failed'
+id: 688d8b34-4fad-5bfb-bbd9-5b46edc246c0
+status: experimental
+description: Converted from Sagan rule SID 5017822 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    message|contains|cased: login_challenge_status
+  selection_3:
+    message|contains|cased: failed
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017822'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Google Download User List'
+id: 04195f46-8298-576d-a721-89202fc0be1f
+status: experimental
+description: Converted from Sagan rule SID 5017823 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.admin.AdminService.downloadUserlistCsv
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017823'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] User Unenrolled from Strong Auth'
+id: e570e135-43ca-5557-9aa0-8b74c60b0d7d
+status: experimental
+description: Converted from Sagan rule SID 5017824 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.admin.AdminService.unenrollUserFromStrongAuth
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017824'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Customer Takeout Created'
+id: ed6c66dc-fa1a-501a-a5c6-7f8ddebebcbb
+status: experimental
+description: Converted from Sagan rule SID 5017825 (rev 1), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.admin.AdminService.customerTakeoutCreated
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017825'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Security Investigation Query Initiated'
+id: d36a7140-757e-56c8-b5bd-f175478c1db9
+status: experimental
+description: Converted from Sagan rule SID 5017826 (rev 1), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.admin.AdminService.securityInvestigationQuery
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017826'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Service Acount Key Created'
+id: 4cd201b4-cdc2-5a49-a059-0c28d10eb7d6
+status: experimental
+description: Converted from Sagan rule SID 5017827 (rev 1), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    message|contains|cased: google.iam.admin.v1.CreateServiceAccountKey
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017827'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules

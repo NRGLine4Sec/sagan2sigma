@@ -1,0 +1,136 @@
+title: '[IMAPD] User login failed'
+id: d5a2bf4c-6d01-5d04-bb4c-04ba23d6cf43
+status: experimental
+description: Converted from Sagan rule SID 5000367 (rev 7), file imapd.rules.
+author: sagan2sigma
+logsource:
+  product: imapd
+  service: imap
+detection:
+  selection_1:
+    message|re|i: Login failed user=|AUTHENTICATE LOGIN failure
+  selection_2:
+    appname|cased: imapd*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000367'
+  sagan.rev: '7'
+  sagan.source_file: imapd.rules
+---
+title: '[IMAPD] Successful login'
+id: c4cf98b0-c093-5b02-a4c7-32f87b4cf3d9
+status: experimental
+description: Converted from Sagan rule SID 5000262 (rev 6), file imapd.rules.
+author: sagan2sigma
+logsource:
+  product: imapd
+  service: imap
+detection:
+  selection_1:
+    message|contains|cased: Authenticated user=
+  selection_2:
+    appname|cased: imapd*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5000262'
+  sagan.rev: '6'
+  sagan.source_file: imapd.rules
+---
+title: '[IMAPD] User logout'
+id: 7b23d970-2633-5b2b-938f-a9b261719ce4
+status: experimental
+description: Converted from Sagan rule SID 5000276 (rev 5), file imapd.rules.
+author: sagan2sigma
+logsource:
+  product: imapd
+  service: imap
+detection:
+  selection_1:
+    message|contains|cased: Logout user=
+  selection_2:
+    appname|cased: imapd*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5000276'
+  sagan.rev: '5'
+  sagan.source_file: imapd.rules
+---
+title: '[IMAPD] Exessive login failures'
+id: dce8485d-af3c-545e-b720-7049a6f016d1
+status: experimental
+description: Converted from Sagan rule SID 5001078 (rev 8), file imapd.rules.
+author: sagan2sigma
+logsource:
+  product: imapd
+  service: imap
+detection:
+  selection_1:
+    message|contains|cased: Login excessive login
+  selection_2:
+    appname|cased: imapd*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001078'
+  sagan.rev: '8'
+  sagan.source_file: imapd.rules
+---
+title: '[IMAPD] Brute force attack [5/1]'
+id: bb0f08f2-f565-5e9b-be7b-f079ed2e7a79
+name: sagan_5002947
+status: experimental
+description: Converted from Sagan rule SID 5002947 (rev 4), file imapd.rules.
+author: sagan2sigma
+logsource:
+  product: imapd
+  service: imap
+detection:
+  selection_1:
+    message|re|i: Login failed user=|AUTHENTICATE LOGIN failure
+  selection_2:
+    appname|cased: imapd*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5002947'
+  sagan.rev: '4'
+  sagan.source_file: imapd.rules
+  rsigma.suppress: 5m
+---
+title: '[IMAPD] Brute force attack [5/1] (threshold 5 in 5m)'
+id: 716873ea-6e2e-56b5-9468-96d79bbad206
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5002947
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 5
+level: low

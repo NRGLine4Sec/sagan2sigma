@@ -1,0 +1,278 @@
+title: '[ZINGBOX] Anonymous netbios-ssn login attempt detected'
+id: c50611f3-8c4a-5228-8bbb-86665148d371
+status: experimental
+description: Converted from Sagan rule SID 5004305 (rev 3), file zingbox.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Anonymous netbios-ssn login attempt
+  selection_2:
+    appname|cased: zws
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1040
+  - attack.t1071
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5004305'
+  sagan.rev: '3'
+  sagan.source_file: zingbox.rules
+---
+title: '[ZINGBOX] HTTP connection to risky Internet site detected'
+id: c71eeba2-8999-5c13-8498-e64387ed87c9
+status: experimental
+description: Converted from Sagan rule SID 5004306 (rev 3), file zingbox.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: HTTP connection to risky Internet site detecte
+  selection_2:
+    appname|cased: zws
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1102
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5004306'
+  sagan.rev: '3'
+  sagan.source_file: zingbox.rules
+---
+title: '[ZINGBOX] https connection to risky Internet site detected'
+id: eb633641-465c-5230-8b41-29ca8444404c
+status: experimental
+description: Converted from Sagan rule SID 5004307 (rev 3), file zingbox.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: https connection to risky Internet site detected
+  selection_2:
+    appname|cased: zws
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1573
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5004307'
+  sagan.rev: '3'
+  sagan.source_file: zingbox.rules
+---
+title: '[ZINGBOX] Manufacturer default username and password in inbound http login detected'
+id: 47e3da98-8677-5937-957b-4e4c203f74ee
+status: experimental
+description: Converted from Sagan rule SID 5004308 (rev 3), file zingbox.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Manufacturer default username and password in inbound http login
+  selection_2:
+    appname|cased: zws
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - attack.t1110
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5004308'
+  sagan.rev: '3'
+  sagan.source_file: zingbox.rules
+---
+title: '[ZINGBOX] Risk level increased to Medium'
+id: 5ae0ceb6-e0c0-5a0b-95a5-300978d1f5d4
+status: experimental
+description: Converted from Sagan rule SID 5004309 (rev 4), file zingbox.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Risk level increase
+  selection_2:
+    message|contains|cased: '"label":"updated risk level","value":"Medium"'
+  selection_3:
+    appname|cased: zws
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1059
+  - attack.t1480
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5004309'
+  sagan.rev: '4'
+  sagan.source_file: zingbox.rules
+---
+title: '[ZINGBOX] Risk level increased to High'
+id: e18b37be-7816-570d-bb9d-8e1a29b90255
+status: experimental
+description: Converted from Sagan rule SID 5004310 (rev 4), file zingbox.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Risk level increase
+  selection_2:
+    message|contains|cased: '"label":"updated risk level","value":"High"'
+  selection_3:
+    appname|cased: zws
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1059
+  - attack.t1480
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5004310'
+  sagan.rev: '4'
+  sagan.source_file: zingbox.rules
+---
+title: '[ZINGBOX] Unencrypted sensitive information in HTTP request detected'
+id: a21d2e06-5161-5a3d-a545-753d7e40487a
+status: experimental
+description: Converted from Sagan rule SID 5004311 (rev 3), file zingbox.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Unencrypted sensitive information in HTTP request
+  selection_2:
+    appname|cased: zws
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.t1552
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5004311'
+  sagan.rev: '3'
+  sagan.source_file: zingbox.rules
+---
+title: '[ZINGBOX] Unsecure application usage by camera'
+id: 5dd7cf15-a10a-56f8-98f6-fb8f1426ceff
+status: experimental
+description: Converted from Sagan rule SID 5004312 (rev 3), file zingbox.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Unsecure application usage by camera
+  selection_2:
+    appname|cased: zws
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1123
+  - attack.t1125
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5004312'
+  sagan.rev: '3'
+  sagan.source_file: zingbox.rules
+---
+title: '[ZINGBOX] Unsecured outbound HTTP connections to the Internet detected'
+id: cfbcab7b-e32f-5393-abbd-86415893e49a
+status: experimental
+description: Converted from Sagan rule SID 5004313 (rev 3), file zingbox.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Unsecured outbound HTTP connections to the Internet
+  selection_2:
+    appname|cased: zws
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.t1105
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5004313'
+  sagan.rev: '3'
+  sagan.source_file: zingbox.rules
+---
+title: '[ZINGBOX] Username same as password in FTP login'
+id: 6548f64d-c8f0-52e6-971f-5f276b854f18
+status: experimental
+description: Converted from Sagan rule SID 5004314 (rev 3), file zingbox.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Username same as password in FTP login
+  selection_2:
+    appname|cased: zws
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - attack.t1110
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5004314'
+  sagan.rev: '3'
+  sagan.source_file: zingbox.rules
+---
+title: '[ZINGBOX] Weak Basic Authentication over HTTP detected'
+id: d3b2fbb1-702c-56bb-bf2b-1762359b3caf
+status: experimental
+description: Converted from Sagan rule SID 5004315 (rev 3), file zingbox.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Weak Basic Authentication over HTTP
+  selection_2:
+    appname|cased: zws
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - attack.t1110
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5004315'
+  sagan.rev: '3'
+  sagan.source_file: zingbox.rules

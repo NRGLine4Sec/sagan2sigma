@@ -1,0 +1,87 @@
+title: '[RIVERBED] Administrator Login'
+id: f6b42d35-1fc1-58eb-aa0c-2e86957ef698
+status: experimental
+description: Converted from Sagan rule SID 5002030 (rev 3), file riverbed.rules.
+author: sagan2sigma
+logsource:
+  product: riverbed
+detection:
+  selection_1:
+    message|contains|cased: logged in
+  selection_2:
+    message|contains|cased: session count
+  selection_3:
+    appname|cased: webasd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5002030'
+  sagan.rev: '3'
+  sagan.source_file: riverbed.rules
+---
+title: '[RIVERBED] Administrator Login Failure'
+id: 778ac09d-7aae-508c-ae9f-170c6c34838d
+status: experimental
+description: Converted from Sagan rule SID 5002031 (rev 2), file riverbed.rules.
+author: sagan2sigma
+logsource:
+  product: riverbed
+detection:
+  selection_1:
+    message|contains|cased: password is not recognized
+  selection_2:
+    appname|cased: webasd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-admin
+custom_attributes:
+  sagan.sid: '5002031'
+  sagan.rev: '2'
+  sagan.source_file: riverbed.rules
+---
+title: '[RIVERBED] Administrator Login Failure - Brute Force [5/5]'
+id: 934d2328-542f-5d78-85ae-88c95b956cc4
+name: sagan_5002033
+status: experimental
+description: Converted from Sagan rule SID 5002033 (rev 6), file riverbed.rules.
+author: sagan2sigma
+logsource:
+  product: riverbed
+detection:
+  selection_1:
+    message|contains|cased: password is not recognized
+  selection_2:
+    appname|cased: webasd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5002033'
+  sagan.rev: '6'
+  sagan.source_file: riverbed.rules
+  rsigma.suppress: 5m
+---
+title: '[RIVERBED] Administrator Login Failure - Brute Force [5/5] (threshold 5 in 5m)'
+id: 532f4514-d512-5c73-a6d7-d6fd18149d73
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5002033
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 5
+level: low

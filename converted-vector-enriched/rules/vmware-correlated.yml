@@ -1,0 +1,487 @@
+title: '[VMWARE-CORRELATED] User login successful after recon activity'
+id: 6658d88b-d89c-5751-b657-72944954baae
+name: sagan_5003317
+status: experimental
+description: Converted from Sagan rule SID 5003317 (rev 4), file vmware-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: vmware
+detection:
+  selection_1:
+    message|re|i: Accepted password for|login from
+  selection_2:
+    appname|cased:
+      - vmware-hostd
+      - vmware-authd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003317'
+  sagan.rev: '4'
+  sagan.source_file: vmware-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[VMWARE-CORRELATED] User login successful after recon activity (correlated with recon)'
+id: 78df6f1c-cacf-518c-94d6-f556e523705b
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003317
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[VMWARE-CORRELATED] User login successful after honeypot activity'
+id: a3e6448b-3586-5863-bdcc-43a7e639af8d
+name: sagan_5003318
+status: experimental
+description: Converted from Sagan rule SID 5003318 (rev 4), file vmware-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: vmware
+detection:
+  selection_1:
+    message|re|i: Accepted password for|login from
+  selection_2:
+    appname|cased:
+      - vmware-hostd
+      - vmware-authd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003318'
+  sagan.rev: '4'
+  sagan.source_file: vmware-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[VMWARE-CORRELATED] User login successful after honeypot activity (correlated with honeypot)'
+id: 30136457-3e72-58ce-8bae-2c8c910abc64
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003318
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[VMWARE-CORRELATED] User login successful after exploit attempt'
+id: 186f0854-cc8b-5ac7-9eea-a76df8fd6227
+name: sagan_5003319
+status: experimental
+description: Converted from Sagan rule SID 5003319 (rev 4), file vmware-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: vmware
+detection:
+  selection_1:
+    message|re|i: Accepted password for|login from
+  selection_2:
+    appname|cased:
+      - vmware-hostd
+      - vmware-authd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003319'
+  sagan.rev: '4'
+  sagan.source_file: vmware-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[VMWARE-CORRELATED] User login successful after exploit attempt (correlated with exploit_attempt)'
+id: 5392f02f-a252-5804-8096-9fe23c6393cf
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003319
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[VMWARE-CORRELATED] User login successful after brute force activity'
+id: a43af5cb-344e-51a1-ae37-ba13dffa4f51
+name: sagan_5003320
+status: experimental
+description: Converted from Sagan rule SID 5003320 (rev 3), file vmware-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: vmware
+detection:
+  selection_1:
+    message|re|i: Accepted password for|login from
+  selection_2:
+    appname|cased:
+      - vmware-hostd
+      - vmware-authd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003320'
+  sagan.rev: '3'
+  sagan.source_file: vmware-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[VMWARE-CORRELATED] User login successful after brute force activity (correlated with brute_force)'
+id: 2f8d7677-6697-5c2c-92b3-05a237dfa1df
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003320
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[VMWARE-CORRELATED] User login successful after recon activity'
+id: f61bd633-c62b-5ffe-9ffe-35b06c48aa1e
+name: sagan_5003321
+status: experimental
+description: Converted from Sagan rule SID 5003321 (rev 3), file vmware-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: vmware
+detection:
+  selection_1:
+    message|contains|cased: ' logged in '
+  selection_2:
+    appname|cased: Hostd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003321'
+  sagan.rev: '3'
+  sagan.source_file: vmware-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[VMWARE-CORRELATED] User login successful after recon activity (correlated with recon)'
+id: 0ac4db84-10d0-545d-b5ce-2a6a0b4dcd01
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003321
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[VMWARE-CORRELATED] User login successful after honeypot activity'
+id: 232afa8a-d5b8-5175-ba29-6e686ae0b642
+name: sagan_5003322
+status: experimental
+description: Converted from Sagan rule SID 5003322 (rev 3), file vmware-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: vmware
+detection:
+  selection_1:
+    message|contains|cased: ' logged in '
+  selection_2:
+    appname|cased: Hostd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003322'
+  sagan.rev: '3'
+  sagan.source_file: vmware-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[VMWARE-CORRELATED] User login successful after honeypot activity (correlated with honeypot)'
+id: b7fce9e3-5cf2-553a-9452-cba66b98db5c
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003322
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[VMWARE-CORRELATED] User login successful after exploit attempt'
+id: 483f1457-7ab5-5d80-9ee3-3b6ea750b57b
+name: sagan_5003323
+status: experimental
+description: Converted from Sagan rule SID 5003323 (rev 3), file vmware-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: vmware
+detection:
+  selection_1:
+    message|contains|cased: ' logged in '
+  selection_2:
+    appname|cased: Hostd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003323'
+  sagan.rev: '3'
+  sagan.source_file: vmware-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[VMWARE-CORRELATED] User login successful after exploit attempt (correlated with exploit_attempt)'
+id: 6e784f0e-1fec-5ead-9a39-867f2ff1c842
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003323
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[VMWARE-CORRELATED] User login successful after brute force activity'
+id: fbd498f6-457c-5fe0-ae6c-59eee6b31074
+name: sagan_5003324
+status: experimental
+description: Converted from Sagan rule SID 5003324 (rev 3), file vmware-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: vmware
+detection:
+  selection_1:
+    message|contains|cased: ' logged in '
+  selection_2:
+    appname|cased: Hostd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003324'
+  sagan.rev: '3'
+  sagan.source_file: vmware-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[VMWARE-CORRELATED] User login successful after brute force activity (correlated with brute_force)'
+id: 2cc9e506-7199-5f8f-a04a-9dff8524a446
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003324
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[VMWARE-CORRELATED] User login successful after recon activity'
+id: 4990641c-fcd0-5b9d-ba95-99c2e011bd50
+name: sagan_5003325
+status: experimental
+description: Converted from Sagan rule SID 5003325 (rev 3), file vmware-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: vmware
+detection:
+  selection_1:
+    message|contains|cased: Accepted password
+  selection_2:
+    appname|cased: Hostd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003325'
+  sagan.rev: '3'
+  sagan.source_file: vmware-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[VMWARE-CORRELATED] User login successful after recon activity (correlated with recon)'
+id: 2b0f44b7-f060-5f5c-ae7f-2389cb51a147
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003325
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[VMWARE-CORRELATED] User login successful after honeypot activity'
+id: 50e98edb-347d-504b-9521-ff19c6364abd
+name: sagan_5003326
+status: experimental
+description: Converted from Sagan rule SID 5003326 (rev 3), file vmware-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: vmware
+detection:
+  selection_1:
+    message|contains|cased: Accepted password
+  selection_2:
+    appname|cased: Hostd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003326'
+  sagan.rev: '3'
+  sagan.source_file: vmware-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[VMWARE-CORRELATED] User login successful after honeypot activity (correlated with honeypot)'
+id: 141b585c-451c-56f8-a4cb-6c4a56d2988c
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003326
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[VMWARE-CORRELATED] User login successful after exploit attempt'
+id: 3fc1c138-03fa-5e6e-a123-8317e0f83b0a
+name: sagan_5003327
+status: experimental
+description: Converted from Sagan rule SID 5003327 (rev 3), file vmware-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: vmware
+detection:
+  selection_1:
+    message|contains|cased: Accepted password
+  selection_2:
+    appname|cased: Hostd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003327'
+  sagan.rev: '3'
+  sagan.source_file: vmware-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[VMWARE-CORRELATED] User login successful after exploit attempt (correlated with exploit_attempt)'
+id: 0c6ffbce-3e4e-5a90-9ca8-79f0054c279d
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003327
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[VMWARE-CORRELATED] User login successful after brute force activity'
+id: 5826a74a-5eca-5f5c-822d-7d1f77eefda4
+name: sagan_5003328
+status: experimental
+description: Converted from Sagan rule SID 5003328 (rev 3), file vmware-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: vmware
+detection:
+  selection_1:
+    message|contains|cased: Accepted password
+  selection_2:
+    appname|cased: Hostd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003328'
+  sagan.rev: '3'
+  sagan.source_file: vmware-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[VMWARE-CORRELATED] User login successful after brute force activity (correlated with brute_force)'
+id: 32c3f489-478e-58fe-af17-e50a40a78d56
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003328
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high

@@ -1,0 +1,110 @@
+title: '[FATPIPE] Login Success'
+id: 5d2ddfc2-f6d0-5b2f-b5a8-048432383822
+status: experimental
+description: Converted from Sagan rule SID 5001955 (rev 2), file fatpipe.rules.
+author: sagan2sigma
+logsource:
+  product: fatpipe
+detection:
+  selection_1:
+    message|contains|cased: 'Login: Success'
+  selection_2:
+    appname|cased: xtremed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5001955'
+  sagan.rev: '2'
+  sagan.source_file: fatpipe.rules
+---
+title: '[FATPIPE] Login Success - ADMINISTRATOR'
+id: ccb335b4-7fc1-5a03-9a3e-8e12e0b1d499
+status: experimental
+description: Converted from Sagan rule SID 5001956 (rev 2), file fatpipe.rules.
+author: sagan2sigma
+logsource:
+  product: fatpipe
+detection:
+  selection_1:
+    message|contains|cased: 'Login: Success'
+  selection_2:
+    message|contains|cased: ADMINISTRATOR
+  selection_3:
+    appname|cased: xtremed
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5001956'
+  sagan.rev: '2'
+  sagan.source_file: fatpipe.rules
+---
+title: '[FATPIPE] Login Failed'
+id: d82741fa-b705-57b3-a402-1f6b1bccc46b
+status: experimental
+description: Converted from Sagan rule SID 5001957 (rev 2), file fatpipe.rules.
+author: sagan2sigma
+logsource:
+  product: fatpipe
+detection:
+  selection_1:
+    message|contains|cased: 'Login: Attempt Failed'
+  selection_2:
+    appname|cased: xtremed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-admin
+custom_attributes:
+  sagan.sid: '5001957'
+  sagan.rev: '2'
+  sagan.source_file: fatpipe.rules
+---
+title: '[FATPIPE] Login Failed - Brute Force [5/5]'
+id: 631e539b-bd97-5ce4-9f23-1ed27aaad4fa
+name: sagan_5001958
+status: experimental
+description: Converted from Sagan rule SID 5001958 (rev 7), file fatpipe.rules.
+author: sagan2sigma
+logsource:
+  product: fatpipe
+detection:
+  selection_1:
+    message|contains|cased: 'Login: Attempt Failed'
+  selection_2:
+    appname|cased: xtremed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5001958'
+  sagan.rev: '7'
+  sagan.source_file: fatpipe.rules
+  rsigma.suppress: 5m
+---
+title: '[FATPIPE] Login Failed - Brute Force [5/5] (threshold 5 in 5m)'
+id: b565fab1-0a4d-51ea-a679-5e66a844e25f
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5001958
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 5
+level: low

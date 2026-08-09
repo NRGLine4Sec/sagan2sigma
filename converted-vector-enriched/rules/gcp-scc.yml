@@ -1,0 +1,285 @@
+title: '[GCP-SCC] Allow Open SSH Port'
+id: fc54a6af-a0c5-575f-8d33-731b261bb170
+status: experimental
+description: Converted from Sagan rule SID 5005607 (rev 1), file gcp-scc.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: SeverityLevel
+  selection_2:
+    message|contains|cased: High
+  selection_3:
+    message|contains: allow_open_ssh_port
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5005607'
+  sagan.rev: '1'
+  sagan.source_file: gcp-scc.rules
+---
+title: '[GCP-SCC] Allow Open Firewall'
+id: 2ec4f78d-6f3c-535d-82ff-649afce7b729
+status: experimental
+description: Converted from Sagan rule SID 5005608 (rev 1), file gcp-scc.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: SeverityLevel
+  selection_2:
+    message|contains|cased: High
+  selection_3:
+    message|contains: allow_open_firewall
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5005608'
+  sagan.rev: '1'
+  sagan.source_file: gcp-scc.rules
+---
+title: '[GCP-SCC] Allow Public IP Address'
+id: 058da0d1-13dd-5efd-a6a0-17846932bd44
+status: experimental
+description: Converted from Sagan rule SID 5005609 (rev 1), file gcp-scc.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: SeverityLevel
+  selection_2:
+    message|contains|cased: High
+  selection_3:
+    message|contains: allow_public_ip_address
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5005609'
+  sagan.rev: '1'
+  sagan.source_file: gcp-scc.rules
+---
+title: '[GCP-SCC] Allow RDP Port'
+id: 2b88d048-afe0-5128-a3d0-e84fc17c2db3
+status: experimental
+description: Converted from Sagan rule SID 5005610 (rev 1), file gcp-scc.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: SeverityLevel
+  selection_2:
+    message|contains|cased: High
+  selection_3:
+    message|contains: open_rdp_port
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5005610'
+  sagan.rev: '1'
+  sagan.source_file: gcp-scc.rules
+---
+title: '[GCP-SCC] Allow RDP Port'
+id: db0c84b9-ba75-5295-b13b-9723766a47e4
+status: experimental
+description: Converted from Sagan rule SID 5005611 (rev 1), file gcp-scc.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains|cased: SeverityLevel
+  selection_2:
+    message|contains|cased: High
+  selection_3:
+    message|contains: allow_public_bucket_acl
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5005611'
+  sagan.rev: '1'
+  sagan.source_file: gcp-scc.rules
+---
+title: '[GCP-SCC] Malware: Bad Domain'
+id: 3f2cf107-5e4a-5681-8882-39ac380b5258
+status: experimental
+description: Converted from Sagan rule SID 5005612 (rev 1), file gcp-scc.rules.
+references:
+  - https://cloud.google.com/security-command-center/docs/concepts-event-threat-detection-overview
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains: malware_bad_domain
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5005612'
+  sagan.rev: '1'
+  sagan.source_file: gcp-scc.rules
+---
+title: '[GCP-SCC] Malware: Bad IP'
+id: e42c6e63-2e21-5b33-a9f2-dc832cd0dd35
+status: experimental
+description: Converted from Sagan rule SID 5005613 (rev 1), file gcp-scc.rules.
+references:
+  - https://cloud.google.com/security-command-center/docs/concepts-event-threat-detection-overview
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains: malware_bad_ip
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5005613'
+  sagan.rev: '1'
+  sagan.source_file: gcp-scc.rules
+---
+title: '[GCP-SCC] Cryptomining: Pool Domain'
+id: 82301a52-7021-571f-8bd5-f4cc7a61c62f
+status: experimental
+description: Converted from Sagan rule SID 5005614 (rev 1), file gcp-scc.rules.
+references:
+  - https://cloud.google.com/security-command-center/docs/concepts-event-threat-detection-overview
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains: cryptomining_pool_domain
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5005614'
+  sagan.rev: '1'
+  sagan.source_file: gcp-scc.rules
+---
+title: '[GCP-SCC] Cryptomining: Pool IP'
+id: 4bcda648-dbad-5e3e-b7a0-23be47ab17e2
+status: experimental
+description: Converted from Sagan rule SID 5005615 (rev 1), file gcp-scc.rules.
+references:
+  - https://cloud.google.com/security-command-center/docs/concepts-event-threat-detection-overview
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains: cryptomining_pool_ip
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5005615'
+  sagan.rev: '1'
+  sagan.source_file: gcp-scc.rules
+---
+title: '[GCP-SCC] Brute Force SSH'
+id: f024ba5c-d374-5980-920b-025a057f9e8e
+status: experimental
+description: Converted from Sagan rule SID 5005616 (rev 2), file gcp-scc.rules.
+references:
+  - https://cloud.google.com/security-command-center/docs/concepts-event-threat-detection-overview
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains: brute_force_ssh
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5005616'
+  sagan.rev: '2'
+  sagan.source_file: gcp-scc.rules
+---
+title: '[GCP-SCC] Outgoing DoS'
+id: 2333b6ff-5986-5e96-914a-46a75b23343e
+status: experimental
+description: Converted from Sagan rule SID 5005617 (rev 1), file gcp-scc.rules.
+references:
+  - https://cloud.google.com/security-command-center/docs/concepts-event-threat-detection-overview
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains: outgoing_dos
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5005617'
+  sagan.rev: '1'
+  sagan.source_file: gcp-scc.rules
+---
+title: '[GCP-SCC] IAM: Anomalous Grant'
+id: 66f43a13-8a56-5341-aee7-a3f070863e0a
+status: experimental
+description: Converted from Sagan rule SID 5005618 (rev 1), file gcp-scc.rules.
+references:
+  - https://cloud.google.com/security-command-center/docs/concepts-event-threat-detection-overview
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    message|contains: iam_anomalous_grant
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005618'
+  sagan.rev: '1'
+  sagan.source_file: gcp-scc.rules

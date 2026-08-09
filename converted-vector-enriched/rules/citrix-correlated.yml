@@ -1,0 +1,279 @@
+title: '[CITRIX-CORRELATED] Login after recon activity'
+id: 5e08f030-5571-5286-a26a-155e1a39d61a
+name: sagan_5003228
+status: experimental
+description: Converted from Sagan rule SID 5003228 (rev 4), file citrix-correlated.rules.
+references:
+  - https://support.citrix.com/article/CTX123875
+author: sagan2sigma
+logsource:
+  product: citrix
+detection:
+  selection_1:
+    message|contains|cased: SSLVPN LOGIN
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003228'
+  sagan.rev: '4'
+  sagan.source_file: citrix-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[CITRIX-CORRELATED] Login after recon activity (correlated with recon)'
+id: cea1290c-a6a5-50bd-a45e-65639622c473
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003228
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[CITRIX-CORRELATED] Login after honeypot activity'
+id: 015985ad-aef1-58b3-b60a-4fab416bc4e8
+name: sagan_5003229
+status: experimental
+description: Converted from Sagan rule SID 5003229 (rev 4), file citrix-correlated.rules.
+references:
+  - https://support.citrix.com/article/CTX123875
+author: sagan2sigma
+logsource:
+  product: citrix
+detection:
+  selection_1:
+    message|contains|cased: SSLVPN LOGIN
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003229'
+  sagan.rev: '4'
+  sagan.source_file: citrix-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[CITRIX-CORRELATED] Login after honeypot activity (correlated with honeypot)'
+id: d4f3d4c0-d61b-5efd-aa5c-6355fc6aa274
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003229
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[CITRIX-CORRELATED] Login after exploit attempt'
+id: ce4be01c-16b9-5ff3-a8ff-ffcee1bd5335
+name: sagan_5003230
+status: experimental
+description: Converted from Sagan rule SID 5003230 (rev 4), file citrix-correlated.rules.
+references:
+  - https://support.citrix.com/article/CTX123875
+author: sagan2sigma
+logsource:
+  product: citrix
+detection:
+  selection_1:
+    message|contains|cased: SSLVPN LOGIN
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003230'
+  sagan.rev: '4'
+  sagan.source_file: citrix-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[CITRIX-CORRELATED] Login after exploit attempt (correlated with exploit_attempt)'
+id: d93c1e75-8a29-5aeb-9c97-6a62607307b7
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003230
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[CITRIX-CORRELATED] Login after brute force attempt'
+id: 11fcba7c-4d50-583b-aec3-4368b6014b36
+name: sagan_5003231
+status: experimental
+description: Converted from Sagan rule SID 5003231 (rev 4), file citrix-correlated.rules.
+references:
+  - https://support.citrix.com/article/CTX123875
+author: sagan2sigma
+logsource:
+  product: citrix
+detection:
+  selection_1:
+    message|contains|cased: SSLVPN LOGIN
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003231'
+  sagan.rev: '4'
+  sagan.source_file: citrix-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[CITRIX-CORRELATED] Login after brute force attempt (correlated with brute_force)'
+id: 7d2a5298-db40-586d-a0bb-7067f6093c46
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003231
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[CITRIX-CORRELATED] AAA LOGIN_FAILED after recon activity'
+id: 68cd305e-8089-53b3-be52-036c93cb96e1
+name: sagan_5003238
+status: experimental
+description: Converted from Sagan rule SID 5003238 (rev 4), file citrix-correlated.rules.
+references:
+  - https://support.citrix.com/article/CTX123875
+author: sagan2sigma
+logsource:
+  product: citrix
+detection:
+  selection_1:
+    message|contains|cased: AAA LOGIN_FAILED
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003238'
+  sagan.rev: '4'
+  sagan.source_file: citrix-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[CITRIX-CORRELATED] AAA LOGIN_FAILED after recon activity (correlated with recon)'
+id: a77cb57b-8dd5-5e2e-bb77-2f597d364f8c
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003238
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[CITRIX-CORRELATED] AAA LOGIN_FAILED after honeypot activity'
+id: 75a24976-6e4f-515b-a0e1-25866e904b44
+name: sagan_5003239
+status: experimental
+description: Converted from Sagan rule SID 5003239 (rev 4), file citrix-correlated.rules.
+references:
+  - https://support.citrix.com/article/CTX123875
+author: sagan2sigma
+logsource:
+  product: citrix
+detection:
+  selection_1:
+    message|contains|cased: AAA LOGIN_FAILED
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003239'
+  sagan.rev: '4'
+  sagan.source_file: citrix-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[CITRIX-CORRELATED] AAA LOGIN_FAILED after honeypot activity (correlated with honeypot)'
+id: 14f42031-e1eb-58d1-b415-cd64e2896a18
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003239
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[CITRIX-CORRELATED] AAA LOGIN_FAILED after exploit attempt'
+id: 481e0c07-bccc-57ce-b3a6-ab26ea3336ee
+name: sagan_5003240
+status: experimental
+description: Converted from Sagan rule SID 5003240 (rev 4), file citrix-correlated.rules.
+references:
+  - https://support.citrix.com/article/CTX123875
+author: sagan2sigma
+logsource:
+  product: citrix
+detection:
+  selection_1:
+    message|contains|cased: AAA LOGIN_FAILED
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003240'
+  sagan.rev: '4'
+  sagan.source_file: citrix-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[CITRIX-CORRELATED] AAA LOGIN_FAILED after exploit attempt (correlated with exploit_attempt)'
+id: 01caa3e1-9e45-5a32-950a-65ccee97c944
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003240
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high

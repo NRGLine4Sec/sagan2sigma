@@ -1,0 +1,239 @@
+title: '[PROFTPD] Attempt to login as a non-existent user [Brute Force] [5/5]'
+id: c3dfffdc-3c51-52a5-8fdc-6198791883a0
+name: sagan_5000080
+status: experimental
+description: Converted from Sagan rule SID 5000080 (rev 11), file proftpd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: proftpd
+detection:
+  selection_1:
+    message|contains|cased: no such user
+  selection_2:
+    appname|cased: proftpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5000080'
+  sagan.rev: '11'
+  sagan.source_file: proftpd.rules
+  rsigma.suppress: 5m
+---
+title: '[PROFTPD] Attempt to login as a non-existent user [Brute Force] [5/5] (threshold 5 in 5m)'
+id: 915641a2-b00f-57fb-a3a7-8c4976fb91ce
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5000080
+  group-by:
+    - sagan_ip_3
+  timespan: 5m
+  condition:
+    gte: 5
+level: low
+---
+title: '[PROFTPD] Login failed accessing the FTP server [Brute Force] [5/5]'
+id: 75b62233-dfad-5cae-899a-954df423cd67
+name: sagan_5000081
+status: experimental
+description: Converted from Sagan rule SID 5000081 (rev 11), file proftpd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: proftpd
+detection:
+  selection_1:
+    message|re|i: Incorrect password|Login failed
+  selection_2:
+    appname|cased: proftpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5000081'
+  sagan.rev: '11'
+  sagan.source_file: proftpd.rules
+  rsigma.suppress: 5m
+---
+title: '[PROFTPD] Login failed accessing the FTP server [Brute Force] [5/5] (threshold 5 in 5m)'
+id: 11296015-585e-5e0e-8af7-784f030040f5
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5000081
+  group-by:
+    - sagan_ip_3
+  timespan: 5m
+  condition:
+    gte: 5
+level: low
+---
+title: '[PROFTPD] Attempt to bypass firewall - cannot keep state of FTP traffic'
+id: 7483bec1-7981-55bf-bf2d-892d9d0cda30
+status: experimental
+description: Converted from Sagan rule SID 5000085 (rev 3), file proftpd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: proftpd
+detection:
+  selection_1:
+    message|contains|cased: Refused PORT
+  selection_2:
+    appname|cased: proftpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000085'
+  sagan.rev: '3'
+  sagan.source_file: proftpd.rules
+---
+title: '[PROFTPD] Maximum login attempts reached [DoS?]'
+id: 7be202b0-e162-591f-a5f1-543c07018bea
+status: experimental
+description: Converted from Sagan rule SID 5000086 (rev 3), file proftpd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: proftpd
+detection:
+  selection_1:
+    message|contains|cased: Maximum login attempts
+  selection_2:
+    appname|cased: proftpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.successful-dos
+custom_attributes:
+  sagan.sid: '5000086'
+  sagan.rev: '3'
+  sagan.source_file: proftpd.rules
+---
+title: '[PROFTPD] Host name or host address mismatch'
+id: 29c10250-7389-5e30-a8de-e2c6db37faa9
+status: experimental
+description: Converted from Sagan rule SID 5000087 (rev 3), file proftpd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: proftpd
+detection:
+  selection_1:
+    message|re|i: name mismatch|address mismatch
+  selection_2:
+    appname|cased: proftpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000087'
+  sagan.rev: '3'
+  sagan.source_file: proftpd.rules
+---
+title: '[PROFTPD] User logged into an disabled account'
+id: 6f46032a-87fb-5c00-9865-2b31e8eeb7c9
+status: experimental
+description: Converted from Sagan rule SID 5000413 (rev 4), file proftpd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: proftpd
+detection:
+  selection_1:
+    message|contains|cased: Login successful
+  selection_2:
+    message|contains|cased:
+      - apache
+      - mysql
+      - www
+      - nobody
+      - nogroup
+      - portmap
+      - named
+      - rpc
+      - mail
+      - ftp
+      - shutdown
+      - halt
+      - daemon
+      - bin
+      - postfix
+      - shell
+      - info
+      - guest
+      - psql
+      - user
+      - users
+      - console
+      - uucp
+      - lp
+      - sync
+      - sshd
+      - cdrom
+      - ossec
+      - sagan
+  selection_3:
+    appname|cased: sshd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5000413'
+  sagan.rev: '4'
+  sagan.source_file: proftpd.rules
+---
+title: '[PROFTP] FTPCHK3 file accessed by user'
+id: fe03913f-da00-5e87-ac4c-d874938a1843
+status: experimental
+description: Converted from Sagan rule SID 5002951 (rev 4), file proftpd.rules.
+references:
+  - https://blog.ftptoday.com/ftp-password-stealing-malware
+author: sagan2sigma
+logsource:
+  product: linux
+  service: proftpd
+detection:
+  selection_1:
+    message|contains|cased: ftpchk3
+  selection_2:
+    message|contains|cased:
+      - CHMOD
+      - DELE
+      - STOR
+  selection_3:
+    appname|cased: proftpd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002951'
+  sagan.rev: '4'
+  sagan.source_file: proftpd.rules

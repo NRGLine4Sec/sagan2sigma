@@ -1,0 +1,312 @@
+title: '[WINDOWS-CORRELATED] Successful RDP login after brute force activity'
+id: ab5da438-689c-5b40-8761-652e8c733f16
+name: sagan_5002336
+status: experimental
+description: Converted from Sagan rule SID 5002336 (rev 12), file windows-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4624
+      - 528
+      - 540
+  selection_2:
+    message|contains|cased: 'Logon Type: 10 '
+  filter_3:
+    message|contains|cased: 'Source Network Address: 0.0.0.0'
+  selection_4:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5002336'
+  sagan.rev: '12'
+  sagan.source_file: windows-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[WINDOWS-CORRELATED] Successful RDP login after brute force activity (correlated with brute_force)'
+id: 6434a368-6404-582a-9b7f-e71760fb6c67
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5002336
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[WINDOWS-CORRELATED] Successful RDP login after recon activity'
+id: 753d05e8-a25b-5266-ba5f-8f33ed755da2
+name: sagan_5002957
+status: experimental
+description: Converted from Sagan rule SID 5002957 (rev 9), file windows-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4624
+      - 528
+      - 540
+  selection_2:
+    message|contains|cased: 'Logon Type: 10 '
+  filter_3:
+    message|contains|cased: 'Source Network Address: 0.0.0.0'
+  selection_4:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5002957'
+  sagan.rev: '9'
+  sagan.source_file: windows-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[WINDOWS-CORRELATED] Successful RDP login after recon activity (correlated with recon)'
+id: 46adf7ce-4d9c-5a24-931d-743d06789538
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5002957
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[WINDOWS-CORRELATED] Successful RDP login after exploit attempt'
+id: 70984043-dfeb-5aa7-bd12-1f7ebf190bf8
+name: sagan_5002958
+status: experimental
+description: Converted from Sagan rule SID 5002958 (rev 9), file windows-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4624
+      - 528
+      - 540
+  selection_2:
+    message|contains|cased: 'Logon Type: 10 '
+  filter_3:
+    message|contains|cased: 'Source Network Address: 0.0.0.0'
+  selection_4:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5002958'
+  sagan.rev: '9'
+  sagan.source_file: windows-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[WINDOWS-CORRELATED] Successful RDP login after exploit attempt (correlated with exploit_attempt)'
+id: 4c297b89-fa56-5c55-91aa-6c8d7cfc2d1b
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5002958
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[WINDOWS-CORRELATED] Successful RDP login after honeypot activity'
+id: bfcc046c-a8dc-5ece-947a-dcd5288bad7f
+name: sagan_5003341
+status: experimental
+description: Converted from Sagan rule SID 5003341 (rev 6), file windows-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4624
+      - 528
+      - 540
+  selection_2:
+    message|contains|cased: 'Logon Type: 10 '
+  filter_3:
+    message|contains|cased: 'Source Network Address: 0.0.0.0'
+  selection_4:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003341'
+  sagan.rev: '6'
+  sagan.source_file: windows-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[WINDOWS-CORRELATED] Successful RDP login after honeypot activity (correlated with honeypot)'
+id: d619f059-aa15-5f71-a31a-27d0d66a893d
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003341
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[WINDOWS-CORRELATED] WMIC Command Detected [Set Flexbit]'
+id: 1a08d333-215e-5f5b-b5d0-e5d37c314a2b
+status: experimental
+description: Converted from Sagan rule SID 5003385 (rev 7), file windows-correlated.rules.
+references:
+  - https://findingbad.blogspot.cz/2017/12/a-few-of-my-favorite-things-continued.html
+  - https://thedfirreport.com/2025/01/27/cobalt-strike-and-a-pair-of-socks-lead-to-lockbit-ransomware/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4688
+  selection_3:
+    message|contains|cased: \\WMIC.exe Token
+  filter_4:
+    message|contains|cased: '$ Account Domain:'
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5003385'
+  sagan.rev: '7'
+  sagan.source_file: windows-correlated.rules
+---
+title: '[WINDOWS-CORRELATED] Possible remote WMIC command execution'
+id: a83010c6-b12e-5b62-9aca-43db822fd73e
+name: sagan_5003386
+status: experimental
+description: Converted from Sagan rule SID 5003386 (rev 11), file windows-correlated.rules.
+references:
+  - https://thedfirreport.com/2025/01/27/cobalt-strike-and-a-pair-of-socks-lead-to-lockbit-ransomware/
+  - https://findingbad.blogspot.cz/2017/12/a-few-of-my-favorite-things-continued.html
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4624
+  selection_3:
+    message|contains|cased: 'Logon Type: 3'
+  filter_4:
+    message|contains|cased: '$ Account Domain:'
+  filter_5:
+    message|contains|cased:
+      - 'Source Network Address: -'
+      - 'Source Network Address: 127.0.0.1'
+      - 'Source Network Address: ::1'
+  condition: selection_1 and selection_2 and selection_3 and not (filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-login
+custom_attributes:
+  sagan.sid: '5003386'
+  sagan.rev: '11'
+  sagan.source_file: windows-correlated.rules
+---
+title: '[WINDOWS-CORRELATED] Possible remote WMIC command execution (correlated with client.process.wmic)'
+id: f6a1684f-4fdc-5057-9308-fe05c006e234
+status: experimental
+description: Reconstruction of the Sagan 'client.process.wmic' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_client_process_wmic
+    - sagan_5003386
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: medium
+---
+title: '[WINDOWS-CORRELATED] WmiPrvse Detected After Possible Remote WMIC Command'
+id: a77d2163-e1e6-5c7e-b7cb-68f727c27a4e
+name: sagan_5015944
+status: experimental
+description: Converted from Sagan rule SID 5015944 (rev 1), file windows-correlated.rules.
+references:
+  - https://findingbad.blogspot.cz/2017/12/a-few-of-my-favorite-things-continued.html
+  - https://thedfirreport.com/2025/01/27/cobalt-strike-and-a-pair-of-socks-lead-to-lockbit-ransomware/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4688
+  selection_3:
+    message|contains|cased: \\WmiPrvse.exe Token
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5015944'
+  sagan.rev: '1'
+  sagan.source_file: windows-correlated.rules
+---
+title: '[WINDOWS-CORRELATED] WmiPrvse Detected After Possible Remote WMIC Command (correlated with server.process.wmiprvse)'
+id: 4b151b7e-97ad-5268-a12b-31ded032340f
+status: experimental
+description: Reconstruction of the Sagan 'server.process.wmiprvse' bit. The window comes from the expire
+  time declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_server_process_wmiprvse
+    - sagan_5015944
+  group-by:
+    - hostname
+  timespan: 1d
+level: high

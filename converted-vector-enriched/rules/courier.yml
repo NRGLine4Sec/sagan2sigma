@@ -1,0 +1,68 @@
+title: '[COURIER] Authentication failure'
+id: 983a15b6-102c-5315-ade3-a485dd701ce4
+status: experimental
+description: Converted from Sagan rule SID 5000259 (rev 4), file courier.rules.
+author: sagan2sigma
+logsource:
+  product: courier
+  service: imap
+detection:
+  selection_1:
+    message|contains|cased: LOGIN FAILED,
+  selection_2:
+    appname|cased:
+      - imapd
+      - imapd-sslcourierlogger
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000259'
+  sagan.rev: '4'
+  sagan.source_file: courier.rules
+---
+title: '[COURIER] Authentication failure - Brute Force [5/5]'
+id: f023c896-96b7-5ad0-9ca2-79c1ddbc2963
+name: sagan_5002398
+status: experimental
+description: Converted from Sagan rule SID 5002398 (rev 7), file courier.rules.
+author: sagan2sigma
+logsource:
+  product: courier
+  service: imap
+detection:
+  selection_1:
+    message|contains|cased: LOGIN FAILED,
+  selection_2:
+    appname|cased:
+      - imapd
+      - imapd-sslcourierlogger
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5002398'
+  sagan.rev: '7'
+  sagan.source_file: courier.rules
+  rsigma.suppress: 5m
+---
+title: '[COURIER] Authentication failure - Brute Force [5/5] (threshold 5 in 5m)'
+id: 54cdb14d-2337-5f43-9f34-e12688a700fa
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5002398
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 5
+level: low

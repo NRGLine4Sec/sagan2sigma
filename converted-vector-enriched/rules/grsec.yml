@@ -1,0 +1,45 @@
+title: '[GRSEC] Time set'
+id: 9e4d18e2-20f1-5be5-affe-4df750774cc2
+status: experimental
+description: Converted from Sagan rule SID 5000029 (rev 6), file grsec.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: time set by
+  selection_2:
+    appname|cased: grsec
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5000029'
+  sagan.rev: '6'
+  sagan.source_file: grsec.rules
+---
+title: '[GRSEC] Denied resource overstep'
+id: 3111e1e7-9fdf-5565-8fd6-1da3371a729a
+status: experimental
+description: Converted from Sagan rule SID 5000042 (rev 7), file grsec.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: denied resource overstep
+  selection_2:
+    appname|cased: grsec
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5000042'
+  sagan.rev: '7'
+  sagan.source_file: grsec.rules

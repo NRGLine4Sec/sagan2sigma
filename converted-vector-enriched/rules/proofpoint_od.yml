@@ -1,0 +1,216 @@
+title: '[PROOFPOINT-OD] The access module''s exestrip rule has quarantined/rejected an email'
+id: 431ef624-d684-5b41-9902-fb1c0704e906
+status: experimental
+description: Converted from Sagan rule SID 5014148 (rev 1), file proofpoint_od.rules.
+references:
+  - https://docs.cyderes.cloud/files/proofpoint-on-demand-log-api-rev-c.pdf
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_od_data
+  selection_2:
+    filter.quarantine.module|cased: access
+  selection_3:
+    filter.quarantine.rule|cased: exestrip
+  selection_4:
+    filter.quarantine.type|cased: quarantine
+  selection_5:
+    filter.disposition|cased: discard
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014148'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint_od.rules
+---
+title: '[PROOFPOINT-OD] The access module''s verified rule has quarantined/rejected an email'
+id: a2ef3f48-e588-510a-a195-5a91c82dca06
+status: experimental
+description: Converted from Sagan rule SID 5014149 (rev 1), file proofpoint_od.rules.
+references:
+  - https://docs.cyderes.cloud/files/proofpoint-on-demand-log-api-rev-c.pdf
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_od_data
+  selection_2:
+    filter.quarantine.module|cased: access
+  selection_3:
+    filter.quarantine.rule|cased: verified
+  selection_4:
+    filter.quarantine.type|cased: quarantine
+  selection_5:
+    filter.disposition|cased: discard
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014149'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint_od.rules
+---
+title: '[PROOFPOINT-OD] The av module''s inbound_protected rule has quarantined/rejected an email'
+id: d7ae20b2-dfba-5e0d-aa77-c213340fd9ad
+status: experimental
+description: Converted from Sagan rule SID 5014150 (rev 1), file proofpoint_od.rules.
+references:
+  - https://docs.cyderes.cloud/files/proofpoint-on-demand-log-api-rev-c.pdf
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_od_data
+  selection_2:
+    filter.quarantine.module|cased: av
+  selection_3:
+    filter.quarantine.rule|cased: inbound_protected
+  selection_4:
+    filter.quarantine.type|cased: quarantine
+  selection_5:
+    filter.disposition|cased: discard
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014150'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint_od.rules
+---
+title: '[PROOFPOINT-OD] The regulation module''s dlp_attachments rule has quarantined/rejected an email'
+id: 2760788a-7f5c-55d5-b440-eb07baf0e680
+status: experimental
+description: Converted from Sagan rule SID 5014154 (rev 1), file proofpoint_od.rules.
+references:
+  - https://docs.cyderes.cloud/files/proofpoint-on-demand-log-api-rev-c.pdf
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_od_data
+  selection_2:
+    filter.quarantine.module|cased: regulation
+  selection_3:
+    filter.quarantine.rule|cased: dlp_attachments
+  selection_4:
+    filter.quarantine.type|cased: dlp
+  selection_5:
+    filter.disposition|cased: discard
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014154'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint_od.rules
+---
+title: '[PROOFPOINT-OD] The regulation module''s dlp_attachments rule has quarantined/rejected an email'
+id: d4a3c8f9-3e76-5945-8858-8f89591d467d
+status: experimental
+description: Converted from Sagan rule SID 5014155 (rev 1), file proofpoint_od.rules.
+references:
+  - https://docs.cyderes.cloud/files/proofpoint-on-demand-log-api-rev-c.pdf
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_od_data
+  selection_2:
+    filter.quarantine.module|cased: regulation
+  selection_3:
+    filter.quarantine.rule|cased: dlp_attachments
+  selection_4:
+    filter.quarantine.type|cased: dlp
+  selection_5:
+    filter.disposition|cased: reject
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014155'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint_od.rules
+---
+title: '[PROOFPOINT-OD] The regulation module''s hipaa_probable rule has quarantined/rejected an email'
+id: 6f1a3350-5cf2-532f-9d4a-f8bce9974eb4
+status: experimental
+description: Converted from Sagan rule SID 5014156 (rev 1), file proofpoint_od.rules.
+references:
+  - https://docs.cyderes.cloud/files/proofpoint-on-demand-log-api-rev-c.pdf
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_od_data
+  selection_2:
+    filter.quarantine.module|cased: regulation
+  selection_3:
+    filter.quarantine.rule|cased: hipaa_probable
+  selection_4:
+    filter.quarantine.type|cased: dlp
+  selection_5:
+    filter.disposition|cased: reject
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014156'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint_od.rules
+---
+title: '[PROOFPOINT-OD] The sandbox module''s threat rule has quarantined/rejected an email'
+id: de381134-03b4-5156-b2a4-2a7a60d0b816
+status: experimental
+description: Converted from Sagan rule SID 5014158 (rev 1), file proofpoint_od.rules.
+references:
+  - https://docs.cyderes.cloud/files/proofpoint-on-demand-log-api-rev-c.pdf
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_od_data
+  selection_2:
+    filter.quarantine.module|cased: sandbox
+  selection_3:
+    filter.quarantine.rule|cased: threat
+  selection_4:
+    filter.quarantine.type|cased: quarantine
+  selection_5:
+    filter.disposition|cased: discard
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014158'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint_od.rules

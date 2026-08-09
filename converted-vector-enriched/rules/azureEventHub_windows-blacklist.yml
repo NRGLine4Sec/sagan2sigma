@@ -1,0 +1,215 @@
+title: '[WINDOWS-BLACKLIST] RDP / Logon type 10 from a blacklisted IP'
+id: 80f9d765-06b1-54cf-bff2-05ec21c68336
+status: experimental
+description: Converted from Sagan rule SID 5008572 (rev 7), file azureEventHub_windows-blacklist.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID:
+      - 4624
+      - 528
+      - 540
+  selection_3:
+    RenderedDescription|contains|cased: 'Logon Type: 10 '
+  selection_4:
+    sagan_denylist_1: true
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5008572'
+  sagan.rev: '7'
+  sagan.source_file: azureEventHub_windows-blacklist.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5002215
+---
+title: '[WINDOWS-BLACKLIST] Login failure from a blacklisted IP [0/5]'
+id: b40d4c79-0a2f-5150-89ed-d4ada4698608
+status: experimental
+description: Converted from Sagan rule SID 5008573 (rev 6), file azureEventHub_windows-blacklist.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 529
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5008573'
+  sagan.rev: '6'
+  sagan.source_file: azureEventHub_windows-blacklist.rules
+  rsigma.suppress: 5m
+  sagan.metadata: created_on=2022_11_22,old_sid=5002216
+---
+title: '[WINDOWS-BLACKLIST] Login failure from a blacklisted IP [Time restriction] [0/5]'
+id: 8da63ddf-89a8-59b1-9a93-801d663431ac
+status: experimental
+description: Converted from Sagan rule SID 5008574 (rev 8), file azureEventHub_windows-blacklist.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 530
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5008574'
+  sagan.rev: '8'
+  sagan.source_file: azureEventHub_windows-blacklist.rules
+  rsigma.suppress: 5m
+  sagan.metadata: created_on=2022_11_22,old_sid=5002217
+---
+title: '[WINDOWS-BLACKLIST] Login failure from blacklisted IP - Account currently disabled [0/5]'
+id: e55dd464-00e7-53f1-b852-cf6dc77f7b65
+status: experimental
+description: Converted from Sagan rule SID 5008575 (rev 5), file azureEventHub_windows-blacklist.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 531
+  filter_2:
+    RenderedDescription|contains|cased: 'User Name: Domain:'
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_3 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5008575'
+  sagan.rev: '5'
+  sagan.source_file: azureEventHub_windows-blacklist.rules
+  rsigma.suppress: 5m
+  sagan.metadata: created_on=2022_11_22,old_sid=5002218
+---
+title: '[WINDOWS-BLACKLIST] Login failure from blacklisted IP - Specified account expired'
+id: 61df695e-e7cb-5c3f-bda3-7018d5632ba5
+status: experimental
+description: Converted from Sagan rule SID 5008576 (rev 5), file azureEventHub_windows-blacklist.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 532
+  selection_2:
+    appname|cased: '*Security*'
+  selection_3:
+    sagan_denylist_1: true
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5008576'
+  sagan.rev: '5'
+  sagan.source_file: azureEventHub_windows-blacklist.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5002219
+---
+title: '[WINDOWS-BLACKLIST] Login failure from blacklisted IP - User not allowed to login at this computer'
+id: 42629b78-f02a-5857-9ffa-982ba2b8e43b
+status: experimental
+description: Converted from Sagan rule SID 5008577 (rev 5), file azureEventHub_windows-blacklist.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 533
+  selection_2:
+    appname|cased: '*Security*'
+  selection_3:
+    sagan_denylist_1: true
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5008577'
+  sagan.rev: '5'
+  sagan.source_file: azureEventHub_windows-blacklist.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5002220
+---
+title: '[WINDOWS-BLACKLIST] Login failure from blacklisted IP - Account locked [0/1]'
+id: 79030b55-f246-54e5-bdaa-00ca22787424
+status: experimental
+description: Converted from Sagan rule SID 5008578 (rev 6), file azureEventHub_windows-blacklist.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 539
+  filter_2:
+    RenderedDescription|contains|cased: 'User Name: Domain: Logon Type:'
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_3 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5008578'
+  sagan.rev: '6'
+  sagan.source_file: azureEventHub_windows-blacklist.rules
+  rsigma.suppress: 5m
+  sagan.metadata: created_on=2022_11_22,old_sid=5002222
+---
+title: '[WINDOWS-BLACKLIST] Windows DC Logon Failure from blacklisted IP'
+id: eba3f3bf-fafe-58a6-90d6-0dd4022eaec8
+status: experimental
+description: Converted from Sagan rule SID 5008579 (rev 6), file azureEventHub_windows-blacklist.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 675
+      - 676
+      - 681
+  selection_2:
+    appname|cased: '*Security*'
+  selection_3:
+    sagan_denylist_1: true
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5008579'
+  sagan.rev: '6'
+  sagan.source_file: azureEventHub_windows-blacklist.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5002223

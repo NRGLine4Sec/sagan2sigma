@@ -1,0 +1,49 @@
+title: '[CITRIX-BLACKLIST] Login from outside blacklisted IP'
+id: 9453088a-08fd-5e80-a03d-c313e9faf066
+status: experimental
+description: Converted from Sagan rule SID 5002261 (rev 3), file citrix-blacklist.rules.
+references:
+  - https://support.citrix.com/article/CTX123875
+author: sagan2sigma
+logsource:
+  product: citrix
+detection:
+  selection_1:
+    message|contains|cased: SSLVPN LOGIN
+  selection_2:
+    sagan_denylist_1: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002261'
+  sagan.rev: '3'
+  sagan.source_file: citrix-blacklist.rules
+---
+title: '[CITRIX-BLACKLIST] SSLVPN HTTPREQUEST from blacklisted IP'
+id: 09d2ce75-43b4-5e6d-be29-eff82d74ec18
+status: experimental
+description: Converted from Sagan rule SID 5002285 (rev 4), file citrix-blacklist.rules.
+references:
+  - https://support.citrix.com/article/CTX123875
+author: sagan2sigma
+logsource:
+  product: citrix
+detection:
+  selection_1:
+    message|contains|cased: SSLVPN HTTPREQUEST
+  selection_2:
+    sagan_denylist_1: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002285'
+  sagan.rev: '4'
+  sagan.source_file: citrix-blacklist.rules

@@ -1,0 +1,5852 @@
+title: '[Barracuda] WAF Blocklist Policy Matched'
+id: 3bb4de8e-9d00-51eb-9ed7-a8a441a9f14b
+status: experimental
+description: Converted from Sagan rule SID 5015592 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: grip-validation-failed
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015592'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Brute force from All Sources'
+id: 5f6af26a-cf0f-5664-b7a1-dfd2dcbfcaca
+status: experimental
+description: Converted from Sagan rule SID 5015593 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: BRUTE_FORCE_FROM_ALL_SOURCES
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015593'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Brute force from IP'
+id: 6a7b59e7-7005-5f3f-8eb5-03f3d8e8f0d5
+status: experimental
+description: Converted from Sagan rule SID 5015594 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: BRUTE_FORCE_FROM_IP
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015594'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Unanswered CAPTCHA Limit Exceeded'
+id: 6588c7ee-a778-5822-a0dc-f73e942e0cc9
+status: experimental
+description: Converted from Sagan rule SID 5015595 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: DDOS_CAPTCHA_MAX_UNANSWERED_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015595'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF CAPTCHA Attempt Limit Exceeded'
+id: 1e0bb6a9-8ce1-5198-b6c6-81f4f3186311
+status: experimental
+description: Converted from Sagan rule SID 5015596 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: DDOS_CAPTCHA_TRIES_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015596'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF CAPTCHA Session Limit Exceeded'
+id: f092a665-959e-56da-871c-72ecfdb4cfd9
+status: experimental
+description: Converted from Sagan rule SID 5015597 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: DDOS_CAPTCHA_MAX_NODES_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015597'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF GeoIP Policy Matched'
+id: af4cdccd-680d-569e-a259-18852746ab62
+status: experimental
+description: Converted from Sagan rule SID 5015598 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: GEO_IP_BLOCKED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015598'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Invalid URL Character Set'
+id: c42ad50d-4d7f-5baa-aa14-eafcd31f486c
+status: experimental
+description: Converted from Sagan rule SID 5015599 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: INVALID_URL_CHARSET
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015599'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Rate Control Intrusion'
+id: 1acc1918-dbef-54c4-828c-134912f219ee
+status: experimental
+description: Converted from Sagan rule SID 5015600 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: RATE_CONTROL_INTRUSION
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015600'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Secure Browsing'
+id: d140eb11-aa96-5137-b94f-05dac07ee6d8
+status: experimental
+description: Converted from Sagan rule SID 5015601 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: SECURE_BROWSING
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015601'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Slowloris Attack'
+id: 86687cf7-7e21-56ce-a9be-854f9be81f72
+status: experimental
+description: Converted from Sagan rule SID 5015602 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: SLOWLORIS_ATTACK
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015602'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Slow Read Attack'
+id: 6bab75ba-e360-502e-a966-e9d639983e10
+status: experimental
+description: Converted from Sagan rule SID 5015603 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: SLOW_READ_ATTACK
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015603'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Tor Node Policy Matched'
+id: 0bb237ea-c35c-5d6c-9cc8-6cfd204b102e
+status: experimental
+description: Converted from Sagan rule SID 5015604 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: TOR-IP-BLOCKED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015604'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF URL Encryption'
+id: 0d3008e3-936f-566a-aeb3-d955bd9dc9f3
+status: experimental
+description: Converted from Sagan rule SID 5015605 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: URL_ENCRYPTION
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015605'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Virus Found'
+id: 6e2f7da3-ed26-501b-84e6-21eb5a3f52db
+status: experimental
+description: Converted from Sagan rule SID 5015606 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: VIRUS_IN_POST_REQUEST
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015606'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Web Scraping Bots'
+id: e59c7c25-3378-5e7e-a446-f5cc5121f5f9
+status: experimental
+description: Converted from Sagan rule SID 5015607 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: WS_BOTS
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015607'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Web Scraping Fake Bots'
+id: 4e5b4d9d-75ca-58fc-aac1-1793b1cd03dc
+status: experimental
+description: Converted from Sagan rule SID 5015608 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: WS_FAKE_BOTS
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015608'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Cookie Count Exceeded'
+id: eb1fbf76-c13c-5c72-b9b6-a426b1d75474
+status: experimental
+description: Converted from Sagan rule SID 5015609 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: COOKIE_COUNT_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015609'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Cookie Length Exceeded'
+id: e5ddb39a-af50-55fb-9a8f-ee4b0e85ee9f
+status: experimental
+description: Converted from Sagan rule SID 5015611 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: COOKIE_LENGTH_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015611'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Cookie Name Length Exceeded'
+id: 77fe0237-8a9a-55b1-8f25-ff5c8a81116c
+status: experimental
+description: Converted from Sagan rule SID 5015612 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: COOKIE_NAME_LENGTH_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015612'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Cookie Tampered'
+id: 9bf92e2c-c84f-5507-be27-06dbc63d855f
+status: experimental
+description: Converted from Sagan rule SID 5015613 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: COOKIE_TAMPERED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015613'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Header Count Exceeded'
+id: a5582c15-6ef2-52c4-81b0-4a61aaa32a1a
+status: experimental
+description: Converted from Sagan rule SID 5015614 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: HEADER_COUNT_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015614'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Header Name Length Exceeded'
+id: 463dfe66-3694-505b-b39f-093093d04be9
+status: experimental
+description: Converted from Sagan rule SID 5015615 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: HEADER_NAME_LENGTH_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015615'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Header Value Length Exceeded'
+id: 74ccf1bf-a3bb-5352-bff2-e502aa5e0c33
+status: experimental
+description: Converted from Sagan rule SID 5015616 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: HEADER_VALUE_LENGTH_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015616'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Invalid URL Encoding'
+id: 301b167b-d43e-5409-937b-f58557807fdf
+status: experimental
+description: Converted from Sagan rule SID 5015617 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: INVALID_URL_ENCODING
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015617'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Mismatched Header Cookie Replay Attack'
+id: 8fdfb3c2-729e-5bd3-b8e7-32a1ea6a322b
+status: experimental
+description: Converted from Sagan rule SID 5015618 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: COOKIE_REPLAY_MISMATCHED_HEADER
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015618'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Mismatched IP Cookie Replay Attack'
+id: c0e6c4ca-5e4f-5cbc-8d86-1c351e813091
+status: experimental
+description: Converted from Sagan rule SID 5015619 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: COOKIE_REPLAY_MISMATCHED_IP
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015619'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Slash-dot in URL Path'
+id: d66fe8fc-a699-5092-ba44-2f62629ea6f4
+status: experimental
+description: Converted from Sagan rule SID 5015620 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: SLASH_DOT_IN_URL
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015620'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Tilde in URL Path'
+id: a67de09a-6c7d-5532-a8bc-65c4620f868b
+status: experimental
+description: Converted from Sagan rule SID 5015621 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: TILDE_IN_URL
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015621'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Too Many Sessions for IP'
+id: 97f6d622-9817-5f1d-9338-344d6662ed41
+status: experimental
+description: Converted from Sagan rule SID 5015622 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: TOO_MANY_SESSIONS_FOR_IP
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015622'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Request Length Exceeded'
+id: 2a1ff7d3-8665-55f6-acd4-594d9d173a29
+status: experimental
+description: Converted from Sagan rule SID 5015623 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: REQUEST_LENGTH_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015623'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Total Request Line Length Exceeded'
+id: 60683ebf-d6bc-51c7-b561-bb5cfb528e61
+status: experimental
+description: Converted from Sagan rule SID 5015624 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: REQUEST_LINE_LENGTH_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015624'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Unrecognized Cookie'
+id: 52b20fb0-d798-547a-a25f-16d7942cc339
+status: experimental
+description: Converted from Sagan rule SID 5015625 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: UNRECOGNIZED_COOKIE
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015625'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF URL Length Exceeded'
+id: 46ae73cd-a174-5a0d-9ebf-4d1d37c74569
+status: experimental
+description: Converted from Sagan rule SID 5015626 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: URL_LENGTH_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015626'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Query Length Exceeded'
+id: 7366b5c2-7ac0-5409-8388-6f4ec7a0a9a2
+status: experimental
+description: Converted from Sagan rule SID 5015627 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: QUERY_LENGTH_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015627'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Malformed JSON'
+id: 5cc5df5a-daeb-555c-9856-2b5a212dc00d
+status: experimental
+description: Converted from Sagan rule SID 5015628 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: JSON_MALFORMED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015628'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Apache Struts Attack in JSON Data'
+id: 7d1e9438-4e1e-58ce-b4b0-ce25f193b055
+status: experimental
+description: Converted from Sagan rule SID 5015629 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: APACHE_STRUTS_ATTACKS_IN_JSON_PARAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015629'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Cross-Site Scripting in JSON Data'
+id: f5583673-fae8-559c-b58a-86026ff4500b
+status: experimental
+description: Converted from Sagan rule SID 5015630 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XSS_INJECTION_IN_JSON_PARAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015630'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Custom Attack Pattern in JSON Data'
+id: 1db59f70-f52e-5fa8-8b9a-705119b7ec3b
+status: experimental
+description: Converted from Sagan rule SID 5015631 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: CUSTOM_ATTACK_PATTERN_IN_JSON_PARAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015631'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Directory Traversal Attack in JSON Data'
+id: 20fed6b9-54a0-526d-ac62-32ea12545de5
+status: experimental
+description: Converted from Sagan rule SID 5015632 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: DIRECTORY_TRAVERSAL_IN_JSON_PARAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015632'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF HTTP Specific Attack in JSON Data'
+id: 43469a7e-ba9c-5a69-8a25-efc3794d9479
+status: experimental
+description: Converted from Sagan rule SID 5015633 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: HTTP_SPECIFIC_ATTACKS_IN_JSON_PARAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015633'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF LDAP Injection in JSON Data'
+id: 5b21f5f5-1ede-576a-b5f7-6a0dd081491e
+status: experimental
+description: Converted from Sagan rule SID 5015634 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: LDAP_INJECTION_IN_JSON_PARAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015634'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF OS Command Injection in JSON Data'
+id: 9d37a06f-dca2-5fd5-a12b-3b12188e3587
+status: experimental
+description: Converted from Sagan rule SID 5015635 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: OS_CMD_INJECTION_IN_JSON_PARAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015635'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Python PHP Attack in JSON Data'
+id: 92583de8-4d7c-5316-9be1-4ae7441c5a4f
+status: experimental
+description: Converted from Sagan rule SID 5015636 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: PYTHON_PHP_ATTACKS_IN_JSON_PARAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015636'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Remote File Inclusion in JSON Data'
+id: 2181b749-3885-573e-aaac-0c77d901e482
+status: experimental
+description: Converted from Sagan rule SID 5015637 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: RFI_VIOLATION_IN_JSON_PARAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015637'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF SQL Injection in JSON Data'
+id: c044486a-a59f-57dd-bc78-5f6b4e3ca456
+status: experimental
+description: Converted from Sagan rule SID 5015638 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: SQL_INJECTION_IN_JSON_PARAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015638'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF JSON Key Validation Failed'
+id: 5b56a8a9-beb6-5d21-af5d-d29eb21c402e
+status: experimental
+description: Converted from Sagan rule SID 5015639 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: json-key-validation-failed
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015639'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Additional SOAP Headers rcvd'
+id: 9462579d-c613-52be-a616-639eb0e9789a
+status: experimental
+description: Converted from Sagan rule SID 5015640 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_VALIDATION_WSDL_SOAP_UNKNOWN_HEADERS
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015640'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Invalid SOAP Body'
+id: d2e6bae0-d264-5ce8-912b-531597b70fec
+status: experimental
+description: Converted from Sagan rule SID 5015641 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_VALIDATION_WSDL_SOAP_HEADERS
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015641'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Invalid SOAP Envelope'
+id: f5ec6e40-4c7a-5b7f-9465-b26fa5e21fed
+status: experimental
+description: Converted from Sagan rule SID 5015642 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_VALIDATION_WSDL_SOAP_ENVELOPE
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015642'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Invalid SOAP Header'
+id: 0abdfcbb-1f59-54aa-9ffb-181290dc4c91
+status: experimental
+description: Converted from Sagan rule SID 5015643 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_VALIDATION_WSDL_SOAP_BODY
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015643'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF CAPTCHA Validation Required'
+id: 79f02886-2100-5403-92c4-88cea8d29ae5
+status: experimental
+description: Converted from Sagan rule SID 5015644 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: DDOS_CAPTCHA_SEND_CAPTCHA
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015644'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Custom Error Response Page'
+id: 6485b6b3-a1b3-5a7c-a5d9-80cfb9ea463c
+status: experimental
+description: Converted from Sagan rule SID 5015645 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: CUSTOM_ERR_RESPONSE_PAGE
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015645'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Error Response Suppressed'
+id: c3289412-e9a2-5800-bb3b-bfd26d6538ec
+status: experimental
+description: Converted from Sagan rule SID 5015646 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: ERROR_RESPONSE_SUPPRESSED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015646'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Identity Theft Pattern Matched'
+id: 75fede9c-544f-5ea9-b790-5809418ee303
+status: experimental
+description: Converted from Sagan rule SID 5015647 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: IDENTITY_THEFT_PATTERN_MATCHED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015647'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Response Header Suppressed'
+id: 859c01ae-a1aa-52e7-ac83-e5cabb88756d
+status: experimental
+description: Converted from Sagan rule SID 5015648 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: RESPONSE_HEADER_SUPPRESSED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015648'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Cross-Site Scripting in Header'
+id: 91b3b312-0f72-5ce5-92ce-4f598cebed50
+status: experimental
+description: Converted from Sagan rule SID 5015649 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: CROSS_SITE_SCRIPTING_IN_HEADER
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015649'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Custom Attack Pattern in Header'
+id: 6c4e5323-485a-5231-8a44-aef235aa0092
+status: experimental
+description: Converted from Sagan rule SID 5015650 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: CUSTOM_ATTACK_PATTERN_IN_HEADER
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015650'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Directory Traversal in Header'
+id: cb1adb16-19eb-56b4-bf4c-df569aba5a55
+status: experimental
+description: Converted from Sagan rule SID 5015651 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: DIRECTORY_TRAVERSAL_IN_HEADER
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015651'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF HTTP Specific Attack in Header'
+id: 50ec263f-338b-52aa-962b-40f4449f60c4
+status: experimental
+description: Converted from Sagan rule SID 5015652 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: HTTP_SPECIFIC_ATTACKS_MEDIUM_IN_HEADER
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015652'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF LDAP Injection in Header'
+id: e1d45e7e-6bec-574f-9489-ca15a234f7c1
+status: experimental
+description: Converted from Sagan rule SID 5015653 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: LDAP_INJECTION_MEDIUM_IN_HEADER
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015653'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Metacharacter Matched in Header'
+id: 878dd06a-a1c8-5ef1-88f0-251e79fff9e5
+status: experimental
+description: Converted from Sagan rule SID 5015654 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: HEADER_META_VIOLATION
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015654'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF OS Command Injection in Header'
+id: 569f8a89-23d0-5518-a1d0-b0b60f0db014
+status: experimental
+description: Converted from Sagan rule SID 5015655 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: OS_CMD_INJECTION_IN_HEADER
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015655'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Python PHP Attack in Header'
+id: 5eb80098-8b73-5779-b40c-ad2fa1e70560
+status: experimental
+description: Converted from Sagan rule SID 5015656 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: PYTHON_PHP_ATTACKS_MEDIUM_IN_HEADER
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015656'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Remote File Inclusion in Header'
+id: 496f9674-64c5-549c-b164-a5026052ea56
+status: experimental
+description: Converted from Sagan rule SID 5015657 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: REMOTE-FILE-INCLUSION-PATTERN-IN-HEADER
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015657'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF SQL Injection in Header'
+id: 6d646f56-627f-5032-bd0e-7d2f56815a32
+status: experimental
+description: Converted from Sagan rule SID 5015658 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: SQL_INJECTION_IN_HEADER
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015658'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Directory Traversal Beyond Root'
+id: a9f09615-3184-5f6c-a1cf-a6db24d00014
+status: experimental
+description: Converted from Sagan rule SID 5015659 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: DIRECTORY_TRAVERSAL_BEYOND_ROOT
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015659'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Get Request with Content Length'
+id: 43c95739-12d3-51ca-b13d-771029432ada
+status: experimental
+description: Converted from Sagan rule SID 5015660 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: GET_REQUEST_WITH_CONTENT_LENGTH
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015660'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Missing Host Header'
+id: bec8b34d-745d-5b76-a8ab-017210356557
+status: experimental
+description: Converted from Sagan rule SID 5015661 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: MISSING_HOST_HEADER
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015661'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Invalid Method'
+id: 484c7640-6280-574b-8409-3cfca2df9eef
+status: experimental
+description: Converted from Sagan rule SID 5015663 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: INVALID_METHOD
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015663'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Invalid or Malformed HTTP Request'
+id: 7f7278d1-10ad-5f8e-94dc-7f177e5bfd41
+status: experimental
+description: Converted from Sagan rule SID 5015664 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: INVALID_OR_MALFORMED_REQUEST
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015664'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Parameter Too Large'
+id: dad05911-1e2d-57af-8b81-3487ab51665b
+status: experimental
+description: Converted from Sagan rule SID 5015665 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: PARAM_TOO_LARGE
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015665'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Malformed Content Length'
+id: d7da293c-721b-59d7-99e5-316181f6cc41
+status: experimental
+description: Converted from Sagan rule SID 5015666 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: MALFORMED_CONTENT_LEN
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015666'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Malformed Cookie'
+id: 328e1b27-032c-5333-a5a5-fa5e6cf3ee34
+status: experimental
+description: Converted from Sagan rule SID 5015667 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: MALFORMED_COOKIE
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015667'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Malformed Request Line'
+id: 4ecd4654-3f0c-512c-b3d4-5fee5a1e758e
+status: experimental
+description: Converted from Sagan rule SID 5015668 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: MALFORMED_REQUEST_LINE
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015668'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Malformed Header'
+id: affd5b37-625e-514a-805e-2e7b06807c29
+status: experimental
+description: Converted from Sagan rule SID 5015669 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: MALFORMED_HEADER_LINE
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015669'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Malformed Parameter'
+id: 1febee95-47f4-5b19-a83e-e261ee9bed9d
+status: experimental
+description: Converted from Sagan rule SID 5015670 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: MALFORMED_PARAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015670'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Malformed Version'
+id: b52a4b9e-31b9-5e2d-967c-278404a9503b
+status: experimental
+description: Converted from Sagan rule SID 5015671 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: MALFORMED_VERSION
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015671'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Multiple Content Length'
+id: 3507ddf6-10b5-5937-83e0-d1c026e53356
+status: experimental
+description: Converted from Sagan rule SID 5015672 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: MULTIPLE_CONTENT_LENGTH
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015672'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Post Without Content Length'
+id: 36c330c5-26e8-5a33-9211-497c46c662d5
+status: experimental
+description: Converted from Sagan rule SID 5015673 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: POST_WITHOUT_CONTENT_LENGTH
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015673'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Pre-1.0 Request'
+id: 0a7fa246-716d-587b-8893-4ef630926dfe
+status: experimental
+description: Converted from Sagan rule SID 5015674 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: PRE_1_0_REQUEST
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015674'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Apache Struts Attack in Parameter'
+id: 15725346-b368-56cc-937c-dbfde18528b2
+status: experimental
+description: Converted from Sagan rule SID 5015675 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: APACHE_STRUTS_ATTACKS_MEDIUM_IN_PARAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015675'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Cross-Site Request Forgery'
+id: 3690f452-0a61-5b8c-96ca-98395cce8255
+status: experimental
+description: Converted from Sagan rule SID 5015676 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: CROSS_SITE_REQUEST_FORGERY
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015676'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Cross-Site Scripting in Parameter'
+id: 9d99e58d-0b9a-59f7-817f-9c775004fc91
+status: experimental
+description: Converted from Sagan rule SID 5015677 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: CROSS_SITE_SCRIPTING_IN_PARAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015677'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Custom Attack Pattern in Parameter'
+id: ce378acd-5636-5d22-98ca-9351286bf84b
+status: experimental
+description: Converted from Sagan rule SID 5015678 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: CUSTOM_ATTACK_PATTERN_IN_PARAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015678'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Directory Traversal in Parameter'
+id: 23f62b9e-401f-5723-b1de-365658fb5c90
+status: experimental
+description: Converted from Sagan rule SID 5015679 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: DIRECTORY_TRAVERSAL_IN_PARAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015679'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF File Upload Size Exceeded'
+id: a3f0b95c-3590-539b-84c5-225a11bd88a2
+status: experimental
+description: Converted from Sagan rule SID 5015680 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: FILE_UPLOAD_SIZE_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015680'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Forbidden File Extension'
+id: ea03b430-07c7-548f-839a-4465e5c6380c
+status: experimental
+description: Converted from Sagan rule SID 5015681 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: FILE_EXTENSION_NOT_ALLOWED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015681'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Forbidden File Mime Type'
+id: 128d7854-7379-56f0-8144-a8157a72a702
+status: experimental
+description: Converted from Sagan rule SID 5015682 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: FILE_MIME_TYPE_NOT_ALLOWED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015682'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF HTTP Specific Attack in Parameter'
+id: b5255de5-7adb-5c96-8113-a7e22e180f0f
+status: experimental
+description: Converted from Sagan rule SID 5015683 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: HTTP_SPECIFIC_ATTACKS_MEDIUM_IN_PARAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015683'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF LDAP Injection in Parameter'
+id: 5da1b3f0-4aa9-5f8c-a731-da1c07c8a553
+status: experimental
+description: Converted from Sagan rule SID 5015684 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: LDAP_INJECTION_MEDIUM_IN_PARAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015684'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Mandatory Parameter Missing'
+id: 19ef98fe-f3c0-5bec-a720-37bbfb5fd190
+status: experimental
+description: Converted from Sagan rule SID 5015685 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: MISSING_MANDATORY_PARAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015685'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Maximum Instances of Parameter Exceeded'
+id: 1a3fc344-5e02-5b8b-8593-f5f56203dbb1
+status: experimental
+description: Converted from Sagan rule SID 5015686 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: TOO_MANY_PARAM_INSTANCES
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015686'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Metacharacter in Parameter'
+id: ca9cf6f0-0ef8-58a8-8b62-40d679b26a8a
+status: experimental
+description: Converted from Sagan rule SID 5015687 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: METACHARACTER_IN_PARAMETER
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015687'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF OS Command Injection in Parameter'
+id: d0016d1c-a84a-51d4-bbfd-39a517430567
+status: experimental
+description: Converted from Sagan rule SID 5015688 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: OS_CMD_INJECTION_IN_PARAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015688'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Parameter Input Validation Failed'
+id: 149347a9-d326-5cfa-9647-d0986a382840
+status: experimental
+description: Converted from Sagan rule SID 5015689 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: PARAM_INPUT_VALIDATION_FAILED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015689'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Parameter Length Exceeded'
+id: e6c3dfeb-30b3-5579-aa4f-ff406f09dcd2
+status: experimental
+description: Converted from Sagan rule SID 5015690 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: PARAM_LENGTH_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015690'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Parameter Value not Allowed'
+id: f4d10697-dbe3-5ab6-847a-7e05540499df
+status: experimental
+description: Converted from Sagan rule SID 5015691 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: PARAM_VAL_NOT_ALLOWED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015691'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Python PHP Attack in Parameter'
+id: bb94057b-e708-577d-b714-701c6af86325
+status: experimental
+description: Converted from Sagan rule SID 5015692 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: PYTHON_PHP_ATTACKS_MEDIUM_IN_PARAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015692'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Read-Only or Hidden Parameter Tampered'
+id: 896e1742-cfc8-5e15-8e1a-8612ddf5ecc1
+status: experimental
+description: Converted from Sagan rule SID 5015693 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: READ_ONLY_PARAM_TAMPERED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015693'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Remote File Inclusion'
+id: bbf357e5-1ee6-5afd-90ad-518f2d68ba75
+status: experimental
+description: Converted from Sagan rule SID 5015694 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: REMOTE_FILE_INCLUSION
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015694'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Session Choice Parameter Tampered'
+id: caa26f92-5492-5883-9a30-3e05865db25a
+status: experimental
+description: Converted from Sagan rule SID 5015695 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: SESSION_CHOICE_PARAM_TAMPERED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015695'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Session Context not Found'
+id: 49f5173f-4b4a-5e40-8217-d2d5b8946941
+status: experimental
+description: Converted from Sagan rule SID 5015696 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: SESSION_CONTEXT_NOT_FOUND
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015696'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Session Invariant Parameter Tampered'
+id: 5d4551fd-9d43-544a-a5b3-82625a867ff4
+status: experimental
+description: Converted from Sagan rule SID 5015697 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: SESSION_INVARIANT_PARAM_TAMPERED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015697'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF SQL Injection in Parameter'
+id: d5746b71-2cf6-5881-b691-ddbd51ea9e75
+status: experimental
+description: Converted from Sagan rule SID 5015698 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: SQL_INJECTION_IN_PARAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015698'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Max Array Values Exceeded'
+id: 4f96b4cf-e770-5280-9cf4-17cb659bee6d
+status: experimental
+description: Converted from Sagan rule SID 5015699 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: JSON_MAX_ARRAY_VALUES
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015699'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Max Key Length Exceeded'
+id: b52802d6-7074-5b85-ade6-2242830c08ec
+status: experimental
+description: Converted from Sagan rule SID 5015700 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: JSON_MAX_KEY_LENGTH
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015700'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Max Number Value Exceeded'
+id: 764e669b-e2ec-5f45-8497-9bf59c42ec34
+status: experimental
+description: Converted from Sagan rule SID 5015701 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: JSON_MAX_NUMBER_VALUE
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015701'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Max Object Child Exceeded'
+id: 7918d436-7d61-5eb7-8720-b68830b8de7d
+status: experimental
+description: Converted from Sagan rule SID 5015702 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: JSON_MAX_OBJECT_CHILD
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015702'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Max Object Keys Exceeded'
+id: 80ff434c-2601-5d5e-86a8-9efa725c3e57
+status: experimental
+description: Converted from Sagan rule SID 5015703 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: JSON_MAX_OBJECT_KEYS
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015703'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Max Value Length Exceeded'
+id: 60213023-7caa-5da4-ae8b-9ed389dd487f
+status: experimental
+description: Converted from Sagan rule SID 5015704 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: JSON_MAX_VALUE_LENGTH
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015704'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Object Depth Exceeded'
+id: df8c3665-ad18-576e-8c7c-dff52389a6d6
+status: experimental
+description: Converted from Sagan rule SID 5015705 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: JSON_MAX_OBJECT_DEPTH
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015705'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Content Length Exceeded'
+id: 7ef827b5-33d4-5dfd-868f-efd784dea1cd
+status: experimental
+description: Converted from Sagan rule SID 5015706 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: CONTENT_LENGTH_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015706'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Cross-Site Scripting in URL'
+id: 913fb5e7-60de-5150-b706-a79f5091f077
+status: experimental
+description: Converted from Sagan rule SID 5015707 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: CROSS_SITE_SCRIPTING_IN_URL
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015707'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Custom Attack Pattern in URL'
+id: f0d4ffcc-3bfb-5914-924f-e2a81e9962c2
+status: experimental
+description: Converted from Sagan rule SID 5015708 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: CUSTOM_ATTACK_PATTERN_IN_URL
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015708'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF HTTP Specific Attack in URL'
+id: 33f80fca-b6b8-5489-9346-2e2ce30acbe6
+status: experimental
+description: Converted from Sagan rule SID 5015709 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: HTTP_SPECIFIC_ATTACKS_MEDIUM_IN_URL
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015709'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF LDAP Injection in URL'
+id: d2822722-9184-57e0-96bd-ef9ab6fcd2d8
+status: experimental
+description: Converted from Sagan rule SID 5015710 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: LDAP_INJECTION_MEDIUM_IN_URL
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015710'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Method Not Allowed'
+id: 0d8d79ae-6bc9-5363-8282-8382d069c8e6
+status: experimental
+description: Converted from Sagan rule SID 5015711 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: METHOD_NOT_ALLOWED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015711'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF No Param Profile Match'
+id: bc185750-e566-53ea-8289-41f20ce44a40
+status: experimental
+description: Converted from Sagan rule SID 5015712 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: NO_PARAM_PROFILE_MATCH
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015712'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF OS Command Injection in URL'
+id: a4e7fa78-c403-58b6-8e62-7e2205a334f3
+status: experimental
+description: Converted from Sagan rule SID 5015713 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: OS_CMD_INJECTION_IN_URL
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015713'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Parameter Name Length Exceeded'
+id: 50682391-2381-592e-857e-2d3761ee5f6d
+status: experimental
+description: Converted from Sagan rule SID 5015714 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: PARAM_NAME_LENGTH_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015714'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Python PHP Attack in URL'
+id: 5cfd780b-3471-5446-a3dc-c63e8dd8bd69
+status: experimental
+description: Converted from Sagan rule SID 5015715 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: PYTHON_PHP_ATTACKS_MEDIUM_IN_URL
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015715'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Query String not Allowed'
+id: d9298571-ad6c-551d-9ea2-bc4d012e4b84
+status: experimental
+description: Converted from Sagan rule SID 5015716 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: QUERY_STR_NOT_ALLOWED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015716'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Remote File Inclusion in URL'
+id: 64a8f0c9-11fd-5476-801b-73d3275b1db1
+status: experimental
+description: Converted from Sagan rule SID 5015717 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: REMOTE_FILE_INCLUSION_IN_URL
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015717'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Session not Found'
+id: 17ad6ae9-a21b-53b1-bd71-eb7a03efe8e0
+status: experimental
+description: Converted from Sagan rule SID 5015718 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: SESSION_NOT_FOUND
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015718'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF SQL Injection in URL'
+id: 2b7545b1-8f69-5410-ac53-42f230377550
+status: experimental
+description: Converted from Sagan rule SID 5015719 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: SQL_INJECTION_IN_URL
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015719'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Too Many Parameters'
+id: ec3dcbc2-2517-5ada-b0b0-880c059c9c39
+status: experimental
+description: Converted from Sagan rule SID 5015720 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: TOO_MANY_PARAMS
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015720'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Too Many Uploaded Files'
+id: 48babae5-2500-59a4-8cc8-be7ae31050b8
+status: experimental
+description: Converted from Sagan rule SID 5015721 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: TOO_MANY_UPLOADED_FILES
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015721'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Unknown Content Type'
+id: ef9c9db9-b5f0-53f1-82c8-d2b2eb25c98d
+status: experimental
+description: Converted from Sagan rule SID 5015722 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: UNKNOWN_CONTENT_TYPE
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015722'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Referer Spam'
+id: 3f0acae1-d5a7-5474-b4b1-c58fdb90ee86
+status: experimental
+description: Converted from Sagan rule SID 5015723 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: REFERER_SPAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015723'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Comment Spam'
+id: 68f54fc9-27f7-5c32-a369-6c49b72c9057
+status: experimental
+description: Converted from Sagan rule SID 5015724 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: Comment_SPAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015724'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Blocklisted Category'
+id: 09dc9951-d180-510c-a331-0b94941a7f4a
+status: experimental
+description: Converted from Sagan rule SID 5015725 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: BLOCKLISTED_CATEGORY
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015725'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Credential Stuffing Detected'
+id: b0975844-f01b-58a2-b3c3-c0e8dfdeaa4d
+status: experimental
+description: Converted from Sagan rule SID 5015726 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: CREDENTIAL_STUFFING_DETECTED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015726'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Credential Spraying Detected'
+id: 8057d8dc-12c4-5022-af73-40c55f0e7411
+status: experimental
+description: Converted from Sagan rule SID 5015727 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: CREDENTIAL_SPRAYING_DETECTED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015727'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Fingerprint Challenges Exceeded'
+id: 8eef78d1-6266-5e32-bf53-a7e8806299fb
+status: experimental
+description: Converted from Sagan rule SID 5015728 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: FINGERPRINT_CHALLENGES_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015728'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Missing Referer Header'
+id: 577d5f59-c6d9-52f5-8352-ca5df8342b1b
+status: experimental
+description: Converted from Sagan rule SID 5015729 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: MISSING_REFERER_HEADER
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015729'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Missing Referer Domain'
+id: 7623f755-242c-5a77-ba9a-7287f6a68bd5
+status: experimental
+description: Converted from Sagan rule SID 5015730 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: MISSING_REFERER_DOMAIN
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015730'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Referer Domain Not Matching Host'
+id: 3012b806-023d-537f-8a46-099e36c638b9
+status: experimental
+description: Converted from Sagan rule SID 5015731 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: REFERER_DOMAIN_NOT_MATCHING_HOST
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015731'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Missing UserAgent Header'
+id: 5ba5eea9-97d3-5fea-bd5e-f1e0c17734b0
+status: experimental
+description: Converted from Sagan rule SID 5015732 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: MISSING_USERAGENT_HEADER
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015732'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Fingerprint Risk Level Bad Client'
+id: 12b3f6cd-f805-543a-880f-aa43008c8141
+status: experimental
+description: Converted from Sagan rule SID 5015733 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: FINGERPRINT_RISK_LEVEL_BAD_CLIENT
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015733'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Fingerprint Risk Level Suspected Client'
+id: 2075b631-fc16-53d5-bffe-9bfb853fbe2a
+status: experimental
+description: Converted from Sagan rule SID 5015734 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: FINGERPRINT_RISK_LEVEL_SUSPECTED_CLIENT
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015734'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Tarpit client'
+id: f8aeca68-34c0-5e4b-801e-2d78ec207137
+status: experimental
+description: Converted from Sagan rule SID 5015735 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: TARPIT_CLIENT
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015735'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Form Spam'
+id: c3fe269b-916f-5530-838e-f5e5409fa43f
+status: experimental
+description: Converted from Sagan rule SID 5015736 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: FORM_SPAM
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015736'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF ATO Deviation Low Detected'
+id: 03461269-54af-5bfa-b33f-ecfc558b3ee6
+status: experimental
+description: Converted from Sagan rule SID 5015737 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: ATO_DEVIATION_LOW_DETECTED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015737'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF ATO Deviation Medium Detected'
+id: 1e9093e2-0ff3-5aaf-be81-c061e55b1776
+status: experimental
+description: Converted from Sagan rule SID 5015738 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: ATO_DEVIATION_MEDIUM_DETECTED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015738'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF ATO Deviation High Detected'
+id: c2d125c3-d18b-50f6-9856-629289bfc7fb
+status: experimental
+description: Converted from Sagan rule SID 5015739 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: ATO_DEVIATION_HIGH_DETECTED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015739'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF DTD Found'
+id: c9929dde-396f-55da-9522-3a175776a36c
+status: experimental
+description: Converted from Sagan rule SID 5015740 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XDOS_DTD
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015740'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF External URI Reference Found'
+id: fab8d6d8-42ed-5704-8dc2-7c4ccc8c91e9
+status: experimental
+description: Converted from Sagan rule SID 5015741 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XDOS_EXT_ENTITY
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015741'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Malformed XML'
+id: 11b0c004-86c1-5ae2-8e04-cac4df743139
+status: experimental
+description: Converted from Sagan rule SID 5015742 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XDOS_MALFORMED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015742'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Max Attribute Name Length Exceeded'
+id: ea5d0c24-157a-5c3a-84ac-7f37cb8c0d2d
+status: experimental
+description: Converted from Sagan rule SID 5015743 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XDOS_MAX_ATTRIBUTE_NAME_LENGTH
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015743'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Max Attribute Value Length Exceeded'
+id: 993328f0-634e-587f-9164-890cb617a822
+status: experimental
+description: Converted from Sagan rule SID 5015744 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XDOS_MAX_ATTRIBUTE_VALUE_LENGTH
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015744'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Max Document Size Exceeded'
+id: c65a8eff-c6c8-53d8-8d8b-d71af56d3dbe
+status: experimental
+description: Converted from Sagan rule SID 5015745 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XDOS_MAX_FILE_SIZE
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015745'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Max Element Attributes Exceeded'
+id: bad0fb6c-0b94-5514-b176-35eb430cedda
+status: experimental
+description: Converted from Sagan rule SID 5015746 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XDOS_MAX_ATTRIBUTES
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015746'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Max Element Children Exceeded'
+id: e2ad536f-05be-5ee0-ae97-07db07033867
+status: experimental
+description: Converted from Sagan rule SID 5015747 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XDOS_MAX_ELEMENT_CHILDREN
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015747'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Max Element Name Length Exceeded'
+id: 7ebacf02-f2e9-5ffd-9635-bb997b7863b7
+status: experimental
+description: Converted from Sagan rule SID 5015748 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XDOS_MAX_ELEMENT_NAME_LENGTH
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015748'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Max Elements in Tree Exceeded'
+id: eb50ee14-6bec-5bd5-bc96-40e43b311de5
+status: experimental
+description: Converted from Sagan rule SID 5015749 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XDOS_MAX_ELEMENTS
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015749'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Max Text Size Exceeded'
+id: 6fcddf49-98c7-5c42-9bcb-2ca1ad368eb3
+status: experimental
+description: Converted from Sagan rule SID 5015750 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XDOS_CDATA_LENGTH
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015750'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Max Tree Depth Exceeded'
+id: 05d196e2-7157-57f1-a027-6a1267c21c1c
+status: experimental
+description: Converted from Sagan rule SID 5015751 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XDOS_MAX_ELEMENT_DEPTH
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015751'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Min Document Size Limit'
+id: 4ed011e0-fb3c-5d96-baca-0546e01f8849
+status: experimental
+description: Converted from Sagan rule SID 5015752 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XDOS_MIN_FILE_SIZE
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015752'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Processing Instructions Found'
+id: 4466554f-1e1f-5248-af17-2bdb82a99c3c
+status: experimental
+description: Converted from Sagan rule SID 5015753 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XDOS_PI
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015753'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF DOCTYPE Element'
+id: 053ee211-9f1f-5e6f-80ce-eab40795a2bc
+status: experimental
+description: Converted from Sagan rule SID 5015754 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1007
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015754'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Message Contains a WS-I Conformance Claim with a SOAP:MustUnderstand” Attribute'
+id: afe58d7f-f934-5641-bf74-d7312777f9ca
+status: experimental
+description: Converted from Sagan rule SID 5015755 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1111
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015755'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF WS-I Conformance Claim Does Not Adhere to the WS-I Conformance Claim Schema'
+id: aad6564d-2e1f-599e-99a9-e4e518c2f44b
+status: experimental
+description: Converted from Sagan rule SID 5015756 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1110
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015756'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Message Contains a WS-I Conformance Claim Which is Not a Child of the SOAP:Header”
+  Element'
+id: 5e0bfbc3-e5ec-54dd-a43c-5779cc28d423
+status: experimental
+description: Converted from Sagan rule SID 5015757 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1109
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015757'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Attributes in SOAP Envelope Header Body'
+id: 21dbf748-e1ef-58f1-b702-603ba9c91e07
+status: experimental
+description: Converted from Sagan rule SID 5015758 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1032
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015758'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF EncodingStyle in Envelope Namespace Elements'
+id: 5b65ced9-e161-546c-bd59-914df879ccbb
+status: experimental
+description: Converted from Sagan rule SID 5015759 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1307
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015759'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF EncodingStyle Attribute Found in Grandchild of SOAP Body'
+id: 7427b964-93e6-5b20-9025-30d2cb000f46
+status: experimental
+description: Converted from Sagan rule SID 5015760 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1318
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015760'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Envelope Namespace is 1998'
+id: 49654325-5e48-52c9-9e1a-2c953175cdb4
+status: experimental
+description: Converted from Sagan rule SID 5015761 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1033
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015761'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF SOAP:Envelope or SOAP:Body Does Not Conform to XML 1.0'
+id: 5d669238-d988-5ab7-a6ac-1035738e1294
+status: experimental
+description: Converted from Sagan rule SID 5015762 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1601
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015762'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Envelope Does Not Conform to SOAP Schema'
+id: 6b4dfdb4-b66f-51ac-9744-9782c3a73466
+status: experimental
+description: Converted from Sagan rule SID 5015763 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1701
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015763'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF SOAP:Envelope Has a Direct Child After the SOAP:Body Element'
+id: 94d329b6-6ead-5075-9783-dff4c78f5671
+status: experimental
+description: Converted from Sagan rule SID 5015764 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1309
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015764'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Message Contains Undefined SOAPBind:Fault” Element(s)'
+id: f7ced2f3-b741-556f-b3c8-38a1512d6424
+status: experimental
+description: Converted from Sagan rule SID 5015765 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1107
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015765'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF SOAP 1.1 Dot Notation is Used By the SOAP:Fault” Element'
+id: 6f40cdb5-d07a-523a-98e6-e8772c009d4a
+status: experimental
+description: Converted from Sagan rule SID 5015766 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1031
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015766'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Good Response is Not Using HTTP 200 OK'
+id: 4cb74a1c-bc35-5426-b4e5-305cbf35d237
+status: experimental
+description: Converted from Sagan rule SID 5015767 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1100
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015767'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Message is Not Sent Using HTTP1.0 or HTTP1.1'
+id: ec497f8c-f9de-5ca0-9abf-1a0fc2914fe5
+status: experimental
+description: Converted from Sagan rule SID 5015768 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1002
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015768'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Message is Not Sent Using HTTP1.1'
+id: d58cc93b-571a-5939-80b0-5b532683d6c6
+status: experimental
+description: Converted from Sagan rule SID 5015769 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1001
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015769'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Message is Not UTF8 or UTF16'
+id: 4d2e94bd-df37-5bea-bb0b-eda74b6e261a
+status: experimental
+description: Converted from Sagan rule SID 5015770 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1003
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015770'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF SOAP:Envelope Does Not Have v1.1 Namespace'
+id: a270ec8b-fd18-5d46-9a7c-1d646f2e2749
+status: experimental
+description: Converted from Sagan rule SID 5015771 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1201
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015771'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Message Does Not Include All Headers'
+id: 0aa9a1da-1163-5303-8d85-f9d34d935d51
+status: experimental
+description: Converted from Sagan rule SID 5015772 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1009
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015772'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Message Part Accessors Have No Namespace'
+id: 98f0a514-31bd-5807-83da-e040d9e08e91
+status: experimental
+description: Converted from Sagan rule SID 5015773 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1008
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015773'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Attribute MustUnderstand” is neither 1 nor 0'
+id: 608dc77a-0985-5a49-8a6c-2fc8e37551e8
+status: experimental
+description: Converted from Sagan rule SID 5015774 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1301
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015774'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF SOAP:Fault Not Generated for Bad Envelope Namespace'
+id: 7525d77c-3af5-57a6-bbed-a9d601a92b55
+status: experimental
+description: Converted from Sagan rule SID 5015775 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1012
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015775'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Non POST Request Does Not Contain 405 HTTP Status Code'
+id: 05d0afc6-834f-5dff-b61f-dbaf1c6f1765
+status: experimental
+description: Converted from Sagan rule SID 5015776 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1103
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015776'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Non XML Request Does Not Contain 415 HTTP Status Code'
+id: 2c1fa06e-7718-5964-899d-604e76b22c97
+status: experimental
+description: Converted from Sagan rule SID 5015777 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1104
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015777'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF One-Way Response Contains a SOAP:Envelope'
+id: 8e832abb-95fa-53d8-8c5c-56c9e0882aa9
+status: experimental
+description: Converted from Sagan rule SID 5015778 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1010
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015778'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Part Accessors Have xsi: nil” Attribute'
+id: 6b7d241e-eecd-5412-a6a3-b0ed9652bae1
+status: experimental
+description: Converted from Sagan rule SID 5015779 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1211
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015779'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Processed Response Status is Neither 200 nor 202'
+id: 78e01aa4-f21f-5c86-8adf-86f81c1a97de
+status: experimental
+description: Converted from Sagan rule SID 5015780 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1101
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015780'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Request Does Not Match the WSDL:Definition'
+id: 1e22e513-a1e9-5e94-8928-1f23a5ae3230
+status: experimental
+description: Converted from Sagan rule SID 5015781 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1011
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015781'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Request Message is Not an HTTP POST Message'
+id: 6f86e9dc-663a-5b0e-805b-b5d25d1fbf3c
+status: experimental
+description: Converted from Sagan rule SID 5015782 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1004
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015782'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Response Wrapper Does Not Match the Name Attribute on WSDL:Operation'
+id: 3c51294b-0e4e-58e8-b52f-8b1331229d15
+status: experimental
+description: Converted from Sagan rule SID 5015783 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1005
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015783'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Response Does Not Match the WSDL:Definition'
+id: 3083332d-5803-51ea-b1ab-be04da1626c9
+status: experimental
+description: Converted from Sagan rule SID 5015784 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1013
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015784'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Children Elements in SOAP:Body are Not Namespace Qualified'
+id: aaea3fa0-d613-58e1-90fc-f427c213a86c
+status: experimental
+description: Converted from Sagan rule SID 5015785 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1202
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015785'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Children Elements in SOAP:Body Have SOAP:EncodingStyle” Attribute'
+id: 234df484-fe5a-533b-a2c5-56a566d7f108
+status: experimental
+description: Converted from Sagan rule SID 5015786 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1308
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015786'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF SOAP:Fault Children are Qualified'
+id: a9aba08c-76f6-54b2-a82e-34332fe40094
+status: experimental
+description: Converted from Sagan rule SID 5015787 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1316
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015787'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF SOAP:Fault Children Elements are Not Namespace Qualified'
+id: a8cb941e-5c2b-5967-8781-c6469f8e1fd8
+status: experimental
+description: Converted from Sagan rule SID 5015788 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1306
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015788'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF SOAP:Fault Has Non-Foreign Namespace'
+id: e322a996-732e-53e0-9b30-faca9ddd40d7
+status: experimental
+description: Converted from Sagan rule SID 5015789 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1203
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015789'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF SOAP:Fault Message Not Found in the HTTP 500 Response'
+id: e37c9301-8f4c-5001-89af-1f4c6038e71f
+status: experimental
+description: Converted from Sagan rule SID 5015790 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1305
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015790'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF SOAP:Faultcode is Not Standard or Namespace Qualified'
+id: fc1cd67e-b020-5503-aa6e-ee5129a9c2c3
+status: experimental
+description: Converted from Sagan rule SID 5015791 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1302
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015791'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF SOAPAction Header Does Not Contain the Correct String Value'
+id: d26e4745-62b9-5d22-a1f9-4665a001b16e
+status: experimental
+description: Converted from Sagan rule SID 5015792 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1116
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015792'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF SOAPAction Header Does Not Contain Quoted String'
+id: e9ce95e9-6159-521c-8670-e0738d6ff2a2
+status: experimental
+description: Converted from Sagan rule SID 5015793 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1006
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015793'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF SOAP: Body Contains the SOAPEnc:ArrayType” Attribute'
+id: 9440e96f-d03d-5a4c-94bb-e167c6cb93c8
+status: experimental
+description: Converted from Sagan rule SID 5015794 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1204
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015794'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF SOAP Message Contains XML Processing Instructions'
+id: 80e66cd7-b816-5d04-b393-087f137780a4
+status: experimental
+description: Converted from Sagan rule SID 5015795 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XML_WSI1208
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015795'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF GraphQL Batch Queries Not Allowed'
+id: aeedb183-1547-5834-a1f9-4a4e8fa95b9e
+status: experimental
+description: Converted from Sagan rule SID 5015796 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: GRAPHQL_BATCH_QUERY_NOT_ALLOWED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015796'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF GraphQL Introspection Query Not Allowed'
+id: 75b4f2d7-c0ba-5dce-9a4d-142a5f5ebd9f
+status: experimental
+description: Converted from Sagan rule SID 5015797 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: GRAPHQL_INTROSPECTION_QUERY_NOT_ALLOWED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015797'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF GraphQL Query Depth Exceeded'
+id: 5f84668f-60b9-567f-b38e-c23ed51f00be
+status: experimental
+description: Converted from Sagan rule SID 5015798 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: GRAPHQL_QUERY_DEPTH_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015798'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF GraphQL Query Batch Size Exceeded'
+id: ee49c9e7-ee8b-5030-80da-8980875e25e2
+status: experimental
+description: Converted from Sagan rule SID 5015799 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: GRAPHQL_BATCH_QUERY_SIZE_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015799'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF GraphQL Request Payload Length Exceeded'
+id: b3e9e597-80ef-5fd4-842b-a19666f1ed07
+status: experimental
+description: Converted from Sagan rule SID 5015800 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: GRAPHQL_REQ_PAYLOAD_LENGTH_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015800'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF GraphQL Query Value Length Exceeded'
+id: e7c3b736-7fea-5b5d-a316-78050301096f
+status: experimental
+description: Converted from Sagan rule SID 5015801 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: GRAPHQL_QUERY_VALUE_LENGTH_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015801'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF GraphQL Response Length Exceeded'
+id: b0b13fea-18bc-59a9-be84-ffa0aef4ea7e
+status: experimental
+description: Converted from Sagan rule SID 5015802 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: GRAPHQL_RESPONSE_LENGTH_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015802'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF GraphQL Malformed JSON Payload'
+id: 34bedc5a-33ae-53a0-8b50-d0c2386734e3
+status: experimental
+description: Converted from Sagan rule SID 5015803 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: GRAPHQL_MALFORMED_JSON_PAYLOAD
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015803'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF GraphQL Malformed GraphQL Query'
+id: bfad9068-ca25-544c-ad2f-f3d28c3b6ccc
+status: experimental
+description: Converted from Sagan rule SID 5015804 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: GRAPHQL_MALFORMED_GRAPHQL_QUERY
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015804'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF GraphQL Invalid Request Payload'
+id: ec867f72-e8e6-5ba4-b93e-9bfe21c23e85
+status: experimental
+description: Converted from Sagan rule SID 5015805 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: GRAPHQL_INVALID_GRAPHQL_REQ_PAYLOAD
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015805'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF GraphQL Malformed Request'
+id: 0bbb454d-8cc6-5c21-893c-04aa451473ae
+status: experimental
+description: Converted from Sagan rule SID 5015806 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: GRAPHQL_MALFORMED_GRAPHQL_REQUEST
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015806'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF SQL Injection in GraphQL Payload'
+id: ecf8ce63-ed8d-5871-9f54-aceba0b5da8d
+status: experimental
+description: Converted from Sagan rule SID 5015807 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: SQL_INJECTION_IN_GRAPHQL
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015807'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Cross-Site Scripting in GraphQL Payload'
+id: 72d46579-5137-5899-8c5d-61f953d5f229
+status: experimental
+description: Converted from Sagan rule SID 5015808 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: XSS_INJECTION_IN_GRAPHQL
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015808'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF OS Command Injection in GraphQL Payload'
+id: f7ca12b8-277f-5b17-aa54-a0bef1cd3414
+status: experimental
+description: Converted from Sagan rule SID 5015809 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: OS_CMD_INJECTION_IN_GRAPHQL
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015809'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Directory Traversal in GraphQL Payload'
+id: c0e95126-740f-5da5-aa24-c9a45ea1bc6a
+status: experimental
+description: Converted from Sagan rule SID 5015810 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: DIRECTORY_TRAVERSAL_IN_GRAPHQL
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015810'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Remote File Inclusion in GraphQL Payload'
+id: eaf98dfa-7931-5718-af36-4c6e0f29ae3d
+status: experimental
+description: Converted from Sagan rule SID 5015811 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: RFI_VIOLATION_IN_GRAPHQL
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015811'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF LDAP Injection in GraphQL Payload'
+id: 8475d4c8-170e-56ab-8f83-ffb0287e8399
+status: experimental
+description: Converted from Sagan rule SID 5015812 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: LDAP_INJECTION_IN_GRAPHQL
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015812'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Python PHP Attack in GraphQL Payload'
+id: c7abbdf3-1f41-5f9b-a7b7-20b9e672b36e
+status: experimental
+description: Converted from Sagan rule SID 5015813 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: PYTHON_PHP_ATTACKS_IN_GRAPHQL
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015813'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF HTTP Specific Attacks in GraphQL Payload'
+id: 6d70008c-ce34-5f25-8bc8-417bfc3984d1
+status: experimental
+description: Converted from Sagan rule SID 5015814 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: HTTP_SPECIFIC_ATTACKS_IN_GRAPHQL
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015814'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Apache Struts Attacks in GraphQL Payload'
+id: 98219962-9770-5af1-8811-98486f18df77
+status: experimental
+description: Converted from Sagan rule SID 5015815 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: APACHE_STRUTS_ATTACKS_IN_GRAPHQL
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015815'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Custom Attack Pattern in GraphQL Payload'
+id: 63862c0d-fb20-5611-a08c-d125d985559c
+status: experimental
+description: Converted from Sagan rule SID 5015816 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: CUSTOM_ATTACK_PATTERN_IN_GRAPHQL
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015816'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF No Domain Match in Profile'
+id: ebb111ff-2554-5f1d-9ef5-3154b8657196
+status: experimental
+description: Converted from Sagan rule SID 5015817 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: NO_DOMAIN_MATCH_IN_PROFILE
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015817'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF No URL Profile Match'
+id: 84fc4e7c-ccce-5348-a911-f708f6b3f9d7
+status: experimental
+description: Converted from Sagan rule SID 5015818 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: NO_URL_PROFILE_MATCH
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015818'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Deny ACL matched'
+id: 8ce7a6be-1ad0-5f71-9ee4-70fb0fee3136
+status: experimental
+description: Converted from Sagan rule SID 5015819 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: DENY_ACL_MATCHED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015819'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Session timed out'
+id: 4a806aab-40c5-54d1-a15a-5406f64732bb
+status: experimental
+description: Converted from Sagan rule SID 5015820 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: SESSION_TIMEOUT_EXCEEDED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015820'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Redirect ACL matched'
+id: 2eecda89-6979-557a-879b-6775dbfc7539
+status: experimental
+description: Converted from Sagan rule SID 5015821 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: REDIRECT_ACL_MATCHED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015821'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Access Control cookie expired'
+id: 024aaf43-799b-5ea9-bd55-b1c6c460a9d6
+status: experimental
+description: Converted from Sagan rule SID 5015822 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: ACCESS_CONTROL_COOKIE_EXPIRED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015822'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Access Control cookie invalid'
+id: 23240322-bd0d-5951-ac76-25db273d4f0e
+status: experimental
+description: Converted from Sagan rule SID 5015823 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: ACCESS_CONTROL_COOKIE_INVALID
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015823'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Access Control access denied'
+id: 8f22bfdc-9696-523d-817c-c9aad6758de0
+status: experimental
+description: Converted from Sagan rule SID 5015824 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: ACCESS_CONTROL_ACCESS_DENIED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015824'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Access Control no cookie found'
+id: 219ef457-d12b-5749-bb8b-7c83fd69d2bc
+status: experimental
+description: Converted from Sagan rule SID 5015825 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: ACCESS_CONTROL_NO_COOKIE
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015825'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Blocked by FTP command-blocking policy'
+id: f8e7af9c-95be-5135-b5d0-4860eeeccffa
+status: experimental
+description: Converted from Sagan rule SID 5015826 (rev 1), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: FTP_COMMAND_BLOCKED
+  filter_2:
+    message|contains|cased: DENY
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015826'
+  sagan.rev: '1'
+  sagan.source_file: barracuda-waf.rules
+---
+title: '[Barracuda] WAF Virus Scan - Virus Found'
+id: ff47fc21-0315-5b49-b079-d619a7024540
+status: experimental
+description: Converted from Sagan rule SID 5015827 (rev 2), file barracuda-waf.rules.
+references:
+  - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    message|contains|cased: VIRUS_SCAN
+  filter_2:
+    message|contains|cased: DENY
+  filter_3:
+    message|contains|cased: Virus Found="No"
+  condition: selection_1 and not (filter_2 or filter_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5015827'
+  sagan.rev: '2'
+  sagan.source_file: barracuda-waf.rules

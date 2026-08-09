@@ -1,0 +1,50 @@
+title: '[EXPERIMENTAL] [JUNIPER] Suspicious - Unknown Application Activity Outside Business Hours'
+id: b2c4b472-0e6f-58d4-aa5f-353c0e421453
+status: experimental
+description: Converted from Sagan rule SID 9870018 (rev 1), file juniper-aetas.rules.
+references:
+  - https://attack.mitre.org/techniques/T1071/001
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    message|contains|cased: APPTRACK_SESSION_CREATE
+  selection_2:
+    message|contains|cased: application="UNKNOWN"
+  selection_3:
+    message|contains|cased: destination-zone-name="untrust"
+  selection_4:
+    message|contains|cased: source-zone-name="trust"
+  at_days:
+    sagan_event_weekday:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+  at_days_rollover:
+    sagan_event_weekday:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+  at_evening:
+    sagan_event_hhmm|gte: 1800
+  at_morning:
+    sagan_event_hhmm|lte: 800
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and ((at_days and at_evening)
+    or (at_days_rollover and at_morning))
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '9870018'
+  sagan.rev: '1'
+  sagan.source_file: juniper-aetas.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_on=2026_06_17,updated_on=2026_06_17,mitreTactic=TA0011,mitreTechnique=T1071.001

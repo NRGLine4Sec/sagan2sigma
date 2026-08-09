@@ -1,8 +1,9 @@
 name: Refresh converted rules
 
-# Keeps converted/ in step with the upstream Sagan corpus. It reconverts the
-# whole corpus, so rules modified or removed upstream are reflected, not only
-# new ones, and commits the result only when it actually changed.
+# Keeps converted/ and converted-vector-enriched/ in step with the upstream
+# Sagan corpus. It reconverts the whole corpus in both profiles, so rules
+# modified or removed upstream are reflected, not only new ones, and commits the
+# result only when it actually changed.
 
 on:
   schedule:
@@ -35,13 +36,13 @@ jobs:
         run: python tools/refresh_converted_rules.py --sagan-rules /tmp/sagan-rules
       - name: Commit and push when the rule set changed
         run: |
-          if [ -z "$(git status --porcelain converted/)" ]; then
+          if [ -z "$(git status --porcelain converted/ converted-vector-enriched/)" ]; then
             echo "Converted rules are already up to date."
             exit 0
           fi
           version=$(grep -m1 '^| `' converted/VERSIONS.md | cut -d'`' -f2)
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add converted/
+          git add converted/ converted-vector-enriched/
           git commit -m "chore: refresh converted rules (version ${version}) [skip ci]"
           git push

@@ -1,0 +1,50 @@
+title: '[EXPERIMENTAL] [FORTIGATE] Suspicious - Unknown Application Activity Outside Business Hours'
+id: b533b3b7-bafc-542d-8164-39877229439d
+status: experimental
+description: Converted from Sagan rule SID 9870022 (rev 1), file fortinet-aetas.rules.
+references:
+  - https://attack.mitre.org/techniques/T1071/001
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: type="traffic"
+  selection_2:
+    message|contains|cased: subtype="forward"
+  selection_3:
+    message|contains|cased: app="UNKNOWN"
+  selection_4:
+    message|re: srcip=(10\.\d+\.\d+\.\d+|172\.(1[6-9]|2[0-9]|3[0-1])\.\d+\.\d+|192\.168\.\d+\.\d+)
+  at_days:
+    sagan_event_weekday:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+  at_days_rollover:
+    sagan_event_weekday:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+  at_evening:
+    sagan_event_hhmm|gte: 1800
+  at_morning:
+    sagan_event_hhmm|lte: 800
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and ((at_days and at_evening)
+    or (at_days_rollover and at_morning))
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '9870022'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-aetas.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_on=2026_06_17,updated_on=2026_06_17,mitreTactic=TA0011,mitreTechnique=T1071.001

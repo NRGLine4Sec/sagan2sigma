@@ -1,0 +1,22 @@
+title: '[PHP] Possible web attack'
+id: 75008178-d31f-5e8f-bfff-1900f1145338
+status: experimental
+description: Converted from Sagan rule SID 5000240 (rev 3), file php.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: expects parameter 1 to be string, array given in
+  selection_2:
+    appname|cased: apache
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5000240'
+  sagan.rev: '3'
+  sagan.source_file: php.rules

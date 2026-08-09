@@ -1,0 +1,523 @@
+title: '[COURIER-CORRELATED] Logout/disconnect after recon activity'
+id: 729254a7-ecf1-5b9b-8a3a-3ae5fd67f33a
+name: sagan_5003245
+status: experimental
+description: Converted from Sagan rule SID 5003245 (rev 4), file courier-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased:
+      - LOGOUT
+      - DISCONNECTED
+  selection_2:
+    appname|cased:
+      - imapd
+      - imapd-ssl
+      - courierlogger
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5003245'
+  sagan.rev: '4'
+  sagan.source_file: courier-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[COURIER-CORRELATED] Logout/disconnect after recon activity (correlated with brute_force)'
+id: 45ab214b-3894-5a3c-b79a-db5aebeacc88
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003245
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: low
+---
+title: '[COURIER-CORRELATED] Logout/disconnect after honeypot activity'
+id: 130a63f0-eeb0-5324-afd5-ba70c81c0cda
+name: sagan_5003246
+status: experimental
+description: Converted from Sagan rule SID 5003246 (rev 4), file courier-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased:
+      - LOGOUT
+      - DISCONNECTED
+  selection_2:
+    appname|cased:
+      - imapd
+      - imapd-ssl
+      - courierlogger
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5003246'
+  sagan.rev: '4'
+  sagan.source_file: courier-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[COURIER-CORRELATED] Logout/disconnect after honeypot activity (correlated with honeypot)'
+id: 167ae180-cb28-5cf6-ba93-198eb127388a
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003246
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: low
+---
+title: '[COURIER-CORRELATED] Logout/disconnect after exploit attempt'
+id: d9fcacf0-e42b-5879-aeff-15af09f054c0
+name: sagan_5003247
+status: experimental
+description: Converted from Sagan rule SID 5003247 (rev 4), file courier-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased:
+      - LOGOUT
+      - DISCONNECTED
+  selection_2:
+    appname|cased:
+      - imapd
+      - imapd-ssl
+      - courierlogger
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5003247'
+  sagan.rev: '4'
+  sagan.source_file: courier-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[COURIER-CORRELATED] Logout/disconnect after exploit attempt (correlated with exploit_attempt)'
+id: 4c975224-728d-59b1-b41a-d2e57c09d505
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003247
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: low
+---
+title: '[COURIER-CORRELATED] Logout/disconnect after brute force activity'
+id: 1d0896ba-005d-5dad-80ce-24c93fc2fbb9
+name: sagan_5003248
+status: experimental
+description: Converted from Sagan rule SID 5003248 (rev 4), file courier-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased:
+      - LOGOUT
+      - DISCONNECTED
+  selection_2:
+    appname|cased:
+      - imapd
+      - imapd-ssl
+      - courierlogger
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5003248'
+  sagan.rev: '4'
+  sagan.source_file: courier-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[COURIER-CORRELATED] Logout/disconnect after brute force activity (correlated with brute_force)'
+id: f19cb459-f67b-532a-b914-23153ac5ca24
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003248
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: low
+---
+title: '[COURIER-CORRELATED] User login after recon activity'
+id: f1b51733-4a27-5405-b2ac-3796fddc6946
+name: sagan_5003249
+status: experimental
+description: Converted from Sagan rule SID 5003249 (rev 3), file courier-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: LOGIN,
+  selection_2:
+    appname|cased:
+      - imapd
+      - imapd-ssl
+      - courierlogger
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5003249'
+  sagan.rev: '3'
+  sagan.source_file: courier-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[COURIER-CORRELATED] User login after recon activity (correlated with recon)'
+id: 60f78543-9dbd-5e38-b1eb-7a297ddd587c
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003249
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[COURIER-CORRELATED] User login after honeypot activity'
+id: 223088a4-6acb-55be-bdb5-d91655452db3
+name: sagan_5003250
+status: experimental
+description: Converted from Sagan rule SID 5003250 (rev 3), file courier-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: LOGIN,
+  selection_2:
+    appname|cased:
+      - imapd
+      - imapd-ssl
+      - courierlogger
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5003250'
+  sagan.rev: '3'
+  sagan.source_file: courier-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[COURIER-CORRELATED] User login after honeypot activity (correlated with honeypot)'
+id: edf0c290-a14d-53b5-8639-ea05c5d45061
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003250
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[COURIER-CORRELATED] User login after exploit attempt'
+id: f5dd6c33-763f-5702-a1ee-1659e086fa85
+name: sagan_5003251
+status: experimental
+description: Converted from Sagan rule SID 5003251 (rev 3), file courier-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: LOGIN,
+  selection_2:
+    appname|cased:
+      - imapd
+      - imapd-ssl
+      - courierlogger
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5003251'
+  sagan.rev: '3'
+  sagan.source_file: courier-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[COURIER-CORRELATED] User login after exploit attempt (correlated with exploit_attempt)'
+id: 88d0f92d-17e1-5861-aac7-0a576cade873
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003251
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[COURIER-CORRELATED] User login after brute force activity'
+id: 6cc45406-a5ef-5b48-a634-8de9096312e9
+name: sagan_5003252
+status: experimental
+description: Converted from Sagan rule SID 5003252 (rev 3), file courier-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: LOGIN,
+  selection_2:
+    appname|cased:
+      - imapd
+      - imapd-ssl
+      - courierlogger
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5003252'
+  sagan.rev: '3'
+  sagan.source_file: courier-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[COURIER-CORRELATED] User login after brute force activity (correlated with brute_force)'
+id: 5bc65bf1-0e94-56d6-8405-6c6f3584b8ac
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003252
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[COURIER-CORRELATED] Timeout after recon activity'
+id: d658f076-6ea4-5e65-84a6-1da12cd116cd
+name: sagan_5003253
+status: experimental
+description: Converted from Sagan rule SID 5003253 (rev 3), file courier-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: TIMEOUT
+  selection_2:
+    appname|cased:
+      - imapd
+      - imapd-ssl
+      - courierlogger
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5003253'
+  sagan.rev: '3'
+  sagan.source_file: courier-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[COURIER-CORRELATED] Timeout after recon activity (correlated with recon)'
+id: 20ff9ed8-b58a-5541-afda-690cd9b8fdb3
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003253
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[COURIER-CORRELATED] Timeout after honeypot activity'
+id: 5a00301c-4935-558b-9777-d334b255e5bb
+name: sagan_5003254
+status: experimental
+description: Converted from Sagan rule SID 5003254 (rev 3), file courier-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: TIMEOUT
+  selection_2:
+    appname|cased:
+      - imapd
+      - imapd-ssl
+      - courierlogger
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5003254'
+  sagan.rev: '3'
+  sagan.source_file: courier-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[COURIER-CORRELATED] Timeout after honeypot activity (correlated with honeypot)'
+id: 9a3f3256-37b6-5c5b-914b-3fbcd95f765b
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003254
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[COURIER-CORRELATED] Timeout after exploit attempt'
+id: 64b13fde-e54c-53e2-8743-749d255e7ca6
+name: sagan_5003255
+status: experimental
+description: Converted from Sagan rule SID 5003255 (rev 3), file courier-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: TIMEOUT
+  selection_2:
+    appname|cased:
+      - imapd
+      - imapd-ssl
+      - courierlogger
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5003255'
+  sagan.rev: '3'
+  sagan.source_file: courier-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[COURIER-CORRELATED] Timeout after exploit attempt (correlated with exploit_attempt)'
+id: 91160082-2d63-5ee7-8533-e0efabb51ee5
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003255
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[COURIER-CORRELATED] Timeout after brute force activity'
+id: 92158159-7177-5e96-ab2b-69b76f6a6f17
+name: sagan_5003256
+status: experimental
+description: Converted from Sagan rule SID 5003256 (rev 3), file courier-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: TIMEOUT
+  selection_2:
+    appname|cased:
+      - imapd
+      - imapd-ssl
+      - courierlogger
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5003256'
+  sagan.rev: '3'
+  sagan.source_file: courier-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[COURIER-CORRELATED] Timeout after brute force activity (correlated with brute_force)'
+id: 6c002cfe-86e8-5efd-a817-80092a25d342
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003256
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high

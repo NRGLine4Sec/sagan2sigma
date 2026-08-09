@@ -1,0 +1,41 @@
+title: '[MSAPI-DEFENDER] WindowsDefenderAtp alert detected'
+id: 3ff49361-7154-54c3-b9e5-ec7547a3ff46
+status: experimental
+description: Converted from Sagan rule SID 5006525 (rev 1), file msapi-defender.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    detectionSource|cased: WindowsDefenderAtp
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5006525'
+  sagan.rev: '1'
+  sagan.source_file: msapi-defender.rules
+---
+title: '[MSAPI-DEFENDER] WindowsDefenderAv alert detected'
+id: dc0b484e-47b1-53b1-b192-3b388694a28a
+status: experimental
+description: Converted from Sagan rule SID 5006526 (rev 1), file msapi-defender.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    detectionSource|cased: WindowsDefenderAv
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5006526'
+  sagan.rev: '1'
+  sagan.source_file: msapi-defender.rules

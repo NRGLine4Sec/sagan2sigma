@@ -1,0 +1,139 @@
+title: '[MIMECAST] An email containing a virus was detected and blocked'
+id: 679770e2-1890-5947-b7c6-5e5036c8692c
+status: experimental
+description: Converted from Sagan rule SID 5005768 (rev 3), file mimecast.rules.
+references:
+  - https://www.mimecast.com/tech-connect/documentation/tutorials/understanding-siem-logs/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: MIMECAST
+  selection_2:
+    message|contains|cased: RejType=Virus Signature Detection
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005768'
+  sagan.rev: '3'
+  sagan.source_file: mimecast.rules
+---
+title: '[MIMECAST] A suspicious email was delivered'
+id: 899b183f-aacc-5dd1-8112-c3ed964acdba
+status: experimental
+description: Converted from Sagan rule SID 5005769 (rev 2), file mimecast.rules.
+references:
+  - https://www.mimecast.com/tech-connect/documentation/tutorials/understanding-siem-logs/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: MIMECAST
+  selection_2:
+    message|contains|cased:
+      - urlCategory=Dangerous file extension
+      - urlCategory=Malware
+      - urlCategory=Phishing & Fraud
+      - urlCategory=Unknown
+      - urlCategory=Compromised
+  filter_3:
+    message|contains|cased: action=Block
+  filter_4:
+    message|contains|cased: Route=Internal
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005769'
+  sagan.rev: '2'
+  sagan.source_file: mimecast.rules
+---
+title: '[MIMECAST] An internal user name has been impersonated'
+id: 9dd460d5-ff1d-5cbe-b1b3-88bb2b40ff43
+status: experimental
+description: Converted from Sagan rule SID 5005770 (rev 1), file mimecast.rules.
+references:
+  - https://www.mimecast.com/tech-connect/documentation/tutorials/understanding-siem-logs/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: MIMECAST
+  selection_2:
+    message|contains: Definition=Default Impersonation Definition
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005770'
+  sagan.rev: '1'
+  sagan.source_file: mimecast.rules
+---
+title: '[MIMECAST] A user has clicked on link that is potentially malicious'
+id: 9280e80d-8a23-5a46-a962-f26a3a2ed5f6
+status: experimental
+description: Converted from Sagan rule SID 5005771 (rev 1), file mimecast.rules.
+references:
+  - https://www.mimecast.com/tech-connect/documentation/tutorials/understanding-siem-logs/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: MIMECAST
+  selection_2:
+    message|contains|cased: reason=malicious
+  selection_3:
+    message|contains|cased: url=
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005771'
+  sagan.rev: '1'
+  sagan.source_file: mimecast.rules
+---
+title: '[MIMECAST] Internal email protection'
+id: d814e393-69f4-5cd6-aea4-18eeebb1236b
+status: experimental
+description: Converted from Sagan rule SID 5005772 (rev 1), file mimecast.rules.
+references:
+  - https://www.mimecast.com/tech-connect/documentation/tutorials/understanding-siem-logs/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: MIMECAST
+  selection_2:
+    message|contains|cased: Route=Inbound
+  selection_3:
+    message|contains|cased: md5=
+  filter_4:
+    message|contains|cased: Virus=
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5005772'
+  sagan.rev: '1'
+  sagan.source_file: mimecast.rules

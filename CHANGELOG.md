@@ -56,6 +56,15 @@ All notable changes to this project are documented here. The format follows
 
 ### Added
 
+- The upstream corpus converted with the `vector-enriched` profile is now
+  committed under `converted-vector-enriched/`, alongside the default
+  `rsigma-syslog` snapshot in `converted/`, and refreshed by the same workflow.
+  It carries the rules, the conversion report and the runnable Vector pipeline the
+  enriched rules depend on. `converted/VERSIONS.md` now records the rate for both
+  profiles in one table. Because `country_code` and most `alert_time` rules need
+  site-specific variables (`$HOME_COUNTRY`, `$SAGAN_DAYS`), they are refused with
+  `E_VAR_UNRESOLVED` in the committed snapshot; regenerate with your `sagan.yaml`
+  to include them. See `converted-vector-enriched/README.md`.
 - `blacklist` and `zeek-intel` rules now convert under `--profile vector-enriched`
   instead of being refused. Both fire when a parsed address is on an external
   feed: `blacklist` an IP denylist (`src/processors/blacklist.c`), `zeek-intel` a

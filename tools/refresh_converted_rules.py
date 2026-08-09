@@ -37,19 +37,21 @@ PENDING = "pending"
 HEADER = [
     "# Converted rule set versions",
     "",
-    "This table records each iteration of the converted rule set under",
-    "[`converted/`](rules), newest first. The rules there are produced from",
-    "[`quadrantsec/sagan-rules`](https://github.com/quadrantsec/sagan-rules) with",
-    "the default `rsigma-syslog` profile, so they can be used without installing",
-    "this project. They are regenerated whenever the upstream corpus changes; see",
-    "`.github/workflows/convert-rules.yml`.",
+    "This table records each iteration of the converted rule sets, newest first,",
+    "produced from",
+    "[`quadrantsec/sagan-rules`](https://github.com/quadrantsec/sagan-rules) so they",
+    "can be used without installing this project. Both profiles are refreshed",
+    "together whenever the upstream corpus changes; see",
+    "`.github/workflows/convert-rules.yml`. The default `rsigma-syslog` snapshot is",
+    "under [`converted/`](rules); the `vector-enriched` one, which recovers more,",
+    "is [`converted-vector-enriched/`](../converted-vector-enriched).",
     "",
     "The **version** is the short hash of the `sagan-rules` commit and the",
     "`sagan2sigma` commit the rules were produced from, so it is reproducible. The",
     "**sagan-rules date** is that commit's date, which is how old the rules are.",
     "",
-    "| Version | sagan-rules commit | sagan-rules date | sagan2sigma | Generated | Rules |",  # noqa: E501
-    "| --- | --- | --- | --- | --- | ---: |",
+    "| Version | sagan-rules commit | sagan-rules date | sagan2sigma | Generated | Default | Enriched |",  # noqa: E501
+    "| --- | --- | --- | --- | --- | ---: | ---: |",
 ]
 
 
@@ -70,18 +72,23 @@ def version_id(sagan_commit: str, sagan2sigma_commit: str) -> str:
     return hashlib.sha256(material.encode("utf-8")).hexdigest()[:12]
 
 
-def convert(sagan_rules: Path, output: Path) -> tuple[int, int, float]:
-    """Wipe and rebuild the converted rules, returning (converted, total, rate)."""
+def convert(
+    sagan_rules: Path, output: Path, profile: str | None = None
+) -> tuple[int, int, float]:
+    """Wipe and rebuild one converted snapshot, returning (converted, total, rate).
+
+    ``profile`` selects the output profile; ``vector-enriched`` also emits the
+    Vector pipeline into ``output/vector`` because ``--emit-vector-config`` is
+    implied by that profile.
+    """
     rules_dir = output / "rules"
     if rules_dir.exists():
         shutil.rmtree(rules_dir)
     output.mkdir(parents=True, exist_ok=True)
-    subprocess.run(
-        ["sagan2sigma", str(sagan_rules), "-o", str(output)],
-        check=True,
-        capture_output=True,
-        text=True,
-    )
+    command = ["sagan2sigma", str(sagan_rules), "-o", str(output)]
+    if profile is not None:
+        command += ["--profile", profile]
+    subprocess.run(command, check=True, capture_output=True, text=True)
     report = json.loads((output / "conversion-report.json").read_text("utf-8"))
     summary = report["summary"]
     # The JSON report is large and machine-only; the Markdown report is kept.
@@ -110,22 +117,26 @@ def _is_pending(row: str) -> bool:
     return f"`{PENDING}`" in row.split("|")[1]
 
 
+def _cell(converted: int, total: int, rate: float) -> str:
+    """One `converted / total (rate%)` cell."""
+    return f"{converted} / {total} ({rate:.1f}%)"
+
+
 def _row(
     vid: str,
     sagan_commit: str,
     sagan_date: str,
     sagan_url: str,
     sagan2sigma_commit: str,
-    converted: int,
-    total: int,
-    rate: float,
+    default: tuple[int, int, float],
+    enriched: tuple[int, int, float],
 ) -> str:
     base = sagan_url.removesuffix(".git")
     commit_link = f"[`{sagan_commit[:12]}`]({base}/commit/{sagan_commit})"
     day = sagan_date[:10]
     return (
         f"| `{vid}` | {commit_link} | {day} | `{sagan2sigma_commit[:12]}` | "
-        f"{date.today().isoformat()} | {converted} / {total} ({rate:.1f}%) |"
+        f"{date.today().isoformat()} | {_cell(*default)} | {_cell(*enriched)} |"
     )
 
 
@@ -166,12 +177,21 @@ def main(argv: list[str] | None = None) -> int:
     sagan_url = git(args.sagan_rules, "config", "--get", "remote.origin.url")
     sagan2sigma_commit = git(args.repo, "rev-parse", "HEAD")
 
-    output = args.repo / "converted"
-    converted, total, rate = convert(args.sagan_rules, output)
+    default_dir = args.repo / "converted"
+    enriched_dir = args.repo / "converted-vector-enriched"
+    default = convert(args.sagan_rules, default_dir)
+    enriched = convert(args.sagan_rules, enriched_dir, profile="vector-enriched")
 
     vid = version_id(sagan_commit, sagan2sigma_commit)
     rules_changed = bool(
-        git(args.repo, "status", "--porcelain", "--", str(output / "rules"))
+        git(
+            args.repo,
+            "status",
+            "--porcelain",
+            "--",
+            str(default_dir / "rules"),
+            str(enriched_dir / "rules"),
+        )
     )
     row = _row(
         vid,
@@ -179,15 +199,14 @@ def main(argv: list[str] | None = None) -> int:
         sagan_date,
         sagan_url,
         sagan2sigma_commit,
-        converted,
-        total,
-        rate,
+        default,
+        enriched,
     )
-    changed = update_versions(output / "VERSIONS.md", row, rules_changed)
+    changed = update_versions(default_dir / "VERSIONS.md", row, rules_changed)
 
     print(
         f"sagan-rules {sagan_commit[:12]} -> version {vid}: "
-        f"{converted}/{total} rules "
+        f"default {default[0]}/{default[1]}, enriched {enriched[0]}/{enriched[1]} "
         f"({'rules changed' if rules_changed else 'rules unchanged'}, "
         f"VERSIONS.md {'updated' if changed else 'unchanged'})"
     )

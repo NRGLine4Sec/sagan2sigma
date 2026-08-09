@@ -1,0 +1,503 @@
+title: '[DELL EMC UNITY] POWER SUPPLY HAS FAULTED'
+id: 0e8bea99-a3c0-576a-8749-dd55a885c78f
+status: experimental
+description: Converted from Sagan rule SID 5006590 (rev 1), file dellemcunity.rules.
+references:
+  - https://www.dell.com/support/kbdoc/en-tt/000052454/dell-emc-unity-showing-incorrect-fault-on-power-supply-user-correctable
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Power supply
+  selection_2:
+    message|contains|cased: has faulted
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5006590'
+  sagan.rev: '1'
+  sagan.source_file: dellemcunity.rules
+  rsigma.suppress: 1h
+---
+title: '[DELL EMC UNITY] POWER SUPPLY IS OPERATING NORMALLY'
+id: 642e3908-51c1-5dee-ac1d-914682cbcc85
+status: experimental
+description: Converted from Sagan rule SID 5006591 (rev 1), file dellemcunity.rules.
+references:
+  - https://www.dell.com/support/kbdoc/en-tt/000052454/dell-emc-unity-showing-incorrect-fault-on-power-supply-user-correctable
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Power supply
+  selection_2:
+    message|contains|cased: is operating normally
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5006591'
+  sagan.rev: '1'
+  sagan.source_file: dellemcunity.rules
+  rsigma.suppress: 1h
+---
+title: '[DELL EMC UNITY] RECOMMENDED SYSTEM SOFTWARE AVAILABLE'
+id: 0e2a4dfb-bf52-597a-b374-3276f599532a
+status: experimental
+description: Converted from Sagan rule SID 5006592 (rev 1), file dellemcunity.rules.
+references:
+  - https://www.delltechnologies.com/asset/en-us/products/storage/industry-market/h15093-dell-emc-unity-best-practices-guide.pdf
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: NOTICE
+  selection_2:
+    message|contains|cased: is now available for download
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5006592'
+  sagan.rev: '1'
+  sagan.source_file: dellemcunity.rules
+  rsigma.suppress: 1d
+---
+title: '[DELL EMC UNITY] LINK IS DOWN'
+id: e5ca9736-97d2-51d1-8643-f286c35bacfd
+status: experimental
+description: Converted from Sagan rule SID 5006593 (rev 1), file dellemcunity.rules.
+references:
+  - https://www.dell.com/support/kbdoc/en-us/000050373/dell-emc-unity-fibre-channel-port-sp-xx-i-o-module-xx-fc-port-xx-link-is-down-user-correctable
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ERROR
+  selection_2:
+    message|contains|cased: link is down
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5006593'
+  sagan.rev: '1'
+  sagan.source_file: dellemcunity.rules
+---
+title: '[DELL EMC UNITY] FAILED TO ADD A REMOTE SYSTEM'
+id: 56e133ec-d209-5f2c-baf5-8fe8aa1a46f6
+status: experimental
+description: Converted from Sagan rule SID 5006594 (rev 1), file dellemcunity.rules.
+references:
+  - https://www.dell.com/support/kbdoc/en-uy/000052401/dell-emc-unity-creating-replication-connection-fails-with-error-code-0x6500128-if-the-proper-replication-interfaces-are-not-configured-on-local-and-remote-systems
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ERROR
+  selection_2:
+    message|contains|cased: failed to add remote system
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5006594'
+  sagan.rev: '1'
+  sagan.source_file: dellemcunity.rules
+---
+title: '[DELL EMC UNITY] STORAGE PROCESSOR RESTARTING'
+id: ef5ce703-dccf-54ad-a55f-6ff8c8f0573b
+status: experimental
+description: Converted from Sagan rule SID 5006595 (rev 1), file dellemcunity.rules.
+references:
+  - https://www.dell.com/support/kbdoc/en-us/000056107/dell-emc-unity-storage-processors-show-as-rebooting-in-gui-but-not-in-cli-nor-leds-user-correctable
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: warning
+  selection_2:
+    message|contains|cased: Storage Processor
+  selection_3:
+    message|contains|cased: is restarting
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5006595'
+  sagan.rev: '1'
+  sagan.source_file: dellemcunity.rules
+  rsigma.suppress: 5m
+---
+title: '[DELL EMC UNITY] A STORAGE PROCESSOR WRITE CACHE HAS BEEN DISABLED'
+id: 21ae038c-d854-5257-85f3-00dcdb8d0d93
+status: experimental
+description: Converted from Sagan rule SID 5006596 (rev 1), file dellemcunity.rules.
+references:
+  - https://www.dell.com/community/CLARiiON/SPS-and-write-cache/td-p/6648915
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: warning
+  selection_2:
+    message|contains|cased: The write cache on Storage Processor
+  selection_3:
+    message|contains|cased: is disabled
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5006596'
+  sagan.rev: '1'
+  sagan.source_file: dellemcunity.rules
+  rsigma.suppress: 5m
+---
+title: '[DELL EMC UNITY] AN SFP WAS REMOVED'
+id: 2b5ad973-17c1-518f-90d3-7909e581c830
+status: experimental
+description: Converted from Sagan rule SID 5006597 (rev 1), file dellemcunity.rules.
+references:
+  - https://www.delltechnologies.com/asset/en-us/products/storage/industry-market/h15093-dell_emc_unity-best_practices_guide.pdf
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: An SFP was removed from
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5006597'
+  sagan.rev: '1'
+  sagan.source_file: dellemcunity.rules
+  rsigma.suppress: 5m
+---
+title: '[DELL EMC UNITY] DNS CLIENT UNABLE TO CONNECT'
+id: 9f8600cd-04a4-5b73-baaf-4b366f97866e
+status: experimental
+description: Converted from Sagan rule SID 5006598 (rev 1), file dellemcunity.rules.
+references:
+  - https://www.dell.com/support/kbdoc/en-us/000064779/dell-emc-unity-received-error-code-the-dns-client-is-unable-to-connect-to-name-server-xx-xx-xx-xx-user-correctable
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: The DNS client is unable to connect to
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5006598'
+  sagan.rev: '1'
+  sagan.source_file: dellemcunity.rules
+  rsigma.suppress: 5m
+---
+title: '[DELL EMC UNITY] COMMUNICATION WITH HOST HAS BEEN LOST'
+id: cf5c58ef-43d8-5b2d-bbd6-bb72b48cf16c
+status: experimental
+description: Converted from Sagan rule SID 5006599 (rev 1), file dellemcunity.rules.
+references:
+  - https://www.dell.com/support/kbdoc/en-us/000056957/dell-emc-unity-sync-replication-status-lost-sync-communication-0x840e-user-correctable
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ERROR
+  selection_2:
+    message|contains|cased: Communication with
+  selection_3:
+    message|contains|cased: has been lost
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5006599'
+  sagan.rev: '1'
+  sagan.source_file: dellemcunity.rules
+  rsigma.suppress: 5m
+---
+title: '[DELL EMC UNITY] CANNOT COMMUNICATE WITH REMOTE SESSION'
+id: e854e388-807a-500e-9a77-9a0288d16844
+status: experimental
+description: Converted from Sagan rule SID 5006589 (rev 1), file dellemcunity.rules.
+references:
+  - https://www.dell.com/support/kbdoc/en-us/000056957/dell-emc-unity-sync-replication-status-lost-sync-communication-0x840e-user-correctable
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ERROR
+  selection_2:
+    message|contains|cased: Replication session
+  selection_3:
+    message|contains|cased: cannot communicate with its remote session
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5006589'
+  sagan.rev: '1'
+  sagan.source_file: dellemcunity.rules
+  rsigma.suppress: 5m
+---
+title: '[DELL EMC UNITY] BRUTE FORCE ATTEMPT [1]'
+id: ed8a09d4-e553-5338-a18b-0851cae19528
+name: sagan_5006588
+status: experimental
+description: Converted from Sagan rule SID 5006588 (rev 1), file dellemcunity.rules.
+references:
+  - https://XXXXXXXXX
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: 'failed: Principal User'
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5006588'
+  sagan.rev: '1'
+  sagan.source_file: dellemcunity.rules
+  rsigma.suppress: 5m
+---
+title: '[DELL EMC UNITY] BRUTE FORCE ATTEMPT [1] (threshold 10 in 5m)'
+id: 69865e8b-620b-57d4-ad55-56374e36f462
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5006588
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 10
+level: low
+---
+title: '[DELL EMC UNITY] BRUTE FORCE ATTEMPT [2]'
+id: 96eed7c4-4152-5ee7-b76f-bb3b38bd511d
+name: sagan_5006587
+status: experimental
+description: Converted from Sagan rule SID 5006587 (rev 1), file dellemcunity.rules.
+references:
+  - https://XXXXXXXXX
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: failed to authenticate in
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5006587'
+  sagan.rev: '1'
+  sagan.source_file: dellemcunity.rules
+  rsigma.suppress: 5m
+---
+title: '[DELL EMC UNITY] BRUTE FORCE ATTEMPT [2] (threshold 10 in 5m)'
+id: b18deea6-8654-583f-8daa-55fe3ce733c3
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5006587
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 10
+level: low
+---
+title: DELL EMC UNITY CORRELATED LOGIN AFTER BRUTE FORCE [1]
+id: 04128cd0-9133-5205-a212-5f88258ea27b
+name: sagan_5006586
+status: experimental
+description: Converted from Sagan rule SID 5006586 (rev 1), file dellemcunity.rules.
+references:
+  - https://XXXXXXXXX
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: 'succeeded: Principal User'
+  selection_2:
+    message|contains|cased: INFO
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5006586'
+  sagan.rev: '1'
+  sagan.source_file: dellemcunity.rules
+  rsigma.suppress: 1h
+---
+title: DELL EMC UNITY CORRELATED LOGIN AFTER BRUTE FORCE [1] (correlated with brute_force)
+id: a946fc50-b59c-575a-9634-7ac8b03209f7
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5006586
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: DELL EMC UNITY CORRELATED LOGIN AFTER BRUTE FORCE [2]
+id: 8ad4b089-0c78-5777-ae4e-9d7fc05ac132
+name: sagan_5006585
+status: experimental
+description: Converted from Sagan rule SID 5006585 (rev 1), file dellemcunity.rules.
+references:
+  - https://XXXXXXXXX
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: successfully authenticated
+  selection_2:
+    message|contains|cased: INFO
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5006585'
+  sagan.rev: '1'
+  sagan.source_file: dellemcunity.rules
+  rsigma.suppress: 1h
+---
+title: DELL EMC UNITY CORRELATED LOGIN AFTER BRUTE FORCE [2] (correlated with brute_force)
+id: 48f8c4e3-2ef8-5edb-ba77-b25387a19992
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5006585
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: DELL EMC UNITY CORRELATED LOGIN AFTER BRUTE FORCE [3]
+id: 9a485bd3-d849-501c-a0d8-094563467458
+name: sagan_5006584
+status: experimental
+description: Converted from Sagan rule SID 5006584 (rev 1), file dellemcunity.rules.
+references:
+  - https://XXXXXXXXX
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Authentication successful
+  selection_2:
+    message|contains|cased: INFO
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5006584'
+  sagan.rev: '1'
+  sagan.source_file: dellemcunity.rules
+  rsigma.suppress: 1h
+---
+title: DELL EMC UNITY CORRELATED LOGIN AFTER BRUTE FORCE [3] (correlated with brute_force)
+id: 7d441169-6582-5577-b8ca-61746fe65c00
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5006584
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high

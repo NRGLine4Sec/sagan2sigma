@@ -1,0 +1,169 @@
+title: '[SYSTEMD] SERVICE_START Failure'
+id: 4ee5c187-0b90-50c7-9717-11aa87f6b8a2
+name: sagan_5005972
+status: experimental
+description: Converted from Sagan rule SID 5005972 (rev 2), file systemd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: systemd
+detection:
+  selection_1:
+    appname|cased: audit
+  selection_2:
+    message|contains|cased: SERVICE_START
+  selection_3:
+    message|contains|cased: res=failed
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-error
+custom_attributes:
+  sagan.sid: '5005972'
+  sagan.rev: '2'
+  sagan.source_file: systemd.rules
+  rsigma.suppress: 5m
+---
+title: '[SYSTEMD] SERVICE_START Failure (threshold 5 in 30s)'
+id: 7932928c-21c0-50da-86ae-dd669a763f02
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5005972
+  group-by:
+    - hostname
+  timespan: 30s
+  condition:
+    gte: 5
+level: medium
+---
+title: '[SYSTEMD] Service Failed to Start'
+id: b33d81e8-ec31-5564-94d6-d19785a883d0
+name: sagan_5005973
+status: experimental
+description: Converted from Sagan rule SID 5005973 (rev 2), file systemd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: systemd
+detection:
+  selection_1:
+    appname|cased: systemd
+  selection_2:
+    message|contains|cased: Failed to start
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-error
+custom_attributes:
+  sagan.sid: '5005973'
+  sagan.rev: '2'
+  sagan.source_file: systemd.rules
+  rsigma.suppress: 5m
+---
+title: '[SYSTEMD] Service Failed to Start (threshold 5 in 30s)'
+id: d164ebe0-e356-592e-9ce1-085ac8a727f5
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5005973
+  group-by:
+    - hostname
+  timespan: 30s
+  condition:
+    gte: 5
+level: medium
+---
+title: '[SYSTEMD] Service Failed'
+id: 8b279852-75c7-5e6e-a528-8b986a85b132
+name: sagan_5005974
+status: experimental
+description: Converted from Sagan rule SID 5005974 (rev 3), file systemd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: systemd
+detection:
+  selection_1:
+    appname|cased: systemd
+  selection_2:
+    message|contains|cased: '.service: Failed'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-error
+custom_attributes:
+  sagan.sid: '5005974'
+  sagan.rev: '3'
+  sagan.source_file: systemd.rules
+  rsigma.suppress: 5m
+---
+title: '[SYSTEMD] Service Failed (threshold 5 in 30s)'
+id: 1bae5771-ebdb-5289-9071-a1e880a293ea
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5005974
+  group-by:
+    - hostname
+  timespan: 30s
+  condition:
+    gte: 5
+level: medium
+---
+title: '[SYSTEMD] Sagan Config Failure'
+id: 75d21c3b-4126-5f42-aef2-5e1d8b703231
+name: sagan_5005975
+status: experimental
+description: Converted from Sagan rule SID 5005975 (rev 2), file systemd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: systemd
+detection:
+  selection_1:
+    appname|cased: sagan
+  selection_2:
+    message|contains|cased: '[E]'
+  selection_3:
+    message|contains|cased: The configuration file
+  selection_4:
+    message|contains|cased: cannot be found! Abort!
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-error
+custom_attributes:
+  sagan.sid: '5005975'
+  sagan.rev: '2'
+  sagan.source_file: systemd.rules
+  rsigma.suppress: 5m
+---
+title: '[SYSTEMD] Sagan Config Failure (threshold 5 in 30s)'
+id: 1d76203f-10ea-585a-9c17-8727502d75fe
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5005975
+  group-by:
+    - hostname
+  timespan: 30s
+  condition:
+    gte: 5
+level: medium

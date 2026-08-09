@@ -1,0 +1,45 @@
+# IP denylist flags for the addresses sagan-parse-ip.vrl extracted.
+#
+# Why this exists
+# ---------------
+# Sagan's `blacklist` keyword fires when a parsed address is on a denylist of
+# bad IPs/networks (src/processors/blacklist.c). Sigma can only match a field,
+# so sagan2sigma refuses those rules unless a field says the address is listed.
+# This transform creates it.
+#
+# What it reproduces
+# ------------------
+# For each address .sagan_ip_N produced upstream, it looks the address up in the
+# `sagan_denylist` enrichment table (declared in vector.yaml as type mmdb, built
+# from a feed such as SANS DShield) and sets .sagan_denylist_N to true when the
+# address is listed. An address that is not on the list leaves the flag unset,
+# so the converted rule, which matches the flag being true, simply does not fire
+# on it, exactly as the engine's denylist lookup returns a miss.
+#
+# The lookup is a longest-prefix network match, so CIDR entries (for example
+# DShield's /24 blocks) match every host inside them.
+#
+# Output
+# ------
+#   .sagan_denylist_1 .. .sagan_denylist_5   true when the address is listed
+
+if exists(.sagan_ip_1) {
+    _, err = get_enrichment_table_record("sagan_denylist", {"ip": .sagan_ip_1})
+    if err == null { .sagan_denylist_1 = true }
+}
+if exists(.sagan_ip_2) {
+    _, err = get_enrichment_table_record("sagan_denylist", {"ip": .sagan_ip_2})
+    if err == null { .sagan_denylist_2 = true }
+}
+if exists(.sagan_ip_3) {
+    _, err = get_enrichment_table_record("sagan_denylist", {"ip": .sagan_ip_3})
+    if err == null { .sagan_denylist_3 = true }
+}
+if exists(.sagan_ip_4) {
+    _, err = get_enrichment_table_record("sagan_denylist", {"ip": .sagan_ip_4})
+    if err == null { .sagan_denylist_4 = true }
+}
+if exists(.sagan_ip_5) {
+    _, err = get_enrichment_table_record("sagan_denylist", {"ip": .sagan_ip_5})
+    if err == null { .sagan_denylist_5 = true }
+}

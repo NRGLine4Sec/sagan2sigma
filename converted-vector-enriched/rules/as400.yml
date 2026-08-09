@@ -1,0 +1,341 @@
+title: '[AS400] AUTFAIL An incorrect password was entered'
+id: ed88e94f-a849-5655-9844-15c1071efe9c
+name: sagan_5003771
+status: experimental
+description: Converted from Sagan rule SID 5003771 (rev 2), file as400.rules.
+author: sagan2sigma
+logsource:
+  product: as400
+detection:
+  selection_1:
+    message|contains|cased: ' MPW1600 '
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003771'
+  sagan.rev: '2'
+  sagan.source_file: as400.rules
+  rsigma.suppress: 15m
+---
+title: '[AS400] AUTFAIL An incorrect password was entered (threshold 3 in 15m)'
+id: c8191e54-5246-56dc-ab39-a480b215a9ea
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5003771
+  group-by:
+    - sagan_username
+  timespan: 15m
+  condition:
+    gte: 3
+level: high
+---
+title: '[AS400] AUTFAIL fail - password expired [no username]'
+id: dc9bf4e9-43bc-5127-9400-2534f8ab79a9
+name: sagan_5003772
+status: experimental
+description: Converted from Sagan rule SID 5003772 (rev 1), file as400.rules.
+author: sagan2sigma
+logsource:
+  product: as400
+detection:
+  selection_1:
+    message|contains|cased: ' MPW1800 '
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003772'
+  sagan.rev: '1'
+  sagan.source_file: as400.rules
+  rsigma.suppress: 15m
+---
+title: '[AS400] AUTFAIL fail - password expired [no username] (threshold 3 in 15m)'
+id: 558b0238-5fde-5ee0-acd5-3910c1c23be9
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5003772
+  group-by:
+    - sagan_username
+  timespan: 15m
+  condition:
+    gte: 3
+level: high
+---
+title: '[AS400] AUTFAIL - incorrect network password was used'
+id: 0e80dc5f-2b31-5bbc-82d6-535a802ffd29
+name: sagan_5003773
+status: experimental
+description: Converted from Sagan rule SID 5003773 (rev 2), file as400.rules.
+author: sagan2sigma
+logsource:
+  product: as400
+detection:
+  selection_1:
+    message|contains|cased: ' MVP1600 '
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003773'
+  sagan.rev: '2'
+  sagan.source_file: as400.rules
+  rsigma.suppress: 15m
+---
+title: '[AS400] AUTFAIL - incorrect network password was used (threshold 3 in 15m)'
+id: 658d8cfa-89f5-5671-ac80-21fcbc5ba70e
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5003773
+  group-by:
+    - sagan_username
+  timespan: 15m
+  condition:
+    gte: 3
+level: high
+---
+title: '[AS400] AUTFAIL - Not authorized to object'
+id: 99e9160c-f1eb-5470-918e-01b4aa4f773e
+name: sagan_5003774
+status: experimental
+description: Converted from Sagan rule SID 5003774 (rev 1), file as400.rules.
+author: sagan2sigma
+logsource:
+  product: as400
+detection:
+  selection_1:
+    message|contains|cased: ' MAF0100 '
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003774'
+  sagan.rev: '1'
+  sagan.source_file: as400.rules
+  rsigma.suppress: 15m
+---
+title: '[AS400] AUTFAIL - Not authorized to object (threshold 3 in 15m)'
+id: b30903ad-5142-548d-a773-e630754b9420
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5003774
+  group-by:
+    - sagan_username
+  timespan: 15m
+  condition:
+    gte: 3
+level: high
+---
+title: '[AS400] AUTFAIL - User name not valid'
+id: f8142d7d-0464-542c-8eb8-1337553544d4
+name: sagan_5003775
+status: experimental
+description: Converted from Sagan rule SID 5003775 (rev 2), file as400.rules.
+author: sagan2sigma
+logsource:
+  product: as400
+detection:
+  selection_1:
+    message|contains|cased: ' MAF0100 '
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003775'
+  sagan.rev: '2'
+  sagan.source_file: as400.rules
+  rsigma.suppress: 15m
+---
+title: '[AS400] AUTFAIL - User name not valid (threshold 3 in 15m)'
+id: 5904c635-5314-529c-b595-c7971b0cbc8d
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5003775
+  group-by:
+    - sagan_username
+  timespan: 15m
+  condition:
+    gte: 3
+level: high
+---
+title: '[AS400] AUTFAIL - Operation SVRPGM wihtout authority'
+id: 59a42580-d4a3-522c-ab6d-518ef1ef65cd
+name: sagan_5003776
+status: experimental
+description: Converted from Sagan rule SID 5003776 (rev 1), file as400.rules.
+author: sagan2sigma
+logsource:
+  product: as400
+detection:
+  selection_1:
+    message|contains|cased: ' MAF1100 '
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003776'
+  sagan.rev: '1'
+  sagan.source_file: as400.rules
+  rsigma.suppress: 15m
+---
+title: '[AS400] AUTFAIL - Operation SVRPGM wihtout authority (threshold 3 in 15m)'
+id: 872cdba8-3ce9-53f6-9dea-4985c4d634fb
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5003776
+  group-by:
+    - sagan_username
+  timespan: 15m
+  condition:
+    gte: 3
+level: high
+---
+title: '[AS400] AUTFAIL - Failed because profile was disabled'
+id: be64c8a7-a81c-5f0e-99fa-366c4e4145d1
+name: sagan_5003777
+status: experimental
+description: Converted from Sagan rule SID 5003777 (rev 1), file as400.rules.
+author: sagan2sigma
+logsource:
+  product: as400
+detection:
+  selection_1:
+    message|contains|cased: ' MPW1700 '
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003777'
+  sagan.rev: '1'
+  sagan.source_file: as400.rules
+  rsigma.suppress: 15m
+---
+title: '[AS400] AUTFAIL - Failed because profile was disabled (threshold 3 in 15m)'
+id: 0a531964-574a-548d-b6a6-cd747d98664b
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5003777
+  group-by:
+    - sagan_username
+  timespan: 15m
+  condition:
+    gte: 3
+level: high
+---
+title: '[AS400] AUTFAIL - User not authorized to object'
+id: 62e61371-d9d5-5f6e-a426-532a41515180
+name: sagan_5003778
+status: experimental
+description: Converted from Sagan rule SID 5003778 (rev 1), file as400.rules.
+author: sagan2sigma
+logsource:
+  product: as400
+detection:
+  selection_1:
+    message|contains|cased: ' MAF0100 '
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003778'
+  sagan.rev: '1'
+  sagan.source_file: as400.rules
+  rsigma.suppress: 15m
+---
+title: '[AS400] AUTFAIL - User not authorized to object (threshold 3 in 15m)'
+id: 833f4cbf-d5ca-550e-8af9-b703dd013a63
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5003778
+  group-by:
+    - sagan_username
+  timespan: 15m
+  condition:
+    gte: 3
+level: high
+---
+title: '[AS400] AUTFAIL - Changed audit status of user'
+id: 1d0b6b67-28e4-59c9-a9cc-14ecab62c197
+name: sagan_5003779
+status: experimental
+description: Converted from Sagan rule SID 5003779 (rev 1), file as400.rules.
+author: sagan2sigma
+logsource:
+  product: as400
+detection:
+  selection_1:
+    message|contains|cased: ' MAD2100 '
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003779'
+  sagan.rev: '1'
+  sagan.source_file: as400.rules
+  rsigma.suppress: 15m
+---
+title: '[AS400] AUTFAIL - Changed audit status of user (threshold 3 in 15m)'
+id: f2edeb17-064a-5db9-a1dc-1cde5499ee82
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5003779
+  group-by:
+    - sagan_username
+  timespan: 15m
+  condition:
+    gte: 3
+level: high

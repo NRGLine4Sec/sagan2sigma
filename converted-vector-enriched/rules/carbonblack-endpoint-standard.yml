@@ -1,0 +1,49 @@
+title: '[CARBONBLACK-USB-APPROVAL] created usb approval'
+id: a6d995d5-5a63-5622-af31-e30e3d0d3e85
+status: experimental
+description: Converted from Sagan rule SID 5010940 (rev 1), file carbonblack-endpoint-standard.rules.
+references:
+  - https://developer.carbonblack.com/reference/carbon-black-cloud/cb-defense/latest/device-control-api/
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased: cb_usb_approval_data
+  selection_2:
+    message|contains|cased: '"action": "created"'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5010940'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-endpoint-standard.rules
+---
+title: '[CARBONBLACK-USB-APPROVAL] updated usb approval'
+id: 11ff6248-c64c-5233-8ab3-d187b889a662
+status: experimental
+description: Converted from Sagan rule SID 5010941 (rev 1), file carbonblack-endpoint-standard.rules.
+references:
+  - https://developer.carbonblack.com/reference/carbon-black-cloud/cb-defense/latest/device-control-api/
+author: sagan2sigma
+logsource:
+  product: carbonblack
+detection:
+  selection_1:
+    appname|cased: cb_usb_approval_data
+  selection_2:
+    message|contains|cased: '"action": "updated"'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5010941'
+  sagan.rev: '1'
+  sagan.source_file: carbonblack-endpoint-standard.rules

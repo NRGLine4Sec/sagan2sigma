@@ -1,0 +1,68 @@
+title: '[VPOPMAIL] Authentication failure for POP3 service'
+id: 221264df-45b1-546e-8eb5-ef21fe9c16da
+status: experimental
+description: Converted from Sagan rule SID 5000211 (rev 4), file vpopmail.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: password fail
+  selection_2:
+    appname|cased: vpopmail
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000211'
+  sagan.rev: '4'
+  sagan.source_file: vpopmail.rules
+---
+title: '[VPOPMAIL] User not found/Invalid login for POP3 service'
+id: a1fa7b2c-97ef-5cd1-95cf-6b2d82606546
+status: experimental
+description: Converted from Sagan rule SID 5000212 (rev 4), file vpopmail.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: vpopmail user not found
+  selection_2:
+    appname|cased: vpopmail
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000212'
+  sagan.rev: '4'
+  sagan.source_file: vpopmail.rules
+---
+title: '[VPOPMAIL] Null password given for POP3 service'
+id: bb65f934-8dca-5066-a72a-d3d88f0ef28b
+status: experimental
+description: Converted from Sagan rule SID 5000214 (rev 4), file vpopmail.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: null password given
+  selection_2:
+    appname|cased: vpopmail
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000214'
+  sagan.rev: '4'
+  sagan.source_file: vpopmail.rules

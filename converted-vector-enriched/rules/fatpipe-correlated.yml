@@ -1,0 +1,329 @@
+title: '[FATPIPE-CORRELATED] Login Success after recon activity'
+id: 349ccc31-3a27-5c45-8bf0-c21d9240e252
+name: sagan_5003257
+status: experimental
+description: Converted from Sagan rule SID 5003257 (rev 3), file fatpipe-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fatpipe
+detection:
+  selection_1:
+    message|contains|cased: 'Login: Success'
+  selection_2:
+    appname|cased: xtremed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003257'
+  sagan.rev: '3'
+  sagan.source_file: fatpipe-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FATPIPE-CORRELATED] Login Success after recon activity (correlated with recon)'
+id: 03a68d80-fb0a-5aec-8e72-7e76d5ac9290
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003257
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[FATPIPE-CORRELATED] Login Success after honeypot activity'
+id: d822cac6-4820-500b-aead-63eed393ccab
+name: sagan_5003258
+status: experimental
+description: Converted from Sagan rule SID 5003258 (rev 3), file fatpipe-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fatpipe
+detection:
+  selection_1:
+    message|contains|cased: 'Login: Success'
+  selection_2:
+    appname|cased: xtremed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003258'
+  sagan.rev: '3'
+  sagan.source_file: fatpipe-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FATPIPE-CORRELATED] Login Success after honeypot activity (correlated with honeypot)'
+id: d991ea47-352d-5e96-8ee9-3cf456c58c4e
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003258
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[FATPIPE-CORRELATED] Login Success after exploit attempt'
+id: e33f7c5a-03bb-5a28-ba8f-c242843dc9c9
+name: sagan_5003259
+status: experimental
+description: Converted from Sagan rule SID 5003259 (rev 3), file fatpipe-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fatpipe
+detection:
+  selection_1:
+    message|contains|cased: 'Login: Success'
+  selection_2:
+    appname|cased: xtremed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003259'
+  sagan.rev: '3'
+  sagan.source_file: fatpipe-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FATPIPE-CORRELATED] Login Success after exploit attempt (correlated with exploit_attempt)'
+id: ec6a70e9-ce9e-5428-89ff-3f806757a610
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003259
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[FATPIPE-CORRELATED] Login Success after brute force activity'
+id: c59352de-c9fa-51a8-b006-5f89c10a95ee
+name: sagan_5003260
+status: experimental
+description: Converted from Sagan rule SID 5003260 (rev 3), file fatpipe-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fatpipe
+detection:
+  selection_1:
+    message|contains|cased: 'Login: Success'
+  selection_2:
+    appname|cased: xtremed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003260'
+  sagan.rev: '3'
+  sagan.source_file: fatpipe-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FATPIPE-CORRELATED] Login Success after brute force activity (correlated with brute_force)'
+id: 7ee5d16c-6255-588e-a006-ff0455f449cc
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003260
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[FATPIPE-CORRELATED] Login Success - ADMINISTRATOR - after recon activity'
+id: f66c9e65-7b37-5948-865e-cf5699c6b07e
+name: sagan_5003261
+status: experimental
+description: Converted from Sagan rule SID 5003261 (rev 3), file fatpipe-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fatpipe
+detection:
+  selection_1:
+    message|contains|cased: 'Login: Success'
+  selection_2:
+    message|contains|cased: ADMINISTRATOR
+  selection_3:
+    appname|cased: xtremed
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003261'
+  sagan.rev: '3'
+  sagan.source_file: fatpipe-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FATPIPE-CORRELATED] Login Success - ADMINISTRATOR - after recon activity (correlated with recon)'
+id: 8287e767-e3a6-5c33-96be-8e18256415a1
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003261
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[FATPIPE-CORRELATED] Login Success - ADMINISTRATOR - after honeypot activity'
+id: 941cdc5c-3597-56e2-be05-7582e6908202
+name: sagan_5003262
+status: experimental
+description: Converted from Sagan rule SID 5003262 (rev 3), file fatpipe-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fatpipe
+detection:
+  selection_1:
+    message|contains|cased: 'Login: Success'
+  selection_2:
+    message|contains|cased: ADMINISTRATOR
+  selection_3:
+    appname|cased: xtremed
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003262'
+  sagan.rev: '3'
+  sagan.source_file: fatpipe-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FATPIPE-CORRELATED] Login Success - ADMINISTRATOR - after honeypot activity (correlated with
+  honeypot)'
+id: 4a2d4848-4766-51d4-bb7b-9ff9b2636302
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003262
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[FATPIPE-CORRELATED] Login Success - ADMINISTRATOR - after exploit attempt'
+id: 1ee9946f-d219-5495-9b86-27fbf4634bf8
+name: sagan_5003263
+status: experimental
+description: Converted from Sagan rule SID 5003263 (rev 3), file fatpipe-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fatpipe
+detection:
+  selection_1:
+    message|contains|cased: 'Login: Success'
+  selection_2:
+    message|contains|cased: ADMINISTRATOR
+  selection_3:
+    appname|cased: xtremed
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003263'
+  sagan.rev: '3'
+  sagan.source_file: fatpipe-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FATPIPE-CORRELATED] Login Success - ADMINISTRATOR - after exploit attempt (correlated with exploit_attempt)'
+id: f0070143-6d0e-5165-af3e-c74ac608dc25
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003263
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[FATPIPE-CORRELATED] Login Success - ADMINISTRATOR - after brute force activity'
+id: a7d06e39-8f47-550c-a11b-390f3c2743d8
+name: sagan_5003264
+status: experimental
+description: Converted from Sagan rule SID 5003264 (rev 3), file fatpipe-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: fatpipe
+detection:
+  selection_1:
+    message|contains|cased: 'Login: Success'
+  selection_2:
+    message|contains|cased: ADMINISTRATOR
+  selection_3:
+    appname|cased: xtremed
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003264'
+  sagan.rev: '3'
+  sagan.source_file: fatpipe-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[FATPIPE-CORRELATED] Login Success - ADMINISTRATOR - after brute force activity (correlated with
+  brute_force)'
+id: d28b49ea-d45c-5f51-acba-4db3b5da535f
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003264
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high

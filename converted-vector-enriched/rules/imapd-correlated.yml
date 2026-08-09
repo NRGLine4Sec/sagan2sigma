@@ -1,0 +1,799 @@
+title: '[IMAPD-CORRELATED] Login after recon activity'
+id: 65d1a017-d24e-5fc1-ae7b-1a84f0458dbb
+name: sagan_5003281
+status: experimental
+description: Converted from Sagan rule SID 5003281 (rev 3), file imapd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: LOGIN,
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003281'
+  sagan.rev: '3'
+  sagan.source_file: imapd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[IMAPD-CORRELATED] Login after recon activity (correlated with recon)'
+id: 855b48ca-3f76-564f-aedc-48fe272ba5b8
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003281
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[IMAPD-CORRELATED] Login after honeypot activity'
+id: 6410885b-c62f-5fcf-b187-a0b211cee245
+name: sagan_5003282
+status: experimental
+description: Converted from Sagan rule SID 5003282 (rev 3), file imapd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: LOGIN,
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003282'
+  sagan.rev: '3'
+  sagan.source_file: imapd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[IMAPD-CORRELATED] Login after honeypot activity (correlated with honeypot)'
+id: af59b2fe-2168-5873-aaef-b6600d4f4c35
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003282
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[IMAPD-CORRELATED] Login after exploit attempt'
+id: abf1dfaf-9bee-5964-9e11-cf2a300c8678
+name: sagan_5003283
+status: experimental
+description: Converted from Sagan rule SID 5003283 (rev 3), file imapd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: LOGIN,
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003283'
+  sagan.rev: '3'
+  sagan.source_file: imapd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[IMAPD-CORRELATED] Login after exploit attempt (correlated with exploit_attempt)'
+id: a7170587-6ea7-5f05-b6f4-c93464e2b8b3
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003283
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[IMAPD-CORRELATED] Login after brute force activity'
+id: 5f76bfd4-9f15-504e-92b8-cc386e1b6744
+name: sagan_5003284
+status: experimental
+description: Converted from Sagan rule SID 5003284 (rev 3), file imapd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: LOGIN,
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003284'
+  sagan.rev: '3'
+  sagan.source_file: imapd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[IMAPD-CORRELATED] Login after brute force activity (correlated with brute_force)'
+id: befbc098-f840-5363-ac26-b04b2a0678ff
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003284
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[IMAPD-CORRELATED] Logout after recon activity'
+id: 192d25aa-4e5d-54b9-9774-e83737c385d5
+name: sagan_5003285
+status: experimental
+description: Converted from Sagan rule SID 5003285 (rev 3), file imapd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: LOGOUT,
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003285'
+  sagan.rev: '3'
+  sagan.source_file: imapd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[IMAPD-CORRELATED] Logout after recon activity (correlated with recon)'
+id: 2cea41a9-ca2b-5cde-8855-c95adc67acd7
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003285
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[IMAPD-CORRELATED] Logout after honeypot activity'
+id: a6e71a70-d13f-50da-baf7-56ae7972eba3
+name: sagan_5003286
+status: experimental
+description: Converted from Sagan rule SID 5003286 (rev 3), file imapd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: LOGOUT,
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003286'
+  sagan.rev: '3'
+  sagan.source_file: imapd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[IMAPD-CORRELATED] Logout after honeypot activity (correlated with honeypot)'
+id: 30e1a262-2f36-53c5-aedc-f113905a37f1
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003286
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[IMAPD-CORRELATED] Logout after exploit attempt'
+id: f60084c0-685c-5b97-bd35-d91664076ade
+name: sagan_5003287
+status: experimental
+description: Converted from Sagan rule SID 5003287 (rev 3), file imapd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: LOGOUT,
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003287'
+  sagan.rev: '3'
+  sagan.source_file: imapd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[IMAPD-CORRELATED] Logout after exploit attempt (correlated with exploit_attempt)'
+id: 6944d762-917f-5e99-b111-a2e51aa6b290
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003287
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[IMAPD-CORRELATED] Logout after brute force activity'
+id: 05ba0b9a-0616-5b85-bfbc-0cacba5f4930
+name: sagan_5003288
+status: experimental
+description: Converted from Sagan rule SID 5003288 (rev 3), file imapd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: LOGOUT,
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003288'
+  sagan.rev: '3'
+  sagan.source_file: imapd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[IMAPD-CORRELATED] Logout after brute force activity (correlated with brute_force)'
+id: f672c9bf-a453-524b-b4bb-8b0dc17ec504
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003288
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[IMAPD-CORRELATED] Timeout after recon activity'
+id: 089501af-75bb-500c-b491-603f19f58de0
+name: sagan_5003289
+status: experimental
+description: Converted from Sagan rule SID 5003289 (rev 3), file imapd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: TIMEOUT,
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003289'
+  sagan.rev: '3'
+  sagan.source_file: imapd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[IMAPD-CORRELATED] Timeout after recon activity (correlated with recon)'
+id: 392efc86-95b2-597b-af69-c1f95b3fbc89
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003289
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[IMAPD-CORRELATED] Timeout after honeypot activity'
+id: af42f949-5863-575c-9ca8-ed99570d7f55
+name: sagan_5003290
+status: experimental
+description: Converted from Sagan rule SID 5003290 (rev 3), file imapd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: TIMEOUT,
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003290'
+  sagan.rev: '3'
+  sagan.source_file: imapd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[IMAPD-CORRELATED] Timeout after honeypot activity (correlated with honeypot)'
+id: 1c652a72-ed60-51e0-a192-02e7dacfa1a3
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003290
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[IMAPD-CORRELATED] Timeout after exploit attempt'
+id: 113d1e0f-f6ac-5a20-bb72-5c0b992860b9
+name: sagan_5003291
+status: experimental
+description: Converted from Sagan rule SID 5003291 (rev 3), file imapd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: TIMEOUT,
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003291'
+  sagan.rev: '3'
+  sagan.source_file: imapd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[IMAPD-CORRELATED] Timeout after exploit attempt (correlated with exploit_attempt)'
+id: 4edc5aea-d36e-5f04-b180-8248c4d347a1
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003291
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[IMAPD-CORRELATED] Timeout after brute force activity'
+id: ea9fd19e-5649-546e-af39-a75dc54dac7d
+name: sagan_5003292
+status: experimental
+description: Converted from Sagan rule SID 5003292 (rev 3), file imapd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: TIMEOUT,
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003292'
+  sagan.rev: '3'
+  sagan.source_file: imapd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[IMAPD-CORRELATED] Timeout after brute force activity (correlated with brute_force)'
+id: a5f9d9b0-b5a3-581e-8ed3-d0ef4134e9b9
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003292
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[IMAPD-CORRELATED] Disconnect after recon activity'
+id: 86a1fe15-5e28-5ba8-8007-3ad8e0c68978
+name: sagan_5003293
+status: experimental
+description: Converted from Sagan rule SID 5003293 (rev 3), file imapd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: DISCONNECTED,
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003293'
+  sagan.rev: '3'
+  sagan.source_file: imapd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[IMAPD-CORRELATED] Disconnect after recon activity (correlated with recon)'
+id: 5e29711f-2e38-5af5-9175-6c667cd4ebea
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003293
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[IMAPD-CORRELATED] Disconnect after honeypot activity'
+id: 21ed0119-aee3-5faa-a6b6-af5453539329
+name: sagan_5003294
+status: experimental
+description: Converted from Sagan rule SID 5003294 (rev 3), file imapd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: DISCONNECTED,
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003294'
+  sagan.rev: '3'
+  sagan.source_file: imapd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[IMAPD-CORRELATED] Disconnect after honeypot activity (correlated with honeypot)'
+id: bd59d12a-ca2c-5691-a6d7-80d0a08c7a11
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003294
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[IMAPD-CORRELATED] Disconnect after exploit attempt'
+id: 679ef172-d0a2-5f22-b4c2-e52772064d7d
+name: sagan_5003295
+status: experimental
+description: Converted from Sagan rule SID 5003295 (rev 3), file imapd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: DISCONNECTED,
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003295'
+  sagan.rev: '3'
+  sagan.source_file: imapd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[IMAPD-CORRELATED] Disconnect after exploit attempt (correlated with exploit_attempt)'
+id: 6aed975d-5b53-5301-85f0-98a14897debb
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003295
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[IMAPD-CORRELATED] Disconnect after brute force activity'
+id: f8ed8e1c-44c4-55aa-97c4-4f87ac157efc
+name: sagan_5003296
+status: experimental
+description: Converted from Sagan rule SID 5003296 (rev 3), file imapd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: DISCONNECTED,
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003296'
+  sagan.rev: '3'
+  sagan.source_file: imapd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[IMAPD-CORRELATED] Disconnect after brute force activity (correlated with brute_force)'
+id: a093863e-31ab-54dd-b467-fd2f97f8daae
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003296
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[IMAPD-CORRELATED] Connection after recon activity'
+id: 488ed47e-05b0-5cce-be7e-10b30079a0f2
+name: sagan_5003297
+status: experimental
+description: Converted from Sagan rule SID 5003297 (rev 3), file imapd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: Connection,
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003297'
+  sagan.rev: '3'
+  sagan.source_file: imapd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[IMAPD-CORRELATED] Connection after recon activity (correlated with recon)'
+id: 7458905e-b2fa-5d2e-aa6c-785e40ff8b21
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003297
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[IMAPD-CORRELATED] Connection after honeypot activity'
+id: 922e56e1-acea-5a66-bec6-3f62a8a6e623
+name: sagan_5003298
+status: experimental
+description: Converted from Sagan rule SID 5003298 (rev 3), file imapd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: Connection,
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003298'
+  sagan.rev: '3'
+  sagan.source_file: imapd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[IMAPD-CORRELATED] Connection after honeypot activity (correlated with honeypot)'
+id: e8c8ac66-a9c6-5578-80f7-5497bbaada1f
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003298
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[IMAPD-CORRELATED] Connection after exploit attempt'
+id: d45730b4-5df5-5c01-aa85-a934e882ffe9
+name: sagan_5003299
+status: experimental
+description: Converted from Sagan rule SID 5003299 (rev 3), file imapd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: Connection,
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003299'
+  sagan.rev: '3'
+  sagan.source_file: imapd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[IMAPD-CORRELATED] Connection after exploit attempt (correlated with exploit_attempt)'
+id: 1ded6120-3f59-50c0-87a0-06003e766257
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003299
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[IMAPD-CORRELATED] Connection after brute force activity'
+id: dcace91b-c464-5c90-83b0-fdbbae8c4e62
+name: sagan_5003300
+status: experimental
+description: Converted from Sagan rule SID 5003300 (rev 3), file imapd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: Connection,
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003300'
+  sagan.rev: '3'
+  sagan.source_file: imapd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[IMAPD-CORRELATED] Connection after brute force activity (correlated with brute_force)'
+id: 725527c5-9707-5af1-8eda-22272f556e80
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003300
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high

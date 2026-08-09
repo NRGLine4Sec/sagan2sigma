@@ -1,0 +1,556 @@
+title: '[OPENSSH] PAM Authentication failure - Brute force [10/1]'
+id: c373069a-d329-5bd0-a3cf-3ef8e36dd220
+name: sagan_5000015
+status: experimental
+description: Converted from Sagan rule SID 5000015 (rev 19), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    message|contains|cased: Authentication failure
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5000015'
+  sagan.rev: '19'
+  sagan.source_file: openssh.rules
+  rsigma.suppress: 5m
+---
+title: '[OPENSSH] PAM Authentication failure - Brute force [10/1] (threshold 10 in 5m)'
+id: 5977acac-ac35-576e-915e-53ada3949221
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5000015
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 10
+level: low
+---
+title: '[OPENSSH] Authentication failure - Brute force [10/5]'
+id: b36a03dd-f25b-5619-85f1-04a54e6345f6
+name: sagan_5000016
+status: experimental
+description: Converted from Sagan rule SID 5000016 (rev 25), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    message|contains|cased: authentication failure
+  selection_2:
+    message|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}
+  selection_3:
+    appname|cased: sshd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5000016'
+  sagan.rev: '25'
+  sagan.source_file: openssh.rules
+  rsigma.suppress: 5m
+---
+title: '[OPENSSH] Authentication failure - Brute force [10/5] (threshold 10 in 5m)'
+id: aa7554ac-3c3c-525f-bb5e-9b55dfcf2064
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5000016
+  group-by:
+    - sagan_ip_1
+    - sagan_username
+  timespan: 5m
+  condition:
+    gte: 10
+level: low
+---
+title: '[OPENSSH] Authentication failure for root - Brute force [5/5]'
+id: ebea67f8-6615-54e0-bb18-f921500e00f9
+name: sagan_5000017
+status: experimental
+description: Converted from Sagan rule SID 5000017 (rev 19), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    message|contains|cased: Authentication failure for root
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5000017'
+  sagan.rev: '19'
+  sagan.source_file: openssh.rules
+  rsigma.suppress: 5m
+---
+title: '[OPENSSH] Authentication failure for root - Brute force [5/5] (threshold 5 in 5m)'
+id: 2f1eed64-eb14-5518-8faa-1904523fd425
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5000017
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 5
+level: low
+---
+title: '[OPENSSH] Possible break-in attempt'
+id: 1ee7ead5-3912-5e22-bebf-09b0aab4e611
+status: experimental
+description: Converted from Sagan rule SID 5000018 (rev 9), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    message|contains|cased: POSSIBLE BREAK-IN ATTEMPT
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000018'
+  sagan.rev: '9'
+  sagan.source_file: openssh.rules
+  rsigma.suppress: 5m
+---
+title: '[OPENSSH] Not executable shell - login attempt'
+id: 07ca56da-badd-5b61-b4aa-0eb5b149442a
+status: experimental
+description: Converted from Sagan rule SID 5000020 (rev 4), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    message|contains|cased: is not executable
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000020'
+  sagan.rev: '4'
+  sagan.source_file: openssh.rules
+---
+title: '[OPENSSH] Invalid or illegal user [Brute Force] [10/5]'
+id: 42c4da0e-c4e3-593c-839b-daa8a8576b2a
+name: sagan_5000022
+status: experimental
+description: Converted from Sagan rule SID 5000022 (rev 24), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    message|contains|cased:
+      - for illegal user
+      - for invalid user
+  filter_2:
+    message|contains|cased: input_userauth_request
+  selection_3:
+    appname|cased: sshd
+  condition: selection_1 and selection_3 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5000022'
+  sagan.rev: '24'
+  sagan.source_file: openssh.rules
+  rsigma.suppress: 5m
+---
+title: '[OPENSSH] Invalid or illegal user [Brute Force] [10/5] (threshold 10 in 5m)'
+id: 7badafd2-5ed5-5d14-9a6e-0b13d1d9cd18
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5000022
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 10
+level: low
+---
+title: '[OPENSSH] Out-of-Band challenge failure'
+id: 1c06757c-f936-5c60-961f-dac075e4dad8
+status: experimental
+description: Converted from Sagan rule SID 5000023 (rev 4), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    message|contains|cased: Failed auth
+  selection_2:
+    message|contains|cased: out-of-band challenge
+  selection_3:
+    message|contains|cased: pam_obc
+  selection_4:
+    appname|cased: sshd
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000023'
+  sagan.rev: '4'
+  sagan.source_file: openssh.rules
+---
+title: '[OPENSSH] Bad protocol version - network scan or possible attack [0/3]'
+id: 6069fe6e-3793-557a-b85a-3ec42437dfaa
+status: experimental
+description: Converted from Sagan rule SID 5000068 (rev 9), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    message|contains|cased: Bad protocol version identification
+  filter_2:
+    message|contains|cased: UNKNOWN
+  selection_3:
+    appname|cased: sshd
+  condition: selection_1 and selection_3 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.non-standard-protocol
+custom_attributes:
+  sagan.sid: '5000068'
+  sagan.rev: '9'
+  sagan.source_file: openssh.rules
+  rsigma.suppress: 5m
+---
+title: '[OPENSSH] No identification string - possible scan'
+id: e9880a56-61d4-52e1-8d47-fcc391a599b3
+status: experimental
+description: Converted from Sagan rule SID 5000070 (rev 7), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    message|contains|cased: Did not receive identification string
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.network-scan
+custom_attributes:
+  sagan.sid: '5000070'
+  sagan.rev: '7'
+  sagan.source_file: openssh.rules
+  rsigma.suppress: 5m
+---
+title: '[OPENSSH] OpenSSH challenge-response exploit'
+id: c85b840b-7780-5f20-b76b-b27c86baeeae
+status: experimental
+description: Converted from Sagan rule SID 5000071 (rev 9), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    message|contains|cased: buffer_get_stringX bad string
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5000071'
+  sagan.rev: '9'
+  sagan.source_file: openssh.rules
+---
+title: '[OPENSSH] Message without user-IP and context'
+id: b69b2e90-35e3-5ac1-b396-e3c6a29eebec
+status: experimental
+description: Converted from Sagan rule SID 5000072 (rev 3), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    message|contains|cased: Could not get shadow information for NOUSER
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5000072'
+  sagan.rev: '3'
+  sagan.source_file: openssh.rules
+---
+title: '[OPENSSH] Corrupted traffic'
+id: bad34bc6-c3d2-5df7-b27e-7be372aeadb9
+status: experimental
+description: Converted from Sagan rule SID 5000073 (rev 3), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    message|contains|cased: Corrupted check bytes on
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5000073'
+  sagan.rev: '3'
+  sagan.source_file: openssh.rules
+---
+title: '[OPENSSH] CRC32 compensation attack'
+id: 57cf9462-8205-5ccd-83a9-29295057a2c8
+status: experimental
+description: Converted from Sagan rule SID 5000074 (rev 6), file openssh.rules.
+references:
+  - http://www.securityfocus.com/bid/2347/info/
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    message|contains: crc32 compensation attack
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.shellcode-detect
+custom_attributes:
+  sagan.sid: '5000074'
+  sagan.rev: '6'
+  sagan.source_file: openssh.rules
+---
+title: '[OPENSSH] Attempt to login using a denied user'
+id: a36dc298-e00b-51ca-9953-fc98aa490fe8
+status: experimental
+description: Converted from Sagan rule SID 5000077 (rev 5), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    message|contains|cased: not allowed because
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000077'
+  sagan.rev: '5'
+  sagan.source_file: openssh.rules
+  rsigma.suppress: 1h
+---
+title: '[OPENSSH] Failed password - Brute force [10/5]'
+id: 67f6fec0-f24c-512e-bf09-b46deb5cfd55
+name: sagan_5001646
+status: experimental
+description: Converted from Sagan rule SID 5001646 (rev 16), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    message|contains|cased: Failed password
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5001646'
+  sagan.rev: '16'
+  sagan.source_file: openssh.rules
+  rsigma.suppress: 5m
+---
+title: '[OPENSSH] Failed password - Brute force [10/5] (threshold 10 in 5m)'
+id: 38a9a162-0408-5468-aa3c-d48d464b6f47
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5001646
+  group-by:
+    - sagan_ip_1
+    - sagan_username
+  timespan: 5m
+  condition:
+    gte: 10
+level: low
+---
+title: '[OPENSSH] SYSLOG Authentication failure - Brute force [5/5]'
+id: c3a71b9b-ed09-5f62-aa93-e55e38b5ad4b
+name: sagan_5001954
+status: experimental
+description: Converted from Sagan rule SID 5001954 (rev 17), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    message|contains|cased: 'ssh: failed login attempt'
+  selection_2:
+    appname|cased: syslog
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5001954'
+  sagan.rev: '17'
+  sagan.source_file: openssh.rules
+  rsigma.suppress: 5m
+---
+title: '[OPENSSH] SYSLOG Authentication failure - Brute force [5/5] (threshold 5 in 5m)'
+id: 7eef37dc-934e-5928-bbdc-1c32f8e4534b
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5001954
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 5
+level: low
+---
+title: '[OPENSSH] Fail2Ban SSH Suspicious Activity'
+id: f0837d9b-e3ed-55eb-88a8-faa5941f2b30
+status: experimental
+description: Converted from Sagan rule SID 5001974 (rev 5), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    message|contains|cased: Fail2Ban
+  filter_2:
+    message|contains|cased: Fail2Ban Service
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5001974'
+  sagan.rev: '5'
+  sagan.source_file: openssh.rules
+---
+title: '[OPENSSH] Bad protocol version from UNKNOWN IP - network scan or possible attack [0/3]'
+id: 4f3512c9-a296-55f1-8813-6fd06111496f
+status: experimental
+description: Converted from Sagan rule SID 5003986 (rev 1), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    message|contains|cased: Bad protocol version identification
+  selection_2:
+    message|contains|cased: UNKNOWN
+  selection_3:
+    appname|cased: sshd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.non-standard-protocol
+custom_attributes:
+  sagan.sid: '5003986'
+  sagan.rev: '1'
+  sagan.source_file: openssh.rules
+  rsigma.suppress: 5m

@@ -1,0 +1,181 @@
+title: '[AZURE-EVENTHUB-ENTRA] User identified as medium risk level'
+id: 396a5307-6b8d-5fbc-8905-fc115f648735
+status: experimental
+description: Converted from Sagan rule SID 5014026 (rev 1), file azureEventHub_entra.rules.
+references:
+  - https://learn.microsoft.com/en-us/azure/active-directory/identity-protection/howto-identity-protection-investigate-risk
+  - https://learn.microsoft.com/en-us/entra/identity/monitoring-health/reference-azure-monitor-sign-ins-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    category|cased: RiskyUsers
+  selection_3:
+    properties.riskLevel: medium
+  selection_4:
+    properties.riskState:
+      - atRisk
+      - confirmedCompromised
+      - unknownFutureValue
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.ta0008
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014026'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_entra.rules
+  sagan.metadata: deployment=Server,affected_product=Microsoft_Entra,created_at=2023_10_17,updated_at=2023_10_17
+---
+title: '[AZURE-EVENTHUB-ENTRA] User identified as high risk level'
+id: 9591c380-ff21-5a27-b163-302a978b3bca
+status: experimental
+description: Converted from Sagan rule SID 5014027 (rev 1), file azureEventHub_entra.rules.
+references:
+  - https://learn.microsoft.com/en-us/azure/active-directory/identity-protection/howto-identity-protection-investigate-risk
+  - https://learn.microsoft.com/en-us/entra/identity/monitoring-health/reference-azure-monitor-sign-ins-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    category|cased: RiskyUsers
+  selection_3:
+    properties.riskLevel: high
+  selection_4:
+    properties.riskState:
+      - atRisk
+      - confirmedCompromised
+      - unknownFutureValue
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.ta0008
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014027'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_entra.rules
+  sagan.metadata: deployment=Server,affected_product=Microsoft_Entra,created_at=2023_10_17,updated_at=2023_10_17
+---
+title: '[AZURE-EVENTHUB-ENTRA] Medium level User Risk Event'
+id: 1d7e8887-676b-5274-bc68-05051dc1bfc6
+status: experimental
+description: Converted from Sagan rule SID 5014030 (rev 1), file azureEventHub_entra.rules.
+references:
+  - https://learn.microsoft.com/en-us/azure/active-directory/identity-protection/howto-identity-protection-investigate-risk
+  - https://learn.microsoft.com/en-us/entra/identity/monitoring-health/reference-azure-monitor-sign-ins-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    category|cased: UserRiskEvents
+  selection_3:
+    properties.riskLevel: medium
+  selection_4:
+    properties.riskState:
+      - atRisk
+      - confirmedCompromised
+      - unknownFutureValue
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.ta0008
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014030'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_entra.rules
+  sagan.metadata: deployment=Server,affected_product=Microsoft_Entra,created_at=2023_10_17,updated_at=2023_10_17
+---
+title: '[AZURE-EVENTHUB-ENTRA] High level User Risk Event'
+id: 19a84396-5988-5afd-a13b-ad487fb30e7f
+status: experimental
+description: Converted from Sagan rule SID 5014031 (rev 2), file azureEventHub_entra.rules.
+references:
+  - https://learn.microsoft.com/en-us/azure/active-directory/identity-protection/howto-identity-protection-investigate-risk
+  - https://learn.microsoft.com/en-us/entra/identity/monitoring-health/reference-azure-monitor-sign-ins-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    category|cased: UserRiskEvents
+  selection_3:
+    properties.riskLevel: high
+  selection_4:
+    properties.riskState:
+      - atRisk
+      - confirmedCompromised
+      - unknownFutureValue
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.ta0008
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014031'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_entra.rules
+  sagan.metadata: deployment=Server,affected_product=Microsoft_Entra,created_at=2023_10_17,updated_at=2023_10_17
+---
+title: '[AZURE-EVENTHUB-ENTRA][EXPERIMENTAL] Non-Interactive Refresh Token Replay via Device Code Flow
+  on Unmanaged Device'
+id: c894b6ab-eecf-5989-8cf3-66ca5a81ebb6
+status: experimental
+description: Converted from Sagan rule SID 5017933 (rev 1), file azureEventHub_entra.rules.
+references:
+  - https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code
+  - https://attack.mitre.org/techniques/T1550/001
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    category|cased: NonInteractiveUserSignInLogs
+  selection_3:
+    resultType: 0
+  selection_4:
+    properties.originalTransferMethod|cased: deviceCodeFlow
+  selection_5:
+    properties.appDisplayName|cased: Microsoft Authentication Broker
+  filter_6:
+    properties.deviceDetail.isManaged: 'true'
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and not filter_6
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1550.001
+  - attack.ta0005
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017933'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_entra.rules
+  sagan.metadata: deployment=Server,affected_product=Microsoft_Entra,created_at=2026_06_26,updated_at=2026_06_26

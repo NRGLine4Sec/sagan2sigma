@@ -1,0 +1,226 @@
+title: '[WINDOWS-ZEEK-INTEL] RDP / Logon type 10 from a Bro Intel listed IP'
+id: 735ce751-5167-557e-8aa4-aa299bc6a294
+status: experimental
+description: Converted from Sagan rule SID 5010226 (rev 7), file azureEventHub_windows-zeekintel.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID:
+      - 4624
+      - 540
+      - 528
+  selection_3:
+    RenderedDescription|contains|cased: 'Logon Type: 10 '
+  selection_4:
+    sagan_zeek_intel_1: true
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5010226'
+  sagan.rev: '7'
+  sagan.source_file: azureEventHub_windows-zeekintel.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5002224
+---
+title: '[WINDOWS-ZEEK-INTEL] Login failure from a Bro Intel listed IP [0/5]'
+id: a3e07744-a9a6-5166-95ee-feba38213df8
+status: experimental
+description: Converted from Sagan rule SID 5010227 (rev 7), file azureEventHub_windows-zeekintel.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 529
+  selection_3:
+    sagan_zeek_intel_1: true
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5010227'
+  sagan.rev: '7'
+  sagan.source_file: azureEventHub_windows-zeekintel.rules
+  rsigma.suppress: 5m
+  sagan.metadata: created_on=2022_11_22,old_sid=5002225
+---
+title: '[WINDOWS-ZEEK-INTEL] Login failure from a Bro Intel listed IP [Time restriction] [0/5]'
+id: 3513164d-d277-5093-bc04-a4a20a62a889
+status: experimental
+description: Converted from Sagan rule SID 5010228 (rev 9), file azureEventHub_windows-zeekintel.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 530
+  selection_2:
+    appname|cased: '*Security*'
+  selection_3:
+    sagan_zeek_intel_1: true
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5010228'
+  sagan.rev: '9'
+  sagan.source_file: azureEventHub_windows-zeekintel.rules
+  rsigma.suppress: 5m
+  sagan.metadata: created_on=2022_11_22,old_sid=5002226
+---
+title: '[WINDOWS-ZEEK-INTEL] Login failure from a Bro Intel listed IP - Account currently disabled [0/5]'
+id: 434349f4-3020-569c-9e85-50daf353c262
+status: experimental
+description: Converted from Sagan rule SID 5010229 (rev 6), file azureEventHub_windows-zeekintel.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 531
+  filter_2:
+    RenderedDescription|contains|cased: 'User Name: Domain:'
+  selection_3:
+    appname|cased: '*Security*'
+  selection_4:
+    sagan_zeek_intel_1: true
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5010229'
+  sagan.rev: '6'
+  sagan.source_file: azureEventHub_windows-zeekintel.rules
+  rsigma.suppress: 5m
+  sagan.metadata: created_on=2022_11_22,old_sid=5002227
+---
+title: '[WINDOWS-ZEEK-INTEL] Login failure from a Bro Intel listed IP - Specified account expired'
+id: 6df9a7f0-cc4e-57ac-8569-a31ab394c503
+status: experimental
+description: Converted from Sagan rule SID 5010230 (rev 6), file azureEventHub_windows-zeekintel.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 532
+  selection_2:
+    appname|cased: '*Security*'
+  selection_3:
+    sagan_zeek_intel_1: true
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5010230'
+  sagan.rev: '6'
+  sagan.source_file: azureEventHub_windows-zeekintel.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5002228
+---
+title: '[WINDOWS-ZEEK-INTEL] Login failure from a Bro Intel listed IP - User not allowed to login at this
+  computer'
+id: 219dc7a9-27c0-579a-9dfe-e22045713672
+status: experimental
+description: Converted from Sagan rule SID 5010231 (rev 6), file azureEventHub_windows-zeekintel.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 533
+  selection_2:
+    appname|cased: '*Security*'
+  selection_3:
+    sagan_zeek_intel_1: true
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5010231'
+  sagan.rev: '6'
+  sagan.source_file: azureEventHub_windows-zeekintel.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5002229
+---
+title: '[WINDOWS-ZEEK-INTEL] Login failure - Account locked from a Bro Intel listed IP [0/5]'
+id: f0927d61-c018-5d6d-81c4-2262663398f2
+status: experimental
+description: Converted from Sagan rule SID 5010232 (rev 7), file azureEventHub_windows-zeekintel.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 539
+  filter_2:
+    RenderedDescription|contains|cased: 'User Name: Domain: Logon Type:'
+  selection_3:
+    sagan_zeek_intel_1: true
+  selection_4:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5010232'
+  sagan.rev: '7'
+  sagan.source_file: azureEventHub_windows-zeekintel.rules
+  rsigma.suppress: 5m
+  sagan.metadata: created_on=2022_11_22,old_sid=5002230
+---
+title: '[WINDOWS-ZEEK-INTEL] Windows DC Logon Failure from a Bro Intel listed IP'
+id: 44b12d37-ccbd-528d-9b7b-487f978c4e1a
+status: experimental
+description: Converted from Sagan rule SID 5010233 (rev 6), file azureEventHub_windows-zeekintel.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4771
+      - 4768
+      - 675
+      - 676
+      - 681
+  selection_2:
+    appname|cased: '*Security*'
+  selection_3:
+    sagan_zeek_intel_1: true
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5010233'
+  sagan.rev: '6'
+  sagan.source_file: azureEventHub_windows-zeekintel.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5002231

@@ -1,0 +1,35 @@
+title: '[MSAPI-THREATINTEL] Phishing attempt detected'
+id: 5b63b51d-96da-5f20-8c89-fc607d7d2d99
+status: experimental
+description: Converted from Sagan rule SID 5004859 (rev 5), file msapi-threatintelligence.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    Workload|cased: ThreatIntelligence
+  selection_2:
+    Verdict|cased: Phish
+  filter_3:
+    DeliveryAction|cased: Blocked
+  filter_4:
+    LatestDeliveryLocation|cased:
+      - Failed
+      - JunkFolder
+      - Quarantine
+  filter_5:
+    OriginalDeliveryLocation|cased:
+      - JunkFolder
+      - Quarantine
+  filter_6:
+    SystemOverrides[0].Result|cased: Allow
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.phish
+custom_attributes:
+  sagan.sid: '5004859'
+  sagan.rev: '5'
+  sagan.source_file: msapi-threatintelligence.rules

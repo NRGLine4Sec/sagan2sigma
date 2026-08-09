@@ -1,0 +1,154 @@
+title: '[CLOUDGENIX] PAM Authentication failure - Brute force [10/1]'
+id: 655bce5d-720b-50a4-8940-79f35a2d3419
+name: sagan_5005774
+status: experimental
+description: Converted from Sagan rule SID 5005774 (rev 1), file cloudgenix.rules.
+author: sagan2sigma
+logsource:
+  product: cloudgenix
+detection:
+  selection_1:
+    message|contains|cased: 'sshd-all:error: PAM: Authentication failure'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5005774'
+  sagan.rev: '1'
+  sagan.source_file: cloudgenix.rules
+  rsigma.suppress: 5m
+---
+title: '[CLOUDGENIX] PAM Authentication failure - Brute force [10/1] (threshold 10 in 5m)'
+id: bea8d7a5-c54c-5cac-a3a1-08d453f521d0
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5005774
+  group-by:
+    - sagan_ip_1
+    - sagan_username
+  timespan: 5m
+  condition:
+    gte: 10
+level: low
+---
+title: '[CLOUDGENIX] Authentication failure for root - Brute force [5/5]'
+id: 98f2a680-224f-5c59-b1f5-2d8780f86457
+name: sagan_5005775
+status: experimental
+description: Converted from Sagan rule SID 5005775 (rev 1), file cloudgenix.rules.
+author: sagan2sigma
+logsource:
+  product: cloudgenix
+detection:
+  selection_1:
+    message|contains|cased: 'sshd-all:error: PAM: Authentication failure for root'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5005775'
+  sagan.rev: '1'
+  sagan.source_file: cloudgenix.rules
+  rsigma.suppress: 5m
+---
+title: '[CLOUDGENIX] Authentication failure for root - Brute force [5/5] (threshold 5 in 5m)'
+id: 0e8bf704-fe33-5a1a-8c96-cf052efc9eca
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5005775
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 5
+level: low
+---
+title: '[CLOUDGENIX] Invalid user [Brute Force] [10/1]'
+id: fa46ac57-630e-55b4-8e3f-95ae8ab8fdb1
+name: sagan_5005776
+status: experimental
+description: Converted from Sagan rule SID 5005776 (rev 5), file cloudgenix.rules.
+author: sagan2sigma
+logsource:
+  product: cloudgenix
+detection:
+  selection_1:
+    message|contains|cased: sshd-all:Invalid user\\"-all:Invalid user
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5005776'
+  sagan.rev: '5'
+  sagan.source_file: cloudgenix.rules
+  rsigma.suppress: 5m
+---
+title: '[CLOUDGENIX] Invalid user [Brute Force] [10/1] (threshold 10 in 5m)'
+id: aefca47b-06e4-5ce8-bb65-a9570dad5fd7
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5005776
+  group-by:
+    - sagan_ip_1
+    - sagan_username
+  timespan: 5m
+  condition:
+    gte: 10
+level: low
+---
+title: '[CLOUDGENIX] Failed Authorization via keyboard - Brute force [10/1]'
+id: 2c13471b-9fa5-5a18-9fc5-ed5c95cd3e09
+name: sagan_5005777
+status: experimental
+description: Converted from Sagan rule SID 5005777 (rev 1), file cloudgenix.rules.
+author: sagan2sigma
+logsource:
+  product: cloudgenix
+detection:
+  selection_1:
+    message|contains|cased: sshd-all:Failed keyboard-interactive/pam
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5005777'
+  sagan.rev: '1'
+  sagan.source_file: cloudgenix.rules
+  rsigma.suppress: 5m
+---
+title: '[CLOUDGENIX] Failed Authorization via keyboard - Brute force [10/1] (threshold 10 in 5m)'
+id: fa040bf1-0602-5f84-8d91-80d3368bd6fb
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5005777
+  group-by:
+    - sagan_ip_1
+    - sagan_username
+  timespan: 5m
+  condition:
+    gte: 10
+level: low

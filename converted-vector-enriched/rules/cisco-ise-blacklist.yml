@@ -1,0 +1,24 @@
+title: '[CISCO-ISE-BLACKLIST] Successful authentication from outside HOME_COUNTRY'
+id: 23a17875-0609-587a-b5f9-f91d61675a8c
+status: experimental
+description: Converted from Sagan rule SID 5003783 (rev 1), file cisco-ise-blacklist.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: CISE_Passed_Authentications
+  selection_2:
+    message|contains|cased: Device IP Address
+  selection_3:
+    sagan_denylist_1: true
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5003783'
+  sagan.rev: '1'
+  sagan.source_file: cisco-ise-blacklist.rules

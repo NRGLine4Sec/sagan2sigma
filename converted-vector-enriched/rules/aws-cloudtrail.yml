@@ -1,0 +1,288 @@
+title: '[AWS-CLOUDTRAIL] Find Metric Keywords'
+id: d62ea093-9788-58a4-9904-43d6b1d8a024
+status: experimental
+description: Converted from Sagan rule SID 5014182 (rev 2), file aws-cloudtrail.rules.
+references:
+  - https://aws.amazon.com/blogs/security/anatomy-of-a-ransomware-event-targeting-data-in-amazon-s3/
+  - https://docs.aws.amazon.com/AmazonS3/latest/userguide/metrics-dimensions.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: '*.amazonaws.com'
+  selection_2:
+    message|contains|cased:
+      - eventName":"BucketSizeBytes"
+      - eventName":"GetRequests"
+      - eventName":"PutRequests"
+      - eventName":"DeleteRequests"
+      - eventName":"ListRequests"
+      - eventName":"BytesDownloaded"
+  filter_3:
+    message|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1082
+  - attack.ta0007
+  - sagan.classtype.discovery
+custom_attributes:
+  sagan.sid: '5014182'
+  sagan.rev: '2'
+  sagan.source_file: aws-cloudtrail.rules
+  sagan.metadata: deployment=Server,created_at=2023_01_20,updated_at=2024_05_21
+---
+title: '[AWS-SES] Simple Email Service Discovery Command Event Detected (GetSendQuota)'
+id: 4ce5a77b-e4ef-575c-87d1-e2ca3253cbe9
+status: experimental
+description: Converted from Sagan rule SID 5015087 (rev 1), file aws-cloudtrail.rules.
+references:
+  - https://unit42.paloaltonetworks.com/large-scale-cloud-extortion-operation/
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: ses.amazonaws.com
+  selection_2:
+    message|contains|cased: 'eventName": "GetSendQuota'
+  selection_3:
+    message|contains|cased: :role/aws-service-role/
+  filter_4:
+    message|contains|cased: '"userName": "DatadogIntegrationRole"'
+  filter_5:
+    message|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and selection_3 and not (filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.ta0007
+  - sagan.classtype.discovery
+custom_attributes:
+  sagan.sid: '5015087'
+  sagan.rev: '1'
+  sagan.source_file: aws-cloudtrail.rules
+---
+title: '[AWS-SES] Simple Email Service Discovery Event Detected (ListVerifiedEmailAddresses)'
+id: cc734c93-4e0f-5364-8740-638d1988c28d
+status: experimental
+description: Converted from Sagan rule SID 5015088 (rev 1), file aws-cloudtrail.rules.
+references:
+  - https://unit42.paloaltonetworks.com/large-scale-cloud-extortion-operation/
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: ses.amazonaws.com
+  selection_2:
+    message|contains|cased: 'eventName": "ListVerifiedEmailAddresses'
+  filter_3:
+    message|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.ta0007
+  - sagan.classtype.discovery
+custom_attributes:
+  sagan.sid: '5015088'
+  sagan.rev: '1'
+  sagan.source_file: aws-cloudtrail.rules
+---
+title: '[AWS-SES] Simple Email Service Discovery Event Detected (GetAccountSendingEnabled)'
+id: a5140095-5309-545e-9ee0-155e72fd8cdb
+status: experimental
+description: Converted from Sagan rule SID 5015089 (rev 1), file aws-cloudtrail.rules.
+references:
+  - https://unit42.paloaltonetworks.com/large-scale-cloud-extortion-operation/
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: ses.amazonaws.com
+  selection_2:
+    message|contains|cased: 'eventName": "GetAccountSendingEnabled'
+  filter_3:
+    message|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.ta0007
+  - sagan.classtype.discovery
+custom_attributes:
+  sagan.sid: '5015089'
+  sagan.rev: '1'
+  sagan.source_file: aws-cloudtrail.rules
+---
+title: '[AWS-SES] Simple Email Service Discovery Event Detected (GetAccount)'
+id: 13e637b5-3cba-55e4-9099-b7fd93cd76bb
+status: experimental
+description: Converted from Sagan rule SID 5015090 (rev 1), file aws-cloudtrail.rules.
+references:
+  - https://unit42.paloaltonetworks.com/large-scale-cloud-extortion-operation/
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: ses.amazonaws.com
+  selection_2:
+    message|contains|cased: 'eventName": "GetAccount'
+  filter_3:
+    message|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.ta0007
+  - sagan.classtype.discovery
+custom_attributes:
+  sagan.sid: '5015090'
+  sagan.rev: '1'
+  sagan.source_file: aws-cloudtrail.rules
+---
+title: '[AWS-SES] Simple Email Service Discovery Event Detected (ListIdentities)'
+id: bfd12e75-9aaa-5e96-90f9-d20dba6a035f
+status: experimental
+description: Converted from Sagan rule SID 5015091 (rev 1), file aws-cloudtrail.rules.
+references:
+  - https://unit42.paloaltonetworks.com/large-scale-cloud-extortion-operation/
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: ses.amazonaws.com
+  selection_2:
+    message|contains|cased: 'eventName": "ListIdentities'
+  filter_3:
+    message|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    message|contains: Datadog
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.ta0007
+  - sagan.classtype.discovery
+custom_attributes:
+  sagan.sid: '5015091'
+  sagan.rev: '1'
+  sagan.source_file: aws-cloudtrail.rules
+---
+title: '[AWS-EC2] Elastic Compute Cloud Security Group Created (CreateSecurityGroup)'
+id: c4af1109-0f87-5904-8290-f7f949621040
+status: experimental
+description: Converted from Sagan rule SID 5015094 (rev 1), file aws-cloudtrail.rules.
+references:
+  - https://unit42.paloaltonetworks.com/large-scale-cloud-extortion-operation/
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: ec2.amazonaws.com
+  selection_2:
+    message|contains|cased: 'eventName": "CreateSecurityGroup'
+  filter_3:
+    message|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.ta0002
+  - sagan.classtype.persistence
+custom_attributes:
+  sagan.sid: '5015094'
+  sagan.rev: '1'
+  sagan.source_file: aws-cloudtrail.rules
+---
+title: '[AWS-EC2] Elastic Compute Cloud Ingress Rules added to Security Group (AuthorizeSecurityGroupIngress)'
+id: 04c8c0b5-9fed-541b-b938-7e84e074ef60
+status: experimental
+description: Converted from Sagan rule SID 5015095 (rev 1), file aws-cloudtrail.rules.
+references:
+  - https://unit42.paloaltonetworks.com/large-scale-cloud-extortion-operation/
+  - https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_AuthorizeSecurityGroupIngress.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: ec2.amazonaws.com
+  selection_2:
+    message|contains|cased: 'eventName": "AuthorizeSecurityGroupIngress'
+  selection_3:
+    message|contains|cased: '"cidrIp": "0.0.0.0/0"'
+  filter_4:
+    message|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.ta0002
+  - sagan.classtype.persistence
+custom_attributes:
+  sagan.sid: '5015095'
+  sagan.rev: '1'
+  sagan.source_file: aws-cloudtrail.rules
+---
+title: '[AWS-LAMBDA] Possible Exfiltration Attempt (GetObject) [100/60sec]'
+id: cb40f6d4-04e0-50a8-81cc-04656de9a4b6
+name: sagan_5015097
+status: experimental
+description: Converted from Sagan rule SID 5015097 (rev 1), file aws-cloudtrail.rules.
+references:
+  - https://unit42.paloaltonetworks.com/large-scale-cloud-extortion-operation/
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: s3.amazonaws.com
+  selection_2:
+    message|contains|cased: 'eventName": "GetObject'
+  filter_3:
+    message|contains|cased: '"bytesTransferredOut": 0'
+  filter_4:
+    message|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.ta0010
+  - sagan.classtype.exfiltration
+custom_attributes:
+  sagan.sid: '5015097'
+  sagan.rev: '1'
+  sagan.source_file: aws-cloudtrail.rules
+  rsigma.suppress: 1d
+---
+title: '[AWS-LAMBDA] Possible Exfiltration Attempt (GetObject) [100/60sec] (threshold 100 in 1m)'
+id: e6a0032a-51f0-5696-a676-ae0321261c35
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5015097
+  group-by:
+    - sagan_ip_1
+  timespan: 1m
+  condition:
+    gte: 100
+level: high

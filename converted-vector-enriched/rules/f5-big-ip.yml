@@ -1,0 +1,41 @@
+title: '[F5-BIG-IP] Brute force Attempt [5/1]'
+id: afd1fcfe-1d62-5bd2-9670-ee38edf88827
+name: sagan_5002946
+status: experimental
+description: Converted from Sagan rule SID 5002946 (rev 4), file f5-big-ip.rules.
+references:
+  - https://support.f5.com/kb/en-us/solutions/public/13000/400/sol13426.html
+author: sagan2sigma
+logsource:
+  product: f5
+detection:
+  selection_1:
+    message|contains|cased: failed to login after
+  selection_2:
+    message|contains|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5002946'
+  sagan.rev: '4'
+  sagan.source_file: f5-big-ip.rules
+  rsigma.suppress: 5m
+---
+title: '[F5-BIG-IP] Brute force Attempt [5/1] (threshold 5 in 5m)'
+id: 9cb410c4-9c59-553d-9ab8-57f41095e0ab
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5002946
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 5
+level: low

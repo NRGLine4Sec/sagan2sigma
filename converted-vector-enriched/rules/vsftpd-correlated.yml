@@ -1,0 +1,319 @@
+title: '[VSFTPD-CORRELATED] Authentication after recon activity'
+id: cbfdab4a-6dfa-5d63-8929-451522885471
+name: sagan_5003329
+status: experimental
+description: Converted from Sagan rule SID 5003329 (rev 3), file vsftpd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: OK LOGIN
+  selection_2:
+    appname|cased: vsftpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003329'
+  sagan.rev: '3'
+  sagan.source_file: vsftpd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[VSFTPD-CORRELATED] Authentication after recon activity (correlated with recon)'
+id: d12e77fe-a0b9-5d07-9d1e-cc28bdf96c9e
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003329
+  group-by:
+    - hostname
+  timespan: 1d
+level: high
+---
+title: '[VSFTPD-CORRELATED] Authentication after honeypot activity'
+id: bcfa5772-10eb-5413-930b-0ba72b4133c2
+name: sagan_5003330
+status: experimental
+description: Converted from Sagan rule SID 5003330 (rev 3), file vsftpd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: OK LOGIN
+  selection_2:
+    appname|cased: vsftpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003330'
+  sagan.rev: '3'
+  sagan.source_file: vsftpd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[VSFTPD-CORRELATED] Authentication after honeypot activity (correlated with honeypot)'
+id: 0748c7fe-4f24-5e86-8851-f0e0598c83ec
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003330
+  group-by:
+    - hostname
+  timespan: 1d
+level: high
+---
+title: '[VSFTPD-CORRELATED] Authentication after exploit attempt'
+id: c1f337c8-9011-51a1-8844-6a225d51bd3a
+name: sagan_5003331
+status: experimental
+description: Converted from Sagan rule SID 5003331 (rev 3), file vsftpd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: OK LOGIN
+  selection_2:
+    appname|cased: vsftpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003331'
+  sagan.rev: '3'
+  sagan.source_file: vsftpd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[VSFTPD-CORRELATED] Authentication after exploit attempt (correlated with exploit_attempt)'
+id: aed357a5-af99-5525-8b13-89614294775b
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003331
+  group-by:
+    - hostname
+  timespan: 1d
+level: high
+---
+title: '[VSFTPD-CORRELATED] Authentication after brute force activity'
+id: 96392c77-03b1-5e2e-9a07-4fd59b562299
+name: sagan_5003332
+status: experimental
+description: Converted from Sagan rule SID 5003332 (rev 3), file vsftpd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: OK LOGIN
+  selection_2:
+    appname|cased: vsftpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003332'
+  sagan.rev: '3'
+  sagan.source_file: vsftpd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[VSFTPD-CORRELATED] Authentication after brute force activity (correlated with brute_force)'
+id: 1054925d-47ee-5ae1-87d1-2f78d6091d8d
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003332
+  group-by:
+    - hostname
+  timespan: 1d
+level: high
+---
+title: '[VSFTPD-CORRELATED] File uploaded after recon activity'
+id: 12981dc1-2675-56fe-8892-0c723a3eb075
+name: sagan_5003333
+status: experimental
+description: Converted from Sagan rule SID 5003333 (rev 3), file vsftpd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: OK UPLOAD
+  selection_2:
+    appname|cased: vsftpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003333'
+  sagan.rev: '3'
+  sagan.source_file: vsftpd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[VSFTPD-CORRELATED] File uploaded after recon activity (correlated with recon)'
+id: 4ef869cd-67bf-5d7c-8c3c-ffe78994cda1
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003333
+  group-by:
+    - hostname
+  timespan: 1d
+level: high
+---
+title: '[VSFTPD-CORRELATED] File uploaded after honeypot activity'
+id: c858be51-cebd-5914-a8e8-e9976246726e
+name: sagan_5003334
+status: experimental
+description: Converted from Sagan rule SID 5003334 (rev 3), file vsftpd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: OK UPLOAD
+  selection_2:
+    appname|cased: vsftpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003334'
+  sagan.rev: '3'
+  sagan.source_file: vsftpd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[VSFTPD-CORRELATED] File uploaded after honeypot activity (correlated with honeypot)'
+id: 7e90eb0c-ce58-5749-a9fa-c9c40d1e99f9
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003334
+  group-by:
+    - hostname
+  timespan: 1d
+level: high
+---
+title: '[VSFTPD-CORRELATED] File uploaded after exploit attempt'
+id: 48da6829-1a65-5b36-8052-23e34f4cf26a
+name: sagan_5003335
+status: experimental
+description: Converted from Sagan rule SID 5003335 (rev 3), file vsftpd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: OK UPLOAD
+  selection_2:
+    appname|cased: vsftpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003335'
+  sagan.rev: '3'
+  sagan.source_file: vsftpd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[VSFTPD-CORRELATED] File uploaded after exploit attempt (correlated with exploit_attempt)'
+id: d213dcf8-21cc-5480-b342-e0a62c9bf913
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003335
+  group-by:
+    - hostname
+  timespan: 1d
+level: high
+---
+title: '[VSFTPD-CORRELATED] File uploaded after brute force activity'
+id: 4e2be171-ecbd-537d-92bc-dc63559f6c6d
+name: sagan_5003336
+status: experimental
+description: Converted from Sagan rule SID 5003336 (rev 3), file vsftpd-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: OK UPLOAD
+  selection_2:
+    appname|cased: vsftpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003336'
+  sagan.rev: '3'
+  sagan.source_file: vsftpd-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[VSFTPD-CORRELATED] File uploaded after brute force activity (correlated with brute_force)'
+id: 9a39b8bc-7369-5bfd-af8f-9f49d046cad1
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003336
+  group-by:
+    - hostname
+  timespan: 1d
+level: high

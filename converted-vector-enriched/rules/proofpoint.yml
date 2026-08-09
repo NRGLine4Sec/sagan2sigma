@@ -1,0 +1,875 @@
+title: '[PROOFPOINT] Phish Classification Messages Blocked'
+id: 76a9c697-8992-53ac-b3a0-b7240061c391
+status: experimental
+description: Converted from Sagan rule SID 5010911 (rev 1), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'classification": "phish'
+  filter_3:
+    message|contains|cased: 'phishScore": 0'
+  selection_4:
+    message|contains|cased: 'event_type": "messagesBlocked'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010911'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] Phish Classification Messages Delivered'
+id: 4bc1403e-20ff-5c18-a43a-e8bf82d6f670
+status: experimental
+description: Converted from Sagan rule SID 5010912 (rev 1), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'classification": "phish'
+  filter_3:
+    message|contains|cased: 'phishScore": 0'
+  selection_4:
+    message|contains|cased: 'event_type": "messagesDelivered'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010912'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] CRITICAL - Phish Classification Messages ClicksPermitted'
+id: d7799c0f-a5d2-5725-bb6b-232afd7b844a
+status: experimental
+description: Converted from Sagan rule SID 5010913 (rev 2), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'classification": "phish'
+  filter_3:
+    message|contains|cased: 'phishScore": 0'
+  selection_4:
+    message|contains|cased: 'event_type": "clicksPermitted'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010913'
+  sagan.rev: '2'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] Phish Classification Messages ClicksBlocked'
+id: 89c894eb-75ae-523b-97e8-15e5e63c07ec
+status: experimental
+description: Converted from Sagan rule SID 5010914 (rev 2), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'classification": "phish'
+  filter_3:
+    message|contains|cased: 'phishScore": 0'
+  selection_4:
+    message|contains|cased: 'event_type": "clicksBlocked'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010914'
+  sagan.rev: '2'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] Malware Classification Messages Blocked'
+id: 492f15ba-52fa-5735-b1c9-5b64f03f43ed
+status: experimental
+description: Converted from Sagan rule SID 5010915 (rev 1), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'classification": "malware'
+  filter_3:
+    message|contains|cased: 'malwareScore": 0'
+  selection_4:
+    message|contains|cased: 'event_type": "messagesBlocked'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010915'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] Malware Classification Messages Delivered'
+id: db454463-6d6a-50ca-91dd-40084c6ba3f8
+status: experimental
+description: Converted from Sagan rule SID 5010916 (rev 1), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'classification": "malware'
+  filter_3:
+    message|contains|cased: 'malwareScore": 0'
+  selection_4:
+    message|contains|cased: 'event_type": "messagesDelivered'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010916'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] CRITICAL - Malware Classification Messages ClicksPermitted'
+id: b56008eb-e81b-5100-b979-8f67fa37cf3e
+status: experimental
+description: Converted from Sagan rule SID 5010917 (rev 2), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'classification": "malware'
+  filter_3:
+    message|contains|cased: 'malwareScore": 0'
+  selection_4:
+    message|contains|cased: 'event_type": "clicksPermitted'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010917'
+  sagan.rev: '2'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] Malware Classification Messages ClicksBlocked'
+id: a99d5f44-c764-5470-8660-aa3a836de0e5
+status: experimental
+description: Converted from Sagan rule SID 5010918 (rev 1), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'classification": "malware'
+  filter_3:
+    message|contains|cased: 'malwareScore": 0'
+  selection_4:
+    message|contains|cased: 'event_type": "clicksPermitted'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010918'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] Spam Classification Messages Blocked'
+id: 02d967f3-8a2e-5503-bf05-2565f31a2379
+status: experimental
+description: Converted from Sagan rule SID 5010919 (rev 1), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'classification": "spam'
+  filter_3:
+    message|contains|cased: 'spamScore": 0'
+  selection_4:
+    message|contains|cased: 'event_type": "messagesBlocked'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010919'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] Spam Classification Messages Delivered'
+id: 0de58444-ea91-599c-a240-1d4846db0f7c
+status: experimental
+description: Converted from Sagan rule SID 5010920 (rev 1), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'classification": "spam'
+  filter_3:
+    message|contains|cased: 'spamScore": 0'
+  selection_4:
+    message|contains|cased: 'event_type": "messagesDelivered'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010920'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] Spam Classification Messages ClicksPermitted'
+id: 32d528d3-b342-5ecc-b627-5cb098329c93
+status: experimental
+description: Converted from Sagan rule SID 5010921 (rev 1), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'classification": "spam'
+  filter_3:
+    message|contains|cased: 'spamScore": 0'
+  selection_4:
+    message|contains|cased: 'event_type": "clicksPermitted'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010921'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] Spam Classification Messages ClicksBlocked'
+id: c56d5e56-817c-5eb0-bff9-ce4292d46ca5
+status: experimental
+description: Converted from Sagan rule SID 5010922 (rev 2), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'classification": "spam'
+  filter_3:
+    message|contains|cased: 'spamScore": 0'
+  selection_4:
+    message|contains|cased: 'event_type": "clicksBlocked'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010922'
+  sagan.rev: '2'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2026_05_04
+---
+title: '[PROOFPOINT] Impostor Classification Messages Blocked'
+id: 13983fc0-16ba-5d68-8e4a-4b6a058b48d4
+status: experimental
+description: Converted from Sagan rule SID 5010923 (rev 1), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'classification": "impostor'
+  filter_3:
+    message|contains|cased: 'impostorScore": 0'
+  selection_4:
+    message|contains|cased: 'event_type": "messagesBlocked'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010923'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] Impostor Classification Messages Delivered'
+id: d7dc3e0c-7ba4-5dc1-bc1a-b2a2d27f592c
+status: experimental
+description: Converted from Sagan rule SID 5010924 (rev 1), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'classification": "impostor'
+  filter_3:
+    message|contains|cased: 'impostorScore": 0'
+  selection_4:
+    message|contains|cased: 'event_type": "messagesDelivered'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010924'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] Impostor Classification Messages ClicksPermitted'
+id: 19b1f3ce-ba64-58b2-b6c8-37418ad0c1ec
+status: experimental
+description: Converted from Sagan rule SID 5010925 (rev 1), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'classification": "impostor'
+  filter_3:
+    message|contains|cased: 'impostorScore": 0'
+  selection_4:
+    message|contains|cased: 'event_type": "clicksPermitted'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010925'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] Impostor Classification Messages ClicksBlocked'
+id: 48a3bd0a-5f9f-51b0-9854-8e69d29a6e05
+status: experimental
+description: Converted from Sagan rule SID 5010926 (rev 1), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'classification": "impostor'
+  filter_3:
+    message|contains|cased: 'impostorScore": 0'
+  selection_4:
+    message|contains|cased: 'event_type": "clicksPermitted'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010926'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] TOAD Classification Messages Blocked'
+id: dc8b95a2-6c29-504e-8564-ca87d06673cf
+status: experimental
+description: Converted from Sagan rule SID 5010927 (rev 1), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'classification": "toad'
+  filter_3:
+    message|contains|cased: 'malwareScore": 0'
+  selection_4:
+    message|contains|cased: 'event_type": "messagesBlocked'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010927'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] TOAD Classification Messages Delivered'
+id: 2183dc1a-bbb2-5737-9ff3-3283ca7fe4a7
+status: experimental
+description: Converted from Sagan rule SID 5010928 (rev 1), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'classification": "toad'
+  filter_3:
+    message|contains|cased: 'malwareScore": 0'
+  selection_4:
+    message|contains|cased: 'event_type": "messagesDelivered'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010928'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] TOAD Classification Messages ClicksPermitted'
+id: 2c07b08b-23d2-5d6e-b281-903c8b4e5237
+status: experimental
+description: Converted from Sagan rule SID 5010929 (rev 1), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'classification": "toad'
+  filter_3:
+    message|contains|cased: 'malwareScore": 0'
+  selection_4:
+    message|contains|cased: 'event_type": "clicksPermitted'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010929'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] TOAD Classification Messages ClicksBlocked'
+id: 710f22d1-c78c-5e5b-9256-5d95f0b47c6d
+status: experimental
+description: Converted from Sagan rule SID 5010930 (rev 1), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'classification": "toad'
+  filter_3:
+    message|contains|cased: 'malwareScore": 0'
+  selection_4:
+    message|contains|cased: 'event_type": "clicksPermitted'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010930'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] Unknown/New Classification'
+id: 6069eddf-1c29-5196-9972-f4b9c8987ab8
+status: experimental
+description: Converted from Sagan rule SID 5010931 (rev 2), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains|cased: 'event_type":'
+  filter_3:
+    message|contains:
+      - 'classification": "impostor'
+      - 'classification": "malware'
+      - 'classification": "phish'
+      - 'classification": "toad'
+      - 'classification": "spam'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010931'
+  sagan.rev: '2'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] Malware Classification Messages Delivered'
+id: 558a1ad6-7f50-524c-98c1-2b8a69493ac5
+status: experimental
+description: Converted from Sagan rule SID 5010932 (rev 1), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'Classification","value": "Malware'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.ta0008
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010932'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] Spam Classification Messages Delivered'
+id: b6e902af-0894-5361-95b7-1c16751f36ff
+status: experimental
+description: Converted from Sagan rule SID 5010933 (rev 1), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'Classification","value": "Spam'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.ta0008
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010933'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] Phish Classification Messages Delivered'
+id: d277d4c3-d135-520a-a5c3-a86abbb75625
+status: experimental
+description: Converted from Sagan rule SID 5010934 (rev 1), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'Classification","value": "Phish'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.ta0008
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010934'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] Toad Classification Messages Delivered'
+id: d3017b09-fcb4-578a-83a5-7971751d3aea
+status: experimental
+description: Converted from Sagan rule SID 5010935 (rev 1), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'Classification","value": "Toad'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.ta0008
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010935'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] Impostor Classification Messages Delivered'
+id: ba35f98b-c9f5-5813-b859-11550810f412
+status: experimental
+description: Converted from Sagan rule SID 5010936 (rev 1), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains: 'Classification","value": "Impostor'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.ta0008
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010936'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06
+---
+title: '[PROOFPOINT] Unknown/New Classification'
+id: 6964551b-7280-529a-b832-ab076d96d7fe
+status: experimental
+description: Converted from Sagan rule SID 5010937 (rev 1), file proofpoint.rules.
+references:
+  - https://ptr-docs.proofpoint.com/extensibility-guides/ptr-api/?shell
+  - https://help.proofpoint.com/Threat_Insight_Dashboard/API_Documentation/SIEM_API
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: proofpoint_siem_api_data
+  selection_2:
+    message|contains|cased: 'Classification","value": "'
+  filter_3:
+    message|contains:
+      - 'Classification","value": "Spam'
+      - 'Classification","value": "Impostor'
+      - 'Classification","value": "Malware'
+      - 'Classification","value": "Toad'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1071
+  - attack.ta0008
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010937'
+  sagan.rev: '1'
+  sagan.source_file: proofpoint.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_06,updated_at=2023_02_06

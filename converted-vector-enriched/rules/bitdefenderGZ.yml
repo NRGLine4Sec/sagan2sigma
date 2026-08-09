@@ -1,0 +1,513 @@
+title: '[BitdefenderGZ] Phishing/Fraud Link Detected (blocked)'
+id: 57bf8f53-e1e5-5999-a386-3d3cecf74314
+status: experimental
+description: Converted from Sagan rule SID 5014660 (rev 1), file bitdefenderGZ.rules.
+references:
+  - https://www.bitdefender.com/business/support/en/77212-237089-event-types.html
+author: sagan2sigma
+logsource:
+  product: bitdefender
+detection:
+  selection_1:
+    appname|cased: BitdefenderGZ
+  selection_2:
+    message|contains|cased: act=aph_blocked
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014660'
+  sagan.rev: '1'
+  sagan.source_file: bitdefenderGZ.rules
+  sagan.metadata: created_at=2024_01_20,updated_at=2024_01_20
+---
+title: '[BitdefenderGZ] Phishing/Fraud Link Detected (report only)'
+id: 175c3de3-b6de-5fc0-9282-10c757ef10c6
+status: experimental
+description: Converted from Sagan rule SID 5014661 (rev 1), file bitdefenderGZ.rules.
+references:
+  - https://www.bitdefender.com/business/support/en/77212-237089-event-types.html
+author: sagan2sigma
+logsource:
+  product: bitdefender
+detection:
+  selection_1:
+    appname|cased: BitdefenderGZ
+  selection_2:
+    message|contains|cased: act=reportOnly
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014661'
+  sagan.rev: '1'
+  sagan.source_file: bitdefenderGZ.rules
+  sagan.metadata: created_at=2024_01_20,updated_at=2024_01_20
+---
+title: '[BitdefenderGZ] Malicious File Detected (Blocked)'
+id: e81e21d3-c757-514b-ae56-12864fcf9955
+status: experimental
+description: Converted from Sagan rule SID 5014662 (rev 1), file bitdefenderGZ.rules.
+references:
+  - https://www.bitdefender.com/business/support/en/77212-237089-event-types.html
+author: sagan2sigma
+logsource:
+  product: bitdefender
+detection:
+  selection_1:
+    appname|cased: BitdefenderGZ
+  selection_2:
+    message|contains|cased: BitdefenderGZMalwareType=file
+  selection_3:
+    message|contains|cased:
+      - act=deleted
+      - act=blocked
+      - act=quarantined
+      - act=disinfected
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014662'
+  sagan.rev: '1'
+  sagan.source_file: bitdefenderGZ.rules
+  sagan.metadata: created_at=2024_01_20,updated_at=2024_01_20
+---
+title: '[BitdefenderGZ] Malicious File Detected (Not Blocked)'
+id: 13d11235-d5f3-587a-92c4-b64f5da0529d
+status: experimental
+description: Converted from Sagan rule SID 5014663 (rev 1), file bitdefenderGZ.rules.
+references:
+  - https://www.bitdefender.com/business/support/en/77212-237089-event-types.html
+author: sagan2sigma
+logsource:
+  product: bitdefender
+detection:
+  selection_1:
+    appname|cased: BitdefenderGZ
+  selection_2:
+    message|contains|cased: BitdefenderGZMalwareType=file
+  filter_3:
+    message|contains|cased: BitdefenderGZBlockedMalwareCnt=1
+  filter_4:
+    message|contains|cased:
+      - act=deleted
+      - act=blocked
+      - act=quarantined
+      - act=disinfected
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014663'
+  sagan.rev: '1'
+  sagan.source_file: bitdefenderGZ.rules
+  sagan.metadata: created_at=2024_01_20,updated_at=2024_01_20
+---
+title: '[BitdefenderGZ] Malicious Process Detected (Blocked)'
+id: 8402bd7b-e6eb-5c57-b797-5aa1a323cd3b
+status: experimental
+description: Converted from Sagan rule SID 5014664 (rev 1), file bitdefenderGZ.rules.
+references:
+  - https://www.bitdefender.com/business/support/en/77212-237089-event-types.html
+author: sagan2sigma
+logsource:
+  product: bitdefender
+detection:
+  selection_1:
+    appname|cased: BitdefenderGZ
+  selection_2:
+    message|contains|cased: BitdefenderGZMalwareType=process
+  selection_3:
+    message|contains|cased:
+      - act=deleted
+      - act=blocked
+      - act=quarantined
+      - act=disinfected
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014664'
+  sagan.rev: '1'
+  sagan.source_file: bitdefenderGZ.rules
+  sagan.metadata: created_at=2024_01_20,updated_at=2024_01_20
+---
+title: '[BitdefenderGZ] Malicious Process Detected (Not Blocked)'
+id: 0e0f7470-4afb-5cb1-9e4d-28834c74b378
+status: experimental
+description: Converted from Sagan rule SID 5014665 (rev 1), file bitdefenderGZ.rules.
+references:
+  - https://www.bitdefender.com/business/support/en/77212-237089-event-types.html
+author: sagan2sigma
+logsource:
+  product: bitdefender
+detection:
+  selection_1:
+    appname|cased: BitdefenderGZ
+  selection_2:
+    message|contains|cased: BitdefenderGZMalwareType=process
+  filter_3:
+    message|contains|cased: BitdefenderGZBlockedMalwareCnt=1
+  filter_4:
+    message|contains|cased:
+      - act=deleted
+      - act=blocked
+      - act=quarantined
+      - act=disinfected
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014665'
+  sagan.rev: '1'
+  sagan.source_file: bitdefenderGZ.rules
+  sagan.metadata: created_at=2024_01_20,updated_at=2024_01_20
+---
+title: '[BitdefenderGZ] Malicious Entity Detected (Blocked)'
+id: 766b6e45-37f1-563f-9993-fe7073423ba2
+status: experimental
+description: Converted from Sagan rule SID 5014666 (rev 1), file bitdefenderGZ.rules.
+references:
+  - https://www.bitdefender.com/business/support/en/77212-237089-event-types.html
+author: sagan2sigma
+logsource:
+  product: bitdefender
+detection:
+  selection_1:
+    appname|cased: BitdefenderGZ
+  selection_2:
+    message|contains|cased:
+      - BitdefenderGZMalwareType=file
+      - BitdefenderGZMalwareType=process
+  selection_3:
+    message|contains|cased:
+      - act=deleted
+      - act=blocked
+      - act=quarantined
+      - act=disinfected
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014666'
+  sagan.rev: '1'
+  sagan.source_file: bitdefenderGZ.rules
+  sagan.metadata: created_at=2024_01_20,updated_at=2024_01_20
+---
+title: '[BitdefenderGZ] Malicious Entity Detected (Not Blocked)'
+id: 280f3f68-eba4-5249-9013-27121a5b0162
+status: experimental
+description: Converted from Sagan rule SID 5014667 (rev 1), file bitdefenderGZ.rules.
+references:
+  - https://www.bitdefender.com/business/support/en/77212-237089-event-types.html
+author: sagan2sigma
+logsource:
+  product: bitdefender
+detection:
+  selection_1:
+    appname|cased: BitdefenderGZ
+  selection_2:
+    message|contains|cased:
+      - BitdefenderGZMalwareType=file
+      - BitdefenderGZMalwareType=process
+  filter_3:
+    message|contains|cased:
+      - act=deleted
+      - act=blocked
+      - act=quarantined
+      - act=disinfected
+  filter_4:
+    message|contains|cased: BitdefenderGZBlockedMalwareCnt=1
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014667'
+  sagan.rev: '1'
+  sagan.source_file: bitdefenderGZ.rules
+  sagan.metadata: created_at=2024_01_20,updated_at=2024_01_20
+---
+title: '[BitdefenderGZ] Advanced Threat Control IDS Blocked APP'
+id: 35e37fbf-9b1f-5159-b7c4-2defcd9342b6
+status: experimental
+description: Converted from Sagan rule SID 5014668 (rev 1), file bitdefenderGZ.rules.
+references:
+  - https://www.bitdefender.com/business/support/en/77212-237089-event-types.html
+author: sagan2sigma
+logsource:
+  product: bitdefender
+detection:
+  selection_1:
+    appname|cased: BitdefenderGZ
+  selection_2:
+    message|contains|cased: BitdefenderGZModule=avc
+  selection_3:
+    message|contains|cased: BitdefenderGZExploitType=IDS Blocked APP
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014668'
+  sagan.rev: '1'
+  sagan.source_file: bitdefenderGZ.rules
+  sagan.metadata: created_at=2024_01_20,updated_at=2024_01_20
+---
+title: '[BitdefenderGZ] Advanced Threat Control AVC Blocked APP'
+id: 29a1154e-3007-5e98-86af-931943242141
+status: experimental
+description: Converted from Sagan rule SID 5014669 (rev 1), file bitdefenderGZ.rules.
+references:
+  - https://www.bitdefender.com/business/support/en/77212-237089-event-types.html
+author: sagan2sigma
+logsource:
+  product: bitdefender
+detection:
+  selection_1:
+    appname|cased: BitdefenderGZ
+  selection_2:
+    message|contains|cased: BitdefenderGZModule=avc
+  selection_3:
+    message|contains|cased: BitdefenderGZExploitType=AVC Blocked APP
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014669'
+  sagan.rev: '1'
+  sagan.source_file: bitdefenderGZ.rules
+  sagan.metadata: created_at=2024_01_20,updated_at=2024_01_20
+---
+title: '[BitdefenderGZ] Advanced Threat Control AVC Blocked Exploit'
+id: d5aada63-d2c3-5de8-b54c-678593fa4e23
+status: experimental
+description: Converted from Sagan rule SID 5014670 (rev 1), file bitdefenderGZ.rules.
+references:
+  - https://www.bitdefender.com/business/support/en/77212-237089-event-types.html
+author: sagan2sigma
+logsource:
+  product: bitdefender
+detection:
+  selection_1:
+    appname|cased: BitdefenderGZ
+  selection_2:
+    message|contains|cased: BitdefenderGZModule=avc
+  selection_3:
+    message|contains|cased: BitdefenderGZExploitType=AVC Blocked Exploit
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014670'
+  sagan.rev: '1'
+  sagan.source_file: bitdefenderGZ.rules
+  sagan.metadata: created_at=2024_01_20,updated_at=2024_01_20
+---
+title: '[BitdefenderGZ] HTTP Data Protection Event Detected'
+id: c70cfc84-3060-54da-b76f-ea26a401b61b
+status: experimental
+description: Converted from Sagan rule SID 5014671 (rev 1), file bitdefenderGZ.rules.
+references:
+  - https://www.bitdefender.com/business/support/en/77212-237089-event-types.html
+author: sagan2sigma
+logsource:
+  product: bitdefender
+detection:
+  selection_1:
+    appname|cased: BitdefenderGZ
+  selection_2:
+    message|contains|cased: BitdefenderGZModule=dp
+  selection_3:
+    message|contains|cased: BitdefenderGZTargetType=http
+  selection_4:
+    message|contains|cased: data_protection_blocked
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014671'
+  sagan.rev: '1'
+  sagan.source_file: bitdefenderGZ.rules
+  sagan.metadata: created_at=2024_01_20,updated_at=2024_01_20
+---
+title: '[BitdefenderGZ] MAIL Data Protection Event Detected'
+id: 387ea655-8a87-5c58-9d6b-730a0f85a0ff
+status: experimental
+description: Converted from Sagan rule SID 5014672 (rev 1), file bitdefenderGZ.rules.
+references:
+  - https://www.bitdefender.com/business/support/en/77212-237089-event-types.html
+author: sagan2sigma
+logsource:
+  product: bitdefender
+detection:
+  selection_1:
+    appname|cased: BitdefenderGZ
+  selection_2:
+    message|contains|cased: BitdefenderGZModule=dp
+  selection_3:
+    message|contains|cased: BitdefenderGZTargetType=mail
+  selection_4:
+    message|contains|cased: data_protection_blocked
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014672'
+  sagan.rev: '1'
+  sagan.source_file: bitdefenderGZ.rules
+  sagan.metadata: created_at=2024_01_20,updated_at=2024_01_20
+---
+title: '[BitdefenderGZ] Agent Uninstalled'
+id: d1159d76-b8b8-56e4-ab51-6e1b155ee379
+status: experimental
+description: Converted from Sagan rule SID 5014673 (rev 1), file bitdefenderGZ.rules.
+references:
+  - https://www.bitdefender.com/business/support/en/77212-237089-event-types.html
+author: sagan2sigma
+logsource:
+  product: bitdefender
+detection:
+  selection_1:
+    appname|cased: BitdefenderGZ
+  selection_2:
+    message|contains|cased: BitdefenderGZModule=uninstall
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014673'
+  sagan.rev: '1'
+  sagan.source_file: bitdefenderGZ.rules
+  sagan.metadata: created_at=2024_01_20,updated_at=2024_01_20
+---
+title: '[BitdefenderGZ] Exchange User Credentials Update Needed'
+id: a594988b-3704-5b4c-b748-7088f1c09e3e
+status: experimental
+description: Converted from Sagan rule SID 5014674 (rev 1), file bitdefenderGZ.rules.
+references:
+  - https://www.bitdefender.com/business/support/en/77212-237089-event-types.html
+author: sagan2sigma
+logsource:
+  product: bitdefender
+detection:
+  selection_1:
+    appname|cased: BitdefenderGZ
+  selection_2:
+    message|contains|cased: BitdefenderGZModule=exchange-user-credentials
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014674'
+  sagan.rev: '1'
+  sagan.source_file: bitdefenderGZ.rules
+  sagan.metadata: created_at=2024_01_20,updated_at=2024_01_20
+---
+title: '[BitdefenderGZ] Hyper Detect event (Blocked)'
+id: c10027f7-46a8-5802-b81a-d66017c8382c
+status: experimental
+description: Converted from Sagan rule SID 5014675 (rev 1), file bitdefenderGZ.rules.
+references:
+  - https://www.bitdefender.com/business/support/en/77212-237089-event-types.html
+author: sagan2sigma
+logsource:
+  product: bitdefender
+detection:
+  selection_1:
+    appname|cased: BitdefenderGZ
+  selection_2:
+    message|contains|cased: BitdefenderGZMalwareType=hd
+  selection_3:
+    message|contains|cased:
+      - act=deleted
+      - act=blocked
+      - act=quarantined
+      - act=disinfected
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014675'
+  sagan.rev: '1'
+  sagan.source_file: bitdefenderGZ.rules
+  sagan.metadata: created_at=2024_01_20,updated_at=2024_01_20
+---
+title: '[BitdefenderGZ] Hyper Detect event (Allowed)'
+id: 59fa372f-882e-5969-af40-67c9f81ae4f4
+status: experimental
+description: Converted from Sagan rule SID 5014676 (rev 1), file bitdefenderGZ.rules.
+references:
+  - https://www.bitdefender.com/business/support/en/77212-237089-event-types.html
+author: sagan2sigma
+logsource:
+  product: bitdefender
+detection:
+  selection_1:
+    appname|cased: BitdefenderGZ
+  selection_2:
+    message|contains|cased: BitdefenderGZMalwareType=hd
+  filter_3:
+    message|contains|cased:
+      - act=deleted
+      - act=blocked
+      - act=quarantined
+      - act=disinfected
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014676'
+  sagan.rev: '1'
+  sagan.source_file: bitdefenderGZ.rules
+  sagan.metadata: created_at=2024_01_20,updated_at=2024_01_20

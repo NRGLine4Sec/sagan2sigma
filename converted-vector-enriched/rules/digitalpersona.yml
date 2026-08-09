@@ -1,0 +1,460 @@
+title: '[DIGITALPERSONA] Fingerprint reader disconnected'
+id: f95f3852-8b49-5873-8f29-f7b0c97d74d0
+status: experimental
+description: Converted from Sagan rule SID 5001438 (rev 3), file digitalpersona.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ' 1794: '
+  selection_2:
+    appname|cased: DigitalPersona*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001438'
+  sagan.rev: '3'
+  sagan.source_file: digitalpersona.rules
+---
+title: '[DIGITALPERSONA] One-to-one fingerprint match failed [5/5]'
+id: cb7fc1b7-cd68-528c-8059-859df756b215
+status: experimental
+description: Converted from Sagan rule SID 5001439 (rev 4), file digitalpersona.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ' 2049: '
+  selection_2:
+    appname|cased: 'DigitalPersona* after: track by_src, count 5, seconds 300'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001439'
+  sagan.rev: '4'
+  sagan.source_file: digitalpersona.rules
+  rsigma.suppress: 5m
+---
+title: '[DIGITALPERSONA] Registered PIN'
+id: 3965e25c-d377-5f80-9bb9-e0171db982e3
+status: experimental
+description: Converted from Sagan rule SID 5001448 (rev 3), file digitalpersona.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ' 1033: '
+  selection_2:
+    appname|cased: DigitalPersona*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001448'
+  sagan.rev: '3'
+  sagan.source_file: digitalpersona.rules
+---
+title: '[DIGITALPERSONA] Changed PIN'
+id: c6cf7491-11d7-5f72-aa46-43ffa7107cd4
+status: experimental
+description: Converted from Sagan rule SID 5001449 (rev 3), file digitalpersona.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ' 1034: '
+  selection_2:
+    appname|cased: DigitalPersona*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001449'
+  sagan.rev: '3'
+  sagan.source_file: digitalpersona.rules
+---
+title: '[DIGITALPERSONA] FP used to unlocked smart card'
+id: 7823467b-c4e4-57da-bba0-545802c3275e
+status: experimental
+description: Converted from Sagan rule SID 5001450 (rev 3), file digitalpersona.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ' 1035: '
+  selection_2:
+    appname|cased: DigitalPersona*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001450'
+  sagan.rev: '3'
+  sagan.source_file: digitalpersona.rules
+---
+title: '[DIGITALPERSONA] Shared account problem'
+id: 5fbd04f5-a4f8-5d0b-8a32-e2609d16da9a
+status: experimental
+description: Converted from Sagan rule SID 5001451 (rev 3), file digitalpersona.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ' 1036: '
+  selection_2:
+    appname|cased: DigitalPersona*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001451'
+  sagan.rev: '3'
+  sagan.source_file: digitalpersona.rules
+---
+title: '[DIGITALPERSONA] Shared account missing'
+id: a665759b-8c41-5ced-9a12-0212795d8ce5
+status: experimental
+description: Converted from Sagan rule SID 5001452 (rev 3), file digitalpersona.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ' 1037: '
+  selection_2:
+    appname|cased: DigitalPersona*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001452'
+  sagan.rev: '3'
+  sagan.source_file: digitalpersona.rules
+---
+title: '[DIGITALPERSONA] OTS Stopped'
+id: 17c4d9a2-21f8-5abb-9107-3a69dfb9ae13
+status: experimental
+description: Converted from Sagan rule SID 5001453 (rev 3), file digitalpersona.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ' 1281: '
+  selection_2:
+    appname|cased: DigitalPersona*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001453'
+  sagan.rev: '3'
+  sagan.source_file: digitalpersona.rules
+---
+title: '[DIGITALPERSONA] Password changed canceled by user'
+id: e282ae0d-4e9b-51f6-9515-b306a39d5280
+status: experimental
+description: Converted from Sagan rule SID 5001455 (rev 3), file digitalpersona.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ' 1285: '
+  selection_2:
+    appname|cased: DigitalPersona*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001455'
+  sagan.rev: '3'
+  sagan.source_file: digitalpersona.rules
+---
+title: '[DIGITALPERSONA] Inital fillin was preformed'
+id: 0c599bb8-fc0d-536b-94a1-b6aed20464c9
+status: experimental
+description: Converted from Sagan rule SID 5001456 (rev 3), file digitalpersona.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ' 1288: '
+  selection_2:
+    appname|cased: DigitalPersona*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001456'
+  sagan.rev: '3'
+  sagan.source_file: digitalpersona.rules
+---
+title: '[DIGITALPERSONA] Fillin was preformed'
+id: 7052dd2a-e5c9-5c8c-b343-21a9a740b386
+status: experimental
+description: Converted from Sagan rule SID 5001457 (rev 3), file digitalpersona.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ' 1289: '
+  selection_2:
+    appname|cased: DigitalPersona*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001457'
+  sagan.rev: '3'
+  sagan.source_file: digitalpersona.rules
+---
+title: '[DIGITALPERSONA] Account data could not be modified'
+id: fd98f515-b386-5375-aaf5-152cd4ea682b
+status: experimental
+description: Converted from Sagan rule SID 5001458 (rev 3), file digitalpersona.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ' 1290: '
+  selection_2:
+    appname|cased: DigitalPersona*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001458'
+  sagan.rev: '3'
+  sagan.source_file: digitalpersona.rules
+---
+title: '[DIGITALPERSONA] Account data successfully modified'
+id: 308ac934-b4d4-5c26-bff8-71d87a50e8f8
+status: experimental
+description: Converted from Sagan rule SID 5001459 (rev 3), file digitalpersona.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ' 1291: '
+  selection_2:
+    appname|cased: DigitalPersona*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001459'
+  sagan.rev: '3'
+  sagan.source_file: digitalpersona.rules
+---
+title: '[DIGITALPERSONA] User added to Kiosk ID list'
+id: abe7d6e0-3f39-5af5-9786-98af087685d0
+status: experimental
+description: Converted from Sagan rule SID 5001461 (rev 3), file digitalpersona.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ' 1537: '
+  selection_2:
+    appname|cased: DigitalPersona*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001461'
+  sagan.rev: '3'
+  sagan.source_file: digitalpersona.rules
+---
+title: '[DIGITALPERSONA] User deleted to Kiosk ID list'
+id: baa63261-be1b-549a-92b0-40a491c9a062
+status: experimental
+description: Converted from Sagan rule SID 5001462 (rev 3), file digitalpersona.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ' 1538: '
+  selection_2:
+    appname|cased: DigitalPersona*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001462'
+  sagan.rev: '3'
+  sagan.source_file: digitalpersona.rules
+---
+title: '[DIGITALPERSONA] User pushed out of the User ID list'
+id: 613e509c-e9fc-5dcc-8252-df6ce1ad079b
+status: experimental
+description: Converted from Sagan rule SID 5001463 (rev 3), file digitalpersona.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ' 1539: '
+  selection_2:
+    appname|cased: DigitalPersona*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001463'
+  sagan.rev: '3'
+  sagan.source_file: digitalpersona.rules
+---
+title: '[DIGITALPERSONA] Kiosk ID list created'
+id: dfc6fad7-e74a-5345-ad10-65d788339072
+status: experimental
+description: Converted from Sagan rule SID 5001464 (rev 3), file digitalpersona.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ' 1540: '
+  selection_2:
+    appname|cased: DigitalPersona*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001464'
+  sagan.rev: '3'
+  sagan.source_file: digitalpersona.rules
+---
+title: '[DIGITALPERSONA] Kiosk ID list deleted'
+id: 73208a68-5dcc-5521-a451-2883a3728229
+status: experimental
+description: Converted from Sagan rule SID 5001465 (rev 3), file digitalpersona.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ' 1541: '
+  selection_2:
+    appname|cased: DigitalPersona*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001465'
+  sagan.rev: '3'
+  sagan.source_file: digitalpersona.rules
+---
+title: '[DIGITALPERSONA] One-to-many matched failed'
+id: 568f536e-42ec-503f-875c-690e8d3c6898
+status: experimental
+description: Converted from Sagan rule SID 5001471 (rev 3), file digitalpersona.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ' 2050: '
+  selection_2:
+    appname|cased: DigitalPersona*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001471'
+  sagan.rev: '3'
+  sagan.source_file: digitalpersona.rules
+---
+title: '[DIGITALPERSONA] Account locked out'
+id: c8e7321e-206b-573c-90ee-b055aae6dd0a
+status: experimental
+description: Converted from Sagan rule SID 5001472 (rev 3), file digitalpersona.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ' 2051: '
+  selection_2:
+    appname|cased: DigitalPersona*
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001472'
+  sagan.rev: '3'
+  sagan.source_file: digitalpersona.rules

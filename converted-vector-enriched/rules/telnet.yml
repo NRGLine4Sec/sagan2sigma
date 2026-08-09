@@ -1,0 +1,68 @@
+title: '[TELNET] Connection refused by TCP Wrappers'
+id: 5da2be56-fa05-5ee1-a7c3-9c57a33b50f6
+status: experimental
+description: Converted from Sagan rule SID 5000243 (rev 3), file telnet.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: refused connect from
+  selection_2:
+    appname|cased: telnetd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.tcp-connection
+custom_attributes:
+  sagan.sid: '5000243'
+  sagan.rev: '3'
+  sagan.source_file: telnet.rules
+---
+title: '[TELNET] Remote host established a telnet connection'
+id: 055e3587-1ba4-5195-afe8-fb65c6a4f53b
+status: experimental
+description: Converted from Sagan rule SID 5000244 (rev 3), file telnet.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: connection from
+  selection_2:
+    appname|cased: telnetd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5000244'
+  sagan.rev: '3'
+  sagan.source_file: telnet.rules
+---
+title: '[TELNET] Attempt to login with an option'
+id: bbc65a50-7c5e-5a99-bc8c-4700edb7a1d1
+status: experimental
+description: Converted from Sagan rule SID 5000392 (rev 3), file telnet.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Attempt to login with an option
+  selection_2:
+    appname|cased: telnetd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5000392'
+  sagan.rev: '3'
+  sagan.source_file: telnet.rules

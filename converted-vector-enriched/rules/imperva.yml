@@ -1,0 +1,380 @@
+title: '[IMPERVA] SQL Injection Detected and Not Blocked'
+id: edd2180c-9c36-5f9a-9aa0-8bc7ee30a66f
+status: experimental
+description: Converted from Sagan rule SID 5014186 (rev 1), file imperva.rules.
+references:
+  - https://docs.imperva.com/bundle/cloud-application-security/page/more/log-file-structure.htm
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: Incapsula
+  selection_2:
+    message|contains|cased: '|SQL Injection|'
+  selection_3:
+    message|contains|cased: act=REQ_PASSED
+  filter_4:
+    message|contains|cased: LINK Tag Injection
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1190
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014186'
+  sagan.rev: '1'
+  sagan.source_file: imperva.rules
+  rsigma.suppress: 1d
+  sagan.metadata: deployment=Endpoint,created_at=2024_01_18,updated_at=2024_01_18
+---
+title: '[IMPERVA] Cross Site Scripting Detected and Not Blocked'
+id: 25ff8135-2622-5ac7-acb6-c807f63e50f9
+status: experimental
+description: Converted from Sagan rule SID 5014187 (rev 2), file imperva.rules.
+references:
+  - https://docs.imperva.com/bundle/cloud-application-security/page/more/log-file-structure.htm
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: Incapsula
+  selection_2:
+    message|contains|cased: '|Cross Site Scripting|'
+  selection_3:
+    message|contains|cased: act=REQ_PASSED
+  filter_4:
+    message|contains|cased: LINK Tag Injection
+  filter_5:
+    message|contains|cased:
+      - cn1=40
+      - cn1=50
+  condition: selection_1 and selection_2 and selection_3 and not (filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1190
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014187'
+  sagan.rev: '2'
+  sagan.source_file: imperva.rules
+  rsigma.suppress: 1d
+  sagan.metadata: deployment=Endpoint,created_at=2024_01_18,updated_at=2024_01_18
+---
+title: '[IMPERVA] Illegal Resource Access Detected and Not Blocked'
+id: 221b2243-91af-591f-ba86-05d34e5bc4c8
+status: experimental
+description: Converted from Sagan rule SID 5014188 (rev 1), file imperva.rules.
+references:
+  - https://docs.imperva.com/bundle/cloud-application-security/page/more/log-file-structure.htm
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: Incapsula
+  selection_2:
+    message|contains|cased: '|Illegal Resource Access|'
+  selection_3:
+    message|contains|cased: act=REQ_PASSED
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1190
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014188'
+  sagan.rev: '1'
+  sagan.source_file: imperva.rules
+  sagan.metadata: deployment=Endpoint,created_at=2024_01_18,updated_at=2024_01_18
+---
+title: '[IMPERVA] Bot Access Control Detected and Not Blocked'
+id: 87307cfe-0c54-52ad-a21b-711f6e2086e5
+status: experimental
+description: Converted from Sagan rule SID 5014189 (rev 1), file imperva.rules.
+references:
+  - https://docs.imperva.com/bundle/cloud-application-security/page/more/log-file-structure.htm
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: Incapsula
+  selection_2:
+    message|contains|cased: '|Bot Access Control|'
+  selection_3:
+    message|contains|cased: act=REQ_PASSED
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1190
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014189'
+  sagan.rev: '1'
+  sagan.source_file: imperva.rules
+  sagan.metadata: deployment=Endpoint,created_at=2024_01_18,updated_at=2024_01_18
+---
+title: '[IMPERVA] Backdoor Protect Detected and Not Blocked'
+id: 0258b61c-de90-5422-a484-9d706807bd8b
+status: experimental
+description: Converted from Sagan rule SID 5014191 (rev 1), file imperva.rules.
+references:
+  - https://docs.imperva.com/bundle/cloud-application-security/page/more/log-file-structure.htm
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: Incapsula
+  selection_2:
+    message|contains|cased: '|Backdoor Protect|'
+  selection_3:
+    message|contains|cased: act=REQ_PASSED
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1190
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014191'
+  sagan.rev: '1'
+  sagan.source_file: imperva.rules
+  sagan.metadata: deployment=Endpoint,created_at=2024_01_18,updated_at=2024_01_18
+---
+title: '[IMPERVA] Remote File Inclusion Detected and Not Blocked'
+id: 7781a235-651d-5bc3-ba25-22d5b4990ef3
+status: experimental
+description: Converted from Sagan rule SID 5014192 (rev 1), file imperva.rules.
+references:
+  - https://docs.imperva.com/bundle/cloud-application-security/page/more/log-file-structure.htm
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: Incapsula
+  selection_2:
+    message|contains|cased: '|Remote File Inclusion|'
+  selection_3:
+    message|contains|cased: act=REQ_PASSED
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1190
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014192'
+  sagan.rev: '1'
+  sagan.source_file: imperva.rules
+  sagan.metadata: deployment=Endpoint,created_at=2024_01_18,updated_at=2024_01_18
+---
+title: '[IMPERVA] API Specification Violation Detected and Not Blocked'
+id: 84973440-633b-5d1d-bacc-0d9bb579040d
+status: experimental
+description: Converted from Sagan rule SID 5014194 (rev 1), file imperva.rules.
+references:
+  - https://docs.imperva.com/bundle/cloud-application-security/page/more/log-file-structure.htm
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: Incapsula
+  selection_2:
+    message|contains|cased: '|12| fileId'
+  selection_3:
+    message|contains|cased: act=REQ_PASSED
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1190
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014194'
+  sagan.rev: '1'
+  sagan.source_file: imperva.rules
+  sagan.metadata: deployment=Endpoint,created_at=2024_01_18,updated_at=2024_01_18
+---
+title: '[IMPERVA] Account Takeover Protection Detected and Not Blocked'
+id: edcd2e27-8314-5ca5-9a4d-e614034b2fc5
+status: experimental
+description: Converted from Sagan rule SID 5014195 (rev 1), file imperva.rules.
+references:
+  - https://docs.imperva.com/bundle/cloud-application-security/page/more/log-file-structure.htm
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: Incapsula
+  selection_2:
+    message|contains|cased: '|Account Takeover Protection|'
+  selection_3:
+    message|contains|cased: act=REQ_PASSED
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1190
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014195'
+  sagan.rev: '1'
+  sagan.source_file: imperva.rules
+  sagan.metadata: deployment=Endpoint,created_at=2024_01_18,updated_at=2024_01_18
+---
+title: '[IMPERVA] Bad Bot Detected and Not Blocked'
+id: 1de20e9e-2278-5851-88a3-6b4bfe05c10b
+status: experimental
+description: Converted from Sagan rule SID 5014196 (rev 1), file imperva.rules.
+references:
+  - https://docs.imperva.com/bundle/cloud-application-security/page/more/log-file-structure.htm
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: Incapsula
+  selection_2:
+    message|contains|cased: '|Bad Bot|'
+  selection_3:
+    message|contains|cased: act=REQ_PASSED
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1190
+  - attack.ta0001
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014196'
+  sagan.rev: '1'
+  sagan.source_file: imperva.rules
+  sagan.metadata: deployment=Endpoint,created_at=2024_01_18,updated_at=2024_01_18
+---
+title: '[INCAPSULA] Visitor from blacklisted IPs'
+id: 7c97b80d-80d1-5a2a-8f7d-392767103e6e
+status: experimental
+description: Converted from Sagan rule SID 5003915 (rev 3), file imperva.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased:
+      - Incapsula*
+      - incapsula*
+  selection_2:
+    message|contains|cased: '|Visitors from blacklisted IPs|'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5003915'
+  sagan.rev: '3'
+  sagan.source_file: imperva.rules
+---
+title: '[INCAPSULA] Visitor from blacklisted Countries'
+id: 1465f542-cab2-5820-9eca-4d4e69d4e5fe
+status: experimental
+description: Converted from Sagan rule SID 5003916 (rev 3), file imperva.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased:
+      - Incapsula*
+      - incapsula*
+  selection_2:
+    message|contains|cased: '|Visitors from blacklisted Countries|'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5003916'
+  sagan.rev: '3'
+  sagan.source_file: imperva.rules
+---
+title: '[INCAPSULA] Visitor from blacklisted URLs'
+id: f958855c-edff-5af8-95fd-57f0430d24d5
+status: experimental
+description: Converted from Sagan rule SID 5003917 (rev 3), file imperva.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased:
+      - Incapsula*
+      - incapsula*
+  selection_2:
+    message|contains|cased: '|Visitors from blacklisted URLs|'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5003917'
+  sagan.rev: '3'
+  sagan.source_file: imperva.rules
+---
+title: '[INCAPSULA] DDoS'
+id: 688cea9d-ac23-5d7c-9770-bab937efe7a0
+status: experimental
+description: Converted from Sagan rule SID 5003924 (rev 5), file imperva.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased:
+      - Incapsula*
+      - incapsula*
+  selection_2:
+    message|contains|cased: '|DDoS|'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5003924'
+  sagan.rev: '5'
+  sagan.source_file: imperva.rules
+  rsigma.suppress: 30m

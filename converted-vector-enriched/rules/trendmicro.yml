@@ -1,0 +1,231 @@
+title: '[TRENDMICRO] Virus Found Unable to Quarantine'
+id: e1ceb9c1-8268-5737-bd01-5dd4dc0bf677
+status: experimental
+description: Converted from Sagan rule SID 5002797 (rev 3), file trendmicro.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SLF_INCIDENT_EVT_VIRUS_FOUND_PASS_THRU
+  selection_2:
+    message|contains|cased: Unable to quarantine file
+  selection_3:
+    appname|cased: TMCM
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002797'
+  sagan.rev: '3'
+  sagan.source_file: trendmicro.rules
+---
+title: '[TRENDMICRO] Application Control Logs Detected'
+id: e0e1eaca-fdaa-5870-920c-fae06c6bd494
+status: experimental
+description: Converted from Sagan rule SID 5003788 (rev 2), file trendmicro.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: LogApplicationControl
+  selection_2:
+    appname|cased: TRENDMICRO
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5003788'
+  sagan.rev: '2'
+  sagan.source_file: trendmicro.rules
+---
+title: '[TRENDMICRO] Device Control Logs Detected'
+id: 2cd85b4e-a253-5015-a445-06b2f907143e
+status: experimental
+description: Converted from Sagan rule SID 5003789 (rev 2), file trendmicro.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: LogDeviceControl
+  selection_2:
+    appname|cased: TRENDMICRO
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5003789'
+  sagan.rev: '2'
+  sagan.source_file: trendmicro.rules
+---
+title: '[TRENDMICRO] Behavior Monitoring Logs Detected'
+id: 97eb03eb-8908-556e-ab2f-f46df450632e
+status: experimental
+description: Converted from Sagan rule SID 5003790 (rev 2), file trendmicro.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: LogBehaviorMonitoring
+  selection_2:
+    appname|cased: TRENDMICRO
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5003790'
+  sagan.rev: '2'
+  sagan.source_file: trendmicro.rules
+---
+title: '[TRENDMICRO] Spyware Logs Detected'
+id: 6a85f506-2472-5bf8-a4e6-47d2e8c96e2a
+status: experimental
+description: Converted from Sagan rule SID 5003794 (rev 2), file trendmicro.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: LogSpyware
+  selection_2:
+    appname|cased: TRENDMICRO
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5003794'
+  sagan.rev: '2'
+  sagan.source_file: trendmicro.rules
+---
+title: '[TRENDMICRO] Url Filtering Logs Detected'
+id: abee0cb0-33fc-596a-bfff-bc0480476ca6
+status: experimental
+description: Converted from Sagan rule SID 5003795 (rev 2), file trendmicro.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: LogUrlFiltering
+  selection_2:
+    appname|cased: TRENDMICRO
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5003795'
+  sagan.rev: '2'
+  sagan.source_file: trendmicro.rules
+---
+title: '[TRENDMICRO] Virus Logs Detected'
+id: b0a8e329-8309-5278-9443-4dc14222d8a5
+status: experimental
+description: Converted from Sagan rule SID 5003796 (rev 2), file trendmicro.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: LogVirus
+  selection_2:
+    appname|cased: TRENDMICRO
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5003796'
+  sagan.rev: '2'
+  sagan.source_file: trendmicro.rules
+---
+title: '[TRENDMICRO] Web Reputation Logs Detected'
+id: 0797811d-eb26-54cd-a487-35182a16158d
+status: experimental
+description: Converted from Sagan rule SID 5003797 (rev 2), file trendmicro.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: LogWebReputation
+  selection_2:
+    appname|cased: TRENDMICRO
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5003797'
+  sagan.rev: '2'
+  sagan.source_file: trendmicro.rules
+---
+title: '[TRENDMICRO-SERVERPROTECT] Outbreak Detected'
+id: fc622b79-a175-5e52-b5f9-b2425a3fbfbe
+status: experimental
+description: Converted from Sagan rule SID 5007686 (rev 1), file trendmicro.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    EventID: 26
+  selection_2:
+    message|contains|cased: Outbreak when total viruses found exceed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5007686'
+  sagan.rev: '1'
+  sagan.source_file: trendmicro.rules
+---
+title: '[TRENDMICRO-SERVERPROTECT] Virus Detected'
+id: 674a9038-2ee0-5396-9d2c-21d7ba701b81
+status: experimental
+description: Converted from Sagan rule SID 5007687 (rev 1), file trendmicro.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    EventID: 101
+  selection_2:
+    message|contains|cased: Real-time scan found virus
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5007687'
+  sagan.rev: '1'
+  sagan.source_file: trendmicro.rules

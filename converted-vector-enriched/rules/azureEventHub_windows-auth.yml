@@ -1,0 +1,1758 @@
+title: '[WINDOWS-AUTH] Login failure - Unknown username or bad password - Brute force [25/1]'
+id: 91ebdba4-250c-59f7-ac22-2c9de77eaf79
+name: sagan_5008421
+status: experimental
+description: Converted from Sagan rule SID 5008421 (rev 29), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 529
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5008421'
+  sagan.rev: '29'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2022_11_22,old_sid=5001151
+---
+title: '[WINDOWS-AUTH] Login failure - Unknown username or bad password - Brute force [25/1] (threshold
+  25 in 5m)'
+id: 0296b8f0-93eb-55f7-9a1d-e3be92d179ab
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5008421
+  group-by:
+    - Computer
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] Login failure - Account login time restriction'
+id: 4832571a-2f05-5730-b314-c36efe240d24
+status: experimental
+description: Converted from Sagan rule SID 5008423 (rev 7), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 530
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5008423'
+  sagan.rev: '7'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001152
+---
+title: '[WINDOWS-AUTH] Login failure - Account currently disabled [0/1]'
+id: 24164212-849c-56d2-82a3-df6996415a34
+status: experimental
+description: Converted from Sagan rule SID 5008424 (rev 22), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 531
+  filter_2:
+    RenderedDescription|contains|cased: 'User Name: Domain:'
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_3 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5008424'
+  sagan.rev: '22'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  rsigma.suppress: 5m
+  sagan.metadata: created_on=2022_11_22,old_sid=5001153
+---
+title: '[WINDOWS-AUTH] Login failure - User not allowed to login at this computer'
+id: b1a4d35b-8e86-5382-8732-d709e2603060
+status: experimental
+description: Converted from Sagan rule SID 5008426 (rev 7), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 533
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5008426'
+  sagan.rev: '7'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001155
+---
+title: '[WINDOWS-AUTH] Login failure - User not granted login type'
+id: 15153290-2a92-516a-91b5-82f928f23775
+status: experimental
+description: Converted from Sagan rule SID 5008427 (rev 7), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 534
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5008427'
+  sagan.rev: '7'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001156
+---
+title: '[WINDOWS-AUTH] Login failure - Account locked [0/1]'
+id: 3baefb94-72db-5e31-b478-b57a36931706
+status: experimental
+description: Converted from Sagan rule SID 5008430 (rev 24), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 539
+  filter_2:
+    RenderedDescription|contains|cased: 'User Name: Domain: Logon Type:'
+  filter_3:
+    RenderedDescription|contains|cased: 'Source Network Address: -'
+  selection_4:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_4 and not (filter_2 or filter_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5008430'
+  sagan.rev: '24'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  rsigma.suppress: 5m
+  sagan.metadata: created_on=2022_11_22,old_sid=5001159
+---
+title: '[WINDOWS-AUTH] User account unlocked'
+id: 8aa4089f-3c75-56b9-8ac8-aa9e5d0eee58
+status: experimental
+description: Converted from Sagan rule SID 5008432 (rev 7), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4767
+      - 671
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5008432'
+  sagan.rev: '7'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001161
+---
+title: '[WINDOWS-AUTH] A member was added to a security-enabled global group'
+id: 015d4f02-2dbf-5fdf-91c1-7db4c2b6113a
+status: experimental
+description: Converted from Sagan rule SID 5008438 (rev 7), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4728
+      - 632
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008438'
+  sagan.rev: '7'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001166
+---
+title: '[WINDOWS-AUTH] A member was added to a security-enabled local group'
+id: 21493d4d-1bf2-54b5-8fff-00ba90452dba
+status: experimental
+description: Converted from Sagan rule SID 5008442 (rev 8), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4732
+      - 636
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008442'
+  sagan.rev: '8'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001170
+---
+title: '[WINDOWS-AUTH] A member was added to a security-enabled universal group'
+id: 47c36251-0a0d-5334-a91e-2bfe4022f21e
+status: experimental
+description: Converted from Sagan rule SID 5008449 (rev 7), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4756
+      - 660
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008449'
+  sagan.rev: '7'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001178
+---
+title: '[WINDOWS-AUTH] RDP maximum allowed failed logon attempts'
+id: c8698608-ce54-5ad6-85db-43a2575780da
+status: experimental
+description: Converted from Sagan rule SID 5008452 (rev 6), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 1012
+  selection_2:
+    appname|cased: TermService
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008452'
+  sagan.rev: '6'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001181
+---
+title: '[WINDOWS-AUTH] Remote access login failure'
+id: de71288d-db8c-5374-893d-3773190a1726
+status: experimental
+description: Converted from Sagan rule SID 5008454 (rev 4), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 20187
+      - 20014
+      - 20078
+      - 20050
+      - 20049
+      - 20189
+  selection_2:
+    appname|cased: RemoteAccess
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5008454'
+  sagan.rev: '4'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001187
+---
+title: '[WINDOWS-AUTH] Remote access login success'
+id: d3d1439f-61d2-555e-a5cc-ce2a9a92d97b
+status: experimental
+description: Converted from Sagan rule SID 5008455 (rev 5), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 20158
+  selection_2:
+    appname|cased: RemoteAccess
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5008455'
+  sagan.rev: '5'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001188
+---
+title: '[WINDOWS-AUTH] General account database changed'
+id: 33149c09-a813-563c-9121-7eaec5838598
+status: experimental
+description: Converted from Sagan rule SID 5008459 (rev 7), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 640
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008459'
+  sagan.rev: '7'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001193
+---
+title: '[WINDOWS-AUTH] DC - Integrity check on decrypted'
+id: 6a5bcd7a-9372-5ba0-b1ce-9c65c6898ae4
+status: experimental
+description: Converted from Sagan rule SID 5008460 (rev 10), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4768
+      - 4771
+      - 681
+      - 676
+      - 675
+  selection_2:
+    RenderedDescription|contains|cased: 'Failure Code: 0x1F'
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5008460'
+  sagan.rev: '10'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001195
+---
+title: '[WINDOWS-AUTH] DC - Possible replay attack'
+id: 80366880-d939-5cfe-a8c1-fbea027bffe8
+status: experimental
+description: Converted from Sagan rule SID 5008461 (rev 9), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4768
+      - 4771
+      - 681
+      - 676
+      - 675
+  selection_2:
+    RenderedDescription|contains|cased: 'Failure Code: 0x22'
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5008461'
+  sagan.rev: '9'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001196
+---
+title: '[WINDOWS-AUTH] DC - Clock skew too great'
+id: 68aebac9-2da5-59fb-bd39-89bdf49c00f7
+status: experimental
+description: Converted from Sagan rule SID 5008462 (rev 10), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4768
+      - 4771
+      - 681
+      - 676
+      - 675
+  selection_2:
+    RenderedDescription|contains|cased: 'Failure Code: 0x25'
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5008462'
+  sagan.rev: '10'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2022_11_22,old_sid=5001197
+---
+title: '[WINDOWS-AUTH] User added to Network Config Operator group'
+id: 8205b15a-c790-5451-b886-8a5688ad0bd3
+status: experimental
+description: Converted from Sagan rule SID 5008478 (rev 10), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4732
+      - 636
+  selection_2:
+    RenderedDescription|contains|cased: 'S-1-5-32-556 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5008478'
+  sagan.rev: '10'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001693
+---
+title: '[WINDOWS-AUTH] User added to DNS Admins group'
+id: e10a16f4-6a8d-5dec-899f-0a0334cce589
+status: experimental
+description: Converted from Sagan rule SID 5008479 (rev 9), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4732
+      - 636
+  selection_2:
+    RenderedDescription|contains|cased: 'S-1-5-32-1101 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5008479'
+  sagan.rev: '9'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001694
+---
+title: '[WINDOWS-AUTH] User added to Domain Administrators group'
+id: baf55036-b4a4-56b4-b315-5c661d20a920
+status: experimental
+description: Converted from Sagan rule SID 5008480 (rev 10), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4728
+      - 632
+  selection_2:
+    RenderedDescription|re: 'S-1-5-21-\d{5,15}\-\d{5,15}\-\d{5,15}-512 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5008480'
+  sagan.rev: '10'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001695
+---
+title: '[WINDOWS-AUTH] User added to Enterprise Administrators group'
+id: 86d05a33-354b-5c73-9607-8913ea80588a
+status: experimental
+description: Converted from Sagan rule SID 5008481 (rev 9), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4756
+      - 660
+  selection_2:
+    RenderedDescription|re: 'S-1-5-21-\d{5,15}\-\d{5,15}\-\d{5,15}-519 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5008481'
+  sagan.rev: '9'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001696
+---
+title: '[WINDOWS-AUTH] User added to Group Policy Creator Owner group'
+id: bfa3c2aa-7dd6-5e6b-8d06-b6e508cb0899
+status: experimental
+description: Converted from Sagan rule SID 5008482 (rev 9), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4756
+      - 660
+  selection_2:
+    RenderedDescription|re: 'S-1-5-21-\d{5,15}\-\d{5,15}\-\d{5,15}-520 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5008482'
+  sagan.rev: '9'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001697
+---
+title: '[WINDOWS-AUTH] User added to Schema Admins'
+id: bb213a82-201c-5502-8e8e-cd2697e24f31
+status: experimental
+description: Converted from Sagan rule SID 5008483 (rev 4), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4756
+      - 660
+  selection_2:
+    RenderedDescription|re: 'S-1-5-21-\d{5,15}\-\d{5,15}\-\d{5,15}-518 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5008483'
+  sagan.rev: '4'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003104
+---
+title: '[WINDOWS-AUTH] Potential Windows User Enumeration - User Name Does Not Exist [Brute Force] [25/1]'
+id: d8773ecf-743c-5c44-9a57-4064d149565c
+name: sagan_5008485
+status: experimental
+description: Converted from Sagan rule SID 5008485 (rev 32), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    RenderedDescription|contains: C0000064
+  filter_2:
+    RenderedDescription|contains|cased: $ Source
+  filter_3:
+    RenderedDescription|contains|cased: '$ Account Domain: '
+  selection_4:
+    EventID:
+      - 4625
+      - 4776
+  selection_5:
+    RenderedDescription|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
+  selection_6:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_4 and selection_5 and selection_6 and not (filter_2 or filter_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5008485'
+  sagan.rev: '32'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2022_11_22,old_sid=5001728
+---
+title: '[WINDOWS-AUTH] Potential Windows User Enumeration - User Name Does Not Exist [Brute Force] [25/1]
+  (threshold 25 in 5m)'
+id: 086a4ee8-7bd8-5e81-89b5-5c3e14a8157e
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5008485
+  group-by:
+    - Computer
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] Windows Brute force - User Correct but Incorrect Password [25/1]'
+id: f75a43ea-a2b6-5d6b-a8cd-80c399203038
+name: sagan_5008486
+status: experimental
+description: Converted from Sagan rule SID 5008486 (rev 32), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  filter_1:
+    RenderedDescription|contains|cased: '$ Source Workstation:'
+  selection_2:
+    RenderedDescription|contains: C000006A
+  filter_3:
+    RenderedDescription|contains|cased: '$ Account Domain: '
+  filter_4:
+    RenderedDescription|contains|cased: 'Source Network Address: -'
+  selection_5:
+    EventID:
+      - 4625
+      - 4776
+  selection_6:
+    RenderedDescription|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
+  selection_7:
+    appname|cased: '*Security*'
+  condition: selection_2 and selection_5 and selection_6 and selection_7 and not (filter_1 or filter_3
+    or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5008486'
+  sagan.rev: '32'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2022_11_22,old_sid=5001729
+---
+title: '[WINDOWS-AUTH] Windows Brute force - User Correct but Incorrect Password [25/1] (threshold 25
+  in 5m)'
+id: a5c95952-e807-5817-9578-f5d1402ee50a
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5008486
+  group-by:
+    - Computer
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] Windows Brute force - User Is Locked Out [25/1]'
+id: 904e15ec-b5ce-57ce-a41a-bf58a167fb70
+name: sagan_5008487
+status: experimental
+description: Converted from Sagan rule SID 5008487 (rev 27), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    RenderedDescription|contains: C0000234
+  selection_2:
+    EventID:
+      - 4625
+      - 4776
+  selection_3:
+    RenderedDescription|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
+  selection_4:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5008487'
+  sagan.rev: '27'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2022_11_22,old_sid=5001730
+---
+title: '[WINDOWS-AUTH] Windows Brute force - User Is Locked Out [25/1] (threshold 25 in 5m)'
+id: 723f243e-dc81-5cff-b04f-1c2e39044f52
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5008487
+  group-by:
+    - Computer
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] Windows Brute force - User Account Disabled [25/1]'
+id: 4d12e957-94ab-5996-813e-254ff90c89f9
+name: sagan_5008488
+status: experimental
+description: Converted from Sagan rule SID 5008488 (rev 30), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    RenderedDescription|contains: C0000072
+  selection_2:
+    EventID:
+      - 4625
+      - 4776
+  selection_3:
+    RenderedDescription|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
+  selection_4:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5008488'
+  sagan.rev: '30'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2022_11_22,old_sid=5001731
+---
+title: '[WINDOWS-AUTH] Windows Brute force - User Account Disabled [25/1] (threshold 25 in 5m)'
+id: a98b31e2-7324-5350-a7bb-debf9fe3c434
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5008488
+  group-by:
+    - Computer
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] Windows Brute force - User Login Attempts Outside of Time Restriction [25/1]'
+id: 3c2cd9c4-2f62-599e-ad17-f0de7c030e6f
+name: sagan_5008489
+status: experimental
+description: Converted from Sagan rule SID 5008489 (rev 27), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    RenderedDescription|contains: C000006F
+  selection_2:
+    EventID:
+      - 4625
+      - 4776
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5008489'
+  sagan.rev: '27'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2022_11_22,old_sid=5001732
+---
+title: '[WINDOWS-AUTH] Windows Brute force - User Login Attempts Outside of Time Restriction [25/1] (threshold
+  25 in 5m)'
+id: 4a39425d-d09e-5eea-bf18-5376dee3a0ec
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5008489
+  group-by:
+    - Computer
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0x6 - Client not found in Kerberos database
+  [25/1]'
+id: e4d5d84b-ff29-54fd-81c6-fa5216212407
+name: sagan_5008497
+status: experimental
+description: Converted from Sagan rule SID 5008497 (rev 12), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4768
+      - 4771
+      - 681
+      - 676
+      - 675
+  selection_2:
+    RenderedDescription|contains|cased: ' 0x6 Client '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5008497'
+  sagan.rev: '12'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2022_11_22,old_sid=5001745
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0x6 - Client not found in Kerberos database
+  [25/1] (threshold 25 in 5m)'
+id: 11e707e1-2c78-592c-9d5d-bddfbc3149e7
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5008497
+  group-by:
+    - Computer
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0xC - KDC policy rejects request [25/1]'
+id: 5e21493e-14d4-5205-b866-9a1167c46717
+name: sagan_5008503
+status: experimental
+description: Converted from Sagan rule SID 5008503 (rev 12), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4768
+      - 4771
+      - 681
+      - 676
+      - 675
+  selection_2:
+    RenderedDescription|contains|cased: ' 0xC '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5008503'
+  sagan.rev: '12'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2022_11_22,old_sid=5001751
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0xC - KDC policy rejects request [25/1]
+  (threshold 25 in 5m)'
+id: 7bb93572-3739-563d-9348-7d3ee53c379d
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5008503
+  group-by:
+    - Computer
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0x18 - Kerberos password authentication
+  failure [25/1]'
+id: b1deb66d-80b1-5295-8d9b-f0aa6fc232fe
+name: sagan_5008515
+status: experimental
+description: Converted from Sagan rule SID 5008515 (rev 27), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4768
+      - 4771
+      - 681
+      - 676
+      - 675
+  filter_2:
+    RenderedDescription|contains|cased: '$ Service Information:'
+  selection_3:
+    RenderedDescription|contains|cased: ' 0x18 '
+  selection_4:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5008515'
+  sagan.rev: '27'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2022_11_22,old_sid=5001763
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0x18 - Kerberos password authentication
+  failure [25/1] (threshold 25 in 5m)'
+id: c94d03e0-b36d-573f-a8f8-1f5971224ce0
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5008515
+  group-by:
+    - Computer
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0x22 - Request is a replay [25/1]'
+id: 946a8d0f-ad26-5c92-91e7-11273797cd7c
+name: sagan_5008520
+status: experimental
+description: Converted from Sagan rule SID 5008520 (rev 13), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4768
+      - 4771
+      - 681
+      - 676
+      - 675
+  selection_2:
+    RenderedDescription|contains|cased: ' 0x22 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5008520'
+  sagan.rev: '13'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2022_11_22,old_sid=5001768
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0x22 - Request is a replay [25/1] (threshold
+  25 in 5m)'
+id: c297a201-8139-55d9-8dcd-251ea5d3e523
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5008520
+  group-by:
+    - Computer
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0x24 - Ticket and authenticator don''t match
+  [25/1]'
+id: 7a299890-6838-5edf-8995-46c8ca25fe59
+name: sagan_5008522
+status: experimental
+description: Converted from Sagan rule SID 5008522 (rev 13), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4768
+      - 4771
+      - 681
+      - 676
+      - 675
+  selection_2:
+    RenderedDescription|contains|cased: ' 0x24 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5008522'
+  sagan.rev: '13'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2022_11_22,old_sid=5001770
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0x24 - Ticket and authenticator don''t match
+  [25/1] (threshold 25 in 5m)'
+id: d8b43343-14ac-5256-aba5-e6a7c1e53f73
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5008522
+  group-by:
+    - Computer
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0x26 - Incorrect net address [25/1]'
+id: 9934f413-cb7d-54f6-875e-cd24c4100e7f
+name: sagan_5008524
+status: experimental
+description: Converted from Sagan rule SID 5008524 (rev 13), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4768
+      - 4771
+      - 681
+      - 676
+      - 675
+  selection_2:
+    RenderedDescription|contains|cased: ' 0x26 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5008524'
+  sagan.rev: '13'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2022_11_22,old_sid=5001772
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0x26 - Incorrect net address [25/1] (threshold
+  25 in 5m)'
+id: dc642631-5e3b-5439-b9c8-2c8290d9a6ef
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5008524
+  group-by:
+    - Computer
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0x31 - Incorrect sequence number in message
+  [25/1]'
+id: 1a3ed247-6949-560e-a72a-5834227b8610
+name: sagan_5008534
+status: experimental
+description: Converted from Sagan rule SID 5008534 (rev 13), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4768
+      - 4771
+      - 681
+      - 676
+      - 675
+  selection_2:
+    RenderedDescription|contains|cased: ' 0x31 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5008534'
+  sagan.rev: '13'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2022_11_22,old_sid=5001782
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0x31 - Incorrect sequence number in message
+  [25/1] (threshold 25 in 5m)'
+id: fd1824c9-87a8-51d6-8cee-ea322323c192
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5008534
+  group-by:
+    - Computer
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] User account created'
+id: ae4a57f1-e8e6-5560-8b23-b955f03b164f
+status: experimental
+description: Converted from Sagan rule SID 5008538 (rev 12), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4720
+      - 624
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5008538'
+  sagan.rev: '12'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001880
+---
+title: '[WINDOWS-AUTH] User account re-enabled'
+id: ffb88d04-9820-52ff-9951-bff33c112072
+name: sagan_5008539
+status: experimental
+description: Converted from Sagan rule SID 5008539 (rev 11), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4722
+      - 626
+  filter_2:
+    RenderedDescription|contains|cased: $
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_3 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5008539'
+  sagan.rev: '11'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001881
+---
+title: '[WINDOWS-AUTH] User account re-enabled (correlated with create_enabled)'
+id: a2e471ee-217c-5638-ac7a-42780e408f59
+status: experimental
+description: Reconstruction of the Sagan 'create_enabled' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_create_enabled
+    - sagan_5008539
+  group-by:
+    - hostname
+  timespan: 30s
+level: high
+---
+title: '[WINDOWS-AUTH] Account locked out (ADMINISTRATOR)'
+id: d62aecc2-4c4b-542e-af87-fab190975b15
+status: experimental
+description: Converted from Sagan rule SID 5008541 (rev 5), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4740
+      - 644
+  selection_2:
+    RenderedDescription|contains: administrator
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5008541'
+  sagan.rev: '5'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5001978
+---
+title: '[WINDOWS-AUTH] User account deleted'
+id: ba565368-4fd0-5987-ad74-a3613037a99f
+status: experimental
+description: Converted from Sagan rule SID 5008546 (rev 6), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4726
+      - 630
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5008546'
+  sagan.rev: '6'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5002335
+---
+title: '[WINDOWS-AUTH] Possible Windows Broken Domain Trust [25/1]'
+id: 6d957406-8f3a-525d-9326-257514dd295e
+name: sagan_5008550
+status: experimental
+description: Converted from Sagan rule SID 5008550 (rev 4), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4771
+  selection_2:
+    RenderedDescription|contains|cased: '$ Service Information:'
+  selection_3:
+    RenderedDescription|contains|cased: ' 0x18 '
+  selection_4:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5008550'
+  sagan.rev: '4'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2022_11_22,old_sid=5003101
+---
+title: '[WINDOWS-AUTH] Possible Windows Broken Domain Trust [25/1] (threshold 25 in 5m)'
+id: 8885815e-59c5-5221-93cc-5ca48cd181d3
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5008550
+  group-by:
+    - Computer
+  timespan: 5m
+  condition:
+    gte: 25
+level: high
+---
+title: '[WINDOWS-AUTH] Possible Windows Broken Domain Trust [25/1]'
+id: ea29d28c-818d-5202-9f10-a47dbde825ad
+name: sagan_5008551
+status: experimental
+description: Converted from Sagan rule SID 5008551 (rev 5), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4768
+  selection_2:
+    RenderedDescription|contains|cased: '$ Supplied Realm Name:'
+  selection_3:
+    RenderedDescription|contains|cased: ' 0x18 '
+  selection_4:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5008551'
+  sagan.rev: '5'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2022_11_22,old_sid=5003102
+---
+title: '[WINDOWS-AUTH] Possible Windows Broken Domain Trust [25/1] (threshold 25 in 5m)'
+id: d6dac055-e928-5786-a820-6263e4f54149
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5008551
+  group-by:
+    - Computer
+  timespan: 5m
+  condition:
+    gte: 25
+level: high
+---
+title: '[WINDOWS-AUTH] Possible Windows Broken Domain Trust [25/1]'
+id: fc0c25ed-a2ce-50e1-803f-1b2e172b502f
+name: sagan_5008552
+status: experimental
+description: Converted from Sagan rule SID 5008552 (rev 5), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    RenderedDescription|contains|cased: '$ Source Workstation:'
+  selection_2:
+    RenderedDescription|contains: C000006A
+  filter_3:
+    RenderedDescription|contains|cased: '$ Account Domain: '
+  filter_4:
+    RenderedDescription|contains|cased: 'Source Network Address: -'
+  filter_5:
+    RenderedDescription|contains|cased: 'Account Name: Account Domain: Failure'
+  selection_6:
+    EventID: 4776
+  selection_7:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_6 and selection_7 and not (filter_3 or filter_4
+    or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5008552'
+  sagan.rev: '5'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2022_11_22,old_sid=5003103
+---
+title: '[WINDOWS-AUTH] Possible Windows Broken Domain Trust [25/1] (threshold 25 in 5m)'
+id: 96e1f814-ad6f-5503-9245-31ae289e0cbe
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5008552
+  group-by:
+    - Computer
+  timespan: 5m
+  condition:
+    gte: 25
+level: high
+---
+title: '[SYSLOG] Possible Windows Broken Domain Trust [25/1]'
+id: be7c1880-77a0-5be0-8c31-4f4ec7db47d8
+name: sagan_5008553
+status: experimental
+description: Converted from Sagan rule SID 5008553 (rev 4), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    message|re|i: failed to authorize|wrong password given|repeated login failures|authentication failed|authentication
+      failures|access denied|access not allowed|failed to authenticate
+  selection_2:
+    message|contains|cased: '$ Session ID:'
+  filter_3:
+    message|contains|cased: access denied by ACL
+  filter_4:
+    message|contains|cased: Kerberos
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5008553'
+  sagan.rev: '4'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2022_11_22,old_sid=5003107
+---
+title: '[SYSLOG] Possible Windows Broken Domain Trust [25/1] (threshold 25 in 5m)'
+id: 303a1a7e-69b0-539c-a1ea-6f6071b35f3d
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5008553
+  group-by:
+    - sagan_username
+  timespan: 5m
+  condition:
+    gte: 25
+level: high
+---
+title: '[WINDOWS-AUTH] SAM Database Unable to Lock Account'
+id: e30a18d4-03d9-5edb-9b22-78e825d36d9e
+status: experimental
+description: Converted from Sagan rule SID 5008554 (rev 2), file azureEventHub_windows-auth.rules.
+references:
+  - https://technet.microsoft.com/en-us/library/cc733228(v=ws.10).aspx
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '"Directory-Services-SAM"'
+  selection_2:
+    EventID: 12294
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5008554'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003203
+---
+title: '[WINDOWS-AUTH] Suspicious network login from non-RFC1918'
+id: d9fc15f4-04d4-5e4e-9ab6-19f65cb05365
+status: experimental
+description: Converted from Sagan rule SID 5008556 (rev 6), file azureEventHub_windows-auth.rules.
+references:
+  - https://findingbad.blogspot.cz/2017/12/a-few-of-my-favorite-things-continued.html
+  - https://www.quadrantsec.com/about/blog/using_jack_crooks_log_analysis_concepts_with_sagan
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4624
+  selection_3:
+    RenderedDescription|contains|cased: 'Logon Type: 3'
+  filter_4:
+    RenderedDescription|contains:
+      - 'Source Network Address: 10.'
+      - 'Source Network Address: 192.168.'
+      - 'Source Network Address: -'
+      - 'Source Network Address: ::1'
+      - 'Source Network Address: 127.0.0.1'
+      - 'Source Network Address: 172.16.'
+      - 'Source Network Address: 172.17.'
+      - 'Source Network Address: 172.18.'
+      - 'Source Network Address: 172.19.'
+      - 'Source Network Address: 172.20.'
+      - 'Source Network Address: 172.21.'
+      - 'Source Network Address: 172.22.'
+      - 'Source Network Address: 172.23.'
+      - 'Source Network Address: 172.24.'
+      - 'Source Network Address: 172.25.'
+      - 'Source Network Address: 172.26.'
+      - 'Source Network Address: 172.27.'
+      - 'Source Network Address: 172.28.'
+      - 'Source Network Address: 172.29.'
+      - 'Source Network Address: 172.30.'
+      - 'Source Network Address: 172.31'
+      - 'Source Network Address: 169.254'
+      - 'Source Network Address: fe80'
+      - 'Source Network Address: ::1'
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-login
+custom_attributes:
+  sagan.sid: '5008556'
+  sagan.rev: '6'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003377
+---
+title: '[WINDOWS-AUTH] Suspicious WMIC/Net/Powershell execution'
+id: adb3f35e-0c89-555e-8e89-7a9a88710ca3
+status: experimental
+description: Converted from Sagan rule SID 5008557 (rev 3), file azureEventHub_windows-auth.rules.
+references:
+  - https://findingbad.blogspot.cz/2017/12/a-few-of-my-favorite-things-continued.html
+  - https://www.quadrantsec.com/about/blog/using_jack_crooks_log_analysis_concepts_with_sagan
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4648
+  filter_3:
+    RenderedDescription|contains|cased: 'Account Name: -'
+  filter_4:
+    RenderedDescription|contains|cased: 'Target Server Name: localhost'
+  selection_5:
+    RenderedDescription|re: 'Target Server Name: (.*)\$ '
+  selection_6:
+    RenderedDescription|re|i: 'Process Name: (.*)(net\.exe|net1.exe|wmic\.exe)(.*)'
+  condition: selection_1 and selection_2 and selection_5 and selection_6 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5008557'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003387
+---
+title: '[WINDOWS-AUTH] User added to Local Administrators group'
+id: 3d4d15c1-39e1-52be-a972-921ff429e61e
+status: experimental
+description: Converted from Sagan rule SID 5008564 (rev 2), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 636
+      - 4732
+  selection_2:
+    RenderedDescription|contains|cased: 'Group: Security ID: S-1-5-32-544 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5008564'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003927
+---
+title: '[WINDOWS-AUTH] Suspicious Account Lockout'
+id: d85cf3bf-a163-5147-83dc-3fa1abe0db5d
+status: experimental
+description: Converted from Sagan rule SID 5008567 (rev 4), file azureEventHub_windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4740
+      - 644
+  selection_2:
+    RenderedDescription|contains:
+      - 'Account Name: guest '
+      - 'Account Name: sql '
+      - 'Account Name: demo '
+      - 'Account Name: db2admin '
+      - 'Account Name: pos '
+      - 'Account Name: accounting '
+      - 'Account Name: letmein '
+      - 'Account Name: mysql '
+      - 'Account Name: oracle '
+      - 'Account Name: test '
+      - 'Account Name: testing '
+      - 'Account Name: support '
+      - 'Account Name: sales '
+      - 'Account Name: ansible '
+      - 'Account Name: ec2-user '
+      - 'Account Name: azureuser '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5008567'
+  sagan.rev: '4'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2022_11_22,old_sid=5003982
+---
+title: '[WINDOWS-AUTH] Vulnerable Netlogon/Zerologon connection allowed during deployment phase - CVE-2020-1472'
+id: c9251ca1-69ca-51af-8b6c-0326de3bfd8a
+status: experimental
+description: Converted from Sagan rule SID 5008570 (rev 2), file azureEventHub_windows-auth.rules.
+references:
+  - https://support.microsoft.com/en-us/help/4557222/how-to-manage-the-changes-in-netlogon-secure-channel-connections-assoc
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 5829
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5008570'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5004782

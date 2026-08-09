@@ -1,0 +1,161 @@
+title: '[SSH-TECTIA-SERVER-CORRELATED] Authentication success after recon activity'
+id: daecc3a7-ea31-5a89-8533-d7fa2ebeddc6
+name: sagan_5003313
+status: experimental
+description: Converted from Sagan rule SID 5003313 (rev 3), file ssh-tectia-server-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Login_success
+  selection_2:
+    appname|cased: SSH_Tectia_Server
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003313'
+  sagan.rev: '3'
+  sagan.source_file: ssh-tectia-server-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[SSH-TECTIA-SERVER-CORRELATED] Authentication success after recon activity (correlated with recon)'
+id: eec2796c-263f-54cd-8086-93e9c8dc615c
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5003313
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[SSH-TECTIA-SERVER-CORRELATED] Authentication success after honeypot activity'
+id: 9a788f88-4109-5109-b277-63ebd391522b
+name: sagan_5003314
+status: experimental
+description: Converted from Sagan rule SID 5003314 (rev 3), file ssh-tectia-server-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Login_success
+  selection_2:
+    appname|cased: SSH_Tectia_Server
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003314'
+  sagan.rev: '3'
+  sagan.source_file: ssh-tectia-server-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[SSH-TECTIA-SERVER-CORRELATED] Authentication success after honeypot activity (correlated with
+  honeypot)'
+id: feaad52d-491a-5568-87b0-917e3a865f5c
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003314
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[SSH-TECTIA-SERVER-CORRELATED] Authentication success after exploit attempt'
+id: 56c5043d-e031-5164-a007-269477ec8f6d
+name: sagan_5003315
+status: experimental
+description: Converted from Sagan rule SID 5003315 (rev 3), file ssh-tectia-server-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Login_success
+  selection_2:
+    appname|cased: SSH_Tectia_Server
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003315'
+  sagan.rev: '3'
+  sagan.source_file: ssh-tectia-server-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[SSH-TECTIA-SERVER-CORRELATED] Authentication success after exploit attempt (correlated with exploit_attempt)'
+id: 1abfa006-51e4-5b47-9765-0ec6d71ad536
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5003315
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[SSH-TECTIA-SERVER-CORRELATED] Authentication success after brute force activity'
+id: 868e9c55-2e37-5715-b03d-8317bf7eabd5
+name: sagan_5003316
+status: experimental
+description: Converted from Sagan rule SID 5003316 (rev 3), file ssh-tectia-server-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Login_success
+  selection_2:
+    appname|cased: SSH_Tectia_Server
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003316'
+  sagan.rev: '3'
+  sagan.source_file: ssh-tectia-server-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[SSH-TECTIA-SERVER-CORRELATED] Authentication success after brute force activity (correlated with
+  brute_force)'
+id: 150a8fa1-f071-5676-98de-a0c3a39cae3d
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5003316
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high

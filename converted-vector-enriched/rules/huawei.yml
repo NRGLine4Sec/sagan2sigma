@@ -1,0 +1,1185 @@
+title: '[HUAWEI] ARP_DUPLICATE_IPADDR'
+id: 9d85ef2e-dfea-55e2-830a-76469316d380
+status: experimental
+description: Converted from Sagan rule SID 5001533 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ARP/4/ARP_DUPLICATE_IPADDR
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001533'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] DHCPC_LOG_NAK'
+id: 0d1b77b1-363c-5340-a653-e19d1f184916
+status: experimental
+description: Converted from Sagan rule SID 5001534 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: DHCPC/4/DHCPC_LOG_NAK
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001534'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] DHCPC_LOG_REQIP_SUCCESS'
+id: 8fdd1e3a-d4ac-5bf3-9bf7-40dc7429df13
+status: experimental
+description: Converted from Sagan rule SID 5001535 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: DHCPC/4/DHCPC_LOG_REQIP_SUCCESS
+  selection_2:
+    message|contains|cased: has acquired ip address successfully
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001535'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] DHCPC_LOG_REQIP_SUCCESS'
+id: 25e9f1fb-f7ec-5b95-95cd-b53d2e28e5dd
+status: experimental
+description: Converted from Sagan rule SID 5001536 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: DHCPC/4/DHCPC_LOG_REQIP_SUCCESS
+  selection_2:
+    message|contains|cased: vlan
+  selection_3:
+    message|contains|cased: has acquired ip address successfully
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001536'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] FTPS - USERIN Login failed'
+id: e6bddec0-7387-5062-9a2f-70c7df4737c8
+status: experimental
+description: Converted from Sagan rule SID 5001538 (rev 3), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: FTPS/4/USERIN
+  selection_2:
+    message|contains|cased: login failed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001538'
+  sagan.rev: '3'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] HTTPD - FAIL'
+id: 3bd9b099-9abc-5b2a-88bd-16c4fcfde7c1
+status: experimental
+description: Converted from Sagan rule SID 5001543 (rev 3), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: HTTPD/4/FAIL
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001543'
+  sagan.rev: '3'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] HTTPD - OUT'
+id: 74d10f39-3576-5e3b-9c0c-e99cc2544a4d
+status: experimental
+description: Converted from Sagan rule SID 5001544 (rev 3), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: HTTPD/4/OUT
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-user
+custom_attributes:
+  sagan.sid: '5001544'
+  sagan.rev: '3'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] HTTPD - PASS'
+id: 757b8a95-9f5c-53b8-8852-3b17f00194e3
+status: experimental
+description: Converted from Sagan rule SID 5001545 (rev 3), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: HTTPD/4/PASS
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-user
+custom_attributes:
+  sagan.sid: '5001545'
+  sagan.rev: '3'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - IP spoof attack'
+id: 8bc9af68-9617-54ab-97df-4a937cf37086
+status: experimental
+description: Converted from Sagan rule SID 5001546 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: IP spoof attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5001546'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - Fraggle attack'
+id: 9deb0058-6208-5a2c-a60f-00268d94ccf1
+status: experimental
+description: Converted from Sagan rule SID 5001547 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: fraggle attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5001547'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - Smurf attack'
+id: 13d28575-4cef-5462-b37e-d4cf94181066
+status: experimental
+description: Converted from Sagan rule SID 5001548 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: Smurf attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5001548'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - Land attack'
+id: 06f1a873-3dfc-55be-945f-fdec6b965be0
+status: experimental
+description: Converted from Sagan rule SID 5001549 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: land attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5001549'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - Time stamp attack'
+id: 65f53845-822b-5d34-be63-ccafc067d159
+status: experimental
+description: Converted from Sagan rule SID 5001550 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: Time stamp attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5001550'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - Ip options attack'
+id: ebe64d4d-1915-5c63-b8ac-99490bb6a0fe
+status: experimental
+description: Converted from Sagan rule SID 5001551 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: Ip options attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5001551'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - Ip option source route attack'
+id: 546d99ab-7f0e-5309-a196-7dadcb4d259e
+status: experimental
+description: Converted from Sagan rule SID 5001552 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: Ip option source route attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5001552'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - ICMP flood attack'
+id: 522f8cfd-06e4-525c-8326-dc76da0b5e3d
+status: experimental
+description: Converted from Sagan rule SID 5001553 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: ICMP flood attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5001553'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - Redirect attack'
+id: 754ab2ad-7c2a-5e24-a3c6-abbe55658591
+status: experimental
+description: Converted from Sagan rule SID 5001554 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: Redirect attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5001554'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - TCP flood attack'
+id: 5d6e0804-3048-559a-a7a8-652341df4e64
+status: experimental
+description: Converted from Sagan rule SID 5001555 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: TCP flood attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5001555'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - Winnuke attack'
+id: 24d854f6-6a4b-5953-9678-dfbc261307a1
+status: experimental
+description: Converted from Sagan rule SID 5001556 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: Winnuke attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5001556'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - Ping of death attack'
+id: 08f476b7-d574-5b72-b8a1-5b62ecdd52db
+status: experimental
+description: Converted from Sagan rule SID 5001557 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: Ping of death attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5001557'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - Tear drop attack'
+id: 30e3ab2f-33ad-58f3-b35e-c04a81c71c5d
+status: experimental
+description: Converted from Sagan rule SID 5001558 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: Tear drop attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5001558'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - Trace route attack'
+id: 33162237-060b-5846-9c63-64b44e86620a
+status: experimental
+description: Converted from Sagan rule SID 5001559 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: Trace route attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5001559'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - Ip options route record attack'
+id: 2bea9fe6-5841-5e78-9d6c-551986c5b7ae
+status: experimental
+description: Converted from Sagan rule SID 5001560 (rev 3), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: Ip options route record attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5001560'
+  sagan.rev: '3'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - Port scan attack'
+id: 8f19ec15-f40b-5aa0-a6d8-3fb247dae1d9
+status: experimental
+description: Converted from Sagan rule SID 5001561 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: Port scan attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.network-scan
+custom_attributes:
+  sagan.sid: '5001561'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - Unreachable attack'
+id: 3c7e69c5-3333-5935-a399-56032a481bb7
+status: experimental
+description: Converted from Sagan rule SID 5001562 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: Unreachable attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5001562'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - UDP flood attack'
+id: 55e77a50-e701-54b2-9f01-b827017c46f3
+status: experimental
+description: Converted from Sagan rule SID 5001563 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: Udp flood attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5001563'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - Syn flood attack'
+id: 6352ac1c-7b66-5565-a653-573c5611ea92
+status: experimental
+description: Converted from Sagan rule SID 5001564 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: Syn flood attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5001564'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - Other-protocol attack'
+id: 8cb0af18-97e5-56f5-aa9a-9b434d0691a5
+status: experimental
+description: Converted from Sagan rule SID 5001565 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: other-protocol attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5001565'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - Large ICMP attack'
+id: f7148fcd-04e4-5de7-8fb5-28e730df5daa
+status: experimental
+description: Converted from Sagan rule SID 5001566 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: Large ICMP attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5001566'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - IP Fragment attack'
+id: db5cc418-4812-52d1-b973-b8a27d942b31
+status: experimental
+description: Converted from Sagan rule SID 5001567 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: IP Fragment attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5001567'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - Ftp Bounce attack'
+id: a509c708-3341-5de6-8166-3d5bac3ff84b
+status: experimental
+description: Converted from Sagan rule SID 5001568 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: Ftp Bounce attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5001568'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - Too much Half Con of SYN Flood'
+id: 90a3a77f-0543-5a41-b98c-e153b0dabdb5
+status: experimental
+description: Converted from Sagan rule SID 5001569 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: Too much Half Con of SYN Flood
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5001569'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] ATCKDF - Tcp flag attack'
+id: 9f7cdb6c-09f2-5468-9386-822d4158c509
+status: experimental
+description: Converted from Sagan rule SID 5001570 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/ATCKDF
+  selection_2:
+    message|contains|cased: Tcp flag attack
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5001570'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] BLACKLIST - VPN added to blacklist'
+id: e5be0dfe-d321-5c9e-bef8-74dc1e85fb97
+status: experimental
+description: Converted from Sagan rule SID 5001573 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/BLACKLIST
+  selection_2:
+    message|contains|cased: is added to blacklist
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5001573'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] BLACKLIST - VPN removed from blacklist'
+id: 308e91f4-8c01-5ae0-8ff4-dedd5abea446
+status: experimental
+description: Converted from Sagan rule SID 5001574 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/BLACKLIST
+  selection_2:
+    message|contains|cased: is removed from blacklist
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5001574'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] BLACKLIST - Blacklist cleared'
+id: 6404c323-bd90-5029-8b66-1d7133c69891
+status: experimental
+description: Converted from Sagan rule SID 5001575 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SEC/4/BLACKLIST
+  selection_2:
+    message|contains|cased: Clear All blacklist
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5001575'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] SHELL - LOGIN_FAIL'
+id: c59e247a-68e9-5e4b-9d57-811e80a7cdb9
+status: experimental
+description: Converted from Sagan rule SID 5001578 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SHELL/4/LOGIN_FAIL
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001578'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] SHELL - CMD'
+id: 88962d26-c60b-51db-a290-bd70d3317de3
+status: experimental
+description: Converted from Sagan rule SID 5001580 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SHELL/4/CMD
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001580'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] SSH - add_success'
+id: e24e9c95-56a2-529f-97eb-529a053ea350
+status: experimental
+description: Converted from Sagan rule SID 5001583 (rev 3), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SSH/4/add_success
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001583'
+  sagan.rev: '3'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] SSH - LOGIN_FAIL - Brute force [5/5]'
+id: b7c8ec1c-9a7a-5e31-9a6b-0fa125147181
+name: sagan_5001592
+status: experimental
+description: Converted from Sagan rule SID 5001592 (rev 10), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: 'SSH/4/LOGIN_FAIL '
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5001592'
+  sagan.rev: '10'
+  sagan.source_file: huawei.rules
+  rsigma.suppress: 5m
+---
+title: '[HUAWEI] SSH - LOGIN_FAIL - Brute force [5/5] (threshold 5 in 5m)'
+id: 2f2ac8f4-e105-5abd-aa33-afea63767e6e
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5001592
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 5
+level: low
+---
+title: '[HUAWEI] SSH - LOGIN_FAIL_CHALLENGE_ERR'
+id: 5e82e90e-f5d0-57ba-9773-bd3d1a265835
+status: experimental
+description: Converted from Sagan rule SID 5001585 (rev 3), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SSH/4/LOGIN_FAIL_CHALLENGE_ERR
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001585'
+  sagan.rev: '3'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] SSH - LOGIN_FAIL_COOKIE_ERR'
+id: b9e4bf9f-2357-50af-a33b-3b1ad5972b33
+status: experimental
+description: Converted from Sagan rule SID 5001586 (rev 3), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SSH/4/LOGIN_FAIL_COOKIE_ERR
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001586'
+  sagan.rev: '3'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] SSH - LOGIN_FAIL_DISSCONNECT'
+id: 1dc4651d-d83a-5df0-8d1a-e43220189270
+status: experimental
+description: Converted from Sagan rule SID 5001587 (rev 3), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SSH/4/LOGIN_FAIL_DISSCONNECT
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001587'
+  sagan.rev: '3'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] SSH - LOGIN_FAIL_PWD_ERR'
+id: d5637020-c3e6-55e1-bba2-6843a0968e17
+status: experimental
+description: Converted from Sagan rule SID 5001588 (rev 3), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SSH/4/LOGIN_FAIL_PWD_ERR
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001588'
+  sagan.rev: '3'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] SSH - LOGIN_FAIL_RETRY_OUT'
+id: df7c0265-91dc-52b8-87d6-33d82398207f
+status: experimental
+description: Converted from Sagan rule SID 5001589 (rev 3), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SSH/4/LOGIN_FAIL_RETRY_OUT
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001589'
+  sagan.rev: '3'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] SSH - LOGIN_FAIL_RSA_ERR'
+id: 878cd8e5-6aa3-5eeb-a504-6dcf3d7c8a01
+status: experimental
+description: Converted from Sagan rule SID 5001590 (rev 3), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SSH/4/LOGIN_FAIL_RSA_ERR
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001590'
+  sagan.rev: '3'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] VRRP - LogAuthFailed'
+id: d50e747f-05f8-5819-85f9-99f639f98069
+status: experimental
+description: Converted from Sagan rule SID 5001591 (rev 2), file huawei.rules.
+references:
+  - https://huaweisymantec.com/en/download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: VRRP/3/LogAuthFailed
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001591'
+  sagan.rev: '2'
+  sagan.source_file: huawei.rules
+---
+title: '[HUAWEI] USER_NOT_EXIST'
+id: 75b67f61-616c-54b2-8c9f-7e5a6bcce7f6
+status: experimental
+description: Converted from Sagan rule SID 5001532 (rev 5), file huawei.rules.
+references:
+  - http://www.huaweisymantec.com/en//download.do?id=658891
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SSH/4/LOGIN_FAIL_USER_NOT_EXIST
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001532'
+  sagan.rev: '5'
+  sagan.source_file: huawei.rules
+  rsigma.suppress: 5m

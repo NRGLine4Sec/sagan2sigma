@@ -1,0 +1,45 @@
+title: '[PPTP] Failed message [communications error]'
+id: a2904620-1c5f-5aca-99fa-2522a1f4374a
+status: experimental
+description: Converted from Sagan rule SID 5000134 (rev 3), file pptp.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|re: 'GRE: \S+ from \S+ failed: status = -1'
+  selection_2:
+    appname|cased: pptpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5000134'
+  sagan.rev: '3'
+  sagan.source_file: pptp.rules
+---
+title: '[PPTP] Connection established'
+id: 03b0d24c-6817-57de-8a4c-d11f317d5a38
+status: experimental
+description: Converted from Sagan rule SID 5000135 (rev 3), file pptp.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: control connection started
+  selection_2:
+    appname|cased: pptpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5000135'
+  sagan.rev: '3'
+  sagan.source_file: pptp.rules

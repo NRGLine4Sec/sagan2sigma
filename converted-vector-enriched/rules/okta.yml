@@ -1,0 +1,245 @@
+title: '[OKTA] INBOUND REQUEST FROM A BLACKLISTED IP'
+id: 007ed0de-8648-5103-93e2-4b867c9cb3b5
+status: experimental
+description: Converted from Sagan rule SID 5006601 (rev 1), file okta.rules.
+references:
+  - https://help.okta.com/en/prod/Content/Topics/Security/healthinsight/blocklist-network-zone.htm
+author: sagan2sigma
+logsource:
+  product: okta
+detection:
+  selection_1:
+    message|contains|cased: 'Blacklisted request from '
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5006601'
+  sagan.rev: '1'
+  sagan.source_file: okta.rules
+  rsigma.suppress: 2h
+---
+title: '[OKTA] REQUEST FROM SUSPICIOUS ACTOR'
+id: 9064491d-acc4-561b-9962-81c389e3bbcc
+status: experimental
+description: Converted from Sagan rule SID 5006608 (rev 1), file okta.rules.
+references:
+  - https://okta.github.io/okta-help/en/prod/Content/Topics/Security/threat-insight/configure-threatinsight.htm
+author: sagan2sigma
+logsource:
+  product: okta
+detection:
+  selection_1:
+    message|contains|cased: Request from suspicious actor
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5006608'
+  sagan.rev: '1'
+  sagan.source_file: okta.rules
+  rsigma.suppress: 4h
+---
+title: '[OKTA] INVALID SELF SERVICE RECOVERY TOKEN USED BY USER'
+id: 14b2daef-7b47-5a96-a3ac-0ba3bee9a44f
+status: experimental
+description: Converted from Sagan rule SID 5006603 (rev 1), file okta.rules.
+references:
+  - https://developer.okta.com/docs/reference/api/event-types/
+author: sagan2sigma
+logsource:
+  product: okta
+detection:
+  selection_1:
+    message|contains|cased: Invalid self service recovery token used by user
+  selection_2:
+    message|contains|cased: 'true'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5006603'
+  sagan.rev: '1'
+  sagan.source_file: okta.rules
+  rsigma.suppress: 5m
+---
+title: '[OKTA] BRUTE FORCE ATTEMPT [1]'
+id: deabbb8b-e537-5e05-9f19-c38ca87863fb
+name: sagan_5006604
+status: experimental
+description: Converted from Sagan rule SID 5006604 (rev 1), file okta.rules.
+references:
+  - https://developer.okta.com/docs/reference/api/event-types/
+author: sagan2sigma
+logsource:
+  product: okta
+detection:
+  selection_1:
+    message|contains|cased: 'Authentication failed: '
+  selection_2:
+    message|contains|cased: user.authentication.auth_via_AD_agent
+  selection_3:
+    appname|cased: sshd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5006604'
+  sagan.rev: '1'
+  sagan.source_file: okta.rules
+  rsigma.suppress: 5m
+---
+title: '[OKTA] BRUTE FORCE ATTEMPT [1] (threshold 10 in 5m)'
+id: 5ec59cf5-0982-5ec0-9e8b-de3188146f1f
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5006604
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 10
+level: low
+---
+title: '[OKTA] BRUTE FORCE ATTEMPT [2]'
+id: 8f6f4044-874a-593b-a3dc-996c20a8def7
+name: sagan_5006605
+status: experimental
+description: Converted from Sagan rule SID 5006605 (rev 1), file okta.rules.
+references:
+  - https://developer.okta.com/docs/reference/api/event-types/
+author: sagan2sigma
+logsource:
+  product: okta
+detection:
+  selection_1:
+    message|contains|cased: FAILURE
+  selection_2:
+    message|contains|cased: User login to Okta
+  selection_3:
+    appname|cased: sshd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5006605'
+  sagan.rev: '1'
+  sagan.source_file: okta.rules
+  rsigma.suppress: 5m
+---
+title: '[OKTA] BRUTE FORCE ATTEMPT [2] (threshold 10 in 5m)'
+id: b5842edc-b59a-52c7-bc89-e238e9ed029a
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5006605
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 10
+level: low
+---
+title: '[OKTA] CORRELATED LOGIN AFTER BRUTE FORCE ATTEMPT [1]'
+id: fb3e02e9-0568-5883-9efa-f0ecc95581ab
+name: sagan_5006606
+status: experimental
+description: Converted from Sagan rule SID 5006606 (rev 1), file okta.rules.
+references:
+  - https://developer.okta.com/docs/reference/api/event-types/
+author: sagan2sigma
+logsource:
+  product: okta
+detection:
+  selection_1:
+    message|contains|cased: Authentication
+  selection_2:
+    message|contains|cased: SUCCESS
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5006606'
+  sagan.rev: '1'
+  sagan.source_file: okta.rules
+  rsigma.suppress: 1h
+---
+title: '[OKTA] CORRELATED LOGIN AFTER BRUTE FORCE ATTEMPT [1] (correlated with brute_force)'
+id: 4ef31b34-d827-5ce7-8893-2d73bc8a3328
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5006606
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[OKTA] CORRELATED LOGIN AFTER BRUTE FORCE ATTEMPT [2]'
+id: d8c5715e-5589-55db-bdc7-8c7aceb55597
+name: sagan_5006607
+status: experimental
+description: Converted from Sagan rule SID 5006607 (rev 1), file okta.rules.
+references:
+  - https://developer.okta.com/docs/reference/api/event-types/
+author: sagan2sigma
+logsource:
+  product: okta
+detection:
+  selection_1:
+    message|contains|cased: User login to Okta
+  selection_2:
+    message|contains|cased: SUCCESS
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5006607'
+  sagan.rev: '1'
+  sagan.source_file: okta.rules
+  rsigma.suppress: 1h
+---
+title: '[OKTA] CORRELATED LOGIN AFTER BRUTE FORCE ATTEMPT [2] (correlated with brute_force)'
+id: e3f7ead2-af4c-5c0a-be14-05263b4a476a
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5006607
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high

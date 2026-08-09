@@ -1,0 +1,218 @@
+title: '[WINDOWS-ZEEK-INTEL] RDP / Logon type 10 from a Bro Intel listed IP'
+id: 854047e8-92eb-56d2-9da8-83d87db1439d
+status: experimental
+description: Converted from Sagan rule SID 5002224 (rev 7), file windows-zeekintel.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID:
+      - 4624
+      - 540
+      - 528
+  selection_3:
+    message|contains|cased: 'Logon Type: 10 '
+  selection_4:
+    sagan_zeek_intel_1: true
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002224'
+  sagan.rev: '7'
+  sagan.source_file: windows-zeekintel.rules
+---
+title: '[WINDOWS-ZEEK-INTEL] Login failure from a Bro Intel listed IP [0/5]'
+id: e89ea8cd-e4d7-50d6-928e-bec11c6574e7
+status: experimental
+description: Converted from Sagan rule SID 5002225 (rev 7), file windows-zeekintel.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 529
+  selection_3:
+    sagan_zeek_intel_1: true
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002225'
+  sagan.rev: '7'
+  sagan.source_file: windows-zeekintel.rules
+  rsigma.suppress: 5m
+---
+title: '[WINDOWS-ZEEK-INTEL] Login failure from a Bro Intel listed IP [Time restriction] [0/5]'
+id: 4890dccd-d1b5-52ec-8cd8-bc8a6debf4a3
+status: experimental
+description: Converted from Sagan rule SID 5002226 (rev 9), file windows-zeekintel.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 530
+  selection_2:
+    appname|cased: '*Security*'
+  selection_3:
+    sagan_zeek_intel_1: true
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002226'
+  sagan.rev: '9'
+  sagan.source_file: windows-zeekintel.rules
+  rsigma.suppress: 5m
+---
+title: '[WINDOWS-ZEEK-INTEL] Login failure from a Bro Intel listed IP - Account currently disabled [0/5]'
+id: 25ec35e2-4bb6-5efd-9a7d-8ab8d432b206
+status: experimental
+description: Converted from Sagan rule SID 5002227 (rev 6), file windows-zeekintel.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 531
+  filter_2:
+    message|contains|cased: 'User Name: Domain:'
+  selection_3:
+    appname|cased: '*Security*'
+  selection_4:
+    sagan_zeek_intel_1: true
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002227'
+  sagan.rev: '6'
+  sagan.source_file: windows-zeekintel.rules
+  rsigma.suppress: 5m
+---
+title: '[WINDOWS-ZEEK-INTEL] Login failure from a Bro Intel listed IP - Specified account expired'
+id: 71beaa96-2b6d-5299-a399-a6fce93afde7
+status: experimental
+description: Converted from Sagan rule SID 5002228 (rev 6), file windows-zeekintel.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 532
+  selection_2:
+    appname|cased: '*Security*'
+  selection_3:
+    sagan_zeek_intel_1: true
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002228'
+  sagan.rev: '6'
+  sagan.source_file: windows-zeekintel.rules
+---
+title: '[WINDOWS-ZEEK-INTEL] Login failure from a Bro Intel listed IP - User not allowed to login at this
+  computer'
+id: 4c4e88fa-f2da-5859-95a3-28092abe9a3e
+status: experimental
+description: Converted from Sagan rule SID 5002229 (rev 6), file windows-zeekintel.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 533
+  selection_2:
+    appname|cased: '*Security*'
+  selection_3:
+    sagan_zeek_intel_1: true
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002229'
+  sagan.rev: '6'
+  sagan.source_file: windows-zeekintel.rules
+---
+title: '[WINDOWS-ZEEK-INTEL] Login failure - Account locked from a Bro Intel listed IP [0/5]'
+id: 8b02a62b-9ba7-553c-b95a-e9ae2afa4cd8
+status: experimental
+description: Converted from Sagan rule SID 5002230 (rev 7), file windows-zeekintel.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 539
+  filter_2:
+    message|contains|cased: 'User Name: Domain: Logon Type:'
+  selection_3:
+    sagan_zeek_intel_1: true
+  selection_4:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002230'
+  sagan.rev: '7'
+  sagan.source_file: windows-zeekintel.rules
+  rsigma.suppress: 5m
+---
+title: '[WINDOWS-ZEEK-INTEL] Windows DC Logon Failure from a Bro Intel listed IP'
+id: 9414afad-d42f-54c2-a21a-1b1797e3d640
+status: experimental
+description: Converted from Sagan rule SID 5002231 (rev 6), file windows-zeekintel.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4771
+      - 4768
+      - 675
+      - 676
+      - 681
+  selection_2:
+    appname|cased: '*Security*'
+  selection_3:
+    sagan_zeek_intel_1: true
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002231'
+  sagan.rev: '6'
+  sagan.source_file: windows-zeekintel.rules

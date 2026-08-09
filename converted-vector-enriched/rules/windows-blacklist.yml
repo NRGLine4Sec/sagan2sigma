@@ -1,0 +1,215 @@
+title: '[WINDOWS-BLACKLIST] RDP / Logon type 10 from a blacklisted IP'
+id: 73ba8879-ba8b-5d4c-990b-dc0a2d9664e0
+status: experimental
+description: Converted from Sagan rule SID 5002215 (rev 7), file windows-blacklist.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID:
+      - 4624
+      - 528
+      - 540
+  selection_3:
+    message|contains|cased: 'Logon Type: 10 '
+  selection_4:
+    sagan_denylist_1: true
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002215'
+  sagan.rev: '7'
+  sagan.source_file: windows-blacklist.rules
+---
+title: '[WINDOWS-BLACKLIST] Login failure from a blacklisted IP [0/5]'
+id: 1cc8a29f-0d11-5874-8677-51e243fbe811
+status: experimental
+description: Converted from Sagan rule SID 5002216 (rev 6), file windows-blacklist.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 529
+  selection_3:
+    sagan_denylist_1: true
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002216'
+  sagan.rev: '6'
+  sagan.source_file: windows-blacklist.rules
+  rsigma.suppress: 5m
+---
+title: '[WINDOWS-BLACKLIST] Login failure from a blacklisted IP [Time restriction] [0/5]'
+id: f13a190d-ee2c-56dd-94fa-0f0414927b82
+status: experimental
+description: Converted from Sagan rule SID 5002217 (rev 8), file windows-blacklist.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 530
+  selection_2:
+    appname|cased: '*Security*'
+  selection_3:
+    sagan_denylist_1: true
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002217'
+  sagan.rev: '8'
+  sagan.source_file: windows-blacklist.rules
+  rsigma.suppress: 5m
+---
+title: '[WINDOWS-BLACKLIST] Login failure from blacklisted IP - Account currently disabled [0/5]'
+id: 0b61cf60-c375-58dc-af86-1e3215366d27
+status: experimental
+description: Converted from Sagan rule SID 5002218 (rev 5), file windows-blacklist.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 531
+  filter_2:
+    message|contains|cased: 'User Name: Domain:'
+  selection_3:
+    appname|cased: '*Security*'
+  selection_4:
+    sagan_denylist_1: true
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002218'
+  sagan.rev: '5'
+  sagan.source_file: windows-blacklist.rules
+  rsigma.suppress: 5m
+---
+title: '[WINDOWS-BLACKLIST] Login failure from blacklisted IP - Specified account expired'
+id: 88b9a0bc-6ca2-5cb0-ae70-5ebe1982465e
+status: experimental
+description: Converted from Sagan rule SID 5002219 (rev 5), file windows-blacklist.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 532
+  selection_2:
+    appname|cased: '*Security*'
+  selection_3:
+    sagan_denylist_1: true
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002219'
+  sagan.rev: '5'
+  sagan.source_file: windows-blacklist.rules
+---
+title: '[WINDOWS-BLACKLIST] Login failure from blacklisted IP - User not allowed to login at this computer'
+id: f9ff1c4e-474f-55db-ac4a-6e38812665b6
+status: experimental
+description: Converted from Sagan rule SID 5002220 (rev 5), file windows-blacklist.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 533
+  selection_2:
+    appname|cased: '*Security*'
+  selection_3:
+    sagan_denylist_1: true
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002220'
+  sagan.rev: '5'
+  sagan.source_file: windows-blacklist.rules
+---
+title: '[WINDOWS-BLACKLIST] Login failure from blacklisted IP - Account locked [0/1]'
+id: e8625753-d34d-5322-8aee-c7405286e6c6
+status: experimental
+description: Converted from Sagan rule SID 5002222 (rev 6), file windows-blacklist.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 539
+  filter_2:
+    message|contains|cased: 'User Name: Domain: Logon Type:'
+  selection_3:
+    sagan_denylist_1: true
+  selection_4:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_3 and selection_4 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002222'
+  sagan.rev: '6'
+  sagan.source_file: windows-blacklist.rules
+  rsigma.suppress: 5m
+---
+title: '[WINDOWS-BLACKLIST] Windows DC Logon Failure from blacklisted IP'
+id: 9b5f2a2e-8487-5fe6-91d8-13f090f037a4
+status: experimental
+description: Converted from Sagan rule SID 5002223 (rev 6), file windows-blacklist.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 675
+      - 676
+      - 681
+  selection_2:
+    appname|cased: '*Security*'
+  selection_3:
+    sagan_denylist_1: true
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002223'
+  sagan.rev: '6'
+  sagan.source_file: windows-blacklist.rules

@@ -1,0 +1,39 @@
+title: '[WINDOWS-OWA] Login failure - Brute force [25/1]'
+id: 3f7dad38-170f-5dc0-9478-ff883c128468
+name: sagan_5002264
+status: experimental
+description: Converted from Sagan rule SID 5002264 (rev 10), file windows-owa.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    message|contains: /owa/auth/logon.aspx
+  selection_2:
+    message|contains|cased: reason=2&
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5002264'
+  sagan.rev: '10'
+  sagan.source_file: windows-owa.rules
+  rsigma.suppress: 1d
+---
+title: '[WINDOWS-OWA] Login failure - Brute force [25/1] (threshold 25 in 5m)'
+id: 3f79839b-7933-5145-890f-8c90cee8e9f8
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5002264
+  group-by:
+    - sagan_ip_2
+  timespan: 5m
+  condition:
+    gte: 25
+level: low

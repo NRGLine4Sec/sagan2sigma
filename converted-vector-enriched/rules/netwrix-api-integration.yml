@@ -1,0 +1,172 @@
+title: '[NETWRIX] Active Directory Security Group Added'
+id: b3eb9d8b-72b1-5b87-8ebb-4e272dad0f96
+status: experimental
+description: Converted from Sagan rule SID 5013733 (rev 1), file netwrix-api-integration.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: netwrix_auditor_api_data
+  selection_2:
+    DataSource|cased: Active Directory
+  selection_3:
+    Action|contains|cased: Added group
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013733'
+  sagan.rev: '1'
+  sagan.source_file: netwrix-api-integration.rules
+---
+title: '[NETWRIX] Active Directory User Added'
+id: 0ae3a980-93e4-5ba6-a950-429dc1e16e95
+status: experimental
+description: Converted from Sagan rule SID 5013744 (rev 1), file netwrix-api-integration.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: netwrix_auditor_api_data
+  selection_2:
+    DataSource|cased: Active Directory
+  selection_3:
+    Action|contains|cased: Added user
+  filter_4:
+    Details|cased: Security Universal Group
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013744'
+  sagan.rev: '1'
+  sagan.source_file: netwrix-api-integration.rules
+---
+title: '[NETWRIX] Logon Activity - Possible Brute Force Attempt [10/1]'
+id: 6ce22fbe-a24b-5af2-8adc-3e59bde2e638
+name: sagan_5013747
+status: experimental
+description: Converted from Sagan rule SID 5013747 (rev 1), file netwrix-api-integration.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: netwrix_auditor_api_data
+  selection_2:
+    DataSource|cased: Logon Activity
+  selection_3:
+    Action|cased: Failed Logon
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5013747'
+  sagan.rev: '1'
+  sagan.source_file: netwrix-api-integration.rules
+  rsigma.suppress: 1h
+---
+title: '[NETWRIX] Logon Activity - Possible Brute Force Attempt [10/1] (threshold 10 in 5m)'
+id: 9db86fb3-9d23-5130-b291-6d506e18d6ee
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5013747
+  group-by:
+    - Who
+  timespan: 5m
+  condition:
+    gte: 10
+level: high
+---
+title: '[NETWRIX] User Activity (Video) - Activated Window - Powershell'
+id: 6cd7c86c-5711-5625-815d-2b5986c95715
+status: experimental
+description: Converted from Sagan rule SID 5013756 (rev 1), file netwrix-api-integration.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: netwrix_auditor_api_data
+  selection_2:
+    DataSource|cased: User Activity (Video)
+  selection_3:
+    Action|contains|cased: Activated Window
+  selection_4:
+    What|contains|cased: Windows PowerShell
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013756'
+  sagan.rev: '1'
+  sagan.source_file: netwrix-api-integration.rules
+---
+title: '[NETWRIX] User Activity (Video) - Activated Window - COM Surrogate'
+id: 0fae761e-5ec4-57c6-aad1-c7b2204b0018
+status: experimental
+description: Converted from Sagan rule SID 5013757 (rev 1), file netwrix-api-integration.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: netwrix_auditor_api_data
+  selection_2:
+    DataSource|cased: User Activity (Video)
+  selection_3:
+    Action|contains|cased: Activated Window
+  selection_4:
+    What|contains|cased: COM Surrogate
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013757'
+  sagan.rev: '1'
+  sagan.source_file: netwrix-api-integration.rules
+---
+title: '[NETWRIX] User Activity (Video) - Activated Elevated Window'
+id: d185887d-3dbe-5c3f-8f89-269f80ad761d
+status: experimental
+description: Converted from Sagan rule SID 5013758 (rev 1), file netwrix-api-integration.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: netwrix_auditor_api_data
+  selection_2:
+    DataSource|cased: User Activity (Video)
+  selection_3:
+    Action|contains|cased: Activated Elevated Window
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013758'
+  sagan.rev: '1'
+  sagan.source_file: netwrix-api-integration.rules

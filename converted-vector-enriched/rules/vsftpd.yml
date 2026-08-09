@@ -1,0 +1,126 @@
+title: '[VSFTPD] Login failed - Brute force [5/5]'
+id: 1db231ee-df0b-5826-81ad-cf5cb92b95d0
+name: sagan_5000196
+status: experimental
+description: Converted from Sagan rule SID 5000196 (rev 9), file vsftpd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: vsftpd
+detection:
+  selection_1:
+    message|contains|cased: FAIL LOGIN
+  selection_2:
+    appname|cased: vsftpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5000196'
+  sagan.rev: '9'
+  sagan.source_file: vsftpd.rules
+  rsigma.suppress: 5m
+---
+title: '[VSFTPD] Login failed - Brute force [5/5] (threshold 5 in 5m)'
+id: b2050602-6062-52f0-b928-d00ffe6e3257
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5000196
+  group-by:
+    - hostname
+  timespan: 5m
+  condition:
+    gte: 5
+level: low
+---
+title: '[FTPD] User logged into an disabled account'
+id: 8d500b77-bf22-5e74-bc50-db4839f10562
+status: experimental
+description: Converted from Sagan rule SID 5000415 (rev 5), file vsftpd.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: vsftpd
+detection:
+  selection_1:
+    message|contains|cased: OK LOGIN
+  selection_2:
+    message|contains|cased:
+      - ' apache '
+      - ' mysql '
+      - ' www '
+      - ' nobody '
+      - ' nogroup '
+      - ' portmap '
+      - ' named '
+      - ' rpc '
+      - ' mail '
+      - ' ftp '
+      - ' shutdown '
+      - ' halt '
+      - ' daemon '
+      - ' bin '
+      - ' postfix '
+      - ' shell '
+      - ' info '
+      - ' guest '
+      - ' psql '
+      - ' user '
+      - ' users '
+      - ' console '
+      - ' uucp '
+      - ' lp '
+      - ' sync '
+      - ' sshd '
+      - ' cdrom '
+      - ' ossec '
+      - ' sagan '
+  selection_3:
+    appname|cased: sshd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5000415'
+  sagan.rev: '5'
+  sagan.source_file: vsftpd.rules
+---
+title: '[VSFTPD] FTPCHK3 file accessed by user'
+id: dcf7e352-f6fa-512e-9455-4cae9a0e9013
+status: experimental
+description: Converted from Sagan rule SID 5002953 (rev 5), file vsftpd.rules.
+references:
+  - https://blog.ftptoday.com/ftp-password-stealing-malware
+author: sagan2sigma
+logsource:
+  product: linux
+  service: vsftpd
+detection:
+  selection_1:
+    message|contains|cased: ftpchk3
+  selection_2:
+    message|contains|cased:
+      - CHMOD
+      - DELE
+      - STOR
+  selection_3:
+    appname|cased: vsftpd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002953'
+  sagan.rev: '5'
+  sagan.source_file: vsftpd.rules

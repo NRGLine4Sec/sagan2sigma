@@ -1,0 +1,848 @@
+title: '[CISCO-MERAKI] SSID Spoofing Detected'
+id: 01ff8547-22cc-502f-81d0-55793a01720c
+status: experimental
+description: Converted from Sagan rule SID 5003026 (rev 3), file cisco-meraki.rules.
+references:
+  - https://meraki.cisco.com/lib/pdf/meraki_whitepaper_air_marshal.pdf
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: type=ssid_spoofing_detected
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5003026'
+  sagan.rev: '3'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] Malicious file blocked by amp'
+id: fd487edd-705e-5299-955d-f27e3bb5ac89
+status: experimental
+description: Converted from Sagan rule SID 5003045 (rev 4), file cisco-meraki.rules.
+references:
+  - https://documentation.meraki.com/MX-Z/Content_Filtering_and_Threat_Protection/
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: malicious action=block
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5003045'
+  sagan.rev: '4'
+  sagan.source_file: cisco-meraki.rules
+  rsigma.suppress: 1h
+---
+title: '[CISCO-MERAKI] File issued retrospective malicious disposition'
+id: 1e951e0d-d5ed-5e12-aea7-f5b669a54734
+status: experimental
+description: Converted from Sagan rule SID 5003046 (rev 2), file cisco-meraki.rules.
+references:
+  - https://documentation.meraki.com/MX-Z/Content_Filtering_and_Threat_Protection/
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: malicious action=allow
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5003046'
+  sagan.rev: '2'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] 802.1x EAP(RADIUS) failed authentication attempt [10/5]'
+id: 7315ec09-f285-54ed-acf1-1dcb7a114bbd
+name: sagan_5003048
+status: experimental
+description: Converted from Sagan rule SID 5003048 (rev 3), file cisco-meraki.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: type=8021x_eap_failure
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-user
+custom_attributes:
+  sagan.sid: '5003048'
+  sagan.rev: '3'
+  sagan.source_file: cisco-meraki.rules
+  rsigma.suppress: 1d
+  sagan.metadata: updated_on=2023_08_02
+---
+title: '[CISCO-MERAKI] 802.1x EAP(RADIUS) failed authentication attempt [10/5] (threshold 10 in 5m)'
+id: b47a0f2c-6a55-5d35-8eaf-fa358ffe72cf
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5003048
+  group-by:
+    - sagan_username
+  timespan: 5m
+  condition:
+    gte: 10
+level: high
+---
+title: '[CISCO-MERAKI] WPA failed authentication attempt'
+id: b1651055-529a-50b4-ad74-e4c9a723a773
+status: experimental
+description: Converted from Sagan rule SID 5003049 (rev 2), file cisco-meraki.rules.
+references:
+  - https://meraki.cisco.com/lib/pdf/meraki_whitepaper_air_marshal.pdf
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: type=device_packet_flood
+  selection_2:
+    message|contains|cased: packet='deauth'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-user
+custom_attributes:
+  sagan.sid: '5003049'
+  sagan.rev: '2'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] Flow denied by Layer 3 firewall'
+id: cc5db969-643a-52bd-8f05-ee6f12f9b4ae
+status: experimental
+description: Converted from Sagan rule SID 5003050 (rev 2), file cisco-meraki.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: MR18 flows deny
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5003050'
+  sagan.rev: '2'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] Virtual router collision'
+id: da00362e-c520-5904-83f8-1097c95ee5c6
+status: experimental
+description: Converted from Sagan rule SID 5003052 (rev 3), file cisco-meraki.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: VRRP packet
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5003052'
+  sagan.rev: '3'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] Blocked DHCP server response'
+id: 7ff34f83-82c0-5729-a315-c4e178e8d539
+status: experimental
+description: Converted from Sagan rule SID 5003054 (rev 2), file cisco-meraki.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: Blocked DHCP
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5003054'
+  sagan.rev: '2'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] SSID Spoofing Detected'
+id: 4127d11a-dd49-5c41-aa1c-2a8591dcb270
+status: experimental
+description: Converted from Sagan rule SID 5015127 (rev 1), file cisco-meraki.rules.
+references:
+  - https://meraki.cisco.com/lib/pdf/meraki_whitepaper_air_marshal.pdf
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: 'type": "ssid_spoofing_detected'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5015127'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] IDS Alert Detected'
+id: c326f406-5c4f-54fa-9a1e-03bec47929b3
+status: experimental
+description: Converted from Sagan rule SID 5015129 (rev 2), file cisco-meraki.rules.
+references:
+  - https://documentation.meraki.com/MX-Z/Content_Filtering_and_Threat_Protection/
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: meraki_dashboard_api_data
+  selection_2:
+    message|contains|cased: 'eventType": "IDS Alert'
+  filter_3:
+    message|contains|cased: '"blocked": true'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5015129'
+  sagan.rev: '2'
+  sagan.source_file: cisco-meraki.rules
+  rsigma.suppress: 1h
+---
+title: '[CISCO-MERAKI] VPN Auth Failed Brute Force [25/1]'
+id: 5ebf4649-3726-564e-b480-a962fc65eac2
+name: sagan_5015130
+status: experimental
+description: Converted from Sagan rule SID 5015130 (rev 1), file cisco-meraki.rules.
+references:
+  - https://documentation.meraki.com/MX-Z/Content_Filtering_and_Threat_Protection/
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: meraki_dashboard_api_data
+  selection_2:
+    message|contains|cased: 'type": "anyconnect_vpn_auth_failure'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5015130'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+  rsigma.suppress: 1d
+---
+title: '[CISCO-MERAKI] VPN Auth Failed Brute Force [25/1] (threshold 25 in 2m)'
+id: 1726174b-ed9c-5c61-804a-d4df80a81748
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5015130
+  group-by:
+    - sagan_ip_1
+  timespan: 2m
+  condition:
+    gte: 25
+level: medium
+---
+title: '[CISCO-MERAKI] Malicious file blocked by amp'
+id: 3e3fbd56-bfae-56c2-97ed-ab352b463006
+status: experimental
+description: Converted from Sagan rule SID 5015131 (rev 1), file cisco-meraki.rules.
+references:
+  - https://documentation.meraki.com/MX-Z/Content_Filtering_and_Threat_Protection/
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: malicious
+  selection_2:
+    message|contains|cased: 'action": "block'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5015131'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] File issued retrospective malicious disposition'
+id: 1a24edc5-edd9-56ee-a4bc-4ffc8769cc6b
+status: experimental
+description: Converted from Sagan rule SID 5015132 (rev 1), file cisco-meraki.rules.
+references:
+  - https://documentation.meraki.com/MX-Z/Content_Filtering_and_Threat_Protection/
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: malicious
+  selection_2:
+    message|contains|cased: 'action=": "allow'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5015132'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] 802.1x EAP(RADIUS) failed authentication attempt [10/5]'
+id: db700b34-f988-50a5-946c-ff3fb4d94df3
+name: sagan_5015134
+status: experimental
+description: Converted from Sagan rule SID 5015134 (rev 1), file cisco-meraki.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: 'type": "8021x_eap_failure'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-user
+custom_attributes:
+  sagan.sid: '5015134'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+  rsigma.suppress: 1d
+  sagan.metadata: updated_on=2023_08_02
+---
+title: '[CISCO-MERAKI] 802.1x EAP(RADIUS) failed authentication attempt [10/5] (threshold 10 in 5m)'
+id: 5bf57542-4769-543f-8af6-c5bfb0aef0fa
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5015134
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 10
+level: high
+---
+title: '[CISCO-MERAKI] WPA failed authentication attempt'
+id: f798647c-e0c6-54dc-8413-8ec9e3f5c106
+status: experimental
+description: Converted from Sagan rule SID 5015135 (rev 1), file cisco-meraki.rules.
+references:
+  - https://meraki.cisco.com/lib/pdf/meraki_whitepaper_air_marshal.pdf
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: 'type": "device_packet_flood'
+  selection_2:
+    message|contains|cased: 'packet": "deauth22'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-user
+custom_attributes:
+  sagan.sid: '5015135'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] WIPS Mac Spoofing Attack Detected'
+id: 6366a1fc-115c-5361-aede-95120f9dfdba
+status: experimental
+description: Converted from Sagan rule SID 5015136 (rev 1), file cisco-meraki.rules.
+references:
+  - https://documentation.meraki.com/General_Administration/Monitoring_and_Reporting/Syslog_Event_Types_and_Log_Samples
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: 'type": "mac_spoofing_attack'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-user
+custom_attributes:
+  sagan.sid: '5015136'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] IP Conflicts - Martian SRC Detected'
+id: 352aea72-3fe8-582c-9873-712a6a037ca2
+status: experimental
+description: Converted from Sagan rule SID 5015137 (rev 1), file cisco-meraki.rules.
+references:
+  - https://documentation.meraki.com/General_Administration/Monitoring_and_Reporting/Syslog_Event_Types_and_Log_Samples
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: 'type": "mac_spoofing_attack'
+  selection_2:
+    message|contains|cased: '"Client":'
+  filter_3:
+    message|contains|cased: 169.254.
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-user
+custom_attributes:
+  sagan.sid: '5015137'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-AIRMARSHAL] Rogue SSID Detected'
+id: 4dd8f16b-787c-5b36-ba1e-52695a7f493e
+status: experimental
+description: Converted from Sagan rule SID 5015339 (rev 1), file cisco-meraki.rules.
+references:
+  - https://documentation.meraki.com/General_Administration/Monitoring_and_Reporting/Syslog_Event_Types_and_Log_Samples
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: airmarshal_events
+  selection_2:
+    message|contains|cased: rogue_ssid_detected
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015339'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-AIRMARSHAL] SSID Spoofing Detected'
+id: cc81ef47-28a9-5f93-8eb2-faef47655f3b
+status: experimental
+description: Converted from Sagan rule SID 5015340 (rev 1), file cisco-meraki.rules.
+references:
+  - https://documentation.meraki.com/General_Administration/Monitoring_and_Reporting/Syslog_Event_Types_and_Log_Samples
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: airmarshal_events
+  selection_2:
+    message|contains|cased: ssid_spoofing_detected
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015340'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] Changes to Security-Related Configurations Log Detected'
+id: 133dd059-0693-5590-a76a-cbf9ff08948c
+status: experimental
+description: Converted from Sagan rule SID 5016033 (rev 1), file cisco-meraki.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: meraki_dashboard_api_data
+  selection_2:
+    message|contains: 'label": "security'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016033'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] Administrative Action Log Detected'
+id: ed54009a-9eef-5547-be76-88c325c757a8
+status: experimental
+description: Converted from Sagan rule SID 5016034 (rev 1), file cisco-meraki.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: meraki_dashboard_api_data
+  selection_2:
+    message|contains: 'label": "admin'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016034'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] Organizational Level Change Detected'
+id: 468ba8a4-cde9-54e1-9310-b944510fda2d
+status: experimental
+description: Converted from Sagan rule SID 5016035 (rev 1), file cisco-meraki.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: meraki_dashboard_api_data
+  selection_2:
+    message|contains: 'label": "organization'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016035'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] Network Configuration Change Detected'
+id: d407e5d5-ebf9-5ecb-b580-f1bdbcc5ba90
+status: experimental
+description: Converted from Sagan rule SID 5016036 (rev 1), file cisco-meraki.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: meraki_dashboard_api_data
+  selection_2:
+    message|contains: 'label": "network'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016036'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] Device Configuration Change Detected'
+id: 7d157a3f-a610-528d-8ba4-c8db4ab57b12
+status: experimental
+description: Converted from Sagan rule SID 5016037 (rev 1), file cisco-meraki.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: meraki_dashboard_api_data
+  selection_2:
+    message|contains: 'label": "device'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016037'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] SSID Configuration Change Detected'
+id: af9b56f4-dc23-5d4f-b164-4c01e1271a33
+status: experimental
+description: Converted from Sagan rule SID 5016038 (rev 1), file cisco-meraki.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: meraki_dashboard_api_data
+  selection_2:
+    message|contains: 'label": "ssid'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016038'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] Firewall Policy/Configuration Change Detected'
+id: 38423c6f-b91e-5358-91d7-650a2ee8eb49
+status: experimental
+description: Converted from Sagan rule SID 5016039 (rev 1), file cisco-meraki.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: meraki_dashboard_api_data
+  selection_2:
+    message|contains: 'label": "firewall'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016039'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] Routing Configuration Change Detected'
+id: 1de038f4-2ae8-5ad4-ab8f-29114c21634a
+status: experimental
+description: Converted from Sagan rule SID 5016040 (rev 1), file cisco-meraki.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: meraki_dashboard_api_data
+  selection_2:
+    message|contains: 'label": "routing'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016040'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] VPN Configuration Change Detected'
+id: 7aac595f-d482-5b03-aac8-1dcbde11b0df
+status: experimental
+description: Converted from Sagan rule SID 5016042 (rev 1), file cisco-meraki.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: meraki_dashboard_api_data
+  selection_2:
+    message|contains: 'label": "vpn'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016042'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] IDS Ruleset - Option Updated'
+id: 340bfc69-2024-567c-b02e-6f43515663a6
+status: experimental
+description: Converted from Sagan rule SID 5016059 (rev 1), file cisco-meraki.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: meraki_dashboard_api_data
+  selection_2:
+    message|contains: 'label": "IDS ruleset'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016059'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] Blocked Threat Categories Were Updated'
+id: 161a5f10-d916-5518-827d-7c42b76f1fa8
+status: experimental
+description: Converted from Sagan rule SID 5016060 (rev 1), file cisco-meraki.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: meraki_dashboard_api_data
+  selection_2:
+    message|contains: 'label": "Blocked Threat Categories'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016060'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] IDS Mode - Option Updated'
+id: 69af74ac-233b-5a54-83e8-d2e02bbdd3f3
+status: experimental
+description: Converted from Sagan rule SID 5016061 (rev 1), file cisco-meraki.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: meraki_dashboard_api_data
+  selection_2:
+    message|contains: 'label": "IDS mode select'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016061'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] Malware Blocked - Opion Updated'
+id: 49a94d0e-09b4-5088-b9e3-b52d1519ae8f
+status: experimental
+description: Converted from Sagan rule SID 5016062 (rev 1), file cisco-meraki.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: meraki_dashboard_api_data
+  selection_2:
+    message|contains: 'label": "Malware is blocked'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016062'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] Malware Scanning - Option Updated'
+id: ae2ec03a-e1b7-55b8-acc2-fab289c69e46
+status: experimental
+description: Converted from Sagan rule SID 5016063 (rev 1), file cisco-meraki.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: meraki_dashboard_api_data
+  selection_2:
+    message|contains: 'label": "Malware scanning'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016063'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules
+---
+title: '[CISCO-MERAKI] [CRITICAL] Suspicious Activity Detected and Allowed'
+id: 22326f5f-b130-5c14-bb63-876c24d85055
+status: experimental
+description: Converted from Sagan rule SID 5016584 (rev 1), file cisco-meraki.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: meraki_dashboard_api_data
+  selection_2:
+    message|contains: decision=allowed action=allow message
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016584'
+  sagan.rev: '1'
+  sagan.source_file: cisco-meraki.rules

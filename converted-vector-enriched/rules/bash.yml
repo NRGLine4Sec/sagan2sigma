@@ -1,0 +1,1481 @@
+title: '[BASH] ./a.out execution attempt'
+id: 95fe7440-152f-5caa-8890-5955cdf8dd3c
+status: experimental
+description: Converted from Sagan rule SID 5000000 (rev 5), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: ./a.out
+  selection_2:
+    message|contains|cased: HISTORY
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5000000'
+  sagan.rev: '5'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] gcc execution'
+id: adb7e295-7d0e-513d-a117-afa0df03ee24
+status: experimental
+description: Converted from Sagan rule SID 5000001 (rev 5), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: 'gcc '
+  selection_2:
+    message|contains|cased: HISTORY
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5000001'
+  sagan.rev: '5'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] telnet execution'
+id: e0e274db-901a-53cf-a87d-0f7d019bfcf8
+status: experimental
+description: Converted from Sagan rule SID 5000002 (rev 5), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: 'telnet '
+  selection_2:
+    message|contains|cased: HISTORY
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5000002'
+  sagan.rev: '5'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] nmap execution'
+id: ce0f9b13-3d02-547a-ba70-575b308cc7bf
+status: experimental
+description: Converted from Sagan rule SID 5000003 (rev 5), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: 'nmap '
+  selection_2:
+    message|contains|cased: HISTORY
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5000003'
+  sagan.rev: '5'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] /etc/passwd access'
+id: ae89df7e-a42b-54a8-9ebe-827a9064575d
+status: experimental
+description: Converted from Sagan rule SID 5000004 (rev 5), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: /etc/passwd
+  selection_2:
+    message|contains|cased: HISTORY
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5000004'
+  sagan.rev: '5'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] /etc/shadow access'
+id: 839a958a-8515-5aeb-84ab-68068ce96ec7
+status: experimental
+description: Converted from Sagan rule SID 5000005 (rev 5), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: /etc/shadow
+  selection_2:
+    message|contains|cased: HISTORY
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5000005'
+  sagan.rev: '5'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] make execution'
+id: 7cf23b7a-5e50-5aec-b940-8462e96847cf
+status: experimental
+description: Converted from Sagan rule SID 5000006 (rev 5), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: make
+  selection_2:
+    message|contains|cased: HISTORY
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5000006'
+  sagan.rev: '5'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] make execution'
+id: 6b40c79b-05cf-5c7a-9d6f-03291a7a2132
+status: experimental
+description: Converted from Sagan rule SID 5000007 (rev 5), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: 'make '
+  selection_2:
+    message|contains|cased: HISTORY
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5000007'
+  sagan.rev: '5'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] /bin/sh command line call'
+id: 8b43819c-9916-55d0-8dce-6c2acdd5b472
+status: experimental
+description: Converted from Sagan rule SID 5000008 (rev 5), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: /bin/sh
+  selection_2:
+    message|contains|cased: HISTORY
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5000008'
+  sagan.rev: '5'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] /bin/bash command line call'
+id: eefd6fb3-f7a9-591c-995a-5adb0f660e17
+status: experimental
+description: Converted from Sagan rule SID 5000009 (rev 5), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: /bin/bash
+  selection_2:
+    message|contains|cased: HISTORY
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5000009'
+  sagan.rev: '5'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] HISTORY=/dev/null'
+id: 8d088e53-ef5a-5e34-9d23-5098f9ca47df
+status: experimental
+description: Converted from Sagan rule SID 5000010 (rev 5), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY=/dev/null
+  selection_2:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5000010'
+  sagan.rev: '5'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] .bash_history access'
+id: 8055d26a-295a-5f0c-84c0-e7136875083c
+status: experimental
+description: Converted from Sagan rule SID 5000011 (rev 5), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: .bash_history
+  selection_2:
+    message|contains|cased: HISTORY
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5000011'
+  sagan.rev: '5'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] /tmp/sh access'
+id: cbcb573d-333f-505e-9f1f-fa86a3a585d6
+status: experimental
+description: Converted from Sagan rule SID 5000012 (rev 5), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: /tmp/sh
+  selection_2:
+    message|contains|cased: HISTORY
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5000012'
+  sagan.rev: '5'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] suidperl access'
+id: f5a3a2f5-291d-58c6-afb5-ba67890ed5a9
+status: experimental
+description: Converted from Sagan rule SID 5000013 (rev 5), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: suidperl
+  selection_2:
+    message|contains|cased: HISTORY
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5000013'
+  sagan.rev: '5'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] histfile=/dev/null'
+id: 095b1431-8e81-5b3f-8ee3-50394390d0dd
+status: experimental
+description: Converted from Sagan rule SID 5000014 (rev 5), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: histfile=/dev/null
+  selection_2:
+    message|contains|cased: HISTORY
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5000014'
+  sagan.rev: '5'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] iptables command access'
+id: f2c85b91-eec5-5d0e-a3ea-6bbdba5ccc30
+status: experimental
+description: Converted from Sagan rule SID 5000385 (rev 5), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: iptables
+  selection_2:
+    message|contains|cased: HISTORY
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5000385'
+  sagan.rev: '5'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] Remote execution attempt via CVE-2014-6271'
+id: f7a88e72-fe58-50d1-9317-bca239ee8eb7
+status: experimental
+description: Converted from Sagan rule SID 5002179 (rev 4), file bash.rules.
+references:
+  - https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2014-6271
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: () { :;}
+  selection_2:
+    message|contains|cased: HISTORY
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5002179'
+  sagan.rev: '4'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] History hiding'
+id: a3b451a6-a44e-5c6f-aac4-eac8f205a59f
+status: experimental
+description: Converted from Sagan rule SID 5002303 (rev 3), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased:
+      - ' HISTFILE'
+      - ' HISTFILESIZE'
+      - ' HISTSIZE'
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002303'
+  sagan.rev: '3'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] History hiding'
+id: 67e31550-2c39-56ee-883f-821a78fd95b7
+status: experimental
+description: Converted from Sagan rule SID 5002304 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|re: \s+history\s+(-\w+\s+)*-\w*(c|d|w)
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002304'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] .mysql_history access'
+id: 20b8cdac-890f-546d-8476-6f802f3d5fdb
+status: experimental
+description: Converted from Sagan rule SID 5002305 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased: .mysql_history
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002305'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] Netcat execution'
+id: 120d6035-c454-580b-aab5-e93ffcb8289e
+status: experimental
+description: Converted from Sagan rule SID 5002306 (rev 3), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased:
+      - ' nc '
+      - ' ncat '
+      - ' netcat '
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002306'
+  sagan.rev: '3'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] Python socket execution'
+id: 38c97bf4-36c9-5faf-b542-a02450550f9e
+status: experimental
+description: Converted from Sagan rule SID 5002307 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased: python
+  selection_3:
+    message|contains|cased: socket
+  selection_4:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002307'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] Python subproces execution'
+id: 707ea9d3-0841-508f-89d9-db31185f4d99
+status: experimental
+description: Converted from Sagan rule SID 5002308 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased: python
+  selection_3:
+    message|contains|cased: subproces
+  selection_4:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002308'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] PHP socket execution'
+id: d89b3618-0ab8-5c04-a6e6-e06168905e06
+status: experimental
+description: Converted from Sagan rule SID 5002309 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased: php
+  selection_3:
+    message|contains|cased: sock
+  selection_4:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002309'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] PHP subproces execution'
+id: 46ebea91-034c-57d6-b17b-7b49419f8afc
+status: experimental
+description: Converted from Sagan rule SID 5002310 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased: php
+  selection_3:
+    message|contains|cased: exec
+  selection_4:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002310'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] Perl socket execution'
+id: 1edfc7d1-44a7-5be1-ba49-1722abce7783
+status: experimental
+description: Converted from Sagan rule SID 5002311 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased: perl
+  selection_3:
+    message|contains|cased: ocket
+  selection_4:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002311'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] Perl subproces execution'
+id: b9be3a91-1a4f-5c7f-ab3f-40a0b3ace658
+status: experimental
+description: Converted from Sagan rule SID 5002312 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased: perl
+  selection_3:
+    message|contains|cased: fork
+  selection_4:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002312'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] Ruby socket execution'
+id: 1de281d1-80b6-56da-804b-7e037b75869e
+status: experimental
+description: Converted from Sagan rule SID 5002313 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased: ruby
+  selection_3:
+    message|contains|cased: ocket
+  selection_4:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002313'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] Ruby subproces execution'
+id: 027a0b44-4964-5a0d-825e-31e51b815ace
+status: experimental
+description: Converted from Sagan rule SID 5002314 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased: ruby
+  selection_3:
+    message|contains|cased: exec
+  selection_4:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002314'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] /dev/tcp access'
+id: ea7ea989-3dd4-5b99-b39a-10a2e3e2d6be
+status: experimental
+description: Converted from Sagan rule SID 5002317 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased: /dev/tcp
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002317'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] /dev/udp access'
+id: fdc0807e-5f64-56b7-8b25-eafb815afe04
+status: experimental
+description: Converted from Sagan rule SID 5002318 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased: /dev/udp
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002318'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] csh shell execution'
+id: c1f8b96b-f7e0-5fea-8519-d4f3cf355d60
+status: experimental
+description: Converted from Sagan rule SID 5002319 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|re: \s+((\/usr)?\/s?bin\/)?csh
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002319'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] ksh shell execution'
+id: 1787abc7-9343-53cd-adca-351169583d9c
+status: experimental
+description: Converted from Sagan rule SID 5002320 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|re: \s+((\/usr)?\/s?bin\/)?ksh
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002320'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] tcsh shell execution'
+id: 32b481ad-57dd-59ab-b4fe-4435ceda1a4d
+status: experimental
+description: Converted from Sagan rule SID 5002321 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|re: \s+((\/usr)?\/s?bin\/)?tcsh
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002321'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] zsh shell execution'
+id: 0061271a-84e3-505f-9f04-c90179b7d550
+status: experimental
+description: Converted from Sagan rule SID 5002322 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|re: \s+((\/usr)?\/s?bin\/)?zsh
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002322'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] stunnel execution'
+id: c8a38026-97ca-5692-8b41-7181484c7df4
+status: experimental
+description: Converted from Sagan rule SID 5002323 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased: stunnel
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002323'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] SSH agent forwarding'
+id: af91eb96-4578-563b-ab49-811a65f938ea
+status: experimental
+description: Converted from Sagan rule SID 5002324 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased: ssh
+  selection_3:
+    message|contains|cased: '-A '
+  selection_4:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002324'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] SSH dynamic forwarding'
+id: 345fe41f-fc56-5a1c-a58f-871cc64bb97f
+status: experimental
+description: Converted from Sagan rule SID 5002325 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased: ssh
+  selection_3:
+    message|contains|cased: '-D '
+  selection_4:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002325'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] SSH GSSAPI forwarding'
+id: 2f989221-0dde-51fc-8f38-f4021441dded
+status: experimental
+description: Converted from Sagan rule SID 5002326 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased: ssh
+  selection_3:
+    message|contains|cased: '-K '
+  selection_4:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002326'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] SSH local forwarding'
+id: b7dc071a-5e75-5f7d-aceb-3bb986b1614c
+status: experimental
+description: Converted from Sagan rule SID 5002327 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased: ssh
+  selection_3:
+    message|contains|cased: '-L '
+  selection_4:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002327'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] SSH remote forwarding'
+id: c2e6a96f-3be5-5f0d-a257-df17c4f78f02
+status: experimental
+description: Converted from Sagan rule SID 5002328 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased: ssh
+  selection_3:
+    message|contains|cased: '-R '
+  selection_4:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002328'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] SSH input and output forwarding'
+id: a53d52ee-3cb6-56c8-b7d6-b30ed5dbebdb
+status: experimental
+description: Converted from Sagan rule SID 5002329 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased: ssh
+  selection_3:
+    message|contains|cased: '-W '
+  selection_4:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002329'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] SSH tunnel forwarding'
+id: 3108563a-b80e-545f-9f66-dd8df23e8692
+status: experimental
+description: Converted from Sagan rule SID 5002330 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased: ssh
+  selection_3:
+    message|contains|cased: '-w '
+  selection_4:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002330'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] SSH X11 forwarding'
+id: a5bda66d-0f54-5f4a-be25-be7be3a7a5bf
+status: experimental
+description: Converted from Sagan rule SID 5002331 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased: ssh
+  selection_3:
+    message|contains|cased: '-X '
+  selection_4:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002331'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] SSH X11 trusted forwarding'
+id: a11374fd-17cc-5908-9f88-f879a27af0d4
+status: experimental
+description: Converted from Sagan rule SID 5002332 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased: ssh
+  selection_3:
+    message|contains|cased: '-Y '
+  selection_4:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002332'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] LD_PRELOAD environment variable access'
+id: bd53dbc3-be91-5e9b-b222-a0193ae4a56f
+status: experimental
+description: Converted from Sagan rule SID 5002333 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased: LD_PRELOAD
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002333'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] LD_LIBRARY_PATH environment variable access'
+id: 8194c564-64eb-5680-a22f-6bfe0e51845a
+status: experimental
+description: Converted from Sagan rule SID 5002334 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: HISTORY
+  selection_2:
+    message|contains|cased: LD_LIBRARY_PATH
+  selection_3:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002334'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules
+---
+title: '[BASH] root password change attempt'
+id: 2dbb7626-8dc4-5c2f-a0f1-bab979093291
+status: experimental
+description: Converted from Sagan rule SID 5002565 (rev 2), file bash.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: bash
+detection:
+  selection_1:
+    message|contains|cased: passwd
+  selection_2:
+    message|contains|cased: root
+  selection_3:
+    message|contains|cased: HISTORY
+  selection_4:
+    appname|cased:
+      - bash
+      - -bash
+      - sh
+      - -sh
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002565'
+  sagan.rev: '2'
+  sagan.source_file: bash.rules

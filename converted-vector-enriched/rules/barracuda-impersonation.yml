@@ -1,0 +1,201 @@
+title: '[Barracuda] IMPERSONATION Spear Phishing - Email Found to be Spam'
+id: 652aa71e-764c-552c-9986-641a7f6434cd
+status: experimental
+description: Converted from Sagan rule SID 5015579 (rev 3), file barracuda-impersonation.rules.
+references:
+  - https://campus.barracuda.com/product/sentinel/doc/93192797/how-to-connect-to-a-syslog/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    appname|cased: Sentinel
+  selection_2:
+    payload.category|cased: Spear Phishing Threat
+  selection_3:
+    payload.type|cased: spam
+  filter_4:
+    payload.action_taken|cased: Message Deleted
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566.001
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5015579'
+  sagan.rev: '3'
+  sagan.source_file: barracuda-impersonation.rules
+---
+title: '[Barracuda] IMPERSONATION Spear Phishing - Email Found to be Phishing'
+id: d8e0cebc-5d9f-5202-89ee-9ee9f91e7636
+status: experimental
+description: Converted from Sagan rule SID 5015580 (rev 3), file barracuda-impersonation.rules.
+references:
+  - https://campus.barracuda.com/product/sentinel/doc/93192797/how-to-connect-to-a-syslog/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    appname|cased: Sentinel
+  selection_2:
+    payload.category|cased: Spear Phishing Threat
+  selection_3:
+    payload.type|cased: phishing
+  filter_4:
+    payload.action_taken|cased: Message Deleted
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566.001
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5015580'
+  sagan.rev: '3'
+  sagan.source_file: barracuda-impersonation.rules
+---
+title: '[Barracuda] IMPERSONATION Spear Phishing - Email Found to be Business Email Compromise/Spoofing'
+id: 256e720b-65e8-52c2-8c87-e598284fd751
+status: experimental
+description: Converted from Sagan rule SID 5015581 (rev 3), file barracuda-impersonation.rules.
+references:
+  - https://campus.barracuda.com/product/sentinel/doc/93192797/how-to-connect-to-a-syslog/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    appname|cased: Sentinel
+  selection_2:
+    payload.category|cased: Spear Phishing Threat
+  selection_3:
+    payload.type|cased: becSpoofing
+  filter_4:
+    payload.action_taken|cased: Message Deleted
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566.002
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5015581'
+  sagan.rev: '3'
+  sagan.source_file: barracuda-impersonation.rules
+---
+title: '[Barracuda] IMPERSONATION Spear Phishing - Email Found to be Blackmail'
+id: 4b18b2dc-90a8-59d9-a523-72ad58826eb5
+status: experimental
+description: Converted from Sagan rule SID 5015582 (rev 2), file barracuda-impersonation.rules.
+references:
+  - https://campus.barracuda.com/product/sentinel/doc/93192797/how-to-connect-to-a-syslog/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    appname|cased: Sentinel
+  selection_2:
+    payload.category|cased: Spear Phishing Threat
+  selection_3:
+    payload.type|cased: blackmail
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566.001
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5015582'
+  sagan.rev: '2'
+  sagan.source_file: barracuda-impersonation.rules
+---
+title: '[Barracuda] IMPERSONATION Account Takeover - Threat Found via Sign Ins'
+id: cd806cd0-c858-5ac7-aab5-5f3623df3cb7
+status: experimental
+description: Converted from Sagan rule SID 5015583 (rev 3), file barracuda-impersonation.rules.
+references:
+  - https://campus.barracuda.com/product/sentinel/doc/93192797/how-to-connect-to-a-syslog/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    appname|cased: Sentinel
+  selection_2:
+    payload.category|cased: Account Takeover Alert
+  selection_3:
+    payload.type|cased: Sign Ins
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5015583'
+  sagan.rev: '3'
+  sagan.source_file: barracuda-impersonation.rules
+---
+title: '[Barracuda] IMPERSONATION Account Takeover - Threat Found via Inbox Rules'
+id: 72de5515-d5ee-5393-b608-1086cca287dd
+status: experimental
+description: Converted from Sagan rule SID 5015584 (rev 2), file barracuda-impersonation.rules.
+references:
+  - https://campus.barracuda.com/product/sentinel/doc/93192797/how-to-connect-to-a-syslog/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    appname|cased: Sentinel
+  selection_2:
+    payload.category|cased: Account Takeover Alert
+  selection_3:
+    payload.type|cased: Inbox Rules
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5015584'
+  sagan.rev: '2'
+  sagan.source_file: barracuda-impersonation.rules
+---
+title: '[Barracuda] IMPERSONATION Account Takeover - Threat Found via Email'
+id: 8ea9cad7-7dd7-5110-9649-87904cdc9c6e
+status: experimental
+description: Converted from Sagan rule SID 5015585 (rev 2), file barracuda-impersonation.rules.
+references:
+  - https://campus.barracuda.com/product/sentinel/doc/93192797/how-to-connect-to-a-syslog/
+author: sagan2sigma
+logsource:
+  product: barracuda
+detection:
+  selection_1:
+    appname|cased: Sentinel
+  selection_2:
+    payload.category|cased: Account Takeover Alert
+  selection_3:
+    payload.type|cased: Email
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5015585'
+  sagan.rev: '2'
+  sagan.source_file: barracuda-impersonation.rules

@@ -1,0 +1,22 @@
+title: '[WINDOWS-OWA-ZEEK-INTEL] Login failure - Brute force [5/5]'
+id: 1c7d40fa-4780-575c-807e-6eb83f5f3a0d
+status: experimental
+description: Converted from Sagan rule SID 5002266 (rev 6), file windows-owa-zeekintel.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    message|contains: /ews/exchange.asmx
+  selection_2:
+    sagan_zeek_intel_1: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5002266'
+  sagan.rev: '6'
+  sagan.source_file: windows-owa-zeekintel.rules

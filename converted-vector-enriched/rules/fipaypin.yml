@@ -1,0 +1,49 @@
+title: '[FIPAYPIN] Bad/No Pin Block and KSN returned'
+id: 0209b58a-58da-58c6-a3e9-e2b6afc476e8
+status: experimental
+description: Converted from Sagan rule SID 5002767 (rev 3), file fipaypin.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: S-300000
+  selection_2:
+    message|contains|cased: Bad/No Pin Block and KSN returned
+  selection_3:
+    appname|cased: '*FIPAYPIN*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.misc-activity
+custom_attributes:
+  sagan.sid: '5002767'
+  sagan.rev: '3'
+  sagan.source_file: fipaypin.rules
+---
+title: '[FIPAYPIN] Blocked the response to POS'
+id: 4d78b780-a39e-5c26-878d-99ef85dfa722
+status: experimental
+description: Converted from Sagan rule SID 5002768 (rev 3), file fipaypin.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: S-300000
+  selection_2:
+    message|contains|cased: Blocked the response to POS
+  selection_3:
+    appname|cased: '*FIPAYPIN*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.misc-activity
+custom_attributes:
+  sagan.sid: '5002768'
+  sagan.rev: '3'
+  sagan.source_file: fipaypin.rules

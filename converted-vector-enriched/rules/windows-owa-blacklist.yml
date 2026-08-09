@@ -1,0 +1,22 @@
+title: '[WINDOWS-OWA-BLACKLIST] Login failure - Brute force [5/5]'
+id: 21ea5ffc-7efe-534b-a01c-8e40a9bb6e73
+status: experimental
+description: Converted from Sagan rule SID 5002267 (rev 4), file windows-owa-blacklist.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    message|contains: /ews/exchange.asmx
+  selection_2:
+    sagan_denylist_1: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5002267'
+  sagan.rev: '4'
+  sagan.source_file: windows-owa-blacklist.rules

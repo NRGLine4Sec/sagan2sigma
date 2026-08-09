@@ -1,0 +1,92 @@
+title: '[WINDOWS-MSSQL] Login Failure - Brute force [25/1]'
+id: 3ef435c2-adba-51bf-9c60-be20d66c88af
+name: sagan_5009303
+status: experimental
+description: Converted from Sagan rule SID 5009303 (rev 18), file azureEventHub_windows-mssql.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 18456
+  filter_2:
+    RenderedDescription|contains|cased: local machine
+  filter_3:
+    RenderedDescription|contains|cased: named pipe
+  filter_4:
+    RenderedDescription|contains|cased: Failed to open the explicitly specified database
+  selection_5:
+    appname|cased:
+      - MSSQL*
+      - Application
+  condition: selection_1 and selection_5 and not (filter_2 or filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5009303'
+  sagan.rev: '18'
+  sagan.source_file: azureEventHub_windows-mssql.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2022_11_22,old_sid=5001641
+---
+title: '[WINDOWS-MSSQL] Login Failure - Brute force [25/1] (threshold 25 in 5m)'
+id: 8516e94b-3b88-5b97-a272-1c896ac58b01
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5009303
+  group-by:
+    - Computer
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-MSSQL] Login Failure from non-trusted connection - Brute force [25/1]'
+id: 774703c1-6184-50f6-8d58-e621fa62698d
+name: sagan_5009304
+status: experimental
+description: Converted from Sagan rule SID 5009304 (rev 7), file azureEventHub_windows-mssql.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 18452
+  selection_2:
+    appname|cased:
+      - MSSQL*
+      - Application
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5009304'
+  sagan.rev: '7'
+  sagan.source_file: azureEventHub_windows-mssql.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2022_11_22,old_sid=5002402
+---
+title: '[WINDOWS-MSSQL] Login Failure from non-trusted connection - Brute force [25/1] (threshold 25 in
+  5m)'
+id: a9eb9613-132b-578b-b444-276d18e9224e
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5009304
+  group-by:
+    - Computer
+  timespan: 5m
+  condition:
+    gte: 25
+level: high

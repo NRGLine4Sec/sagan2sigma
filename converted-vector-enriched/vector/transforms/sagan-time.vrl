@@ -1,0 +1,45 @@
+# Weekday and hour-of-day of the event, for alert_time rules.
+#
+# Why this exists
+# ---------------
+# Sagan's `alert_time` keyword fires only on a recurring day-and-hour window
+# (src/aetas.c, Check_Time). Sigma has no recurring-time operator, so the window
+# is expressed as a match on two derived fields, which this transform creates.
+#
+# What it reproduces
+# ------------------
+# Check_Time compares two things: the day of the week and the time as an HHMM
+# integer. This transform exposes both from the event timestamp:
+#
+#   .sagan_event_weekday   0=Sunday .. 6=Saturday, matching SUNDAY..SATURDAY in
+#                          the engine's day bitmask (src/sagan-defs.h)
+#   .sagan_event_hhmm      hour and minute as one integer, e.g. 14:05 -> 1405,
+#                          matching aetas.c's `current_time = atoi("HHMM")`
+#
+# Two honest divergences, both documented on the converted rules as
+# D_ALERT_TIME_EVENT_CLOCK:
+#
+#   * Sagan evaluates the window against the wall clock at the moment it
+#     processes the line (time(NULL)), not against the event's own timestamp.
+#     This transform uses the event timestamp, which is what a SOC usually means
+#     by "activity at a suspicious time" and coincides with Sagan's value under
+#     near-real-time ingestion;
+#   * aetas.c uses localtime(). This transform formats in UTC unless the Vector
+#     instance is configured otherwise; align the timezone with the Sagan host's
+#     for the window to mean the same thing.
+#
+# If the event carries no usable timestamp, the fields are left unset and an
+# alert_time rule cannot fire on time, rather than firing on a guessed clock.
+
+# A syslog or JSON source usually gives .timestamp as a timestamp already; a
+# string one (as `vector vrl` passes) is parsed as RFC3339 first. Anything else
+# leaves the fields unset rather than firing on a guessed clock.
+ts = .timestamp
+if is_string(ts) {
+    ts = parse_timestamp(ts, "%+") ?? null
+}
+
+if is_timestamp(ts) {
+    .sagan_event_weekday = to_int!(format_timestamp!(ts, "%w"))
+    .sagan_event_hhmm = to_int!(format_timestamp!(ts, "%H%M"))
+}

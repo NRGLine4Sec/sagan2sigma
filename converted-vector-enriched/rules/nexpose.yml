@@ -1,0 +1,68 @@
+title: '[NeXpose] Scan paused'
+id: 6fe3dcf7-6825-5ed0-9962-70634ef9a538
+status: experimental
+description: Converted from Sagan rule SID 5002276 (rev 3), file nexpose.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: 'SCAN PAUSED:'
+  selection_2:
+    appname|cased: NeXpose
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5002276'
+  sagan.rev: '3'
+  sagan.source_file: nexpose.rules
+---
+title: '[NeXpose] Scan failed'
+id: 63a37ce7-7349-5975-9140-f4edd427ce0a
+status: experimental
+description: Converted from Sagan rule SID 5002277 (rev 3), file nexpose.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: 'SCAN FAILED:'
+  selection_2:
+    appname|cased: NeXpose
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5002277'
+  sagan.rev: '3'
+  sagan.source_file: nexpose.rules
+---
+title: '[NeXpose] Scan stopped'
+id: 2b7c98a9-b40a-5160-a863-c59b2531ef5d
+status: experimental
+description: Converted from Sagan rule SID 5002289 (rev 2), file nexpose.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: 'SCAN STOPPED:'
+  selection_2:
+    appname|cased: NeXpose
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5002289'
+  sagan.rev: '2'
+  sagan.source_file: nexpose.rules

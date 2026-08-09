@@ -1,0 +1,216 @@
+title: '[SQUID] TCP_DENIED'
+id: 05185d4b-0d6c-5654-9470-c79298060002
+status: experimental
+description: Converted from Sagan rule SID 5000043 (rev 3), file squid.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: TCP_DENIED
+  selection_2:
+    appname|cased: squid
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000043'
+  sagan.rev: '3'
+  sagan.source_file: squid.rules
+---
+title: '[SQUID] TCP_DENIED unsupported-request-method'
+id: 100817d0-d676-5896-b40e-34527c6e45e1
+status: experimental
+description: Converted from Sagan rule SID 5000044 (rev 3), file squid.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: TCP_DENIED
+  selection_2:
+    message|contains|cased: unsupported-request-method
+  selection_3:
+    appname|cased: squid
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000044'
+  sagan.rev: '3'
+  sagan.source_file: squid.rules
+---
+title: '[SQUID] TCP_DENIED invalid-request'
+id: 763c2a1b-d002-5cab-a4c8-71b2029fcbd0
+status: experimental
+description: Converted from Sagan rule SID 5000045 (rev 3), file squid.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: TCP_DENIED
+  selection_2:
+    message|contains|cased: invalid-request
+  selection_3:
+    appname|cased: squid
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000045'
+  sagan.rev: '3'
+  sagan.source_file: squid.rules
+---
+title: '[SQUID] @CGIDIRScgiwrap attempt'
+id: 7308084e-3481-5089-a386-7fd403534a7e
+status: experimental
+description: Converted from Sagan rule SID 5000046 (rev 3), file squid.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: '@CGIDIRScgiwrap'
+  selection_2:
+    appname|cased: squid
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.web-application-activity
+custom_attributes:
+  sagan.sid: '5000046'
+  sagan.rev: '3'
+  sagan.source_file: squid.rules
+---
+title: '[SQUID] Directory traversal attempt'
+id: c8891e00-00c6-5237-932e-0ca4560ac2b0
+status: experimental
+description: Converted from Sagan rule SID 5000047 (rev 3), file squid.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ../..
+  selection_2:
+    appname|cased: squid
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5000047'
+  sagan.rev: '3'
+  sagan.source_file: squid.rules
+---
+title: '[SQUID] XSS attempt'
+id: e2ccab24-91e2-5a16-bb57-641ada942b08
+status: experimental
+description: Converted from Sagan rule SID 5000048 (rev 3), file squid.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains: <script>
+  selection_2:
+    message|contains: alert
+  selection_3:
+    message|contains: document.cookie
+  selection_4:
+    message|contains|cased: </script>
+  selection_5:
+    appname|cased: squid
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000048'
+  sagan.rev: '3'
+  sagan.source_file: squid.rules
+---
+title: '[SQUID] ''passwd'' access attempt'
+id: 09ced0c9-4a54-5ad6-99a5-fda5670603aa
+status: experimental
+description: Converted from Sagan rule SID 5000049 (rev 3), file squid.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: passwd
+  selection_2:
+    appname|cased: squid
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5000049'
+  sagan.rev: '3'
+  sagan.source_file: squid.rules
+---
+title: '[SQUID] Directory traversal attempt'
+id: 974b265c-842b-5b87-993f-33ffd02a99d8
+status: experimental
+description: Converted from Sagan rule SID 5000050 (rev 3), file squid.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: ///
+  selection_2:
+    appname|cased: squid
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5000050'
+  sagan.rev: '3'
+  sagan.source_file: squid.rules
+---
+title: '[SQUID] MSG Messenger access'
+id: 7d0338c7-5d6a-5c03-a821-86648479815b
+status: experimental
+description: Converted from Sagan rule SID 5000387 (rev 3), file squid.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: x-msn-messenger
+  selection_2:
+    appname|cased: squid
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5000387'
+  sagan.rev: '3'
+  sagan.source_file: squid.rules

@@ -1,0 +1,311 @@
+title: '[XINETD] Excessive number connections to a service'
+id: b8f95d8f-22d2-5ab1-840f-14c3221d7c72
+status: experimental
+description: Converted from Sagan rule SID 5000379 (rev 5), file xinetd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains: deactivating service
+  selection_2:
+    appname|cased: xinetd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1496
+  - sagan.classtype.attempted-dos
+custom_attributes:
+  sagan.sid: '5000379'
+  sagan.rev: '5'
+  sagan.source_file: xinetd.rules
+---
+title: '[XINETD] Telnet connection from remote host'
+id: b38fa437-f6a5-59ef-a860-bfc9e0853223
+status: experimental
+description: Converted from Sagan rule SID 5000247 (rev 6), file xinetd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: START
+  selection_2:
+    message|contains|cased: telnet
+  selection_3:
+    appname|cased: xinetd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1071.004
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5000247'
+  sagan.rev: '6'
+  sagan.source_file: xinetd.rules
+---
+title: '[XINETD] Telnet connection exit'
+id: 4d29cfaf-a22d-5b55-9e00-fff829e5b6f6
+status: experimental
+description: Converted from Sagan rule SID 5000248 (rev 4), file xinetd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: EXIT
+  selection_2:
+    message|contains|cased: telnet
+  selection_3:
+    appname|cased: xinetd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1071.004
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5000248'
+  sagan.rev: '4'
+  sagan.source_file: xinetd.rules
+---
+title: '[XINETD] POP3 connection from remote host'
+id: 486c16f2-f03b-56c0-beb0-e177721b927d
+status: experimental
+description: Converted from Sagan rule SID 5000249 (rev 6), file xinetd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: START
+  selection_2:
+    message|contains|cased: pop-3
+  selection_3:
+    appname|cased: xinetd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1071.004
+  - attack.t1106
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5000249'
+  sagan.rev: '6'
+  sagan.source_file: xinetd.rules
+---
+title: '[XINETD] POP3 connection exit'
+id: 4716810c-7e18-5f49-8b88-18c791c42509
+status: experimental
+description: Converted from Sagan rule SID 5000250 (rev 3), file xinetd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: EXIT
+  selection_2:
+    message|contains|cased: pop-3
+  selection_3:
+    appname|cased: xinetd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1071.004
+  - attack.t1106
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5000250'
+  sagan.rev: '3'
+  sagan.source_file: xinetd.rules
+---
+title: '[XINETD] IMAP2 connection from remote host'
+id: 38366d03-3d99-5973-b82d-ad6986bb40ff
+status: experimental
+description: Converted from Sagan rule SID 5000251 (rev 4), file xinetd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: START
+  selection_2:
+    message|contains|cased: imap2
+  selection_3:
+    appname|cased: xinetd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1071.004
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5000251'
+  sagan.rev: '4'
+  sagan.source_file: xinetd.rules
+---
+title: '[XINETD] IMAP2 connection exit'
+id: ed23c20a-dd93-5c5c-9e4f-818a252e591b
+status: experimental
+description: Converted from Sagan rule SID 5000252 (rev 3), file xinetd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: EXIT
+  selection_2:
+    message|contains|cased: imap2
+  selection_3:
+    appname|cased: xinetd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1071.004
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5000252'
+  sagan.rev: '3'
+  sagan.source_file: xinetd.rules
+---
+title: '[XINETD] POP3S [SSL] connection from remote host'
+id: 58f70435-b9f1-5377-9293-06f3ab84f6b8
+status: experimental
+description: Converted from Sagan rule SID 5000253 (rev 5), file xinetd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: START
+  selection_2:
+    message|contains|cased: pop3s
+  selection_3:
+    appname|cased: xinetd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1071.004
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5000253'
+  sagan.rev: '5'
+  sagan.source_file: xinetd.rules
+---
+title: '[XINETD] POP3S [SSL] connection exit'
+id: 130cd6c0-77ea-5595-81f9-39a8142befb2
+status: experimental
+description: Converted from Sagan rule SID 5000254 (rev 3), file xinetd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: EXIT
+  selection_2:
+    message|contains|cased: pop3s
+  selection_3:
+    appname|cased: xinetd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1071.004
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5000254'
+  sagan.rev: '3'
+  sagan.source_file: xinetd.rules
+---
+title: '[XINETD] POP3S [SSL] User login'
+id: 9bdc58ae-b8f1-5258-a80c-d242f78a380d
+status: experimental
+description: Converted from Sagan rule SID 5000255 (rev 4), file xinetd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: USERID
+  selection_2:
+    message|contains|cased: pop3s
+  selection_3:
+    appname|cased: xinetd
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1078
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5000255'
+  sagan.rev: '4'
+  sagan.source_file: xinetd.rules
+---
+title: '[XINETD] Courierpassd|Poppassd - Old password is incorrect'
+id: f5825def-dd98-56c2-8126-f70220b6b156
+status: experimental
+description: Converted from Sagan rule SID 5001102 (rev 3), file xinetd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: old password
+  selection_2:
+    appname|cased:
+      - courierpassd
+      - poppassd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1078
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001102'
+  sagan.rev: '3'
+  sagan.source_file: xinetd.rules
+---
+title: '[COURIER] Courierpassd|Poppassd - Changed user password'
+id: d19ab3ac-d355-5148-a460-0ebffe98479a
+status: experimental
+description: Converted from Sagan rule SID 5001103 (rev 3), file xinetd.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: changed POP3
+  selection_2:
+    appname|cased:
+      - courierpassd
+      - poppassd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1078
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5001103'
+  sagan.rev: '3'
+  sagan.source_file: xinetd.rules

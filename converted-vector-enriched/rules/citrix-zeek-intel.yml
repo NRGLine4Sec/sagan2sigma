@@ -1,0 +1,49 @@
+title: '[CITRIX-ZEEK-INTEL] Login from outside Bro Intel listed IP'
+id: 262698dc-7677-5ae0-b770-50ee77701823
+status: experimental
+description: Converted from Sagan rule SID 5002262 (rev 4), file citrix-zeek-intel.rules.
+references:
+  - https://support.citrix.com/article/CTX123875
+author: sagan2sigma
+logsource:
+  product: citrix
+detection:
+  selection_1:
+    message|contains|cased: SSLVPN LOGIN
+  selection_2:
+    sagan_zeek_intel_1: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002262'
+  sagan.rev: '4'
+  sagan.source_file: citrix-zeek-intel.rules
+---
+title: '[CITRIX-ZEEK-INTEL] SSLVPN HTTPREQUEST from Bro Intel listed IP'
+id: f09d58d2-d85b-54ee-bb8d-a4a5b57199a6
+status: experimental
+description: Converted from Sagan rule SID 5002286 (rev 6), file citrix-zeek-intel.rules.
+references:
+  - https://support.citrix.com/article/CTX123875
+author: sagan2sigma
+logsource:
+  product: citrix
+detection:
+  selection_1:
+    message|contains|cased: SSLVPN HTTPREQUEST
+  selection_2:
+    sagan_zeek_intel_1: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002286'
+  sagan.rev: '6'
+  sagan.source_file: citrix-zeek-intel.rules

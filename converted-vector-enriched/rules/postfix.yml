@@ -1,0 +1,23 @@
+title: '[POSTFIX] SASL authentication failure'
+id: 9ed2f04f-8633-51dc-97f2-b150a20956ff
+status: experimental
+description: Converted from Sagan rule SID 5000227 (rev 3), file postfix.rules.
+author: sagan2sigma
+logsource:
+  product: postfix
+  service: smtpd
+detection:
+  selection_1:
+    message|contains|cased: authentication failed
+  selection_2:
+    appname|cased: postfix
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000227'
+  sagan.rev: '3'
+  sagan.source_file: postfix.rules

@@ -1,0 +1,311 @@
+title: '[FORTISANDBOX] Event Application Subtype Playbook'
+id: 7510f4bb-92f9-5800-92ca-1323eaaaeab2
+status: experimental
+description: Converted from Sagan rule SID 5011310 (rev 1), file fortiSandbox.rules.
+references:
+  - https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/88ca0d3c-981d-11ed-8e6d-fa163e15d75b/FortiManager_%26_FortiAnalyzer_7.2.2_Log_Reference.pdf
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: type=event
+  selection_2:
+    message|contains: subtype=playbook
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5011310'
+  sagan.rev: '1'
+  sagan.source_file: fortiSandbox.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_03_06,updated_at=2023_03_06
+---
+title: '[FORTISANDBOX] Event Application Subtype Incident'
+id: ee3ca451-4d8a-5818-a92c-ec9eb61de684
+status: experimental
+description: Converted from Sagan rule SID 5011311 (rev 1), file fortiSandbox.rules.
+references:
+  - https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/88ca0d3c-981d-11ed-8e6d-fa163e15d75b/FortiManager_%26_FortiAnalyzer_7.2.2_Log_Reference.pdf
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: type=event
+  selection_2:
+    message|contains: subtype=incident
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5011311'
+  sagan.rev: '1'
+  sagan.source_file: fortiSandbox.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_03_06,updated_at=2023_03_06
+---
+title: '[FORTISANDBOX] Malicious File Detected From Within Email'
+id: 7b22da4d-0caa-5696-b36a-924258b9d0b0
+status: experimental
+description: Converted from Sagan rule SID 5017168 (rev 1), file fortiSandbox.rules.
+references:
+  - https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/dfa8b38e-6e4f-11ec-bdf2-fa163e15d75b/FortiSandbox-4.0.1-Log_Reference.pdf
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: logid=1015000205
+  selection_2:
+    message|contains|cased: type=malware
+  selection_3:
+    message|contains|cased: risk=
+  selection_4:
+    message|contains|cased: 'clientname="mx:'
+  filter_5:
+    message|contains|cased: On-Demand"
+  filter_6:
+    message|contains|cased: risk="Low Risk"
+  selection_7:
+    message|contains:
+      - ftype="docx"
+      - ftype="htm"
+      - ftype="html"
+      - ftype="pdf"
+      - ftype="Unknown"
+      - ftype="xls"
+      - ftype="pptx"
+      - ftype="jar"
+      - ftype="jse"
+      - ftype="scr"
+      - ftype="upx"
+      - ftype="vbe"
+      - ftype="wsf"
+      - ftype="exe"
+      - ftype="ps1"
+      - ftype="msi"
+      - ftype="iso"
+      - ftype="vbs"
+      - ftype="bat"
+      - ftype="cmd"
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_7 and not (filter_5
+    or filter_6)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5017168'
+  sagan.rev: '1'
+  sagan.source_file: fortiSandbox.rules
+  sagan.metadata: createdOn=2025_08_19
+---
+title: '[FORTISANDBOX] Malicious File Detected From Within URL'
+id: a2146b40-4862-52ad-8d0c-3197117c5fe7
+status: experimental
+description: Converted from Sagan rule SID 5017169 (rev 1), file fortiSandbox.rules.
+references:
+  - https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/dfa8b38e-6e4f-11ec-bdf2-fa163e15d75b/FortiSandbox-4.0.1-Log_Reference.pdf
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: logid=1015000205
+  selection_2:
+    message|contains|cased: type=malware
+  selection_3:
+    message|contains|cased: rating=
+  filter_4:
+    message|contains|cased: On-Demand"
+  filter_5:
+    message|contains|cased: rating=Low
+  selection_6:
+    message|contains:
+      - ftype="docx"
+      - ftype="htm"
+      - ftype="html"
+      - ftype="pdf"
+      - ftype="Unknown"
+      - ftype="xls"
+      - ftype="pptx"
+      - ftype="jar"
+      - ftype="jse"
+      - ftype="scr"
+      - ftype="upx"
+      - ftype="vbe"
+      - ftype="wsf"
+      - ftype="exe"
+      - ftype="ps1"
+      - ftype="msi"
+      - ftype="iso"
+      - ftype="vbs"
+      - ftype="bat"
+      - ftype="cmd"
+  condition: selection_1 and selection_2 and selection_3 and selection_6 and not (filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5017169'
+  sagan.rev: '1'
+  sagan.source_file: fortiSandbox.rules
+  sagan.metadata: createdOn=2025_08_19
+---
+title: '[FORTISANDBOX] Malicious URL Detected From Within Email'
+id: d0d27870-bf32-5724-af5d-3f7da11a1961
+status: experimental
+description: Converted from Sagan rule SID 5017170 (rev 1), file fortiSandbox.rules.
+references:
+  - https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/dfa8b38e-6e4f-11ec-bdf2-fa163e15d75b/FortiSandbox-4.0.1-Log_Reference.pdf
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: logid=1015000205
+  selection_2:
+    message|contains|cased: type=malware
+  selection_3:
+    message|contains|cased: ftype="WEBLink"
+  selection_4:
+    message|contains|cased: url=
+  filter_5:
+    message|contains|cased: stype="On-Demand"
+  filter_6:
+    message|contains|cased: risk="Low Risk"
+  selection_7:
+    message|contains:
+      - .docx"
+      - .htm"
+      - .html"
+      - .pdf"
+      - .xls"
+      - .pptx"
+      - .jar"
+      - .jse"
+      - .scr"
+      - .upx"
+      - .vbe"
+      - .wsf"
+      - .exe"
+      - .ps1"
+      - .msi"
+      - .iso"
+      - .vbs"
+      - .bat"
+      - .cmd"
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_7 and not (filter_5
+    or filter_6)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5017170'
+  sagan.rev: '1'
+  sagan.source_file: fortiSandbox.rules
+  sagan.metadata: createdOn=2025_08_19
+---
+title: '[FORTISANDBOX] Malicious File Detected - CatchAll'
+id: 3df6153b-7987-5558-b5f3-3a847ed6c5ff
+status: experimental
+description: Converted from Sagan rule SID 5011312 (rev 2), file fortiSandbox.rules.
+references:
+  - https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/dfa8b38e-6e4f-11ec-bdf2-fa163e15d75b/FortiSandbox-4.0.1-Log_Reference.pdf
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: logid=1015000205
+  selection_2:
+    message|contains|cased: type=malware
+  filter_3:
+    message|contains|cased: 'clientname="mx:'
+  filter_4:
+    message|contains|cased: ftype="WEBLink"
+  filter_5:
+    message|contains|cased: stype="On-Demand"
+  filter_6:
+    message|contains|cased: rating=Low
+  filter_7:
+    message|contains|cased: risk="Low Risk"
+  selection_8:
+    message|contains|cased:
+      - risk=
+      - rating=
+  condition: selection_1 and selection_2 and selection_8 and not (filter_3 or filter_4 or filter_5 or
+    filter_6 or filter_7)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5011312'
+  sagan.rev: '2'
+  sagan.source_file: fortiSandbox.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_03_06,updated_at=2025_08_20
+---
+title: '[FORTISANDBOX] Critical Level Event Detected'
+id: 11c3549e-96a7-5864-90ae-e9a75dcbbbd3
+status: experimental
+description: Converted from Sagan rule SID 5011314 (rev 1), file fortiSandbox.rules.
+references:
+  - https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/dfa8b38e-6e4f-11ec-bdf2-fa163e15d75b/FortiSandbox-4.0.1-Log_Reference.pdf
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: type=event
+  selection_2:
+    message|contains|cased: level=critical
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5011314'
+  sagan.rev: '1'
+  sagan.source_file: fortiSandbox.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_03_06,updated_at=2023_03_06
+---
+title: '[FORTISANDBOX] Error Level Event Detected'
+id: 59b709ee-3e22-5dcc-aa78-683d47c69196
+status: experimental
+description: Converted from Sagan rule SID 5011315 (rev 1), file fortiSandbox.rules.
+references:
+  - https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/dfa8b38e-6e4f-11ec-bdf2-fa163e15d75b/FortiSandbox-4.0.1-Log_Reference.pdf
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: type=event
+  selection_2:
+    message|contains|cased: level=error
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5011315'
+  sagan.rev: '1'
+  sagan.source_file: fortiSandbox.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_03_06,updated_at=2023_03_06

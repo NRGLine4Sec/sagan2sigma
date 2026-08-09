@@ -1,0 +1,326 @@
+title: '[ZIMBRA] Postfix/SMTPS/SMTPD - Brute force [5/3]'
+id: ea385a63-fecc-572f-8844-9d0baad0dca8
+name: sagan_5003027
+status: experimental
+description: Converted from Sagan rule SID 5003027 (rev 6), file zimbra.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: authentication failed
+  selection_2:
+    appname|cased: zimbra
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1021
+  - attack.t1110
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5003027'
+  sagan.rev: '6'
+  sagan.source_file: zimbra.rules
+  rsigma.suppress: 15m
+---
+title: '[ZIMBRA] Postfix/SMTPS/SMTPD - Brute force [5/3] (threshold 5 in 15m)'
+id: ef4e433e-854c-56f9-8342-be2b1dab7a65
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5003027
+  group-by:
+    - sagan_ip_1
+  timespan: 15m
+  condition:
+    gte: 5
+level: low
+---
+title: '[ZIMBRA] SASLAUTHD - Brute force [5/3]'
+id: 8a31af2e-b1d7-57f8-bd38-9a652612d10b
+name: sagan_5003028
+status: experimental
+description: Converted from Sagan rule SID 5003028 (rev 4), file zimbra.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: auth failure
+  selection_2:
+    message|contains|cased: saslauthd
+  selection_3:
+    appname|cased: zimbra
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1021
+  - attack.t1110
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5003028'
+  sagan.rev: '4'
+  sagan.source_file: zimbra.rules
+  rsigma.suppress: 15m
+---
+title: '[ZIMBRA] SASLAUTHD - Brute force [5/3] (threshold 5 in 15m)'
+id: 3cc97ce0-2e70-5665-b921-88e87272e087
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5003028
+  group-by:
+    - hostname
+  timespan: 15m
+  condition:
+    gte: 5
+level: low
+---
+title: '[ZIMBRA] SOAP Invalid user - Brute force account not found [5/3]'
+id: 2b384afb-1123-5981-825e-3e61f40fc026
+name: sagan_5003029
+status: experimental
+description: Converted from Sagan rule SID 5003029 (rev 7), file zimbra.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: authentication failed
+  selection_2:
+    message|contains|cased: account not found
+  selection_3:
+    appname|cased: mailbox
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1021
+  - attack.t1110
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5003029'
+  sagan.rev: '7'
+  sagan.source_file: zimbra.rules
+  rsigma.suppress: 15m
+---
+title: '[ZIMBRA] SOAP Invalid user - Brute force account not found [5/3] (threshold 5 in 15m)'
+id: de70be48-4e3e-5eac-a4f2-1ce8c14bbac8
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5003029
+  group-by:
+    - sagan_ip_1
+  timespan: 15m
+  condition:
+    gte: 5
+level: low
+---
+title: '[ZIMBRA] SOAP Invalid user - Brute force invalid password [5/3]'
+id: 1d17ba4a-071b-54d1-b22b-aca73050acbd
+name: sagan_5003030
+status: experimental
+description: Converted from Sagan rule SID 5003030 (rev 6), file zimbra.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: authentication failed
+  selection_2:
+    message|contains|cased: invalid password
+  selection_3:
+    appname|cased: mailbox
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1021
+  - attack.t1110
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5003030'
+  sagan.rev: '6'
+  sagan.source_file: zimbra.rules
+  rsigma.suppress: 15m
+---
+title: '[ZIMBRA] SOAP Invalid user - Brute force invalid password [5/3] (threshold 5 in 15m)'
+id: cefeae19-bd03-597e-829f-37f8ea6dda1f
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5003030
+  group-by:
+    - sagan_ip_1
+  timespan: 15m
+  condition:
+    gte: 5
+level: low
+---
+title: '[ZIMBRA] MS ActiveSync - Brute force invalid password [5/3]'
+id: be7ed079-621c-5245-9622-c4a7d7b20372
+name: sagan_5003031
+status: experimental
+description: Converted from Sagan rule SID 5003031 (rev 6), file zimbra.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: error=authentication failed
+  selection_2:
+    message|contains|cased: invalid password
+  selection_3:
+    appname|cased: audit
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1110
+  - attack.t1112
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5003031'
+  sagan.rev: '6'
+  sagan.source_file: zimbra.rules
+  rsigma.suppress: 15m
+---
+title: '[ZIMBRA] MS ActiveSync - Brute force invalid password [5/3] (threshold 5 in 15m)'
+id: 052b8ebd-caa6-56c9-9827-eb73e55f948a
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5003031
+  group-by:
+    - sagan_ip_1
+  timespan: 15m
+  condition:
+    gte: 5
+level: low
+---
+title: '[ZIMBRA] Clamd - Threat Detected'
+id: f598e1a0-1797-5a5f-b14b-1178905c5536
+status: experimental
+description: Converted from Sagan rule SID 5003038 (rev 3), file zimbra.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: FOUND
+  selection_2:
+    appname|cased: misc-activity
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1047
+  - attack.t1063
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003038'
+  sagan.rev: '3'
+  sagan.source_file: zimbra.rules
+---
+title: '[ZIMBRA] SYNC - Brute force invalid username or password [5/3]'
+id: cc79fdb2-ef49-5413-a04f-1264aa144299
+name: sagan_5003033
+status: experimental
+description: Converted from Sagan rule SID 5003033 (rev 6), file zimbra.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Invalid username or password
+  selection_2:
+    appname|cased: sync
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1078
+  - attack.t1110
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5003033'
+  sagan.rev: '6'
+  sagan.source_file: zimbra.rules
+  rsigma.suppress: 15m
+---
+title: '[ZIMBRA] SYNC - Brute force invalid username or password [5/3] (threshold 5 in 15m)'
+id: 6f1e7a76-c2d5-5c7c-a18b-67acafa9bc44
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5003033
+  group-by:
+    - sagan_ip_1
+  timespan: 15m
+  condition:
+    gte: 5
+level: low
+---
+title: '[ZIMBRA] SYNC - User password mismatch [5/3]'
+id: 1099969d-b05a-5a02-a676-f6dc2af3ade1
+name: sagan_5003037
+status: experimental
+description: Converted from Sagan rule SID 5003037 (rev 5), file zimbra.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: User password mismatch
+  selection_2:
+    appname|cased: sync
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1078
+  - attack.t1110
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003037'
+  sagan.rev: '5'
+  sagan.source_file: zimbra.rules
+  rsigma.suppress: 15m
+---
+title: '[ZIMBRA] SYNC - User password mismatch [5/3] (threshold 5 in 15m)'
+id: c6a64354-7d31-5f7c-909f-8e082f38bb00
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5003037
+  group-by:
+    - sagan_ip_1
+  timespan: 15m
+  condition:
+    gte: 5
+level: high

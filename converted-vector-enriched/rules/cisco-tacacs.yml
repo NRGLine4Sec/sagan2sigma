@@ -1,0 +1,42 @@
+title: '[CISCO-TACACS] Multiple Failed Login Attempts [Brute Force][25/1]'
+id: 30e45995-383d-5d08-89fb-6149830045d8
+name: sagan_5014062
+status: experimental
+description: Converted from Sagan rule SID 5014062 (rev 1), file cisco-tacacs.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: '*TACACS*'
+  selection_2:
+    message|contains|cased: Authentication failed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1110
+  - attack.ta0006
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5014062'
+  sagan.rev: '1'
+  sagan.source_file: cisco-tacacs.rules
+  rsigma.suppress: 1d
+  sagan.metadata: deployment=Server,created_at=2023_11_09,updated_at=2023_11_09
+---
+title: '[CISCO-TACACS] Multiple Failed Login Attempts [Brute Force][25/1] (threshold 25 in 5m)'
+id: d6682db2-04e3-58cb-91e7-af5a970a70f8
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5014062
+  group-by:
+    - sagan_ip_2
+  timespan: 5m
+  condition:
+    gte: 25
+level: high

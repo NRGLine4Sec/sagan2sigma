@@ -1,0 +1,357 @@
+title: '[ARP] arpalert - Detected new machine on the network'
+id: 2add176c-b697-57e1-a1eb-1037c4d6d885
+status: experimental
+description: Converted from Sagan rule SID 5000060 (rev 5), file arp.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: arp
+detection:
+  selection_1:
+    message|contains|cased: type=new
+  selection_2:
+    appname|cased: arpalert
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1046
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000060'
+  sagan.rev: '5'
+  sagan.source_file: arp.rules
+---
+title: '[ARP] arpalert - Detected ip change'
+id: 4da4edbd-a883-52f8-8e04-9fbad78ded21
+status: experimental
+description: Converted from Sagan rule SID 5000061 (rev 5), file arp.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: arp
+detection:
+  selection_1:
+    message|contains|cased: type=ip_change
+  selection_2:
+    appname|cased: arpalert
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1046
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000061'
+  sagan.rev: '5'
+  sagan.source_file: arp.rules
+---
+title: '[ARP] arpalert - Detected new machine on the network [mac-new]'
+id: 39faf842-a274-5ed1-8587-6844e45b0040
+status: experimental
+description: Converted from Sagan rule SID 5001079 (rev 4), file arp.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: arp
+detection:
+  selection_1:
+    message|contains|cased: type=new_mac
+  selection_2:
+    appname|cased: arpalert
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1046
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001079'
+  sagan.rev: '4'
+  sagan.source_file: arp.rules
+---
+title: '[ARP] arpalert - MAC address flood'
+id: 7d17ed85-409b-56a1-812b-d00a82eb505e
+status: experimental
+description: Converted from Sagan rule SID 5001080 (rev 4), file arp.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: arp
+detection:
+  selection_1:
+    message|contains|cased: type=flood
+  selection_2:
+    appname|cased: arpalert
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1046
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001080'
+  sagan.rev: '4'
+  sagan.source_file: arp.rules
+---
+title: '[ARP] arpalert - MAC address blacklisted'
+id: 89d2850a-d03b-55db-935a-d2b52af049b9
+status: experimental
+description: Converted from Sagan rule SID 5001081 (rev 4), file arp.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: arp
+detection:
+  selection_1:
+    message|contains|cased: type=black_listed
+  selection_2:
+    appname|cased: arpalert
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1046
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001081'
+  sagan.rev: '4'
+  sagan.source_file: arp.rules
+---
+title: '[ARP] arpalert - MAC address changed'
+id: de5c331b-3d72-5f15-a5dc-942cac5b7c04
+status: experimental
+description: Converted from Sagan rule SID 5001082 (rev 4), file arp.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: arp
+detection:
+  selection_1:
+    message|contains|cased: type=mac_changed
+  selection_2:
+    appname|cased: arpalert
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1046
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5001082'
+  sagan.rev: '4'
+  sagan.source_file: arp.rules
+---
+title: '[ARP] arpwatch - Detected new machine on the network'
+id: 1a0e7ae4-6b7e-546d-91d2-a925445e688f
+status: experimental
+description: Converted from Sagan rule SID 5000062 (rev 6), file arp.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: arp
+detection:
+  selection_1:
+    message|contains|cased: new station
+  selection_2:
+    appname|cased: arpwatch
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1016
+  - attack.t1046
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000062'
+  sagan.rev: '6'
+  sagan.source_file: arp.rules
+---
+title: '[ARP] arpwatch - ''flip flop'' message.'
+id: 8bd394ea-c844-53a1-9e70-e1a62b241651
+status: experimental
+description: Converted from Sagan rule SID 5000063 (rev 3), file arp.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: arp
+detection:
+  selection_1:
+    message|contains|cased: 'flip flop '
+  selection_2:
+    appname|cased: arpwatch
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1016
+  - attack.t1046
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000063'
+  sagan.rev: '3'
+  sagan.source_file: arp.rules
+---
+title: '[ARP] arpwatch - Changed network interface for IP address'
+id: 4a2af48d-f0c1-5812-9de3-0056c1b723a3
+status: experimental
+description: Converted from Sagan rule SID 5000065 (rev 7), file arp.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: arp
+detection:
+  selection_1:
+    message|contains|cased: changed ethernet address
+  selection_2:
+    appname|cased: arpwatch
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1046
+  - attack.t1553.003
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5000065'
+  sagan.rev: '7'
+  sagan.source_file: arp.rules
+---
+title: '[ARP] arpwatch - Detected bad address len - ignored'
+id: 23091682-a53d-52a4-afa9-528b4b503817
+status: experimental
+description: Converted from Sagan rule SID 5000067 (rev 3), file arp.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: arp
+detection:
+  selection_1:
+    message|contains|cased: sent bad addr len
+  selection_2:
+    appname|cased: arpwatch
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1048
+  - attack.t1071.001
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5000067'
+  sagan.rev: '3'
+  sagan.source_file: arp.rules
+---
+title: '[ARP] arpwatch - New activity [new machine]'
+id: 9109a669-727b-5fa1-8c94-a6bdba92e012
+status: experimental
+description: Converted from Sagan rule SID 5001061 (rev 5), file arp.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: arp
+detection:
+  selection_1:
+    message|contains|cased: new activity
+  selection_2:
+    appname|cased: arpwatch
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1046
+  - attack.t1065
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5001061'
+  sagan.rev: '5'
+  sagan.source_file: arp.rules
+---
+title: '[ARP] arpwatch - Broadcast address detected'
+id: e1ddcac6-e312-537c-b696-dcb6e8f24f89
+status: experimental
+description: Converted from Sagan rule SID 5001062 (rev 3), file arp.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: arp
+detection:
+  selection_1:
+    message|contains|cased: ethernet broadcast
+  selection_2:
+    appname|cased: arpwatch
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1046
+  - attack.t1065
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5001062'
+  sagan.rev: '3'
+  sagan.source_file: arp.rules
+---
+title: '[ARP] arpwatch - Bogus IP address detected'
+id: 8b3f2ad3-8116-5b83-8308-4d37f6925282
+status: experimental
+description: Converted from Sagan rule SID 5001063 (rev 3), file arp.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: arp
+detection:
+  selection_1:
+    message|contains|cased: ' bogon '
+  selection_2:
+    appname|cased: arpwatch
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1046
+  - attack.t1048
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5001063'
+  sagan.rev: '3'
+  sagan.source_file: arp.rules
+---
+title: '[ARP] arpwatch - Ethernet mismatch [MAC != ARP]'
+id: c5eb3ede-a2e6-5158-978b-824a4eb3b0cd
+status: experimental
+description: Converted from Sagan rule SID 5001064 (rev 4), file arp.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: arp
+detection:
+  selection_1:
+    message|contains|cased: ' ethernet mismatch '
+  selection_2:
+    appname|cased: arpwatch
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1046
+  - attack.t1556
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5001064'
+  sagan.rev: '4'
+  sagan.source_file: arp.rules

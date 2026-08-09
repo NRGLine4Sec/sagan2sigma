@@ -1,0 +1,47 @@
+title: '[SAMBA] Connection denied'
+id: 03348fc7-42d5-56d6-a790-2ea2bba2b70a
+status: experimental
+description: Converted from Sagan rule SID 5000146 (rev 2), file samba.rules.
+author: sagan2sigma
+logsource:
+  product: samba
+  service: smbd
+detection:
+  selection_1:
+    message|re|i: denied connection from|connection denied from
+  selection_2:
+    appname|cased: smbd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000146'
+  sagan.rev: '2'
+  sagan.source_file: samba.rules
+---
+title: '[SAMBA] User action denied by configuration'
+id: 4a000f5c-9071-5ea6-8290-9a05e5899f79
+status: experimental
+description: Converted from Sagan rule SID 5000375 (rev 2), file samba.rules.
+author: sagan2sigma
+logsource:
+  product: samba
+  service: smbd
+detection:
+  selection_1:
+    message|contains|cased: Permission denied
+  selection_2:
+    appname|cased: smbd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000375'
+  sagan.rev: '2'
+  sagan.source_file: samba.rules

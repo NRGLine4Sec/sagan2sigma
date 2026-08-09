@@ -1,0 +1,83 @@
+title: '[HP-E-SERIES-SWITCH] Invalid username/password'
+id: 7198204f-60c5-590d-b68e-9cae22586b78
+status: experimental
+description: Converted from Sagan rule SID 5001120 (rev 4), file procurve.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: auth
+  selection_2:
+    message|contains|cased: Invalid user name/password
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001120'
+  sagan.rev: '4'
+  sagan.source_file: procurve.rules
+---
+title: '[HP-E-SERIES-SWITCH] Port Security Violation'
+id: 0039c941-9f9b-57e6-85f4-4ed4ece649ee
+status: experimental
+description: Converted from Sagan rule SID 5001123 (rev 4), file procurve.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: FFI
+  selection_2:
+    message|contains: Security Violation
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '5001123'
+  sagan.rev: '4'
+  sagan.source_file: procurve.rules
+---
+title: '[HP-E-SERIES-L3-SWITCH] Invalid username/password - Brute Force [5/1]'
+id: eed4888c-1468-5c19-92e1-12ec688473ef
+name: sagan_5003205
+status: experimental
+description: Converted from Sagan rule SID 5003205 (rev 2), file procurve.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: 00419
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5003205'
+  sagan.rev: '2'
+  sagan.source_file: procurve.rules
+  rsigma.suppress: 1d
+---
+title: '[HP-E-SERIES-L3-SWITCH] Invalid username/password - Brute Force [5/1] (threshold 5 in 5m)'
+id: 76fa04eb-403f-5b4e-8a02-1c39440e64e8
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5003205
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 5
+level: low

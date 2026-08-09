@@ -1,0 +1,58 @@
+title: '[ORACLE] Authentication Failure'
+id: f647db9d-dbf3-5709-b26b-0c00c59f5760
+status: experimental
+description: Converted from Sagan rule SID 5001717 (rev 4), file oracle.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: RETURNCODE:[4] "1017"
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001717'
+  sagan.rev: '4'
+  sagan.source_file: oracle.rules
+---
+title: '[ORACLE] Brute force authentication failure [5/1]'
+id: e0a0665f-2b4b-5e73-9838-59d3e2607158
+name: sagan_5002949
+status: experimental
+description: Converted from Sagan rule SID 5002949 (rev 4), file oracle.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: RETURNCODE:[4] "1017"
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5002949'
+  sagan.rev: '4'
+  sagan.source_file: oracle.rules
+  rsigma.suppress: 5m
+---
+title: '[ORACLE] Brute force authentication failure [5/1] (threshold 5 in 5m)'
+id: 0fb12ce8-8600-5f88-ad6e-d05e8dc298b7
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5002949
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 5
+level: low

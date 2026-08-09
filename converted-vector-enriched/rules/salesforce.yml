@@ -1,0 +1,327 @@
+title: '[SALESFORCE] Anomalous API Activity from a User Detected'
+id: e90a8d61-b091-5d33-bfa1-0e0617813cf1
+status: experimental
+description: Converted from Sagan rule SID 5014033 (rev 1), file salesforce.rules.
+references:
+  - https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/platform_events_objects_monitoring.htm
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: salesforce_streaming_api_data
+  selection_2:
+    channel|cased: /event/ApiAnomalyEvent
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014033'
+  sagan.rev: '1'
+  sagan.source_file: salesforce.rules
+---
+title: '[SALESFORCE] CredentialStuffingEvent event detected'
+id: 1d624581-07a9-5fcc-8cce-d61a6371f9eb
+status: experimental
+description: Converted from Sagan rule SID 5014037 (rev 1), file salesforce.rules.
+references:
+  - https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/platform_events_objects_monitoring.htm
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: salesforce_streaming_api_data
+  selection_2:
+    channel|cased: /event/CredentialStuffingEvent
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014037'
+  sagan.rev: '1'
+  sagan.source_file: salesforce.rules
+---
+title: '[SALESFORCE] File Action was Blocked for a User'
+id: 42ba0348-11f8-5aa9-a661-db54363faa25
+status: experimental
+description: Converted from Sagan rule SID 5014039 (rev 1), file salesforce.rules.
+references:
+  - https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/sforce_api_objects_fileevent.htm
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: salesforce_streaming_api_data
+  selection_2:
+    channel|cased: /event/FileEvent
+  selection_3:
+    data.payload.PolicyOutcome: block
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014039'
+  sagan.rev: '1'
+  sagan.source_file: salesforce.rules
+---
+title: '[SALESFORCE] File Policy Violation not Blocked for Exempt User'
+id: 5c566807-d8ea-5b18-b89a-9cfbbf6516d3
+status: experimental
+description: Converted from Sagan rule SID 5014040 (rev 1), file salesforce.rules.
+references:
+  - https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/sforce_api_objects_fileevent.htm
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: salesforce_streaming_api_data
+  selection_2:
+    channel|cased: /event/FileEvent
+  selection_3:
+    data.payload.PolicyOutcome: ExemptNoAction
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014040'
+  sagan.rev: '1'
+  sagan.source_file: salesforce.rules
+---
+title: '[SALESFORCE] Failed Identity Verification Event Detected'
+id: 773292d2-cc3e-5a0c-a34f-f74fb6eae8cf
+status: experimental
+description: Converted from Sagan rule SID 5014041 (rev 1), file salesforce.rules.
+references:
+  - https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/platform_events_objects_monitoring.htm
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: salesforce_streaming_api_data
+  selection_2:
+    channel|cased: /event/IdentityVerificationEvent
+  filter_3:
+    data.payload.Status:
+      - AutomatedSuccess
+      - InProgress
+      - Initiated
+      - Succeeded
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014041'
+  sagan.rev: '1'
+  sagan.source_file: salesforce.rules
+---
+title: '[SALESFORCE] Login as Org Admin Detected'
+id: 6cdb7a89-4f32-5aff-a520-ab552a32d7c3
+status: experimental
+description: Converted from Sagan rule SID 5014044 (rev 1), file salesforce.rules.
+references:
+  - https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/platform_events_objects_monitoring.htm
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: salesforce_streaming_api_data
+  selection_2:
+    channel|cased: /event/LoginAsEventStream
+  selection_3:
+    data.payload.LoginAsCategory|cased: OrgAdmin
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014044'
+  sagan.rev: '1'
+  sagan.source_file: salesforce.rules
+---
+title: '[SALESFORCE] Possible Brute Force Failed Login Attempts [25/1]'
+id: cb273620-4326-5a36-a6ff-9a3f865c1ef9
+name: sagan_5014046
+status: experimental
+description: Converted from Sagan rule SID 5014046 (rev 1), file salesforce.rules.
+references:
+  - https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/platform_events_objects_monitoring.htm
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: salesforce_streaming_api_data
+  selection_2:
+    channel|cased: /event/LoginEventStream
+  filter_3:
+    data.payload.Status: Success
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014046'
+  sagan.rev: '1'
+  sagan.source_file: salesforce.rules
+  rsigma.suppress: 1d
+---
+title: '[SALESFORCE] Possible Brute Force Failed Login Attempts [25/1] (threshold 5 in 5m)'
+id: 801140c9-a595-598d-8b54-b42c5808e7da
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5014046
+  group-by:
+    - data.payload.SourceIp
+  timespan: 5m
+  condition:
+    gte: 5
+level: medium
+---
+title: '[SALESFORCE] Login After Brute Force'
+id: 6dcff786-2dab-5159-b35b-b6fd426f884d
+name: sagan_5014047
+status: experimental
+description: Converted from Sagan rule SID 5014047 (rev 1), file salesforce.rules.
+references:
+  - https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/platform_events_objects_monitoring.htm
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: salesforce_streaming_api_data
+  selection_2:
+    channel|cased: /event/LoginEventStream
+  selection_3:
+    data.payload.Status: Success
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014047'
+  sagan.rev: '1'
+  sagan.source_file: salesforce.rules
+---
+title: '[SALESFORCE] Login After Brute Force (correlated with brute_force)'
+id: 50168c49-f814-5468-94c0-51035961bc53
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5014047
+  group-by:
+    - hostname
+  timespan: 1d
+level: medium
+---
+title: '[SALESFORCE] PermissionSetEvent event detected'
+id: 3bc37da3-5963-5e63-9e1c-f308fae4231c
+status: experimental
+description: Converted from Sagan rule SID 5014053 (rev 1), file salesforce.rules.
+references:
+  - https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/sforce_api_objects_lightningurieventstream.htm
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: salesforce_streaming_api_data
+  selection_2:
+    channel|cased: /event/PermissionSetEvent
+  selection_3:
+    data.payload.PermissionType|cased: UserPermission
+  selection_4:
+    data.payload.Operation|cased: AssignedToUsers
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014053'
+  sagan.rev: '1'
+  sagan.source_file: salesforce.rules
+---
+title: '[SALESFORCE] Anomalous Export Event Detected - Possible Exfil'
+id: a2069634-8cd2-5880-97be-a6bec47c9475
+status: experimental
+description: Converted from Sagan rule SID 5014054 (rev 1), file salesforce.rules.
+references:
+  - https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/platform_events_objects_monitoring.htm
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: salesforce_streaming_api_data
+  selection_2:
+    channel|cased: /event/ReportAnomalyEvent
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014054'
+  sagan.rev: '1'
+  sagan.source_file: salesforce.rules
+---
+title: '[SALESFORCE] Session Hijacking Event Detected'
+id: e1eacc8c-9cc4-5d94-b65f-6e6fe8bf0551
+status: experimental
+description: Converted from Sagan rule SID 5014056 (rev 1), file salesforce.rules.
+references:
+  - https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/platform_events_objects_monitoring.htm
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: salesforce_streaming_api_data
+  selection_2:
+    channel|cased: /event/SessionHijackingEvent
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014056'
+  sagan.rev: '1'
+  sagan.source_file: salesforce.rules

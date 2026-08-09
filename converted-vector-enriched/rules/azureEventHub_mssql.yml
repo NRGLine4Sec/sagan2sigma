@@ -1,0 +1,89 @@
+title: '[AZURE-EVENTHUB] Microsoft SQL Authentication Failure - Possible Brute Force [10/1]'
+id: 993440ff-dbfc-5457-aa6d-b91618426552
+name: sagan_5014090
+status: experimental
+description: Converted from Sagan rule SID 5014090 (rev 1), file azureEventHub_mssql.rules.
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    category|cased: SQLSecurityAuditEvents
+  selection_3:
+    properties.action_name|cased: DATABASE AUTHENTICATION FAILED
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1110
+  - attack.ta0006
+  - sagan.classtype.attempted-user
+custom_attributes:
+  sagan.sid: '5014090'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_mssql.rules
+  rsigma.suppress: 1d
+  sagan.metadata: deployment=Endpoint,created_at=2023_01_20,updated_at=2023_01_20
+---
+title: '[AZURE-EVENTHUB] Microsoft SQL Authentication Failure - Possible Brute Force [10/1] (threshold
+  10 in 5m)'
+id: c2353880-0ef3-5f84-aa80-61d8f7b028e9
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5014090
+  group-by:
+    - properties.client_ip
+  timespan: 5m
+  condition:
+    gte: 10
+level: high
+---
+title: '[AZURE-EVENTHUB] Microsoft SQL Login After Brute Force'
+id: b15d74f2-eea9-5a32-9841-95aa8bf753b3
+name: sagan_5014091
+status: experimental
+description: Converted from Sagan rule SID 5014091 (rev 1), file azureEventHub_mssql.rules.
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    category|cased: SQLSecurityAuditEvents
+  selection_3:
+    properties.action_name|cased: DATABASE AUTHENTICATION SUCCEEDED
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1110
+  - attack.ta0006
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5014091'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_mssql.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_01_20,updated_at=2023_01_20
+---
+title: '[AZURE-EVENTHUB] Microsoft SQL Login After Brute Force (correlated with brute-force)'
+id: 622602c3-b4ba-5c2a-a842-c819de421a3e
+status: experimental
+description: Reconstruction of the Sagan 'brute-force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute-force
+    - sagan_5014091
+  group-by:
+    - properties.client_ip
+  timespan: 1d
+level: high

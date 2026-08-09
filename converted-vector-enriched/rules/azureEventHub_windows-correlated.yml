@@ -1,0 +1,191 @@
+title: '[WINDOWS-CORRELATED] Successful RDP login after brute force activity'
+id: f7d12f25-bb94-5476-84d1-0bee06c3d22d
+name: sagan_5008654
+status: experimental
+description: Converted from Sagan rule SID 5008654 (rev 12), file azureEventHub_windows-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4624
+      - 528
+      - 540
+  selection_2:
+    RenderedDescription|contains|cased: 'Logon Type: 10 '
+  filter_3:
+    RenderedDescription|contains|cased: 'Source Network Address: 0.0.0.0'
+  selection_4:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5008654'
+  sagan.rev: '12'
+  sagan.source_file: azureEventHub_windows-correlated.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_on=2022_11_22,old_sid=5002336
+---
+title: '[WINDOWS-CORRELATED] Successful RDP login after brute force activity (correlated with brute_force)'
+id: 3ba7465a-777a-5edd-8708-6f5c63159109
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5008654
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[WINDOWS-CORRELATED] Successful RDP login after recon activity'
+id: eb133065-3f10-5860-8356-59bc0d6a59dd
+name: sagan_5008655
+status: experimental
+description: Converted from Sagan rule SID 5008655 (rev 9), file azureEventHub_windows-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4624
+      - 528
+      - 540
+  selection_2:
+    RenderedDescription|contains|cased: 'Logon Type: 10 '
+  filter_3:
+    RenderedDescription|contains|cased: 'Source Network Address: 0.0.0.0'
+  selection_4:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5008655'
+  sagan.rev: '9'
+  sagan.source_file: azureEventHub_windows-correlated.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_on=2022_11_22,old_sid=5002957
+---
+title: '[WINDOWS-CORRELATED] Successful RDP login after recon activity (correlated with recon)'
+id: 457a82c6-e673-596b-921f-8f595e93a8a1
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_recon
+    - sagan_5008655
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[WINDOWS-CORRELATED] Successful RDP login after exploit attempt'
+id: 480ea6fa-f630-5d1f-aec1-bad9c5d4d51f
+name: sagan_5008656
+status: experimental
+description: Converted from Sagan rule SID 5008656 (rev 9), file azureEventHub_windows-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4624
+      - 528
+      - 540
+  selection_2:
+    RenderedDescription|contains|cased: 'Logon Type: 10 '
+  filter_3:
+    RenderedDescription|contains|cased: 'Source Network Address: 0.0.0.0'
+  selection_4:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5008656'
+  sagan.rev: '9'
+  sagan.source_file: azureEventHub_windows-correlated.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_on=2022_11_22,old_sid=5002958
+---
+title: '[WINDOWS-CORRELATED] Successful RDP login after exploit attempt (correlated with exploit_attempt)'
+id: 0570256a-64bc-57c9-8c46-38f952c40d6b
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_exploit_attempt
+    - sagan_5008656
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[WINDOWS-CORRELATED] Successful RDP login after honeypot activity'
+id: 2a75549b-80a9-5260-a602-6d050cb11ae9
+name: sagan_5008657
+status: experimental
+description: Converted from Sagan rule SID 5008657 (rev 6), file azureEventHub_windows-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4624
+      - 528
+      - 540
+  selection_2:
+    RenderedDescription|contains|cased: 'Logon Type: 10 '
+  filter_3:
+    RenderedDescription|contains|cased: 'Source Network Address: 0.0.0.0'
+  selection_4:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5008657'
+  sagan.rev: '6'
+  sagan.source_file: azureEventHub_windows-correlated.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_on=2022_11_22,old_sid=5003341
+---
+title: '[WINDOWS-CORRELATED] Successful RDP login after honeypot activity (correlated with honeypot)'
+id: 3397d1df-f341-5c18-bc13-b7c3bb670a81
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5008657
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high

@@ -1,0 +1,2425 @@
+title: '[SOPHOS] Potential Threat Found'
+id: cf67f374-f7fc-547c-9b2f-48748e6161d2
+status: experimental
+description: Converted from Sagan rule SID 5005703 (rev 1), file sophos.rules.
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    message|contains|cased: '::Threat::'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5005703'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Failed to protect'
+id: 939517a2-fd20-57bb-9975-c1f15d498e17
+status: experimental
+description: Converted from Sagan rule SID 5007258 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::NotProtected
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007258'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] New protected'
+id: 3ab70887-424c-54ac-aaa7-8d3c72feb0f2
+status: experimental
+description: Converted from Sagan rule SID 5007259 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Protected
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007259'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Real time protection disabled'
+id: 0045e26e-1a4a-5e39-82dc-64bffbada5ea
+status: experimental
+description: Converted from Sagan rule SID 5007263 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::SavDisabled
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007263'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Real time protection re-enabled'
+id: 96411bc6-d846-55ed-90f0-3fe71f1321e8
+status: experimental
+description: Converted from Sagan rule SID 5007264 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::SavEnabled
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007264'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Computer has been isolated'
+id: 81bdcd1a-f47d-5a16-8125-b84be02c17b9
+status: experimental
+description: Converted from Sagan rule SID 5007281 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Isolation::Isolated::ADMIN_UNKNOWN
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007281'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Access has been blocked by web filtering'
+id: ff1eb498-45cf-53ed-a07e-0272ebad34e2
+status: experimental
+description: Converted from Sagan rule SID 5007285 (rev 2), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::WebFilteringBlocked
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007285'
+  sagan.rev: '2'
+  sagan.source_file: sophos.rules
+---
+title: '"[SOPHOS] Website blocked'
+id: 07f2e209-78b6-51c2-8ef0-629699e319d7
+status: experimental
+description: Converted from Sagan rule SID 5007286 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::WebControlViolation::BLOCKED
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007286'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Unknown violation'
+id: 852f16e4-3ed8-50e5-b87e-cfc291017538
+status: experimental
+description: Converted from Sagan rule SID 5007289 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::WebControlViolation::UNKNOWN
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007289'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Application was blocked by an endpoint firewall.'
+id: 53606495-0a69-57ee-8478-bbef44e6972a
+status: experimental
+description: Converted from Sagan rule SID 5007290 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::WindowsFirewall::Blocked
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007290'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] The computer is running an operating system and service pack combination which is no
+  longer supported. Upgrade to continue receiving protection.'
+id: 84d9511f-de2e-5010-84a8-fb15991288f5
+status: experimental
+description: Converted from Sagan rule SID 5007296 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::UnsupportedOperatingSystem
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007296'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Security issue detected'
+id: 0ac73cbc-01cf-57ca-b4d9-bbd2945ecfda
+status: experimental
+description: Converted from Sagan rule SID 5007307 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Task::SecurityIssue
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007307'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Malware locally cleared'
+id: 5fc22962-2486-5790-ac80-ce7d378f227a
+status: experimental
+description: Converted from Sagan rule SID 5007327 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::Dismissed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007327'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Malware cleaned up'
+id: f4386f99-1134-5738-ae07-90ea67cc35a8
+status: experimental
+description: Converted from Sagan rule SID 5007328 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::CleanedUp
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007328'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Malicious traffic detected'
+id: 0b318c1c-140f-5654-a88d-ec19616cc8b1
+status: experimental
+description: Converted from Sagan rule SID 5007329 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::CommandAndControlDetected::1
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007329'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Sophos Firewall detected malicious traffic'
+id: 88e2a943-6c0a-5046-b3fe-8a54b15ba7ea
+status: experimental
+description: Converted from Sagan rule SID 5007330 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::CommandAndControlDetected::2
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007330'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Malicious traffic detected'
+id: 7438b56f-c06c-5490-ae67-4092528682c0
+status: experimental
+description: Converted from Sagan rule SID 5007331 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::CommandAndControlDetected::3
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007331'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Malicious traffic detection locally cleared'
+id: 9f687425-b67c-5d2e-a20a-cb39d6d03cf6
+status: experimental
+description: Converted from Sagan rule SID 5007332 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::CommandAndControlDismissed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007332'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Malicious inbound network traffic blocked from a remote computer'
+id: 8360dbe4-af35-59a0-9f86-b461793c7413
+status: experimental
+description: Converted from Sagan rule SID 5007333 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::IpsInboundDetection
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007333'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Malicious outbound network traffic blocked'
+id: 542df70c-a1fe-546c-a730-0d9b30d3f021
+status: experimental
+description: Converted from Sagan rule SID 5007334 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::IpsInboundDetection::1
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007334'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Malicious outbound network traffic blocked'
+id: c504acd2-b742-5355-ad47-bf2e130a8e26
+status: experimental
+description: Converted from Sagan rule SID 5007335 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::IpsInboundDetection::2
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007335'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Network Traffic Protection cleaned up a threat'
+id: 5e5afe79-a277-5d03-9ea0-debd5ce5b984
+status: experimental
+description: Converted from Sagan rule SID 5007336 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::CoreIpsClean
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007336'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Network Traffic Protection could not clean up a threat'
+id: 3470378b-4a70-51d4-8aa9-57b11a508f25
+status: experimental
+description: Converted from Sagan rule SID 5007337 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::CoreIpsCleanFailed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007337'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Running malware cleaned up'
+id: 9f5e5a16-377c-591e-a1e1-9f3260778852
+status: experimental
+description: Converted from Sagan rule SID 5007338 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::HIPSCleanedUp
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007338'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Running malware detected'
+id: f2fba367-b367-52b8-9605-45bd9d8e1201
+status: experimental
+description: Converted from Sagan rule SID 5007339 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::HIPSDetected
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007339'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Running malware locally cleared'
+id: d80c20fc-9f75-53a4-bc11-2d6fb9732a66
+status: experimental
+description: Converted from Sagan rule SID 5007340 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::HIPSDismissed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007340'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Malware detected'
+id: cf829200-9c3b-5326-9582-b3d6e1d1672e
+status: experimental
+description: Converted from Sagan rule SID 5007341 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::Detected
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007341'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] PUA locally cleared'
+id: f647e1c2-52bd-58d0-b6dc-3a092570f3ff
+status: experimental
+description: Converted from Sagan rule SID 5007342 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::PuaDismissed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007342'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] PUA cleaned up'
+id: f2f23bd6-4998-583b-a6c5-d5cb084d90a6
+status: experimental
+description: Converted from Sagan rule SID 5007343 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::PuaCleanedUp
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007343'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] PUA detected'
+id: a9dfdcb9-c6a9-55a8-86ab-42a1f5bcc7ff
+status: experimental
+description: Converted from Sagan rule SID 5007344 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::PuaDetected
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007344'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Remnants deleted of Potentially Unwanted App'
+id: dcdb1f66-6f0f-5ac4-aeee-09f55908c5c6
+status: experimental
+description: Converted from Sagan rule SID 5007349 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::HomePuaRemnantsDeleted
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007349'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Remnants found of Potentially Unwanted App'
+id: af3f2c49-94ee-536d-8290-950c843b5705
+status: experimental
+description: Converted from Sagan rule SID 5007350 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::HomePuaRemnantsDetected
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007350'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Threat remnants deleted'
+id: 62557fb3-3b6f-5f02-a4a5-ff30044cd111
+status: experimental
+description: Converted from Sagan rule SID 5007351 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::HomeThreatRemnantsDeleted
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007351'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Threat remnants found'
+id: 7f45f120-d507-5b8d-baa4-4798380ec77a
+status: experimental
+description: Converted from Sagan rule SID 5007352 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::HomeThreatRemnantsDetected
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007352'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] malicious behavior prevented'
+id: 7c55c817-b303-5a3e-ad5b-8580548d942c
+status: experimental
+description: Converted from Sagan rule SID 5007358 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::HmpaBehaviourPrevented
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007358'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] We prevented credential theft'
+id: 9d83100d-5a49-5120-94b1-506cdc26f78b
+status: experimental
+description: Converted from Sagan rule SID 5007362 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::HmpaCredGuard
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007362'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Credential theft attempt resolved'
+id: 54be0b52-e93c-5802-8307-3041de205a24
+status: experimental
+description: Converted from Sagan rule SID 5007363 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::HmpaCredGuardResolved
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007363'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] CryptoGuard detected ransomware'
+id: 9332a47d-4fe6-5f8a-91a3-2a3ee68a47af
+status: experimental
+description: Converted from Sagan rule SID 5007364 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::HmpaCryptoGuard
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007364'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] CryptoGuard unblocked process'
+id: 0c98280a-620a-5dba-ae6d-0d61753011a0
+status: experimental
+description: Converted from Sagan rule SID 5007365 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::HmpaCryptoGuardResolved
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007365'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] CryptoGuard detected a ransomware attack'
+id: efeafd5b-b3bf-518e-bf83-bd2e07fe7e22
+status: experimental
+description: Converted from Sagan rule SID 5007366 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::HmpaCryptoGuardSMB
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007366'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] CryptoGuard detected a ransomware attack from this device'
+id: ba484a68-2e34-5109-ad40-ffb5d12e09b5
+status: experimental
+description: Converted from Sagan rule SID 5007367 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::HmpaCryptoGuardSMBOrigin
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007367'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] CryptoGuard unblocked access to network shares'
+id: f3f4adfe-d412-5222-b0fd-0b1f85c0a0be
+status: experimental
+description: Converted from Sagan rule SID 5007368 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::HmpaCryptoGuardSMBResolved
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007368'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] exploit prevented'
+id: 6f885e4a-8f96-5a42-91af-7983f639950b
+status: experimental
+description: Converted from Sagan rule SID 5007369 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::HmpaExploitPrevented
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007369'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Detected malware'
+id: 10aa920a-df0c-5476-9349-c1a7fc3656b7
+status: experimental
+description: Converted from Sagan rule SID 5007370 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::HmpaMalwareDetected
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007370'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Deleted malware'
+id: 2aa20d25-133b-5d2d-93bb-19a8a0e9ed7e
+status: experimental
+description: Converted from Sagan rule SID 5007371 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::HmpaMalwareCleanup
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007371'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] We prevented a privilege escalation exploit'
+id: eb40c0ab-b288-5a0b-ac75-fdf2b0356e77
+status: experimental
+description: Converted from Sagan rule SID 5007372 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::HmpaPrivGuard
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007372'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Privilege escalation exploit resolved'
+id: 52db3e52-ad50-51d5-81f3-cfd8cc1bb03a
+status: experimental
+description: Converted from Sagan rule SID 5007373 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::HmpaPrivGuardResolved
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007373'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Detected PUA'
+id: 109a9c6b-626f-5247-9406-7c80d8ed35aa
+status: experimental
+description: Converted from Sagan rule SID 5007374 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::HmpaPuaDetected
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007374'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Pua has been cleaned up'
+id: 66e0b551-c59c-5b2f-9443-a111e3e4b237
+status: experimental
+description: Converted from Sagan rule SID 5007375 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::HmpaPuaCleanup
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007375'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Safe Browsing detected browser has been compromised'
+id: 7b079144-7f7a-59ae-bc77-c3d860229a02
+status: experimental
+description: Converted from Sagan rule SID 5007376 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::HmpaSafeBrowsing
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007376'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Safe Browsing detected a threat'
+id: d0eca67b-95b2-5aec-9ee1-fe3acf38c016
+status: experimental
+description: Converted from Sagan rule SID 5007381 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::HmpaThreat
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007381'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] AMSI Protection blocked a threat'
+id: 06116fe4-31e9-5779-8805-7f4dd1ce72ed
+status: experimental
+description: Converted from Sagan rule SID 5007384 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::CoreAmsiBlocked::1
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007384'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] AMSI Protection blocked a threat'
+id: cd835a80-3649-5f96-b968-c71324146d32
+status: experimental
+description: Converted from Sagan rule SID 5007385 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::CoreAmsiBlocked::2
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007385'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] AMSI Protection cleaned up a threat.'
+id: 1db438fc-8678-55d3-8f4e-edf43a18a9d9
+status: experimental
+description: Converted from Sagan rule SID 5007386 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event.Endpoint.CoreAmsiClean
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007386'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] AMSI Protection could not clean up a threat.'
+id: 85d44651-aec7-5c85-ba9a-552d06d875fa
+status: experimental
+description: Converted from Sagan rule SID 5007387 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event.Endpoint.CoreAmsiCleanFailed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007387'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Malware detected'
+id: 540c8c08-8785-526a-a48a-ea700053f298
+status: experimental
+description: Converted from Sagan rule SID 5007388 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::CoreDetection
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007388'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Malware detected in network location requires attention'
+id: 826dba46-1dd4-5fac-b6fc-691c3d7328b5
+status: experimental
+description: Converted from Sagan rule SID 5007389 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::CoreRemoteDetection
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007389'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] PUA detected'
+id: 29198e23-4257-52d1-b3ce-3d99b514f530
+status: experimental
+description: Converted from Sagan rule SID 5007390 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::CorePuaDetection
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007390'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] PUA detected in network location requires attention'
+id: aa18cd7a-0d38-5c52-a53c-93b3d31798e7
+status: experimental
+description: Converted from Sagan rule SID 5007391 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::CorePuaRemoteDetection
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007391'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Malware cleaned up'
+id: 4c726532-5748-56b2-92a6-0bd993fb6a11
+status: experimental
+description: Converted from Sagan rule SID 5007392 (rev 2), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::CoreClean|
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007392'
+  sagan.rev: '2'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Manual malware cleanup required'
+id: 1a2d1cb0-5fc0-50d1-80ed-806f9e1e278c
+status: experimental
+description: Converted from Sagan rule SID 5007393 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::CoreCleanFailed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007393'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Malware cleaned up'
+id: 05547687-4111-57b3-ab6d-c19ff6e21a4e
+status: experimental
+description: Converted from Sagan rule SID 5007398 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::CoreHmpaClean
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007398'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Manual malware cleanup required'
+id: 7a5bf0cf-816e-5038-aa07-b90c4e5db958
+status: experimental
+description: Converted from Sagan rule SID 5007399 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::CoreHmpaCleanFailed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007399'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] PUA cleaned up'
+id: 8d227aaa-cd25-5380-a732-96177337cbd3
+status: experimental
+description: Converted from Sagan rule SID 5007403 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::CorePuaClean
+  filter_3:
+    message|contains|cased: Event::Endpoint::CorePuaCleanFailed
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007403'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+  sagan.metadata: updated_at=2024_04_11
+---
+title: '[SOPHOS] Manual PUA cleanup required'
+id: 0aa10c10-3d88-5cfd-ba9d-582d10aa1deb
+status: experimental
+description: Converted from Sagan rule SID 5007405 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased:  "
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007405'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Blocked item cleaned up'
+id: 90a2be83-8b66-54d7-95c1-a204e38774a9
+status: experimental
+description: Converted from Sagan rule SID 5007407 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::CoreBlocklistClean
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007407'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Manual blocked item cleanup required'
+id: 4bc71fd4-9a44-549d-b139-a131a43b356b
+status: experimental
+description: Converted from Sagan rule SID 5007408 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::CoreBlocklistCleanFailed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007408'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] System Clean failed'
+id: bc30ca05-8369-5859-adcb-e0a2207e2fd2
+status: experimental
+description: Converted from Sagan rule SID 5007410 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::CoreSystemCleanFailed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007410'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Outbreak detected'
+id: f3ebf01c-39ac-5704-bc5b-e316ab409694
+status: experimental
+description: Converted from Sagan rule SID 5007417 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::CoreOutbreak
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007417'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Malware marked as resolved'
+id: cfe7920d-167d-5968-b763-90f17d60bd69
+status: experimental
+description: Converted from Sagan rule SID 5007418 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::CoreDismissed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007418'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Outbreak marked as resolved'
+id: 67d0592c-017d-5454-b5d7-3c45842c88e5
+status: experimental
+description: Converted from Sagan rule SID 5007419 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::CoreOutbreakDismissed
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007419'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] An attempt to communicate with a botnet or command and control server has been detected.'
+id: 9b26a0e5-0e7b-51a5-8b6e-a53c78d8f77d
+status: experimental
+description: Converted from Sagan rule SID 5007423 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Firewall::FirewallAdvancedThreatProtection
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007423'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Firewall Gateway Down'
+id: 291926b9-b001-5243-b921-4e7c2366e56e
+status: experimental
+description: Converted from Sagan rule SID 5007424 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Firewall::FirewallGatewayDown
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007424'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Firewall Gateway Up'
+id: 1583fad8-be10-512a-8ccb-ab34abd8a9c4
+status: experimental
+description: Converted from Sagan rule SID 5007425 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Firewall::FirewallGatewayUp
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007425'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Invalid AWS credentials'
+id: f7738d52-7ece-5ce7-940d-2adf5baf7bdc
+status: experimental
+description: Converted from Sagan rule SID 5007461 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Iaas::IaasError::INVALID_ACCOUNT_CREDENTIALS
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007461'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Invalid Azure credentials'
+id: 19134d02-0ecf-5c09-ac16-dc5bd22a7da6
+status: experimental
+description: Converted from Sagan rule SID 5007474 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::IaasAzure::AzureError::INVALID_CREDENTIALS
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007474'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Man in the middle attack detected in wifi 0'
+id: e3683cbc-9883-54f6-b328-50b0d44c2ca8
+status: experimental
+description: Converted from Sagan rule SID 5007494 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Smc::MitmAttackEvent::0
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007494'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Man in the middle attack detected in wifi 1'
+id: ddf0be17-fc7b-5a80-ac36-6d1fdd678a66
+status: experimental
+description: Converted from Sagan rule SID 5007495 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Smc::MitmAttackEvent::1
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007495'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Man in the middle attack detected in wifi 2'
+id: 8f1252bd-851f-586d-9362-1dbdc5d071e1
+status: experimental
+description: Converted from Sagan rule SID 5007496 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Smc::MitmAttackEvent::2
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007496'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Man in the middle attack detected in wifi 3'
+id: 8616f7f6-de8a-5aa5-81c8-097ac9d4e6ca
+status: experimental
+description: Converted from Sagan rule SID 5007497 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Smc::MitmAttackEvent::3
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007497'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Man in the middle attack detected in wifi 4'
+id: 68e8124f-1e53-5a80-a1b4-52e7382e30bb
+status: experimental
+description: Converted from Sagan rule SID 5007498 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Smc::MitmAttackEvent::4
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007498'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Man in the middle attack detected in wifi 5'
+id: 3d835ecc-dc8d-5e6d-903a-566edde313d9
+status: experimental
+description: Converted from Sagan rule SID 5007499 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Smc::MitmAttackEvent::5
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007499'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Man in the middle attack detected in wifi 6'
+id: 1590c59b-ba14-5cfd-adc1-156d9a9cd13e
+status: experimental
+description: Converted from Sagan rule SID 5007500 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Smc::MitmAttackEvent::6
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007500'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Web Filter Blocked'
+id: c5972499-f7a3-5fb2-b536-443cdca71a87
+status: experimental
+description: Converted from Sagan rule SID 5007517 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Smc::WebFiltering::BLOCKED
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007517'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Email DLP error: rule in policy was turned off because it has a regular expression that
+  ran for too long.'
+id: c98410ae-0a48-5a52-9cef-d54713fc69fc
+status: experimental
+description: Converted from Sagan rule SID 5007521 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Xgemail::DlpRuleDisableEvent
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007521'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Sender has been blocked for reaching the spam/virus threshold.'
+id: 5efaccd9-4c72-5683-8810-637f1a48a9df
+status: experimental
+description: Converted from Sagan rule SID 5007524 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::OutboundMalwareProtection::BlockedSender
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007524'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Running malware not cleaned up'
+id: f6b33506-e72e-55c1-b2fc-b1d29706c547
+status: experimental
+description: Converted from Sagan rule SID 5007536 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::HIPSCleanupFailed::CLEANUPABLE
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007536'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Running malware not cleaned up'
+id: 0a7dc995-b72c-54b7-a3b4-df76e0240a3b
+status: experimental
+description: Converted from Sagan rule SID 5007537 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::HIPSCleanupFailed::CLEANUP_IN_PROGRESS
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007537'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Running malware requires manual cleanup'
+id: 265d0435-43f9-5117-9cc9-46e2f661fc21
+status: experimental
+description: Converted from Sagan rule SID 5007539 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::HIPSCleanupFailed::NONE
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007539'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Malware not cleaned up'
+id: 31dcb5b6-1d66-5dbf-886e-17976364378c
+status: experimental
+description: Converted from Sagan rule SID 5007541 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::CleanupFailed::CLEANUPABLE
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007541'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Malware not cleaned up'
+id: 619977e3-d7f1-5e01-acbe-870959e3c213
+status: experimental
+description: Converted from Sagan rule SID 5007542 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::CleanupFailed::CLEANUP_IN_PROGRESS
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007542'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Manual cleanup required'
+id: 6398614c-fc70-57c4-9d49-4c8528ec0d83
+status: experimental
+description: Converted from Sagan rule SID 5007544 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::CleanupFailed::NONE
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007544'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] PUA not cleaned up'
+id: 77332777-b5e6-52a7-9200-b70275b4094c
+status: experimental
+description: Converted from Sagan rule SID 5007546 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::PuaCleanupFailed::CLEANUPABLE
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007546'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] PUA not cleaned up'
+id: 18fd6be3-7e80-511d-9ae9-a0f5665c5047
+status: experimental
+description: Converted from Sagan rule SID 5007547 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::PuaCleanupFailed::CLEANUP_IN_PROGRESS
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007547'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Manual PUA cleanup required'
+id: 7a290a68-1e2c-52c6-aaf1-ae6d49822906
+status: experimental
+description: Converted from Sagan rule SID 5007549 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::Endpoint::Threat::PuaCleanupFailed::NONE
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007549'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] Device is potentially compromised'
+id: 98942db2-d165-5c90-905d-7657a78a7bbd
+status: experimental
+description: Converted from Sagan rule SID 5007611 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::UAV::PotentiallyCompromisedDevice
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007611'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules
+---
+title: '[SOPHOS] User has failed authentication attempts'
+id: d81eebef-e7ad-581d-b92f-59c0fa469880
+status: experimental
+description: Converted from Sagan rule SID 5007614 (rev 1), file sophos.rules.
+references:
+  - https://support.sophos.com/support/s/article/KB-000038309?language=en_US
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: Event::ZTNA::ZTNAAuthenticationFailure
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5007614'
+  sagan.rev: '1'
+  sagan.source_file: sophos.rules

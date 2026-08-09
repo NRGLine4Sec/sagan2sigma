@@ -1,0 +1,1419 @@
+title: '[WINDOWS-AUTH] Login failure - Unknown username or bad password - Brute force [25/1]'
+id: 2986bcf6-863e-52ff-aa42-e4d80cf176ed
+name: sagan_5001151
+status: experimental
+description: Converted from Sagan rule SID 5001151 (rev 29), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 529
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5001151'
+  sagan.rev: '29'
+  sagan.source_file: windows-auth.rules
+  rsigma.suppress: 1d
+---
+title: '[WINDOWS-AUTH] Login failure - Unknown username or bad password - Brute force [25/1] (threshold
+  25 in 5m)'
+id: 0269e9a2-7622-54f6-a600-e37c051a52a2
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5001151
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] Login failure - Account login time restriction'
+id: 359a2de6-36f0-5fcd-8dd4-fff7fe7810b8
+status: experimental
+description: Converted from Sagan rule SID 5001152 (rev 7), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 530
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001152'
+  sagan.rev: '7'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] Login failure - Account currently disabled [0/1]'
+id: 475da405-e9ec-5dc8-a2f1-7dfc8c6e0f25
+status: experimental
+description: Converted from Sagan rule SID 5001153 (rev 22), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 531
+  filter_2:
+    message|contains|cased: 'User Name: Domain:'
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_3 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001153'
+  sagan.rev: '22'
+  sagan.source_file: windows-auth.rules
+  rsigma.suppress: 5m
+---
+title: '[WINDOWS-AUTH] Login failure - User not allowed to login at this computer'
+id: d561ec34-6c59-5eaa-8a35-35a3d25daca0
+status: experimental
+description: Converted from Sagan rule SID 5001155 (rev 7), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 533
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001155'
+  sagan.rev: '7'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] Login failure - User not granted login type'
+id: f1a61815-8775-5480-88d8-04be04a7c773
+status: experimental
+description: Converted from Sagan rule SID 5001156 (rev 7), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 534
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001156'
+  sagan.rev: '7'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] Login failure - Account locked [0/1]'
+id: ac57736a-b9e0-5372-a609-198a136b3aea
+status: experimental
+description: Converted from Sagan rule SID 5001159 (rev 24), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 539
+  filter_2:
+    message|contains|cased: 'User Name: Domain: Logon Type:'
+  filter_3:
+    message|contains|cased: 'Source Network Address: -'
+  selection_4:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_4 and not (filter_2 or filter_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001159'
+  sagan.rev: '24'
+  sagan.source_file: windows-auth.rules
+  rsigma.suppress: 5m
+---
+title: '[WINDOWS-AUTH] User account unlocked'
+id: c3fcd3c3-1324-5146-a9a3-9b3dd296632f
+status: experimental
+description: Converted from Sagan rule SID 5001161 (rev 7), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4767
+      - 671
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001161'
+  sagan.rev: '7'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] RDP maximum allowed failed logon attempts'
+id: f62fb10f-cb16-57bb-a2d9-12914d9b053c
+status: experimental
+description: Converted from Sagan rule SID 5001181 (rev 6), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 1012
+  selection_2:
+    appname|cased: TermService
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001181'
+  sagan.rev: '6'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] Remote access login failure'
+id: 433a7111-9a2a-5c1c-bac2-527dbf5ac677
+status: experimental
+description: Converted from Sagan rule SID 5001187 (rev 4), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 20187
+      - 20014
+      - 20078
+      - 20050
+      - 20049
+      - 20189
+  selection_2:
+    appname|cased: RemoteAccess
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001187'
+  sagan.rev: '4'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] Remote access login success'
+id: bcb2fcca-498b-5558-8e5b-3af6bed5a648
+status: experimental
+description: Converted from Sagan rule SID 5001188 (rev 5), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 20158
+  selection_2:
+    appname|cased: RemoteAccess
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5001188'
+  sagan.rev: '5'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] General account database changed'
+id: 482a4944-f52c-579e-9941-2c741a305d86
+status: experimental
+description: Converted from Sagan rule SID 5001193 (rev 7), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 640
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5001193'
+  sagan.rev: '7'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] DC - Integrity check on decrypted'
+id: 1b68e6aa-995c-5c94-a6b8-872173a86192
+status: experimental
+description: Converted from Sagan rule SID 5001195 (rev 10), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4768
+      - 4771
+      - 681
+      - 676
+      - 675
+  selection_2:
+    message|contains|cased: 'Failure Code: 0x1F'
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5001195'
+  sagan.rev: '10'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] DC - Possible replay attack'
+id: 751ede93-c855-580f-b349-27ab9ba3a139
+status: experimental
+description: Converted from Sagan rule SID 5001196 (rev 9), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4768
+      - 4771
+      - 681
+      - 676
+      - 675
+  selection_2:
+    message|contains|cased: 'Failure Code: 0x22'
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5001196'
+  sagan.rev: '9'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] User added to Network Config Operator group'
+id: 4aaff202-cdb0-50ca-acf1-c7cef6381442
+status: experimental
+description: Converted from Sagan rule SID 5001693 (rev 11), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4732
+      - 636
+  selection_2:
+    message|contains|cased: 'S-1-5-32-556 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.admin-activity
+custom_attributes:
+  sagan.sid: '5001693'
+  sagan.rev: '11'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] User added to DNS Admins group'
+id: ed2994b5-1635-5067-8099-8d4cf2b9233a
+status: experimental
+description: Converted from Sagan rule SID 5001694 (rev 10), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4732
+      - 636
+  selection_2:
+    message|contains|cased: 'S-1-5-32-1101 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.admin-activity
+custom_attributes:
+  sagan.sid: '5001694'
+  sagan.rev: '10'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] CRITICAL - User added to Domain Administrators group'
+id: c3b0e198-9e66-54bc-85f0-f224a10621c1
+status: experimental
+description: Converted from Sagan rule SID 5001695 (rev 12), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4728
+      - 632
+  selection_2:
+    message|contains|cased: 'Group Name: Domain Admins'
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5001695'
+  sagan.rev: '12'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] CRITICAL - User added to Enterprise Administrators group'
+id: bbe3f057-3114-5fce-a619-5706818a5ccd
+status: experimental
+description: Converted from Sagan rule SID 5001696 (rev 10), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4756
+      - 660
+  selection_2:
+    message|re: 'S-1-5-21-\d{5,15}\-\d{5,15}\-\d{5,15}-519 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5001696'
+  sagan.rev: '10'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] User added to Group Policy Creator Owner group'
+id: 0fdc82ec-7836-50a1-bc13-4c3050ab372d
+status: experimental
+description: Converted from Sagan rule SID 5001697 (rev 9), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4756
+      - 660
+  selection_2:
+    message|re: 'S-1-5-21-\d{5,15}\-\d{5,15}\-\d{5,15}-520 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5001697'
+  sagan.rev: '9'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] CRITICAL - User added to Schema Admins'
+id: e1f2e59f-0431-5a3e-9ad3-40e88399f155
+status: experimental
+description: Converted from Sagan rule SID 5003104 (rev 5), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4756
+      - 660
+  selection_2:
+    message|re: 'S-1-5-21-\d{5,15}\-\d{5,15}\-\d{5,15}-518 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5003104'
+  sagan.rev: '5'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] Potential Windows User Enumeration - User Name Does Not Exist [Brute Force] [25/1]'
+id: 07d51807-c489-5637-ace1-267ba80cf0cc
+name: sagan_5001728
+status: experimental
+description: Converted from Sagan rule SID 5001728 (rev 32), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    message|contains: C0000064
+  filter_2:
+    message|contains|cased: $ Source
+  filter_3:
+    message|contains|cased: '$ Account Domain: '
+  selection_4:
+    EventID:
+      - 4625
+      - 4776
+  selection_5:
+    message|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
+  selection_6:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_4 and selection_5 and selection_6 and not (filter_2 or filter_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5001728'
+  sagan.rev: '32'
+  sagan.source_file: windows-auth.rules
+  rsigma.suppress: 1d
+---
+title: '[WINDOWS-AUTH] Potential Windows User Enumeration - User Name Does Not Exist [Brute Force] [25/1]
+  (threshold 25 in 5m)'
+id: 12efa90c-0a42-502e-b688-9a8bf14350bc
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5001728
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] Windows Brute force - User Is Locked Out [25/1]'
+id: ca4d9954-e709-5543-a5db-8c851dce1793
+name: sagan_5001730
+status: experimental
+description: Converted from Sagan rule SID 5001730 (rev 27), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    message|contains: C0000234
+  selection_2:
+    EventID: 4625
+  selection_3:
+    message|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
+  selection_4:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5001730'
+  sagan.rev: '27'
+  sagan.source_file: windows-auth.rules
+  rsigma.suppress: 1d
+---
+title: '[WINDOWS-AUTH] Windows Brute force - User Is Locked Out [25/1] (threshold 25 in 5m)'
+id: ebe17108-01c8-52b4-ba7b-04b33ea644c7
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5001730
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] Windows Brute force - User Account Disabled [25/1]'
+id: 2d1409d2-4811-5f74-9e6b-9704ed6330f5
+name: sagan_5001731
+status: experimental
+description: Converted from Sagan rule SID 5001731 (rev 30), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    message|contains: C0000072
+  selection_2:
+    EventID:
+      - 4625
+      - 4776
+  selection_3:
+    message|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
+  selection_4:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5001731'
+  sagan.rev: '30'
+  sagan.source_file: windows-auth.rules
+  rsigma.suppress: 1d
+---
+title: '[WINDOWS-AUTH] Windows Brute force - User Account Disabled [25/1] (threshold 25 in 5m)'
+id: b990fe8a-6cd5-54c9-811f-ab1404d0336d
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5001731
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] Windows Brute force - User Login Attempts Outside of Time Restriction [25/1]'
+id: 50a074bc-3ea6-5b45-a3b3-0547dbab15f1
+name: sagan_5001732
+status: experimental
+description: Converted from Sagan rule SID 5001732 (rev 27), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    message|contains: C000006F
+  selection_2:
+    EventID:
+      - 4625
+      - 4776
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5001732'
+  sagan.rev: '27'
+  sagan.source_file: windows-auth.rules
+  rsigma.suppress: 1d
+---
+title: '[WINDOWS-AUTH] Windows Brute force - User Login Attempts Outside of Time Restriction [25/1] (threshold
+  25 in 5m)'
+id: b9903c0a-559d-5b27-bb41-1feb8ece5917
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5001732
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0xC - KDC policy rejects request [25/1]'
+id: 69d01cee-92fd-5dbd-b1b8-267800162b8e
+name: sagan_5001751
+status: experimental
+description: Converted from Sagan rule SID 5001751 (rev 13), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4768
+      - 4771
+      - 676
+      - 675
+  selection_2:
+    message|contains|cased: ' Code: 0xC '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5001751'
+  sagan.rev: '13'
+  sagan.source_file: windows-auth.rules
+  rsigma.suppress: 1d
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0xC - KDC policy rejects request [25/1]
+  (threshold 25 in 5m)'
+id: b4381b25-7485-557e-a5c4-6e4b251d68bc
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5001751
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0x22 - Request is a replay [25/1]'
+id: 0946f80b-6ad3-5964-8919-2392a73d9590
+name: sagan_5001768
+status: experimental
+description: Converted from Sagan rule SID 5001768 (rev 13), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4768
+      - 4771
+      - 676
+      - 675
+  selection_2:
+    message|contains|cased: ' Code: 0x22 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5001768'
+  sagan.rev: '13'
+  sagan.source_file: windows-auth.rules
+  rsigma.suppress: 1d
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0x22 - Request is a replay [25/1] (threshold
+  25 in 5m)'
+id: b8151a51-093b-522f-94bf-ac813c3075ee
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5001768
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0x24 - Ticket and authenticator don''t match
+  [25/1]'
+id: 78d8a621-f2d8-55fd-a241-85de2768c24b
+name: sagan_5001770
+status: experimental
+description: Converted from Sagan rule SID 5001770 (rev 13), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4768
+      - 4771
+      - 676
+      - 675
+  selection_2:
+    message|contains|cased: ' Code: 0x24 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5001770'
+  sagan.rev: '13'
+  sagan.source_file: windows-auth.rules
+  rsigma.suppress: 1d
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0x24 - Ticket and authenticator don''t match
+  [25/1] (threshold 25 in 5m)'
+id: 40f2f049-c081-5965-a338-613c1cc014b4
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5001770
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0x26 - Incorrect net address [25/1]'
+id: 8bfef2a6-c02d-5281-a402-93176683207e
+name: sagan_5001772
+status: experimental
+description: Converted from Sagan rule SID 5001772 (rev 13), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4768
+      - 4771
+      - 676
+      - 675
+  selection_2:
+    message|contains|cased: ' Code: 0x26 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5001772'
+  sagan.rev: '13'
+  sagan.source_file: windows-auth.rules
+  rsigma.suppress: 1d
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0x26 - Incorrect net address [25/1] (threshold
+  25 in 5m)'
+id: ef5d41d6-a510-58c3-9cb8-ba8068d53caa
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5001772
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0x31 - Incorrect sequence number in message
+  [25/1]'
+id: a8f87ea0-09f4-5ffc-8c47-01fdacd70538
+name: sagan_5001782
+status: experimental
+description: Converted from Sagan rule SID 5001782 (rev 13), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4768
+      - 4771
+      - 676
+      - 675
+  selection_2:
+    message|contains|cased: ' Code: 0x31 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5001782'
+  sagan.rev: '13'
+  sagan.source_file: windows-auth.rules
+  rsigma.suppress: 1d
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0x31 - Incorrect sequence number in message
+  [25/1] (threshold 25 in 5m)'
+id: bf68cce3-4e18-5c46-b906-cc1b9f4abb34
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5001782
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] User account created'
+id: 5cbf1411-f952-52c3-9271-e89353af8844
+status: experimental
+description: Converted from Sagan rule SID 5001880 (rev 12), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4720
+      - 624
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5001880'
+  sagan.rev: '12'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] User account re-enabled'
+id: ebdeff07-da0e-5a1b-ae32-5ddad602c8da
+name: sagan_5001881
+status: experimental
+description: Converted from Sagan rule SID 5001881 (rev 11), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4722
+      - 626
+  filter_2:
+    message|contains|cased: $
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_3 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5001881'
+  sagan.rev: '11'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] User account re-enabled (correlated with create_enabled)'
+id: 10255e49-742b-5620-9818-bd3ba12a8aac
+status: experimental
+description: Reconstruction of the Sagan 'create_enabled' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_create_enabled
+    - sagan_5001881
+  group-by:
+    - hostname
+  timespan: 30s
+level: high
+---
+title: '[WINDOWS-AUTH] Account locked out (ADMINISTRATOR)'
+id: 9f23db48-b2a6-51e4-8f55-d49b2300ca8e
+status: experimental
+description: Converted from Sagan rule SID 5001978 (rev 6), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4740
+      - 644
+  selection_2:
+    message|contains: administrator
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5001978'
+  sagan.rev: '6'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] User account deleted'
+id: 7c734aa5-59b4-5734-8829-d8226ead0086
+status: experimental
+description: Converted from Sagan rule SID 5002335 (rev 6), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4726
+      - 630
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002335'
+  sagan.rev: '6'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] SAM Database Unable to Lock Account'
+id: 83e8cdcd-3c54-5c39-9bdc-c40c1608cad4
+status: experimental
+description: Converted from Sagan rule SID 5003203 (rev 2), file windows-auth.rules.
+references:
+  - https://technet.microsoft.com/en-us/library/cc733228(v=ws.10).aspx
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '"Directory-Services-SAM"'
+  selection_2:
+    EventID: 12294
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5003203'
+  sagan.rev: '2'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] Suspicious network login'
+id: 33ac9c55-83d6-52bd-92b0-4924e6c3e391
+status: experimental
+description: Converted from Sagan rule SID 5003376 (rev 3), file windows-auth.rules.
+references:
+  - https://indingbad.blogspot.cz/2017/12/a-few-of-my-favorite-things-continued.html
+  - https://www.quadrantsec.com/about/blog/using_jack_crooks_log_analysis_concepts_with_sagan
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4624
+  selection_3:
+    message|contains|cased: 'Logon Type: 3'
+  filter_4:
+    message|contains|cased: '$ Account Domain:'
+  filter_5:
+    message|contains|cased: 'Workstation Name: Source Network Address:'
+  condition: selection_1 and selection_2 and selection_3 and not (filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-login
+custom_attributes:
+  sagan.sid: '5003376'
+  sagan.rev: '3'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] Suspicious network login from non-RFC1918'
+id: fc93f2de-f285-563b-a8b0-44f1b195ec6f
+status: experimental
+description: Converted from Sagan rule SID 5003377 (rev 6), file windows-auth.rules.
+references:
+  - https://findingbad.blogspot.cz/2017/12/a-few-of-my-favorite-things-continued.html
+  - https://www.quadrantsec.com/about/blog/using_jack_crooks_log_analysis_concepts_with_sagan
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4624
+  selection_3:
+    message|contains|cased: 'Logon Type: 3'
+  filter_4:
+    message|contains:
+      - 'Source Network Address: 10.'
+      - 'Source Network Address: 192.168.'
+      - 'Source Network Address: -'
+      - 'Source Network Address: ::1'
+      - 'Source Network Address: 127.0.0.1'
+      - 'Source Network Address: 172.16.'
+      - 'Source Network Address: 172.17.'
+      - 'Source Network Address: 172.18.'
+      - 'Source Network Address: 172.19.'
+      - 'Source Network Address: 172.20.'
+      - 'Source Network Address: 172.21.'
+      - 'Source Network Address: 172.22.'
+      - 'Source Network Address: 172.23.'
+      - 'Source Network Address: 172.24.'
+      - 'Source Network Address: 172.25.'
+      - 'Source Network Address: 172.26.'
+      - 'Source Network Address: 172.27.'
+      - 'Source Network Address: 172.28.'
+      - 'Source Network Address: 172.29.'
+      - 'Source Network Address: 172.30.'
+      - 'Source Network Address: 172.31'
+      - 'Source Network Address: 169.254'
+      - 'Source Network Address: fe80'
+      - 'Source Network Address: ::1'
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-login
+custom_attributes:
+  sagan.sid: '5003377'
+  sagan.rev: '6'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] Suspicious WMIC/Net execution'
+id: 6afab39a-5002-5b94-8228-be5005f4f7f0
+status: experimental
+description: Converted from Sagan rule SID 5003387 (rev 4), file windows-auth.rules.
+references:
+  - https://findingbad.blogspot.cz/2017/12/a-few-of-my-favorite-things-continued.html
+  - https://quadrantsec.com/blog/using-jack-crooks-log-analysis-concepts-sagan
+  - https://findingbad.blogspot.com/2017/12/a-few-of-my-favorite-things-continued.html
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4648
+  filter_3:
+    message|contains|cased: 'Account Name: -'
+  filter_4:
+    message|contains|cased: 'Target Server Name: localhost'
+  filter_5:
+    message|contains|cased: '$ Additional Information:'
+  selection_6:
+    message|re|i: 'Process Name: (.*)(net\.exe|net1\.exe|wmic\.exe)(.*)'
+  condition: selection_1 and selection_2 and selection_6 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5003387'
+  sagan.rev: '4'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] User added to Local Administrators group'
+id: 868bf50f-17fc-59a1-a002-c2515b91020e
+status: experimental
+description: Converted from Sagan rule SID 5003927 (rev 2), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 636
+      - 4732
+  selection_2:
+    message|contains|cased: 'Group: Security ID: S-1-5-32-544 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5003927'
+  sagan.rev: '2'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] Suspicious Account Lockout'
+id: 960d4f86-3811-57e1-9293-babb6773c6bb
+status: experimental
+description: Converted from Sagan rule SID 5003982 (rev 4), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4740
+      - 644
+  selection_2:
+    message|contains:
+      - 'Account Name: guest '
+      - 'Account Name: sql '
+      - 'Account Name: demo '
+      - 'Account Name: db2admin '
+      - 'Account Name: pos '
+      - 'Account Name: accounting '
+      - 'Account Name: letmein '
+      - 'Account Name: mysql '
+      - 'Account Name: oracle '
+      - 'Account Name: test '
+      - 'Account Name: testing '
+      - 'Account Name: support '
+      - 'Account Name: sales '
+      - 'Account Name: ansible '
+      - 'Account Name: ec2-user '
+      - 'Account Name: azureuser '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5003982'
+  sagan.rev: '4'
+  sagan.source_file: windows-auth.rules
+  rsigma.suppress: 1d
+---
+title: '[WINDOWS-AUTH] Vulnerable Netlogon/Zerologon connection allowed during deployment phase - CVE-2020-1472'
+id: cb743376-b109-5c89-8a6d-f6c469e731e5
+status: experimental
+description: Converted from Sagan rule SID 5004782 (rev 2), file windows-auth.rules.
+references:
+  - https://support.microsoft.com/en-us/help/4557222/how-to-manage-the-changes-in-netlogon-secure-channel-connections-assoc
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 5829
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5004782'
+  sagan.rev: '2'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] User removed from Domain Administrators group'
+id: f62a98e6-2c5a-5224-8077-4121dc7fb764
+status: experimental
+description: Converted from Sagan rule SID 5013680 (rev 1), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4729
+      - 633
+  selection_2:
+    message|re: 'S-1-5-21-\d{5,15}\-\d{5,15}\-\d{5,15}-512 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5013680'
+  sagan.rev: '1'
+  sagan.source_file: windows-auth.rules
+  sagan.metadata: created_at=2023_07_28
+---
+title: '[WINDOWS-AUTH] User removed from Enterprise Administrators group'
+id: e8776d51-8668-582a-9a57-d69617846953
+status: experimental
+description: Converted from Sagan rule SID 5017361 (rev 1), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4757
+  selection_2:
+    message|re: 'S-1-5-21-\d{5,15}\-\d{5,15}\-\d{5,15}-519 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.admin-activity
+custom_attributes:
+  sagan.sid: '5017361'
+  sagan.rev: '1'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] User added to DHCP Administrators group'
+id: 5c0ab017-b028-564c-afd1-73116cdd71f0
+status: experimental
+description: Converted from Sagan rule SID 5017315 (rev 1), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4732
+  selection_2:
+    message|contains|cased: 'S-1-5-32-1002 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.admin-activity
+custom_attributes:
+  sagan.sid: '5017315'
+  sagan.rev: '1'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] User removed from DHCP Administrators group'
+id: c92559cb-dd45-51d0-96b2-01fcabbf11ef
+status: experimental
+description: Converted from Sagan rule SID 5017316 (rev 1), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4733
+  selection_2:
+    message|contains|cased: 'S-1-5-32-1002 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.admin-activity
+custom_attributes:
+  sagan.sid: '5017316'
+  sagan.rev: '1'
+  sagan.source_file: windows-auth.rules
+---
+title: '[WINDOWS-AUTH] User removed from DNS Admins group'
+id: 128d8268-3a8f-5897-8f82-899c98be88e2
+status: experimental
+description: Converted from Sagan rule SID 5017317 (rev 1), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4733
+  selection_2:
+    message|contains|cased: 'S-1-5-32-1101 '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.admin-activity
+custom_attributes:
+  sagan.sid: '5017317'
+  sagan.rev: '1'
+  sagan.source_file: windows-auth.rules

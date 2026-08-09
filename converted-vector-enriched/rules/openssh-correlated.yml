@@ -1,0 +1,39 @@
+title: '[OPENSSH-CORRELATED] Authentication success after honeypot activity'
+id: 1b35638c-f1ee-5377-8048-a9f78ad487ca
+name: sagan_5003972
+status: experimental
+description: Converted from Sagan rule SID 5003972 (rev 2), file openssh-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Accepted password
+  selection_2:
+    appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003972'
+  sagan.rev: '2'
+  sagan.source_file: openssh-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[OPENSSH-CORRELATED] Authentication success after honeypot activity (correlated with honeypot)'
+id: b5912765-6555-5f4c-9810-31f621af2ac5
+status: experimental
+description: Reconstruction of the Sagan 'honeypot' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_honeypot
+    - sagan_5003972
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high

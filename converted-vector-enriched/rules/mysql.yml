@@ -1,0 +1,113 @@
+title: '[MYSQL] Access denied for user'
+id: 283194eb-04e2-5e41-9376-43ac0a6de14d
+status: experimental
+description: Converted from Sagan rule SID 5000149 (rev 4), file mysql.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Access denied for user
+  selection_2:
+    appname|cased:
+      - mysqld
+      - MySQL
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000149'
+  sagan.rev: '4'
+  sagan.source_file: mysql.rules
+---
+title: '[MYSQL] Access denied for user'
+id: 0af7642e-e5b4-583a-b5d7-1e533a118bd2
+status: experimental
+description: Converted from Sagan rule SID 5000150 (rev 4), file mysql.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|re|i: \d+ \S+ \d+ Connect
+  selection_2:
+    appname|cased:
+      - mysqld
+      - MySQL
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000150'
+  sagan.rev: '4'
+  sagan.source_file: mysql.rules
+---
+title: '[MYSQL] Update hostpermits in MYSQL database (CVE-2023-34362)'
+id: e6d45763-d5d4-5f01-b08f-86f85ef3b000
+status: experimental
+description: Converted from Sagan rule SID 5013535 (rev 1), file mysql.rules.
+references:
+  - 2023-34362
+  - https://attackerkb.com/topics/mXmV0YpC3W/cve-2023-34362/rapid7-analysis
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased:
+      - '*mysqld*'
+      - '*MySQL*'
+  selection_2:
+    message|contains|cased: UPDATE moveittransfer.hostpermits
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1564
+  - attack.ta0005
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5013535'
+  sagan.rev: '1'
+  sagan.source_file: mysql.rules
+  sagan.metadata: deployment=Server,affected_product=MOVEit,affected_version=13.0.6,mitigation=https://community.progress.com/s/article/MOVEit-Transfer-Critical-Vulnerability-31May2023,created_at=2023_06_12,updated_at=2023_06_12
+---
+title: '[MYSQL] Update hostpermits in MYSQL database (CVE-2023-34362)'
+id: 431eeed1-94f7-53c8-846f-0270ebadd332
+status: experimental
+description: Converted from Sagan rule SID 5013536 (rev 1), file mysql.rules.
+references:
+  - 2023-34362
+  - https://attackerkb.com/topics/mXmV0YpC3W/cve-2023-34362/rapid7-analysis
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased:
+      - '*mysqld*'
+      - '*MySQL*'
+  selection_2:
+    message|contains|cased: UPDATE moveittransfer.hostpermits
+  selection_3:
+    message|contains|cased: Host=,\*.\*.\*.\*,
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1564
+  - attack.ta0005
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5013536'
+  sagan.rev: '1'
+  sagan.source_file: mysql.rules
+  sagan.metadata: deployment=Server,affected_product=MOVEit,affected_version=13.0.6,mitigation=https://community.progress.com/s/article/MOVEit-Transfer-Critical-Vulnerability-31May2023,created_at=2023_06_12,updated_at=2023_06_12

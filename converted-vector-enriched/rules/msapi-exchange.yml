@@ -1,0 +1,254 @@
+title: '[MSAPI-EXCHANGE] Admin Audit Inbox Rule w/ DeleteMessage'
+id: 23c099a6-f7d5-570d-85f4-6c4a871eebcb
+status: experimental
+description: Converted from Sagan rule SID 5015500 (rev 2), file msapi-exchange.rules.
+references:
+  - https://redcanary.com/blog/threat-detection/email-forwarding-rules/
+  - https://www.splunk.com/en_us/blog/security/hunting-m365-invaders-dissecting-email-collection-techniques.html
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    message|contains|cased:
+      - '"Operation":"New-InboxRule'
+      - '"Operation":"Set-InboxRule'
+  selection_3:
+    message|contains|cased:
+      - Name\\":\\"DeleteMessage\\",\\"Value\\":\\"True
+      - Name":"DeleteMessage","Value":"True
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015500'
+  sagan.rev: '2'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2025_03_11,updated_at=2026_04_23
+---
+title: '[MSAPI-EXCHANGE] Audit MailboxLogin Brute-Force Password Spray [10/60]'
+id: 30bfbcfb-539b-5cfd-8a7b-0a9fe0f9d56a
+name: sagan_5015830
+status: experimental
+description: Converted from Sagan rule SID 5015830 (rev 1), file msapi-exchange.rules.
+references:
+  - https://redcanary.com/blog/threat-detection/email-forwarding-rules/
+  - https://www.splunk.com/en_us/blog/security/hunting-m365-invaders-dissecting-email-collection-techniques.html
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: MailboxLogin
+  selection_3:
+    ResultStatus|cased: Successful
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015830'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  rsigma.suppress: 4h
+  sagan.metadata: created_at=2025_03_11,updated_at=2025_03_11
+---
+title: '[MSAPI-EXCHANGE] Audit MailboxLogin Brute-Force Password Spray [10/60] (threshold 10 in 1m)'
+id: 502ced89-1edc-58d2-a764-1487f69df96e
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5015830
+  group-by:
+    - UserId
+  timespan: 1m
+  condition:
+    gte: 10
+level: medium
+---
+title: '[MSAPI-EXCHANGE] Audit MailboxLogin Login After Brute-Force'
+id: b4ffe47d-d204-53b5-a31e-b504bb153f81
+name: sagan_5015831
+status: experimental
+description: Converted from Sagan rule SID 5015831 (rev 1), file msapi-exchange.rules.
+references:
+  - https://redcanary.com/blog/threat-detection/email-forwarding-rules/
+  - https://www.splunk.com/en_us/blog/security/hunting-m365-invaders-dissecting-email-collection-techniques.html
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: MailboxLogin
+  selection_3:
+    ResultStatus|cased: Successful
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015831'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2025_03_11,updated_at=2025_03_11
+---
+title: '[MSAPI-EXCHANGE] Audit MailboxLogin Login After Brute-Force (correlated with password-spray)'
+id: 6bc54682-f2bf-5438-a0a7-d255321b5988
+status: experimental
+description: Reconstruction of the Sagan 'password-spray' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_password-spray
+    - sagan_5015831
+  group-by:
+    - ClientIP
+  timespan: 1d
+level: medium
+---
+title: '[MSAPI-EXCHANGE] Audit MailboxLogin Brute-Force [25/60]'
+id: 79f597c2-d382-54d4-a956-cbff8c97219b
+name: sagan_5015832
+status: experimental
+description: Converted from Sagan rule SID 5015832 (rev 1), file msapi-exchange.rules.
+references:
+  - https://redcanary.com/blog/threat-detection/email-forwarding-rules/
+  - https://www.splunk.com/en_us/blog/security/hunting-m365-invaders-dissecting-email-collection-techniques.html
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: MailboxLogin
+  selection_3:
+    ResultStatus|cased: Successful
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015832'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  rsigma.suppress: 4h
+  sagan.metadata: created_at=2025_03_11,updated_at=2025_03_11
+---
+title: '[MSAPI-EXCHANGE] Audit MailboxLogin Brute-Force [25/60] (threshold 10 in 1m)'
+id: e605becd-5f8a-584a-b33b-0851732a098d
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5015832
+  group-by:
+    - ClientIP
+  timespan: 1m
+  condition:
+    gte: 10
+level: medium
+---
+title: '[MSAPI-EXCHANGE] Audit MailboxLogin Login After Brute-Force'
+id: b0589d14-fb0b-5f49-9787-04f33d5ba00b
+name: sagan_5015833
+status: experimental
+description: Converted from Sagan rule SID 5015833 (rev 1), file msapi-exchange.rules.
+references:
+  - https://redcanary.com/blog/threat-detection/email-forwarding-rules/
+  - https://www.splunk.com/en_us/blog/security/hunting-m365-invaders-dissecting-email-collection-techniques.html
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: MailboxLogin
+  selection_3:
+    ResultStatus|cased: Successful
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015833'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2025_03_11,updated_at=2025_03_11
+---
+title: '[MSAPI-EXCHANGE] Audit MailboxLogin Login After Brute-Force (correlated with brute-force)'
+id: 62f2e152-3600-5048-8e63-59b37120a085
+status: experimental
+description: Reconstruction of the Sagan 'brute-force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute-force
+    - sagan_5015833
+  group-by:
+    - ClientIP
+  timespan: 1d
+level: medium
+---
+title: '[MSAPI-EXCHANGE] External User With Delegated Permission Accessed Mailbox'
+id: 07c69a26-4dbe-5649-a44d-42f2eded2d9a
+status: experimental
+description: Converted from Sagan rule SID 5017912 (rev 1), file msapi-exchange.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: MailItemsAccessed
+  selection_3:
+    LogonType: 2
+  selection_4:
+    ExternalAccess|cased: 'true'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017912'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2026_05_06,updated_at=2026_05_06

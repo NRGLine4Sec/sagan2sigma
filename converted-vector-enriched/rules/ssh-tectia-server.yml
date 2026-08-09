@@ -1,0 +1,39 @@
+title: '[SSH-TECTIA-SERVER] Authentication Failure - Brute force [5/5]'
+id: a1d0d3f5-b82b-50d1-a3e4-91b000931f03
+name: sagan_5001877
+status: experimental
+description: Converted from Sagan rule SID 5001877 (rev 6), file ssh-tectia-server.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Login_failure
+  selection_2:
+    appname|cased: SSH_Tectia_Server
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5001877'
+  sagan.rev: '6'
+  sagan.source_file: ssh-tectia-server.rules
+  rsigma.suppress: 5m
+---
+title: '[SSH-TECTIA-SERVER] Authentication Failure - Brute force [5/5] (threshold 5 in 5m)'
+id: b77d7d80-0c51-50f0-a82e-49ea58752d22
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5001877
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 5
+level: low

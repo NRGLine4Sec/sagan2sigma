@@ -1,0 +1,297 @@
+title: '[ZEEK] SSH Password_Guessing [0/5]'
+id: 53a8cc60-40d3-5025-b945-c16e397aa028
+status: experimental
+description: Converted from Sagan rule SID 5002063 (rev 8), file zeeks.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SSH::Password_Guessing
+  selection_2:
+    appname|cased:
+      - bro
+      - zeek
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5002063'
+  sagan.rev: '8'
+  sagan.source_file: zeeks.rules
+  rsigma.suppress: 2m
+---
+title: '[ZEEK] TeamCymruMalwareHashRegistry Match'
+id: defe1ef0-f1f9-54b9-9a16-6d6991b3c855
+status: experimental
+description: Converted from Sagan rule SID 5002064 (rev 4), file zeeks.rules.
+references:
+  - https://www.team-cymru.org/Services/MHR/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: TeamCymruMalwareHashRegistry::Match
+  selection_2:
+    appname|cased:
+      - bro
+      - zeek
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5002064'
+  sagan.rev: '4'
+  sagan.source_file: zeeks.rules
+---
+title: '[ZEEK] SSH Login_By_Password_Guesser'
+id: ee5b6765-d62c-5e65-ba85-2ef7321e3c13
+status: experimental
+description: Converted from Sagan rule SID 5002067 (rev 6), file zeeks.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SSH::Login_By_Password_Guesser
+  selection_2:
+    appname|cased:
+      - bro
+      - zeek
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002067'
+  sagan.rev: '6'
+  sagan.source_file: zeeks.rules
+---
+title: '[ZEEK] SSH Watched_Country_Login'
+id: eed6d54d-11d1-5825-8000-34f03af0389a
+status: experimental
+description: Converted from Sagan rule SID 5002068 (rev 4), file zeeks.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SSH::Watched_Country_Login
+  selection_2:
+    appname|cased:
+      - bro
+      - zeek
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002068'
+  sagan.rev: '4'
+  sagan.source_file: zeeks.rules
+---
+title: '[ZEEK] 10+ SSL Invalid_Server_Cert in 30 seconds [10/5]'
+id: bc9aaaab-d523-54e1-942c-3e2e86231139
+name: sagan_5002069
+status: experimental
+description: Converted from Sagan rule SID 5002069 (rev 5), file zeeks.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: SSL::Invalid_Server_Cert
+  selection_2:
+    appname|cased:
+      - bro
+      - zeek
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002069'
+  sagan.rev: '5'
+  sagan.source_file: zeeks.rules
+  rsigma.suppress: 5m
+---
+title: '[ZEEK] 10+ SSL Invalid_Server_Cert in 30 seconds [10/5] (threshold 10 in 30s)'
+id: 62032ebd-6a98-55dc-b0f2-abcb16c372cb
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5002069
+  group-by:
+    - sagan_ip_1
+  timespan: 30s
+  condition:
+    gte: 10
+level: medium
+---
+title: '[ZEEK] 10+ unable to get local issuer certificate in 30 seconds [10/5]'
+id: b6d2f639-61e4-5d84-8429-f35e78bcf01e
+name: sagan_5002070
+status: experimental
+description: Converted from Sagan rule SID 5002070 (rev 5), file zeeks.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: unable to get local issuer certificate
+  selection_2:
+    appname|cased:
+      - bro
+      - zeek
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002070'
+  sagan.rev: '5'
+  sagan.source_file: zeeks.rules
+  rsigma.suppress: 5m
+---
+title: '[ZEEK] 10+ unable to get local issuer certificate in 30 seconds [10/5] (threshold 10 in 30s)'
+id: d22b017a-f0e8-5bc3-ad47-c188525fe5b6
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5002070
+  group-by:
+    - sagan_ip_1
+  timespan: 30s
+  condition:
+    gte: 10
+level: medium
+---
+title: '[ZEEK] Bitcoin Miner [0/10]'
+id: 2532afc7-9832-5683-a06f-4494c03e2b41
+status: experimental
+description: Converted from Sagan rule SID 5002074 (rev 6), file zeeks.rules.
+references:
+  - https://github.com/LiamRandall/BroMalware-Exercise/tree/master/solutions/lurk0
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Bitcoin::Miner
+  selection_2:
+    appname|cased:
+      - bro
+      - zeek
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5002074'
+  sagan.rev: '6'
+  sagan.source_file: zeeks.rules
+  rsigma.suppress: 5m
+---
+title: '[ZEEK] Probable LURK0 RAT C&C Access'
+id: f854d837-06d3-598a-8247-81880e9221c9
+status: experimental
+description: Converted from Sagan rule SID 5002072 (rev 6), file zeeks.rules.
+references:
+  - https://github.com/LiamRandall/BroMalware-Exercise/tree/master/solutions/lurk0
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Lurk0::Lurk0_Client
+  selection_2:
+    appname|cased:
+      - bro
+      - zeek
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5002072'
+  sagan.rev: '6'
+  sagan.source_file: zeeks.rules
+---
+title: '[ZEEK] Sidejacking attach detected'
+id: e1245456-c56c-5236-b7f2-a163a06589c1
+status: experimental
+description: Converted from Sagan rule SID 5002073 (rev 4), file zeeks.rules.
+references:
+  - https://matthias.vallentin.net/blog/2010/10/taming-the-sheep-detecting-sidejacking-with-bro
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Sidejacking
+  selection_2:
+    appname|cased:
+      - bro
+      - zeek
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002073'
+  sagan.rev: '4'
+  sagan.source_file: zeeks.rules
+---
+title: '[ZEEK] RFC1918 address scanning the network'
+id: b41280f2-1775-5dcd-ae3a-8c668f55b1a7
+status: experimental
+description: Converted from Sagan rule SID 5002798 (rev 6), file zeeks.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Scan::Port_Scan
+  selection_2:
+    message|re|s|m|i: ((192)\.(168)\.(\d+)\.(\d+)|(10)\.(\d+)\.(\d+)\.(\d+)|(172)\.(1[6,7,8,9])\.(\d+)\.(\d+)|(172)\.(2[0,1,2,3,4,5,6,7,8,9])\.(\d+)\.(\d+)|(172)\.(3[0,1])\.(\d+)\.(\d+))
+      scanned at least \d+ unique ports
+  selection_3:
+    appname|cased:
+      - bro
+      - zeek
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5002798'
+  sagan.rev: '6'
+  sagan.source_file: zeeks.rules
+  rsigma.suppress: 1d

@@ -1,0 +1,252 @@
+title: '[WINDOWS-APPLOCKER] Allowed program to execute'
+id: 9279eb80-9e74-572a-bc69-be6dc32c8cbf
+status: experimental
+description: Converted from Sagan rule SID 5002090 (rev 3), file windows-applocker.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 8003
+  selection_2:
+    appname|cased: AppLocker
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002090'
+  sagan.rev: '3'
+  sagan.source_file: windows-applocker.rules
+---
+title: '[WINDOWS-APPLOCKER] Application blocked'
+id: 03d0e2cc-b59d-5e42-8e7c-eb437b249f2b
+status: experimental
+description: Converted from Sagan rule SID 5002091 (rev 3), file windows-applocker.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 8004
+  selection_2:
+    appname|cased: AppLocker
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002091'
+  sagan.rev: '3'
+  sagan.source_file: windows-applocker.rules
+---
+title: '[WINDOWS-APPLOCKER] Allowed an MSI or script to execute'
+id: 6e33d1fa-2efe-5065-97ed-d7a66093fb7a
+status: experimental
+description: Converted from Sagan rule SID 5002092 (rev 3), file windows-applocker.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 8005
+  selection_2:
+    appname|cased: AppLocker
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002092'
+  sagan.rev: '3'
+  sagan.source_file: windows-applocker.rules
+---
+title: '[WINDOWS-APPLOCKER] Allowed MSI/Script, but would have blocked'
+id: 7738078d-0bd2-521d-b540-063384f744f2
+status: experimental
+description: Converted from Sagan rule SID 5002093 (rev 3), file windows-applocker.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 8006
+  selection_2:
+    appname|cased: AppLocker
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002093'
+  sagan.rev: '3'
+  sagan.source_file: windows-applocker.rules
+---
+title: '[WINDOWS-APPLOCKER] Prevent MSI/Script to execute'
+id: 03107ac6-a556-5f01-8304-ab6bc75f4872
+status: experimental
+description: Converted from Sagan rule SID 5002094 (rev 3), file windows-applocker.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 8007
+  selection_2:
+    appname|cased: AppLocker
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002094'
+  sagan.rev: '3'
+  sagan.source_file: windows-applocker.rules
+---
+title: '[WINDOWS-APPLOCKER] Package application allowed'
+id: 28192194-ab7e-5b97-b24d-9cfa803f2c01
+status: experimental
+description: Converted from Sagan rule SID 5002095 (rev 3), file windows-applocker.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 8020
+  selection_2:
+    appname|cased: AppLocker
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002095'
+  sagan.rev: '3'
+  sagan.source_file: windows-applocker.rules
+---
+title: '[WINDOWS-APPLOCKER] Package application audited'
+id: e8043a17-ea72-5f69-8432-786f22620f75
+status: experimental
+description: Converted from Sagan rule SID 5002096 (rev 3), file windows-applocker.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 8021
+  selection_2:
+    appname|cased: AppLocker
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002096'
+  sagan.rev: '3'
+  sagan.source_file: windows-applocker.rules
+---
+title: '[WINDOWS-APPLOCKER] Package application disabled'
+id: 08d0bbb3-d4b5-577e-bc70-71fb9d38864c
+status: experimental
+description: Converted from Sagan rule SID 5002097 (rev 3), file windows-applocker.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 8022
+  selection_2:
+    appname|cased: AppLocker
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002097'
+  sagan.rev: '3'
+  sagan.source_file: windows-applocker.rules
+---
+title: '[WINDOWS-APPLOCKER] Package application installation allowed'
+id: 7e7ba334-927b-599a-b8e3-94081ff65870
+status: experimental
+description: Converted from Sagan rule SID 5002098 (rev 3), file windows-applocker.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 8023
+  selection_2:
+    appname|cased: AppLocker
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002098'
+  sagan.rev: '3'
+  sagan.source_file: windows-applocker.rules
+---
+title: '[WINDOWS-APPLOCKER] Package application installation audited'
+id: a61582f5-7170-5286-9470-17f35381463b
+status: experimental
+description: Converted from Sagan rule SID 5002099 (rev 3), file windows-applocker.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 8024
+  selection_2:
+    appname|cased: AppLocker
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002099'
+  sagan.rev: '3'
+  sagan.source_file: windows-applocker.rules
+---
+title: '[WINDOWS-APPLOCKER] Package application installation disabled'
+id: 613bafad-2381-51b5-a464-a93cd0d264e8
+status: experimental
+description: Converted from Sagan rule SID 5002100 (rev 3), file windows-applocker.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 8025
+  selection_2:
+    appname|cased: AppLocker
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002100'
+  sagan.rev: '3'
+  sagan.source_file: windows-applocker.rules

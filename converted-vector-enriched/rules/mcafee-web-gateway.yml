@@ -1,0 +1,26 @@
+title: '[McAfee-Web-Gateway] High Risk Connection Attempt Detected'
+id: 84163cae-1e57-5988-9b51-723262eca703
+status: experimental
+description: Converted from Sagan rule SID 5003801 (rev 1), file mcafee-web-gateway.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: High Risk
+  selection_2:
+    message|contains|cased:
+      - ' 200 GET '
+      - ' 200 POST '
+  selection_3:
+    appname|cased: mwg
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5003801'
+  sagan.rev: '1'
+  sagan.source_file: mcafee-web-gateway.rules

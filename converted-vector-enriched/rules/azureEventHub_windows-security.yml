@@ -1,0 +1,3400 @@
+title: '[WINDOWS-SECURITY] A monitored security event pattern has occurred'
+id: 33c79025-9024-50ec-8e97-245a68cecf26
+status: experimental
+description: Converted from Sagan rule SID 5009378 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4618
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009378'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003766
+---
+title: '[WINDOWS-SECURITY] A replay attack was detected'
+id: 124d48f6-ecbf-5859-8cee-a65eed4cd7f1
+status: experimental
+description: Converted from Sagan rule SID 5009379 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4649
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009379'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003767
+---
+title: '[WINDOWS-SECURITY] System audit policy was changed'
+id: 0907edc2-606f-5782-b36b-e764b94a93f3
+status: experimental
+description: Converted from Sagan rule SID 5009380 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4719
+      - 612
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009380'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003768
+---
+title: '[WINDOWS-SECURITY] SID History was added to an account'
+id: 843a1859-3796-52ce-b30a-8222df9ccad1
+status: experimental
+description: Converted from Sagan rule SID 5009381 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4765
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009381'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003769
+---
+title: '[WINDOWS-SECURITY] An attempt to add SID History to an account failed'
+id: 09186670-aef8-5e00-babd-cfcd7250f362
+status: experimental
+description: Converted from Sagan rule SID 5009382 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4766
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009382'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003770
+---
+title: '[WINDOWS-SECURITY] An attempt was made to set the Directory Services Restore Mode Administrator
+  Password'
+id: 4e1f6efb-ecbf-5fcd-b183-2dd39454d3a4
+status: experimental
+description: Converted from Sagan rule SID 5009383 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4794
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009383'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003764
+---
+title: '[WINDOWS-SECURITY] Role separation enabled:'
+id: a3de418c-bec1-55f6-969d-8f08dc0b2dd4
+status: experimental
+description: Converted from Sagan rule SID 5009384 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4897
+      - 801
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009384'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003761
+---
+title: '[WINDOWS-SECURITY] Special groups have been assigned to a new logon'
+id: 91e0c8b3-751d-564a-9b85-3a15bbc55b7b
+status: experimental
+description: Converted from Sagan rule SID 5009385 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4964
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009385'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003765
+---
+title: '[WINDOWS-SECURITY] A security setting was updated on the OCSP Responder Service'
+id: 55b774f3-d920-562e-8e8b-df7a4245963e
+status: experimental
+description: Converted from Sagan rule SID 5009386 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 5124
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009386'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003762
+---
+title: '[WINDOWS-SECURITY] Possible denial-of-service (DoS) attack'
+id: eff8172b-2a68-5732-aa32-e6bc5321e3fd
+status: experimental
+description: Converted from Sagan rule SID 5009387 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 550
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009387'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003763
+---
+title: '[WINDOWS-SECURITY] Administrator recovered system from CrashOnAuditFail'
+id: 95faf379-d073-58b2-ba10-e7756ac3b1b4
+status: experimental
+description: Converted from Sagan rule SID 5009389 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4621
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009389'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003393
+---
+title: '[WINDOWS-SECURITY] SIDs were filtered'
+id: 16989183-74ae-585d-882c-578f54754f5b
+status: experimental
+description: Converted from Sagan rule SID 5009390 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4675
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009390'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003394
+---
+title: '[WINDOWS-SECURITY] A new trust was created to a domain'
+id: 7a525c2f-63f3-596e-942b-a92b45b72824
+status: experimental
+description: Converted from Sagan rule SID 5009393 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4706
+      - 610
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009393'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003397
+---
+title: '[WINDOWS-SECURITY] Kerberos policy was changed'
+id: db1bacda-6bda-5a8e-808c-0368a494b309
+status: experimental
+description: Converted from Sagan rule SID 5009394 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4713
+      - 617
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009394'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003398
+---
+title: '[WINDOWS-SECURITY] Encrypted data recovery policy was changed'
+id: f9f5b007-f3d7-5b38-8c75-6612eb1b2ce7
+status: experimental
+description: Converted from Sagan rule SID 5009395 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4714
+      - 618
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009395'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003399
+---
+title: '[WINDOWS-SECURITY] The audit policy (SACL) on an object was changed'
+id: 2ccf4d37-5d8c-571f-a875-013c8b9b1477
+status: experimental
+description: Converted from Sagan rule SID 5009396 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4715
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009396'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003400
+---
+title: '[WINDOWS-SECURITY] Trusted domain information was modified'
+id: 13790577-9d04-50fa-aa49-1fb492249ebb
+status: experimental
+description: Converted from Sagan rule SID 5009397 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4716
+      - 620
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009397'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003401
+---
+title: '[WINDOWS-SECURITY] An attempt was made to reset an account''s password'
+id: 3681c6be-fc0f-5ab2-9f9c-cb37e6c4b28d
+status: experimental
+description: Converted from Sagan rule SID 5009398 (rev 5), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4724
+      - 628
+  selection_2:
+    RenderedDescription|re: 'Subject: Security ID: [0-9S-]+ Account Name: [^$]+ '
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009398'
+  sagan.rev: '5'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003402
+---
+title: '[WINDOWS-SECURITY] A security-enabled global group was created'
+id: 12a9ccff-9103-5711-84e1-056e50e04e0f
+status: experimental
+description: Converted from Sagan rule SID 5009399 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4727
+      - 631
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009399'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003403
+---
+title: '[WINDOWS-SECURITY] A security-enabled local group was changed'
+id: 32b802f3-2f0f-5ee2-8182-9f5a0f94c145
+status: experimental
+description: Converted from Sagan rule SID 5009400 (rev 4), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4735
+      - 639
+  filter_2:
+    RenderedDescription|contains|cased: '$ Account Domain:'
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_3 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009400'
+  sagan.rev: '4'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003404
+---
+title: '[WINDOWS-SECURITY] A security-enabled global group was changed'
+id: 0bc9c10d-1382-5028-b600-46e20c920ae5
+status: experimental
+description: Converted from Sagan rule SID 5009401 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4737
+      - 641
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009401'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003405
+---
+title: '[WINDOWS-SECURITY] Domain Policy was changed'
+id: 7b35111f-2d32-57f9-8a17-aa5904bfb3b7
+status: experimental
+description: Converted from Sagan rule SID 5009402 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4739
+      - 643
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009402'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003406
+---
+title: '[WINDOWS-SECURITY] A security-enabled universal group was created'
+id: ad3af3df-ca24-5970-ac8d-eb53c0a5c985
+status: experimental
+description: Converted from Sagan rule SID 5009403 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4754
+      - 658
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009403'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003407
+---
+title: '[WINDOWS-SECURITY] A security-enabled universal group was changed'
+id: 5f3881d4-9bc8-59b6-83d3-f86c1958939e
+status: experimental
+description: Converted from Sagan rule SID 5009404 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4755
+      - 659
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009404'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003408
+---
+title: '[WINDOWS-SECURITY] A security-disabled group was deleted'
+id: 346cff24-3a98-5d61-a9ea-b1d790f2e65d
+status: experimental
+description: Converted from Sagan rule SID 5009405 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4763
+      - 667
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009405'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003409
+---
+title: '[WINDOWS-SECURITY] A group''s type was changed'
+id: e4cde582-95bd-5ee0-a77d-23e3cee8771d
+status: experimental
+description: Converted from Sagan rule SID 5009406 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4764
+      - 668
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009406'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003410
+---
+title: '[WINDOWS-SECURITY] The ACL was set on accounts which are members of administrators groups'
+id: 5dc7549c-7ff8-5e68-ab2c-5bffdd3b7949
+status: experimental
+description: Converted from Sagan rule SID 5009407 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4780
+      - 684
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009407'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003411
+---
+title: '[WINDOWS-SECURITY] RPC detected an integrity violation while decrypting an incoming message'
+id: 75742ea7-1829-53c6-8349-643a3a9c70ac
+status: experimental
+description: Converted from Sagan rule SID 5009408 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4816
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009408'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  rsigma.suppress: 5m
+  sagan.metadata: created_on=2022_11_22,old_sid=5003412
+---
+title: '[WINDOWS-SECURITY] A trusted forest information entry was added'
+id: 454f535e-bc7d-5a2b-8174-a6c1f40ef596
+status: experimental
+description: Converted from Sagan rule SID 5009409 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4865
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009409'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003413
+---
+title: '[WINDOWS-SECURITY] A trusted forest information entry was removed'
+id: b12319ee-05d9-5818-af03-fdb629897893
+status: experimental
+description: Converted from Sagan rule SID 5009410 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4866
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009410'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003414
+---
+title: '[WINDOWS-SECURITY] A trusted forest information entry was modified'
+id: 55af5a6a-9cfc-5149-b77a-3d56f79f8222
+status: experimental
+description: Converted from Sagan rule SID 5009411 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4867
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009411'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003415
+---
+title: '[WINDOWS-SECURITY] The certificate manager denied a pending certificate request'
+id: 0b58290b-c87d-5a96-8cd8-cd9b07e19fe9
+status: experimental
+description: Converted from Sagan rule SID 5009412 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4868
+      - 772
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009412'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003416
+---
+title: '[WINDOWS-SECURITY] Certificate Services revoked a certificate'
+id: c2787051-8feb-5cf8-823a-25201a47839c
+status: experimental
+description: Converted from Sagan rule SID 5009413 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4870
+      - 774
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009413'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003417
+---
+title: '[WINDOWS-SECURITY] The security permissions for Certificate Services changed'
+id: 97e0e060-6f2c-5a51-8a3c-29f6eee28cc2
+status: experimental
+description: Converted from Sagan rule SID 5009414 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4882
+      - 786
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009414'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003418
+---
+title: '[WINDOWS-SECURITY] The audit filter for Certificate Services changed'
+id: 82960d87-86fc-5a7d-967f-ecf183555d02
+status: experimental
+description: Converted from Sagan rule SID 5009415 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4885
+      - 789
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009415'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003419
+---
+title: '[WINDOWS-SECURITY] The certificate manager settings for Certificate Services changed'
+id: 3dcef250-2e43-5cc5-9604-d1199211cbf3
+status: experimental
+description: Converted from Sagan rule SID 5009416 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4890
+      - 794
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009416'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003420
+---
+title: '[WINDOWS-SECURITY] A property of Certificate Services changed'
+id: 9b70ec59-9b34-574b-9a53-7f6facf47f22
+status: experimental
+description: Converted from Sagan rule SID 5009417 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4892
+      - 796
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009417'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003421
+---
+title: '[WINDOWS-SECURITY] One or more rows have been deleted from the certificate database'
+id: 98d0fafb-4087-541a-a595-12012fce5173
+status: experimental
+description: Converted from Sagan rule SID 5009418 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4896
+      - 800
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009418'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003422
+---
+title: '[WINDOWS-SECURITY] The CrashOnAuditFail value has changed'
+id: b05ee012-0af4-5f2d-993b-52ad4c3e3d2a
+status: experimental
+description: Converted from Sagan rule SID 5009419 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4906
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009419'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003423
+---
+title: '[WINDOWS-SECURITY] Special Groups Logon table modified'
+id: 36e5cf19-2279-599c-b4cf-7df90a2c6983
+status: experimental
+description: Converted from Sagan rule SID 5009421 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4908
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009421'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003425
+---
+title: '[WINDOWS-SECURITY] Per User Audit Policy was changed'
+id: 9a980cd5-f9d6-579e-98ed-862ce3904b3c
+status: experimental
+description: Converted from Sagan rule SID 5009422 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4912
+      - 807
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009422'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003426
+---
+title: '[WINDOWS-SECURITY] IPsec dropped an inbound packet that failed an integrity check'
+id: 14d8339a-5cb8-5fe1-8b43-c6f829b706a4
+status: experimental
+description: Converted from Sagan rule SID 5009423 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4960
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009423'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003427
+---
+title: '[WINDOWS-SECURITY] IPsec dropped an inbound packet that failed a replay check'
+id: d831c939-41a8-5a47-b8e0-eff112fe19a3
+status: experimental
+description: Converted from Sagan rule SID 5009424 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4961
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009424'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003428
+---
+title: '[WINDOWS-SECURITY] IPsec dropped an inbound packet that failed a replay check'
+id: ab14dea3-322d-58a4-893b-879fbc76416d
+status: experimental
+description: Converted from Sagan rule SID 5009425 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4962
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009425'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003429
+---
+title: '[WINDOWS-SECURITY] IPsec dropped an inbound clear text packet that should have been secured'
+id: 4cffeac1-989e-5e4b-8d78-319b66ffaefc
+status: experimental
+description: Converted from Sagan rule SID 5009426 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4963
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009426'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003430
+---
+title: '[WINDOWS-SECURITY] IPsec received a packet from a remote computer with an incorrect Security Parameter
+  Index (SPI)'
+id: 8ac91185-1f37-5ce9-9da9-13626033dafa
+status: experimental
+description: Converted from Sagan rule SID 5009427 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4965
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009427'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003431
+---
+title: '[WINDOWS-SECURITY] IPSEC received an invalid packet during main mode negotiation'
+id: b94c7d70-d4f0-5957-b00f-3ead331b98a1
+status: experimental
+description: Converted from Sagan rule SID 5009428 (rev 4), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4976
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009428'
+  sagan.rev: '4'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003432
+---
+title: '[WINDOWS-SECURITY] IPSEC received an invalid during quick mode negotiation'
+id: 2246ea9e-79c8-5a1c-827c-65c65a0a00db
+status: experimental
+description: Converted from Sagan rule SID 5009429 (rev 4), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4977
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009429'
+  sagan.rev: '4'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003433
+---
+title: '[WINDOWS-SECURITY] IPSEC received an invalid During extended mode negotiation'
+id: cd0565aa-6d55-532b-b414-4616c1223cf3
+status: experimental
+description: Converted from Sagan rule SID 5009430 (rev 4), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4978
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009430'
+  sagan.rev: '4'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003434
+---
+title: '[WINDOWS-SECURITY] An IPsec Extended Mode negotiation failed'
+id: c965de42-e61b-5fb9-b36c-8d3373ed1128
+status: experimental
+description: Converted from Sagan rule SID 5009431 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4983
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009431'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003435
+---
+title: '[WINDOWS-SECURITY] An IPsec Extended Mode negotiation failed'
+id: ae94369c-99cc-518d-b36e-9c60f79aaa7e
+status: experimental
+description: Converted from Sagan rule SID 5009432 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4984
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009432'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003436
+---
+title: '[WINDOWS-SECURITY] The Windows Firewall Service was unable to retrieve the security policy from
+  the local storage'
+id: 57d15cb2-87db-5762-8389-844ca25ead31
+status: experimental
+description: Converted from Sagan rule SID 5009433 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 5027
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009433'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003437
+---
+title: '[WINDOWS-SECURITY] The Windows Firewall Service was unable to parse the new security policy'
+id: 5133cf56-de71-54bf-8ba2-139389018db5
+status: experimental
+description: Converted from Sagan rule SID 5009434 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 5028
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009434'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003438
+---
+title: '[WINDOWS-SECURITY] The Windows Firewall Service failed to initialize the driver'
+id: 15edd812-8a39-56c3-9cf2-5e8d177bf688
+status: experimental
+description: Converted from Sagan rule SID 5009435 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 5029
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009435'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003439
+---
+title: '[WINDOWS-SECURITY] The Windows Firewall Service failed to start'
+id: bc1d7a44-f41d-5474-9e99-135f5a061c16
+status: experimental
+description: Converted from Sagan rule SID 5009436 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 5030
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009436'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003440
+---
+title: '[WINDOWS-SECURITY] The Windows Firewall Driver failed to start'
+id: 3da1f055-9f3f-5e2d-855c-24999fc39ece
+status: experimental
+description: Converted from Sagan rule SID 5009437 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 5035
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009437'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003441
+---
+title: '[WINDOWS-SECURITY] The Windows Firewall Driver detected critical runtime error'
+id: e75b9c88-f28f-5027-b27e-a1621524fe07
+status: experimental
+description: Converted from Sagan rule SID 5009438 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 5037
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009438'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003442
+---
+title: '[WINDOWS-SECURITY] Code integrity determined that the image hash of a file is not valid'
+id: 1045599a-31ff-56c2-adaf-b80d5fe3bb61
+status: experimental
+description: Converted from Sagan rule SID 5009439 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 5038
+  selection_2:
+    RenderedDescription|contains|cased:
+      - \\Program Files\\
+      - \\System32\\
+  filter_3:
+    RenderedDescription|contains: ScriptControl64_
+  selection_4:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009439'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003443,updated_at=2023_08_01
+---
+title: '[WINDOWS-SECURITY] OCSP Responder Service Started'
+id: b7753bab-50a6-5f87-9733-ab14b3b729e1
+status: experimental
+description: Converted from Sagan rule SID 5009440 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 5120
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009440'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003444
+---
+title: '[WINDOWS-SECURITY] OCSP Responder Service Stopped'
+id: 0fe7084b-8bc6-5e22-9c81-21b76111a413
+status: experimental
+description: Converted from Sagan rule SID 5009441 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 5121
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009441'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003445
+---
+title: '[WINDOWS-SECURITY] A configuration entry changed in OCSP Responder Service'
+id: 6b28b466-850f-5683-956b-1ecb49c076ac
+status: experimental
+description: Converted from Sagan rule SID 5009442 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 5122
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009442'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003446
+---
+title: '[WINDOWS-SECURITY] A configuration entry changed in OCSP Responder Service'
+id: 152a234d-946a-5c15-8d00-e322bd8e9317
+status: experimental
+description: Converted from Sagan rule SID 5009443 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 5123
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009443'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003447
+---
+title: '[WINDOWS-SECURITY] Credential Manager credentials were backed up'
+id: 8543eef4-7ca1-5e51-8000-126720c05ae0
+status: experimental
+description: Converted from Sagan rule SID 5009444 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 5376
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009444'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003448
+---
+title: '[WINDOWS-SECURITY] Credential Manager credentials were restored from a backup'
+id: d22f3e1a-c959-500e-9a07-ff90dcb84d67
+status: experimental
+description: Converted from Sagan rule SID 5009445 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 5377
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009445'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003449
+---
+title: '[WINDOWS-SECURITY] An IPsec negotiation with a remote computer failed because the IKE and AuthIP
+  IPsec Keying Modules (IKEEXT) service is not started'
+id: 2a4ff0e6-0c13-5526-91dc-fb8b9572b9ab
+status: experimental
+description: Converted from Sagan rule SID 5009446 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 5453
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009446'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003450
+---
+title: '[WINDOWS-SECURITY] IPsec Services failed to get the complete list of network interfaces on the
+  computer'
+id: 7fd13a26-ff6f-56f3-b244-4fce5d986481
+status: experimental
+description: Converted from Sagan rule SID 5009447 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 5480
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009447'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003451
+---
+title: '[WINDOWS-SECURITY] IPsec Services failed to initialize RPC server'
+id: e58b049c-900f-5d5c-8a20-f0b0c558e340
+status: experimental
+description: Converted from Sagan rule SID 5009448 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 5483
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009448'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003452
+---
+title: '[WINDOWS-SECURITY] IPsec Services has experienced a critical failure and has been shut down'
+id: 2724b63d-6134-55ff-9221-b9dac52bd464
+status: experimental
+description: Converted from Sagan rule SID 5009449 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 5484
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009449'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003453
+---
+title: '[WINDOWS-SECURITY] IPsec Services failed to process some IPsec filters on a plug-and-play event
+  for network interfaces'
+id: d0f467ad-71aa-5171-b743-f54627eddeb3
+status: experimental
+description: Converted from Sagan rule SID 5009450 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 5485
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009450'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003454
+---
+title: '[WINDOWS-SECURITY] One or more errors occurred while processing security policy in the Group Policy
+  objects'
+id: 62fc1062-d96c-542f-b36c-71c61b8a0c1a
+status: experimental
+description: Converted from Sagan rule SID 5009451 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 6145
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009451'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003455
+---
+title: '[WINDOWS-SECURITY] Network Policy Server denied access to a user'
+id: 2b0a64fa-32ee-58cf-8bf0-9dc5055e3304
+status: experimental
+description: Converted from Sagan rule SID 5009452 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 6273
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009452'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003456
+---
+title: '[WINDOWS-SECURITY] Network Policy Server discarded the request for a user'
+id: 14d4c986-595c-50e1-839c-7d6e6babacb9
+status: experimental
+description: Converted from Sagan rule SID 5009453 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 6274
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009453'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003457
+---
+title: '[WINDOWS-SECURITY] Network Policy Server discarded the accounting request for a user'
+id: 8c3e438c-a4a1-566e-a208-1949bc969313
+status: experimental
+description: Converted from Sagan rule SID 5009454 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 6275
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009454'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003458
+---
+title: '[WINDOWS-SECURITY] Network Policy Server quarantined a user'
+id: c9ef2098-8928-5de6-bd54-618d61d7f8f1
+status: experimental
+description: Converted from Sagan rule SID 5009455 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 6276
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009455'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003459
+---
+title: '[WINDOWS-SECURITY] Network Policy Server granted access to a user but put it on probation because
+  the host did not meet the defined health policy'
+id: b7a14591-2ebc-5b5f-88be-977c79a5efa4
+status: experimental
+description: Converted from Sagan rule SID 5009456 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 6277
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009456'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003460
+---
+title: '[WINDOWS-SECURITY] Network Policy Server locked the user account due to repeated failed authentication
+  attempts'
+id: 15b6e6f2-3808-538b-a8d1-aecf5f0500fd
+status: experimental
+description: Converted from Sagan rule SID 5009458 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 6279
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009458'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003462
+---
+title: '[WINDOWS-SECURITY] Network Policy Server unlocked the user account'
+id: 66862fb7-1fc5-5d8b-b626-8211b06b822c
+status: experimental
+description: Converted from Sagan rule SID 5009459 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 6280
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009459'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003463
+---
+title: '[WINDOWS-SECURITY] General account database changed'
+id: e198360e-382b-5177-af1a-cd6c8231e19c
+status: experimental
+description: Converted from Sagan rule SID 5009460 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 640
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009460'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003464
+---
+title: '[WINDOWS-SECURITY] An error was encountered converting volume'
+id: 903e60bf-d928-52d2-9f27-baed691b51fb
+status: experimental
+description: Converted from Sagan rule SID 5009462 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 24586
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009462'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003466
+---
+title: '[WINDOWS-SECURITY] An attempt to automatically restart conversion on volume failed'
+id: 11d136e5-eca9-535e-9969-42c38db6f223
+status: experimental
+description: Converted from Sagan rule SID 5009463 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 24592
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009463'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003467
+---
+title: '[WINDOWS-SECURITY] Metadata write: Volume returning errors while trying to modify metadata'
+id: e8d4e519-e8cd-5af5-8d74-ee28a75c2a56
+status: experimental
+description: Converted from Sagan rule SID 5009464 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 24593
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009464'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003468
+---
+title: '[WINDOWS-SECURITY] Metadata rebuild: An attempt to write a copy of metadata on volume failed and
+  may appear as disk corruption'
+id: 2b9bda83-d699-5799-b127-4e83e7a2cf9f
+status: experimental
+description: Converted from Sagan rule SID 5009465 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/MicrosoftDocs/windowsserverdocs/blob/master/WindowsServerDocs/identity/ad-ds/plan/Appendix-L--Events-to-Monitor.md
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 24594
+  selection_2:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5009465'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003469
+---
+title: '[WINDOWS-SECURITY] Potential NetBIOS name spoofing'
+id: 7d0eac66-85d2-5105-a078-cdcd3907c7ad
+status: experimental
+description: Converted from Sagan rule SID 5009755 (rev 2), file azureEventHub_windows-security.rules.
+references:
+  - https://www.packtpub.com/mapt/book/networking_and_servers/9781785285561/5/ch05lvl1sec32/nbns-spoofing
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 8415
+  selection_2:
+    RenderedDescription|contains: NBNS spoofer was discovered
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5009755'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003937
+---
+title: '[WINDOWS-SECURITY] Command to Export Secret Key Detected'
+id: 2407b11d-82ae-5735-8356-d8cc882cba67
+status: experimental
+description: Converted from Sagan rule SID 5009756 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/powershell
+  - https://sygnia.co/golden-saml-advisory
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 4688
+  selection_2:
+    RenderedDescription|contains: certutil -exportPFX
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009756'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005956
+---
+title: '[WINDOWS-SECURITY] Suspicious Base64 Encoded Commands [1/2]'
+id: 2cf5a5af-037e-58fa-997e-408f490340df
+status: experimental
+description: Converted from Sagan rule SID 5009757 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://gist.github.com/Neo23x0/6af876ee72b51676c82a2db8d2cd3639
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4688
+  selection_3:
+    RenderedDescription|contains: powershell
+  selection_4:
+    RenderedDescription|contains|cased:
+      - ' -e '
+      - ' -ec '
+      - ' -enc '
+      - ' -EncodedCommand '
+  selection_5:
+    RenderedDescription|contains|cased:
+      - ' JAB'
+      - ' TVq'
+      - ' SUVY'
+      - ' SQBFAF'
+      - ' SQBuAH'
+      - ' aWV4'
+      - ' aQBlA'
+      - ' Y21k'
+      - ' Qzpc'
+      - ' Yzpc'
+      - ' UEs'
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009757'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007159
+---
+title: '[WINDOWS-SECURITY] A security-enabled local group membership was enumerated'
+id: 892f9d3e-aa07-536f-96b3-dfed3093f6d7
+status: experimental
+description: Converted from Sagan rule SID 5009760 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4799
+  - https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-identifiers
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4799
+  selection_3:
+    RenderedDescription|contains|cased: 'Account Name: '
+  filter_4:
+    RenderedDescription|contains|cased: $
+  filter_5:
+    RenderedDescription|contains|cased: 'Process ID: 0x0'
+  filter_6:
+    RenderedDescription|contains|cased: 'Process Name: C:\\\\Windows\\\\System32'
+  selection_7:
+    RenderedDescription|contains|cased: 'Process Name: '
+  filter_8:
+    RenderedDescription|contains|cased: :\\\\Program Files
+  selection_9:
+    RenderedDescription|contains|cased:
+      - 'Group: Security ID: S-1-5-32-544'
+      - 'Group: Security ID: S-1-5-32-545'
+      - 'Group: Security ID: S-1-5-32-546'
+      - 'Group: Security ID: S-1-5-32-547'
+      - 'Group: Security ID: S-1-5-32-548'
+      - 'Group: Security ID: S-1-5-32-549'
+      - 'Group: Security ID: S-1-5-32-550'
+      - 'Group: Security ID: S-1-5-32-555'
+  condition: selection_1 and selection_2 and selection_3 and selection_7 and selection_9 and not (filter_4
+    or filter_5 or filter_6 or filter_8)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5009760'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007216
+---
+title: '[WINDOWS-SECURITY] A security-enabled local group membership was enumerated (Domain Groups)'
+id: adfc595d-9eb2-5abc-a612-47e3a4a7639c
+status: experimental
+description: Converted from Sagan rule SID 5009761 (rev 3), file azureEventHub_windows-security.rules.
+references:
+  - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4799
+  - https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-identifiers
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4799
+  selection_3:
+    RenderedDescription|contains|cased: 'Group: Security ID: S-1-5'
+  filter_4:
+    RenderedDescription|contains|cased: 'Process ID: 0x0'
+  filter_5:
+    RenderedDescription|contains|cased: 'Process Name: C:\\\\Windows\\\\System32'
+  selection_6:
+    RenderedDescription|contains|cased: 'Process Name: '
+  filter_7:
+    RenderedDescription|contains|cased: :\\\\Program Files
+  selection_8:
+    RenderedDescription|contains|cased:
+      - '-500'
+      - '-501'
+      - '-502'
+      - '-512'
+      - '-513'
+      - '-514'
+      - '-515'
+      - '-516'
+      - '-517'
+      - '-518'
+      - '-519'
+      - '-520'
+      - '-553'
+  condition: selection_1 and selection_2 and selection_3 and selection_6 and selection_8 and not (filter_4
+    or filter_5 or filter_7)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5009761'
+  sagan.rev: '3'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007217
+---
+title: '[WINDOWS-SECURITY] Possible Microsoft Teams token access via Cookies'
+id: fb490a64-004c-52c2-bd21-2ff51e281631
+status: experimental
+description: Converted from Sagan rule SID 5009762 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://www.vectra.ai/blogpost/undermining-microsoft-teams-security-by-mining-tokens
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4663
+  selection_3:
+    RenderedDescription|contains|cased: 'Object Name:'
+  selection_4:
+    RenderedDescription|contains: \\\\AppData\\\\Roaming\\\\Microsft\\\\Teams\\\\Cookies
+  selection_5:
+    RenderedDescription|contains|cased: 'Process Name:'
+  filter_6:
+    RenderedDescription|contains: '\\\\Teams.exe '
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and not filter_6
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009762'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007694
+---
+title: '[WINDOWS-SECURITY] Possible Microsoft Teams token access via leveldb'
+id: 03906365-3f5a-5e12-8177-39b3f3b1c9f1
+status: experimental
+description: Converted from Sagan rule SID 5009763 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://www.vectra.ai/blogpost/undermining-microsoft-teams-security-by-mining-tokens
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4663
+  selection_3:
+    RenderedDescription|contains|cased: 'Object Name:'
+  selection_4:
+    RenderedDescription|contains: \\\\AppData\\\\Roaming\\\\Microsft\\\\Teams\\\\Local Storage\\\\leveldb
+  selection_5:
+    RenderedDescription|contains|cased: 'Process Name:'
+  filter_6:
+    RenderedDescription|contains: '\\\\Teams.exe '
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and not filter_6
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009763'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007695
+---
+title: '[WINDOWS-SECURITY] Attack on Sysmon - Possible Driver Unload'
+id: aefa54b9-6538-5039-90ef-3edb5793395b
+status: experimental
+description: Converted from Sagan rule SID 5009764 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://codewhitesec.blogspot.com/2022/09/attacks-on-sysmon-revisited-sysmonente.html
+  - https://github.com/matterpreter/Shhmon
+  - https://posts.specterops.io/shhmon-silencing-sysmon-via-driver-unload-682b5be57650
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4672
+  filter_3:
+    RenderedDescription|contains: 'Account Name: SYSTEM'
+  selection_4:
+    RenderedDescription|contains|cased: SeLoadDriverPrivileges
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009764'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007700
+---
+title: '[WINDOWS-SECURITY] Attack on Sysmon - Process Injection'
+id: 832b2357-a5d1-5812-9c04-3d8e8694d036
+status: experimental
+description: Converted from Sagan rule SID 5009765 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://codewhitesec.blogspot.com/2022/09/attacks-on-sysmon-revisited-sysmonente.html
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4656
+  selection_3:
+    RenderedDescription|contains: 'Object Name:'
+  selection_4:
+    RenderedDescription|contains: 'Access Mask:'
+  selection_5:
+    RenderedDescription|contains: '0x1FFFFF'
+  selection_6:
+    RenderedDescription|contains:
+      - sysmon.exe
+      - sysmon64.exe
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009765'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007701
+---
+title: '[WINDOWS-SECURITY] Attack on Sysmon - Process Injection Duplicate Handle'
+id: d9aaf837-78a4-58bb-9236-6413967e5d86
+status: experimental
+description: Converted from Sagan rule SID 5009766 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://codewhitesec.blogspot.com/2022/09/attacks-on-sysmon-revisited-sysmonente.html
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4656
+  selection_3:
+    RenderedDescription|contains: 'Object Name:'
+  selection_4:
+    RenderedDescription|contains: Duplicate handle into
+  selection_5:
+    RenderedDescription|contains:
+      - sysmon.exe
+      - sysmon64.exe
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009766'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007702
+---
+title: '[WINDOWS-SECURITY] Disable Windows Security'
+id: c4dbdf90-889a-5eeb-a4d9-991c889816de
+status: experimental
+description: Converted from Sagan rule SID 5009769 (rev 1), file azureEventHub_windows-security.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*Sysmon'
+      - '*Security'
+  selection_2:
+    EventID:
+      - 1
+      - 4688
+  selection_3:
+    RenderedDescription|contains:
+      - DisableRealtimeMonitoring
+      - DisableAntiSpyware
+      - Uninstall-WindowsFeature -Name Windows-Defender
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009769'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008347
+---
+title: '[WINDOWS-SECURITY] Copied rundll32 command executing non-standard dll'
+id: 9d294b87-8808-5018-b1b9-9c068233e9dc
+status: experimental
+description: Converted from Sagan rule SID 5009770 (rev 1), file azureEventHub_windows-security.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Clipboard
+  selection_2:
+    message|contains: rundll32.exe
+  filter_3:
+    message|contains: .dll,
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009770'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008348
+---
+title: '[WINDOWS-SECURITY] Possible UAC Bypass - Rundll32.exe using DLLRegister'
+id: 72874016-28ef-58a1-a856-8ffe4ca6f819
+status: experimental
+description: Converted from Sagan rule SID 5009771 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://redcanary.com/threat-detection-report/techniques/rundll32/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*Sysmon'
+      - '*Security'
+  selection_2:
+    message|contains: 'CommandLine: C:\\\\Windows\\\\system32\\\\rundll32.exe'
+  selection_3:
+    message|contains|cased: ',DllRegisterServer'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009771'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008351
+---
+title: '[WINDOWS-SECURITY] Exfil software rclone detected'
+id: 0ca0c5f6-d1aa-5d67-a7a9-9145b907e86b
+status: experimental
+description: Converted from Sagan rule SID 5009772 (rev 2), file azureEventHub_windows-security.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*Security'
+      - '*Sysmon'
+  selection_2:
+    message|contains: rclone
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5009772'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008354
+---
+title: '[WINDOWS-SECURITY] A service was installed in the system (powershell)'
+id: 27048f78-7845-5568-b213-4e1e283226f4
+status: experimental
+description: Converted from Sagan rule SID 5009773 (rev 1), file azureEventHub_windows-security.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: System
+  selection_2:
+    EventID: 7045
+  selection_3:
+    RenderedDescription|contains|cased: Service File Name
+  selection_4:
+    RenderedDescription|contains|cased: '%COMSPEC%'
+  selection_5:
+    RenderedDescription|contains|cased: powershell
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009773'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008357
+---
+title: '[WINDOWS-SECURITY] A service was installed in the system (DllRegisterServer)'
+id: 41972113-3189-5eec-9948-bedd094f34a0
+status: experimental
+description: Converted from Sagan rule SID 5009774 (rev 1), file azureEventHub_windows-security.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: System
+  selection_2:
+    EventID: 7045
+  selection_3:
+    RenderedDescription|contains|cased: Service File Name
+  selection_4:
+    RenderedDescription|contains|cased: rundll32
+  selection_5:
+    RenderedDescription|contains: ',DllRegisterServer'
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009774'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008358
+---
+title: '[WINDOWS-SECURITY] A service was installed in the system (rundll32 .xls)'
+id: 8de98ee7-7b02-5297-999e-a9024fd89b12
+status: experimental
+description: Converted from Sagan rule SID 5009775 (rev 1), file azureEventHub_windows-security.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: System
+  selection_2:
+    EventID: 7045
+  selection_3:
+    RenderedDescription|contains|cased: Service File Name
+  selection_4:
+    RenderedDescription|contains|cased: rundll32
+  selection_5:
+    RenderedDescription|contains: .xls,
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009775'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008359
+---
+title: '[WINDOWS-SECURITY] A service was installed in the system (rundll32 public directory)'
+id: 63deae07-3eca-5b42-b67d-00c06ea2b39c
+status: experimental
+description: Converted from Sagan rule SID 5009776 (rev 1), file azureEventHub_windows-security.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: System
+  selection_2:
+    EventID: 7045
+  selection_3:
+    RenderedDescription|contains|cased: Service File Name
+  selection_4:
+    RenderedDescription|contains|cased: rundll32
+  selection_5:
+    RenderedDescription|contains: C:\\\\users\\\\public\\\\
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009776'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008360
+---
+title: '[WINDOWS-SECURITY] Blackbasta ransomware file extension detected (.basta)'
+id: 3819c735-2aa2-590a-a8fb-c559f4cb781e
+name: sagan_5009777
+status: experimental
+description: Converted from Sagan rule SID 5009777 (rev 2), file azureEventHub_windows-security.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*,*Sysmon*'
+  selection_2:
+    EventID:
+      - 11
+      - 4663
+      - 567
+      - 5145
+  selection_3:
+    RenderedDescription|contains: '.basta '
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.ransomware
+custom_attributes:
+  sagan.sid: '5009777'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-security.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_on=2022_11_22,old_sid=5008361
+---
+title: '[WINDOWS-SECURITY] Blackbasta ransomware file extension detected (.basta) (threshold 10 in 5m)'
+id: e0c337e2-3135-5ae2-b628-4d1e60828079
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5009777
+  group-by:
+    - Computer
+  timespan: 5m
+  condition:
+    gte: 10
+level: high
+---
+title: '[WINDOWS-SECURITY] bcedit safeboot command (Blackbasta)'
+id: fdae3883-7cd9-5947-987e-1b014f634e19
+status: experimental
+description: Converted from Sagan rule SID 5009778 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://www.deepinstinct.com/blog/black-basta-ransomware-threat-emergence
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*Sysmon*'
+      - '*Security*'
+  selection_2:
+    EventID:
+      - 1
+      - 4688
+  selection_3:
+    RenderedDescription|contains: bcdedit
+  selection_4:
+    RenderedDescription|contains|cased: set
+  selection_5:
+    RenderedDescription|contains|cased: safeboot
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5009778'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5008400
+---
+title: '[WINDOWS-SECURITY] Fax service installed - Possible BlackBasta'
+id: 840dd7bf-d713-59ba-8c69-640065faacf0
+status: experimental
+description: Converted from Sagan rule SID 5014548 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://minerva-labs.com/blog/new-black-basta-ransomware-hijacks-windows-fax-service/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*System*'
+      - '*Service*'
+  selection_2:
+    message|contains: EventID="7045"
+  selection_3:
+    message|contains|cased: ServiceName="Fax"
+  selection_4:
+    message|contains|cased: A service was installed in the system
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014548'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5010458
+---
+title: '[WINDOWS-SECURITY] Password Protected Zip File Opened'
+id: 3bcf004b-935f-505a-9567-89c26f84635e
+status: experimental
+description: Converted from Sagan rule SID 5014549 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://www.socinvestigation.com/windows-event-id-5379-to-detect-malicious-password-protected-file-unlock/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 5379
+  selection_3:
+    RenderedDescription|contains|cased: Microsoft_Windows_Shell_ZipFolder
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5014549'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5010484
+---
+title: '[WINDOWS-SECURITY] Comsrvc MiniDump Command'
+id: 7da10a2f-7358-5c53-8266-e3009c1b229b
+status: experimental
+description: Converted from Sagan rule SID 5014550 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://gist.github.com/JohnLaTwC/3e7dd4cd8520467df179e93fb44a434e
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*Security*'
+      - '*Sysmon*'
+  selection_2:
+    EventID:
+      - 1
+      - 4688
+  selection_3:
+    RenderedDescription|contains|cased: rundll32.exe
+  selection_4:
+    RenderedDescription|contains: C:\\Windows\\System32\\comsvcs.dll, MiniDump
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5014550'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5010485
+---
+title: '[WINDOWS-SECURITY] Comsrvc MiniDump Command'
+id: cb0a6d9c-5c2d-5625-b7dd-f0e03d0d21aa
+status: experimental
+description: Converted from Sagan rule SID 5014551 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://gist.github.com/JohnLaTwC/3e7dd4cd8520467df179e93fb44a434e
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*Security*'
+      - '*Sysmon*'
+  selection_2:
+    EventID:
+      - 1
+      - 4688
+  selection_3:
+    RenderedDescription|contains|cased: rundll32.exe
+  selection_4:
+    RenderedDescription|contains: C:\\Windows\\System32\\comsvcs.dll,MiniDump
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5014551'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5010486
+---
+title: '[WINDOWS-SECURITY] Comsrvc MiniDump Command'
+id: f3fa1d5c-ecfb-5f66-9cb7-2025838115c3
+status: experimental
+description: Converted from Sagan rule SID 5014552 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://gist.github.com/JohnLaTwC/3e7dd4cd8520467df179e93fb44a434e
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*Security*'
+      - '*Sysmon*'
+  selection_2:
+    EventID:
+      - 1
+      - 4688
+  selection_3:
+    RenderedDescription|contains|cased: rundll32
+  selection_4:
+    RenderedDescription|contains: comsvcs,#24
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5014552'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5010487
+---
+title: '[WINDOWS-SECURITY] Comsrvc MiniDump Command via Service Control'
+id: 35a60d93-4856-50a3-a0bb-64b2d678bfa8
+status: experimental
+description: Converted from Sagan rule SID 5014553 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://gist.github.com/JohnLaTwC/3e7dd4cd8520467df179e93fb44a434e
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*Security*'
+      - '*Sysmon*'
+  selection_2:
+    EventID:
+      - 1
+      - 4688
+  selection_3:
+    RenderedDescription|contains|cased: sc.exe
+  selection_4:
+    RenderedDescription|contains|cased: create
+  selection_5:
+    RenderedDescription|contains|cased: binpath=
+  selection_6:
+    RenderedDescription|contains: C:\\Windows\\System32\\comsvcs.dll
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5014553'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5010488
+---
+title: '[WINDOWS-SECURITY] Possible Obfuscation - CMD with Caret in Redirection'
+id: 1c0899c7-5036-52e4-90fc-b45dc6ce6d23
+status: experimental
+description: Converted from Sagan rule SID 5014554 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://blog.alphathreat.in/index.php?post/2021/08/03/Malware-techniques%3A-Windows-Command-Obfuscation
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*Security*'
+      - '*Sysmon*'
+  selection_2:
+    EventID:
+      - 1
+      - 4688
+  selection_3:
+    RenderedDescription|contains|cased: cmd.exe
+  selection_4:
+    RenderedDescription|contains|cased: 2^>
+  filter_5:
+    RenderedDescription|contains|cased: \\Microsoft SQL Server\\
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5014554'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5010489
+---
+title: '[WINDOWS-SECURITY] Right to Left Masquerading Detected'
+id: f3d43e54-e6f5-5948-8e2d-0ecad3e88f85
+status: experimental
+description: Converted from Sagan rule SID 5014555 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://micahbabinski.medium.com/detecting-onenote-one-malware-delivery-407e9321ecf0
+  - https://attack.mitre.org/techniques/T1036/002/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*Sysmon*'
+      - '*Security*'
+  selection_2:
+    EventID:
+      - 1
+      - 4688
+  selection_3:
+    RenderedDescription|contains:
+      - \\\\u202E
+      - '%E2%80%AE'
+      - '[U+202E]'
+      - <202e>
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1036.002
+  - attack.ta0005
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014555'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5010909,deployment=Both,created_at=2023_02_01,updated_at=2023_02_01
+---
+title: '[WINDOWS-SECURITY] Possible Rclone Exfil CommandLine Parameters'
+id: b2d78696-ef04-51b0-8af7-eaa1a53c70d5
+status: experimental
+description: Converted from Sagan rule SID 5014556 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://thedfirreport.com/2022/06/16/sans-ransomware-summit-2022-can-you-detect-this/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*Security*'
+      - '*Sysmon*'
+  selection_2:
+    EventID:
+      - 1
+      - 4688
+  selection_3:
+    RenderedDescription|contains|cased: copy
+  selection_4:
+    RenderedDescription|contains|cased:
+      - --ignore-existing
+      - --auto-confirm
+      - --transfers
+      - --multi-thread-streams
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1567.002
+  - attack.ta0010
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014556'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5010910,deployment=Endpoint,created_at=2023_02_07,updated_at=2023_02_07
+---
+title: '[WINDOWS-SECURITY] RDP Tunnel Detected'
+id: 8b742cd3-6bf5-5fcd-85d4-8109e8e257ec
+status: experimental
+description: Converted from Sagan rule SID 5014557 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://www.mandiant.com/resources/blog/sim-swapping-abuse-azure-serial
+  - https://www.logpoint.com/en/blog/a-deep-look-at-the-darkside-ransomware-operators-and-their-affiliates/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID:
+      - 4778
+      - 4779
+  selection_3:
+    RenderedDescription|contains|cased: ::%16777216
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1572
+  - attack.ta0011
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014557'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5012094,deployment=Both,created_at=2023_05_22,updated_at=2023_05_22
+---
+title: '[TERMINAL-SERVICES] RDP Tunnel Detected'
+id: d338f219-b18a-5d9a-a183-c6d2a88ae337
+status: experimental
+description: Converted from Sagan rule SID 5014558 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://www.mandiant.com/resources/blog/sim-swapping-abuse-azure-serial
+  - https://www.logpoint.com/en/blog/a-deep-look-at-the-darkside-ransomware-operators-and-their-affiliates/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*TerminalServices*'
+  selection_2:
+    RenderedDescription|contains|cased: ::%16777216
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1572
+  - attack.ta0011
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014558'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5012095,deployment=Both,created_at=2023_05_22,updated_at=2023_05_22
+---
+title: '[WINDOWS-SECURITY] VMAccessExtension Administrator group enumeration'
+id: 8ef846a9-c0f0-52b2-b63b-5b86d705abda
+status: experimental
+description: Converted from Sagan rule SID 5014559 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://www.mandiant.com/resources/blog/sim-swapping-abuse-azure-serial
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4799
+  selection_3:
+    RenderedDescription|contains|cased: Administrators
+  selection_4:
+    RenderedDescription|contains|cased: JsonVMAccessExtension.exe
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1098
+  - attack.ta0003
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014559'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5012096,deployment=Both,created_at=2023_05_22,updated_at=2023_05_22
+---
+title: '[WINDOWS-SECURITY] Inbound RDP Tunneling'
+id: 5cd714e3-dbcd-5a45-8e9f-61a23df3aacf
+status: experimental
+description: Converted from Sagan rule SID 5014561 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://www.mandiant.com/resources/blog/sim-swapping-abuse-azure-serial
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4688
+  selection_3:
+    RenderedDescription|contains: cmd.exe
+  selection_4:
+    RenderedDescription|contains: ssh.exe
+  selection_5:
+    RenderedDescription|contains|cased:
+      - :127.0.0.1:3389
+      - :localhost:3389
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1572
+  - attack.ta0011
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014561'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5012098,deployment=Both,created_at=2023_05_22,updated_at=2023_05_22
+---
+title: '[WINDOWS-SECURITY] Sacsess.exe spawn cmd.exe'
+id: d3ffe433-0661-557b-b122-bded9ac2f16c
+status: experimental
+description: Converted from Sagan rule SID 5014562 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://www.mandiant.com/resources/blog/sim-swapping-abuse-azure-serial
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4688
+  selection_3:
+    RenderedDescription|contains: sacsess.exe
+  selection_4:
+    RenderedDescription|contains: cmd.exe
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1059
+  - attack.ta0002
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014562'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5012099,deployment=Both,created_at=2023_05_22,updated_at=2023_05_22
+---
+title: '[WINDOWS-SECURITY] Sacsess.exe spawned cmd.exe'
+id: 99e159c2-db8f-55e5-9a25-262e5b245865
+status: experimental
+description: Converted from Sagan rule SID 5014563 (rev 1), file azureEventHub_windows-security.rules.
+references:
+  - https://www.mandiant.com/resources/blog/sim-swapping-abuse-azure-serial
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4648
+  selection_3:
+    RenderedDescription|contains: sacsess.exe
+  selection_4:
+    RenderedDescription|contains: cmd.exe
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1059
+  - attack.ta0002
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014563'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-security.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5012100,deployment=Both,created_at=2023_05_22,updated_at=2023_05_22

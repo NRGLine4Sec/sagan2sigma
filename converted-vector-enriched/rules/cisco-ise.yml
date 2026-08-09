@@ -1,0 +1,46 @@
+title: '[CISCO-ISE] Failed Login Attempt - Brute force [5/5]'
+id: 7a44108a-d360-546d-ad3e-dcbe2f62f63e
+name: sagan_5001656
+status: experimental
+description: Converted from Sagan rule SID 5001656 (rev 14), file cisco-ise.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased:
+      - CISE_Failed_Attempts
+      - CSCOacs_Failed_Attempts
+  selection_2:
+    message|contains|cased: UserName=
+  filter_3:
+    message|contains|cased: session timed out
+  filter_4:
+    message|contains|cased: Subject not found in the applicable identity store
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5001656'
+  sagan.rev: '14'
+  sagan.source_file: cisco-ise.rules
+  rsigma.suppress: 6h
+  sagan.metadata: updated_on=2025_08_12
+---
+title: '[CISCO-ISE] Failed Login Attempt - Brute force [5/5] (threshold 5 in 5m)'
+id: 9def6a90-4e1d-5958-93ac-166d57bfa512
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5001656
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 5
+level: low

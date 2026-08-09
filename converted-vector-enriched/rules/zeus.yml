@@ -1,0 +1,74 @@
+title: '[ZEUS] Authentication failure'
+id: efc2e5a0-eb04-5a4f-85da-c59862f74d80
+status: experimental
+description: Converted from Sagan rule SID 5000279 (rev 4), file zeus.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Authentication failure
+  selection_2:
+    appname|cased: zeus
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1078
+  - attack.t1110
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5000279'
+  sagan.rev: '4'
+  sagan.source_file: zeus.rules
+---
+title: '[ZEUS] Serious message'
+id: b801a227-cf33-52d8-9dce-73085b85d2a3
+status: experimental
+description: Converted from Sagan rule SID 5000283 (rev 4), file zeus.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|re: ^[\S+ \S+] SERIOUS
+  selection_2:
+    appname|cased: zeus
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1005
+  - attack.t1074
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5000283'
+  sagan.rev: '4'
+  sagan.source_file: zeus.rules
+---
+title: '[ZEUS] Fatal message'
+id: cff1a0d4-1de3-5238-85fc-fa6f99a8bd84
+status: experimental
+description: Converted from Sagan rule SID 5000284 (rev 4), file zeus.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|re: ^[\S+ \S+] FATAL
+  selection_2:
+    appname|cased: zeus
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1107
+  - attack.t1485
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5000284'
+  sagan.rev: '4'
+  sagan.source_file: zeus.rules

@@ -1,0 +1,261 @@
+title: '[NETWRIX] Logon Activity - Possible Brute Force Attempt [10/1]'
+id: 11b64dbb-5de1-5e4b-8f1d-01535453870a
+name: sagan_5010294
+status: experimental
+description: Converted from Sagan rule SID 5010294 (rev 1), file netwrix.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: Netwrix_Auditor_Integration
+  selection_2:
+    message|contains|cased: 'DataSource : Logon Activity'
+  selection_3:
+    message|contains|cased: 'Action : Failed'
+  selection_4:
+    message|contains|cased: 'Message: Failed Logon'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5010294'
+  sagan.rev: '1'
+  sagan.source_file: netwrix.rules
+  rsigma.suppress: 1h
+---
+title: '[NETWRIX] Logon Activity - Possible Brute Force Attempt [10/1] (threshold 10 in 5m)'
+id: 52193406-6924-5f44-ad80-18d3b7c5b508
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5010294
+  group-by:
+    - sagan_username
+  timespan: 5m
+  condition:
+    gte: 10
+level: high
+---
+title: '[NETWRIX] User Activity (Video) - Activated Window - Powershell'
+id: 90883046-bdf4-52e3-b97c-524a1b4786b5
+status: experimental
+description: Converted from Sagan rule SID 5010298 (rev 1), file netwrix.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: Netwrix_Auditor_Integration
+  selection_2:
+    message|contains|cased: 'DataSource : User Activity (Video)'
+  selection_3:
+    message|contains|cased: 'Action : Activated'
+  selection_4:
+    message|contains|cased: 'Message: Activated Window'
+  selection_5:
+    message|contains|cased: 'What : Windows PowerShell'
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5010298'
+  sagan.rev: '1'
+  sagan.source_file: netwrix.rules
+---
+title: '[NETWRIX] User Activity (Video) - Activated Window - COM Surrogate'
+id: b90e0b44-f2ca-5ebf-b213-6ec1e8987b1f
+status: experimental
+description: Converted from Sagan rule SID 5010496 (rev 1), file netwrix.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: Netwrix_Auditor_Integration
+  selection_2:
+    message|contains|cased: 'DataSource : User Activity (Video)'
+  selection_3:
+    message|contains|cased: 'Action : Activated'
+  selection_4:
+    message|contains|cased: 'Message: Activated Window'
+  selection_5:
+    message|contains|cased: 'What : COM Surrogate'
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5010496'
+  sagan.rev: '1'
+  sagan.source_file: netwrix.rules
+---
+title: '[NETWRIX] User Activity (Video) - Activated Elevated Window'
+id: 522f2e57-1bd8-5797-9b06-ea6f11367356
+status: experimental
+description: Converted from Sagan rule SID 5010497 (rev 1), file netwrix.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: Netwrix_Auditor_Integration
+  selection_2:
+    message|contains|cased: 'DataSource : User Activity (Video)'
+  selection_3:
+    message|contains|cased: 'Action : Activated'
+  selection_4:
+    message|contains|cased: 'Message: Activated Elevated Window'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5010497'
+  sagan.rev: '1'
+  sagan.source_file: netwrix.rules
+---
+title: '[NETWRIX] Windows Server - Scheduled Task Added'
+id: 8f975fdb-1db8-5407-858e-c6b30b7a46f6
+status: experimental
+description: Converted from Sagan rule SID 5010315 (rev 1), file netwrix.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: Netwrix_Auditor_Integration
+  selection_2:
+    message|contains|cased: 'DataSource : Windows Server'
+  selection_3:
+    message|contains|cased: 'Message: Added Scheduled Task'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5010315'
+  sagan.rev: '1'
+  sagan.source_file: netwrix.rules
+---
+title: '[NETWRIX] Windows Server - System Service Added'
+id: 4c85963a-266d-5a4b-9dc8-54dfb3472a5d
+status: experimental
+description: Converted from Sagan rule SID 5010316 (rev 1), file netwrix.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: Netwrix_Auditor_Integration
+  selection_2:
+    message|contains|cased: 'DataSource : Windows Server'
+  selection_3:
+    message|contains|cased: 'Message: Added System Service'
+  selection_4:
+    message|contains|cased: Path to executable
+  filter_5:
+    message|contains|cased: '"C:\\Program Files'
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5010316'
+  sagan.rev: '1'
+  sagan.source_file: netwrix.rules
+---
+title: '[NETWRIX] Windows Server Local User Modified Unlock Changed'
+id: 3d9070d1-5140-59d2-b4aa-e24704de0e47
+status: experimental
+description: Converted from Sagan rule SID 5010456 (rev 1), file netwrix.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: Netwrix_Auditor_Integration
+  selection_2:
+    message|contains|cased: 'DataSource : Windows Server'
+  selection_3:
+    message|contains|cased: 'Message: Modified Local User'
+  selection_4:
+    message|contains|cased: Unlocked changed from "Yes" to "No"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5010456'
+  sagan.rev: '1'
+  sagan.source_file: netwrix.rules
+---
+title: '[NETWRIX] Windows Server Local User Modified Unlock Changed'
+id: ec6e2d1d-3d88-5959-ae8b-21c0ee9c707d
+status: experimental
+description: Converted from Sagan rule SID 5010457 (rev 1), file netwrix.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: Netwrix_Auditor_Integration
+  selection_2:
+    message|contains|cased: 'DataSource : Windows Server'
+  selection_3:
+    message|contains|cased: 'Message: Modified Local User'
+  selection_4:
+    message|contains|cased: Unlocked changed from "No" to "Yes"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5010457'
+  sagan.rev: '1'
+  sagan.source_file: netwrix.rules
+---
+title: '[NETWRIX] Windows Server Added Local User'
+id: 93a87d84-149d-5c07-8981-ae2314a85e16
+status: experimental
+description: Converted from Sagan rule SID 5010470 (rev 1), file netwrix.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: Netwrix_Auditor_Integration
+  selection_2:
+    message|contains|cased: 'DataSource : Windows Server'
+  selection_3:
+    message|contains|cased: 'Message: Added Local User'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5010470'
+  sagan.rev: '1'
+  sagan.source_file: netwrix.rules
