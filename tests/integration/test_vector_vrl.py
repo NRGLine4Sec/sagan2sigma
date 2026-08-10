@@ -308,8 +308,8 @@ def run_intel_pipeline(
 
 
 @pytest.mark.skipif(
-    importlib.util.find_spec("mmdbwriter") is None,
-    reason="pip install mmdbwriter to run the intel enrichment test",
+    importlib.util.find_spec("mmdb_writer") is None,
+    reason="pip install mmdb-writer to run the intel enrichment test",
 )
 class TestIntelEnrichment:
     """A denylist or Zeek-intel MMDB, built by our own tool, flags a listed IP.

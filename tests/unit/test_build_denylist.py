@@ -46,8 +46,9 @@ class TestFeedParsers:
 
 
 @pytest.mark.skipif(
-    importlib.util.find_spec("mmdbwriter") is None,
-    reason="pip install mmdbwriter to test the MMDB build",
+    importlib.util.find_spec("mmdb_writer") is None
+    or importlib.util.find_spec("maxminddb") is None,
+    reason="pip install mmdb-writer maxminddb to test the MMDB build",
 )
 class TestBuildMmdb:
     def test_built_database_answers_lookups(self, tmp_path: Path) -> None:

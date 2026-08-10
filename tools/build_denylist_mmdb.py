@@ -29,8 +29,8 @@ Usage::
     python tools/build_denylist_mmdb.py --format zeek \\
         --feed abuse-ch-threatfox-ip.intel --output /etc/vector/zeek-intel.mmdb
 
-Multiple ``--feed`` files are merged. Building the MMDB needs ``mmdbwriter``
-(``pip install mmdbwriter``); the feed parsers do not.
+Multiple ``--feed`` files are merged. Building the MMDB needs ``mmdb-writer``
+(``pip install mmdb-writer``); the feed parsers do not.
 """
 
 from __future__ import annotations
@@ -105,20 +105,23 @@ def build_mmdb(entries: Iterable[Entry], output: Path, database_type: str) -> in
     only checks that a record exists, so any non-empty value would do, but the
     source is kept for debugging.
     """
-    from mmdbwriter import MMDBWriter
-    from mmdbwriter.types import Boolean, Map, String
+    from mmdb_writer import MMDBWriter
+    from netaddr import IPSet
 
-    writer = MMDBWriter(ip_version=6, database_type=database_type, languages=["en"])
+    # The feeds mix IPv4 and IPv6, so the database is v6 and ipv4_compatible
+    # maps the v4 networks into ::/96 -- without it insert_network rejects them.
+    writer = MMDBWriter(
+        ip_version=6,
+        database_type=database_type,
+        languages=["en"],
+        ipv4_compatible=True,
+    )
     count = 0
     for network, source in entries:
-        writer.insert_network(
-            ipaddress.ip_network(network),
-            Map(listed=Boolean(True), source=String(source)),
-        )
+        writer.insert_network(IPSet([network]), {"listed": True, "source": source})
         count += 1
     output.parent.mkdir(parents=True, exist_ok=True)
-    with output.open("wb") as handle:
-        writer.write(handle)
+    writer.to_db_file(str(output))
     return count
 
 
