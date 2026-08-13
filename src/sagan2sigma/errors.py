@@ -119,8 +119,9 @@ REFUSAL_HELP: dict[RefusalCode, str] = {
         "The rule searches the raw message body while also using JSON "
         "operators. When the syslog body is a JSON document, RSigma exposes the "
         "parsed object and no raw field at all, so the text search could never "
-        "match. Add a json_map binding message to the key that carries the "
-        "text, and the rule converts."
+        "match. Convert with --profile vector-enriched, whose pipeline keeps the "
+        "original body in sagan_raw for the text search to run against; or add a "
+        "json_map binding message to the key that carries the text."
     ),
     RefusalCode.UNKNOWN_KEYWORD: (
         "The rule uses a Sagan keyword that no handler covers. This is how the "

@@ -1,0 +1,35 @@
+# Preserve the raw body and expose a JSON body's fields at the top level.
+#
+# Why this exists
+# ---------------
+# When the syslog body is a JSON document, RSigma parses it into fields, which
+# json_content matches, but keeps no raw string. So a content / pcre /
+# meta_content search on the raw body, which Sagan runs against the raw JSON
+# text, has nothing to run against and is refused (E_RAW_TEXT_ON_JSON_EVENT).
+#
+# What it does
+# ------------
+# Run first, this transform keeps the original body in .sagan_raw and, when it is
+# JSON, lifts the object's keys to the top level. Both searches then work:
+#
+#   * json_content -> the parsed top-level field (e.g. .eventName)
+#   * content / pcre / meta_content on the raw body -> .sagan_raw, the original
+#     string Sagan itself searched
+#
+# A non-JSON body is left as-is, with .sagan_raw set to the message, so the
+# transform is harmless for plain events.
+#
+# Output
+# ------
+#   .sagan_raw        the original message string, always
+#   .<json keys>      when the body is JSON, its keys lifted to the top level
+
+.sagan_raw = .message
+
+parsed, err = parse_json(.message)
+if err == null && is_object(parsed) {
+    # Lift the JSON keys to the top level, but let the syslog envelope and
+    # .sagan_raw win on any name clash, so appname / hostname / .sagan_raw are
+    # never clobbered by a same-named key inside the body.
+    . = merge(object!(parsed), .)
+}

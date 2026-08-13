@@ -1,3 +1,2229 @@
+title: '[AWS-IAM] Identity and Access Management event detected (AddClientIDToOpenIDConnectProvider)'
+id: 2b057c93-20aa-5c06-8726-a443e34f79b5
+status: experimental
+description: Converted from Sagan rule SID 5008152 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: AddClientIDToOpenIDConnectProvider
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008152'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (AddUserToGroup)'
+id: 2585b55c-a6f3-5d97-83cf-44be6f5f889e
+status: experimental
+description: Converted from Sagan rule SID 5008154 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: AddUserToGroup
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008154'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (ChangePassword)'
+id: 512173e6-b678-57fc-9ca0-076a8538611c
+status: experimental
+description: Converted from Sagan rule SID 5008158 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: ChangePassword
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008158'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (CreateAccessKey)'
+id: 3266b712-35d6-5dfa-bfd0-cfcc05a33739
+status: experimental
+description: Converted from Sagan rule SID 5008159 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: CreateAccessKey
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008159'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (CreateAccountAlias)'
+id: e68618d6-75ed-5254-9655-fc00567bbccf
+status: experimental
+description: Converted from Sagan rule SID 5008160 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: CreateAccountAlias
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008160'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (CreateGroup)'
+id: bdef6c48-b066-50ef-81ed-4fbf8a760e9e
+status: experimental
+description: Converted from Sagan rule SID 5008161 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: CreateGroup
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008161'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (CreateLoginProfile)'
+id: c81799af-2007-5389-b43f-40b7ae44cccb
+status: experimental
+description: Converted from Sagan rule SID 5008163 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: CreateLoginProfile
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008163'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (CreateOpenIDConnectProvider)'
+id: 8492cde4-a9f7-5f1e-815e-9a4141f20ad0
+status: experimental
+description: Converted from Sagan rule SID 5008164 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: CreateOpenIDConnectProvider
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008164'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (CreateSAMLProvider)'
+id: 1fcf5d3f-1ec6-5a96-ac50-2229430d375a
+status: experimental
+description: Converted from Sagan rule SID 5008168 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: CreateSAMLProvider
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008168'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (CreateServiceSpecificCredential)'
+id: aa11e9cf-a930-511b-8027-4369b3278632
+status: experimental
+description: Converted from Sagan rule SID 5008170 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: CreateServiceSpecificCredential
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008170'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (CreateUser)'
+id: db36b0c1-957f-513d-aebf-52b3ec3eb6fb
+status: experimental
+description: Converted from Sagan rule SID 5008171 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: CreateUser
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008171'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (DeactivateMFADevice)'
+id: fceafd9b-35c3-5210-9dde-05a1f0871308
+status: experimental
+description: Converted from Sagan rule SID 5008173 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: DeactivateMFADevice
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008173'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (DeleteAccessKey)'
+id: 338469eb-e15e-5422-a482-785b3564bc24
+status: experimental
+description: Converted from Sagan rule SID 5008174 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: DeleteAccessKey
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008174'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (DeleteAccountAlias)'
+id: 417bb179-28cd-5ec6-ba1d-4433ef0fffbb
+status: experimental
+description: Converted from Sagan rule SID 5008175 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: DeleteAccountAlias
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008175'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (DeleteAccountPasswordPolicy)'
+id: 150527dd-2edd-5edb-a6aa-b7f57d2be0b8
+status: experimental
+description: Converted from Sagan rule SID 5008176 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: DeleteAccountPasswordPolicy
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008176'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (DeleteGroup)'
+id: 64b55122-efaa-5778-ad3b-c23f019859a7
+status: experimental
+description: Converted from Sagan rule SID 5008177 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: DeleteGroup
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008177'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (DeleteGroupPolicy)'
+id: f4ad8c7b-56a5-5f27-b879-140c8f350974
+status: experimental
+description: Converted from Sagan rule SID 5008178 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: DeleteGroupPolicy
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008178'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (DeleteLoginProfile)'
+id: 16899ed0-d835-5028-bae6-aa57babf3bde
+status: experimental
+description: Converted from Sagan rule SID 5008180 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: DeleteLoginProfile
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008180'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (DeleteOpenIDConnectProvider)'
+id: 2e8c375f-adb0-5c68-824f-6277f73204a9
+status: experimental
+description: Converted from Sagan rule SID 5008181 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: DeleteOpenIDConnectProvider
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008181'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (DeleteRolePermissionsBoundary)'
+id: f21a93f6-912f-515e-bb5b-b80baf5804ce
+status: experimental
+description: Converted from Sagan rule SID 5008185 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: DeleteRolePermissionsBoundary
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008185'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (DeleteSAMLProvider)'
+id: ebd73b4d-0120-5b65-9a3b-27c2a9edbe5d
+status: experimental
+description: Converted from Sagan rule SID 5008187 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: DeleteSAMLProvider
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008187'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (DeleteServerCertificate)'
+id: 6fdc0043-2b50-5a1b-b709-ef403edd4b58
+status: experimental
+description: Converted from Sagan rule SID 5008188 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: DeleteServerCertificate
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008188'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (DeleteServiceLinkedRole)'
+id: ec780b7c-5742-5a75-9ad7-b534884fef33
+status: experimental
+description: Converted from Sagan rule SID 5008189 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: DeleteServiceLinkedRole
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008189'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (DeleteServiceSpecificCredential)'
+id: b0f2ad9a-6c71-5ebc-b673-b8ab097fc021
+status: experimental
+description: Converted from Sagan rule SID 5008190 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: DeleteServiceSpecificCredential
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008190'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (DeleteSigningCertificate)'
+id: d525661a-7468-58b4-ba77-88ffdb4db4a7
+status: experimental
+description: Converted from Sagan rule SID 5008191 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: DeleteSigningCertificate
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008191'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (DeleteSSHPublicKey)'
+id: 76ab334e-4442-54f7-a8da-6b08740f96af
+status: experimental
+description: Converted from Sagan rule SID 5008192 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: DeleteSSHPublicKey
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008192'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (DeleteUser)'
+id: 52f5df40-3781-538b-a482-bd36de9ae5ec
+status: experimental
+description: Converted from Sagan rule SID 5008193 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: DeleteUser
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008193'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (DeleteUserPermissionsBoundary)'
+id: 381b4d7c-7ca4-510e-a54f-950d16002a41
+status: experimental
+description: Converted from Sagan rule SID 5008194 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: DeleteUserPermissionsBoundary
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008194'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (DeleteUserPolicy)'
+id: 8a90b2e4-91f0-5dbf-9305-b89b48b71775
+status: experimental
+description: Converted from Sagan rule SID 5008195 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: DeleteUserPolicy
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008195'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (EnableMFADevice)'
+id: 56a15393-5759-50cb-88aa-e04468af6b10
+status: experimental
+description: Converted from Sagan rule SID 5008200 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: EnableMFADevice
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008200'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (GenerateOrganizationsAccessReport)'
+id: b4f710eb-97b1-5dc2-94dd-c04d23a5a6f7
+status: experimental
+description: Converted from Sagan rule SID 5008202 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: GenerateOrganizationsAccessReport
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008202'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (GetContextKeysForCustomPolicy)'
+id: 2efe53a4-f012-5203-8f1c-12d947348737
+status: experimental
+description: Converted from Sagan rule SID 5008208 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: GetContextKeysForCustomPolicy
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008208'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (GetContextKeysForPrincipalPolicy)'
+id: d243a237-221c-53e5-8919-351213c93fda
+status: experimental
+description: Converted from Sagan rule SID 5008209 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: GetContextKeysForPrincipalPolicy
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008209'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (GetGroupPolicy)'
+id: 25b5d224-cef8-58e7-a1ea-b5e258d7b742
+status: experimental
+description: Converted from Sagan rule SID 5008212 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: GetGroupPolicy
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008212'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (GetOpenIDConnectProvider)'
+id: 3a56f009-f9fe-52f8-8a4f-7f2c30eb66a6
+status: experimental
+description: Converted from Sagan rule SID 5008215 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: GetOpenIDConnectProvider
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008215'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (GetOrganizationsAccessReport)'
+id: e3d2b793-d644-5442-ac3e-aabe7e8e4678
+status: experimental
+description: Converted from Sagan rule SID 5008216 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: GetOrganizationsAccessReport
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008216'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (GetServerCertificate)'
+id: c0510d39-7dee-5d16-aba8-97d54c974a42
+status: experimental
+description: Converted from Sagan rule SID 5008222 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: GetServerCertificate
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008222'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (GetServiceLastAccessedDetailsWithEntities)'
+id: 5d76554c-ad94-5d54-9bf9-952e64a2d839
+status: experimental
+description: Converted from Sagan rule SID 5008224 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: GetServiceLastAccessedDetailsWithEntities
+  filter_3:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_4:
+    sagan_raw|contains|cased: AWSServiceRole
+  filter_5:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008224'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (GetServiceLinkedRoleDeletionStatus)'
+id: 5b6d796b-311c-5407-8655-b293c916ec4c
+status: experimental
+description: Converted from Sagan rule SID 5008225 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: GetServiceLinkedRoleDeletionStatus
+  filter_3:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_4:
+    sagan_raw|contains|cased: AWSServiceRole
+  filter_5:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008225'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (GetSSHPublicKey)'
+id: 19120c32-0929-5bda-b3be-648a2d9618ed
+status: experimental
+description: Converted from Sagan rule SID 5008226 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: GetSSHPublicKey
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008226'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (GetUserPolicy)'
+id: e769a309-625a-5698-ae48-7241a7176500
+status: experimental
+description: Converted from Sagan rule SID 5008228 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: GetUserPolicy
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008228'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (PutGroupPolicy)'
+id: a165ba00-e103-553b-ba85-6e40372a82bc
+status: experimental
+description: Converted from Sagan rule SID 5008263 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: PutGroupPolicy
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008263'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (PutRolePermissionsBoundary)'
+id: 22949486-a941-5995-ab82-08c5911c3e48
+status: experimental
+description: Converted from Sagan rule SID 5008264 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: PutRolePermissionsBoundary
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008264'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (PutUserPermissionsBoundary)'
+id: 36b46a55-cfab-50f2-b7f7-471e502fc883
+status: experimental
+description: Converted from Sagan rule SID 5008266 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: PutUserPermissionsBoundary
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008266'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (PutUserPolicy)'
+id: d09662bc-1b92-53a7-9ab1-8806add79cd4
+status: experimental
+description: Converted from Sagan rule SID 5008267 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: PutUserPolicy
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008267'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (RemoveClientIDFromOpenIDConnectProvider)'
+id: c8348210-5832-5aa7-aa10-17ec61003971
+status: experimental
+description: Converted from Sagan rule SID 5008268 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: RemoveClientIDFromOpenIDConnectProvider
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008268'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (RemoveUserFromGroup)'
+id: 485f485c-1a72-5321-923a-b486ad946ee5
+status: experimental
+description: Converted from Sagan rule SID 5008270 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: RemoveUserFromGroup
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008270'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (ResetServiceSpecificCredential)'
+id: c086e2ac-94e2-5903-8cb2-040da1766137
+status: experimental
+description: Converted from Sagan rule SID 5008271 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: ResetServiceSpecificCredential
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008271'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (ResyncMFADevice)'
+id: ca98f67f-f7cb-5456-a87b-22ef83265ace
+status: experimental
+description: Converted from Sagan rule SID 5008272 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: ResyncMFADevice
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008272'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (SetDefaultPolicyVersion)'
+id: d2a29284-bffa-5de2-bd72-ff1d5bf0f5b1
+status: experimental
+description: Converted from Sagan rule SID 5008273 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: SetDefaultPolicyVersion
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008273'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (SetSecurityTokenServicePreferences)'
+id: 42c3adcf-0f90-5bcd-bb09-686f11960a27
+status: experimental
+description: Converted from Sagan rule SID 5008274 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: SetSecurityTokenServicePreferences
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008274'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (UpdateAccountPasswordPolicy)'
+id: c6b42209-34cb-546e-b21c-c093f8aa90ab
+status: experimental
+description: Converted from Sagan rule SID 5008294 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: UpdateAccountPasswordPolicy
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008294'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (UpdateAssumeRolePolicy)'
+id: db2e4646-fbbd-5190-9c0b-03efcfd7b69c
+status: experimental
+description: Converted from Sagan rule SID 5008295 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: UpdateAssumeRolePolicy
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008295'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (UpdateGroup)'
+id: 93b2f4bd-fad6-558a-8ec3-e7a1a3071dc2
+status: experimental
+description: Converted from Sagan rule SID 5008296 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: UpdateGroup
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008296'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (UpdateLoginProfile)'
+id: 445db205-77cc-5c1f-8266-6513b02c9ec5
+status: experimental
+description: Converted from Sagan rule SID 5008297 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: UpdateLoginProfile
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008297'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (UpdateOpenIDConnectProviderThumbprint)'
+id: 4dff753c-ff8c-57b4-b8b4-7393491471ba
+status: experimental
+description: Converted from Sagan rule SID 5008298 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: UpdateOpenIDConnectProviderThumbprint
+  filter_3:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_4:
+    sagan_raw|contains|cased: AWSServiceRole
+  filter_5:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008298'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (UpdateRole)'
+id: 92397ea1-9dc7-5ba5-9ad2-b8e052ec2344
+status: experimental
+description: Converted from Sagan rule SID 5008299 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: UpdateRole
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008299'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (UpdateRoleDescription)'
+id: 0d6412ba-7265-547b-9fa7-42dfc08a3218
+status: experimental
+description: Converted from Sagan rule SID 5008300 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: UpdateRoleDescription
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008300'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (UpdateSAMLProvider)'
+id: 99931a81-7ae9-583c-84f5-c2ec28effc2e
+status: experimental
+description: Converted from Sagan rule SID 5008301 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: UpdateSAMLProvider
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008301'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (UpdateServerCertificate)'
+id: 3938153e-071b-5098-8eb5-726b0e99f885
+status: experimental
+description: Converted from Sagan rule SID 5008302 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: UpdateServerCertificate
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008302'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (UpdateServiceSpecificCredential)'
+id: 54ec34aa-9f47-5aa1-a5ef-4fde051d0c41
+status: experimental
+description: Converted from Sagan rule SID 5008303 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: UpdateServiceSpecificCredential
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008303'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (UpdateSigningCertificate)'
+id: d41bdd8f-7d45-52e5-8495-ec9cec759841
+status: experimental
+description: Converted from Sagan rule SID 5008304 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: UpdateSigningCertificate
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008304'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (UpdateSSHPublicKey)'
+id: 2b56aac6-4f70-5788-a780-0c1a303ff820
+status: experimental
+description: Converted from Sagan rule SID 5008305 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: UpdateSSHPublicKey
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008305'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (UpdateUser)'
+id: 3aaaf65d-925b-5662-9645-2defe55d12ac
+status: experimental
+description: Converted from Sagan rule SID 5008306 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: UpdateUser
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008306'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (UploadServerCertificate)'
+id: ffe52906-c546-5216-81d2-44c80446f8cf
+status: experimental
+description: Converted from Sagan rule SID 5008307 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: UploadServerCertificate
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008307'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (UploadSigningCertificate)'
+id: 4f40cd0f-e1ac-5b3d-825d-71fe3bb6ad2c
+status: experimental
+description: Converted from Sagan rule SID 5008308 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: UploadSigningCertificate
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008308'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] Identity and Access Management event detected (UploadSSHPublicKey)'
+id: ccc24c51-24f6-5473-a6f7-520326e2aa32
+status: experimental
+description: Converted from Sagan rule SID 5008309 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/IAM/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: UploadSSHPublicKey
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008309'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-IAM] AWS Root account being used'
+id: 3a633f0e-dc1c-5e45-b46e-8e22c5964508
+status: experimental
+description: Converted from Sagan rule SID 5014020 (rev 2), file aws-iam.rules.
+references:
+  - https://docs.aws.amazon.com/sdk-for-ruby/v2/api/Aws/Macie2/Types/UserIdentity.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    userIdentity.type: Root
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014020'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
+title: '[AWS-SIGNIN] AWS IAMUser Login Failures - Brute Force 25/1'
+id: 22582a4d-dc01-53f4-9928-bf4e44ae9cdb
+name: sagan_5014021
+status: experimental
+description: Converted from Sagan rule SID 5014021 (rev 2), file aws-iam.rules.
+references:
+  - https://aws.amazon.com/blogs/mt/analyzing-cloudtrail-in-cloudwatch/
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: signin.amazonaws.com
+  selection_2:
+    eventName|cased: ConsoleLogin
+  selection_3:
+    responseElements.ConsoleLogin|cased: Failure
+  filter_4:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_5:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_6:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and selection_3 and not (filter_4 or filter_5 or filter_6)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5014021'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+  rsigma.suppress: 1d
+---
+title: '[AWS-SIGNIN] AWS IAMUser Login Failures - Brute Force 25/1 (threshold 25 in 5m)'
+id: 8f91a7f6-d2b4-52cb-a2db-e757930ca56b
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5014021
+  group-by:
+    - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 25
+level: high
+---
+title: '[AWS-SIGNIN] Successful User login without MFA'
+id: b8a01135-089d-5fe6-b373-056005a685c2
+status: experimental
+description: Converted from Sagan rule SID 5014022 (rev 4), file aws-iam.rules.
+references:
+  - https://aws.amazon.com/blogs/mt/analyzing-cloudtrail-in-cloudwatch/
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: signin.amazonaws.com
+  selection_2:
+    eventName|cased: ConsoleLogin
+  selection_3:
+    additionalEventData.MFAUsed|cased: 'No'
+  selection_4:
+    responseElements.ConsoleLogin|cased: Success
+  filter_5:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_6:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_7:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not (filter_5 or filter_6
+    or filter_7)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014022'
+  sagan.rev: '4'
+  sagan.source_file: aws-iam.rules
+  rsigma.suppress: 1h
+---
+title: '[AWS-SIGNIN] MFA Device Deactivated'
+id: 50a77c35-dbca-5427-90ed-b3064e488d92
+status: experimental
+description: Converted from Sagan rule SID 5014023 (rev 2), file aws-iam.rules.
+references:
+  - https://aws.amazon.com/blogs/mt/analyzing-cloudtrail-in-cloudwatch/
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: iam.amazonaws.com
+  selection_2:
+    eventName|cased: DeactivateMFADevice
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+  filter_5:
+    sagan_raw|contains|cased: AWSServiceRole
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014023'
+  sagan.rev: '2'
+  sagan.source_file: aws-iam.rules
+---
 title: '[AWS-IAM] Identity and Access Management Discovery Command Event Detected (ListUsers)'
 id: 1c5d6df4-c14e-5ceb-84d5-471a2974d987
 status: experimental

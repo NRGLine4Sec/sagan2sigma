@@ -21,6 +21,149 @@ custom_attributes:
   sagan.rev: '2'
   sagan.source_file: msapi-sharepoint.rules
 ---
+title: '[MSAPI-SHAREPOINT] Mass File Share Detected, Possible BEC Campaign'
+id: d5bcdc4a-c6e7-531b-b4d0-274ba89411f7
+name: sagan_5017894
+status: experimental
+description: Converted from Sagan rule SID 5017894 (rev 1), file msapi-sharepoint.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: SharePoint
+  selection_2:
+    Operation|cased: AddedToSharingLink
+  selection_3:
+    sagan_raw|contains|cased: '"ApplicationDisplayName": "Browser"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017894'
+  sagan.rev: '1'
+  sagan.source_file: msapi-sharepoint.rules
+  sagan.metadata: createdOn=2026_04_16. updatedOn 2026_04_16,Mitre_TacticID=TA0001,Mitre_TacticName=Initial_Access,Mitre_TechniqueID=T1566.002,Mitre_TechniqueName=SpearPhishing_Link
+---
+title: '[MSAPI-SHAREPOINT] Mass File Share Detected, Possible BEC Campaign (threshold 100 in 1h)'
+id: 39446398-4695-5f3d-8333-794e108ab53f
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017894
+  group-by:
+    - ClientIP
+    - SourceFileName
+  timespan: 1h
+  condition:
+    gte: 100
+level: high
+---
+title: '[MSAPI-SHAREPOINT] Mass File Share Detected, Possible BEC Campaign [SecureLink]'
+id: 55949001-e7b3-5f39-9253-3eebd626c3b2
+name: sagan_5017895
+status: experimental
+description: Converted from Sagan rule SID 5017895 (rev 1), file msapi-sharepoint.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: SharePoint
+  selection_2:
+    Operation|cased: AddedToSecureLink
+  selection_3:
+    sagan_raw|contains|cased: '"ApplicationDisplayName": "Browser"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017895'
+  sagan.rev: '1'
+  sagan.source_file: msapi-sharepoint.rules
+  sagan.metadata: createdOn=2026_04_16. updatedOn 2026_04_16,Mitre_TacticID=TA0001,Mitre_TacticName=Initial_Access,Mitre_TechniqueID=T1566.002,Mitre_TechniqueName=SpearPhishing_Link
+---
+title: '[MSAPI-SHAREPOINT] Mass File Share Detected, Possible BEC Campaign [SecureLink] (threshold 100
+  in 1h)'
+id: bc04c6b4-6052-57e1-9447-cf76f457385f
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017895
+  group-by:
+    - ClientIP
+    - SourceFileName
+  timespan: 1h
+  condition:
+    gte: 100
+level: high
+---
+title: '[MSAPI-SHAREPOINT] Python/Go search query request for all files'
+id: bbb3d23c-ef0a-508f-a761-f9523dd20871
+status: experimental
+description: Converted from Sagan rule SID 5017907 (rev 1), file msapi-sharepoint.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    Operation|cased: SearchQueryPerformed
+  selection_2:
+    SearchQueryText|cased: \*
+  filter_3:
+    UserId|cased: app@sharepoint
+  selection_4:
+    sagan_raw|contains|cased:
+      - python-requests
+      - Go-http-client
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017907'
+  sagan.rev: '1'
+  sagan.source_file: msapi-sharepoint.rules
+---
+title: '[MSAPI-SHAREPOINT] Python/Go search query request'
+id: e3e37282-2fe9-5a01-8021-85dd753da5ed
+status: experimental
+description: Converted from Sagan rule SID 5017908 (rev 1), file msapi-sharepoint.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    Operation|cased: SearchQueryPerformed
+  filter_2:
+    UserId|cased: app@sharepoint
+  selection_3:
+    sagan_raw|contains|cased:
+      - python-requests
+      - Go-http-client
+  condition: selection_1 and selection_3 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017908'
+  sagan.rev: '1'
+  sagan.source_file: msapi-sharepoint.rules
+---
 title: '[MSAPI-SHAREPOINT] SharePoint Site Enumeration via Search'
 id: f7c3fd69-8f3e-5776-8c2b-0b2931336ea9
 status: experimental
@@ -45,3 +188,120 @@ custom_attributes:
   sagan.sid: '5017909'
   sagan.rev: '1'
   sagan.source_file: msapi-sharepoint.rules
+---
+title: '[MSAPI-SHAREPOINT] Multiple file accessed via Python/Go'
+id: 4a9b35c8-a84b-5082-8f85-a2cd3a86ccc5
+name: sagan_5017910
+status: experimental
+description: Converted from Sagan rule SID 5017910 (rev 1), file msapi-sharepoint.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    Operation|cased: FileAccessed
+  filter_2:
+    UserId|cased: app@sharepoint
+  selection_3:
+    sagan_raw|contains|cased:
+      - python-requests
+      - Go-http-client
+  condition: selection_1 and selection_3 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017910'
+  sagan.rev: '1'
+  sagan.source_file: msapi-sharepoint.rules
+  rsigma.suppress: 4h
+---
+title: '[MSAPI-SHAREPOINT] Multiple file accessed via Python/Go (threshold 100 in 5m)'
+id: 9c26666f-6572-57ab-8148-741deba57cb8
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017910
+  group-by:
+    - ClientIP
+  timespan: 5m
+  condition:
+    gte: 100
+level: medium
+---
+title: '[MSAPI-SHAREPOINT] Possible File Enumeration - 200+ FileAccessed Events For User In 1 Min'
+id: 4b5cdc34-ac26-5845-ab00-732dcfd1a269
+name: sagan_5017898
+status: experimental
+description: Converted from Sagan rule SID 5017898 (rev 6), file msapi-sharepoint.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    sagan_raw|contains|cased: ClientIP
+  selection_2:
+    Workload|cased: SharePoint
+  selection_3:
+    Operation|cased: FileAccessed
+  filter_4:
+    UserId|cased: app@sharepoint
+  filter_5:
+    UserAgent|contains|cased: ODMTADemand-Transform_Thumbnail
+  filter_6:
+    IsManagedDevice|cased: 'true'
+  filter_7:
+    SourceRelativeUrl|cased: User Photos/Profile Pictures
+  filter_8:
+    ApplicationDisplayName|cased:
+      - Power BI
+      - OneNoteLegacyClient
+  filter_9:
+    SourceFileExtension|cased:
+      - svg
+      - gif
+      - tiff
+      - webp
+      - bmp
+      - tif
+      - ico
+      - heic
+      - heif
+  filter_10:
+    SourceRelativeUrl|contains:
+      - User Photos
+      - Profile Pictures
+  condition: selection_1 and selection_2 and selection_3 and not (filter_4 or filter_5 or filter_6 or
+    filter_7 or filter_8 or filter_9 or filter_10)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.collection
+custom_attributes:
+  sagan.sid: '5017898'
+  sagan.rev: '6'
+  sagan.source_file: msapi-sharepoint.rules
+  rsigma.suppress: 2h
+  sagan.metadata: createdOn=2026_05_05,updatedOn=2026_06_30,mitreTacticID=TA0009,mitreTacticName=Collection,mitreTechniqueID=T1119,mitreTechniqueName=AutomatedCollection
+---
+title: '[MSAPI-SHAREPOINT] Possible File Enumeration - 200+ FileAccessed Events For User In 1 Min (threshold
+  199 in 1m)'
+id: 2b4fb65a-afdf-525c-8486-3f589c3ebcf1
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017898
+  group-by:
+    - UserId
+    - ClientIP
+  timespan: 1m
+  condition:
+    gte: 199
+level: medium

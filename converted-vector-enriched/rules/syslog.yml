@@ -342,6 +342,31 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: syslog.rules
 ---
+title: '[SYSLOG] System out of memory!'
+id: 84b2da37-d536-5ab6-886b-3d613f00b548
+status: experimental
+description: Converted from Sagan rule SID 5000125 (rev 2), file syslog.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: syslog
+detection:
+  selection_1:
+    sagan_raw|contains: out of memory
+  selection_2:
+    facility: kern
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.hardware-event
+custom_attributes:
+  sagan.sid: '5000125'
+  sagan.rev: '2'
+  sagan.source_file: syslog.rules
+  rsigma.suppress: 1h
+---
 title: '[SYSLOG] Kernel log daemon terminating'
 id: 71dc88d2-85d1-5c98-8bde-1b9c975512af
 status: experimental

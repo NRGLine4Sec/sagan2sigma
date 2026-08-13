@@ -36,6 +36,12 @@ class Profile:
     #: Envelope field names to use when the event body is a JSON document.
     #: Empty when the ingestion chain names them the same either way.
     json_envelope: dict[str, str] = dataclass_field(default_factory=dict)
+    #: Field holding the original raw body when the event is a JSON document,
+    #: when the ingestion chain preserves it. ``None`` means a raw text search on
+    #: a JSON event has nothing to run against (RSigma exposes only the parsed
+    #: object), so it is refused. A Vector pipeline that keeps the raw string can
+    #: set this, letting content/pcre/meta searches convert against it.
+    json_raw: str | None = None
 
     def field(self, internal: str) -> str:
         """Concrete field name for an internal value.
@@ -138,6 +144,7 @@ def load_profile(name_or_path: str) -> Profile:
         fields=dict(document["fields"]),
         positional=dict(document.get("positional") or {}),
         json_envelope=dict(document.get("json_envelope") or {}),
+        json_raw=document.get("json_raw"),
     )
 
 

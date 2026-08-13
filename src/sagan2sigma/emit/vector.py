@@ -20,12 +20,15 @@ from pathlib import Path
 
 _VRL_PACKAGE = "sagan2sigma.data.vrl"
 
-#: Base transforms, always emitted: address parsing first, username last.
+#: Base transforms, always emitted. JSON handling first (it preserves the raw
+#: body and lifts a JSON body's keys to the top level), then address parsing,
+#: then username last.
+_JSON: tuple[str, str] = ("sagan_json", "sagan-json.vrl")
 _PARSE_IP: tuple[str, str] = ("sagan_parse_ip", "sagan-parse-ip.vrl")
 _USERNAME: tuple[str, str] = ("sagan_username", "username-extraction.vrl")
 
 #: The always-present transforms, kept as a name for tests and callers.
-TRANSFORMS: tuple[tuple[str, str], ...] = (_PARSE_IP, _USERNAME)
+TRANSFORMS: tuple[tuple[str, str], ...] = (_JSON, _PARSE_IP, _USERNAME)
 
 #: Default database paths in the emitted config. Placeholders: the databases are
 #: supplied by the user, so any provider's or feed's MMDB can be dropped in.
@@ -160,7 +163,12 @@ def _enabled(flags: dict[str, bool]) -> list[_Optional]:
 
 def _pipeline_transforms(flags: dict[str, bool]) -> list[tuple[str, str]]:
     """Every transform to write, in pipeline order."""
-    return [_PARSE_IP, *(option.transform for option in _enabled(flags)), _USERNAME]
+    return [
+        _JSON,
+        _PARSE_IP,
+        *(option.transform for option in _enabled(flags)),
+        _USERNAME,
+    ]
 
 
 def build_config(

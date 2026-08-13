@@ -144,6 +144,112 @@ correlation:
     gte: 10
 level: low
 ---
+title: '[AWS] S3 File Transfer (GetObject)'
+id: 1e5ca1f4-3899-55a2-81ff-2b1fc187af15
+name: sagan_5017063
+status: experimental
+description: Converted from Sagan rule SID 5017063 (rev 3), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: s3.amazonaws.com
+  selection_2:
+    eventName|cased: GetObject
+  filter_3:
+    sagan_raw|contains|cased: '"invokedBy": "cloudtrail.amazonaws.com"'
+  filter_4:
+    sagan_raw|contains|cased: Quadrant_Cloudtrail_Ingestor
+  filter_5:
+    sagan_raw|contains|cased: '"userName": "DatadogAWSLogForwarderRole"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017063'
+  sagan.rev: '3'
+  sagan.source_file: ddr.rules
+  rsigma.suppress: 1h
+  sagan.metadata: createdOn=2026_06_09,updatedOn=2025_11_19
+---
+title: '[AWS] S3 File Transfer (GetObject) (threshold 25 in 1m)'
+id: 05d12d4d-a441-5ada-85da-2dd6cdab58c7
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017063
+  group-by:
+    - userIdentity.sessionContext.sessionIssuer.userName
+  timespan: 1m
+  condition:
+    gte: 25
+level: medium
+---
+title: '[AWS] S3 File Transfer (PutObject)'
+id: d8d14556-df53-5bef-94c1-5ab9ea8f358c
+status: experimental
+description: Converted from Sagan rule SID 991009 (rev 3), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: s3.amazonaws.com
+  selection_2:
+    eventName|cased: PutObject
+  filter_3:
+    sagan_raw|contains|cased: '"invokedBy": "cloudtrail.amazonaws.com"'
+  filter_4:
+    sagan_raw|contains|cased: Quadrant_Cloudtrail_Ingestor
+  filter_5:
+    sagan_raw|contains|cased: '"invokedBy": "firehose.amazonaws.com"'
+  filter_6:
+    sagan_raw|contains|cased: '"invokedBy": "codepipeline.amazonaws.com"'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991009'
+  sagan.rev: '3'
+  sagan.source_file: ddr.rules
+  rsigma.suppress: 1h
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2026_06_09
+---
+title: '[AWS] EC2 Describe Volumes'
+id: cf08066e-885e-517f-9ef3-aa69624ad77e
+status: experimental
+description: Converted from Sagan rule SID 991010 (rev 2), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: ec2.amazonaws.com
+  selection_2:
+    eventName|cased: DescribeVolumes
+  filter_3:
+    sagan_raw|contains|cased: AWSServiceRoleForTrustedAdvisor
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991010'
+  sagan.rev: '2'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2025_11_19
+---
 title: '[AWS] EC2 List Snapshots'
 id: 1aa823e2-3102-56ec-97b0-2aa96566e8a4
 name: sagan_5017064

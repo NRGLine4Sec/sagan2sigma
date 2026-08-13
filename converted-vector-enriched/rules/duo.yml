@@ -1,3 +1,48 @@
+title: '[DUO] Authentication - Brute Force [4/5]'
+id: 1c25c2c5-76db-551b-bdb0-e17035cd8f2b
+name: sagan_5006528
+status: experimental
+description: Converted from Sagan rule SID 5006528 (rev 5), file duo.rules.
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    sagan_raw|contains|cased: 'event_type": "authentication'
+  selection_2:
+    sagan_raw|contains|cased: 'result": "denied'
+  filter_3:
+    reason|cased: user_cancelled
+  selection_4:
+    appname|cased: duo
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.attempted-user
+custom_attributes:
+  sagan.sid: '5006528'
+  sagan.rev: '5'
+  sagan.source_file: duo.rules
+  rsigma.suppress: 1d
+---
+title: '[DUO] Authentication - Brute Force [4/5] (threshold 4 in 5m)'
+id: 87a198d2-0bc5-5139-b8cd-8ebaea13e535
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5006528
+  group-by:
+    - sagan_ip_1
+    - user.name
+  timespan: 5m
+  condition:
+    gte: 4
+level: high
+---
 title: '[DUO] User Placed in Bypass'
 id: 170fccc3-a861-52e1-ba78-47aa4527be4c
 status: experimental
@@ -21,6 +66,35 @@ tags:
 custom_attributes:
   sagan.sid: '5010333'
   sagan.rev: '1'
+  sagan.source_file: duo.rules
+---
+title: '[DUO] 2FA admin login error'
+id: 039e1adc-948e-5610-a196-a3b4e016d4d4
+status: experimental
+description: Converted from Sagan rule SID 5013948 (rev 2), file duo.rules.
+references:
+  - https://help.duo.com
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    appname|cased: duo
+  selection_2:
+    eventtype|cased: administrator
+  selection_3:
+    action|cased: admin_2fa_error
+  filter_4:
+    sagan_raw|contains|cased: Cancelled by user
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013948'
+  sagan.rev: '2'
   sagan.source_file: duo.rules
 ---
 title: '[DUO] admin activated device for duo push'
@@ -158,6 +232,96 @@ custom_attributes:
   sagan.sid: '5013953'
   sagan.rev: '1'
   sagan.source_file: duo.rules
+---
+title: '[DUO] admin login attempt error'
+id: 9df11f99-2e7c-5190-9991-651eb3942357
+status: experimental
+description: Converted from Sagan rule SID 5013955 (rev 1), file duo.rules.
+references:
+  - https://help.duo.com
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    appname|cased: duo
+  selection_2:
+    eventtype|cased: administrator
+  selection_3:
+    action|cased: admin_login_error
+  filter_4:
+    sagan_raw|contains|cased: Invalid password attempt
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013955'
+  sagan.rev: '1'
+  sagan.source_file: duo.rules
+---
+title: '[DUO] admin login error due to invalid password attempts [10/1]'
+id: 9f4791b5-4172-5fa0-a992-d5ffbd91d3f6
+name: sagan_5013956
+status: experimental
+description: Converted from Sagan rule SID 5013956 (rev 1), file duo.rules.
+references:
+  - https://help.duo.com
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    appname|cased: duo
+  selection_2:
+    eventtype|cased: administrator
+  selection_3:
+    action|cased: admin_login_error
+  selection_4:
+    sagan_raw|contains|cased: Invalid password attempt
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013956'
+  sagan.rev: '1'
+  sagan.source_file: duo.rules
+  rsigma.suppress: 1h
+---
+title: '[DUO] admin login error due to invalid password attempts [10/1] (threshold 10 in 5m)'
+id: 07c4a5ed-72f5-5611-a2fb-c2901ec25e8e
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5013956
+  group-by:
+    - hostname
+  timespan: 5m
+  condition:
+    gte: 10
+level: medium
+---
+title: '[DUO] admin login error due to invalid password attempts [10/1] (correlated with brute_force)'
+id: c1796c10-e8fb-544f-b204-69d2737132a3
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute_force
+    - sagan_5013956
+  group-by:
+    - hostname
+  timespan: 1d
+level: medium
 ---
 title: '[DUO] admin password reset'
 id: 192da295-5441-5750-b744-fc7d7859231f
@@ -373,6 +537,35 @@ tags:
 custom_attributes:
   sagan.sid: '5013983'
   sagan.rev: '1'
+  sagan.source_file: duo.rules
+---
+title: '[DUO] admin push verification failed'
+id: 3d68fb44-082b-5fd6-8df3-8120eab4351f
+status: experimental
+description: Converted from Sagan rule SID 5013985 (rev 2), file duo.rules.
+references:
+  - https://help.duo.com
+author: sagan2sigma
+logsource:
+  product: duo
+detection:
+  selection_1:
+    appname|cased: duo
+  selection_2:
+    eventtype|cased: administrator
+  selection_3:
+    action|cased: push_verify_failed
+  filter_4:
+    sagan_raw|contains: Push timed out
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013985'
+  sagan.rev: '2'
   sagan.source_file: duo.rules
 ---
 title: '[DUO] admin authentication attempts were reset'

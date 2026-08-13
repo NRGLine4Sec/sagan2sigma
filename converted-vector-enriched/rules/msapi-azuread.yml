@@ -1,3 +1,122 @@
+title: '[MSAPI-AZUREAD] User Login Failed - Brute Force [5/5]'
+id: e9c063a6-d76b-582c-931d-4edcd8de6597
+name: sagan_5004858
+status: experimental
+description: Converted from Sagan rule SID 5004858 (rev 8), file msapi-azuread.rules.
+references:
+  - https://login.microsoftonline.com/error
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    Workload|cased: AzureActiveDirectory
+  selection_2:
+    ErrorNumber:
+      - 50034
+      - 50053
+      - 50055
+      - 50057
+      - 50126
+      - 50135
+  selection_3:
+    Operation|cased: UserLoginFailed
+  filter_4:
+    sagan_raw|contains|cased: SAS:ProcessAuth
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1078
+  - attack.t1110
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5004858'
+  sagan.rev: '8'
+  sagan.source_file: msapi-azuread.rules
+  rsigma.suppress: 1d
+  sagan.metadata: updated_at=2025_09_18
+---
+title: '[MSAPI-AZUREAD] User Login Failed - Brute Force [5/5] (threshold 5 in 5m)'
+id: cdd63fb9-1df8-5b14-8f51-053f2ba0520f
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5004858
+  group-by:
+    - ClientIP
+    - UserId
+  timespan: 5m
+  condition:
+    gte: 5
+level: low
+---
+title: '[MSAPI-AZUREAD] Successful Login after Brute Force'
+id: f1c78499-b0f3-56c1-8c12-92e67dec0211
+status: experimental
+description: Converted from Sagan rule SID 5013580 (rev 4), file msapi-azuread.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    Workload|cased: AzureActiveDirectory
+  selection_2:
+    sagan_raw|contains|cased: ClientIP
+  selection_3:
+    Operation|cased: UserLoggedIn
+  filter_4:
+    sagan_raw|contains|cased:
+      - SAS:BeginAuth
+      - SAS:EndAuth
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1078
+  - attack.t1110
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5013580'
+  sagan.rev: '4'
+  sagan.source_file: msapi-azuread.rules
+  rsigma.suppress: 6h
+  sagan.metadata: updated_at=2025_04_16
+---
+title: '[MSAPI-AZUREAD] CRITICAL - Global Administrator role assigned to Member'
+id: d656b2da-c41f-5b01-ab24-6116d7d67197
+status: experimental
+description: Converted from Sagan rule SID 5014644 (rev 5), file msapi-azuread.rules.
+references:
+  - https://learn.microsoft.com/en-us/azure/role-based-access-control/rbac-and-directory-admin-roles
+  - https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/best-practices
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: AzureActiveDirectory
+  selection_2:
+    Operation|cased: Add member to role.
+  selection_3:
+    sagan_raw|contains|cased: Global Administrator
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1136
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014644'
+  sagan.rev: '5'
+  sagan.source_file: msapi-azuread.rules
+  sagan.metadata: created_on=2024_05_09,updated_on=2024_06_06
+---
 title: '[MSAPI-AZUREAD] Security Operator role assigned to Member'
 id: 0e6b6e66-3431-532d-8a03-cbd91a2b37e9
 status: experimental
@@ -149,3 +268,738 @@ custom_attributes:
   sagan.rev: '2'
   sagan.source_file: msapi-azuread.rules
   sagan.metadata: created_on=2024_05_15
+---
+title: '[MSAPI-AZUREAD] VSCode Tunnel Detected - Critical'
+id: 9e029592-cb5c-5cd0-9747-897060a089d6
+status: experimental
+description: Converted from Sagan rule SID 5017172 (rev 3), file msapi-azuread.rules.
+references:
+  - https://cybersecuritynews.com/hackers-abusing-microsoft-vscode-remote-tunnels/
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    Workload|cased: AzureActiveDirectory
+  selection_2:
+    Operation|cased: UserLoggedIn
+  selection_3:
+    ApplicationId|cased: aebc6443-996d-45c2-90f0-388ff96faa56
+  selection_4:
+    sagan_raw|contains|cased:
+      - OAuth2:Token
+      - OAuth2:Authorize
+      - SAS:ProcessAuth
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017172'
+  sagan.rev: '3'
+  sagan.source_file: msapi-azuread.rules
+  rsigma.suppress: 1h
+  sagan.metadata: createdOn=2025_05_07,updatedOn=2025_09_05,mitre_technique=InitialAccess
+---
+title: '[MSAPI-AZUREAD] User Login Failed Because Strong Auth Requirement w/ Check Me Signed In'
+id: dcdbf223-b472-5dfd-a360-56a5ad830296
+status: experimental
+description: Converted from Sagan rule SID 5017903 (rev 1), file msapi-azuread.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    Workload|cased: AzureActiveDirectory
+  selection_2:
+    Operation|cased: UserLoginFailed
+  selection_3:
+    sagan_raw|contains|cased: UserStrongAuthClientAuthNRequiredInterrupt
+  selection_4:
+    sagan_raw|contains|cased: Cmsi:Cmsi
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078.004
+  - attack.ta0001
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017903'
+  sagan.rev: '1'
+  sagan.source_file: msapi-azuread.rules
+  sagan.metadata: created_at=2026_05_06,updated_at=2026_05_06
+---
+title: '[MSAPI-AZUREAD] User Login Failed Because External Challenge Requirement w/ Check Me Signed In'
+id: cd676220-08a2-5a72-8c0d-58bf73d4b41a
+status: experimental
+description: Converted from Sagan rule SID 5017904 (rev 2), file msapi-azuread.rules.
+references:
+  - https://www.inversecos.com/2022/12/how-to-detect-malicious-oauth-device.html
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    Workload|cased: AzureActiveDirectory
+  selection_2:
+    Operation|cased: UserLoginFailed
+  selection_3:
+    sagan_raw|contains|cased: ExternalSecurityChallenge
+  selection_4:
+    sagan_raw|contains|cased: Cmsi:Cmsi
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078.004
+  - attack.ta0001
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017904'
+  sagan.rev: '2'
+  sagan.source_file: msapi-azuread.rules
+  sagan.metadata: created_at=2026_05_06,updated_at=2026_06_10
+---
+title: '[MSAPI-AZUREAD] Login Blocked by Conditional Access Policy w/ CMSI'
+id: 27418120-b8db-52f2-9c62-e8e7b3dd3575
+status: experimental
+description: Converted from Sagan rule SID 5017905 (rev 2), file msapi-azuread.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    Workload|cased: AzureActiveDirectory
+  selection_2:
+    Operation|cased: UserLoginFailed
+  selection_3:
+    sagan_raw|contains|cased: BlockedByConditionalAccess
+  selection_4:
+    sagan_raw|contains|cased: Cmsi:Cmsi
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078.004
+  - attack.ta0001
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017905'
+  sagan.rev: '2'
+  sagan.source_file: msapi-azuread.rules
+  rsigma.suppress: 30m
+  sagan.metadata: created_at=2026_05_06,updated_at=2026_06_12
+---
+title: '[EXPERIMENTAL][MSAPI-AZUREAD] Successful User Login From UnTrusted Device To Known AITM Landing
+  Page - Possible AITM'
+id: 5f81f255-3149-5b0e-8077-4121400ce245
+name: sagan_99550
+status: experimental
+description: Converted from Sagan rule SID 99550 (rev 6), file msapi-azuread.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: AzureActiveDirectory
+  selection_2:
+    Operation|cased: UserLoggedIn
+  selection_3:
+    AzureActiveDirectoryEventType: 1
+  selection_4:
+    UserType: 0
+  selection_5:
+    ApplicationId|cased: 4765445b-32c6-49b0-83e6-1d93765276ca
+  filter_6:
+    UserId|contains|cased: _jit@
+  selection_7:
+    sagan_raw|contains|cased: Login:login
+  filter_8:
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
+  filter_9:
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+  filter_10:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+  filter_11:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+  filter_12:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "1"'
+  selection_14:
+    sagan_raw|contains|cased:
+      - 'IsCompliantAndManaged", "Value": "False"'
+      - IsCompliantAndManaged","Value":"False""
+  selection_15:
+    sagan_raw|contains|cased:
+      - UserAuthenticationMethod","Value":"16"
+      - UserAuthenticationMethod\\",\\"Value\\":\\"16\\"
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_7
+    and selection_14 and selection_15 and not (filter_6 or filter_8 or filter_9 or filter_10 or filter_11
+    or filter_12 or filter_13)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '99550'
+  sagan.rev: '6'
+  sagan.source_file: msapi-azuread.rules
+  rsigma.suppress: 1h
+  sagan.metadata: createdOn=2026_05_13,updatedOn=2026_05_28
+---
+title: '[EXPERIMENTAL][MSAPI-AZUREAD] Successful User Login From UnTrusted Device To Known AITM Landing
+  Page - Possible AITM (correlated with AITM_RECON)'
+id: 22a701f3-5008-5893-b375-e6676996590c
+status: experimental
+description: Reconstruction of the Sagan 'AITM_RECON' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_aitm_recon
+    - sagan_99550
+  group-by:
+    - ClientIP
+  timespan: 1d
+level: high
+---
+title: '[EXPERIMENTAL][MSAPI-AZUREAD] Successful User Login From UnTrusted Device To Known AITM Landing
+  Page - Possible Persistence Setup Via Keep Me Signed In'
+id: 642ee80a-f231-544c-9f7f-f4f8b0cf1515
+name: sagan_99551
+status: experimental
+description: Converted from Sagan rule SID 99551 (rev 4), file msapi-azuread.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: AzureActiveDirectory
+  selection_2:
+    Operation|cased: UserLoggedIn
+  selection_3:
+    AzureActiveDirectoryEventType: 1
+  selection_4:
+    UserType: 0
+  selection_5:
+    ApplicationId|cased: 4765445b-32c6-49b0-83e6-1d93765276ca
+  filter_6:
+    UserId|contains|cased: _jit@
+  selection_7:
+    sagan_raw|contains|cased: Kmsi
+  filter_8:
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
+  filter_9:
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+  filter_10:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+  filter_11:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+  filter_12:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "1"'
+  selection_14:
+    sagan_raw|contains|cased:
+      - 'IsCompliantAndManaged", "Value": "False"'
+      - IsCompliantAndManaged","Value":"False""
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_7
+    and selection_14 and not (filter_6 or filter_8 or filter_9 or filter_10 or filter_11 or filter_12
+    or filter_13)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '99551'
+  sagan.rev: '4'
+  sagan.source_file: msapi-azuread.rules
+  rsigma.suppress: 1h
+  sagan.metadata: createdOn=2026_05_13,updatedOn=2026_05_28
+---
+title: '[EXPERIMENTAL][MSAPI-AZUREAD] Successful User Login From UnTrusted Device To Known AITM Landing
+  Page - Possible Persistence Setup Via Keep Me Signed In (correlated with AITM_LOGIN)'
+id: bb4542db-ba08-5174-9517-f2bd4630114c
+status: experimental
+description: Reconstruction of the Sagan 'AITM_LOGIN' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_aitm_login
+    - sagan_99551
+  group-by:
+    - ClientIP
+  timespan: 1d
+level: high
+---
+title: '[EXPERIMENTAL][MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon [25+/1Min]'
+id: bf9d9ba4-86d3-541c-b41a-619b12d03e8a
+name: sagan_99552
+status: experimental
+description: Converted from Sagan rule SID 99552 (rev 4), file msapi-azuread.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: AzureActiveDirectory
+  selection_2:
+    Operation|cased: UserLoginFailed
+  selection_3:
+    AzureActiveDirectoryEventType: 1
+  selection_4:
+    UserType: 0
+  selection_5:
+    ApplicationId|cased: 04b07795-8ddb-461a-bbee-02f9e1bf7b46
+  filter_6:
+    UserId|contains|cased: _jit@
+  selection_7:
+    sagan_raw|contains|cased: OAuth2:Token
+  filter_8:
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
+  filter_9:
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+  filter_10:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+  filter_11:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+  filter_12:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "1"'
+  selection_14:
+    sagan_raw|contains|cased:
+      - 'IsCompliantAndManaged", "Value": "False"'
+      - IsCompliantAndManaged","Value":"False""
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_7
+    and selection_14 and not (filter_6 or filter_8 or filter_9 or filter_10 or filter_11 or filter_12
+    or filter_13)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '99552'
+  sagan.rev: '4'
+  sagan.source_file: msapi-azuread.rules
+  rsigma.suppress: 1h
+  sagan.metadata: createdOn=2026_05_14,updatedOn=2026_05_28
+---
+title: '[EXPERIMENTAL][MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon [25+/1Min]
+  (threshold 25 in 1m)'
+id: 0e3a256f-6f98-541f-bb43-40ed44d65418
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_99552
+  group-by:
+    - UserId
+  timespan: 1m
+  condition:
+    gte: 25
+level: high
+---
+title: '[EXPERIMENTAL][MSAPI-AZUREAD] Security Threat Detected In User Login - Multiple Keep Me Signed
+  In Events Detected For User [2+/1Min]'
+id: b6242280-581b-5e5f-9be1-9bc2b05734bf
+name: sagan_99553
+status: experimental
+description: Converted from Sagan rule SID 99553 (rev 3), file msapi-azuread.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: AzureActiveDirectory
+  selection_2:
+    Operation|cased: UserLoggedIn
+  selection_3:
+    AzureActiveDirectoryEventType: 1
+  selection_4:
+    UserType: 0
+  selection_5:
+    ApplicationId|cased: 4765445b-32c6-49b0-83e6-1d93765276ca
+  filter_6:
+    UserId|contains|cased: _jit@
+  selection_7:
+    sagan_raw|contains|cased: Kmsi
+  filter_8:
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
+  filter_9:
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+  filter_10:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+  filter_11:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+  filter_12:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "1"'
+  selection_14:
+    sagan_raw|contains|cased:
+      - 'IsCompliantAndManaged", "Value": "False"'
+      - IsCompliantAndManaged","Value":"False""
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_7
+    and selection_14 and not (filter_6 or filter_8 or filter_9 or filter_10 or filter_11 or filter_12
+    or filter_13)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '99553'
+  sagan.rev: '3'
+  sagan.source_file: msapi-azuread.rules
+  rsigma.suppress: 1h
+  sagan.metadata: createdOn=2026_05_19,updatedOn=2026_05_28,mitreTacticId=TA0003,mitreTacticName=Persistence,mitreTechniqueId=T1078.004,mitreTechniqueName=ValidAccounts_CloudAccounts
+---
+title: '[EXPERIMENTAL][MSAPI-AZUREAD] Security Threat Detected In User Login - Multiple Keep Me Signed
+  In Events Detected For User [2+/1Min] (threshold 1 in 1m)'
+id: 3316cb0d-bc2e-57ee-9be2-79a098304467
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_99553
+  group-by:
+    - UserId
+  timespan: 1m
+  condition:
+    gte: 1
+level: high
+---
+title: '[EXPERIMENTAL][MSAPI-AZUREAD] Initial Access: Potential AiTM Token Replay via Unknown ObjectId'
+id: f2930bf6-3bc4-58fb-bdd5-7c1bca2aa7bc
+status: experimental
+description: Converted from Sagan rule SID 99554 (rev 3), file msapi-azuread.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: AzureActiveDirectory
+  selection_2:
+    Operation|cased: UserLoggedIn
+  selection_3:
+    AzureActiveDirectoryEventType: 1
+  selection_4:
+    UserType: 0
+  selection_5:
+    ObjectId|cased: Unknown
+  selection_6:
+    ApplicationId|cased: 4765445b-32c6-49b0-83e6-1d93765276ca
+  filter_7:
+    UserId|contains|cased: _jit@
+  selection_8:
+    sagan_raw|contains|cased: OAuth2:Authorize
+  filter_9:
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
+  filter_10:
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+  filter_11:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+  filter_12:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+  filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  filter_14:
+    sagan_raw|contains|cased: '"TrustType", "Value": "1"'
+  selection_15:
+    sagan_raw|contains|cased:
+      - 'IsCompliantAndManaged", "Value": "False"'
+      - IsCompliantAndManaged","Value":"False""
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+    and selection_8 and selection_15 and not (filter_7 or filter_9 or filter_10 or filter_11 or filter_12
+    or filter_13 or filter_14)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '99554'
+  sagan.rev: '3'
+  sagan.source_file: msapi-azuread.rules
+  rsigma.suppress: 1h
+  sagan.metadata: createdOn=2026_05_19,updatedOn=2026_05_28,mitreTacticId=TA0001,mitreTacticName=InitialAccess,mitreTechniqueId=T1078.004,mitreTechniqueName=ValidAccounts_CloudAccounts
+---
+title: '[EXPERIMENTAL][MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon [5+/1Hour]'
+id: 85193053-009e-575a-aaf5-d6b1e1748cd6
+name: sagan_99555
+status: experimental
+description: Converted from Sagan rule SID 99555 (rev 1), file msapi-azuread.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: AzureActiveDirectory
+  selection_2:
+    Operation|cased: UserLoginFailed
+  selection_3:
+    AzureActiveDirectoryEventType: 1
+  selection_4:
+    UserType: 0
+  selection_5:
+    ApplicationId|cased: 04b07795-8ddb-461a-bbee-02f9e1bf7b46
+  filter_6:
+    UserId|contains|cased: _jit@
+  selection_7:
+    sagan_raw|contains|cased: OAuth2:Token
+  filter_8:
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
+  filter_9:
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+  filter_10:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+  filter_11:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+  filter_12:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "1"'
+  selection_14:
+    sagan_raw|contains|cased:
+      - 'IsCompliantAndManaged", "Value": "False"'
+      - IsCompliantAndManaged","Value":"False""
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_7
+    and selection_14 and not (filter_6 or filter_8 or filter_9 or filter_10 or filter_11 or filter_12
+    or filter_13)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '99555'
+  sagan.rev: '1'
+  sagan.source_file: msapi-azuread.rules
+  rsigma.suppress: 1h
+  sagan.metadata: createdOn=2026_05_18,updatedOn=2026_05_28
+---
+title: '[EXPERIMENTAL][MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon [5+/1Hour]
+  (threshold 5 in 1h)'
+id: bb2bb109-deab-5bca-b108-ee89f173a2ae
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_99555
+  group-by:
+    - UserId
+  timespan: 1h
+  condition:
+    gte: 5
+level: high
+---
+title: '[EXPERIMENTAL][MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon [20/5Days]'
+id: 1154852a-fc1b-5ae1-a983-b6f4b353dc4f
+name: sagan_99556
+status: experimental
+description: Converted from Sagan rule SID 99556 (rev 1), file msapi-azuread.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: AzureActiveDirectory
+  selection_2:
+    Operation|cased: UserLoginFailed
+  selection_3:
+    AzureActiveDirectoryEventType: 1
+  selection_4:
+    UserType: 0
+  selection_5:
+    ApplicationId|cased: 04b07795-8ddb-461a-bbee-02f9e1bf7b46
+  filter_6:
+    UserId|contains|cased: _jit@
+  selection_7:
+    sagan_raw|contains|cased: OAuth2:Token
+  filter_8:
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
+  filter_9:
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+  filter_10:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+  filter_11:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+  filter_12:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "1"'
+  selection_14:
+    sagan_raw|contains|cased:
+      - 'IsCompliantAndManaged", "Value": "False"'
+      - IsCompliantAndManaged","Value":"False""
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_7
+    and selection_14 and not (filter_6 or filter_8 or filter_9 or filter_10 or filter_11 or filter_12
+    or filter_13)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '99556'
+  sagan.rev: '1'
+  sagan.source_file: msapi-azuread.rules
+  rsigma.suppress: 5d
+  sagan.metadata: createdOn=2026_05_28,updatedOn=2026_05_28
+---
+title: '[EXPERIMENTAL][MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon [20/5Days]
+  (threshold 25 in 1m)'
+id: 53256715-7a77-5fd6-b4b5-66ac9e5378a6
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_99556
+  group-by:
+    - UserId
+  timespan: 1m
+  condition:
+    gte: 25
+level: high
+---
+title: '[EXPERIMENTAL][MSAPI-AZUREAD] Successful User Login From UnManaged/UnTrusted Device To Known AITM
+  Landing Page - Possible AITM'
+id: b79fce59-dd7f-535e-af68-99c15dfa7c26
+status: experimental
+description: Converted from Sagan rule SID 99557 (rev 1), file msapi-azuread.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: AzureActiveDirectory
+  selection_2:
+    Operation|cased: UserLoggedIn
+  selection_3:
+    AzureActiveDirectoryEventType: 1
+  selection_4:
+    UserType: 0
+  selection_5:
+    ApplicationId|cased: 4765445b-32c6-49b0-83e6-1d93765276ca
+  filter_6:
+    UserId|contains|cased: _jit@
+  selection_7:
+    sagan_raw|contains|cased: Login:login
+  filter_8:
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
+  filter_9:
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+  filter_10:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+  filter_11:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+  filter_12:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "1"'
+  selection_14:
+    sagan_raw|contains|cased:
+      - 'IsCompliantAndManaged", "Value": "False"'
+      - IsCompliantAndManaged","Value":"False""
+  selection_15:
+    sagan_raw|contains|cased:
+      - UserAuthenticationMethod","Value":"16"
+      - UserAuthenticationMethod\\",\\"Value\\":\\"16\\"
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_7
+    and selection_14 and selection_15 and not (filter_6 or filter_8 or filter_9 or filter_10 or filter_11
+    or filter_12 or filter_13)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '99557'
+  sagan.rev: '1'
+  sagan.source_file: msapi-azuread.rules
+  rsigma.suppress: 1h
+  sagan.metadata: createdOn=2026_05_28,updatedOn=2026_05_28
+---
+title: '[EXPERIMENTAL][MSAPI-AZUREAD] Suspicious Device Registration - Add Registered Owner with Anomalous
+  Hostname'
+id: ac0d16b1-3ec3-5b13-9515-a1ab9ed54364
+status: experimental
+description: Converted from Sagan rule SID 9870105 (rev 2), file msapi-azuread.rules.
+references:
+  - https://attack.mitre.org/techniques/T1098/005/
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: AzureActiveDirectory
+  selection_2:
+    Operation|cased: Add registered owner to device.
+  selection_3:
+    ResultStatus|cased: Success
+  selection_4:
+    sagan_raw|contains|cased: NewValue
+  selection_5:
+    sagan_raw|re: DESKTOP-[A-Z0-9]{6}|DESKTOP-[A-Z0-9]{8}
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '9870105'
+  sagan.rev: '2'
+  sagan.source_file: msapi-azuread.rules
+  rsigma.suppress: 1h
+  sagan.metadata: createdOn=2026_06_29,updatedOn=2026_07_02
+---
+title: '[EXPERIMENTAL][MSAPI-AZUREAD] Suspicious Device Registration - Add Registered User with Anomalous
+  Hostname'
+id: 1d62d97b-0be2-54e1-9a18-4ccc58263297
+status: experimental
+description: Converted from Sagan rule SID 9870106 (rev 2), file msapi-azuread.rules.
+references:
+  - https://attack.mitre.org/techniques/T1098/005/
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: AzureActiveDirectory
+  selection_2:
+    Operation|cased: Add registered users to device.
+  selection_3:
+    ResultStatus|cased: Success
+  selection_4:
+    sagan_raw|contains|cased: NewValue
+  selection_5:
+    sagan_raw|re: DESKTOP-[A-Z0-9]{6}|DESKTOP-[A-Z0-9]{8}
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '9870106'
+  sagan.rev: '2'
+  sagan.source_file: msapi-azuread.rules
+  rsigma.suppress: 1h
+  sagan.metadata: createdOn=2026_06_29,updatedOn=2026_07_02

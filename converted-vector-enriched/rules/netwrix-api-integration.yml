@@ -23,6 +23,35 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: netwrix-api-integration.rules
 ---
+title: '[NETWRIX] Active Directory Computer Modified Encryption Type: 0x17'
+id: 0988e68b-5317-556e-8617-f8b3f86aac6d
+status: experimental
+description: Converted from Sagan rule SID 5013740 (rev 1), file netwrix-api-integration.rules.
+references:
+  - https://redsiege.com/tools-techniques/2020/10/detecting-kerberoasting/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: netwrix_auditor_api_data
+  selection_2:
+    DataSource|cased: Active Directory
+  selection_3:
+    Action|contains|cased: Modified computer
+  selection_4:
+    sagan_raw|contains|cased: Supported Encryption Type changed to "23"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013740'
+  sagan.rev: '1'
+  sagan.source_file: netwrix-api-integration.rules
+---
 title: '[NETWRIX] Active Directory User Added'
 id: 0ae3a980-93e4-5ba6-a950-429dc1e16e95
 status: experimental
@@ -168,5 +197,117 @@ tags:
   - sagan.classtype.system-event
 custom_attributes:
   sagan.sid: '5013758'
+  sagan.rev: '1'
+  sagan.source_file: netwrix-api-integration.rules
+---
+title: '[NETWRIX] VMware - VirtualMachine Modified Snapshot removed'
+id: 674d7e4d-da71-5bf7-ab57-ecadc15d103a
+status: experimental
+description: Converted from Sagan rule SID 5013766 (rev 1), file netwrix-api-integration.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: netwrix_auditor_api_data
+  selection_2:
+    DataSource|cased: VMware
+  selection_3:
+    Action|contains|cased: Modified
+  selection_4:
+    ObjectType|cased: VirtualMachine
+  selection_5:
+    sagan_raw|contains|cased: Removed Snapshot
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013766'
+  sagan.rev: '1'
+  sagan.source_file: netwrix-api-integration.rules
+---
+title: '[NETWRIX] Windows Server - Scheduled Task Added'
+id: 540f20dc-a52e-56b9-8ad6-efec9807d399
+status: experimental
+description: Converted from Sagan rule SID 5013775 (rev 1), file netwrix-api-integration.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: netwrix_auditor_api_data
+  selection_2:
+    DataSource|cased: Windows Server
+  selection_3:
+    Action|contains|cased: Added
+  selection_4:
+    sagan_raw|contains|cased: Scheduled Task
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013775'
+  sagan.rev: '1'
+  sagan.source_file: netwrix-api-integration.rules
+---
+title: '[NETWRIX] Windows Server - System Service Added'
+id: 93db7a56-6909-5b4b-b399-eee425bfda08
+status: experimental
+description: Converted from Sagan rule SID 5013776 (rev 1), file netwrix-api-integration.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: netwrix_auditor_api_data
+  selection_2:
+    DataSource|cased: Windows Server
+  selection_3:
+    Action|contains|cased: Added
+  selection_4:
+    sagan_raw|contains|cased: Path to executable
+  filter_5:
+    sagan_raw|contains|cased: '"C:\\Program Files'
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013776'
+  sagan.rev: '1'
+  sagan.source_file: netwrix-api-integration.rules
+---
+title: '[NETWRIX] Windows Server Added Local User'
+id: 504332b1-0679-5c95-9a35-04655baa6631
+status: experimental
+description: Converted from Sagan rule SID 5013787 (rev 1), file netwrix-api-integration.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: netwrix_auditor_api_data
+  selection_2:
+    DataSource|cased: Windows Server
+  selection_3:
+    Action|contains|cased: Added
+  selection_4:
+    sagan_raw|contains|cased: Local User
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5013787'
   sagan.rev: '1'
   sagan.source_file: netwrix-api-integration.rules

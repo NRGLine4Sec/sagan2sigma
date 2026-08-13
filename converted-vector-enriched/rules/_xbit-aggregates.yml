@@ -1,3 +1,209 @@
+title: Aggregate of rules setting Sagan bit AITM_LOGIN
+id: c642d4c7-b04c-5cb9-85c5-4fdcbd0fd4f2
+name: sagan_xbit_aitm_login
+status: experimental
+description: Synthetic rule. Sagan set the 'AITM_LOGIN' bit from 2 rule(s); since Sigma cannot express
+  an OR between correlated rules, their detections are gathered here. This rule is not meant to alert
+  on its own.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  s1_selection_1:
+    appname|cased: AzureActiveDirectory
+  s1_selection_2:
+    Operation|cased: UserLoggedIn
+  s1_selection_3:
+    AzureActiveDirectoryEventType: 1
+  s1_selection_4:
+    UserType: 0
+  s1_selection_5:
+    ApplicationId|cased: 4765445b-32c6-49b0-83e6-1d93765276ca
+  s1_filter_6:
+    UserId|contains|cased: _jit@
+  s1_selection_7:
+    sagan_raw|contains|cased: Login:login
+  s1_filter_8:
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
+  s1_filter_9:
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+  s1_filter_10:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+  s1_filter_11:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+  s1_filter_12:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  s1_filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "1"'
+  s1_selection_14:
+    sagan_raw|contains|cased:
+      - 'IsCompliantAndManaged", "Value": "False"'
+      - IsCompliantAndManaged","Value":"False""
+  s1_selection_15:
+    sagan_raw|contains|cased:
+      - UserAuthenticationMethod","Value":"16"
+      - UserAuthenticationMethod\\",\\"Value\\":\\"16\\"
+  s2_selection_1:
+    appname|cased: AzureActiveDirectory
+  s2_selection_2:
+    Operation|cased: UserLoggedIn
+  s2_selection_3:
+    AzureActiveDirectoryEventType: 1
+  s2_selection_4:
+    UserType: 0
+  s2_selection_5:
+    ObjectId|cased: Unknown
+  s2_selection_6:
+    ApplicationId|cased: 4765445b-32c6-49b0-83e6-1d93765276ca
+  s2_filter_7:
+    UserId|contains|cased: _jit@
+  s2_selection_8:
+    sagan_raw|contains|cased: OAuth2:Authorize
+  s2_filter_9:
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
+  s2_filter_10:
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+  s2_filter_11:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+  s2_filter_12:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+  s2_filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  s2_filter_14:
+    sagan_raw|contains|cased: '"TrustType", "Value": "1"'
+  s2_selection_15:
+    sagan_raw|contains|cased:
+      - 'IsCompliantAndManaged", "Value": "False"'
+      - IsCompliantAndManaged","Value":"False""
+  condition: (s1_selection_1 and s1_selection_2 and s1_selection_3 and s1_selection_4 and s1_selection_5
+    and s1_selection_7 and s1_selection_14 and s1_selection_15 and not (s1_filter_6 or s1_filter_8 or
+    s1_filter_9 or s1_filter_10 or s1_filter_11 or s1_filter_12 or s1_filter_13)) or (s2_selection_1 and
+    s2_selection_2 and s2_selection_3 and s2_selection_4 and s2_selection_5 and s2_selection_6 and s2_selection_8
+    and s2_selection_15 and not (s2_filter_7 or s2_filter_9 or s2_filter_10 or s2_filter_11 or s2_filter_12
+    or s2_filter_13 or s2_filter_14))
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: informational
+custom_attributes:
+  sagan.xbit: AITM_LOGIN
+  sagan.xbit_setters: '2'
+---
+title: Aggregate of rules setting Sagan bit AITM_RECON
+id: 23827b44-4883-5423-82c7-aaa660ab9c59
+name: sagan_xbit_aitm_recon
+status: experimental
+description: Synthetic rule. Sagan set the 'AITM_RECON' bit from 3 rule(s); since Sigma cannot express
+  an OR between correlated rules, their detections are gathered here. This rule is not meant to alert
+  on its own.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  s1_selection_1:
+    appname|cased: AzureActiveDirectory
+  s1_selection_2:
+    Operation|cased: UserLoginFailed
+  s1_selection_3:
+    AzureActiveDirectoryEventType: 1
+  s1_selection_4:
+    UserType: 0
+  s1_selection_5:
+    ApplicationId|cased: 04b07795-8ddb-461a-bbee-02f9e1bf7b46
+  s1_filter_6:
+    UserId|contains|cased: _jit@
+  s1_selection_7:
+    sagan_raw|contains|cased: OAuth2:Token
+  s1_filter_8:
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
+  s1_filter_9:
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+  s1_filter_10:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+  s1_filter_11:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+  s1_filter_12:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  s1_filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "1"'
+  s1_selection_14:
+    sagan_raw|contains|cased:
+      - 'IsCompliantAndManaged", "Value": "False"'
+      - IsCompliantAndManaged","Value":"False""
+  s2_selection_1:
+    appname|cased: AzureActiveDirectory
+  s2_selection_2:
+    Operation|cased: UserLoginFailed
+  s2_selection_3:
+    AzureActiveDirectoryEventType: 1
+  s2_selection_4:
+    UserType: 0
+  s2_selection_5:
+    ApplicationId|cased: 04b07795-8ddb-461a-bbee-02f9e1bf7b46
+  s2_filter_6:
+    UserId|contains|cased: _jit@
+  s2_selection_7:
+    sagan_raw|contains|cased: OAuth2:Token
+  s2_filter_8:
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
+  s2_filter_9:
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+  s2_filter_10:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+  s2_filter_11:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+  s2_filter_12:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  s2_filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "1"'
+  s2_selection_14:
+    sagan_raw|contains|cased:
+      - 'IsCompliantAndManaged", "Value": "False"'
+      - IsCompliantAndManaged","Value":"False""
+  s3_selection_1:
+    appname|cased: AzureActiveDirectory
+  s3_selection_2:
+    Operation|cased: UserLoginFailed
+  s3_selection_3:
+    AzureActiveDirectoryEventType: 1
+  s3_selection_4:
+    UserType: 0
+  s3_selection_5:
+    ApplicationId|cased: 04b07795-8ddb-461a-bbee-02f9e1bf7b46
+  s3_filter_6:
+    UserId|contains|cased: _jit@
+  s3_selection_7:
+    sagan_raw|contains|cased: OAuth2:Token
+  s3_filter_8:
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
+  s3_filter_9:
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+  s3_filter_10:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+  s3_filter_11:
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+  s3_filter_12:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  s3_filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "1"'
+  s3_selection_14:
+    sagan_raw|contains|cased:
+      - 'IsCompliantAndManaged", "Value": "False"'
+      - IsCompliantAndManaged","Value":"False""
+  condition: (s1_selection_1 and s1_selection_2 and s1_selection_3 and s1_selection_4 and s1_selection_5
+    and s1_selection_7 and s1_selection_14 and not (s1_filter_6 or s1_filter_8 or s1_filter_9 or s1_filter_10
+    or s1_filter_11 or s1_filter_12 or s1_filter_13)) or (s2_selection_1 and s2_selection_2 and s2_selection_3
+    and s2_selection_4 and s2_selection_5 and s2_selection_7 and s2_selection_14 and not (s2_filter_6
+    or s2_filter_8 or s2_filter_9 or s2_filter_10 or s2_filter_11 or s2_filter_12 or s2_filter_13)) or
+    (s3_selection_1 and s3_selection_2 and s3_selection_3 and s3_selection_4 and s3_selection_5 and s3_selection_7
+    and s3_selection_14 and not (s3_filter_6 or s3_filter_8 or s3_filter_9 or s3_filter_10 or s3_filter_11
+    or s3_filter_12 or s3_filter_13))
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: informational
+custom_attributes:
+  sagan.xbit: AITM_RECON
+  sagan.xbit_setters: '3'
+---
 title: Aggregate of rules setting Sagan bit EDRSilencer
 id: afb8e0a8-27f9-5c77-ab56-f9a9f87185a4
 name: sagan_xbit_edrsilencer
@@ -326,7 +532,7 @@ title: Aggregate of rules setting Sagan bit brute-force
 id: 0963d753-5563-54a1-848d-c4d0d89d0221
 name: sagan_xbit_brute-force
 status: experimental
-description: Synthetic rule. Sagan set the 'brute-force' bit from 8 rule(s); since Sigma cannot express
+description: Synthetic rule. Sagan set the 'brute-force' bit from 9 rule(s); since Sigma cannot express
   an OR between correlated rules, their detections are gathered here. This rule is not meant to alert
   on its own.
 author: sagan2sigma
@@ -334,66 +540,74 @@ logsource:
   product: syslog
 detection:
   s1_selection_1:
-    message|contains|cased: ',SYSTEM,auth,'
+    appname|cased: signin.amazonaws.com
   s1_selection_2:
-    message|contains|cased: ',auth-fail,'
+    eventName|cased: ConsoleLogin
   s1_selection_3:
-    message|contains|cased: ',vsys'
+    responseElements.ConsoleLogin|cased: Failure
+  s1_filter_4:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   s2_selection_1:
-    appname|cased: azureEventHub
+    message|contains|cased: ',SYSTEM,auth,'
   s2_selection_2:
-    category|cased: SQLSecurityAuditEvents
+    message|contains|cased: ',auth-fail,'
   s2_selection_3:
-    properties.action_name|cased: DATABASE AUTHENTICATION FAILED
+    message|contains|cased: ',vsys'
   s3_selection_1:
-    appname|cased: box-api_data
+    appname|cased: azureEventHub
   s3_selection_2:
-    event_type|cased: FAILED_LOGIN
+    category|cased: SQLSecurityAuditEvents
+  s3_selection_3:
+    properties.action_name|cased: DATABASE AUTHENTICATION FAILED
   s4_selection_1:
     appname|cased: box-api_data
   s4_selection_2:
     event_type|cased: FAILED_LOGIN
   s5_selection_1:
-    appname|cased: netskope-api_data
+    appname|cased: box-api_data
   s5_selection_2:
-    record_type: audit
-  s5_selection_3:
-    audit_log_event|cased: Login Failed
+    event_type|cased: FAILED_LOGIN
   s6_selection_1:
     appname|cased: netskope-api_data
   s6_selection_2:
     record_type: audit
   s6_selection_3:
-    audit_log_event: SSO Login Failed
+    audit_log_event|cased: Login Failed
   s7_selection_1:
-    appname|cased: Exchange
+    appname|cased: netskope-api_data
   s7_selection_2:
-    Operation|cased: MailboxLogin
+    record_type: audit
   s7_selection_3:
-    ResultStatus|cased: Successful
+    audit_log_event: SSO Login Failed
   s8_selection_1:
-    appname|cased: purity.audit
+    appname|cased: Exchange
   s8_selection_2:
-    message|contains|cased: (login
+    Operation|cased: MailboxLogin
   s8_selection_3:
+    ResultStatus|cased: Successful
+  s9_selection_1:
+    appname|cased: purity.audit
+  s9_selection_2:
+    message|contains|cased: (login
+  s9_selection_3:
     message|contains|cased: 'Result: Failed'
-  condition: (s1_selection_1 and s1_selection_2 and s1_selection_3) or (s2_selection_1 and s2_selection_2
-    and s2_selection_3) or (s3_selection_1 and s3_selection_2) or (s4_selection_1 and s4_selection_2)
-    or (s5_selection_1 and s5_selection_2 and s5_selection_3) or (s6_selection_1 and s6_selection_2 and
-    s6_selection_3) or (s7_selection_1 and s7_selection_2 and s7_selection_3) or (s8_selection_1 and s8_selection_2
-    and s8_selection_3)
+  condition: (s1_selection_1 and s1_selection_2 and s1_selection_3 and not s1_filter_4) or (s2_selection_1
+    and s2_selection_2 and s2_selection_3) or (s3_selection_1 and s3_selection_2 and s3_selection_3) or
+    (s4_selection_1 and s4_selection_2) or (s5_selection_1 and s5_selection_2) or (s6_selection_1 and
+    s6_selection_2 and s6_selection_3) or (s7_selection_1 and s7_selection_2 and s7_selection_3) or (s8_selection_1
+    and s8_selection_2 and s8_selection_3) or (s9_selection_1 and s9_selection_2 and s9_selection_3)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: informational
 custom_attributes:
   sagan.xbit: brute-force
-  sagan.xbit_setters: '8'
+  sagan.xbit_setters: '9'
 ---
 title: Aggregate of rules setting Sagan bit brute_force
 id: d096d8bc-eae7-5535-9ff1-02c0aeca8e2c
 name: sagan_xbit_brute_force
 status: experimental
-description: Synthetic rule. Sagan set the 'brute_force' bit from 128 rule(s); since Sigma cannot express
+description: Synthetic rule. Sagan set the 'brute_force' bit from 132 rule(s); since Sigma cannot express
   an OR between correlated rules, their detections are gathered here. This rule is not meant to alert
   on its own.
 author: sagan2sigma
@@ -688,9 +902,13 @@ detection:
       - 4771
       - 676
       - 675
-  s41_selection_2:
-    message|contains|cased: ' Code: 0x22 '
+  s41_filter_2:
+    sagan_raw|contains|cased: '$ Service Information:'
   s41_selection_3:
+    sagan_raw|contains|cased: ' Code: 0x18 '
+  s41_filter_4:
+    sagan_raw|contains|cased: 'Client Address: ::1 Client Port: 0'
+  s41_selection_5:
     appname|cased: '*Security*'
   s42_selection_1:
     EventID:
@@ -699,7 +917,7 @@ detection:
       - 676
       - 675
   s42_selection_2:
-    message|contains|cased: ' Code: 0x24 '
+    message|contains|cased: ' Code: 0x22 '
   s42_selection_3:
     appname|cased: '*Security*'
   s43_selection_1:
@@ -709,7 +927,7 @@ detection:
       - 676
       - 675
   s43_selection_2:
-    message|contains|cased: ' Code: 0x26 '
+    message|contains|cased: ' Code: 0x24 '
   s43_selection_3:
     appname|cased: '*Security*'
   s44_selection_1:
@@ -719,176 +937,186 @@ detection:
       - 676
       - 675
   s44_selection_2:
-    message|contains|cased: ' Code: 0x31 '
+    message|contains|cased: ' Code: 0x26 '
   s44_selection_3:
     appname|cased: '*Security*'
   s45_selection_1:
-    message|contains|cased: Login_failure
+    EventID:
+      - 4768
+      - 4771
+      - 676
+      - 675
   s45_selection_2:
-    appname|cased: SSH_Tectia_Server
+    message|contains|cased: ' Code: 0x31 '
+  s45_selection_3:
+    appname|cased: '*Security*'
   s46_selection_1:
-    message|contains|cased: 'ssh: failed login attempt'
+    message|contains|cased: Login_failure
   s46_selection_2:
-    appname|cased: syslog
+    appname|cased: SSH_Tectia_Server
   s47_selection_1:
-    message|contains|cased: 'Login: Attempt Failed'
+    message|contains|cased: 'ssh: failed login attempt'
   s47_selection_2:
-    appname|cased: xtremed
+    appname|cased: syslog
   s48_selection_1:
-    appname|cased: Juniper
+    message|contains|cased: 'Login: Attempt Failed'
   s48_selection_2:
-    message|re|i: ' Login failed | authentication failed '
+    appname|cased: xtremed
   s49_selection_1:
-    message|contains|cased: password is not recognized
+    appname|cased: Juniper
   s49_selection_2:
-    appname|cased: webasd
+    message|re|i: ' Login failed | authentication failed '
   s50_selection_1:
-    message|contains|cased: SSH::Password_Guessing
+    message|contains|cased: password is not recognized
   s50_selection_2:
-    appname|cased:
-      - bro
-      - zeek
+    appname|cased: webasd
   s51_selection_1:
-    message|contains|cased: SSH::Login_By_Password_Guesser
+    message|contains|cased: SSH::Password_Guessing
   s51_selection_2:
     appname|cased:
       - bro
       - zeek
   s52_selection_1:
-    message|contains|cased: FTP brute forcing
+    message|contains|cased: SSH::Login_By_Password_Guesser
   s52_selection_2:
-    appname|cased: Artillery
+    appname|cased:
+      - bro
+      - zeek
   s53_selection_1:
-    message|contains|cased: SSH brute forcing violations
+    message|contains|cased: FTP brute forcing
   s53_selection_2:
     appname|cased: Artillery
   s54_selection_1:
-    message|contains: /owa/auth/logon.aspx
+    message|contains|cased: SSH brute forcing violations
   s54_selection_2:
-    message|contains|cased: reason=2&
+    appname|cased: Artillery
   s55_selection_1:
-    message|contains|cased: LOGIN FAILED,
+    message|contains: /owa/auth/logon.aspx
   s55_selection_2:
+    message|contains|cased: reason=2&
+  s56_selection_1:
+    message|contains|cased: LOGIN FAILED,
+  s56_selection_2:
     appname|cased:
       - imapd
       - imapd-sslcourierlogger
-  s56_selection_1:
+  s57_selection_1:
     EventID: 18452
-  s56_selection_2:
+  s57_selection_2:
     appname|cased:
       - MSSQL*
       - Application
-  s57_selection_1:
-    message|contains|cased: 'Authorization failed for user '
-  s57_selection_2:
-    message|contains|cased: ',vsys'
   s58_selection_1:
-    message|contains|cased: Failed keyboard-interactive/pam for invalid user
+    message|contains|cased: 'Authorization failed for user '
   s58_selection_2:
     message|contains|cased: ',vsys'
   s59_selection_1:
-    message|contains|cased: NTLM authentication failed for user
+    message|contains|cased: Failed keyboard-interactive/pam for invalid user
   s59_selection_2:
     message|contains|cased: ',vsys'
   s60_selection_1:
-    message|contains|cased: User
+    message|contains|cased: NTLM authentication failed for user
   s60_selection_2:
-    message|contains|cased: failed authentication
-  s60_selection_3:
     message|contains|cased: ',vsys'
   s61_selection_1:
-    message|contains|cased: PPPoE session failed to connect
+    message|contains|cased: User
   s61_selection_2:
+    message|contains|cased: failed authentication
+  s61_selection_3:
     message|contains|cased: ',vsys'
   s62_selection_1:
-    message|contains|cased: SSL VPN user authentication failed
+    message|contains|cased: PPPoE session failed to connect
   s62_selection_2:
     message|contains|cased: ',vsys'
   s63_selection_1:
-    message|contains|cased: SSL VPN user login failed
+    message|contains|cased: SSL VPN user authentication failed
   s63_selection_2:
     message|contains|cased: ',vsys'
   s64_selection_1:
-    message|contains|cased: Wrong password
+    message|contains|cased: SSL VPN user login failed
   s64_selection_2:
-    appname|cased: asterisk
+    message|contains|cased: ',vsys'
   s65_selection_1:
-    message|contains|cased: Username/auth name mismatch
+    message|contains|cased: Wrong password
   s65_selection_2:
     appname|cased: asterisk
   s66_selection_1:
-    message|contains|cased: No matching peer found
+    message|contains|cased: Username/auth name mismatch
   s66_selection_2:
     appname|cased: asterisk
   s67_selection_1:
-    message|contains|cased: failed to login after
+    message|contains|cased: No matching peer found
   s67_selection_2:
-    message|contains|cased: sshd
+    appname|cased: asterisk
   s68_selection_1:
-    message|re|i: Login failed user=|AUTHENTICATE LOGIN failure
+    message|contains|cased: failed to login after
   s68_selection_2:
-    appname|cased: imapd*
+    message|contains|cased: sshd
   s69_selection_1:
-    message|re|i: password mismatch, client|was not found in
+    message|re|i: Login failed user=|AUTHENTICATE LOGIN failure
   s69_selection_2:
-    appname|cased: nginx
+    appname|cased: imapd*
   s70_selection_1:
-    message|contains|cased: RETURNCODE:[4] "1017"
+    message|re|i: password mismatch, client|was not found in
+  s70_selection_2:
+    appname|cased: nginx
   s71_selection_1:
-    message|contains|cased: authentication failed
-  s71_selection_2:
-    appname|cased: zimbra
+    message|contains|cased: RETURNCODE:[4] "1017"
   s72_selection_1:
     message|contains|cased: authentication failed
   s72_selection_2:
-    message|contains|cased: account not found
-  s72_selection_3:
-    appname|cased: mailbox
+    appname|cased: zimbra
   s73_selection_1:
     message|contains|cased: authentication failed
   s73_selection_2:
-    message|contains|cased: invalid password
+    message|contains|cased: account not found
   s73_selection_3:
     appname|cased: mailbox
   s74_selection_1:
-    message|contains|cased: error=authentication failed
+    message|contains|cased: authentication failed
   s74_selection_2:
     message|contains|cased: invalid password
   s74_selection_3:
-    appname|cased: audit
+    appname|cased: mailbox
   s75_selection_1:
-    message|contains|cased: Invalid username or password
+    message|contains|cased: error=authentication failed
   s75_selection_2:
-    appname|cased: sync
+    message|contains|cased: invalid password
+  s75_selection_3:
+    appname|cased: audit
   s76_selection_1:
-    message|contains|cased: User password mismatch
+    message|contains|cased: Invalid username or password
   s76_selection_2:
     appname|cased: sync
   s77_selection_1:
-    message|contains|cased: msg_id="1100-0005"
+    message|contains|cased: User password mismatch
   s77_selection_2:
-    message|contains|cased: Authentication of
-  s77_selection_3:
-    message|contains|cased: rejected
+    appname|cased: sync
   s78_selection_1:
-    message|contains|cased: 'Passwordstate:'
+    message|contains|cased: msg_id="1100-0005"
   s78_selection_2:
-    message|contains|cased: Failed
+    message|contains|cased: Authentication of
   s78_selection_3:
-    message|contains|cased: login attempt
+    message|contains|cased: rejected
   s79_selection_1:
-    message|contains|cased: centrifyEventID=24101
+    message|contains|cased: 'Passwordstate:'
   s79_selection_2:
-    appname|cased: adclient
+    message|contains|cased: Failed
+  s79_selection_3:
+    message|contains|cased: login attempt
   s80_selection_1:
-    message|contains|cased: centrifyEventID=24501
+    message|contains|cased: centrifyEventID=24101
   s80_selection_2:
     appname|cased: adclient
   s81_selection_1:
+    message|contains|cased: centrifyEventID=24501
+  s81_selection_2:
+    appname|cased: adclient
+  s82_selection_1:
     EventID:
       - 4740
       - 644
-  s81_selection_2:
+  s82_selection_2:
     message|contains:
       - 'Account Name: guest '
       - 'Account Name: sql '
@@ -906,176 +1134,159 @@ detection:
       - 'Account Name: ansible '
       - 'Account Name: ec2-user '
       - 'Account Name: azureuser '
-  s81_selection_3:
+  s82_selection_3:
     appname|cased: '*Security*'
-  s82_selection_1:
-    message|contains: centrifyEventID=27101
-  s82_selection_2:
-    appname|cased: adclient
   s83_selection_1:
     message|contains: centrifyEventID=27101
   s83_selection_2:
-    message|contains: reason=AUTH_FAIL_PUBKEY
-  s83_selection_3:
     appname|cased: adclient
   s84_selection_1:
     message|contains: centrifyEventID=27101
   s84_selection_2:
-    message|contains: reason=INVALID_USER
+    message|contains: reason=AUTH_FAIL_PUBKEY
   s84_selection_3:
     appname|cased: adclient
   s85_selection_1:
-    message|contains: reason=AUTH_FAIL_GSSAPI
-  s85_selection_2:
     message|contains: centrifyEventID=27101
+  s85_selection_2:
+    message|contains: reason=INVALID_USER
   s85_selection_3:
     appname|cased: adclient
   s86_selection_1:
-    message|contains|cased: '[action:"Failed Log In";'
+    message|contains: reason=AUTH_FAIL_GSSAPI
+  s86_selection_2:
+    message|contains: centrifyEventID=27101
+  s86_selection_3:
+    appname|cased: adclient
   s87_selection_1:
-    message|contains|cased: 'sshd-all:error: PAM: Authentication failure'
+    Workload|cased: AzureActiveDirectory
+  s87_selection_2:
+    ErrorNumber:
+      - 50034
+      - 50053
+      - 50055
+      - 50057
+      - 50126
+      - 50135
+  s87_selection_3:
+    Operation|cased: UserLoginFailed
+  s87_filter_4:
+    sagan_raw|contains|cased: SAS:ProcessAuth
   s88_selection_1:
-    message|contains|cased: 'sshd-all:error: PAM: Authentication failure for root'
+    message|contains|cased: '[action:"Failed Log In";'
   s89_selection_1:
-    message|contains|cased: sshd-all:Invalid user\\"-all:Invalid user
+    message|contains|cased: 'sshd-all:error: PAM: Authentication failure'
   s90_selection_1:
-    message|contains|cased: sshd-all:Failed keyboard-interactive/pam
+    message|contains|cased: 'sshd-all:error: PAM: Authentication failure for root'
   s91_selection_1:
-    data.methodName|cased: kafka.Authentication
-  s91_selection_2:
-    data.result.status|cased: UNAUTHENTICATED
+    message|contains|cased: sshd-all:Invalid user\\"-all:Invalid user
   s92_selection_1:
-    event_type_id: 6
-  s92_selection_2:
-    appname|cased: onelogin
+    message|contains|cased: sshd-all:Failed keyboard-interactive/pam
   s93_selection_1:
-    event_type_id: 1002
+    data.methodName|cased: kafka.Authentication
   s93_selection_2:
-    appname|cased: onelogin
+    data.result.status|cased: UNAUTHENTICATED
   s94_selection_1:
-    message|contains|cased: failed to authenticate in
+    sagan_raw|contains|cased: cloudaudit.googleapis.com
   s94_selection_2:
-    appname|cased: sshd
+    sagan_raw|contains|cased: google.login.LoginService.loginFailure
   s95_selection_1:
-    message|contains|cased: 'failed: Principal User'
+    event_type_id: 6
   s95_selection_2:
-    appname|cased: sshd
+    appname|cased: onelogin
   s96_selection_1:
-    message|contains|cased: 'Authentication failed: '
+    event_type_id: 1002
   s96_selection_2:
-    message|contains|cased: user.authentication.auth_via_AD_agent
-  s96_selection_3:
-    appname|cased: sshd
+    appname|cased: onelogin
   s97_selection_1:
-    message|contains|cased: FAILURE
+    message|contains|cased: failed to authenticate in
   s97_selection_2:
-    message|contains|cased: User login to Okta
-  s97_selection_3:
     appname|cased: sshd
   s98_selection_1:
-    message|contains|cased: logid="0101039426"
+    message|contains|cased: 'failed: Principal User'
   s98_selection_2:
-    message|contains|cased: type=
-  s98_selection_3:
-    message|contains|cased: subtype=
-  s98_filter_4:
-    message|contains|cased: '- - - -'
+    appname|cased: sshd
   s99_selection_1:
-    EventID: 529
+    message|contains|cased: 'Authentication failed: '
   s99_selection_2:
-    appname|cased: '*Security*'
+    message|contains|cased: user.authentication.auth_via_AD_agent
+  s99_selection_3:
+    appname|cased: sshd
   s100_selection_1:
-    RenderedDescription|contains: C0000064
-  s100_filter_2:
-    RenderedDescription|contains|cased: $ Source
-  s100_filter_3:
-    RenderedDescription|contains|cased: '$ Account Domain: '
-  s100_selection_4:
-    EventID:
-      - 4625
-      - 4776
-  s100_selection_5:
-    RenderedDescription|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
-  s100_selection_6:
-    appname|cased: '*Security*'
-  s101_filter_1:
-    RenderedDescription|contains|cased: '$ Source Workstation:'
+    message|contains|cased: FAILURE
+  s100_selection_2:
+    message|contains|cased: User login to Okta
+  s100_selection_3:
+    appname|cased: sshd
+  s101_selection_1:
+    message|contains|cased: logid="0101039426"
   s101_selection_2:
-    RenderedDescription|contains: C000006A
-  s101_filter_3:
-    RenderedDescription|contains|cased: '$ Account Domain: '
+    message|contains|cased: type=
+  s101_selection_3:
+    message|contains|cased: subtype=
   s101_filter_4:
-    RenderedDescription|contains|cased: 'Source Network Address: -'
-  s101_selection_5:
-    EventID:
-      - 4625
-      - 4776
-  s101_selection_6:
-    RenderedDescription|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
-  s101_selection_7:
-    appname|cased: '*Security*'
+    message|contains|cased: '- - - -'
   s102_selection_1:
-    RenderedDescription|contains: C0000234
+    EventID: 529
   s102_selection_2:
-    EventID:
-      - 4625
-      - 4776
-  s102_selection_3:
-    RenderedDescription|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
-  s102_selection_4:
     appname|cased: '*Security*'
   s103_selection_1:
-    RenderedDescription|contains: C0000072
-  s103_selection_2:
-    EventID:
-      - 4625
-      - 4776
-  s103_selection_3:
-    RenderedDescription|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
+    RenderedDescription|contains: C0000064
+  s103_filter_2:
+    RenderedDescription|contains|cased: $ Source
+  s103_filter_3:
+    RenderedDescription|contains|cased: '$ Account Domain: '
   s103_selection_4:
-    appname|cased: '*Security*'
-  s104_selection_1:
-    RenderedDescription|contains: C000006F
-  s104_selection_2:
     EventID:
       - 4625
       - 4776
-  s104_selection_3:
+  s103_selection_5:
+    RenderedDescription|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
+  s103_selection_6:
+    appname|cased: '*Security*'
+  s104_filter_1:
+    RenderedDescription|contains|cased: '$ Source Workstation:'
+  s104_selection_2:
+    RenderedDescription|contains: C000006A
+  s104_filter_3:
+    RenderedDescription|contains|cased: '$ Account Domain: '
+  s104_filter_4:
+    RenderedDescription|contains|cased: 'Source Network Address: -'
+  s104_selection_5:
+    EventID:
+      - 4625
+      - 4776
+  s104_selection_6:
+    RenderedDescription|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
+  s104_selection_7:
     appname|cased: '*Security*'
   s105_selection_1:
-    EventID:
-      - 4768
-      - 4771
-      - 681
-      - 676
-      - 675
+    RenderedDescription|contains: C0000234
   s105_selection_2:
-    RenderedDescription|contains|cased: ' 0x6 Client '
+    EventID:
+      - 4625
+      - 4776
   s105_selection_3:
+    RenderedDescription|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
+  s105_selection_4:
     appname|cased: '*Security*'
   s106_selection_1:
-    EventID:
-      - 4768
-      - 4771
-      - 681
-      - 676
-      - 675
+    RenderedDescription|contains: C0000072
   s106_selection_2:
-    RenderedDescription|contains|cased: ' 0xC '
+    EventID:
+      - 4625
+      - 4776
   s106_selection_3:
+    RenderedDescription|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
+  s106_selection_4:
     appname|cased: '*Security*'
   s107_selection_1:
+    RenderedDescription|contains: C000006F
+  s107_selection_2:
     EventID:
-      - 4768
-      - 4771
-      - 681
-      - 676
-      - 675
-  s107_filter_2:
-    RenderedDescription|contains|cased: '$ Service Information:'
+      - 4625
+      - 4776
   s107_selection_3:
-    RenderedDescription|contains|cased: ' 0x18 '
-  s107_selection_4:
     appname|cased: '*Security*'
   s108_selection_1:
     EventID:
@@ -1085,7 +1296,7 @@ detection:
       - 676
       - 675
   s108_selection_2:
-    RenderedDescription|contains|cased: ' 0x22 '
+    RenderedDescription|contains|cased: ' 0x6 Client '
   s108_selection_3:
     appname|cased: '*Security*'
   s109_selection_1:
@@ -1096,7 +1307,7 @@ detection:
       - 676
       - 675
   s109_selection_2:
-    RenderedDescription|contains|cased: ' 0x24 '
+    RenderedDescription|contains|cased: ' 0xC '
   s109_selection_3:
     appname|cased: '*Security*'
   s110_selection_1:
@@ -1106,9 +1317,11 @@ detection:
       - 681
       - 676
       - 675
-  s110_selection_2:
-    RenderedDescription|contains|cased: ' 0x26 '
+  s110_filter_2:
+    RenderedDescription|contains|cased: '$ Service Information:'
   s110_selection_3:
+    RenderedDescription|contains|cased: ' 0x18 '
+  s110_selection_4:
     appname|cased: '*Security*'
   s111_selection_1:
     EventID:
@@ -1118,44 +1331,77 @@ detection:
       - 676
       - 675
   s111_selection_2:
-    RenderedDescription|contains|cased: ' 0x31 '
+    RenderedDescription|contains|cased: ' 0x22 '
   s111_selection_3:
     appname|cased: '*Security*'
   s112_selection_1:
-    EventID: 4771
+    EventID:
+      - 4768
+      - 4771
+      - 681
+      - 676
+      - 675
   s112_selection_2:
-    RenderedDescription|contains|cased: '$ Service Information:'
+    RenderedDescription|contains|cased: ' 0x24 '
   s112_selection_3:
-    RenderedDescription|contains|cased: ' 0x18 '
-  s112_selection_4:
     appname|cased: '*Security*'
   s113_selection_1:
-    EventID: 4768
+    EventID:
+      - 4768
+      - 4771
+      - 681
+      - 676
+      - 675
   s113_selection_2:
-    RenderedDescription|contains|cased: '$ Supplied Realm Name:'
+    RenderedDescription|contains|cased: ' 0x26 '
   s113_selection_3:
-    RenderedDescription|contains|cased: ' 0x18 '
-  s113_selection_4:
     appname|cased: '*Security*'
   s114_selection_1:
-    RenderedDescription|contains|cased: '$ Source Workstation:'
+    EventID:
+      - 4768
+      - 4771
+      - 681
+      - 676
+      - 675
   s114_selection_2:
-    RenderedDescription|contains: C000006A
-  s114_filter_3:
-    RenderedDescription|contains|cased: '$ Account Domain: '
-  s114_filter_4:
-    RenderedDescription|contains|cased: 'Source Network Address: -'
-  s114_filter_5:
-    RenderedDescription|contains|cased: 'Account Name: Account Domain: Failure'
-  s114_selection_6:
-    EventID: 4776
-  s114_selection_7:
+    RenderedDescription|contains|cased: ' 0x31 '
+  s114_selection_3:
     appname|cased: '*Security*'
   s115_selection_1:
+    EventID: 4771
+  s115_selection_2:
+    RenderedDescription|contains|cased: '$ Service Information:'
+  s115_selection_3:
+    RenderedDescription|contains|cased: ' 0x18 '
+  s115_selection_4:
+    appname|cased: '*Security*'
+  s116_selection_1:
+    EventID: 4768
+  s116_selection_2:
+    RenderedDescription|contains|cased: '$ Supplied Realm Name:'
+  s116_selection_3:
+    RenderedDescription|contains|cased: ' 0x18 '
+  s116_selection_4:
+    appname|cased: '*Security*'
+  s117_selection_1:
+    RenderedDescription|contains|cased: '$ Source Workstation:'
+  s117_selection_2:
+    RenderedDescription|contains: C000006A
+  s117_filter_3:
+    RenderedDescription|contains|cased: '$ Account Domain: '
+  s117_filter_4:
+    RenderedDescription|contains|cased: 'Source Network Address: -'
+  s117_filter_5:
+    RenderedDescription|contains|cased: 'Account Name: Account Domain: Failure'
+  s117_selection_6:
+    EventID: 4776
+  s117_selection_7:
+    appname|cased: '*Security*'
+  s118_selection_1:
     EventID:
       - 4740
       - 644
-  s115_selection_2:
+  s118_selection_2:
     RenderedDescription|contains:
       - 'Account Name: guest '
       - 'Account Name: sql '
@@ -1173,85 +1419,91 @@ detection:
       - 'Account Name: ansible '
       - 'Account Name: ec2-user '
       - 'Account Name: azureuser '
-  s115_selection_3:
+  s118_selection_3:
     appname|cased: '*Security*'
-  s116_selection_1:
-    EventID: 18456
-  s116_filter_2:
-    RenderedDescription|contains|cased: local machine
-  s116_filter_3:
-    RenderedDescription|contains|cased: named pipe
-  s116_filter_4:
-    RenderedDescription|contains|cased: Failed to open the explicitly specified database
-  s116_selection_5:
-    appname|cased:
-      - MSSQL*
-      - Application
-  s117_selection_1:
-    EventID: 18452
-  s117_selection_2:
-    appname|cased:
-      - MSSQL*
-      - Application
-  s118_selection_1:
-    appname|cased: salesforce_streaming_api_data
-  s118_selection_2:
-    channel|cased: /event/LoginEventStream
-  s118_filter_3:
-    data.payload.Status: Success
   s119_selection_1:
-    appname|cased: '*TACACS*'
-  s119_selection_2:
-    message|contains|cased: Authentication failed
+    EventID: 18456
+  s119_filter_2:
+    RenderedDescription|contains|cased: local machine
+  s119_filter_3:
+    RenderedDescription|contains|cased: named pipe
+  s119_filter_4:
+    RenderedDescription|contains|cased: Failed to open the explicitly specified database
+  s119_selection_5:
+    appname|cased:
+      - MSSQL*
+      - Application
   s120_selection_1:
-    message|contains|cased: 32002","type
+    EventID: 18452
   s120_selection_2:
-    message|contains|cased: login failed
+    appname|cased:
+      - MSSQL*
+      - Application
   s121_selection_1:
-    logid: 101039426
+    appname|cased: salesforce_streaming_api_data
+  s121_selection_2:
+    channel|cased: /event/LoginEventStream
+  s121_filter_3:
+    data.payload.Status: Success
   s122_selection_1:
-    appname|cased: bomgar
+    appname|cased: '*TACACS*'
   s122_selection_2:
+    message|contains|cased: Authentication failed
+  s123_selection_1:
+    appname|cased: azureEventHub
+  s123_selection_2:
+    sagan_raw|contains|cased:
+      - 'resultType": "50126'
+      - 'resultType": "50056'
+  s124_selection_1:
+    message|contains|cased: 32002","type
+  s124_selection_2:
+    message|contains|cased: login failed
+  s125_selection_1:
+    logid: 101039426
+  s126_selection_1:
+    appname|cased: bomgar
+  s126_selection_2:
     message|contains|cased: event=login
-  s122_selection_3:
+  s126_selection_3:
     message|contains|cased: status=failure
-  s122_filter_4:
+  s126_filter_4:
     message|contains|cased:
       - reason=password expired
       - reason=two factor authentication not configured
-  s123_selection_1:
-    message|contains|cased: act=Drop
-  s123_selection_2:
-    message|contains|cased: product=VPN-1 & FireWall-1
-  s124_selection_1:
-    message|contains|cased: Identity Awareness
-  s124_selection_2:
-    message|contains|cased: auth_status=Failed Login
-  s125_selection_1:
-    message|contains|cased: 32002" type=
-  s125_selection_2:
-    message|contains|cased: login failed
-  s125_selection_3:
-    message|contains|cased: '- - - -'
-  s126_selection_1:
-    message|contains|cased: logid="0101039426"
-  s126_selection_2:
-    message|contains|cased: type=
-  s126_selection_3:
-    message|contains|cased: subtype=
-  s126_selection_4:
-    message|contains|cased: '- - - -'
   s127_selection_1:
-    message|contains|cased: logid="0101039426"
+    message|contains|cased: act=Drop
   s127_selection_2:
-    message|contains|cased: type=
-  s127_selection_3:
-    message|contains|cased: subtype=
-  s127_selection_4:
-    message|contains|cased: '- - - -'
+    message|contains|cased: product=VPN-1 & FireWall-1
   s128_selection_1:
-    appname|cased: gcp
+    message|contains|cased: Identity Awareness
   s128_selection_2:
+    message|contains|cased: auth_status=Failed Login
+  s129_selection_1:
+    message|contains|cased: 32002" type=
+  s129_selection_2:
+    message|contains|cased: login failed
+  s129_selection_3:
+    message|contains|cased: '- - - -'
+  s130_selection_1:
+    message|contains|cased: logid="0101039426"
+  s130_selection_2:
+    message|contains|cased: type=
+  s130_selection_3:
+    message|contains|cased: subtype=
+  s130_selection_4:
+    message|contains|cased: '- - - -'
+  s131_selection_1:
+    message|contains|cased: logid="0101039426"
+  s131_selection_2:
+    message|contains|cased: type=
+  s131_selection_3:
+    message|contains|cased: subtype=
+  s131_selection_4:
+    message|contains|cased: '- - - -'
+  s132_selection_1:
+    appname|cased: gcp
+  s132_selection_2:
     protoPayload.methodName|cased: google.login.LoginService.loginFailure
   condition: (s1_selection_1 and s1_selection_2) or (s2_selection_1 and s2_selection_2 and s2_selection_3)
     or (s3_selection_1 and s3_selection_2) or (s4_selection_1 and s4_selection_3 and not s4_filter_2)
@@ -1273,59 +1525,62 @@ detection:
     and s36_selection_5 and s36_selection_6 and not (s36_filter_2 or s36_filter_3)) or (s37_selection_1
     and s37_selection_2 and s37_selection_3 and s37_selection_4) or (s38_selection_1 and s38_selection_2
     and s38_selection_3 and s38_selection_4) or (s39_selection_1 and s39_selection_2 and s39_selection_3)
-    or (s40_selection_1 and s40_selection_2 and s40_selection_3) or (s41_selection_1 and s41_selection_2
-    and s41_selection_3) or (s42_selection_1 and s42_selection_2 and s42_selection_3) or (s43_selection_1
-    and s43_selection_2 and s43_selection_3) or (s44_selection_1 and s44_selection_2 and s44_selection_3)
-    or (s45_selection_1 and s45_selection_2) or (s46_selection_1 and s46_selection_2) or (s47_selection_1
-    and s47_selection_2) or (s48_selection_1 and s48_selection_2) or (s49_selection_1 and s49_selection_2)
-    or (s50_selection_1 and s50_selection_2) or (s51_selection_1 and s51_selection_2) or (s52_selection_1
-    and s52_selection_2) or (s53_selection_1 and s53_selection_2) or (s54_selection_1 and s54_selection_2)
-    or (s55_selection_1 and s55_selection_2) or (s56_selection_1 and s56_selection_2) or (s57_selection_1
-    and s57_selection_2) or (s58_selection_1 and s58_selection_2) or (s59_selection_1 and s59_selection_2)
-    or (s60_selection_1 and s60_selection_2 and s60_selection_3) or (s61_selection_1 and s61_selection_2)
-    or (s62_selection_1 and s62_selection_2) or (s63_selection_1 and s63_selection_2) or (s64_selection_1
-    and s64_selection_2) or (s65_selection_1 and s65_selection_2) or (s66_selection_1 and s66_selection_2)
-    or (s67_selection_1 and s67_selection_2) or (s68_selection_1 and s68_selection_2) or (s69_selection_1
-    and s69_selection_2) or (s70_selection_1) or (s71_selection_1 and s71_selection_2) or (s72_selection_1
-    and s72_selection_2 and s72_selection_3) or (s73_selection_1 and s73_selection_2 and s73_selection_3)
-    or (s74_selection_1 and s74_selection_2 and s74_selection_3) or (s75_selection_1 and s75_selection_2)
-    or (s76_selection_1 and s76_selection_2) or (s77_selection_1 and s77_selection_2 and s77_selection_3)
-    or (s78_selection_1 and s78_selection_2 and s78_selection_3) or (s79_selection_1 and s79_selection_2)
-    or (s80_selection_1 and s80_selection_2) or (s81_selection_1 and s81_selection_2 and s81_selection_3)
-    or (s82_selection_1 and s82_selection_2) or (s83_selection_1 and s83_selection_2 and s83_selection_3)
-    or (s84_selection_1 and s84_selection_2 and s84_selection_3) or (s85_selection_1 and s85_selection_2
-    and s85_selection_3) or (s86_selection_1) or (s87_selection_1) or (s88_selection_1) or (s89_selection_1)
-    or (s90_selection_1) or (s91_selection_1 and s91_selection_2) or (s92_selection_1 and s92_selection_2)
+    or (s40_selection_1 and s40_selection_2 and s40_selection_3) or (s41_selection_1 and s41_selection_3
+    and s41_selection_5 and not (s41_filter_2 or s41_filter_4)) or (s42_selection_1 and s42_selection_2
+    and s42_selection_3) or (s43_selection_1 and s43_selection_2 and s43_selection_3) or (s44_selection_1
+    and s44_selection_2 and s44_selection_3) or (s45_selection_1 and s45_selection_2 and s45_selection_3)
+    or (s46_selection_1 and s46_selection_2) or (s47_selection_1 and s47_selection_2) or (s48_selection_1
+    and s48_selection_2) or (s49_selection_1 and s49_selection_2) or (s50_selection_1 and s50_selection_2)
+    or (s51_selection_1 and s51_selection_2) or (s52_selection_1 and s52_selection_2) or (s53_selection_1
+    and s53_selection_2) or (s54_selection_1 and s54_selection_2) or (s55_selection_1 and s55_selection_2)
+    or (s56_selection_1 and s56_selection_2) or (s57_selection_1 and s57_selection_2) or (s58_selection_1
+    and s58_selection_2) or (s59_selection_1 and s59_selection_2) or (s60_selection_1 and s60_selection_2)
+    or (s61_selection_1 and s61_selection_2 and s61_selection_3) or (s62_selection_1 and s62_selection_2)
+    or (s63_selection_1 and s63_selection_2) or (s64_selection_1 and s64_selection_2) or (s65_selection_1
+    and s65_selection_2) or (s66_selection_1 and s66_selection_2) or (s67_selection_1 and s67_selection_2)
+    or (s68_selection_1 and s68_selection_2) or (s69_selection_1 and s69_selection_2) or (s70_selection_1
+    and s70_selection_2) or (s71_selection_1) or (s72_selection_1 and s72_selection_2) or (s73_selection_1
+    and s73_selection_2 and s73_selection_3) or (s74_selection_1 and s74_selection_2 and s74_selection_3)
+    or (s75_selection_1 and s75_selection_2 and s75_selection_3) or (s76_selection_1 and s76_selection_2)
+    or (s77_selection_1 and s77_selection_2) or (s78_selection_1 and s78_selection_2 and s78_selection_3)
+    or (s79_selection_1 and s79_selection_2 and s79_selection_3) or (s80_selection_1 and s80_selection_2)
+    or (s81_selection_1 and s81_selection_2) or (s82_selection_1 and s82_selection_2 and s82_selection_3)
+    or (s83_selection_1 and s83_selection_2) or (s84_selection_1 and s84_selection_2 and s84_selection_3)
+    or (s85_selection_1 and s85_selection_2 and s85_selection_3) or (s86_selection_1 and s86_selection_2
+    and s86_selection_3) or (s87_selection_1 and s87_selection_2 and s87_selection_3 and not s87_filter_4)
+    or (s88_selection_1) or (s89_selection_1) or (s90_selection_1) or (s91_selection_1) or (s92_selection_1)
     or (s93_selection_1 and s93_selection_2) or (s94_selection_1 and s94_selection_2) or (s95_selection_1
-    and s95_selection_2) or (s96_selection_1 and s96_selection_2 and s96_selection_3) or (s97_selection_1
-    and s97_selection_2 and s97_selection_3) or (s98_selection_1 and s98_selection_2 and s98_selection_3
-    and not s98_filter_4) or (s99_selection_1 and s99_selection_2) or (s100_selection_1 and s100_selection_4
-    and s100_selection_5 and s100_selection_6 and not (s100_filter_2 or s100_filter_3)) or (s101_selection_2
-    and s101_selection_5 and s101_selection_6 and s101_selection_7 and not (s101_filter_1 or s101_filter_3
-    or s101_filter_4)) or (s102_selection_1 and s102_selection_2 and s102_selection_3 and s102_selection_4)
-    or (s103_selection_1 and s103_selection_2 and s103_selection_3 and s103_selection_4) or (s104_selection_1
-    and s104_selection_2 and s104_selection_3) or (s105_selection_1 and s105_selection_2 and s105_selection_3)
-    or (s106_selection_1 and s106_selection_2 and s106_selection_3) or (s107_selection_1 and s107_selection_3
-    and s107_selection_4 and not s107_filter_2) or (s108_selection_1 and s108_selection_2 and s108_selection_3)
-    or (s109_selection_1 and s109_selection_2 and s109_selection_3) or (s110_selection_1 and s110_selection_2
-    and s110_selection_3) or (s111_selection_1 and s111_selection_2 and s111_selection_3) or (s112_selection_1
-    and s112_selection_2 and s112_selection_3 and s112_selection_4) or (s113_selection_1 and s113_selection_2
-    and s113_selection_3 and s113_selection_4) or (s114_selection_1 and s114_selection_2 and s114_selection_6
-    and s114_selection_7 and not (s114_filter_3 or s114_filter_4 or s114_filter_5)) or (s115_selection_1
-    and s115_selection_2 and s115_selection_3) or (s116_selection_1 and s116_selection_5 and not (s116_filter_2
-    or s116_filter_3 or s116_filter_4)) or (s117_selection_1 and s117_selection_2) or (s118_selection_1
-    and s118_selection_2 and not s118_filter_3) or (s119_selection_1 and s119_selection_2) or (s120_selection_1
-    and s120_selection_2) or (s121_selection_1) or (s122_selection_1 and s122_selection_2 and s122_selection_3
-    and not s122_filter_4) or (s123_selection_1 and s123_selection_2) or (s124_selection_1 and s124_selection_2)
-    or (s125_selection_1 and s125_selection_2 and s125_selection_3) or (s126_selection_1 and s126_selection_2
-    and s126_selection_3 and s126_selection_4) or (s127_selection_1 and s127_selection_2 and s127_selection_3
-    and s127_selection_4) or (s128_selection_1 and s128_selection_2)
+    and s95_selection_2) or (s96_selection_1 and s96_selection_2) or (s97_selection_1 and s97_selection_2)
+    or (s98_selection_1 and s98_selection_2) or (s99_selection_1 and s99_selection_2 and s99_selection_3)
+    or (s100_selection_1 and s100_selection_2 and s100_selection_3) or (s101_selection_1 and s101_selection_2
+    and s101_selection_3 and not s101_filter_4) or (s102_selection_1 and s102_selection_2) or (s103_selection_1
+    and s103_selection_4 and s103_selection_5 and s103_selection_6 and not (s103_filter_2 or s103_filter_3))
+    or (s104_selection_2 and s104_selection_5 and s104_selection_6 and s104_selection_7 and not (s104_filter_1
+    or s104_filter_3 or s104_filter_4)) or (s105_selection_1 and s105_selection_2 and s105_selection_3
+    and s105_selection_4) or (s106_selection_1 and s106_selection_2 and s106_selection_3 and s106_selection_4)
+    or (s107_selection_1 and s107_selection_2 and s107_selection_3) or (s108_selection_1 and s108_selection_2
+    and s108_selection_3) or (s109_selection_1 and s109_selection_2 and s109_selection_3) or (s110_selection_1
+    and s110_selection_3 and s110_selection_4 and not s110_filter_2) or (s111_selection_1 and s111_selection_2
+    and s111_selection_3) or (s112_selection_1 and s112_selection_2 and s112_selection_3) or (s113_selection_1
+    and s113_selection_2 and s113_selection_3) or (s114_selection_1 and s114_selection_2 and s114_selection_3)
+    or (s115_selection_1 and s115_selection_2 and s115_selection_3 and s115_selection_4) or (s116_selection_1
+    and s116_selection_2 and s116_selection_3 and s116_selection_4) or (s117_selection_1 and s117_selection_2
+    and s117_selection_6 and s117_selection_7 and not (s117_filter_3 or s117_filter_4 or s117_filter_5))
+    or (s118_selection_1 and s118_selection_2 and s118_selection_3) or (s119_selection_1 and s119_selection_5
+    and not (s119_filter_2 or s119_filter_3 or s119_filter_4)) or (s120_selection_1 and s120_selection_2)
+    or (s121_selection_1 and s121_selection_2 and not s121_filter_3) or (s122_selection_1 and s122_selection_2)
+    or (s123_selection_1 and s123_selection_2) or (s124_selection_1 and s124_selection_2) or (s125_selection_1)
+    or (s126_selection_1 and s126_selection_2 and s126_selection_3 and not s126_filter_4) or (s127_selection_1
+    and s127_selection_2) or (s128_selection_1 and s128_selection_2) or (s129_selection_1 and s129_selection_2
+    and s129_selection_3) or (s130_selection_1 and s130_selection_2 and s130_selection_3 and s130_selection_4)
+    or (s131_selection_1 and s131_selection_2 and s131_selection_3 and s131_selection_4) or (s132_selection_1
+    and s132_selection_2)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: informational
 custom_attributes:
   sagan.xbit: brute_force
-  sagan.xbit_setters: '128'
+  sagan.xbit_setters: '132'
 ---
 title: Aggregate of rules setting Sagan bit client.process.wmic
 id: 1094dda9-56bf-52b9-8f25-f9f98e0a9582
@@ -2885,6 +3140,33 @@ falsepositives:
 level: informational
 custom_attributes:
   sagan.xbit: kerb.rc4.request
+  sagan.xbit_setters: '1'
+---
+title: Aggregate of rules setting Sagan bit ntlm_bruteforce
+id: 6875732e-214a-5d6e-a049-45cedf729751
+name: sagan_xbit_ntlm_bruteforce
+status: experimental
+description: Synthetic rule. Sagan set the 'ntlm_bruteforce' bit from 1 rule(s); since Sigma cannot express
+  an OR between correlated rules, their detections are gathered here. This rule is not meant to alert
+  on its own.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  s1_selection_1:
+    appname|cased: Security
+  s1_selection_2:
+    EventID: 4625
+  s1_selection_3:
+    sagan_raw|contains|cased: NTLM V1
+  s1_selection_4:
+    sagan_raw|contains|cased: NtLmSsp
+  condition: (s1_selection_1 and s1_selection_2 and s1_selection_3 and s1_selection_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: informational
+custom_attributes:
+  sagan.xbit: ntlm_bruteforce
   sagan.xbit_setters: '1'
 ---
 title: Aggregate of rules setting Sagan bit nxlog_problem

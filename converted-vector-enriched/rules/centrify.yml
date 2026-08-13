@@ -247,3 +247,29 @@ correlation:
   condition:
     gte: 10
 level: low
+---
+title: '[DELINEA] Successful dzdo to user ROOT executed'
+id: defe3fcf-1d6f-5d77-ad2e-99e191e43a32
+status: experimental
+description: Converted from Sagan rule SID 5004304 (rev 1), file centrify.rules.
+author: sagan2sigma
+logsource:
+  product: centrify
+detection:
+  selection_1:
+    sagan_raw|contains|cased: USER=root
+  selection_2:
+    sagan_raw|contains|cased: COMMAND=
+  selection_3:
+    appname|cased: dzdo
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5004304'
+  sagan.rev: '1'
+  sagan.source_file: centrify.rules
+  rsigma.suppress: 1d

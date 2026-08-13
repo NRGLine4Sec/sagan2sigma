@@ -1,0 +1,164 @@
+title: '[MSAPI-ONEDRIVE] DLP Rule Match'
+id: d65d988c-1941-5654-be01-9f30c007c687
+status: experimental
+description: Converted from Sagan rule SID 5005014 (rev 4), file msapi-onedrive.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    Workload|cased: OneDrive
+  selection_2:
+    Operation|cased: DLPRuleMatch
+  selection_3:
+    sagan_raw|contains|cased: DetectedValues[
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1008
+  - attack.t1048
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005014'
+  sagan.rev: '4'
+  sagan.source_file: msapi-onedrive.rules
+---
+title: '[MSAPI-ONEDRIVE] Mass File Share Detected, Possible BEC Campaign'
+id: 4c94dbac-7217-5390-a7f1-54dfbc0c3888
+name: sagan_5017888
+status: experimental
+description: Converted from Sagan rule SID 5017888 (rev 1), file msapi-onedrive.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: OneDrive
+  selection_2:
+    Operation|cased: AddedToSharingLink
+  selection_3:
+    sagan_raw|contains|cased: '"ApplicationDisplayName": "Browser"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017888'
+  sagan.rev: '1'
+  sagan.source_file: msapi-onedrive.rules
+  sagan.metadata: createdOn=2026_04_16. updatedOn 2026_04_16,Mitre_TacticID=TA0001,Mitre_TacticName=Initial_Access,Mitre_TechniqueID=T1566.002,Mitre_TechniqueName=SpearPhishing_Link
+---
+title: '[MSAPI-ONEDRIVE] Mass File Share Detected, Possible BEC Campaign (threshold 100 in 1h)'
+id: 748e9482-5262-5582-a719-4986dcf5b312
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017888
+  group-by:
+    - ClientIP
+    - SourceFileName
+  timespan: 1h
+  condition:
+    gte: 100
+level: high
+---
+title: '[MSAPI-ONEDRIVE] Mass File Share Detected, Possible BEC Campaign [SecureLink]'
+id: d81caac3-f330-57ab-86bc-0e42a17ee03d
+name: sagan_5017889
+status: experimental
+description: Converted from Sagan rule SID 5017889 (rev 1), file msapi-onedrive.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: OneDrive
+  selection_2:
+    Operation|cased: AddedToSecureLink
+  selection_3:
+    sagan_raw|contains|cased: '"ApplicationDisplayName": "Browser"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017889'
+  sagan.rev: '1'
+  sagan.source_file: msapi-onedrive.rules
+  sagan.metadata: createdOn=2026_04_16. updatedOn 2026_04_16,Mitre_TacticID=TA0001,Mitre_TacticName=Initial_Access,Mitre_TechniqueID=T1566.002,Mitre_TechniqueName=SpearPhishing_Link
+---
+title: '[MSAPI-ONEDRIVE] Mass File Share Detected, Possible BEC Campaign [SecureLink] (threshold 100 in
+  1h)'
+id: 45499b5f-8fc7-5461-bdb3-396ef4494b38
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017889
+  group-by:
+    - ClientIP
+    - SourceFileName
+  timespan: 1h
+  condition:
+    gte: 100
+level: high
+---
+title: '[MSAPI-ONEDRIVE] Possible File Enumeration - 200+ FileAccessed Events For User In 1 Min'
+id: 60439424-b3bd-5854-9bde-8608dfcd865c
+name: sagan_5017897
+status: experimental
+description: Converted from Sagan rule SID 5017897 (rev 3), file msapi-onedrive.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    sagan_raw|contains|cased: ClientIP
+  selection_2:
+    Workload|cased: OneDrive
+  selection_3:
+    Operation|cased: FileAccessed
+  filter_4:
+    UserId|cased: app@sharepoint
+  filter_5:
+    ApplicationDisplayName|cased:
+      - Power BI
+      - OneNoteLegacyClient
+  condition: selection_1 and selection_2 and selection_3 and not (filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.collection
+custom_attributes:
+  sagan.sid: '5017897'
+  sagan.rev: '3'
+  sagan.source_file: msapi-onedrive.rules
+  rsigma.suppress: 2h
+  sagan.metadata: createdOn=2026_05_05,updatedOn=2026_05_07,mitreTacticID=TA0009,mitreTacticName=Collection,mitreTechniqueID=T1119,mitreTechniqueName=AutomatedCollection
+---
+title: '[MSAPI-ONEDRIVE] Possible File Enumeration - 200+ FileAccessed Events For User In 1 Min (threshold
+  199 in 1m)'
+id: 90b8eb8f-4982-57fa-8873-b9dc5a312dde
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017897
+  group-by:
+    - UserId
+    - ClientIP
+  timespan: 1m
+  condition:
+    gte: 199
+level: medium

@@ -33,3 +33,39 @@ custom_attributes:
   sagan.sid: '5004859'
   sagan.rev: '5'
   sagan.source_file: msapi-threatintelligence.rules
+---
+title: '[MSAPI-THREATINTEL] Possible malware detected'
+id: e36be31d-33a8-5002-badd-d9a3f087677b
+status: experimental
+description: Converted from Sagan rule SID 5004860 (rev 4), file msapi-threatintelligence.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    Workload|cased: ThreatIntelligence
+  selection_2:
+    Verdict|cased: Malware
+  filter_3:
+    DeliveryAction|cased: Blocked
+  filter_4:
+    LatestDeliveryLocation|cased:
+      - Failed
+      - JunkFolder
+      - Quarantine
+  filter_5:
+    OriginalDeliveryLocation|cased:
+      - JunkFolder
+      - Quarantine
+  filter_6:
+    sagan_raw|contains|cased: psm.knowbe4.com
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5004860'
+  sagan.rev: '4'
+  sagan.source_file: msapi-threatintelligence.rules

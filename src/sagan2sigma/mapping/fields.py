@@ -164,8 +164,18 @@ class FieldResolver:
 
     @property
     def message(self) -> str:
-        """Field a ``content`` or ``pcre`` search runs against."""
-        resolved = self.resolve("message")
+        """Field a ``content`` or ``pcre`` search runs against.
+
+        A ``json_map`` binding wins. Otherwise, on a JSON-bodied event a profile
+        whose pipeline preserves the raw body exposes it as ``json_raw``, and the
+        raw search runs against that; on a plain event the profile's ``message``
+        field is used.
+        """
+        if "message" in self.mapping:
+            return self.mapping["message"]
+        if self.json_event and self.context.profile.json_raw is not None:
+            return self.context.profile.json_raw
+        resolved = self.context.profile.fields.get("message")
         if resolved is None:  # pragma: no cover - profiles always define it
             raise KeyError("output profile defines no 'message' field")
         return resolved
@@ -175,11 +185,16 @@ class FieldResolver:
         """Whether a raw-text search could never match on this rule's events.
 
         On a JSON-bodied event RSigma returns the parsed object and no raw
-        field, so a ``content`` search that was not redirected by a
-        ``json_map`` binding has nothing to run against. Emitting it anyway
-        would produce a rule that validates and never fires.
+        field, so a ``content`` search that was not redirected by a ``json_map``
+        binding has nothing to run against, and emitting it would produce a rule
+        that validates and never fires. Unless the profile's pipeline preserves
+        the raw body (``json_raw``), in which case the search runs against that.
         """
-        return self.json_event and not self.targets_json
+        return (
+            self.json_event
+            and not self.targets_json
+            and self.context.profile.json_raw is None
+        )
 
     @property
     def program(self) -> str:

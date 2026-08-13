@@ -146,6 +146,24 @@ profile rather than left as an option.
 
 ### What the transforms do
 
+`sagan-json.vrl` runs first, before any field parsing looks at the body. When
+the syslog body is a JSON document, RSigma parses it into fields but keeps no
+raw string, so a `content` / `pcre` / `meta_content` search on the raw body,
+which Sagan runs against the raw JSON text, has nothing to run against. This
+transform gives it one: it copies the body into `sagan_raw` **verbatim**, then,
+when the body is JSON, lifts the object's keys to the top level. Both search
+families then resolve, `json_content` against the lifted key and the raw search
+against `sagan_raw`, so the 386 rules that combine the two are no longer refused
+with `E_RAW_TEXT_ON_JSON_EVENT`. 255 of them convert outright and the rest
+surface a different pre-existing blocker (a positional field, an unresolved
+variable), which is why the enriched rate rises by 255, not 386. The syslog envelope and
+`sagan_raw` win any name clash with a body key, so `appname` and `hostname` are
+never clobbered from inside the payload. A non-JSON body is left untouched with
+`sagan_raw` set to the message, so the transform is harmless on plain events.
+Because the raw body is preserved byte for byte, the match is faithful to the
+exact serialization Sagan saw; the converted rule carries `D_RAW_TEXT_MATCH` to
+say the match is format-bound and not portable to a re-serialized event.
+
 `sagan-parse-ip.vrl` is a **faithful port** of `Parse_IP()` from
 `src/parsers/ip.c`. Sagan does not use a regular expression: it rewrites a
 fixed delimiter set to spaces, splits on whitespace, and validates each token
@@ -197,7 +215,7 @@ formats the corpus groups by user: FortiGate and similar `user="..."`, Windows
 Security `Account Name:`, OpenSSH, sudo and IBM i. Validate them against your
 own logs before relying on them.
 
-All four transforms are executed against a real Vector binary in CI, so the
+All these transforms are executed against a real Vector binary in CI, so the
 behaviour above is tested rather than asserted. `sagan-geoip.vrl` is exercised end
 to end too: CI downloads the free DB-IP and IPLocate databases and runs the
 transform through Vector against both, which is what proves the provider-agnostic

@@ -21,6 +21,70 @@ custom_attributes:
   sagan.rev: '2'
   sagan.source_file: gcp-cloud-audit.rules
 ---
+title: '[GCP] Login Failure - Brute Force [5/1]'
+id: 1a7f2a50-cc56-57d2-a2e9-06d939a17623
+name: sagan_5005995
+status: experimental
+description: Converted from Sagan rule SID 5005995 (rev 3), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    sagan_raw|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    sagan_raw|contains|cased: google.login.LoginService.loginFailure
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5005995'
+  sagan.rev: '3'
+  sagan.source_file: gcp-cloud-audit.rules
+  rsigma.suppress: 6h
+---
+title: '[GCP] Login Failure - Brute Force [5/1] (threshold 5 in 1m)'
+id: d0679d0d-7054-505a-ba24-0dd9d4c0beb5
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5005995
+  group-by:
+    - sagan_ip_1
+    - protoPayload.authenticationInfo.principalEmail
+  timespan: 1m
+  condition:
+    gte: 5
+level: low
+---
+title: '[GCP] IAM Policy Change'
+id: dc43824b-3431-54be-b501-bc4896a161ec
+status: experimental
+description: Converted from Sagan rule SID 5005998 (rev 3), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    sagan_raw|contains|cased: cloudaudit.googleapis.com
+  selection_2:
+    sagan_raw|contains|cased: SetIamPolicy
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5005998'
+  sagan.rev: '3'
+  sagan.source_file: gcp-cloud-audit.rules
+---
 title: '[GCP] Suspicious Login'
 id: f554bf57-a1e4-5a8e-983f-b4d3f1ef9af1
 status: experimental
@@ -1309,6 +1373,56 @@ correlation:
     gte: 10
 level: medium
 ---
+title: '[GCP] Google Mailer Daemon Blocked'
+id: 31445c81-bc5b-575e-9a04-c4813475aab6
+status: experimental
+description: Converted from Sagan rule SID 5017815 (rev 1), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.login.LoginService.blockedSender
+  selection_3:
+    sagan_raw|contains|cased: mailer-daemon@googlemail.com
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017815'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] WebFlow Sender Blocked'
+id: daa2cdd9-cb1d-5362-9ab3-05f179ba7c54
+status: experimental
+description: Converted from Sagan rule SID 5017816 (rev 1), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.login.LoginService.blockedSender
+  selection_3:
+    sagan_raw|contains|cased: webflow.com
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017816'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules
+---
 title: '[GCP] Google Passkey Enrollment Detected'
 id: b74b36bf-e993-5347-9e7c-df3d3292128b
 status: experimental
@@ -1331,6 +1445,52 @@ custom_attributes:
   sagan.sid: '5017818'
   sagan.rev: '1'
   sagan.source_file: gcp-cloud-audit.rules
+---
+title: '[GCP] Multiple SecretManager Secrets Deleted'
+id: 527bb931-6e71-5fd1-b9b4-b846ec77be84
+name: sagan_5017819
+status: experimental
+description: Converted from Sagan rule SID 5017819 (rev 1), file gcp-cloud-audit.rules.
+references:
+  - https://attack.mitre.org/techniques/T1485
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    sagan_raw|contains|cased: secretmanager.googleapis.com
+  selection_3:
+    sagan_raw|contains:
+      - DestroySecretVersion
+      - DeleteSecret
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017819'
+  sagan.rev: '1'
+  sagan.source_file: gcp-cloud-audit.rules
+  rsigma.suppress: 1h
+---
+title: '[GCP] Multiple SecretManager Secrets Deleted (threshold 10 in 1h)'
+id: 42e7d6c6-b505-5300-a5e5-bd7d40d76dd8
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017819
+  group-by:
+    - protoPayload.requestMetadata.callerIp
+  timespan: 1h
+  condition:
+    gte: 10
+level: medium
 ---
 title: '[GCP] Google Login Challenge Failed'
 id: 688d8b34-4fad-5bfb-bbd9-5b46edc246c0

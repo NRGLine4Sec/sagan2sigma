@@ -30,6 +30,78 @@ custom_attributes:
   sagan.source_file: mimecast_v2.rules
   sagan.metadata: created_at=2026_01_16,updated_at=2026_01_16
 ---
+title: '[MIMECAST] Internal/Outbound Virus Found and Accepted'
+id: 0af074de-051b-570a-a167-0cc0764d5231
+status: experimental
+description: Converted from Sagan rule SID 5017364 (rev 1), file mimecast_v2.rules.
+references:
+  - https://developer.services.mimecast.com/siem-tutorial-cg
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: mimecast
+  selection_2:
+    eventType|cased: receipt
+  selection_3:
+    action|cased: Acc
+  selection_4:
+    direction|cased:
+      - outbound
+      - internal
+  filter_5:
+    sagan_raw|contains|cased: 'virusFound": null'
+  filter_6:
+    sagan_raw|contains|cased: Policy level Anti-Spoofing applied
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not (filter_5 or filter_6)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017364'
+  sagan.rev: '1'
+  sagan.source_file: mimecast_v2.rules
+  sagan.metadata: created_at=2026_01_16,updated_at=2026_01_16
+---
+title: '[MIMECAST] Policy level Anti-Spoofing applied to Internal/Outbound Email'
+id: 11f63ab9-3382-5cfe-b2c5-7710daeaaa37
+status: experimental
+description: Converted from Sagan rule SID 5017365 (rev 1), file mimecast_v2.rules.
+references:
+  - https://developer.services.mimecast.com/siem-tutorial-cg
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: mimecast
+  selection_2:
+    eventType|cased: receipt
+  selection_3:
+    action|cased: Acc
+  selection_4:
+    direction|cased:
+      - outbound
+      - internal
+  filter_5:
+    sagan_raw|contains|cased: 'virusFound": null'
+  selection_6:
+    sagan_raw|contains|cased: Policy level Anti-Spoofing applied
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_6 and not filter_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017365'
+  sagan.rev: '1'
+  sagan.source_file: mimecast_v2.rules
+  sagan.metadata: created_at=2026_01_16,updated_at=2026_01_16
+---
 title: '[MIMECAST] AV Module Detected a Malicious Inbound/Internal File'
 id: 1e18d822-1b1a-579c-8991-5cd77527c2fe
 status: experimental

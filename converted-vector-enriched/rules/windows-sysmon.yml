@@ -198,6 +198,44 @@ custom_attributes:
   sagan.rev: '5'
   sagan.source_file: windows-sysmon.rules
 ---
+title: '[WINDOWS-SYSMON] Suspicious WMIC call - computersystem get model'
+id: bb3e8354-39ce-5cfd-a98e-9ff3043efacc
+status: experimental
+description: Converted from Sagan rule SID 5002816 (rev 6), file windows-sysmon.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 1
+  selection_2:
+    sagan_raw|contains: wmic
+  selection_3:
+    sagan_raw|contains: computersystem get model
+  filter_4:
+    sagan_raw|contains|cased:
+      - 'ParentImage: C:\\Program Files\\EaseUS\\EaseUS Partition Master'
+      - 'ParentImage: C:\\Program Files\\PDQ Inventory'
+      - 'ParentImage: C:\\Program Files\\ManageEngine'
+      - 'ParentImage: C:\\Program Files\\LANDesk'
+      - 'ParentImage: C:\\Program Files\\Tanium\\Tanium Client'
+      - 'ParentImage: C:\\Program Files\\Veeam'
+      - 'ParentImage: C:\\Program Files\\Dell\\SupportAssistAgent'
+  selection_5:
+    appname|cased: '*Sysmon*'
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5002816'
+  sagan.rev: '6'
+  sagan.source_file: windows-sysmon.rules
+  rsigma.suppress: 1h
+  sagan.metadata: updatedOn=2026_06_23
+---
 title: '[WINDOWS-SYSMON] Command line $\\ type request'
 id: 13120f51-7365-58ae-b439-180eb9ed20ac
 status: experimental
@@ -15115,6 +15153,60 @@ custom_attributes:
   sagan.source_file: windows-sysmon.rules
   sagan.metadata: deployment=Endpoint,created_at=2023_03_16,updated_at=2023_03_16
 ---
+title: '[WINDOWS-SYSMON] Process Created in Temp Directory'
+id: 3bd3028a-9d47-5329-a70a-995e95589b84
+status: experimental
+description: Converted from Sagan rule SID 5013808 (rev 5), file windows-sysmon.rules.
+references:
+  - https://app.any.run/tasks/95f2e73d-2767-4f87-8e97-825d10b4665c/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Sysmon*'
+  selection_2:
+    EventID: 1
+  selection_3:
+    sagan_raw|contains|cased: 'Image:'
+  selection_4:
+    sagan_raw|contains|cased: \\AppData\\Local\\Temp\\
+  filter_5:
+    sagan_raw|contains:
+      - GoogleUpdate
+      - dismhost.exe
+      - dbcheck.exe
+      - TeamViewer_.exe
+      - chromium.exe
+      - MicrosoftEdgeUpdateSetup.exe
+      - vcredist_x64.exe
+      - InstallShield
+      - Ivanti
+      - LANDesk
+      - Symantec
+      - Cohesity
+      - AutoDesk
+      - Odis
+      - ParityServerSetup.exe
+      - Oracle
+      - MpSigStub.exe
+      - MicrosoftEdgeUpdate.exe
+  selection_6:
+    sagan_raw|re|i: 'CommandLine\: C:\\Users\\[a-zA-Z\-\_0-9\~]+\\AppData\\Local\\Temp\\[^\s]+\.exe'
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_6 and not filter_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.ta0002
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5013808'
+  sagan.rev: '5'
+  sagan.source_file: windows-sysmon.rules
+  rsigma.suppress: 5m
+  sagan.metadata: deployment=Endpoint,created_at=2023_04_25,updated_at=2026_06_09
+---
 title: '[WINDOWS-SYSMON] Possible ntds file backup'
 id: 91dc5b10-2ff8-5814-8879-29c9fba0c606
 status: experimental
@@ -16026,6 +16118,65 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: windows-sysmon.rules
   sagan.metadata: deployment=Endpoint,created_at=2023_02_01,updated_at=2023_02_01
+---
+title: '[WINDOWS-SYSMON] System Discovery Commands'
+id: 8b0117fc-3252-5908-a569-046f23d48224
+status: experimental
+description: Converted from Sagan rule SID 5013880 (rev 3), file windows-sysmon.rules.
+references:
+  - https://thedfirreport.com/2023/01/09/unwrapping-ursnifs-gifts/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - Sysmon
+      - Security
+  selection_2:
+    EventID:
+      - 1
+      - 4688
+  selection_3:
+    sagan_raw|contains:
+      - cmd /C "systeminfo
+      - cmd /C "nslookup
+      - cmd /C "tasklist
+      - cmd /C "driverquery
+      - cmd /C "reg
+  selection_4:
+    sagan_raw|contains:
+      - cmd /C "wmic computersystem
+      - cmd /C "wmic qfe
+      - cmd /C "wmic product
+      - cmd /C "wmic useraccount
+      - cmd /C "wmic os get
+  filter_5:
+    sagan_raw|contains:
+      - 'User: NT AUTHORITY\\SYSTEM'
+      - 'User: NT AUTHORITY\\NETWORK'
+      - 'User: NT AUTHORITY\\LOCAL'
+  filter_6:
+    sagan_raw|contains|cased: \\Virima
+  filter_7:
+    sagan_raw|contains|cased: jdk\\zulu
+  filter_8:
+    sagan_raw|contains|cased: $ Account Domain
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not (filter_5 or filter_6
+    or filter_7 or filter_8)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1082
+  - attack.ta0007
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5013880'
+  sagan.rev: '3'
+  sagan.source_file: windows-sysmon.rules
+  rsigma.suppress: 1h
+  sagan.metadata: deployment=Endpoint,created_at=2023_02_01,updated_at=2026_07_29
 ---
 title: '[WINDOWS-SYSMON] Running Processes Enumeration via TaskMgr - Possible RDP'
 id: 28894998-1dca-5eb3-83c9-941be7661b04

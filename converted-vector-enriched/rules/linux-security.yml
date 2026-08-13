@@ -100,6 +100,31 @@ custom_attributes:
   sagan.source_file: linux-security.rules
   sagan.metadata: created_on=2024_04_18
 ---
+title: '[LINUX-SECURITY] Download/Use Of SoCat Detected - Data Transfer Tool'
+id: 18a14cd2-b737-5e0b-95fb-468ddd42c64f
+status: experimental
+description: Converted from Sagan rule SID 5014636 (rev 2), file linux-security.rules.
+references:
+  - https://www.baeldung.com/linux/socat-command
+author: sagan2sigma
+logsource:
+  product: linux
+detection:
+  selection_1:
+    sagan_raw|contains: 'socat '
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014636'
+  sagan.rev: '2'
+  sagan.source_file: linux-security.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_on=2024_04_18,updatedOn=2026_05_15
+---
 title: '[LINUX-SECURITY] User Added Command Detected'
 id: 62f7ff2d-fdd4-5917-963e-11a9612ccc6c
 status: experimental

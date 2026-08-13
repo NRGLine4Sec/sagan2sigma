@@ -41,6 +41,70 @@ custom_attributes:
   sagan.rev: '4'
   sagan.source_file: cisco-ios.rules
 ---
+title: '[CISCO-IOS] Configuration from console'
+id: b48929b9-eaf7-58d2-ab83-66e05ebe965c
+status: experimental
+description: Converted from Sagan rule SID 5000055 (rev 7), file cisco-ios.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    sagan_raw|contains|cased: 'SYS-5-CONFIG_I: Configured from console'
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5000055'
+  sagan.rev: '7'
+  sagan.source_file: cisco-ios.rules
+  rsigma.suppress: 6h
+---
+title: '[CISCO-IOS] IOS configuration changed'
+id: 895b4845-dc66-5441-aa7f-23ab3382d6a0
+status: experimental
+description: Converted from Sagan rule SID 5000111 (rev 10), file cisco-ios.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    sagan_raw|contains|cased: SYS-5-CONFIG
+  filter_2:
+    sagan_raw|contains|cased: by snmp
+  filter_3:
+    sagan_raw|contains|cased: By SNMP
+  filter_4:
+    sagan_raw|contains|cased: from memory by console
+  filter_5:
+    sagan_raw|contains|cased: Configured from console by console
+  filter_6:
+    sagan_raw|contains|cased: Configured from console by vty
+  filter_7:
+    sagan_raw|contains|cased: from console as vty
+  filter_8:
+    sagan_raw|contains|cased: from console as console
+  filter_9:
+    sagan_raw|contains|cased: entered configuration session
+  filter_10:
+    sagan_raw|contains|cased: exited configuration session
+  condition: selection_1 and not (filter_2 or filter_3 or filter_4 or filter_5 or filter_6 or filter_7
+    or filter_8 or filter_9 or filter_10)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.configuration-change
+custom_attributes:
+  sagan.sid: '5000111'
+  sagan.rev: '10'
+  sagan.source_file: cisco-ios.rules
+  rsigma.suppress: 6h
+  sagan.metadata: updated_on=2026_08_06
+---
 title: '[CISCO-IOS] Login Failed - Brute Force [10/5]'
 id: d80dacb1-ce40-5a9f-a8b1-6ef6e379c1a4
 name: sagan_5000113

@@ -222,6 +222,32 @@ custom_attributes:
   sagan.rev: '4'
   sagan.source_file: fortinet.rules
 ---
+title: '[FORTINET] License about to expired'
+id: 8d819023-f948-5d19-863f-3677a3eeb80d
+status: experimental
+description: Converted from Sagan rule SID 5000925 (rev 3), file fortinet.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    sagan_raw|contains|cased: 32014" type=
+  selection_2:
+    sagan_raw|contains|cased: license will expire
+  filter_3:
+    sagan_raw|contains|cased: '- - - -'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.program-error
+custom_attributes:
+  sagan.sid: '5000925'
+  sagan.rev: '3'
+  sagan.source_file: fortinet.rules
+  rsigma.suppress: 7d
+---
 title: '[FORTINET] Corrupted MAC packet detected'
 id: b5311425-8d8b-53cb-9657-fea2988ab91c
 status: experimental

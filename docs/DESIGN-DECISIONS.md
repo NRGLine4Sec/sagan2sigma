@@ -528,12 +528,36 @@ the predicate has nothing to run against.
 
 Emitting it anyway would have been the worst available outcome: a rule that
 looks converted, counts towards the conversion rate, and silently contributes
-nothing. They are refused with `E_RAW_TEXT_ON_JSON_EVENT`, and the refusal
-message names the fix, which is to add a `json_map` binding `message` to the
-key that carries the text.
+nothing. On the default profiles they are refused with
+`E_RAW_TEXT_ON_JSON_EVENT`.
 
 This is why the headline conversion rate went **down** from 81.8% to 79.4% when
 the defect was fixed. The 2.4 points it lost were never real.
+
+The refusal is a property of the *pipeline*, not the rule: it holds only because
+RSigma keeps no raw field once it has parsed a JSON body. Give the pipeline one,
+and the search has somewhere to run. The `vector-enriched` profile does exactly
+that. Its first transform, `data/vrl/sagan-json.vrl`, runs before any field
+parsing and copies the original body into `sagan_raw` verbatim, then lifts the
+JSON object's keys to the top level. Both search families then resolve:
+`json_content` targets the lifted key, and the raw `content` / `pcre` /
+`meta_content` search targets `sagan_raw`, the exact string Sagan itself
+searched. A profile advertises the capability by naming the field in a `json_raw`
+key; the resolver falls back to it for the message search only when the profile
+sets it, so the default profiles are unchanged and still refuse. This clears all
+386 `E_RAW_TEXT_ON_JSON_EVENT` refusals in the upstream corpus. 255 of those
+rules convert outright; the other 131 turn out to have a second, pre-existing
+blocker that the raw-text refusal was masking (a positional field, an unresolved
+site variable), so they stay refused under a different code. The enriched rate
+therefore rises by 255, from 90.1% to 92.7% (9,010 to 9,265 rules).
+
+The match stays faithful precisely because the raw body is preserved *byte for
+byte*: Sagan's `content` searches the raw JSON as received, so patterns that
+depend on the serialization, such as CloudTrail's `"mfaAuthenticated": "true"`
+with its colon-space, match under Vector exactly when they matched under Sagan,
+and not otherwise. That format dependence is real, so the converted rule still
+carries the `D_RAW_TEXT_MATCH` portability degradation: faithful to this source's
+serialization, not portable to a re-serialized copy of the same event.
 
 ## Determinism
 

@@ -1,3 +1,431 @@
+title: '[AWS-CLOUDTRAIL] AWS Cloudtrail event detected (CreateEventDataStore)'
+id: 9f2b24b4-9f3e-5e66-8733-33f961071814
+status: experimental
+description: Converted from Sagan rule SID 5008312 (rev 2), file aws-cloudtrail.rules.
+references:
+  - https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cloudtrail.amazonaws.com
+  selection_2:
+    eventName|cased: CreateEventDataStore
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1005
+  - attack.t1078
+  - attack.t1530
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5008312'
+  sagan.rev: '2'
+  sagan.source_file: aws-cloudtrail.rules
+---
+title: '[AWS-CLOUDTRAIL] AWS Cloudtrail event detected (CreateTrail)'
+id: 4b9085c8-1005-5783-b8aa-42d47006c8b5
+status: experimental
+description: Converted from Sagan rule SID 5008313 (rev 2), file aws-cloudtrail.rules.
+references:
+  - https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cloudtrail.amazonaws.com
+  selection_2:
+    eventName|cased: CreateTrail
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1005
+  - attack.t1078
+  - attack.t1530
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5008313'
+  sagan.rev: '2'
+  sagan.source_file: aws-cloudtrail.rules
+---
+title: '[AWS-CLOUDTRAIL] AWS Cloudtrail event detected (DeleteEventDataStore)'
+id: 56022567-ed14-5b25-a815-5dd2487e0256
+status: experimental
+description: Converted from Sagan rule SID 5008314 (rev 2), file aws-cloudtrail.rules.
+references:
+  - https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cloudtrail.amazonaws.com
+  selection_2:
+    eventName|cased: DeleteEventDataStore
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1005
+  - attack.t1078
+  - attack.t1530
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5008314'
+  sagan.rev: '2'
+  sagan.source_file: aws-cloudtrail.rules
+---
+title: '[AWS-CLOUDTRAIL] AWS Cloudtrail event detected (DeleteTrail)'
+id: 4844f5e5-b1c8-5058-9ad0-a06c0a60e743
+status: experimental
+description: Converted from Sagan rule SID 5008315 (rev 2), file aws-cloudtrail.rules.
+references:
+  - https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cloudtrail.amazonaws.com
+  selection_2:
+    eventName|cased: DeleteTrail
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1005
+  - attack.t1078
+  - attack.t1530
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5008315'
+  sagan.rev: '2'
+  sagan.source_file: aws-cloudtrail.rules
+---
+title: '[AWS-CLOUDTRAIL] AWS Cloudtrail event detected (PutEventSelectors)'
+id: e0bae188-0e0a-5254-a7a6-12943399fc38
+status: experimental
+description: Converted from Sagan rule SID 5008332 (rev 2), file aws-cloudtrail.rules.
+references:
+  - https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cloudtrail.amazonaws.com
+  selection_2:
+    eventName|cased: PutEventSelectors
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1005
+  - attack.t1078
+  - attack.t1530
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5008332'
+  sagan.rev: '2'
+  sagan.source_file: aws-cloudtrail.rules
+---
+title: '[AWS-CLOUDTRAIL] AWS Cloudtrail event detected (PutInsightSelectors)'
+id: 22522c12-f38b-5be1-8374-c9ff76b45867
+status: experimental
+description: Converted from Sagan rule SID 5008333 (rev 2), file aws-cloudtrail.rules.
+references:
+  - https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cloudtrail.amazonaws.com
+  selection_2:
+    eventName|cased: PutInsightSelectors
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1005
+  - attack.t1078
+  - attack.t1530
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5008333'
+  sagan.rev: '2'
+  sagan.source_file: aws-cloudtrail.rules
+---
+title: '[AWS-CLOUDTRAIL] AWS Cloudtrail event detected (RemoveTags)'
+id: aa647dc3-fee0-53e7-9600-e6fc955733c0
+status: experimental
+description: Converted from Sagan rule SID 5008334 (rev 2), file aws-cloudtrail.rules.
+references:
+  - https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cloudtrail.amazonaws.com
+  selection_2:
+    eventName|cased: RemoveTags
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1005
+  - attack.t1078
+  - attack.t1530
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5008334'
+  sagan.rev: '2'
+  sagan.source_file: aws-cloudtrail.rules
+---
+title: '[AWS-CLOUDTRAIL] AWS Cloudtrail event detected (RestoreEventDataStore)'
+id: a888b139-9746-5f53-86e9-cad88855ed79
+status: experimental
+description: Converted from Sagan rule SID 5008335 (rev 2), file aws-cloudtrail.rules.
+references:
+  - https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cloudtrail.amazonaws.com
+  selection_2:
+    eventName|cased: RestoreEventDataStore
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1005
+  - attack.t1078
+  - attack.t1530
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5008335'
+  sagan.rev: '2'
+  sagan.source_file: aws-cloudtrail.rules
+---
+title: '[AWS-CLOUDTRAIL] AWS Cloudtrail event detected (StartLogging)'
+id: 940d7cc1-9bb5-5b2f-9a3d-b58889e00f30
+status: experimental
+description: Converted from Sagan rule SID 5008336 (rev 2), file aws-cloudtrail.rules.
+references:
+  - https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cloudtrail.amazonaws.com
+  selection_2:
+    eventName|cased: StartLogging
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1005
+  - attack.t1078
+  - attack.t1530
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008336'
+  sagan.rev: '2'
+  sagan.source_file: aws-cloudtrail.rules
+---
+title: '[AWS-CLOUDTRAIL] AWS Cloudtrail event detected (StartQuery)'
+id: cd028e60-da95-59fc-9f6b-87e1ebde221c
+status: experimental
+description: Converted from Sagan rule SID 5008337 (rev 2), file aws-cloudtrail.rules.
+references:
+  - https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cloudtrail.amazonaws.com
+  selection_2:
+    eventName|cased: StartQuery
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1005
+  - attack.t1078
+  - attack.t1530
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5008337'
+  sagan.rev: '2'
+  sagan.source_file: aws-cloudtrail.rules
+---
+title: '[AWS-CLOUDTRAIL] AWS Cloudtrail event detected (StopLogging)'
+id: 1d81335d-b344-58fd-baf4-99a6affdf629
+status: experimental
+description: Converted from Sagan rule SID 5008338 (rev 2), file aws-cloudtrail.rules.
+references:
+  - https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cloudtrail.amazonaws.com
+  selection_2:
+    eventName|cased: StopLogging
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1005
+  - attack.t1078
+  - attack.t1530
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5008338'
+  sagan.rev: '2'
+  sagan.source_file: aws-cloudtrail.rules
+---
+title: '[AWS-CLOUDTRAIL] AWS Cloudtrail event detected (UpdateEventDataStore)'
+id: a6960289-fdf5-5b16-b7b5-1a5fff8480f1
+status: experimental
+description: Converted from Sagan rule SID 5008339 (rev 2), file aws-cloudtrail.rules.
+references:
+  - https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cloudtrail.amazonaws.com
+  selection_2:
+    eventName|cased: UpdateEventDataStore
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1005
+  - attack.t1078
+  - attack.t1530
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5008339'
+  sagan.rev: '2'
+  sagan.source_file: aws-cloudtrail.rules
+---
+title: '[AWS-CLOUDTRAIL] AWS Cloudtrail event detected (UpdateTrail)'
+id: aac19fa3-c5e1-5998-bf03-df683020499c
+status: experimental
+description: Converted from Sagan rule SID 5008340 (rev 2), file aws-cloudtrail.rules.
+references:
+  - https://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_Operations.html
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: cloudtrail.amazonaws.com
+  selection_2:
+    eventName|cased: UpdateTrail
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1005
+  - attack.t1078
+  - attack.t1530
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5008340'
+  sagan.rev: '2'
+  sagan.source_file: aws-cloudtrail.rules
+---
+title: '[AWS-CLOUDTRAIL] S3 Bucket Modification or Deletion Detected'
+id: 7b23eb04-80af-5936-be83-dcbc6e197a07
+status: experimental
+description: Converted from Sagan rule SID 5014180 (rev 2), file aws-cloudtrail.rules.
+references:
+  - https://github.com/aws-samples/aws-customer-playbook-framework/blob/main/docs/Ransom_Response_S3.md
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: '*.amazonaws.com'
+  selection_2:
+    eventName|cased:
+      - DeleteBucket
+      - DeleteBucketCors
+      - DeleteBucketEncryption
+      - DeleteBucketLifecycle
+      - DeleteBucketPolicy
+      - DeleteBucketReplication
+      - DeleteBucketTagging
+      - DeleteBucketPublickAccessBlock
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1082
+  - attack.ta0007
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5014180'
+  sagan.rev: '2'
+  sagan.source_file: aws-cloudtrail.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_01_20,updated_at=2023_01_20
+---
 title: '[AWS-CLOUDTRAIL] Find Metric Keywords'
 id: d62ea093-9788-58a4-9904-43d6b1d8a024
 status: experimental
@@ -238,6 +666,36 @@ tags:
 custom_attributes:
   sagan.sid: '5015095'
   sagan.rev: '1'
+  sagan.source_file: aws-cloudtrail.rules
+---
+title: '[AWS-LAMBDA] Lambda Function Created (CreateFunction20150331)'
+id: b5390ff9-b506-58c7-9f87-b6be4aeae1e5
+status: experimental
+description: Converted from Sagan rule SID 5015096 (rev 2), file aws-cloudtrail.rules.
+references:
+  - https://unit42.paloaltonetworks.com/large-scale-cloud-extortion-operation/
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: lambda.amazonaws.com
+  selection_2:
+    sagan_raw|contains|cased: 'eventName": "CreateFunction20150331'
+  filter_3:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  filter_4:
+    userIdentity.sessionContext.sessionIssuer.userName|cased: AWSServiceRoleForLambdaReplicator
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.ta0002
+  - sagan.classtype.execution
+custom_attributes:
+  sagan.sid: '5015096'
+  sagan.rev: '2'
   sagan.source_file: aws-cloudtrail.rules
 ---
 title: '[AWS-LAMBDA] Possible Exfiltration Attempt (GetObject) [100/60sec]'

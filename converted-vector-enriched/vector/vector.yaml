@@ -33,9 +33,16 @@ sources:
     mode: tcp
 
 transforms:
-  sagan_parse_ip:
+  sagan_json:
     type: remap
     inputs: [appliances]
+    file: transforms/sagan-json.vrl
+    # A malformed message must not drop the event: the enrichment is
+    # best-effort and the detection rules still work without it.
+    drop_on_error: false
+  sagan_parse_ip:
+    type: remap
+    inputs: [sagan_json]
     file: transforms/sagan-parse-ip.vrl
     # A malformed message must not drop the event: the enrichment is
     # best-effort and the detection rules still work without it.

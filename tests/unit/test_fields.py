@@ -75,3 +75,48 @@ class TestFieldResolver:
         resolver = FieldResolver.for_rule(make_rule('msg:"t"; sid:1;'), context)
         assert resolver.resolve("src_ip") is None
         assert resolver.resolve("event_id") is None
+
+
+class TestRawSearchOnJsonEvent:
+    """A raw content search on a JSON-bodied event: refused by default,.
+
+    recovered under vector-enriched where the pipeline keeps the raw body.
+    """
+
+    #: A rule that runs a raw content search on a JSON event: it has a
+    #: json_content keyword (so RSigma parses the body) and a content keyword
+    #: not redirected by any json_map.
+    RAW_ON_JSON = 'msg:"t"; json_content:".a","x"; content:"y"; sid:1;'
+
+    def test_refused_on_default_profile(self, context: Context) -> None:
+        resolver = FieldResolver.for_rule(make_rule(self.RAW_ON_JSON), context)
+        assert resolver.json_event
+        assert resolver.raw_search_is_unreachable
+
+    def test_recovered_on_enriched_profile(self, enriched_context: Context) -> None:
+        resolver = FieldResolver.for_rule(make_rule(self.RAW_ON_JSON), enriched_context)
+        assert resolver.json_event
+        assert not resolver.raw_search_is_unreachable
+        # The raw search runs against the preserved raw body.
+        assert resolver.message == "sagan_raw"
+
+    def test_json_map_still_wins_under_enriched(
+        self, enriched_context: Context
+    ) -> None:
+        """A json_map message binding still overrides the raw fallback."""
+        rule = make_rule(
+            'msg:"t"; json_content:".a","x"; json_map:"message",".M"; '
+            'content:"y"; sid:1;'
+        )
+        resolver = FieldResolver.for_rule(rule, enriched_context)
+        assert resolver.message == "M"
+        assert not resolver.raw_search_is_unreachable
+
+    def test_plain_event_unaffected_under_enriched(
+        self, enriched_context: Context
+    ) -> None:
+        """A non-JSON event still resolves message to the envelope field."""
+        rule = make_rule('msg:"t"; content:"y"; sid:1;')
+        resolver = FieldResolver.for_rule(rule, enriched_context)
+        assert not resolver.json_event
+        assert resolver.message == "message"

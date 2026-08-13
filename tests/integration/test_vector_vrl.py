@@ -31,6 +31,7 @@ pytestmark = pytest.mark.skipif(
 )
 
 VRL_DIR = Path(__file__).parents[2] / "src" / "sagan2sigma" / "data" / "vrl"
+JSON = VRL_DIR / "sagan-json.vrl"
 PARSE_IP = VRL_DIR / "sagan-parse-ip.vrl"
 USERNAME = VRL_DIR / "username-extraction.vrl"
 TIME = VRL_DIR / "sagan-time.vrl"
@@ -148,6 +149,66 @@ class TestParseIpMatchesSaganSemantics:
     def test_missing_message_does_not_fail(self, tmp_path: Path) -> None:
         event = run_vrl(PARSE_IP, [{"other": "field"}], tmp_path)[0]
         assert ips(event) == []
+
+
+class TestJsonBodyHandling:
+    """sagan-json.vrl underpins the E_RAW_TEXT_ON_JSON_EVENT recovery.
+
+    It must do two things at once so both search families work on a JSON event:
+    keep the original body verbatim in sagan_raw (for content / pcre / meta on
+    the raw string, which Sagan runs against the raw JSON text), and lift the
+    JSON object's keys to the top level (for json_content).
+    """
+
+    #: A JSON body serialized with the colon-space AWS CloudTrail uses, so the
+    #: raw-string assertions exercise the exact bytes a content search matches.
+    BODY = '{"eventName": "CreateEventDataStore", "mfaAuthenticated": "false"}'
+
+    def test_raw_body_is_preserved_verbatim(self, tmp_path: Path) -> None:
+        """A content / pcre search on the raw JSON runs against sagan_raw, and it.
+
+        must be byte-for-byte the original so serialization-specific patterns
+        (colon-space, key order) match exactly as they did in Sagan.
+        """
+        event = run_vrl(JSON, [{"message": self.BODY}], tmp_path)[0]
+        assert event["sagan_raw"] == self.BODY
+
+    def test_json_keys_are_lifted_to_the_top_level(self, tmp_path: Path) -> None:
+        event = run_vrl(JSON, [{"message": self.BODY}], tmp_path)[0]
+        assert event["eventName"] == "CreateEventDataStore"
+        assert event["mfaAuthenticated"] == "false"
+
+    def test_envelope_wins_over_a_same_named_body_key(self, tmp_path: Path) -> None:
+        """The syslog envelope and sagan_raw must survive a name clash, so a.
+
+        body key called appname can never clobber the real program field.
+        """
+        event = run_vrl(
+            JSON,
+            [
+                {
+                    "message": '{"appname": "spoofed", "eventName": "X"}',
+                    "appname": "real",
+                }
+            ],
+            tmp_path,
+        )[0]
+        assert event["appname"] == "real"
+        assert event["eventName"] == "X"
+
+    def test_plain_body_is_left_as_is_with_sagan_raw_set(self, tmp_path: Path) -> None:
+        """A non-JSON event is harmless: sagan_raw holds the message, nothing.
+
+        else changes, so the transform is safe to run on every event.
+        """
+        message = "Failed password for admin from 192.168.1.50 port 22"
+        event = run_vrl(JSON, [{"message": message}], tmp_path)[0]
+        assert event["sagan_raw"] == message
+        assert event["message"] == message
+
+    def test_missing_message_does_not_fail(self, tmp_path: Path) -> None:
+        event = run_vrl(JSON, [{"other": "field"}], tmp_path)[0]
+        assert event["other"] == "field"
 
 
 class TestUsernameExtraction:

@@ -1920,6 +1920,48 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: windows-security.rules
 ---
+title: '[WINDOWS-SECURITY] Disable Windows Security'
+id: ceef3567-1e94-546b-8faf-bbb1e299bf54
+status: experimental
+description: Converted from Sagan rule SID 995008347 (rev 3), file windows-security.rules.
+references:
+  - https://thedfirreport.com/2024/08/12/threat-actors-toolkit-leveraging-sliver-poshc2-batch-scripts/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*Sysmon*'
+      - Security
+  selection_2:
+    EventID:
+      - 1
+      - 4688
+  selection_3:
+    sagan_raw|contains:
+      - DisableAntiVirus
+      - DisableBehaviorMonitoring
+      - DisableIOAVProtection
+      - DisableScanOnRealtimeEnable
+      - DisableRealtimeMonitoring
+      - DisableAntiSpyware
+      - Uninstall-WindowsFeature -Name Windows-Defender
+  filter_4:
+    sagan_raw|contains|cased: \\AzureWindowsBaseline\\
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '995008347'
+  sagan.rev: '3'
+  sagan.source_file: windows-security.rules
+  rsigma.suppress: 1h
+  sagan.metadata: updatedOn=2026_07_02
+---
 title: '[WINDOWS-SECURITY] Copied rundll32 command executing non-standard dll'
 id: 7629fdac-9458-503e-927c-0c5233885d80
 status: experimental
@@ -4176,6 +4218,47 @@ custom_attributes:
   sagan.source_file: windows-security.rules
   sagan.metadata: deployment=Endpoint,created_at=2023_02_21,updated_at=2023_02_21
 ---
+title: '[WINDOWS-SECURITY] WMIC local drive info request (Possible Local Disk Enumeration)'
+id: a2376f6f-5a39-5112-acb5-efb6cd8382a3
+status: experimental
+description: Converted from Sagan rule SID 5013902 (rev 2), file windows-security.rules.
+references:
+  - https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-144a
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*Sysmon*'
+      - '*Security*'
+  selection_2:
+    EventID:
+      - 1
+      - 4688
+  selection_3:
+    sagan_raw|contains|cased: cmd.exe
+  selection_4:
+    sagan_raw|contains|cased: wmic
+  selection_5:
+    sagan_raw|contains: win32_logicaldisk
+  filter_6:
+    sagan_raw|contains: \\Virima
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and not filter_6
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1082
+  - attack.ta0007
+  - sagan.classtype.discovery
+custom_attributes:
+  sagan.sid: '5013902'
+  sagan.rev: '2'
+  sagan.source_file: windows-security.rules
+  rsigma.suppress: 1h
+  sagan.metadata: deployment=Endpoint,created_at=2023_06_12,updated_at=2026_06_10
+---
 title: '[WINDOWS-SECURITY] Possible Enumeration reg query hklm/software'
 id: f5b967ea-1907-5f41-ac17-ba8308fc2dca
 status: experimental
@@ -4961,6 +5044,75 @@ custom_attributes:
   sagan.source_file: windows-security.rules
   sagan.metadata: deployment=Server,created_at=2024_02_28,updated_at=2024_02_28
 ---
+title: '[WINDOWS-SECURITY] Multiple Suspicious Tasklist Commands Detected'
+id: 3e8cc7b5-1a95-5852-847c-41d8bcadf47d
+name: sagan_5014332
+status: experimental
+description: Converted from Sagan rule SID 5014332 (rev 2), file windows-security.rules.
+references:
+  - https://attack.mitre.org/techniques/T1057/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*Security*'
+      - '*Sysmon*'
+  selection_2:
+    EventID:
+      - 1
+      - 4688
+  selection_3:
+    sagan_raw|contains: tasklist
+  selection_4:
+    sagan_raw|contains: ' /FI '
+  selection_5:
+    sagan_raw|contains: 'IMAGENAME eq '
+  filter_6:
+    sagan_raw|contains|cased:
+      - java.exe
+      - sppagent.exe
+      - AliyunWrapExe.exe
+      - AWSLiteAgent.exe
+      - MicrosoftAzureGuestAgent.exe
+      - WindowsAzureGuestAgent.exe
+      - MsMpEng.exe
+      - avgnt.exe
+      - bdagent.exe
+      - plugin-container.exe
+      - Teams.exe
+      - osppsvc.exe
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and not filter_6
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1057
+  - attack.ta0007
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014332'
+  sagan.rev: '2'
+  sagan.source_file: windows-security.rules
+  rsigma.suppress: 1h
+  sagan.metadata: deployment=Server,created_at=2024_02_28,updated_at=2026_06_23
+---
+title: '[WINDOWS-SECURITY] Multiple Suspicious Tasklist Commands Detected (threshold 3 in 1m)'
+id: a7027bed-b6b1-5b00-8d83-fd42571912fb
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5014332
+  group-by:
+    - xff
+  timespan: 1m
+  condition:
+    gte: 3
+level: medium
+---
 title: '[WINDOWS-SECURITY] Quser Command Detected'
 id: 9e993a80-2498-5022-b734-afeb78440271
 status: experimental
@@ -5340,6 +5492,65 @@ correlation:
   timespan: 1m
   condition:
     gte: 200
+level: high
+---
+title: '[WINDOWS-SECURITY] Possible DCSync Attack [120/60sec]'
+id: 5ed6c845-caba-5b50-8900-c4d55c30ca7a
+name: sagan_5014941
+status: experimental
+description: Converted from Sagan rule SID 5014941 (rev 3), file windows-security.rules.
+references:
+  - https://thedfirreport.com/2024/06/10/icedid-brings-screenconnect-and-csharp-streamer-to-alphv-ransomware-deployment/
+  - https://posts.specterops.io/entity-based-detection-engineering-with-bloodhound-enterprise-b4dce3963d66
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4662
+  filter_3:
+    sagan_raw|contains|cased: '$ Account Domain:'
+  filter_4:
+    sagan_raw|contains|cased:
+      - 'Account Name: MSOL'
+      - 'Account Name: spycloudadg-svc'
+  selection_5:
+    sagan_raw|contains|cased:
+      - 1131f6ad-9c07-11d1-f79f-00c04fc2dcd2
+      - 9923a32a-3607-11d2-b9be-0000f87a36b2
+      - 1131f6aa-9c07-11d1-f79f-00c04fc2dcd2
+      - 89e95b76-444d-4c62-991a-0facbeda640c
+  condition: selection_1 and selection_2 and selection_5 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1558.003
+  - attack.ta0006
+  - sagan.classtype.credential-access
+custom_attributes:
+  sagan.sid: '5014941'
+  sagan.rev: '3'
+  sagan.source_file: windows-security.rules
+  rsigma.suppress: 1h
+  sagan.metadata: deployment=Server,created_at=2024_06_11,updated_at=2025_04_28
+---
+title: '[WINDOWS-SECURITY] Possible DCSync Attack [120/60sec] (threshold 120 in 1m)'
+id: fb09f87a-3fa6-596d-bc51-0a2cdf9da40a
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5014941
+  group-by:
+    - sagan_username
+    - xff
+  timespan: 1m
+  condition:
+    gte: 120
 level: high
 ---
 title: '[WINDOWS-SECURITY] Impacket PsExec Named PIPE'
@@ -5827,6 +6038,35 @@ correlation:
     - sagan_ip_3
   timespan: 1d
 level: low
+---
+title: '[WINDOWS-SECURITY] CRITICAL - Microsoft Quick Assist Executed'
+id: 456075df-c50b-597b-932e-05b0188b5df5
+status: experimental
+description: Converted from Sagan rule SID 5015506 (rev 3), file windows-security.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4688
+  selection_3:
+    sagan_raw|contains|cased: QuickAssist.exe
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1219
+  - attack.ta0011
+  - sagan.classtype.command-and-control
+custom_attributes:
+  sagan.sid: '5015506'
+  sagan.rev: '3'
+  sagan.source_file: windows-security.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_at=2025_03_06,updated_at=2025_09_01
 ---
 title: '[WINDOWS-SECURITY] SyncroSetup RMM Installed'
 id: 99fcfb18-fa86-51b0-b0d9-88485f8825dc
@@ -6398,6 +6638,168 @@ custom_attributes:
   sagan.source_file: windows-security.rules
   sagan.metadata: mitre_tactic_name=DefenseEvasion,mitre_technique_name=SystemBinaryProxyExecution
 ---
+title: '[EXPERIMENTAL][WINDOWS-SECURITY] Authentication - Anonymous NTLM V1 Logon via NtLmSsp'
+id: d859d46a-2154-576b-a8f4-dce0cda6b4ef
+status: experimental
+description: Converted from Sagan rule SID 9870000 (rev 3), file windows-security.rules.
+references:
+  - https://attack.mitre.org/techniques/T1187/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Security
+  selection_2:
+    EventID: 4624
+  selection_3:
+    sagan_raw|contains|cased: ANONYMOUS LOGON
+  selection_4:
+    sagan_raw|contains|cased: NTLM V1
+  selection_5:
+    sagan_raw|contains|cased: NtLmSsp
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.credential-access
+custom_attributes:
+  sagan.sid: '9870000'
+  sagan.rev: '3'
+  sagan.source_file: windows-security.rules
+  rsigma.suppress: 1h
+  sagan.metadata: createdOn=2026_06_11,updatedOn=2026_06_16
+---
+title: '[EXPERIMENTAL][WINDOWS-SECURITY] Authentication - Anonymous NTLM V1 Logon After Brute Force'
+id: f41783af-dec4-5014-9117-1bad3631f9b6
+name: sagan_9870001
+status: experimental
+description: Converted from Sagan rule SID 9870001 (rev 1), file windows-security.rules.
+references:
+  - https://attack.mitre.org/techniques/T1187/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Security
+  selection_2:
+    EventID: 4624
+  selection_3:
+    sagan_raw|contains|cased: ANONYMOUS LOGON
+  selection_4:
+    sagan_raw|contains|cased: NTLM V1
+  selection_5:
+    sagan_raw|contains|cased: NtLmSsp
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.credential-access
+custom_attributes:
+  sagan.sid: '9870001'
+  sagan.rev: '1'
+  sagan.source_file: windows-security.rules
+  rsigma.suppress: 1h
+  sagan.metadata: createdOn=2026_06_16,updatedOn=2026_06_16
+---
+title: '[EXPERIMENTAL][WINDOWS-SECURITY] Authentication - Anonymous NTLM V1 Logon After Brute Force (correlated
+  with ntlm_bruteforce)'
+id: ffa28e84-999f-54a0-9cf8-08ae8a62c5d4
+status: experimental
+description: Reconstruction of the Sagan 'ntlm_bruteforce' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_ntlm_bruteforce
+    - sagan_9870001
+  group-by:
+    - sagan_ip_1
+  timespan: 6h
+level: high
+---
+title: '[EXPERIMENTAL][WINDOWS-SECURITY] Authentication - Multiple Failed NTLM V1 Logon via NtLmSsp [3/10Mins]'
+id: 236c0411-db07-52fa-9987-c543c25e414b
+name: sagan_9870002
+status: experimental
+description: Converted from Sagan rule SID 9870002 (rev 2), file windows-security.rules.
+references:
+  - https://attack.mitre.org/techniques/T1187/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Security
+  selection_2:
+    EventID: 4625
+  selection_3:
+    sagan_raw|contains|cased: NTLM V1
+  selection_4:
+    sagan_raw|contains|cased: NtLmSsp
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.credential-access
+custom_attributes:
+  sagan.sid: '9870002'
+  sagan.rev: '2'
+  sagan.source_file: windows-security.rules
+  rsigma.suppress: 1h
+  sagan.metadata: createdOn=2026_06_16,updatedOn=2026_06_16
+---
+title: '[EXPERIMENTAL][WINDOWS-SECURITY] Authentication - Multiple Failed NTLM V1 Logon via NtLmSsp [3/10Mins]
+  (threshold 3 in 10m)'
+id: 716a7ee5-6132-5e3d-b642-d777621b559d
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_9870002
+  group-by:
+    - sagan_ip_1
+  timespan: 10m
+  condition:
+    gte: 3
+level: high
+---
+title: '[EXPERIMENTAL][WINDOWS-SECURITY] SMB - Anonymous Access to IPC$ Share'
+id: b45f8e8d-b30b-54c9-a646-c94f63e57728
+status: experimental
+description: Converted from Sagan rule SID 9870003 (rev 2), file windows-security.rules.
+references:
+  - https://attack.mitre.org/techniques/T1135/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Security
+  selection_2:
+    EventID: 5140
+  selection_3:
+    sagan_raw|contains|cased: ANONYMOUS LOGON
+  selection_4:
+    sagan_raw|contains|cased: IPC$
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.discovery
+custom_attributes:
+  sagan.sid: '9870003'
+  sagan.rev: '2'
+  sagan.source_file: windows-security.rules
+  rsigma.suppress: 6h
+  sagan.metadata: createdOn=2026_06_11,updatedOn=2026_06_30
+---
 title: '[EXPERIMENTAL][WINDOWS-SECURITY] SMB - Anonymous Access Denied to ADMIN$ Share'
 id: df91e795-ffb8-5f2b-96f6-15cb23267ec0
 status: experimental
@@ -6727,6 +7129,55 @@ correlation:
   condition:
     gte: 2
 level: high
+---
+title: '[EXPERIMENTAL][WINDOWS-SECURITY] Kerberos - SPN Enumeration via setspn.exe'
+id: f8dbfe4d-3d2d-5b4c-ba1f-9384050d1c23
+name: sagan_9870013
+status: experimental
+description: Converted from Sagan rule SID 9870013 (rev 2), file windows-security.rules.
+references:
+  - https://attack.mitre.org/techniques/T1558/003/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Security
+  selection_2:
+    EventID: 4688
+  selection_3:
+    sagan_raw|contains|cased: setspn.exe
+  selection_4:
+    sagan_raw|contains|cased:
+      - -q
+      - /q
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.discovery
+custom_attributes:
+  sagan.sid: '9870013'
+  sagan.rev: '2'
+  sagan.source_file: windows-security.rules
+  rsigma.suppress: 1h
+  sagan.metadata: createdOn=2026_06_11,updatedOn=2026_06_16
+---
+title: '[EXPERIMENTAL][WINDOWS-SECURITY] Kerberos - SPN Enumeration via setspn.exe (threshold 3 in 5m)'
+id: 46c3404e-9d38-5580-9965-b194b013cf82
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_9870013
+  group-by:
+    - xff
+  timespan: 5m
+  condition:
+    gte: 3
+level: medium
 ---
 title: '[EXPERIMENTAL][WINDOWS-SECURITY] Kerberos - RC4 Kerberoasting followed by AD CS Template Load'
 id: a421b4e6-ecbb-5856-a32e-d5bd9982952f

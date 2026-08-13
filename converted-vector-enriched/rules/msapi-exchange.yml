@@ -1,3 +1,301 @@
+title: '[MSAPI-EXCHANGE] Data Loss Prevention Rule Match'
+id: 28bff3d3-e8af-56be-abfa-ac705d0f6a8e
+status: experimental
+description: Converted from Sagan rule SID 5004863 (rev 4), file msapi-exchange.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    Workload|cased: Exchange
+  selection_2:
+    Operation|cased: DlpRuleMatch
+  filter_3:
+    sagan_raw|contains|cased: phisher.knowbe4.com
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1008
+  - attack.t1048
+  - attack.t1114
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5004863'
+  sagan.rev: '4'
+  sagan.source_file: msapi-exchange.rules
+---
+title: '[MSAPI-EXCHANGE] Admin Audit New-InboxRule Created w/ Forwarding'
+id: 3a036914-af5f-5851-b8e4-50ede9eb7832
+status: experimental
+description: Converted from Sagan rule SID 5015346 (rev 1), file msapi-exchange.rules.
+references:
+  - https://redcanary.com/blog/threat-detection/email-forwarding-rules/
+  - https://www.splunk.com/en_us/blog/security/hunting-m365-invaders-dissecting-email-collection-techniques.html
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: New-InboxRule
+  selection_3:
+    sagan_raw|contains|cased:
+      - Name\\":\\"RedirectTo
+      - Name\\":\\"ForwardTo
+      - Name\\":\\"ForwardAsAttachmentTo
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015346'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2025_03_11,updated_at=2025_03_11
+---
+title: '[MSAPI-EXCHANGE] Admin Audit Set-InboxRule Created w/ Forwarding'
+id: d037100d-1e70-5ad6-87ca-5f62cae01cea
+status: experimental
+description: Converted from Sagan rule SID 5015347 (rev 1), file msapi-exchange.rules.
+references:
+  - https://redcanary.com/blog/threat-detection/email-forwarding-rules/
+  - https://www.splunk.com/en_us/blog/security/hunting-m365-invaders-dissecting-email-collection-techniques.html
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: Set-InboxRule
+  selection_3:
+    sagan_raw|contains|cased:
+      - Name\\":\\"RedirectTo
+      - Name\\":\\"ForwardTo
+      - Name\\":\\"ForwardAsAttachmentTo
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015347'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2025_03_11,updated_at=2025_03_11
+---
+title: '[MSAPI-EXCHANGE] Admin Audit Set-Mailbox Created w/ Forwarding'
+id: 77868c43-0959-5f84-91c2-4be58ba264f1
+status: experimental
+description: Converted from Sagan rule SID 5015348 (rev 3), file msapi-exchange.rules.
+references:
+  - https://redcanary.com/blog/threat-detection/email-forwarding-rules/
+  - https://www.splunk.com/en_us/blog/security/hunting-m365-invaders-dissecting-email-collection-techniques.html
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: Set-Mailbox
+  selection_3:
+    sagan_raw|contains|cased:
+      - Name\\":\\"ForwardingSmtpAddress
+      - Name\\":\\"ForwardingAddress
+      - Name\\":\\"DeliverToMailboxandForward
+  filter_4:
+    sagan_raw|contains|cased: '"ForwardingSmtpAddress\\",\\"Value\\":\\"\\"'
+  filter_5:
+    sagan_raw|contains|cased: '"ForwardingAddress\\",\\"Value\\":\\"\\"'
+  condition: selection_1 and selection_2 and selection_3 and not (filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015348'
+  sagan.rev: '3'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2025_03_11,updated_at=2025_09_15
+---
+title: '[MSAPI-EXCHANGE] Audit UpdateInboxRules Detected w/ Forwarding'
+id: bc3b1af9-cd2a-5446-910a-2d0606ea40a7
+status: experimental
+description: Converted from Sagan rule SID 5015349 (rev 1), file msapi-exchange.rules.
+references:
+  - https://redcanary.com/blog/threat-detection/email-forwarding-rules/
+  - https://www.splunk.com/en_us/blog/security/hunting-m365-invaders-dissecting-email-collection-techniques.html
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: UpdateInboxRule
+  selection_3:
+    sagan_raw|contains|cased:
+      - Name\\":\\"Forward
+      - Name\\":\\"Recipients
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015349'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2025_03_11,updated_at=2025_03_11
+---
+title: '[MSAPI-EXCHANGE] Admin Audit New-TransportRule Created w/ Forwarding'
+id: 20cbb66d-0051-5bb6-917a-ec44ade6e23e
+status: experimental
+description: Converted from Sagan rule SID 5015350 (rev 1), file msapi-exchange.rules.
+references:
+  - https://redcanary.com/blog/threat-detection/email-forwarding-rules/
+  - https://www.splunk.com/en_us/blog/security/hunting-m365-invaders-dissecting-email-collection-techniques.html
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: New-TransportRule
+  selection_3:
+    sagan_raw|contains|cased:
+      - Name\\":\\"BlindCopyTo
+      - Name\\":\\"CopyTo
+      - Name\\":\\"RedirectMessageTo
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015350'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2025_03_11,updated_at=2025_03_11
+---
+title: '[MSAPI-EXCHANGE] Admin Audit Set-TransportRule Created w/ Forwarding'
+id: 6e3f3f84-1643-5974-b0af-f03b15850c52
+status: experimental
+description: Converted from Sagan rule SID 5015351 (rev 1), file msapi-exchange.rules.
+references:
+  - https://cardinalops.com/blog/cardinalops-contributes-new-mitre-attck-techniques-related-to-abuse-of-mail-transport-rules/
+  - https://www.splunk.com/en_us/blog/security/hunting-m365-invaders-dissecting-email-collection-techniques.html
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: Set-TransportRule
+  selection_3:
+    sagan_raw|contains|cased:
+      - Name\\":\\"BlindCopyTo
+      - Name\\":\\"CopyTo
+      - Name\\":\\"RedirectMessageTo
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015351'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2025_03_11,updated_at=2025_03_11
+---
+title: '[MSAPI-EXCHANGE] Admin Audit Add-MailboxPermission FullAccess'
+id: 591423b8-7988-5ab6-8194-ee216144b9ef
+status: experimental
+description: Converted from Sagan rule SID 5015353 (rev 1), file msapi-exchange.rules.
+references:
+  - https://github.com/PwC-IR/Business-Email-Compromise-Guide/blob/main/PwC-Business_Email_Compromise-Guide.pdf
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: Add-MailboxPermission
+  selection_3:
+    sagan_raw|contains|cased: Value\\":\\"FullAccess
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015353'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2025_03_11,updated_at=2025_03_11
+---
+title: '[MSAPI-EXCHANGE] Admin Audit Set-AdminAuditLogConfig Disable Logging'
+id: 8af847b5-21a4-5d90-90d5-3b30d983e3ba
+status: experimental
+description: Converted from Sagan rule SID 5015355 (rev 1), file msapi-exchange.rules.
+references:
+  - https://github.com/PwC-IR/Business-Email-Compromise-Gide
+  - https://learn.microsoft.com/en-us/exchange/policy-and-compliance/admin-audit-logging/manage-admin-audit-logging?view=exchserver-2019
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: Set-AdminAuditLogConfig
+  selection_3:
+    sagan_raw|contains|cased: Name\\":\\"AdminAuditLogEnabled
+  selection_4:
+    sagan_raw|contains|cased: Value\\":\\"False
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015355'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2025_03_11,updated_at=2025_03_11
+---
 title: '[MSAPI-EXCHANGE] Admin Audit Inbox Rule w/ DeleteMessage'
 id: 23c099a6-f7d5-570d-85f4-6c4a871eebcb
 status: experimental
@@ -223,6 +521,569 @@ correlation:
   timespan: 1d
 level: medium
 ---
+title: '[MSAPI-EXCHANGE] Admin Audit Hidden New-InboxRule Created'
+id: 4c47c7d5-0f40-5325-b12e-4b96ba01ba91
+status: experimental
+description: Converted from Sagan rule SID 5017167 (rev 2), file msapi-exchange.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: New-InboxRule
+  selection_3:
+    sagan_raw|contains|cased: '"Name": "Name", "Value": "..'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1564.008
+  - attack.ta0005
+  - sagan.classtype.evasion
+custom_attributes:
+  sagan.sid: '5017167'
+  sagan.rev: '2'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2025_08_20,updated_at=2025_09_05
+---
+title: '[MSAPI-EXCHANGE] Admin Audit Hidden New-InboxRule Created'
+id: aa0edbf5-915b-5262-b9bd-1ba83dc98fac
+status: experimental
+description: Converted from Sagan rule SID 5017883 (rev 1), file msapi-exchange.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: New-InboxRule
+  selection_3:
+    sagan_raw|contains|cased: '"Name": "Name", "Value": ".'
+  filter_4:
+    sagan_raw|contains|cased: ..
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1564.008
+  - attack.ta0005
+  - sagan.classtype.evasion
+custom_attributes:
+  sagan.sid: '5017883'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2026_04_15,updated_at=2026_04_15
+---
+title: '[MSAPI-EXCHANGE] Admin Audit Hidden New-InboxRule Created'
+id: 499ddede-8e75-5cd1-afb0-190234e0cca6
+status: experimental
+description: Converted from Sagan rule SID 5017884 (rev 1), file msapi-exchange.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: New-InboxRule
+  selection_3:
+    sagan_raw|contains|cased: '"Name": "Name", "Value": "...'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1564.008
+  - attack.ta0005
+  - sagan.classtype.evasion
+custom_attributes:
+  sagan.sid: '5017884'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2026_04_15,updated_at=2026_04_15
+---
+title: '[MSAPI-EXCHANGE] Admin Audit Hidden New-InboxRule Created'
+id: e476d848-cd23-57a3-bbc8-1044a7eea326
+status: experimental
+description: Converted from Sagan rule SID 5017885 (rev 1), file msapi-exchange.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: New-InboxRule
+  selection_3:
+    sagan_raw|contains|cased: '"Name": "Name", "Value": "//..'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1564.008
+  - attack.ta0005
+  - sagan.classtype.evasion
+custom_attributes:
+  sagan.sid: '5017885'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2026_04_15,updated_at=2026_04_15
+---
+title: '[MSAPI-EXCHANGE] Admin Audit Hidden New-InboxRule Created'
+id: 53db0df3-287e-584a-8ef9-e4ccae699f8e
+status: experimental
+description: Converted from Sagan rule SID 5017886 (rev 1), file msapi-exchange.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: New-InboxRule
+  selection_3:
+    sagan_raw|contains|cased: '"Name": "Name", "Value": " .'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1564.008
+  - attack.ta0005
+  - sagan.classtype.evasion
+custom_attributes:
+  sagan.sid: '5017886'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2026_04_15,updated_at=2026_04_15
+---
+title: '[MSAPI-EXCHANGE] Admin Audit InboxRule Created To Hide Emails'
+id: e56220b3-313e-5c9d-a4c7-21f7b0db1051
+status: experimental
+description: Converted from Sagan rule SID 5017887 (rev 2), file msapi-exchange.rules.
+references:
+  - https://www.huntress.com/cybersecurity-insights/microsoft-365-hidden-inbox-rule-detection
+  - https://redcanary.com/threat-detection-report/techniques/email-hiding-rules/
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: New-InboxRule
+  selection_3:
+    sagan_raw|contains|cased: MoveToFolder
+  selection_4:
+    sagan_raw|contains|cased:
+      - RSS Feeds
+      - Archive
+      - Conversation History
+      - RSS Subscriptions
+      - Deleted Items
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.evasion
+custom_attributes:
+  sagan.sid: '5017887'
+  sagan.rev: '2'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: createdOn=2026_04_16. updatedOn 2026_05_06,Mitre_TacticID=TA0005,Mitre_TacticName=Defense
+    Evasion,Mitre_TechniqueID=T1564.008,Mitre_TechniqueName=Hide_Artifacts
+---
+title: '[MSAPI-EXCHANGE] Mass Email Send Event by User [15/5 Mins]'
+id: f35fcd6b-c04e-55df-bb4d-e83466da67bc
+name: sagan_5017890
+status: experimental
+description: Converted from Sagan rule SID 5017890 (rev 2), file msapi-exchange.rules.
+references:
+  - https://learn.microsoft.com/en-us/purview/audit-mailboxes
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: Send
+  selection_3:
+    ClientInfoString|cased:
+      - Client=OWA
+      - Client=OutlookWebApp
+      - Client=WebServices
+  filter_4:
+    sagan_raw|contains|cased: ODSP-Notify
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017890'
+  sagan.rev: '2'
+  sagan.source_file: msapi-exchange.rules
+  rsigma.suppress: 1h
+  sagan.metadata: createdOn=2026_04_16. updatedOn 2026_04_20,Mitre_TacticID=TA0008,Mitre_TacticName=Lateral_Movement,Mitre_TechniqueID=T1534,Mitre_TechniqueName=SpearPhishing
+---
+title: '[MSAPI-EXCHANGE] Mass Email Send Event by User [15/5 Mins] (threshold 15 in 5m)'
+id: c77b2eaa-3ec3-58f3-b479-2f839bc435ca
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017890
+  group-by:
+    - ClientIPAddress
+    - UserId
+  timespan: 5m
+  condition:
+    gte: 15
+level: high
+---
+title: '[MSAPI-EXCHANGE] Mass Email Deletion From Sent Folder [100/10 Mins]'
+id: 7cc10d6e-bd73-51a9-aed4-5f073cbeaa49
+name: sagan_5017891
+status: experimental
+description: Converted from Sagan rule SID 5017891 (rev 1), file msapi-exchange.rules.
+references:
+  - https://learn.microsoft.com/en-us/purview/audit-mailboxes
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased:
+      - SoftDelete
+      - HardDelete
+      - MoveToDeletedItems
+  selection_3:
+    ClientInfoString|cased:
+      - Client=OWA
+      - Client=OutlookWebApp
+      - Client=WebServices
+  selection_4:
+    sagan_raw|contains|cased: '"Path": "\\\\Sent Items"'
+  filter_5:
+    sagan_raw|contains|cased: '"Subject": ""'
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.evasion
+custom_attributes:
+  sagan.sid: '5017891'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  rsigma.suppress: 1h
+  sagan.metadata: createdOn=2026_04_16. updatedOn 2026_04_16,Mitre_TacticID=TA0005,Mitre_TacticName=Defense_Evasion,Mitre_TechniqueID=T1070.008,Mitre_TechniqueName=IndicatorRemoval
+---
+title: '[MSAPI-EXCHANGE] Mass Email Deletion From Sent Folder [100/10 Mins] (threshold 100 in 10m)'
+id: 017e289c-f2e0-52bb-bf17-7198b2d230bc
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017891
+  group-by:
+    - ClientIPAddress
+    - UserId
+  timespan: 10m
+  condition:
+    gte: 100
+level: high
+---
+title: '[MSAPI-EXCHANGE] Excessive Volume of Mail Items Accessed'
+id: a63209ac-c988-5e2d-a9b5-9fcb4fa5ccfc
+name: sagan_5017892
+status: experimental
+description: Converted from Sagan rule SID 5017892 (rev 1), file msapi-exchange.rules.
+references:
+  - https://learn.microsoft.com/en-us/purview/audit-mailboxes
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: MailItemsAccessed
+  selection_3:
+    ClientInfoString|cased:
+      - Client=OWA
+      - Client=OutlookWebApp
+      - Client=WebServices
+  selection_4:
+    sagan_raw|contains:
+      - invoice
+      - payment
+      - wire transfer
+      - ACH
+      - remittance
+      - purchase order
+      - 'PO #'
+      - billing
+      - bank details
+      - account number
+      - urgent
+      - confidential
+      - action required
+      - approval needed
+      - authorization
+      - vendor
+      - contract
+      - agreement
+      - renewal
+      - onboarding
+      - password
+      - reset
+      - login
+      - MFA
+      - 2FA
+      - verification code
+      - your account
+      - direct deposit
+      - payroll
+      - w-2
+      - w2
+      - bank change
+      - salary
+      - benefits
+  selection_5:
+    sagan_raw|contains|cased: '"UserType": 0,'
+  selection_6:
+    sagan_raw|contains|cased: '"LogonType": 0,'
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.collection
+custom_attributes:
+  sagan.sid: '5017892'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  rsigma.suppress: 1h
+  sagan.metadata: createdOn=2026_04_16. updatedOn 2026_04_16,Mitre_TacticID=TA0009,Mitre_TacticName=Collection,Mitre_TechniqueID=T1114.002,Mitre_TechniqueName=EmailCollection
+---
+title: '[MSAPI-EXCHANGE] Excessive Volume of Mail Items Accessed (threshold 150 in 1m)'
+id: 79f3f020-909b-5679-a4c3-566f307ed1e7
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017892
+  group-by:
+    - ClientIPAddress
+    - UserId
+  timespan: 1m
+  condition:
+    gte: 150
+level: medium
+---
+title: '[MSAPI-EXCHANGE] Inbox Rule Created Or Modified To Hide Campaign-Related Email'
+id: 3a678c2f-7013-5028-81f4-8e97fd777b1b
+status: experimental
+description: Converted from Sagan rule SID 5017893 (rev 2), file msapi-exchange.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased:
+      - New-InboxRule
+      - Set-InboxRule
+  selection_3:
+    sagan_raw|contains|cased:
+      - phishing
+      - pishing
+      - email alert
+      - spam
+      - scam
+      - hacked
+      - compromised email
+  selection_4:
+    sagan_raw|contains|cased: '\\"MarkAsRead\\", \\"Value\\": \\"True\\"""MarkAsRead", "Value": "True"'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.evasion
+custom_attributes:
+  sagan.sid: '5017893'
+  sagan.rev: '2'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2026_04_16,updated_at=2026_05_07,Mitre_TacticID=TA0005,Mitre_TacticName=Defense
+    Evasion,Mitre_TechniqueID=T1564.008,Mitre_TechniqueName=Hide_Artifacts
+---
+title: '[MSAPI-EXCHANGE] Admin Audit New-InboxRule Created w/ Forwarding'
+id: 57cbce02-7e14-521e-992a-5ef3c224062a
+status: experimental
+description: Converted from Sagan rule SID 5017899 (rev 1), file msapi-exchange.rules.
+references:
+  - https://redcanary.com/blog/threat-detection/email-forwarding-rules/
+  - https://www.splunk.com/en_us/blog/security/hunting-m365-invaders-dissecting-email-collection-techniques.html
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: New-InboxRule
+  selection_3:
+    sagan_raw|contains|cased:
+      - Name":"RedirectTo
+      - Name":"ForwardTo
+      - Name":"ForwardAsAttachmentTo
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017899'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2026_05_06,updated_at=2026_05_06
+---
+title: '[MSAPI-EXCHANGE] Admin Audit Set-InboxRule Created w/ Forwarding'
+id: 02c1b525-541e-56ee-b4a6-da138083cc91
+status: experimental
+description: Converted from Sagan rule SID 5017900 (rev 1), file msapi-exchange.rules.
+references:
+  - https://redcanary.com/blog/threat-detection/email-forwarding-rules/
+  - https://www.splunk.com/en_us/blog/security/hunting-m365-invaders-dissecting-email-collection-techniques.html
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: Set-InboxRule
+  selection_3:
+    sagan_raw|contains|cased:
+      - Name":"RedirectTo
+      - Name":"ForwardTo
+      - Name":"ForwardAsAttachmentTo
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017900'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2026_05_06,updated_at=2026_05_06
+---
+title: '[MSAPI-EXCHANGE] Audit UpdateInboxRules Detected w/ Forwarding'
+id: d817433a-c5d5-5ab9-a9f3-b50a6fabbc29
+status: experimental
+description: Converted from Sagan rule SID 5017901 (rev 1), file msapi-exchange.rules.
+references:
+  - https://redcanary.com/blog/threat-detection/email-forwarding-rules/
+  - https://www.splunk.com/en_us/blog/security/hunting-m365-invaders-dissecting-email-collection-techniques.html
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: UpdateInboxRule
+  selection_3:
+    sagan_raw|contains|cased:
+      - Name":"Forward
+      - Name":"Recipients
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017901'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2026_05_06,updated_at=2026_05_06
+---
+title: '[MSAPI-EXCHANGE] Bulk Mail Access via Scripted HTTP Client'
+id: cddcb80f-8134-51c5-91bb-065c7d64644b
+name: sagan_5017906
+status: experimental
+description: Converted from Sagan rule SID 5017906 (rev 1), file msapi-exchange.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased:
+      - MailItemsAccessed
+      - AttachmentAccess
+  selection_3:
+    sagan_raw|contains|cased:
+      - python-requests
+      - Go-http-client
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017906'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_at=2026_05_06,updated_at=2026_05_06
+---
+title: '[MSAPI-EXCHANGE] Bulk Mail Access via Scripted HTTP Client (threshold 10 in 5m)'
+id: 2f3b43d7-a5b7-5937-a136-882923c89614
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017906
+  group-by:
+    - ClientIP
+  timespan: 5m
+  condition:
+    gte: 10
+level: medium
+---
 title: '[MSAPI-EXCHANGE] External User With Delegated Permission Accessed Mailbox'
 id: 07c69a26-4dbe-5649-a44d-42f2eded2d9a
 status: experimental
@@ -252,3 +1113,359 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: msapi-exchange.rules
   sagan.metadata: created_at=2026_05_06,updated_at=2026_05_06
+---
+title: '[MSAPI-EXCHANGE] Admin Audit Hidden New-InboxRule Created'
+id: 082305b7-0512-5083-97de-ef7bc8814968
+status: experimental
+description: Converted from Sagan rule SID 5017913 (rev 1), file msapi-exchange.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: New-InboxRule
+  selection_3:
+    sagan_raw|contains|cased: '\\"Name\\": \\"Name\\", \\"Value\\": \\"..'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1564.008
+  - attack.ta0005
+  - sagan.classtype.evasion
+custom_attributes:
+  sagan.sid: '5017913'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2026_05_07,updated_at=2026_05_07
+---
+title: '[MSAPI-EXCHANGE] Admin Audit Hidden New-InboxRule Created'
+id: 3cf80ad2-5cba-57ab-8b9a-2cea0c054ecb
+status: experimental
+description: Converted from Sagan rule SID 5017914 (rev 1), file msapi-exchange.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: New-InboxRule
+  selection_3:
+    sagan_raw|contains|cased: '\\"Name\\": \\"Name\\", \\"Value\\": \\".'
+  filter_4:
+    sagan_raw|contains|cased: ..
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1564.008
+  - attack.ta0005
+  - sagan.classtype.evasion
+custom_attributes:
+  sagan.sid: '5017914'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2026_05_07,updated_at=2026_05_07
+---
+title: '[MSAPI-EXCHANGE] Admin Audit Hidden New-InboxRule Created'
+id: 5e5b0834-8b02-5379-989b-c81daf893a49
+status: experimental
+description: Converted from Sagan rule SID 5017915 (rev 1), file msapi-exchange.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: New-InboxRule
+  selection_3:
+    sagan_raw|contains|cased: '\\"Name\\": \\"Name\\", \\"Value\\": \\"...'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1564.008
+  - attack.ta0005
+  - sagan.classtype.evasion
+custom_attributes:
+  sagan.sid: '5017915'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2026_05_07,updated_at=2026_05_07
+---
+title: '[MSAPI-EXCHANGE] Admin Audit Hidden New-InboxRule Created'
+id: 500caccb-8e5c-58d3-8423-3b4693720cf2
+status: experimental
+description: Converted from Sagan rule SID 5017916 (rev 1), file msapi-exchange.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: New-InboxRule
+  selection_3:
+    sagan_raw|contains|cased: '\\"Name\\": \\"Name\\", \\"Value\\": \\"//..'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1564.008
+  - attack.ta0005
+  - sagan.classtype.evasion
+custom_attributes:
+  sagan.sid: '5017916'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2026_05_07,updated_at=2026_05_07
+---
+title: '[MSAPI-EXCHANGE] Admin Audit Hidden New-InboxRule Created'
+id: 78299208-ada9-53fb-9eb7-88ae9d7aae4d
+status: experimental
+description: Converted from Sagan rule SID 5017917 (rev 1), file msapi-exchange.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: New-InboxRule
+  selection_3:
+    sagan_raw|contains|cased: '\\"Name\\": \\"Name\\", \\"Value\\": \\" .'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1564.008
+  - attack.ta0005
+  - sagan.classtype.evasion
+custom_attributes:
+  sagan.sid: '5017917'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2026_05_07,updated_at=2026_05_07
+---
+title: '[MSAPI-EXCHANGE] Admin Audit New-InboxRule Created w/ Email Forwarding And Moved'
+id: 46d4f9d1-52e0-585e-938b-e2828f797e0a
+status: experimental
+description: Converted from Sagan rule SID 5017918 (rev 1), file msapi-exchange.rules.
+references:
+  - https://redcanary.com/blog/threat-detection/email-forwarding-rules/
+  - https://www.splunk.com/en_us/blog/security/hunting-m365-invaders-dissecting-email-collection-techniques.html
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: New-InboxRule
+  selection_3:
+    sagan_raw|contains|cased:
+      - Name\\":\\"RedirectTo
+      - Name\\":\\"ForwardTo
+      - Name\\":\\"ForwardAsAttachmentTo
+  selection_4:
+    sagan_raw|contains|cased: Name\\":\\"MoveToFolder
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017918'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2026_05_12,updated_at=2026_05_12
+---
+title: '[MSAPI-EXCHANGE] Admin Audit Set-InboxRule Created w/ Email Forwarded And Moved'
+id: 8063b1bd-d433-5a0d-a1c2-37347e935fd5
+status: experimental
+description: Converted from Sagan rule SID 5017919 (rev 1), file msapi-exchange.rules.
+references:
+  - https://redcanary.com/blog/threat-detection/email-forwarding-rules/
+  - https://www.splunk.com/en_us/blog/security/hunting-m365-invaders-dissecting-email-collection-techniques.html
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: Set-InboxRule
+  selection_3:
+    sagan_raw|contains|cased:
+      - Name\\":\\"RedirectTo
+      - Name\\":\\"ForwardTo
+      - Name\\":\\"ForwardAsAttachmentTo
+  selection_4:
+    sagan_raw|contains|cased: Name\\":\\"MoveToFolder
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017919'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2026_05_12,updated_at=2026_05_12
+---
+title: '[MSAPI-EXCHANGE] Admin Audit New-InboxRule Created w/ Email Forwarding And Moved'
+id: 303ff6cf-f7b6-563f-b449-c2b126dafb0f
+status: experimental
+description: Converted from Sagan rule SID 5017920 (rev 1), file msapi-exchange.rules.
+references:
+  - https://redcanary.com/blog/threat-detection/email-forwarding-rules/
+  - https://www.splunk.com/en_us/blog/security/hunting-m365-invaders-dissecting-email-collection-techniques.html
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: New-InboxRule
+  selection_3:
+    sagan_raw|contains|cased:
+      - Name":"RedirectTo
+      - Name":"ForwardTo
+      - Name":"ForwardAsAttachmentTo
+  selection_4:
+    sagan_raw|contains|cased: Name":"MoveToFolder
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017920'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2026_05_12,updated_at=2026_05_12
+---
+title: '[MSAPI-EXCHANGE] Admin Audit Set-InboxRule Created w/ Email Forwarded And Moved'
+id: aa6fdfd3-eee2-5300-ba8e-72ebe0d07f5a
+status: experimental
+description: Converted from Sagan rule SID 5017921 (rev 1), file msapi-exchange.rules.
+references:
+  - https://redcanary.com/blog/threat-detection/email-forwarding-rules/
+  - https://www.splunk.com/en_us/blog/security/hunting-m365-invaders-dissecting-email-collection-techniques.html
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased: Set-InboxRule
+  selection_3:
+    sagan_raw|contains|cased:
+      - Name":"RedirectTo
+      - Name":"ForwardTo
+      - Name":"ForwardAsAttachmentTo
+  selection_4:
+    sagan_raw|contains|cased: Name":"MoveToFolder
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017921'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2026_05_12,updated_at=2026_05_12
+---
+title: '[MSAPI-EXCHANGE] Domain Wide Emails Moved to Deleted Items v1'
+id: 2c1bf58f-d427-58d9-bff1-7a1c10edb409
+status: experimental
+description: Converted from Sagan rule SID 5017922 (rev 1), file msapi-exchange.rules.
+references:
+  - https://redcanary.com/blog/threat-detection/email-forwarding-rules/
+  - https://www.splunk.com/en_us/blog/security/hunting-m365-invaders-dissecting-email-collection-techniques.html
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased:
+      - New-InboxRule
+      - Set-InboxRule
+  selection_3:
+    sagan_raw|contains|cased: Deleted Items
+  selection_4:
+    sagan_raw|contains|cased: FromAddressContainsWords","Value":"@
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017922'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2026_05_14,updated_at=2026_05_14
+---
+title: '[MSAPI-EXCHANGE] Domain Wide Emails Moved to Deleted Items v2'
+id: aa46ae36-159c-5b1e-9917-bfcb3e7ce43c
+status: experimental
+description: Converted from Sagan rule SID 5017923 (rev 1), file msapi-exchange.rules.
+references:
+  - https://redcanary.com/blog/threat-detection/email-forwarding-rules/
+  - https://www.splunk.com/en_us/blog/security/hunting-m365-invaders-dissecting-email-collection-techniques.html
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Exchange
+  selection_2:
+    Operation|cased:
+      - New-InboxRule
+      - Set-InboxRule
+  selection_3:
+    sagan_raw|contains|cased: Deleted Items
+  selection_4:
+    sagan_raw|contains|cased: 'FromAddressContainsWords", "Value": "@'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1114
+  - attack.ta0009
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017923'
+  sagan.rev: '1'
+  sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2026_05_14,updated_at=2026_05_14

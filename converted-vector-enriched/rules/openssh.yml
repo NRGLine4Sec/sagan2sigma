@@ -421,6 +421,68 @@ custom_attributes:
   sagan.source_file: openssh.rules
   rsigma.suppress: 1h
 ---
+title: '[OPENSSH] Suspicious login to a nologin account'
+id: f2d81ce8-4f30-50ac-8eb5-b222583a0540
+status: experimental
+description: Converted from Sagan rule SID 5000411 (rev 10), file openssh.rules.
+author: sagan2sigma
+logsource:
+  product: linux
+  service: sshd
+detection:
+  selection_1:
+    sagan_raw|contains:
+      - authentication accepted for
+      - authenticated
+  selection_2:
+    sagan_raw|contains|cased:
+      - apache
+      - tomcat
+      - sys
+      - www
+      - nobody
+      - nogroup
+      - portmap
+      - named
+      - rpc
+      - mail
+      - ftp
+      - shutdown
+      - halt
+      - daemon
+      - bin
+      - postfix
+      - shell
+      - info
+      - guest
+      - psql
+      - user
+      - users
+      - console
+      - uucp
+      - lp
+      - sync
+      - sshd
+      - cdrom
+      - ossec
+      - sagan
+      - www-data
+  filter_3:
+    sagan_raw|contains: preauth
+  selection_4:
+    appname|cased: sshd
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5000411'
+  sagan.rev: '10'
+  sagan.source_file: openssh.rules
+  rsigma.suppress: 1m
+---
 title: '[OPENSSH] Failed password - Brute force [10/5]'
 id: 67f6fec0-f24c-512e-bf09-b46deb5cfd55
 name: sagan_5001646

@@ -558,6 +558,57 @@ correlation:
     gte: 25
 level: low
 ---
+title: '[WINDOWS-AUTH] Windows Brute force - User Correct but Incorrect Password [25/1]'
+id: 26528169-8fce-5f4c-a93c-e7a46272c54e
+name: sagan_5001729
+status: experimental
+description: Converted from Sagan rule SID 5001729 (rev 35), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    sagan_raw|contains|cased: 'Logon Type: 3'
+  selection_2:
+    sagan_raw|contains: C000006A
+  filter_3:
+    sagan_raw|contains|cased: 'Source Network Address: -'
+  selection_4:
+    EventID: 4625
+  selection_5:
+    sagan_raw|re: 'Account Name:\s[a-zA-Z0-9\-\_\$]+\s.*Account Name:\s[^$]+\sAccount Domain:'
+  selection_6:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_2 and selection_4 and selection_5 and selection_6 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5001729'
+  sagan.rev: '35'
+  sagan.source_file: windows-auth.rules
+  rsigma.suppress: 1d
+  sagan.metadata: updated_at=2025_08_01
+---
+title: '[WINDOWS-AUTH] Windows Brute force - User Correct but Incorrect Password [25/1] (threshold 25
+  in 5m)'
+id: a2811eac-7b4c-5820-8db7-e6b372c4dc96
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5001729
+  group-by:
+    - sagan_ip_1
+    - TargetUserName
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
 title: '[WINDOWS-AUTH] Windows Brute force - User Is Locked Out [25/1]'
 id: ca4d9954-e709-5543-a5db-8c851dce1793
 name: sagan_5001730
@@ -735,6 +786,60 @@ correlation:
     - sagan_5001751
   group-by:
     - sagan_ip_1
+  timespan: 5m
+  condition:
+    gte: 25
+level: low
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0x18 - Kerberos password authentication
+  failure [25/5]'
+id: ac299e89-8f52-59ed-9b41-807f6b9a5f9d
+name: sagan_5001763
+status: experimental
+description: Converted from Sagan rule SID 5001763 (rev 30), file windows-auth.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4768
+      - 4771
+      - 676
+      - 675
+  filter_2:
+    sagan_raw|contains|cased: '$ Service Information:'
+  selection_3:
+    sagan_raw|contains|cased: ' Code: 0x18 '
+  filter_4:
+    sagan_raw|contains|cased: 'Client Address: ::1 Client Port: 0'
+  selection_5:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_3 and selection_5 and not (filter_2 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5001763'
+  sagan.rev: '30'
+  sagan.source_file: windows-auth.rules
+  rsigma.suppress: 1d
+  sagan.metadata: updatedOn=2025_10_23
+---
+title: '[WINDOWS-AUTH] Windows DC Logon Failure - Brute force 0x18 - Kerberos password authentication
+  failure [25/5] (threshold 25 in 5m)'
+id: cc99e764-c386-5ebf-b145-5161299d9b3f
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5001763
+  group-by:
+    - sagan_ip_1
+    - TargetUserName
   timespan: 5m
   condition:
     gte: 25

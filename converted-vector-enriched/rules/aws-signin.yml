@@ -1,0 +1,92 @@
+title: '[AWS-SIGNIN] Multiple Failed Console Login Attempts - Brute Force'
+id: b0a85d36-a7f0-5a69-b07f-0483cda1e4f7
+name: sagan_5014083
+status: experimental
+description: Converted from Sagan rule SID 5014083 (rev 2), file aws-signin.rules.
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: signin.amazonaws.com
+  selection_2:
+    eventName|cased: ConsoleLogin
+  selection_3:
+    responseElements.ConsoleLogin|cased: Failure
+  filter_4:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1110
+  - attack.ta0006
+  - sagan.classtype.attempted-user
+custom_attributes:
+  sagan.sid: '5014083'
+  sagan.rev: '2'
+  sagan.source_file: aws-signin.rules
+  rsigma.suppress: 1d
+  sagan.metadata: deployment=Server,created_at=2023_12_07,updated_at=2023_12_07
+---
+title: '[AWS-SIGNIN] Multiple Failed Console Login Attempts - Brute Force (threshold 10 in 5m)'
+id: 8ca50017-20b9-55f4-a297-d8ed759fe080
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5014083
+  group-by:
+    - sourceIPAddress
+  timespan: 5m
+  condition:
+    gte: 10
+level: high
+---
+title: '[AWS-SIGNIN] Successful Console Login After Brute Force'
+id: c6a9d254-0d65-51d2-b1af-6751f686e78a
+name: sagan_5014084
+status: experimental
+description: Converted from Sagan rule SID 5014084 (rev 2), file aws-signin.rules.
+author: sagan2sigma
+logsource:
+  product: aws
+detection:
+  selection_1:
+    appname|cased: signin.amazonaws.com
+  selection_2:
+    eventName|cased: ConsoleLogin
+  selection_3:
+    responseElements.ConsoleLogin|cased: Success
+  filter_4:
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1110
+  - attack.ta0006
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5014084'
+  sagan.rev: '2'
+  sagan.source_file: aws-signin.rules
+  sagan.metadata: deployment=Server,created_at=2023_12_07,updated_at=2023_12_07
+---
+title: '[AWS-SIGNIN] Successful Console Login After Brute Force (correlated with brute-force)'
+id: ed13d4b1-323b-5bfe-a15b-dd38e6498658
+status: experimental
+description: Reconstruction of the Sagan 'brute-force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - sagan_xbit_brute-force
+    - sagan_5014084
+  group-by:
+    - sourceIPAddress
+  timespan: 1d
+level: high

@@ -12,7 +12,10 @@ from sagan2sigma.emit.vector import build_config, write_pipeline
 class TestBaseConfig:
     def test_chains_transforms_in_order(self) -> None:
         config = yaml.safe_load(build_config("1.0"))
-        assert config["transforms"]["sagan_parse_ip"]["inputs"] == ["appliances"]
+        # sagan_json runs first: it preserves the raw body and lifts a JSON
+        # body's keys before any field parsing looks at them.
+        assert config["transforms"]["sagan_json"]["inputs"] == ["appliances"]
+        assert config["transforms"]["sagan_parse_ip"]["inputs"] == ["sagan_json"]
         assert config["transforms"]["sagan_username"]["inputs"] == ["sagan_parse_ip"]
         assert config["sinks"]["rsigma"]["inputs"] == ["sagan_username"]
 

@@ -68,6 +68,21 @@ def vector_context(config: SaganConfig) -> Context:
 
 
 @pytest.fixture
+def enriched_context(config: SaganConfig) -> Context:
+    """Conversion context on the vector-enriched profile.
+
+    This is the only profile whose pipeline preserves the raw body
+    (``json_raw: sagan_raw``), so it is where a raw text search on a JSON
+    event converts instead of being refused.
+    """
+    return Context(
+        profile=load_profile("vector-enriched"),
+        config=config,
+        catalog=load_catalog(),
+    )
+
+
+@pytest.fixture
 def draft() -> RuleDraft:
     """An empty draft."""
     return RuleDraft()

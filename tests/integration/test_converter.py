@@ -79,6 +79,51 @@ class TestRefusals:
         assert refused.line_number > 0
 
 
+class TestRawOnJsonRecoveredUnderEnriched:
+    """A raw search on a JSON event, refused by default, converts under.
+
+    vector-enriched, where the pipeline preserves the raw body in sagan_raw.
+    """
+
+    @pytest.fixture
+    def enriched_result(
+        self, enriched_context: Context, result_factory
+    ) -> ConversionResult:
+        return result_factory(enriched_context)
+
+    def test_rule_9000022_converts(self, enriched_result: ConversionResult) -> None:
+        assert "9000022" in sids(enriched_result.converted)
+        assert "9000022" not in sids(enriched_result.refused)
+
+    def test_content_search_targets_the_preserved_raw_body(
+        self, enriched_result: ConversionResult
+    ) -> None:
+        document = next(
+            item.documents[0]
+            for item in enriched_result.converted
+            if item.sid == "9000022"
+        )
+        detection = document["detection"]
+        # The raw content search lands on sagan_raw, not on a syslog message
+        # field that a JSON event would never carry.
+        assert "sagan_raw|contains" in str(detection)
+
+    def test_raw_match_is_flagged_non_portable(
+        self, enriched_result: ConversionResult
+    ) -> None:
+        """Matching the raw serialized JSON is faithful but format-bound, so.
+
+        the D_RAW_TEXT_MATCH portability degradation is recorded.
+        """
+        converted = next(
+            item for item in enriched_result.converted if item.sid == "9000022"
+        )
+        assert any(
+            degradation.code is DegradationCode.RAW_TEXT_MATCH
+            for degradation in converted.degradations
+        )
+
+
 class TestPassRule:
     """A pass rule converts as an alert and records the lost short-circuit.
 

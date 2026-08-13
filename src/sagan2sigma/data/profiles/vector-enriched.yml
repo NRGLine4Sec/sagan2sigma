@@ -40,6 +40,11 @@ positional:
 # Vector emits one flat JSON object either way, so the envelope keeps the same
 # names whether or not the body was itself JSON. No prefixed variant is needed.
 json_envelope: {}
+# The pipeline keeps the original body in sagan_raw even when it is JSON (see
+# data/vrl/sagan-json.vrl), so a content/pcre/meta_content search on a JSON
+# event converts against sagan_raw instead of being refused. A distinct name,
+# not _raw, so it never collides with RSigma's own raw-body handling.
+json_raw: sagan_raw
 
 notes:
   - >-

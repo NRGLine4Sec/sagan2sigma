@@ -99,6 +99,32 @@ custom_attributes:
   sagan.rev: '2'
   sagan.source_file: msapi-mcas.rules
 ---
+title: '[MCAS] Impossible Travel Activity'
+id: afab8b58-a3ec-5470-9222-6fa527dfceeb
+status: experimental
+description: Converted from Sagan rule SID 5007207 (rev 3), file msapi-mcas.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: MCAS
+  selection_2:
+    Operation|cased: MCAS_ALERT_ANUBIS_DETECTION_VELOCITY
+  filter_3:
+    sagan_raw|contains|cased: '"ResultStatus": "Resolved"'
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1078
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5007207'
+  sagan.rev: '3'
+  sagan.source_file: msapi-mcas.rules
+---
 title: '[MCAS] Suspicious Inbox Manipulation Rule'
 id: 98e2b648-f187-5f99-8510-01c93839ac41
 status: experimental

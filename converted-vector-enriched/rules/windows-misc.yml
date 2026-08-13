@@ -268,6 +268,33 @@ custom_attributes:
   sagan.source_file: windows-misc.rules
   rsigma.suppress: 1d
 ---
+title: '[WINDOWS-MISC] Unable to log events to security log'
+id: 6e1b4458-2b92-5776-a880-5cd9c671a31e
+status: experimental
+description: Converted from Sagan rule SID 5002564 (rev 7), file windows-misc.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    sagan_raw|contains|cased: '521: Unable to log events to security log'
+  filter_2:
+    sagan_raw|contains|cased: 'Status code: 0x0 Value'
+  selection_3:
+    appname|cased: '*Security*'
+  condition: selection_1 and selection_3 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.program-error
+custom_attributes:
+  sagan.sid: '5002564'
+  sagan.rev: '7'
+  sagan.source_file: windows-misc.rules
+  rsigma.suppress: 2h
+  sagan.metadata: updated_on=2024_12_29
+---
 title: '[WINDOWS-MISC] Installation of new service via Security Audit'
 id: 233a12a7-1045-5f0d-8e4a-506703835d19
 status: experimental
@@ -1668,3 +1695,69 @@ custom_attributes:
   sagan.rev: '2'
   sagan.source_file: windows-misc.rules
   sagan.metadata: created_at=2025_07_24,updated_at=2025_08_28
+---
+title: '[WINDOWS-MISC] Failed NTLM Log4Shell Attempt Detected - Critical'
+id: be71bdd7-a2c5-5817-8270-9c08e8a1d8f7
+status: experimental
+description: Converted from Sagan rule SID 5017928 (rev 1), file windows-misc.rules.
+references:
+  - https://www.crowdstrike.com/en-us/cybersecurity-101/exposure-management/log4j-vulnerability/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Microsoft-Windows-NTLM*'
+  selection_2:
+    EventID: 4023
+  selection_3:
+    sagan_raw|contains:
+      - jndi
+      - log4shell
+  selection_4:
+    sagan_raw|contains|cased: The attempted logon is invalid
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017928'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+  rsigma.suppress: 1m
+  sagan.metadata: createdOn=2026_06_02,updatedOn=2026_06_02,cveName=CVE-2021-44228
+---
+title: '[WINDOWS-MISC] Successful NTLM Log4Shell Attempt Detected - Critical'
+id: f8019c73-dd8c-57d1-8b0a-bafbaf920c0c
+status: experimental
+description: Converted from Sagan rule SID 5017929 (rev 1), file windows-misc.rules.
+references:
+  - https://www.crowdstrike.com/en-us/cybersecurity-101/exposure-management/log4j-vulnerability/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Microsoft-Windows-NTLM*'
+  selection_2:
+    EventID: 4023
+  selection_3:
+    sagan_raw|contains:
+      - jndi
+      - log4shell
+  filter_4:
+    sagan_raw|contains|cased: The attempted logon is invalid
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017929'
+  sagan.rev: '1'
+  sagan.source_file: windows-misc.rules
+  rsigma.suppress: 1m
+  sagan.metadata: createdOn=2026_06_02,updatedOn=2026_06_02,cveName=CVE-2021-44228

@@ -1,3 +1,46 @@
+title: '[OKTA] USER ATTEMPTED UNAUTHORIZED ACCESS TO AN APPLICATION'
+id: 6edb1144-829f-571a-a439-f5b73820557d
+name: sagan_5006600
+status: experimental
+description: Converted from Sagan rule SID 5006600 (rev 3), file okta.rules.
+references:
+  - https://developer.okta.com/docs/reference/api/event-types/
+author: sagan2sigma
+logsource:
+  product: okta
+detection:
+  selection_1:
+    sagan_raw|contains|cased: User attempted unauthorized access to app
+  filter_2:
+    debugContext.debugData.threatSuspected|cased: 'false'
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5006600'
+  sagan.rev: '3'
+  sagan.source_file: okta.rules
+  rsigma.suppress: 1h
+  sagan.metadata: updatedOn=2026_06_12
+---
+title: '[OKTA] USER ATTEMPTED UNAUTHORIZED ACCESS TO AN APPLICATION (threshold 3 in 5m)'
+id: 96cf8d32-b96f-5e7f-83e3-5f2f33608f69
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5006600
+  group-by:
+    - actor.alternateId
+  timespan: 5m
+  condition:
+    gte: 3
+level: medium
+---
 title: '[OKTA] INBOUND REQUEST FROM A BLACKLISTED IP'
 id: 007ed0de-8648-5103-93e2-4b867c9cb3b5
 status: experimental
@@ -45,6 +88,30 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: okta.rules
   rsigma.suppress: 4h
+---
+title: '[OKTA] USER HAS REPORTED SUSPICIOUS ACTIVITY'
+id: 42237b60-7c5c-50e9-8216-5e8c2da5d70d
+status: experimental
+description: Converted from Sagan rule SID 5006602 (rev 2), file okta.rules.
+references:
+  - https://help.okta.com/en/prod/Content/Topics/Security/suspicious-activity-reporting.htm
+author: sagan2sigma
+logsource:
+  product: okta
+detection:
+  selection_1:
+    sagan_raw|contains|cased: User report suspicious activity
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5006602'
+  sagan.rev: '2'
+  sagan.source_file: okta.rules
+  rsigma.suppress: 1h
 ---
 title: '[OKTA] INVALID SELF SERVICE RECOVERY TOKEN USED BY USER'
 id: 14b2daef-7b47-5a96-a3ac-0ba3bee9a44f

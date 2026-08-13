@@ -171,6 +171,126 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: jamf-protect.rules
 ---
+title: '[JAMF-PROTECT] File System Event Detected (medium)'
+id: ee0b5c27-99f3-59de-bfb4-1904254a02b5
+status: experimental
+description: Converted from Sagan rule SID 5014266 (rev 2), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPFSEvent
+  selection_3:
+    input.match.severity: 2
+  filter_4:
+    sagan_raw|contains|cased: threat_prevention_file_quarantine
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014266'
+  sagan.rev: '2'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] File System Event Detected (high)'
+id: b21eeef3-8f03-537d-a7fc-a36272dcee76
+status: experimental
+description: Converted from Sagan rule SID 5014267 (rev 2), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPFSEvent
+  selection_3:
+    input.match.severity: 3
+  filter_4:
+    sagan_raw|contains|cased: threat_prevention_file_quarantine
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014267'
+  sagan.rev: '2'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] Medium Severity File System Event Detected And Quarantined'
+id: 96f913fa-e350-5e4a-a6bc-f25b6e93c78e
+status: experimental
+description: Converted from Sagan rule SID 5017454 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPFSEvent
+  selection_3:
+    input.match.severity: 2
+  selection_4:
+    sagan_raw|contains|cased: threat_prevention_file_quarantine
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017454'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
+title: '[JAMF-PROTECT] High Severity File System Event Detected And Quarantined'
+id: 8e81c2d6-ccbd-50bb-ab76-58bb4e8afb85
+status: experimental
+description: Converted from Sagan rule SID 5017455 (rev 1), file jamf-protect.rules.
+references:
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Analytic_Descriptions.html
+  - https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry_Log_Data_Examples.html
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: jamf_protect
+  selection_2:
+    input.eventType|cased: GPFSEvent
+  selection_3:
+    input.match.severity: 3
+  selection_4:
+    sagan_raw|contains|cased: threat_prevention_file_quarantine
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017455'
+  sagan.rev: '1'
+  sagan.source_file: jamf-protect.rules
+---
 title: '[JAMF-PROTECT] Process Monitoring Event Detected (medium)'
 id: 7abde572-15dc-54fe-95a5-4020f1876d2b
 status: experimental

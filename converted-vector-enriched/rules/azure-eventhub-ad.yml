@@ -1,3 +1,32 @@
+title: '[AZURE-EVENTHUB-AD] Risk Event Detected - unlikelyTravel'
+id: 9235f3b1-8afb-5202-84b4-7101f6f5f331
+status: experimental
+description: Converted from Sagan rule SID 5004760 (rev 6), file azure-eventhub-ad.rules.
+references:
+  - https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/reference-azure-monitor-sign-ins-log-schema
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    properties.riskEventTypes|contains|cased: unlikelyTravel
+  filter_3:
+    sagan_raw|contains|cased: adminConfirmedSigninSafe
+  filter_4:
+    sagan_raw|contains|cased: :"confirmedSafe"
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5004760'
+  sagan.rev: '6'
+  sagan.source_file: azure-eventhub-ad.rules
+---
 title: '[AZURE-EVENTHUB-AD] Risk Event Detected - anonymizedIPAddress'
 id: b1a5e333-c3f7-5a8e-ba61-e7ec88811a3f
 status: experimental
@@ -349,3 +378,510 @@ custom_attributes:
   sagan.sid: '5004776'
   sagan.rev: '6'
   sagan.source_file: azure-eventhub-ad.rules
+---
+title: '[AZURE-EVENTHUB-AD] Possible Brute Force Attempt (Invalid username or password) [10/5]'
+id: 0522e79d-0704-5b21-9d82-0f19ffd3de8f
+name: sagan_5014177
+status: experimental
+description: Converted from Sagan rule SID 5014177 (rev 3), file azure-eventhub-ad.rules.
+references:
+  - https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/reference-sign-ins-error-codes
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    sagan_raw|contains|cased:
+      - 'resultType": "50126'
+      - 'resultType": "50056'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5014177'
+  sagan.rev: '3'
+  sagan.source_file: azure-eventhub-ad.rules
+  rsigma.suppress: 6h
+---
+title: '[AZURE-EVENTHUB-AD] Possible Brute Force Attempt (Invalid username or password) [10/5] (threshold
+  10 in 5m)'
+id: 43974bfa-1129-5813-8ab4-cebdb8c6a6ef
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5014177
+  group-by:
+    - sagan_ip_1
+    - properties.userPrincipalName
+  timespan: 5m
+  condition:
+    gte: 10
+level: low
+---
+title: '[AZURE-EVENTHUB-AD] CRITICAL - Global Administrator Created'
+id: abb63144-fa4a-54ac-b1f1-191418d699c1
+status: experimental
+description: Converted from Sagan rule SID 5014648 (rev 4), file azure-eventhub-ad.rules.
+references:
+  - https://learn.microsoft.com/en-us/azure/role-based-access-control/rbac-and-directory-admin-roles
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    operationName|cased: Add member to role
+  selection_3:
+    sagan_raw|contains|cased: Global Administrator
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1136
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014648'
+  sagan.rev: '4'
+  sagan.source_file: azure-eventhub-ad.rules
+  sagan.metadata: created_on=2024_05_09,updated_on=2024_06_06
+---
+title: '[AZURE-EVENTHUB-AD] Security Operator Created'
+id: b746f607-63f3-52bd-9594-51679aa71a7c
+status: experimental
+description: Converted from Sagan rule SID 5014649 (rev 3), file azure-eventhub-ad.rules.
+references:
+  - https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/permissions-reference
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    operationName|cased: Add member to role
+  selection_3:
+    sagan_raw|contains|cased: Security Operator
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1136
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014649'
+  sagan.rev: '3'
+  sagan.source_file: azure-eventhub-ad.rules
+  sagan.metadata: created_on=2024_05_09,updated_on=2024_06_13
+---
+title: '[AZURE-EVENTHUB-AD] Security Administrator Created'
+id: 52684151-00b3-5371-941c-740ff27ae1c5
+status: experimental
+description: Converted from Sagan rule SID 5014650 (rev 3), file azure-eventhub-ad.rules.
+references:
+  - https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/permissions-reference
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    operationName|cased: Add member to role
+  selection_3:
+    sagan_raw|contains|cased: Security Administrator
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1136
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014650'
+  sagan.rev: '3'
+  sagan.source_file: azure-eventhub-ad.rules
+  sagan.metadata: created_on=2024_05_09,updated_on=2024_06_13
+---
+title: '[AZURE-EVENTHUB-AD] User Administrator Created'
+id: 5ae88f14-1174-5299-a7cc-1c748c401d84
+status: experimental
+description: Converted from Sagan rule SID 5014651 (rev 2), file azure-eventhub-ad.rules.
+references:
+  - https://learn.microsoft.com/en-us/azure/role-based-access-control/rbac-and-directory-admin-roles
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    operationName|cased: Add member to role
+  selection_3:
+    sagan_raw|contains|cased: User Administrator
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1136
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014651'
+  sagan.rev: '2'
+  sagan.source_file: azure-eventhub-ad.rules
+  sagan.metadata: created_on=2024_05_09,updated_on=2024_06_13
+---
+title: '[AZURE-EVENTHUB-AD] Partner Tier2 Support Created'
+id: 73c541c0-bd7e-5663-9b6c-9ca3ceb888e9
+status: experimental
+description: Converted from Sagan rule SID 5014658 (rev 2), file azure-eventhub-ad.rules.
+references:
+  - https://posts.specterops.io/microsoft-breach-what-happened-what-should-azure-admins-do-da2b7e674ebc
+  - https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/permissions-reference
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    operationName|cased: Add member to role
+  selection_3:
+    sagan_raw|contains|cased: Partner Tier2 Support
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1136
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014658'
+  sagan.rev: '2'
+  sagan.source_file: azure-eventhub-ad.rules
+  sagan.metadata: created_on=2024_05_15,updated_on=2024_06_13
+---
+title: '[AZURE-EVENTHUB-AD] Privileged Role Administrator Created'
+id: 6d936610-147b-546c-a4a6-d15ef9f9ebe7
+status: experimental
+description: Converted from Sagan rule SID 5014659 (rev 2), file azure-eventhub-ad.rules.
+references:
+  - https://posts.specterops.io/microsoft-breach-what-happened-what-should-azure-admins-do-da2b7e674ebc
+  - https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/permissions-reference
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    operationName|cased: Add member to role
+  selection_3:
+    sagan_raw|contains|cased: Privileged Role Administrator
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1136
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014659'
+  sagan.rev: '2'
+  sagan.source_file: azure-eventhub-ad.rules
+  sagan.metadata: created_on=2024_05_15,updated_on=2024_06_13
+---
+title: '[AZURE-EVENTHUB-AD] New MFA Device Registered'
+id: 3ecf771c-6f7c-5eca-8991-381d68358f82
+status: experimental
+description: Converted from Sagan rule SID 5015929 (rev 5), file azure-eventhub-ad.rules.
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    operationName|contains|cased: Update user
+  selection_3:
+    sagan_raw|contains|cased: StrongAuthenticationPhoneAppDetail
+  selection_4:
+    sagan_raw|contains|cased: '"oldValue": "[]"'
+  selection_5:
+    sagan_raw|contains|cased: newValue
+  selection_6:
+    sagan_raw|contains|cased: DeviceName
+  selection_7:
+    sagan_raw|contains|cased: DeviceToken
+  selection_8:
+    sagan_raw|contains|cased: Azure MFA StrongAuthenticationService
+  filter_9:
+    sagan_raw|contains|cased: SoftwareTokenActivated
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+    and selection_7 and selection_8 and not filter_9
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1556.006
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015929'
+  sagan.rev: '5'
+  sagan.source_file: azure-eventhub-ad.rules
+  sagan.metadata: created_on=2025_04_09,updatedOn=2025_05_14
+---
+title: '[AZURE-EVENTHUB-AD] MFA Authenticator Device Registered'
+id: 65afbc11-564a-538c-acde-30343225b032
+status: experimental
+description: Converted from Sagan rule SID 5015931 (rev 5), file azure-eventhub-ad.rules.
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    operationName|cased: User registered security info
+  selection_3:
+    sagan_raw|contains|cased: User registered Authenticator
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1556.006
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015931'
+  sagan.rev: '5'
+  sagan.source_file: azure-eventhub-ad.rules
+  sagan.metadata: created_on=2025_04_25,updated_on=2025_07_02
+---
+title: '[AZURE-EVENTHUB-AD] MFA Phone Device Registered'
+id: dbe35abd-2c09-5e6d-8303-a3addf457558
+status: experimental
+description: Converted from Sagan rule SID 5015932 (rev 4), file azure-eventhub-ad.rules.
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    operationName|cased: User registered security info
+  selection_3:
+    sagan_raw|contains|cased: User registered phone
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1556.006
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5015932'
+  sagan.rev: '4'
+  sagan.source_file: azure-eventhub-ad.rules
+  sagan.metadata: created_on=2025_04_25,updatedOn=2025_05_14
+---
+title: '[AZURE-EVENTHUB-AD] New MFA Device Registered - VSCode'
+id: 5e0aa96a-df24-5135-b6f0-b4cfdb43cd2d
+status: experimental
+description: Converted from Sagan rule SID 5017158 (rev 2), file azure-eventhub-ad.rules.
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    operationName|contains|cased: Update user
+  selection_3:
+    sagan_raw|contains|cased: StrongAuthenticationPhoneAppDetail
+  selection_4:
+    sagan_raw|contains|cased: '"oldValue": "[]"'
+  selection_5:
+    sagan_raw|contains|cased: newValue
+  selection_6:
+    sagan_raw|contains|cased: DeviceName
+  selection_7:
+    sagan_raw|contains|cased: DeviceToken
+  selection_8:
+    sagan_raw|contains|cased: Azure MFA StrongAuthenticationService
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+    and selection_7 and selection_8
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1098.005
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017158'
+  sagan.rev: '2'
+  sagan.source_file: azure-eventhub-ad.rules
+  sagan.metadata: created_on=2025_05_07,updatedOn=2025_05_14
+---
+title: '[AZURE-EVENTHUB-AD] MFA Authenticator Device Registered - VSCode'
+id: f548b12e-48b2-5ad4-a744-dbbc6e1eda91
+status: experimental
+description: Converted from Sagan rule SID 5017159 (rev 1), file azure-eventhub-ad.rules.
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    operationName|cased: User registered security info
+  selection_3:
+    sagan_raw|contains|cased: User registered Authenticator
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1098.005
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017159'
+  sagan.rev: '1'
+  sagan.source_file: azure-eventhub-ad.rules
+  sagan.metadata: created_on=2025_05_07
+---
+title: '[AZURE-EVENTHUB-AD] MFA Phone Device Registered - VSCode'
+id: 2c69f6ac-50e0-5911-bd06-c6a36ed4fab6
+status: experimental
+description: Converted from Sagan rule SID 5015948 (rev 1), file azure-eventhub-ad.rules.
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    operationName|cased: User registered security info
+  selection_3:
+    sagan_raw|contains|cased: User registered phone
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1098.005
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5015948'
+  sagan.rev: '1'
+  sagan.source_file: azure-eventhub-ad.rules
+  sagan.metadata: created_on=2025_05_07
+---
+title: '[EXPERIMENTAL][AZURE-EVENTHUB-AD] Suspicious Device Registration - Add Registered User/Owner with
+  Anomalous Hostname'
+id: f9ac34c4-8dc4-5417-84a2-66f37ce48206
+status: experimental
+description: Converted from Sagan rule SID 9870102 (rev 2), file azure-eventhub-ad.rules.
+references:
+  - https://attack.mitre.org/techniques/T1098/005/
+  - https://research.eye.security/device-code-phishing-forensics/
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    operationName|cased: Register device
+  selection_3:
+    properties.result|cased: success
+  selection_4:
+    sagan_raw|contains|cased: displayName
+  selection_5:
+    sagan_raw|re: DESKTOP-[A-Z0-9]{6}|DESKTOP-[A-Z0-9]{8}
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '9870102'
+  sagan.rev: '2'
+  sagan.source_file: azure-eventhub-ad.rules
+  rsigma.suppress: 1h
+  sagan.metadata: updatedOn=2026_07_02
+---
+title: '[EXPERIMENTAL][AZURE-EVENTHUB-AD] Suspicious Device Registration - Add Registered User with Anomalous
+  Hostname'
+id: c4ab97f4-daf2-532e-986e-4870fb271d54
+status: experimental
+description: Converted from Sagan rule SID 9870103 (rev 2), file azure-eventhub-ad.rules.
+references:
+  - https://attack.mitre.org/techniques/T1098/005/
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    operationName|cased: Add registered users to device
+  selection_3:
+    sagan_raw|contains|cased: newValue
+  selection_4:
+    sagan_raw|re: DESKTOP-[A-Z0-9]{6}|DESKTOP-[A-Z0-9]{8}
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '9870103'
+  sagan.rev: '2'
+  sagan.source_file: azure-eventhub-ad.rules
+  rsigma.suppress: 1h
+  sagan.metadata: updatedOn=2026_07_02
+---
+title: '[EXPERIMENTAL][AZURE-EVENTHUB-AD] Suspicious Device Registration - Add Registered Owner with Anomalous
+  Hostname'
+id: 8789479c-14dc-5d41-8239-718861161e6e
+status: experimental
+description: Converted from Sagan rule SID 9870104 (rev 2), file azure-eventhub-ad.rules.
+references:
+  - https://attack.mitre.org/techniques/T1098/005/
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    appname|cased: azureEventHub
+  selection_2:
+    operationName|cased: Add registered owner to device
+  selection_3:
+    sagan_raw|contains|cased: newValue
+  selection_4:
+    sagan_raw|re: DESKTOP-[A-Z0-9]{6}|DESKTOP-[A-Z0-9]{8}
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '9870104'
+  sagan.rev: '2'
+  sagan.source_file: azure-eventhub-ad.rules
+  rsigma.suppress: 1h
+  sagan.metadata: updatedOn=2026_07_02

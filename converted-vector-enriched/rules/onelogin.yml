@@ -2299,3 +2299,103 @@ custom_attributes:
   sagan.sid: '5006489'
   sagan.rev: '3'
   sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] USER_LOGGED_INTO_ONELOGIN High Risk Score'
+id: b14dbf64-22e6-5316-abd2-83edf3d2fcc8
+status: experimental
+description: Converted from Sagan rule SID 5010905 (rev 1), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 5
+  selection_2:
+    sagan_raw|re: risk_score\x22:\x22(?:7[6-9]|[8-9]\d|\d{3,})\x22
+  selection_3:
+    appname|cased: onelogin
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5010905'
+  sagan.rev: '1'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] ONELOGIN_DESKTOP_LOGIN_SUCCESS High Risk Score'
+id: 66494aec-baa1-5428-be46-0892c9baabe4
+status: experimental
+description: Converted from Sagan rule SID 5010906 (rev 1), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 904
+  selection_2:
+    sagan_raw|re: risk_score\x22:\x22(?:7[6-9]|[8-9]\d|\d{3,})\x22
+  selection_3:
+    appname|cased: onelogin
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5010906'
+  sagan.rev: '1'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] USER_LOGIN_OTP_CHALLENGE High Risk Score'
+id: 31a4c63f-04d7-55a3-9e2b-1776089b2f6d
+status: experimental
+description: Converted from Sagan rule SID 5010907 (rev 1), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 1001
+  selection_2:
+    sagan_raw|re: risk_score\x22:\x22(?:7[6-9]|[8-9]\d|\d{3,})\x22
+  selection_3:
+    appname|cased: onelogin
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5010907'
+  sagan.rev: '1'
+  sagan.source_file: onelogin.rules
+---
+title: '[ONELOGIN] USER_LOGIN_OTP_CHALLENGE_FAILED High Risk Score'
+id: c574fba6-0260-5cf5-95fb-00f40df25a73
+status: experimental
+description: Converted from Sagan rule SID 5010908 (rev 1), file onelogin.rules.
+author: sagan2sigma
+logsource:
+  product: onelogin
+detection:
+  selection_1:
+    event_type_id: 1002
+  selection_2:
+    sagan_raw|re: risk_score\x22:\x22(?:7[6-9]|[8-9]\d|\d{3,})\x22
+  selection_3:
+    appname|cased: onelogin
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5010908'
+  sagan.rev: '1'
+  sagan.source_file: onelogin.rules

@@ -1238,6 +1238,29 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: fortinet-json.rules
 ---
+title: '[FORTINET] Attack detected by Malicious URL'
+id: e4349d00-b312-5687-98f5-3dfddef308f7
+status: experimental
+description: Converted from Sagan rule SID 5014460 (rev 2), file fortinet-json.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    logid: 421016399
+  filter_2:
+    sagan_raw|contains|cased: 'URL blocked '
+  condition: selection_1 and not filter_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-attack
+custom_attributes:
+  sagan.sid: '5014460'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+---
 title: '[FORTINET] Botnet C&C Communication - Warning'
 id: d634a05d-b188-57b0-a6f8-5c95f0183bac
 status: experimental
@@ -1676,6 +1699,113 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: fortinet-json.rules
 ---
+title: '[FORTINET] UTM Multiple Webfilter Events Detect from a Single Source [250/1]'
+id: 58e5b835-3f70-57b3-9c58-b436b89b8187
+name: sagan_5014487
+status: experimental
+description: Converted from Sagan rule SID 5014487 (rev 5), file fortinet-json.rules.
+references:
+  - https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/efa7b0eb-45bc-11ee-8e6d-fa163e15d75b/FortiOS_7.4.1_Log_Reference.pdf
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    type|cased: utm
+  selection_2:
+    subtype|cased: webfilter
+  filter_3:
+    eventtype|cased: ftgd_allow
+  filter_4:
+    severity|cased: low
+  selection_5:
+    catdesc|cased:
+      - File Sharing and Storage
+      - Remote Access
+      - Child Sexual Abuse
+      - Crypto Mining
+      - Hacking
+      - Terrorism
+      - Potentially Unwanted Program
+      - Dynamic DNS
+      - Malicious Websites
+      - Newly Observed Domain
+      - Newly Registered Domain
+      - Phishing
+      - Spam URLs
+      - Unrated
+      - Not Rated
+  filter_6:
+    catdesc|cased:
+      - Advertising
+      - Freeware
+      - Meaningless
+      - File Sharing
+      - Instant Messaging
+  filter_7:
+    crlevel|cased:
+      - low
+      - medium
+  filter_8:
+    level|cased:
+      - notice
+      - information
+  selection_9:
+    srcip|re: ((10\.(\d{1,3}\.){2}\d{1,3})|(172\.(1[6-9]|2[0-9]|3[0-2])(\.\d{1,3}){2})|(192\.168(\.\d{1,3}){2}))
+  selection_10:
+    dstip|re: (!(10\.(\d{1,3}\.){2}\d{1,3})|(172\.(1[6-9]|2[0-9]|3[0-2])(\.\d{1,3}){2})|(192\.168(\.\d{1,3}){2}))
+  filter_11:
+    sagan_raw|contains|cased: .tiktokv.com
+  filter_12:
+    sagan_raw|contains|cased: .tiktokcdn-us.com
+  filter_13:
+    sagan_raw|contains|cased: Microsoft-WebDAV-MiniRedir
+  filter_14:
+    sagan_raw|contains|cased: Microsoft-Delivery-Optimization
+  filter_15:
+    sagan_raw|contains|cased: .live.net
+  filter_16:
+    sagan_raw|contains|cased: oneclient.sfx.ms
+  filter_17:
+    sagan_raw|contains|cased: .delivery.mp.microsoft.com
+  filter_18:
+    sagan_raw|contains|cased: icloud.com
+  filter_19:
+    sagan_raw|contains|cased:
+      - .gov
+      - .edu.local
+      - collector.azure.microsoft.scloud
+  condition: selection_1 and selection_2 and selection_5 and selection_9 and selection_10 and not (filter_3
+    or filter_4 or filter_6 or filter_7 or filter_8 or filter_11 or filter_12 or filter_13 or filter_14
+    or filter_15 or filter_16 or filter_17 or filter_18 or filter_19)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014487'
+  sagan.rev: '5'
+  sagan.source_file: fortinet-json.rules
+  rsigma.suppress: 1d
+  sagan.metadata: updated_at=2024_06_05
+---
+title: '[FORTINET] UTM Multiple Webfilter Events Detect from a Single Source [250/1] (threshold 250 in
+  2h)'
+id: 624e9cfa-a75e-5372-8ee9-f0f11f5d4c8f
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5014487
+  group-by:
+    - srcip
+  timespan: 2h
+  condition:
+    gte: 250
+level: medium
+---
 title: '[FORTINET] UTM app-ctl Event Detected'
 id: c0d6c1b7-efe4-5c24-9e7d-99484d28dfa4
 status: experimental
@@ -1767,6 +1897,67 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: fortinet-json.rules
 ---
+title: '[FORTINET] UTM dns Event Detected'
+id: ae2265d0-1ebe-5be7-b5ec-e2582ca88834
+status: experimental
+description: Converted from Sagan rule SID 5014493 (rev 4), file fortinet-json.rules.
+references:
+  - https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/efa7b0eb-45bc-11ee-8e6d-fa163e15d75b/FortiOS_7.4.1_Log_Reference.pdf
+  - https://community.fortinet.com/t5/FortiGate/Troubleshooting-Tip-DNS-Filter-profile-Redirect-to-Fortinet/ta-p/227243
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    type|cased: utm
+  selection_2:
+    subtype|cased: dns
+  filter_3:
+    action|cased: redirect
+  filter_4:
+    severity|cased: low
+  filter_5:
+    level|cased: low
+  selection_6:
+    catdesc|cased:
+      - File Sharing and Storage
+      - Remote Access
+      - Child Sexual Abuse
+      - Crypto Mining
+      - Hacking
+      - Terrorism
+      - Dynamic DNS
+      - Malicious Websites
+      - Newly Registered Domain
+      - Phishing
+      - Unrated
+      - Not Rated
+  filter_7:
+    sagan_raw|contains|cased: .live.net
+  filter_8:
+    sagan_raw|contains|cased: oneclient.sfx.ms
+  filter_9:
+    sagan_raw|contains|cased: .delivery.mp.microsoft.com
+  filter_10:
+    sagan_raw|contains|cased: icloud.com
+  filter_11:
+    sagan_raw|contains|cased:
+      - .local
+      - .internal
+      - wpad.
+  condition: selection_1 and selection_2 and selection_6 and not (filter_3 or filter_4 or filter_5 or
+    filter_7 or filter_8 or filter_9 or filter_10 or filter_11)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014493'
+  sagan.rev: '4'
+  sagan.source_file: fortinet-json.rules
+  sagan.metadata: updated_at=2024_05_16
+---
 title: '[FORTINET] UTM ssh Event Detected'
 id: 54b5538c-f3f4-5370-b142-e61d76129e9b
 status: experimental
@@ -1795,6 +1986,47 @@ custom_attributes:
   sagan.sid: '5014494'
   sagan.rev: '1'
   sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] UTM file-filter Event Detected'
+id: d2cee7e2-f463-532b-949c-76a217bfd34d
+status: experimental
+description: Converted from Sagan rule SID 5014496 (rev 2), file fortinet-json.rules.
+references:
+  - https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/efa7b0eb-45bc-11ee-8e6d-fa163e15d75b/FortiOS_7.4.1_Log_Reference.pdf
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    type|cased: utm
+  selection_2:
+    subtype|cased: file-filter
+  filter_3:
+    severity|cased: low
+  filter_4:
+    level|cased: low
+  filter_5:
+    hostname|cased: adl.windows.com
+  filter_6:
+    hostname|cased: edgedl.me.gvt1.com
+  filter_7:
+    sagan_raw|contains|cased: .windowsupdate.com
+  filter_8:
+    sagan_raw|contains|cased:
+      - Microsoft-WebDAV-MiniRedir
+      - Microsoft-Delivery-Optimization
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6 or filter_7
+    or filter_8)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5014496'
+  sagan.rev: '2'
+  sagan.source_file: fortinet-json.rules
+  sagan.metadata: updated_on=2024_06_05
 ---
 title: '[FORTINET] UTM icap Event Detected'
 id: 5fb16edd-e2a6-555a-a46a-f3f0b7c748aa
@@ -1911,6 +2143,144 @@ custom_attributes:
   sagan.sid: '5014500'
   sagan.rev: '1'
   sagan.source_file: fortinet-json.rules
+---
+title: '[FORTINET] UTM dns Event Detected - Supicious Traffic [250/2hours]'
+id: 7436dbc6-f2d9-5d27-a017-9fc5f8f61f79
+name: sagan_5014501
+status: experimental
+description: Converted from Sagan rule SID 5014501 (rev 1), file fortinet-json.rules.
+references:
+  - https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/efa7b0eb-45bc-11ee-8e6d-fa163e15d75b/FortiOS_7.4.1_Log_Reference.pdf
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    type|cased: utm
+  selection_2:
+    subtype|cased: dns
+  filter_3:
+    severity|cased: low
+  filter_4:
+    level|cased: low
+  selection_5:
+    catdesc|cased:
+      - File Sharing and Storage
+      - Remote Access
+      - Child Sexual Abuse
+      - Crypto Mining
+      - Hacking
+      - Terrorism
+      - Potentially Unwanted Program
+      - Dynamic DNS
+      - Malicious Websites
+      - Newly Observed Domain
+      - Newly Registered Domain
+      - Phishing
+      - Spam URLs
+      - Unrated
+      - Not Rated
+  filter_6:
+    sagan_raw|contains|cased: .live.net
+  filter_7:
+    sagan_raw|contains|cased: oneclient.sfx.ms
+  filter_8:
+    sagan_raw|contains|cased: .delivery.mp.microsoft.com
+  filter_9:
+    sagan_raw|contains|cased: icloud.com
+  filter_10:
+    sagan_raw|contains|cased:
+      - .local
+      - .internal
+      - wpad.
+  condition: selection_1 and selection_2 and selection_5 and not (filter_3 or filter_4 or filter_6 or
+    filter_7 or filter_8 or filter_9 or filter_10)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+custom_attributes:
+  sagan.sid: '5014501'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+  rsigma.suppress: 1d
+  sagan.metadata: updated_at=2024_05_16
+---
+title: '[FORTINET] UTM dns Event Detected - Supicious Traffic [250/2hours] (threshold 250 in 2h)'
+id: be247379-9177-59bd-a895-c60c097abf25
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5014501
+  group-by:
+    - srcip
+  timespan: 2h
+  condition:
+    gte: 250
+level: medium
+---
+title: '[FORTINET] Possible FortiManager Compromise - Unregistered Device - CVE-2024-47575'
+id: 7fbe532a-8dba-5a9f-aa3b-09d7e049ec79
+status: experimental
+description: Converted from Sagan rule SID 5014502 (rev 1), file fortinet-json.rules.
+references:
+  - https://socradar.io/fortimanager-zero-day-fortijump-is-now-publicly-addressed-cve-2024-47575/
+  - https://fortiguard.fortinet.com/psirt/FG-IR-24-423
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    type|cased: event
+  selection_2:
+    subtype|cased: dvm
+  selection_3:
+    sagan_raw|contains: Unregistered device
+  selection_4:
+    sagan_raw|contains: add succeeded
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5014502'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+  sagan.metadata: created_at=2024_10_24,updated_at=2024_10_24
+---
+title: '[FORTINET] Possible FortiManager Compromise - Modify Device - CVE-2024-47575'
+id: a3bf54fd-b540-5120-a265-34feb944aaa8
+status: experimental
+description: Converted from Sagan rule SID 5014503 (rev 1), file fortinet-json.rules.
+references:
+  - https://socradar.io/fortimanager-zero-day-fortijump-is-now-publicly-addressed-cve-2024-47575/
+  - https://fortiguard.fortinet.com/psirt/FG-IR-24-423
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    type|cased: event
+  selection_2:
+    subtype|cased: dvm
+  selection_3:
+    adom: root
+  selection_4:
+    sagan_raw|contains: Edited device settings
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014503'
+  sagan.rev: '1'
+  sagan.source_file: fortinet-json.rules
+  sagan.metadata: created_at=2024_10_24,updated_at=2024_10_24
 ---
 title: '[FORTINET] DNS Request to Monitored Domain Detected'
 id: 5bd3554a-4088-5ee0-892e-7a74224c18ed

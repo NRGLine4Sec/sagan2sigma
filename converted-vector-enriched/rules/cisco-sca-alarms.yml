@@ -2266,6 +2266,33 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: cisco-sca-alarms.rules
 ---
+title: '[CISCO-SCA] Non-Service Port Scanner'
+id: d97334bb-beca-5f94-a7d0-f97daa047142
+status: experimental
+description: Converted from Sagan rule SID 5010582 (rev 2), file cisco-sca-alarms.rules.
+references:
+  - https://www.cisco.com/c/dam/en/us/td/docs/security/stealthwatch/cloud/reference/Alerts_and_Observations_DV_2_4.pdf
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: cisco-sca_data
+  selection_2:
+    sagan_raw|contains|cased: '"cisco_sca_data_type": "alert"'
+  selection_3:
+    sagan_raw|contains|cased: '"type": "Non-Service Port Scanner"'
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5010582'
+  sagan.rev: '2'
+  sagan.source_file: cisco-sca-alarms.rules
+---
 title: '[CISCO-SCA] Outbound LDAP Spike'
 id: 0131a29e-f930-5931-a881-817a1aedf29b
 status: experimental

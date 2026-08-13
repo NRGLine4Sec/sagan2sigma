@@ -65,6 +65,25 @@ All notable changes to this project are documented here. The format follows
   site-specific variables (`$HOME_COUNTRY`, `$SAGAN_DAYS`), they are refused with
   `E_VAR_UNRESOLVED` in the committed snapshot; regenerate with your `sagan.yaml`
   to include them. See `converted-vector-enriched/README.md`.
+- Rules that search the raw body with `content`, `pcre` or `meta_content` while
+  also using JSON operators now convert under `--profile vector-enriched` instead
+  of being refused with `E_RAW_TEXT_ON_JSON_EVENT`. RSigma keeps no raw string
+  once it has parsed a JSON body, so the raw search had nothing to run against;
+  the new first transform, `data/vrl/sagan-json.vrl`, copies the body into
+  `sagan_raw` verbatim and lifts the JSON object's keys to the top level, so
+  `json_content` targets the lifted key and the raw search targets `sagan_raw`,
+  the exact string Sagan itself searched. A profile opts in by naming the field
+  in a new `json_raw` key, so the default `rsigma-syslog` profile is unchanged and
+  still refuses. This clears all 386 `E_RAW_TEXT_ON_JSON_EVENT` refusals; 255
+  convert outright and 131 surface a different pre-existing blocker the refusal was
+  masking, lifting the enriched rate by 255, from 90.1% to 92.7% (9,010 to 9,265
+  rules). Because the raw body is preserved byte for byte, the match is
+  faithful to the serialization Sagan saw, including serialization-specific
+  patterns such as CloudTrail's `"mfaAuthenticated": "true"`; the converted rule
+  carries `D_RAW_TEXT_MATCH` to record that the match is format-bound. Proven end
+  to end, a JSON event through real Vector then the converted rule in the RSigma
+  engine, and the transform is executed against a real Vector binary in CI. See
+  `docs/DESIGN-DECISIONS.md` and `docs/PIPELINE.md`.
 - `blacklist` and `zeek-intel` rules now convert under `--profile vector-enriched`
   instead of being refused. Both fire when a parsed address is on an external
   feed: `blacklist` an IP denylist (`src/processors/blacklist.c`), `zeek-intel` a
