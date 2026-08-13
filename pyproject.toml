@@ -48,6 +48,15 @@ overlap = [
     "hypothesis>=6.100",
     "exrex>=0.11",
 ]
+# The threat-intel build tooling (tools/build_denylist_mmdb.py, tools/fetch_cti.py)
+# needs mmdb-writer to write a MaxMind-format database from a feed; maxminddb reads
+# one back, which the build test uses. Neither is a conversion dependency, so a
+# user who wants to build denylist / Zeek-intel databases asks for
+# `sagan2sigma[cti]`.
+cti = [
+    "mmdb-writer>=0.2",
+    "maxminddb>=2.0",
+]
 dev = [
     "build>=1.2",
     "pytest>=8.0",

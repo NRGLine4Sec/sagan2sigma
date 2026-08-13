@@ -44,7 +44,9 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: pip
-      - run: pip install -e ".[dev]"
+      # cti brings mmdb-writer + maxminddb so the denylist MMDB build test runs
+      # here rather than skipping; without it the build path goes unexercised.
+      - run: pip install -e ".[dev,cti]"
       - name: Unit, property, golden and integration tests
         run: pytest --cov --cov-report=term-missing --cov-report=xml
       - name: Enforce coverage floor
@@ -100,7 +102,7 @@ jobs:
           cache: pip
       # mmdb-writer builds the denylist / Zeek-intel MMDBs the intel transforms
       # read, so the enrichment path can be tested end to end.
-      - run: pip install -e ".[dev]" mmdb-writer maxminddb
+      - run: pip install -e ".[dev,cti]"
       - name: Install Vector
         run: |
           curl -sL --proto '=https' --tlsv1.2 \

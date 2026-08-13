@@ -550,6 +550,23 @@ regressions are invisible in review.
 Enforced by `tests/integration/test_corpus.py::TestDeterminism` and by the
 golden files.
 
+## We do not re-validate the upstream Sagan rules
+
+This project does not check that the rules in `quadrantsec/sagan-rules` are valid
+Sagan, and deliberately so: the upstream repository already validates them in its
+own CI, with
+[`validate_sagan_rules.py`](https://github.com/quadrantsec/sagan-rules/blob/main/.github/scripts/validate_sagan_rules.py),
+which is run on every change there. Re-implementing that check here would only
+duplicate it, and would drift from the authoritative version.
+
+So the corpus is treated as valid Sagan input, and the effort goes into
+converting it faithfully rather than re-auditing it. The parser is still
+defensive, a malformed line is recorded as a parse failure in the report rather
+than crashing the run, but that is a guard against a genuinely broken line or a
+syntax this converter does not yet read, not a validation pass on the upstream
+rules. What this project is responsible for is the fidelity of the conversion,
+which is what the differential harness below tests.
+
 ## Proving behaviour, not just shape
 
 Every other test in this repository checks that the converter produces the

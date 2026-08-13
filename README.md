@@ -189,6 +189,12 @@ If you run the output through another Sigma engine, or against traffic the
 harness does not model, reports of divergence are the most useful contribution
 this project can receive.
 
+**What is out of scope.** This project does not re-check that the upstream Sagan
+rules are valid Sagan: `quadrantsec/sagan-rules` already validates them in its own
+CI, so the corpus is trusted as input and the effort goes into converting it
+faithfully. See `docs/DESIGN-DECISIONS.md` under "We do not re-validate the
+upstream Sagan rules".
+
 ## Credits
 
 The rule corpus this tool reads is the work of

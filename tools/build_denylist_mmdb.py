@@ -30,7 +30,7 @@ Usage::
         --feed abuse-ch-threatfox-ip.intel --output /etc/vector/zeek-intel.mmdb
 
 Multiple ``--feed`` files are merged. Building the MMDB needs ``mmdb-writer``
-(``pip install mmdb-writer``); the feed parsers do not.
+(``pip install "sagan2sigma[cti]"``); the feed parsers do not.
 """
 
 from __future__ import annotations

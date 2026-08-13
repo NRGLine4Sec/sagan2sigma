@@ -102,10 +102,10 @@ the swap really is code-free.
 same `mmdb` form. The feeds change constantly and carry their own licences, so
 none is bundled with this project. Instead, `tools/fetch_cti.py` downloads the
 recommended public feeds and builds both MMDBs in one step, run before you start
-the pipeline (it needs `pip install mmdb-writer`):
+the pipeline (it needs the `cti` extra, `pip install "sagan2sigma[cti]"`):
 
 ```sh
-pip install mmdb-writer
+pip install "sagan2sigma[cti]"
 # DShield -> denylist.mmdb, CriticalPathSecurity ThreatFox -> zeek-intel.mmdb
 python tools/fetch_cti.py --output-dir /etc/vector
 python tools/fetch_cti.py --list      # every known feed, its role and licence

@@ -15,12 +15,12 @@ use, which is not the same as redistributing them, so all of them are available:
     criticalpath-cobaltstrike  CriticalPathSecurity CobaltStrike zeek     MIT code
 
 Review each feed's terms before relying on it. Building the MMDBs needs
-``mmdb-writer`` (``pip install mmdb-writer``); fetching needs only the standard
+``mmdb-writer`` (``pip install "sagan2sigma[cti]"``); fetching needs only the
 library.
 
 Usage::
 
-    pip install mmdb-writer
+    pip install "sagan2sigma[cti]"
     # Recommended defaults: DShield -> denylist.mmdb, ThreatFox -> zeek-intel.mmdb
     python tools/fetch_cti.py --output-dir /etc/vector
 
