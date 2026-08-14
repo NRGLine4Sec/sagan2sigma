@@ -42,7 +42,7 @@ logsource catalog. It answers which kinds of device caused trouble.
 | Code | Rules | Share | Meaning |
 | --- | ---: | ---: | --- |
 | `E_EXTERNAL_ENRICHMENT` | 526 | 39.3% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
-| `E_RAW_TEXT_ON_JSON_EVENT` | 386 | 28.8% | The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Add a json_map binding message to the key that carries the text, and the rule converts. |
+| `E_RAW_TEXT_ON_JSON_EVENT` | 386 | 28.8% | The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text. |
 | `E_GROUPBY_UNRESOLVED` | 301 | 22.5% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
 | `E_PCRE_UNSUPPORTED` | 48 | 3.6% | The regular expression uses a PCRE construct outside the subset Sigma accepts (recursion, subroutine calls, control verbs). |
 | `E_POSITIONAL` | 39 | 2.9% | The rule constrains where a pattern sits in the log line with a non-zero offset, depth or distance. Sigma string modifiers cannot express a byte position, so no faithful translation exists. A zero-valued positional is a no-op in the Sagan engine and is converted. |
@@ -488,7 +488,7 @@ The rule queries an external source. Bluedot threat intelligence is out of scope
 
 ### `E_RAW_TEXT_ON_JSON_EVENT` (386 rules)
 
-The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Add a json_map binding message to the key that carries the text, and the rule converts.
+The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text.
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
