@@ -407,7 +407,7 @@ custom_attributes:
 title: '[WINDOWS-SYSMON] Attack on Sysmon - SysmonDrv Registry value set'
 id: fdf97b01-ae36-506a-bbd3-1d55e345c991
 status: experimental
-description: Converted from Sagan rule SID 5007697 (rev 1), file windows-sysmon.rules.
+description: Converted from Sagan rule SID 5007697 (rev 2), file windows-sysmon.rules.
 references:
   - https://codewhitesec.blogspot.com/2022/09/attacks-on-sysmon-revisited-sysmonente.html
   - https://github.com/matterpreter/Shhmon
@@ -428,7 +428,14 @@ detection:
     _raw|contains: 'Targetobject:'
   selection_5:
     _raw|contains: \\SysmonDrv\\
-  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+  filter_6:
+    _raw|contains|cased: '\\SysmonDrv\\Parameters\\Stop Details: DWORD (0x00000000)'
+  filter_7:
+    _raw|contains:
+      - sysmon.exe TargetObject
+      - sysmon64.exe TargetObject
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and not (filter_6
+    or filter_7)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: high
@@ -436,42 +443,9 @@ tags:
   - sagan.classtype.suspicious-command
 custom_attributes:
   sagan.sid: '5007697'
-  sagan.rev: '1'
-  sagan.source_file: windows-sysmon.rules
----
-title: '[WINDOWS-SYSMON] Attack on Sysmon - Process Injection'
-id: d8092b64-dd71-5600-acd2-e4a0022f835d
-status: experimental
-description: Converted from Sagan rule SID 5007698 (rev 2), file windows-sysmon.rules.
-references:
-  - https://codewhitesec.blogspot.com/2022/09/attacks-on-sysmon-revisited-sysmonente.html
-  - https://github.com/matterpreter/Shhmon
-author: sagan2sigma
-logsource:
-  product: windows
-detection:
-  selection_1:
-    appname|cased: '*Sysmon*'
-  selection_2:
-    EventID: 10
-  selection_3:
-    _raw|contains: 'TargetImage:'
-  selection_4:
-    _raw|contains: 'GrantedAccess: 0x1FFFFF'
-  selection_5:
-    _raw|contains:
-      - sysmon.exe GrantedAccess
-      - sysmon64.exe GrantedAccess
-  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
-falsepositives:
-  - 'Unassessed: automatically converted, not yet tuned'
-level: high
-tags:
-  - sagan.classtype.suspicious-command
-custom_attributes:
-  sagan.sid: '5007698'
   sagan.rev: '2'
   sagan.source_file: windows-sysmon.rules
+  sagan.metadata: updatedOn=2026_08_14
 ---
 title: '[WINDOWS-SYSMON] Attack on Sysmon - SysmonEnte Detected'
 id: 0feb87e7-a0e4-544a-abe0-9647ed63fcef
@@ -15759,7 +15733,7 @@ custom_attributes:
 title: '[WINDOWS-SYSMON] Windows Defender has detected malware (Severe)'
 id: aa2317bc-fc2f-5d06-8ca8-2608e2663dd7
 status: experimental
-description: Converted from Sagan rule SID 5013855 (rev 1), file windows-sysmon.rules.
+description: Converted from Sagan rule SID 5013855 (rev 2), file windows-sysmon.rules.
 references:
   - https://app.any.run/tasks/95f2e73d-2767-4f87-8e97-825d10b4665c/
 author: sagan2sigma
@@ -15772,19 +15746,53 @@ detection:
     EventID: 1116
   selection_3:
     _raw|contains|cased: 'Severity: Severe'
-  condition: selection_1 and selection_2 and selection_3
+  filter_4:
+    _raw|contains|cased: 'Category: Potentially Unwanted Software'
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
-level: medium
+level: high
 tags:
   - attack.t1562.001
   - attack.ta0005
-  - sagan.classtype.trojan-activity
+  - sagan.classtype.malware
 custom_attributes:
   sagan.sid: '5013855'
+  sagan.rev: '2'
+  sagan.source_file: windows-sysmon.rules
+  sagan.metadata: deployment=Endpoint,created_at=2023_04_27,updated_at=2026_08_14
+---
+title: '[WINDOWS-SYSMON] Windows Defender has detected malware (High)'
+id: ce50caed-761e-50d2-ae14-eb5c5cf86d4a
+status: experimental
+description: Converted from Sagan rule SID 5017936 (rev 1), file windows-sysmon.rules.
+references:
+  - https://app.any.run/tasks/95f2e73d-2767-4f87-8e97-825d10b4665c/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Windows*Defender*'
+  selection_2:
+    EventID: 1116
+  selection_3:
+    _raw|contains|cased: 'Severity: High'
+  filter_4:
+    _raw|contains|cased: 'Category: Potentially Unwanted Software'
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1562.001
+  - attack.ta0005
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '5017936'
   sagan.rev: '1'
   sagan.source_file: windows-sysmon.rules
-  sagan.metadata: deployment=Endpoint,created_at=2023_04_27,updated_at=2023_04_27
+  sagan.metadata: deployment=Endpoint,created_at=2026_08_14,updated_at=2026_08_14
 ---
 title: '[WINDOWS-SYSMON] netsh firewall add allowedprogram'
 id: 1b36d091-2f4a-51fa-b5d8-ec7736e5c692

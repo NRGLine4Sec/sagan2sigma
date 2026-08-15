@@ -4,14 +4,14 @@
 
 | Metric | Value |
 | --- | --- |
-| Rule files processed | 337 |
-| Active rules parsed | 9997 |
-| Commented-out rules skipped | 9438 |
-| Rules converted | 9265 (92.7%) |
-| Rules refused | 732 (7.3%) |
+| Rule files processed | 342 |
+| Active rules parsed | 10019 |
+| Commented-out rules skipped | 9440 |
+| Rules converted | 9280 (92.6%) |
+| Rules refused | 739 (7.4%) |
 | Lines that failed to parse | 0 |
 | Synthetic rules added | 19 |
-| Sigma documents emitted | 10410 |
+| Sigma documents emitted | 10425 |
 | pySigma validation issues | 0 |
 | Output profile | `vector-enriched` |
 | Case policy | `faithful` |
@@ -29,21 +29,21 @@ logsource catalog. It answers which kinds of device caused trouble.
 | Endpoint and EDR | 1010 | 30 | 97.1% | 1003 |
 | Google Cloud | 75 | 1 | 98.7% | 69 |
 | Infrastructure | 207 | 7 | 96.7% | 207 |
-| Network and firewalls | 1270 | 180 | 87.6% | 1193 |
+| Network and firewalls | 1282 | 187 | 87.3% | 1205 |
 | Network detection | 243 | 18 | 93.1% | 243 |
 | SaaS and identity | 331 | 13 | 96.2% | 170 |
 | State correlations | 19 | 0 | 100.0% | 0 |
-| Unclassified | 1572 | 89 | 94.6% | 1572 |
+| Unclassified | 1574 | 89 | 94.6% | 1574 |
 | Unix and Linux | 202 | 14 | 93.5% | 198 |
-| Windows | 2056 | 45 | 97.9% | 2021 |
+| Windows | 2057 | 45 | 97.9% | 2022 |
 
 ## Refusals by code
 
 | Code | Rules | Share | Meaning |
 | --- | ---: | ---: | --- |
-| `E_EXTERNAL_ENRICHMENT` | 454 | 62.0% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
-| `E_VAR_UNRESOLVED` | 165 | 22.5% | The rule references a sagan.yaml variable that was not supplied. Re-run with --sagan-yaml to resolve it. |
-| `E_PCRE_UNSUPPORTED` | 49 | 6.7% | The regular expression uses a PCRE construct outside the subset Sigma accepts (recursion, subroutine calls, control verbs). |
+| `E_EXTERNAL_ENRICHMENT` | 461 | 62.4% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
+| `E_VAR_UNRESOLVED` | 165 | 22.3% | The rule references a sagan.yaml variable that was not supplied. Re-run with --sagan-yaml to resolve it. |
+| `E_PCRE_UNSUPPORTED` | 49 | 6.6% | The regular expression uses a PCRE construct outside the subset Sigma accepts (recursion, subroutine calls, control verbs). |
 | `E_POSITIONAL` | 39 | 5.3% | The rule constrains where a pattern sits in the log line with a non-zero offset, depth or distance. Sigma string modifiers cannot express a byte position, so no faithful translation exists. A zero-valued positional is a no-op in the Sagan engine and is converted. |
 | `E_GROUPBY_UNRESOLVED` | 14 | 1.9% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
 | `E_STATE_ABSENCE` | 8 | 1.1% | The rule requires that an earlier event did NOT happen (xbits or flexbits isnotset). Sigma cannot express a negative correlation. |
@@ -57,14 +57,14 @@ reproduced. They are worth reviewing before the ruleset goes live.
 
 | Code | Rules | Meaning | Example SIDs |
 | --- | ---: | --- | --- |
-| `D_RAW_TEXT_MATCH` | 6290 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
-| `D_LOGSOURCE_FALLBACK` | 1943 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
-| `D_EVENT_ID_HEURISTIC` | 1920 | Without a json_map for event_id, Sagan looks for ' <id>: ' in the first 10 bytes of the message. The converted rule assumes a proper EventID field instead. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
-| `D_THRESHOLD_SUPPRESS` | 1424 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
+| `D_RAW_TEXT_MATCH` | 6293 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
+| `D_LOGSOURCE_FALLBACK` | 1945 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
+| `D_EVENT_ID_HEURISTIC` | 1921 | Without a json_map for event_id, Sagan looks for ' <id>: ' in the first 10 bytes of the message. The converted rule assumes a proper EventID field instead. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
+| `D_THRESHOLD_SUPPRESS` | 1437 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
 | `D_PASS_SHORT_CIRCUIT` | 515 | The rule used the pass action. In Sagan a matching pass rule still emits an alert (Send_Alert runs before the pass check) and then stops evaluating the remaining signatures for that event. The detection is converted faithfully; only the short-circuit, the suppression of other rules on the same event, is not reproduced, since Sigma evaluates every rule independently. | `5016065`, `5016066`, `5016067`, `5016068`, `5016069` |
 | `D_GROUPBY_SYSLOG_HOST` | 388 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
 | `D_POSITIONAL_IP_FIELD` | 283 | The group-by key comes from the bundled VRL transform rather than from the log itself. The correlation only works if that transform runs in the ingestion pipeline. | `5002942`, `5015097`, `5014021`, `5014177`, `5008654` |
-| `D_SIDE_EFFECT_DROPPED` | 230 | Engine-specific side effect (external, email, dynamic_load, unset) with no Sigma equivalent. | `5008539`, `5003022`, `5003023`, `5002959`, `5002960` |
+| `D_SIDE_EFFECT_DROPPED` | 232 | Engine-specific side effect (external, email, dynamic_load, unset) with no Sigma equivalent. | `5008539`, `5003022`, `5003023`, `5002959`, `5002960` |
 | `D_THRESHOLD_LIMIT` | 170 | threshold type limit caps alert volume, not detection. Sigma has no equivalent, so the constraint is dropped. | `5017933`, `5008570`, `5008760`, `5009316`, `5009317` |
 | `D_XBIT_ISSET_SYNTHETIC` | 155 | The state correlation was rebuilt through a synthetic aggregate rule gathering every rule that sets the bit. | `5014084`, `5014091`, `5008539`, `5008654`, `5008655` |
 | `D_APPEND_PROGRAM` | 79 | append_program makes Sagan append the program field to the message before matching. The converted rule searches the message alone. | `5000419`, `5000470`, `5000489`, `5000519`, `5000521` |
@@ -83,7 +83,7 @@ correlation resolved the rules it references.
 
 ## Refused rules
 
-### `E_EXTERNAL_ENRICHMENT` (454 rules)
+### `E_EXTERNAL_ENRICHMENT` (461 rules)
 
 The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed.
 
@@ -489,7 +489,7 @@ The rule queries an external source. Bluedot threat intelligence is out of scope
 | `5015099` | `screenconnect.rules` | Unclassified | [SCREENCONNECT] Connection from Outside HOME_COUNTRY | `country_code` | country_code needs a GeoIP country field, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled GeoIP transform; the tracke |
 | `5002910` | `snort-bluedot.rules` | Network detection | [FILE-BLUEDOT] Executable Downloaded from a suspicious source | `bluedot` | keywords with no Sigma equivalent: bluedot |
 | `5002911` | `snort-bluedot.rules` | Network detection | [FILE-BLUEDOT] Java Downloaded from a suspicious source | `bluedot` | keywords with no Sigma equivalent: bluedot |
-| ... | ... | ... | *54 more rows omitted, see the JSON report* | | |
+| ... | ... | ... | *61 more rows omitted, see the JSON report* | | |
 
 ### `E_VAR_UNRESOLVED` (165 rules)
 

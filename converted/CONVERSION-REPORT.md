@@ -4,14 +4,14 @@
 
 | Metric | Value |
 | --- | --- |
-| Rule files processed | 337 |
-| Active rules parsed | 9997 |
-| Commented-out rules skipped | 9438 |
-| Rules converted | 8659 (86.6%) |
-| Rules refused | 1338 (13.4%) |
+| Rule files processed | 342 |
+| Active rules parsed | 10019 |
+| Commented-out rules skipped | 9440 |
+| Rules converted | 8671 (86.5%) |
+| Rules refused | 1348 (13.5%) |
 | Lines that failed to parse | 0 |
 | Synthetic rules added | 9 |
-| Sigma documents emitted | 9469 |
+| Sigma documents emitted | 9481 |
 | pySigma validation issues | 0 |
 | Output profile | `rsigma-syslog` |
 | Case policy | `faithful` |
@@ -29,21 +29,21 @@ logsource catalog. It answers which kinds of device caused trouble.
 | Endpoint and EDR | 983 | 57 | 94.5% | 976 |
 | Google Cloud | 66 | 10 | 86.8% | 60 |
 | Infrastructure | 189 | 25 | 88.3% | 189 |
-| Network and firewalls | 1114 | 336 | 76.8% | 1037 |
+| Network and firewalls | 1124 | 345 | 76.5% | 1047 |
 | Network detection | 241 | 20 | 92.3% | 241 |
 | SaaS and identity | 308 | 36 | 89.5% | 152 |
 | State correlations | 9 | 0 | 100.0% | 0 |
-| Unclassified | 1547 | 114 | 93.1% | 1547 |
+| Unclassified | 1549 | 114 | 93.1% | 1549 |
 | Unix and Linux | 177 | 39 | 81.9% | 173 |
-| Windows | 1984 | 117 | 94.4% | 1949 |
+| Windows | 1984 | 118 | 94.4% | 1949 |
 
 ## Refusals by code
 
 | Code | Rules | Share | Meaning |
 | --- | ---: | ---: | --- |
-| `E_EXTERNAL_ENRICHMENT` | 526 | 39.3% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
-| `E_RAW_TEXT_ON_JSON_EVENT` | 386 | 28.8% | The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text. |
-| `E_GROUPBY_UNRESOLVED` | 301 | 22.5% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
+| `E_EXTERNAL_ENRICHMENT` | 532 | 39.5% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
+| `E_RAW_TEXT_ON_JSON_EVENT` | 390 | 28.9% | The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text. |
+| `E_GROUPBY_UNRESOLVED` | 301 | 22.3% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
 | `E_PCRE_UNSUPPORTED` | 48 | 3.6% | The regular expression uses a PCRE construct outside the subset Sigma accepts (recursion, subroutine calls, control verbs). |
 | `E_POSITIONAL` | 39 | 2.9% | The rule constrains where a pattern sits in the log line with a non-zero offset, depth or distance. Sigma string modifiers cannot express a byte position, so no faithful translation exists. A zero-valued positional is a no-op in the Sagan engine and is converted. |
 | `E_TIME_WINDOW` | 29 | 2.2% | The rule only fires on given weekdays or hour ranges (alert_time). Sigma has no recurring-time operator, so this is refused unless --profile vector-enriched is used, whose bundled time transform supplies the weekday and hour-of-day fields the window matches on. |
@@ -58,12 +58,12 @@ reproduced. They are worth reviewing before the ruleset goes live.
 | Code | Rules | Meaning | Example SIDs |
 | --- | ---: | --- | --- |
 | `D_RAW_TEXT_MATCH` | 5769 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
-| `D_LOGSOURCE_FALLBACK` | 1864 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
+| `D_LOGSOURCE_FALLBACK` | 1866 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
 | `D_EVENT_ID_HEURISTIC` | 1856 | Without a json_map for event_id, Sagan looks for ' <id>: ' in the first 10 bytes of the message. The converted rule assumes a proper EventID field instead. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
-| `D_THRESHOLD_SUPPRESS` | 1095 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
+| `D_THRESHOLD_SUPPRESS` | 1105 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
 | `D_PASS_SHORT_CIRCUIT` | 513 | The rule used the pass action. In Sagan a matching pass rule still emits an alert (Send_Alert runs before the pass check) and then stops evaluating the remaining signatures for that event. The detection is converted faithfully; only the short-circuit, the suppression of other rules on the same event, is not reproduced, since Sigma evaluates every rule independently. | `5016065`, `5016066`, `5016067`, `5016068`, `5016069` |
 | `D_GROUPBY_SYSLOG_HOST` | 387 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
-| `D_SIDE_EFFECT_DROPPED` | 230 | Engine-specific side effect (external, email, dynamic_load, unset) with no Sigma equivalent. | `5008539`, `5003022`, `5003023`, `5002959`, `5002960` |
+| `D_SIDE_EFFECT_DROPPED` | 232 | Engine-specific side effect (external, email, dynamic_load, unset) with no Sigma equivalent. | `5008539`, `5003022`, `5003023`, `5002959`, `5002960` |
 | `D_THRESHOLD_LIMIT` | 146 | threshold type limit caps alert volume, not detection. Sigma has no equivalent, so the constraint is dropped. | `5017933`, `5008570`, `5008760`, `5009316`, `5009317` |
 | `D_APPEND_PROGRAM` | 74 | append_program makes Sagan append the program field to the message before matching. The converted rule searches the message alone. | `5000419`, `5000470`, `5000489`, `5000519`, `5000521` |
 | `D_XBIT_SET_DROPPED` | 65 | The rule set or tested an xbit that no converted rule consumes. The state link is lost. | `5009285`, `5009290`, `5007210`, `5007211`, `5005994` |
@@ -78,7 +78,7 @@ correlation resolved the rules it references.
 
 ## Refused rules
 
-### `E_EXTERNAL_ENRICHMENT` (526 rules)
+### `E_EXTERNAL_ENRICHMENT` (532 rules)
 
 The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed.
 
@@ -484,9 +484,9 @@ The rule queries an external source. Bluedot threat intelligence is out of scope
 | `5016925` | `oracle_oci.rules` | Unclassified | [ORACLE] OCI Audit - ListSecurityZones Outside HOME_COUNTRY Event Detected | `country_code` | country_code needs a GeoIP country field, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled GeoIP transform; the tracke |
 | `5016938` | `oracle_oci.rules` | Unclassified | [ORACLE] OCI Audit - ListTargets Outside HOME_COUNTRY Event Detected | `country_code` | country_code needs a GeoIP country field, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled GeoIP transform; the tracke |
 | `5016943` | `oracle_oci.rules` | Unclassified | [ORACLE] OCI Audit - ListUsers Outside HOME_COUNTRY Event Detected | `country_code` | country_code needs a GeoIP country field, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled GeoIP transform; the tracke |
-| ... | ... | ... | *126 more rows omitted, see the JSON report* | | |
+| ... | ... | ... | *132 more rows omitted, see the JSON report* | | |
 
-### `E_RAW_TEXT_ON_JSON_EVENT` (386 rules)
+### `E_RAW_TEXT_ON_JSON_EVENT` (390 rules)
 
 The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text.
 
@@ -878,6 +878,10 @@ The rule searches the raw message body while also using JSON operators. When the
 | `5002816` | `windows-sysmon.rules` | Windows | [WINDOWS-SYSMON] Suspicious WMIC call - computersystem get model | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5013808` | `windows-sysmon.rules` | Windows | [WINDOWS-SYSMON] Process Created in Temp Directory | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5013880` | `windows-sysmon.rules` | Windows | [WINDOWS-SYSMON] System Discovery Commands | `meta_content` | meta_content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding |
+| `5017937` | `windows-sysmon.rules` | Windows | [WINDOWS-SYSMON] Windows Defender has detected potentially unwanted software (Severe) | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
+| `9000040` | `zscaler-zpa-geoip.rules` | Network and firewalls | [ZSCALER-ZPA-GEOIP][EXPERIMENTAL] Private application access from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
+| `9000030` | `zscaler-zpa.rules` | Network and firewalls | [ZSCALER-ZPA][EXPERIMENTAL] Private application access denied (no matching policy) | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
+| `9000031` | `zscaler-zpa.rules` | Network and firewalls | [ZSCALER-ZPA][EXPERIMENTAL] Private access session setup failure | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 
 ### `E_GROUPBY_UNRESOLVED` (301 rules)
 

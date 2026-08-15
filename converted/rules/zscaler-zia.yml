@@ -1,0 +1,305 @@
+title: '[ZSCALER-ZIA][EXPERIMENTAL] Malware download blocked by Advanced Threat Protection'
+id: 59e6470e-13c5-5b41-8d46-e3e50849ae85
+status: experimental
+description: Converted from Sagan rule SID 9000001 (rev 1), file zscaler-zia.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    syslog_appname|cased: Zscaler
+  selection_2:
+    sourcetype|cased: zscalernss-web
+  selection_3:
+    event.action|cased: Blocked
+  filter_4:
+    event.threatname|cased: None
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1105
+  - attack.ta0011
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '9000001'
+  sagan.rev: '1'
+  sagan.source_file: zscaler-zia.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_at=2026_08_11,updated_at=2026_08_11
+---
+title: '[ZSCALER-ZIA][EXPERIMENTAL] DLP policy violation detected on outbound transfer'
+id: 143efd8a-837d-5aae-9350-459ec5f07165
+status: experimental
+description: Converted from Sagan rule SID 9000002 (rev 1), file zscaler-zia.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    syslog_appname|cased: Zscaler
+  selection_2:
+    sourcetype|cased: zscalernss-web
+  filter_3:
+    event.dlpengine|cased: None
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1567
+  - attack.ta0010
+  - sagan.classtype.exfiltration
+custom_attributes:
+  sagan.sid: '9000002'
+  sagan.rev: '1'
+  sagan.source_file: zscaler-zia.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_at=2026_08_11,updated_at=2026_08_11
+---
+title: '[ZSCALER-ZIA][EXPERIMENTAL] Unscannable content transferred (possible AV/sandbox evasion)'
+id: 318894a4-ffa5-544e-82bd-7a9f92be3df9
+status: experimental
+description: Converted from Sagan rule SID 9000003 (rev 2), file zscaler-zia.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    syslog_appname|cased: Zscaler
+  selection_2:
+    sourcetype|cased: zscalernss-web
+  selection_3:
+    event.action|cased: Allowed
+  filter_4:
+    event.unscannabletype|cased: None
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1027
+  - attack.ta0005
+  - sagan.classtype.evasion
+custom_attributes:
+  sagan.sid: '9000003'
+  sagan.rev: '2'
+  sagan.source_file: zscaler-zia.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_at=2026_08_11,updated_at=2026_08_11
+---
+title: '[ZSCALER-ZIA][EXPERIMENTAL] Newly-registered domain or malicious TLD allowed'
+id: 8b136fee-ccfd-579d-8e70-186a50006aa8
+status: experimental
+description: Converted from Sagan rule SID 9000004 (rev 2), file zscaler-zia.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    syslog_appname|cased: Zscaler
+  selection_2:
+    sourcetype|cased: zscalernss-web
+  selection_3:
+    event.action|cased: Allowed
+  selection_4:
+    event.urlcategory|re|i: newly.?reg(istered)?.?domains?|malicious.?tlds?
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1071.001
+  - attack.ta0011
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '9000004'
+  sagan.rev: '2'
+  sagan.source_file: zscaler-zia.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_at=2026_08_11,updated_at=2026_08_11
+---
+title: '[ZSCALER-ZIA][EXPERIMENTAL] Application blocked by firewall policy'
+id: a699459f-4eb7-5489-84c0-755355465ddb
+status: experimental
+description: Converted from Sagan rule SID 9000005 (rev 1), file zscaler-zia.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    syslog_appname|cased: Zscaler
+  selection_2:
+    sourcetype|cased: zscalernss-web
+  selection_3:
+    event.action|cased: Blocked
+  selection_4:
+    event.reason|cased: Web application is blocked by Firewall rule
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1071
+  - attack.ta0011
+  - sagan.classtype.policy-violation
+custom_attributes:
+  sagan.sid: '9000005'
+  sagan.rev: '1'
+  sagan.source_file: zscaler-zia.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_at=2026_08_11,updated_at=2026_08_11
+---
+title: '[ZSCALER-ZIA][EXPERIMENTAL] Sandbox behavioral-analysis threat blocked'
+id: 0793c4f8-a50f-57c8-bd06-7198d5acf595
+status: experimental
+description: Converted from Sagan rule SID 9000006 (rev 1), file zscaler-zia.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    syslog_appname|cased: Zscaler
+  selection_2:
+    sourcetype|cased: zscalernss-web
+  selection_3:
+    event.action|cased: Blocked
+  selection_4:
+    event.threatclass|cased: Behavior Analysis
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1204.002
+  - attack.ta0002
+  - sagan.classtype.malware
+custom_attributes:
+  sagan.sid: '9000006'
+  sagan.rev: '1'
+  sagan.source_file: zscaler-zia.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_at=2026_08_11,updated_at=2026_08_11
+---
+title: '[ZSCALER-ZIA][EXPERIMENTAL] Cryptomining malware blocked'
+id: 1ff3faa1-60d5-56eb-b9f9-a39dfd95c39f
+status: experimental
+description: Converted from Sagan rule SID 9000007 (rev 1), file zscaler-zia.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    syslog_appname|cased: Zscaler
+  selection_2:
+    sourcetype|cased: zscalernss-web
+  selection_3:
+    event.action|cased: Blocked
+  selection_4:
+    event.threatname|re|i: miner
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1496
+  - attack.ta0040
+  - sagan.classtype.coin-mining
+custom_attributes:
+  sagan.sid: '9000007'
+  sagan.rev: '1'
+  sagan.source_file: zscaler-zia.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_at=2026_08_11,updated_at=2026_08_11
+---
+title: '[ZSCALER-ZIA][EXPERIMENTAL] Phishing threat blocked'
+id: 9c95134a-d98a-52f7-8229-cd53634e295a
+status: experimental
+description: Converted from Sagan rule SID 9000008 (rev 1), file zscaler-zia.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    syslog_appname|cased: Zscaler
+  selection_2:
+    sourcetype|cased: zscalernss-web
+  selection_3:
+    event.action|cased: Blocked
+  selection_4:
+    event.threatname|re|i: ^HTML\.Phish
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566.002
+  - attack.ta0001
+  - sagan.classtype.phish
+custom_attributes:
+  sagan.sid: '9000008'
+  sagan.rev: '1'
+  sagan.source_file: zscaler-zia.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_at=2026_08_11,updated_at=2026_08_11
+---
+title: '[ZSCALER-ZIA][EXPERIMENTAL] Scam destination blocked'
+id: 2c163d52-4e65-5ff5-a5e8-ecff1a1860a6
+status: experimental
+description: Converted from Sagan rule SID 9000009 (rev 1), file zscaler-zia.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    syslog_appname|cased: Zscaler
+  selection_2:
+    sourcetype|cased: zscalernss-web
+  selection_3:
+    event.action|cased: Blocked
+  selection_4:
+    event.threatname|re|i: scam
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1566
+  - attack.ta0001
+  - sagan.classtype.social-engineering
+custom_attributes:
+  sagan.sid: '9000009'
+  sagan.rev: '1'
+  sagan.source_file: zscaler-zia.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_at=2026_08_11,updated_at=2026_08_11
+---
+title: '[ZSCALER-ZIA][EXPERIMENTAL] Risky script/executable file extension downloaded'
+id: eb7ee980-1fca-5f1e-85a1-ecf21ba67f05
+status: experimental
+description: Converted from Sagan rule SID 9000010 (rev 1), file zscaler-zia.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    syslog_appname|cased: Zscaler
+  selection_2:
+    sourcetype|cased: zscalernss-web
+  selection_3:
+    event.url|re|i: \.(scr|lnk|hta|vbs|jse|wsf|chm)([\?&]|$)
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1105
+  - attack.ta0011
+  - sagan.classtype.suspicious-filename-detect
+custom_attributes:
+  sagan.sid: '9000010'
+  sagan.rev: '1'
+  sagan.source_file: zscaler-zia.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_at=2026_08_11,updated_at=2026_08_11
