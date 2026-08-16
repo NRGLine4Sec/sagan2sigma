@@ -62,8 +62,10 @@ REFUSAL_HELP: dict[RefusalCode, str] = {
         "itself would reject at load time."
     ),
     RefusalCode.NO_DETECTION: (
-        "Nothing is left to match on after conversion: the rule carried only "
-        "side effects or metadata."
+        "The rule can never produce an alert: nothing is left to match on after "
+        "conversion (it carried only side effects or metadata), or it carries a "
+        "mandatory condition the engine can never satisfy, so it never fires in "
+        "Sagan either."
     ),
     RefusalCode.POSITIONAL: (
         "The rule constrains where a pattern sits in the log line with a "

@@ -537,6 +537,53 @@ Requires that an earlier event did **not** occur. Sigma correlations can only
 express conjunction and ordering, never absence. Eight corpus rules, refused
 with `E_STATE_ABSENCE`.
 
+### `country_code` on an address the engine never resolves
+
+Around 142 corpus rules run `country_code: track by_src, isnot $HOME_COUNTRY`
+without a `parse_src_ip`. They look like the single largest recoverable family:
+GeoIP already converts under `vector-enriched`, so surely these just need the
+country of the source address. Reading the engine says otherwise, and the detail
+is worth recording because it is a trap.
+
+`country_code` only geo-locates an address the engine has **marked valid**. In
+`src/processors/engine.c` the lookup is guarded by `ip_src_is_valid` /
+`ip_dst_is_valid`; when the address is not valid the lookup is skipped,
+`geoip2_isset` stays false, and `src/routing.c` (`geoip2_flag && !geoip2_isset`)
+drops the rule. That valid flag is set in exactly three places: the
+`parse_src_ip` / `parse_dst_ip` cache, a `json_map` binding of the address, and
+`normalize` (liblognorm). So the behaviour of a `by_src` rule with none of them
+depends entirely on what actually feeds the address, and splits the 142 in two:
+
+* **139 carry a `json_map` binding** such as `json_map:"src_ip",".ClientIP"`, so
+  on JSON input the address is valid and the rule geo-locates that JSON field
+  (124 use `.ClientIP`, the rest a scatter of `.sourceIPAddress`,
+  `.callerIpAddress`, `.properties.client_ip`, ...). Recovering them is not the
+  clean win it appears to be. The source field differs per rule, so a faithful
+  pipeline would have to geo-locate each one into its own country field; the
+  comparison is against `$HOME_COUNTRY`, so without the site's `sagan.yaml` they
+  are `E_VAR_UNRESOLVED` regardless and the committed snapshot gains nothing; and
+  two engine behaviours cannot be reproduced from Vector. When the bound field is
+  **absent**, Sagan does not skip: it copies `config->sagan_host`, the sensor's
+  own address, and geo-locates *that* (`engine.c`, the empty-value branch of the
+  `json_map` src-ip handling), which a converted rule has no way to know. When
+  the address is **private or non-routable**, `GeoIP2_Lookup_Country` returns
+  `GEOIP_SKIP` (`src/geoip.c`), the `is`/`isnot` block is skipped, and the rule
+  does **not** fire, even for `isnot`. Converting these into rules that do fire
+  would invent detections Sagan never makes, so they stay refused rather than
+  approximated.
+
+* **A remaining 2 carry no source at all** (no `parse_src_ip`, no `json_map`, no
+  `normalize`). For them `ip_src_is_valid` can never be set, so the rule can
+  never fire in Sagan. These are refused as `E_NO_DETECTION`, not
+  `E_EXTERNAL_ENRICHMENT`: the honest reason is that the rule is inert, not that
+  it is waiting for enrichment. `mapping/geoip.py::_address_can_resolve` encodes
+  the liveness check, and `tests/unit/test_geoip.py` pins the exact boundary.
+
+The lesson is the same one the whole converter is built on: a family that looks
+recoverable at the level of the rule text can be, at the level of the engine,
+either faithful only under assumptions the target cannot guarantee or dead on
+arrival. Refusing both is what keeps the conversion rate honest.
+
 ## Rebuilding `xbits` state machines
 
 Sigma cannot express a disjunction between the rules a correlation references:

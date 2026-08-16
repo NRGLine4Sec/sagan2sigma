@@ -66,6 +66,7 @@ class TestRefusals:
             ("9000018", RefusalCode.GROUPBY_UNRESOLVED),
             ("9000019", RefusalCode.BASE64_FIELD_DECODE),
             ("9000022", RefusalCode.RAW_TEXT_ON_JSON_EVENT),
+            ("9000028", RefusalCode.NO_DETECTION),
         ],
     )
     def test_refusal_codes(self, result: ConversionResult, sid: str, code) -> None:

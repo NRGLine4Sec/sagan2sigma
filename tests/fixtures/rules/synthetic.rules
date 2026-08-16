@@ -57,12 +57,15 @@ alert any any any -> any any (msg:"[TEST] by_string correlation"; program: test;
 
 # --- refusals --------------------------------------------------------------
 alert any any any -> any any (msg:"[TEST] Positional constraint"; program: test; content:"bob"; depth: 10; classtype: user-activity; sid:9000014; rev:1;)
-alert any any any -> any any (msg:"[TEST] External enrichment"; program: test; content:"x"; country_code: track by_src, isnot US; classtype: user-activity; sid:9000015; rev:1;)
+alert any any any -> any any (msg:"[TEST] External enrichment"; program: test; content:"x"; parse_src_ip: 1; country_code: track by_src, isnot US; classtype: user-activity; sid:9000015; rev:1;)
 alert any any any -> any any (msg:"[TEST] Recurring time window"; program: test; content:"x"; alert_time: days 0123456, hours 0800-1800; classtype: user-activity; sid:9000016; rev:1;)
 alert any any any -> any any (msg:"[TEST] Negative correlation"; program: test; content:"x"; xbits: isnotset,windows_reboot,track ip_src; classtype: user-activity; sid:9000017; rev:1;)
 alert any any any -> any any (msg:"[TEST] Group-by from regex extraction"; program: test; content:"x"; parse_src_ip: 1; after: track by_src, count 5, seconds 300; classtype: user-activity; sid:9000018; rev:1;)
 alert any any any -> any any (msg:"[TEST] Base64 field decode"; program: test; json_content:".payload","BOB"; json_decode_base64; classtype: user-activity; sid:9000019; rev:1;)
 pass any any any -> any any (msg:"[TEST] Global suppression"; program: test; content:"ignore me"; classtype: user-activity; sid:9000020; rev:1;)
+# country_code tracking an address the engine can never validate (no parse_src_ip,
+# json_map or normalize): dead in Sagan, so refused as never-fires, not enrichment.
+alert any any any -> any any (msg:"[TEST] Dead country_code"; program: test; content:"x"; country_code: track by_src, isnot US; classtype: user-activity; sid:9000028; rev:1;)
 
 # --- commented out, must be counted but not converted ----------------------
 #alert any any any -> any any (msg:"[TEST] Disabled"; program: test; content:"z"; sid:9000021; rev:1;)

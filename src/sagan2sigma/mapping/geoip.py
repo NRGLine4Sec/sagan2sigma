@@ -28,10 +28,32 @@ import re
 from ..errors import Degradation, DegradationCode, Refusal, RefusalCode
 from ..sagan.model import SaganRule
 from .context import Context
-from .fields import FieldResolver
+from .fields import FieldResolver, json_map
 from .ir import Predicate, RuleDraft
 from .registry import handler
 from .values import CasePolicy
+
+
+def _address_can_resolve(rule: SaganRule, internal: str) -> bool:
+    """Whether the engine can ever mark this rule's tracked address valid.
+
+    ``country_code`` only geo-locates an address the engine has marked valid
+    (``src/processors/engine.c``: the lookup at the ``ip_src_is_valid`` /
+    ``ip_dst_is_valid`` guard). That flag is set in exactly three places: the
+    ``parse_src_ip`` / ``parse_dst_ip`` cache, a ``json_map`` binding of the
+    address, and ``normalize`` (liblognorm). A rule carrying none of them for the
+    tracked direction never validates the address, so the lookup is skipped,
+    ``geoip2_isset`` stays false, and ``src/routing.c`` drops the rule: it can
+    never fire. ``normalize`` may bind either direction, so its mere presence is
+    enough to keep a rule off this path.
+    """
+    if rule.has("normalize"):
+        return True
+    position_keyword = "parse_src_ip" if internal == "src_ip" else "parse_dst_ip"
+    if rule.has(position_keyword):
+        return True
+    return internal in json_map(rule)
+
 
 #: ``country_code: track by_src, isnot US,CA;``. The codes run to the end,
 #: variables included, and are resolved separately.
@@ -102,6 +124,22 @@ def handle_country_code(
             )
 
         internal, country_internal = _DIRECTION[match.group("direction")]
+
+        if not _address_can_resolve(rule, internal):
+            direction = match.group("direction")
+            valid_flag = f"ip_{'src' if internal == 'src_ip' else 'dst'}_is_valid"
+            raise Refusal(
+                code=RefusalCode.NO_DETECTION,
+                detail=(
+                    f"country_code tracks {direction} but the rule gives {internal} "
+                    "no source the engine accepts (no parse_src_ip / parse_dst_ip, "
+                    f"no json_map binding, no normalize), so {valid_flag} is never "
+                    "set. Sagan then skips the GeoIP lookup and routing drops the "
+                    "rule, so it never fires; there is nothing faithful to emit"
+                ),
+                keywords=("country_code",),
+            )
+
         position = resolver.positions.get(internal)
         country_field = (
             context.profile.positional_field(country_internal, position)

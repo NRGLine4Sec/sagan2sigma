@@ -8,6 +8,18 @@ All notable changes to this project are documented here. The format follows
 
 ### Fixed
 
+- `country_code` rules that track an address the engine can never resolve (no
+  `parse_src_ip` / `parse_dst_ip`, no `json_map` binding of the address, no
+  `normalize`) are now refused as `E_NO_DETECTION` instead of the misleading
+  `E_EXTERNAL_ENRICHMENT`. The engine only geo-locates an address it marked valid
+  (`src/processors/engine.c`), and with no source that flag is never set, so the
+  lookup is skipped and `src/routing.c` drops the rule: it can never fire, so no
+  enrichment could recover it. Two upstream rules are reclassified; the honest
+  reason replaces one that implied they were recoverable. The wider analysis of
+  why the `country_code by_src` family (which geo-locates a per-rule `json_map`
+  JSON field, is gated on `$HOME_COUNTRY`, and depends on engine behaviours Vector
+  cannot reproduce) stays an architectural refusal is documented in
+  `docs/DESIGN-DECISIONS.md`.
 - `track by_string` in an `after` or `threshold` correlation is no longer refused
   with `E_GROUPBY_UNRESOLVED`. The documentation presents it as an application
   string with no field equivalent, but the engine (`src/rules.c`) sets the same
