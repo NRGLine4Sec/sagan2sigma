@@ -341,12 +341,84 @@ cannot express, is refused. This recovers 245 rules of the upstream corpus that
 were previously refused wholesale. See `mapping/positional.py`.
 
 One consequence to guard: un-blocking these rules exposes their `content` and
-`pcre` to the engine for the first time. Two carried a `pcre` with a `{` that is
+`pcre` to the engine for the first time. Some carried a `pcre` with a `{` that is
 not a counted repetition, for example `{\d}`, which Python's `re` reads as a
 literal brace and the Rust `regex` crate rejects, taking the whole ruleset down
-at load. `has_unsupported_brace` in `mapping/regexes.py` now refuses those, and
+at load. Those are now rewritten rather than refused (see the next section);
+`has_unsupported_brace` in `mapping/regexes.py` still detects the raw form, and
 the property that the full converted corpus loads into RSigma with zero refusals
 holds. It was verified against the engine over every `pcre` in the corpus.
+
+### PCRE the Rust engine rejects: rewrite the provably-equal subset, refuse the rest
+
+RSigma compiles Sigma regular expressions with the Rust `regex` crate, which
+guarantees linear-time matching and therefore rejects several PCRE constructs
+Sagan's libpcre accepts. The whole rule is refused with `E_PCRE_UNSUPPORTED`, and
+because RSigma aborts the entire load on one bad pattern, that strictness is not
+optional. Of the corpus's refused patterns, a well-defined minority are not
+really "unsupported" so much as *written in a form the Rust engine spells
+differently*. For those, and only those, the handler rewrites the pattern into
+the equivalent Rust-accepted form before validating:
+
+- **Numbered subroutine `(?N)`** is inlined as the non-capturing group `(?:...)`
+  carrying group N's subpattern. A non-recursive subroutine call is pure macro
+  expansion, so the matches are identical. A call that reaches itself is
+  recursive, cannot be flattened, and is left in place to be refused (inlining it
+  would grow without bound; `expand_subroutines` detects the self-reference and
+  stops).
+- **A literal `{`** that does not open `{m,n}` is escaped to `\{`. Python reads it
+  as a literal, the Rust engine rejects it, and escaping means a literal brace to
+  both. Only the `{` is touched: the Rust engine already accepts a literal `}`,
+  so escaping that too would needlessly change the output of rules that were
+  never broken.
+- **The whole-string idiom `^((?!X).)*$`** ("the line contains no `X`") becomes a
+  negated search for `X`. On the single-line events Sagan matches, the two are
+  exactly equivalent; the caller emits `X` as a negated predicate and XORs any
+  outer negation.
+- **A flag Sagan silently ignores** is dropped, not refused. Sagan's flag switch
+  (`src/rules.c`) has no default case, so any letter outside `i s m x A E G` is a
+  no-op at load. Refusing a rule the engine runs, over a letter it ignores, would
+  make the converter stricter than its target. The corpus carries one such flag,
+  `H` (a Suricata `http_header` buffer modifier Sagan never implemented).
+
+Each rewrite was fuzzed against a PCRE oracle over thousands of inputs with zero
+divergence, and its output confirmed to load in RSigma, before being committed;
+`tests/unit/test_regexes.py` pins the behaviour. Together they recover 9 rules of
+the upstream corpus and change no other rule's output.
+
+**Where this deliberately stops, and why.** The recovered set is exactly the
+constructs whose rewrite is *provably equal to what the engine did*. Everything
+else stays an honest refusal, because the only way to convert it is to change
+what the rule matches:
+
+- **Look-around used as an embedded assertion** (`A(?!B)`, `(?<!B)A`) is not the
+  whole-string idiom and does not decompose safely. Rewriting `A(?!B)` as "matches
+  `A` and not `AB`" changes the meaning as soon as a line contains both an `A`
+  followed by `B` and another `A` that is not: the assertion is about one
+  position, the decomposition is about the whole line. Approximating here would
+  produce rules that fire where Sagan does not.
+- **Back-references** (`\1`, `\k<name>`) make the language non-regular; no
+  finite-automaton regex, and so no Rust `regex` pattern, can express "the same
+  captured text again". There is nothing to rewrite to.
+- **Recursion, conditionals and control verbs** (`(?R)`, `(?(1)..)`, `(*SKIP)`)
+  are beyond regular languages by construction.
+- **A large family of look-around negations tests whether an extracted
+  `src`/`dst` IP is public** (not in RFC1918). These *could* be recovered by
+  classifying each parsed address in a Vector transform and matching a flag, the
+  way GeoIP and the denylists already work. It is left out on purpose: the flag
+  tests "the N-th parsed address is private", while the regex tests "the address
+  at this exact spot in the text is private", and the two coincide only under an
+  assumption about the log's shape that cannot be guaranteed per rule. That is an
+  enrichment approximation, not a faithful conversion, so it would have to ship
+  behind a degradation and a per-rule differential rather than as a clean rewrite.
+  The project's bar is to refuse rather than approximate, so these stay refused
+  until each can be shown equivalent, not merely plausible.
+
+The distinction throughout is fidelity: a rewrite is applied only when it
+provably preserves the match the engine performs. A transformation that is only
+usually right is worse than an honest `E_PCRE_UNSUPPORTED`, because it hides in
+the conversion rate as a rule that looks converted and quietly disagrees with
+Sagan.
 
 ### `meta_content` is split the way the engine splits it, not by a tidy regex
 

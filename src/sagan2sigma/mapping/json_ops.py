@@ -26,7 +26,7 @@ from ..sagan.model import SaganRule
 from .context import Context
 from .fields import FieldResolver
 from .ir import Predicate, RuleDraft, Scalar
-from .regexes import DELIMITED, validate_regex
+from .regexes import DELIMITED, normalise_regex, validate_regex
 from .registry import handler
 from .values import CasePolicy, case_modifiers, coerce_scalar, escape_literal
 
@@ -235,7 +235,7 @@ def handle_json_pcre(
                 detail=f"json_pcre has no delimiters: {text!r}",
                 keywords=("json_pcre",),
             )
-        body = match.group("body")
+        body = normalise_regex(match.group("body"))
         validate_regex(body, "json_pcre")
 
         modifiers = ["re"]

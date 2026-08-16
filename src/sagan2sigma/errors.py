@@ -100,8 +100,11 @@ REFUSAL_HELP: dict[RefusalCode, str] = {
         "Re-run with --sagan-yaml to resolve it."
     ),
     RefusalCode.PCRE_UNSUPPORTED: (
-        "The regular expression uses a PCRE construct outside the subset "
-        "Sigma accepts (recursion, subroutine calls, control verbs)."
+        "The regular expression uses a PCRE construct the Rust engine cannot "
+        "express and the converter cannot safely rewrite (recursion, "
+        "look-around, back-references, control verbs). Recoverable constructs "
+        "(numbered subroutines, literal braces, the whole-string negation "
+        "idiom, inert flags) are rewritten instead of refused."
     ),
     RefusalCode.BASE64_FIELD_DECODE: (
         "Sagan decodes the field value before comparing; Sigma's base64 "

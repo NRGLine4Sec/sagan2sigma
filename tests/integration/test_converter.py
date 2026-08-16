@@ -124,6 +124,48 @@ class TestRawOnJsonRecoveredUnderEnriched:
         )
 
 
+class TestPcreRewrites:
+    """pcre patterns the Rust engine rejects raw, recovered by rewriting.
+
+    Each was refused with E_PCRE_UNSUPPORTED before the meaning-preserving
+    rewrites; the rewrites are proven equivalent in tests/unit/test_regexes.py,
+    here we pin the end-to-end conversion output.
+    """
+
+    def _selection_values(self, result: ConversionResult, sid: str) -> list:
+        detection = document_for(result, sid)["detection"]
+        return [v for k, v in detection.items() if k != "condition"]
+
+    def test_literal_brace_is_escaped(self, result: ConversionResult) -> None:
+        assert "9000023" in sids(result.converted)
+        assert {"_raw|re": r"count \{\d}"} in self._selection_values(result, "9000023")
+
+    def test_subroutine_call_is_inlined(self, result: ConversionResult) -> None:
+        assert "9000024" in sids(result.converted)
+        assert {"_raw|re": "ip=(10|172)(?:10|172)"} in self._selection_values(
+            result, "9000024"
+        )
+
+    def test_tempered_negation_becomes_a_negated_search(
+        self, result: ConversionResult
+    ) -> None:
+        assert "9000025" in sids(result.converted)
+        detection = document_for(result, "9000025")["detection"]
+        # ^((?!denied).)*$ fires when 'denied' is absent, so it is emitted as a
+        # negated filter rather than a positive match.
+        assert {"_raw|re": "denied"} in [
+            v for k, v in detection.items() if k != "condition"
+        ]
+        assert "not filter_" in detection["condition"]
+
+    def test_inert_flag_is_dropped_keeping_the_real_flag(
+        self, result: ConversionResult
+    ) -> None:
+        assert "9000026" in sids(result.converted)
+        # H is inert and dropped; i is preserved as the |i modifier.
+        assert {"_raw|re|i": "failed"} in self._selection_values(result, "9000026")
+
+
 class TestPassRule:
     """A pass rule converts as an alert and records the lost short-circuit.
 

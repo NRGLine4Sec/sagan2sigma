@@ -42,6 +42,16 @@ drop any any any -> any any (msg:"[TEST] Drop action"; program: test; content:"y
 # --- raw text search on a JSON-bodied event, which can never match ----------
 alert any any any -> any any (msg:"[TEST] Raw search on a JSON event"; program: test; json_content:".a","b"; content:"unreachable"; classtype: user-activity; sid:9000022; rev:1;)
 
+# --- pcre the Rust engine rejects raw but the converter rewrites -------------
+# A literal '{' (not a counted repetition): escaped, not refused.
+alert any any any -> any any (msg:"[TEST] Literal brace pcre"; program: test; pcre:"/count {\d}/"; classtype: user-activity; sid:9000023; rev:1;)
+# A numbered subroutine call: inlined, not refused.
+alert any any any -> any any (msg:"[TEST] Subroutine pcre"; program: test; pcre:"/ip=(10|172)(?1)/"; classtype: user-activity; sid:9000024; rev:1;)
+# The whole-string 'does not contain X' idiom: a negated search, not refused.
+alert any any any -> any any (msg:"[TEST] Tempered negation pcre"; program: test; pcre:"/^((?!denied).)*$/"; classtype: user-activity; sid:9000025; rev:1;)
+# An inert flag Sagan silently ignores: kept, not refused.
+alert any any any -> any any (msg:"[TEST] Inert pcre flag"; program: test; pcre:"/failed/iH"; classtype: user-activity; sid:9000026; rev:1;)
+
 # --- refusals --------------------------------------------------------------
 alert any any any -> any any (msg:"[TEST] Positional constraint"; program: test; content:"bob"; depth: 10; classtype: user-activity; sid:9000014; rev:1;)
 alert any any any -> any any (msg:"[TEST] External enrichment"; program: test; content:"x"; country_code: track by_src, isnot US; classtype: user-activity; sid:9000015; rev:1;)

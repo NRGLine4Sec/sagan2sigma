@@ -8,6 +8,21 @@ All notable changes to this project are documented here. The format follows
 
 ### Added
 
+- `pcre` (and `json_pcre`) patterns the Rust engine spells differently are now
+  rewritten into the equivalent accepted form instead of being refused with
+  `E_PCRE_UNSUPPORTED`: a numbered subroutine `(?N)` is inlined as `(?:...)`, a
+  literal `{` that is not a counted repetition is escaped, the whole-string
+  `^((?!X).)*$` idiom becomes a negated search for `X`, and a flag Sagan silently
+  ignores (no default case in its flag switch, e.g. the inert `H`) is dropped
+  rather than refused. Each rewrite was fuzzed against a PCRE oracle with zero
+  divergence and its output confirmed to load in RSigma; together they recover 9
+  rules of the upstream corpus and change no other rule's output. Constructs with
+  no faithful rewrite (recursion, look-around used as an embedded assertion,
+  back-references, control verbs, and the IP-range look-around negations that only
+  a lossy enrichment approximation could reach) stay refused on purpose; the
+  reasoning is documented in `docs/DESIGN-DECISIONS.md`. A latent hang is fixed in
+  passing: a recursive subroutine would have grown without bound during
+  expansion, now detected and refused.
 - `sagan2sigma-overlap`, a behavioural comparison between the converted rules
   and the SigmaHQ corpus that establishes coverage by testing rather than by
   textual similarity: every rule from both sets is turned into events that
