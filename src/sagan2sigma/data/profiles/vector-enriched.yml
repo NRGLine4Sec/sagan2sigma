@@ -37,6 +37,14 @@ positional:
   # feed respectively; the flag is set only when the address is listed.
   denylist: sagan_denylist_{position}
   zeek_intel: sagan_zeek_intel_{position}
+  # Per-address, per-category Bluedot substitution flags, from
+  # data/vrl/sagan-bluedot.vrl. Bluedot is a closed commercial CTI source; these
+  # flags come from open-source feeds you supply, one per category, so a bluedot
+  # rule fires on your feed rather than on Bluedot (D_BLUEDOT_SUBSTITUTION).
+  bluedot_tor: sagan_bluedot_tor_{position}
+  bluedot_proxy: sagan_bluedot_proxy_{position}
+  bluedot_malicious: sagan_bluedot_malicious_{position}
+  bluedot_honeypot: sagan_bluedot_honeypot_{position}
 # Vector emits one flat JSON object either way, so the envelope keeps the same
 # names whether or not the body was itself JSON. No prefixed variant is needed.
 json_envelope: {}

@@ -119,13 +119,13 @@ IGNORED: dict[str, bool] = {
     "flexbits_upause": True,
 }
 
-#: Constructs with no Sigma equivalent, each with its refusal code. Positional
-#: keywords are not here: a zero-valued positional is a no-op in the Sagan engine
-#: (see :mod:`.positional`), so the refusal is decided on the effective value in
-#: the converter, not on the keyword's mere presence.
-BLOCKING: dict[str, RefusalCode] = {
-    "bluedot": RefusalCode.EXTERNAL_ENRICHMENT,
-}
+#: Constructs with no Sigma equivalent, each with its refusal code, refused on
+#: the keyword's mere presence. Positional keywords are not here: a zero-valued
+#: positional is a no-op in the Sagan engine (see :mod:`.positional`), so the
+#: refusal is decided on the effective value in the converter. Currently empty:
+#: ``bluedot`` used to sit here but now has a handler that substitutes an
+#: open-source feed for the closed API (see :mod:`.intel`).
+BLOCKING: dict[str, RefusalCode] = {}
 
 
 def classify(keyword: str) -> str:
@@ -138,7 +138,7 @@ def classify(keyword: str) -> str:
     >>> classify('content'), classify('nocase'), classify('offset')
     ('handled', 'modifier', 'positional')
     >>> classify('bluedot'), classify('sid'), classify('made_up')
-    ('blocking', 'ignored', 'unknown')
+    ('handled', 'ignored', 'unknown')
     """
     if keyword in _HANDLERS:
         return "handled"

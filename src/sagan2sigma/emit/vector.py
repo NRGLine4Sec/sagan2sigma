@@ -35,6 +35,7 @@ TRANSFORMS: tuple[tuple[str, str], ...] = (_JSON, _PARSE_IP, _USERNAME)
 GEOIP_DATABASE_PATH = "/etc/vector/ip-to-country.mmdb"
 DENYLIST_DATABASE_PATH = "/etc/vector/denylist.mmdb"
 ZEEK_DATABASE_PATH = "/etc/vector/zeek-intel.mmdb"
+BLUEDOT_TOR_DATABASE_PATH = "/etc/vector/bluedot-tor.mmdb"
 
 
 @dataclass(frozen=True)
@@ -76,6 +77,25 @@ _ZEEK_TABLE = """\
     path: {path}
 """
 
+_BLUEDOT_TABLE = """\
+  sagan_bluedot_tor:
+    type: mmdb
+    # CHANGE ME: open-source substitutes for Bluedot's categories, one MMDB each,
+    # built with tools/build_denylist_mmdb.py. Tor is near-authoritative: use the
+    # Tor Project exit-node list. The rest are your choice and diverge from
+    # Bluedot (D_BLUEDOT_SUBSTITUTION). See docs/DESIGN-DECISIONS.md.
+    path: {path}
+  sagan_bluedot_proxy:
+    type: mmdb
+    path: /etc/vector/bluedot-proxy.mmdb
+  sagan_bluedot_malicious:
+    type: mmdb
+    path: /etc/vector/bluedot-malicious.mmdb
+  sagan_bluedot_honeypot:
+    type: mmdb
+    path: /etc/vector/bluedot-honeypot.mmdb
+"""
+
 #: Optional transforms, in pipeline order after ``sagan_parse_ip``.
 _OPTIONALS: tuple[_Optional, ...] = (
     _Optional(
@@ -92,6 +112,12 @@ _OPTIONALS: tuple[_Optional, ...] = (
         ("sagan_zeek_intel", "sagan-zeek-intel.vrl"),
         _ZEEK_TABLE,
         ZEEK_DATABASE_PATH,
+    ),
+    _Optional(
+        "bluedot",
+        ("sagan_bluedot", "sagan-bluedot.vrl"),
+        _BLUEDOT_TABLE,
+        BLUEDOT_TOR_DATABASE_PATH,
     ),
     _Optional("time", ("sagan_time", "sagan-time.vrl"), None, ""),
 )
@@ -178,6 +204,7 @@ def build_config(
     time: bool = False,
     denylist: bool = False,
     zeek: bool = False,
+    bluedot: bool = False,
 ) -> str:
     """Render the Vector configuration referencing every needed transform.
 
@@ -185,7 +212,13 @@ def build_config(
     only when its flag is set, so a pipeline that needs none of them carries no
     unused step and no database requirement.
     """
-    flags = {"geoip": geoip, "denylist": denylist, "zeek": zeek, "time": time}
+    flags = {
+        "geoip": geoip,
+        "denylist": denylist,
+        "zeek": zeek,
+        "bluedot": bluedot,
+        "time": time,
+    }
 
     blocks: list[str] = []
     previous = source
@@ -217,19 +250,33 @@ def write_pipeline(
     time: bool = False,
     denylist: bool = False,
     zeek: bool = False,
+    bluedot: bool = False,
 ) -> list[Path]:
     """Write the configuration and the VRL transforms under ``output``.
 
     Returns the paths written, configuration first.
     """
-    flags = {"geoip": geoip, "denylist": denylist, "zeek": zeek, "time": time}
+    flags = {
+        "geoip": geoip,
+        "denylist": denylist,
+        "zeek": zeek,
+        "bluedot": bluedot,
+        "time": time,
+    }
 
     transforms_dir = output / "transforms"
     transforms_dir.mkdir(parents=True, exist_ok=True)
 
     config_path = output / "vector.yaml"
     config_path.write_text(
-        build_config(version, geoip=geoip, time=time, denylist=denylist, zeek=zeek),
+        build_config(
+            version,
+            geoip=geoip,
+            time=time,
+            denylist=denylist,
+            zeek=zeek,
+            bluedot=bluedot,
+        ),
         encoding="utf-8",
     )
 

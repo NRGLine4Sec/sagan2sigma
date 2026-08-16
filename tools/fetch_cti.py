@@ -13,6 +13,11 @@ use, which is not the same as redistributing them, so all of them are available:
     feodotracker            abuse.ch Feodo Tracker (aggressive) denylist  CC0
     criticalpath-threatfox  CriticalPathSecurity ThreatFox IPs  zeek      MIT code
     criticalpath-cobaltstrike  CriticalPathSecurity CobaltStrike zeek     MIT code
+    tor                     Tor Project bulk exit list          bluedot-tor  free
+
+The ``tor`` feed builds ``bluedot-tor.mmdb`` for the Bluedot substitution's one
+near-faithful category. The other Bluedot categories (proxy, malicious,
+honeypot) are your choice: build each with ``build_denylist_mmdb.py``.
 
 Review each feed's terms before relying on it. Building the MMDBs needs
 ``mmdb-writer`` (``pip install "sagan2sigma[cti]"``); fetching needs only the
@@ -85,11 +90,20 @@ FEEDS: dict[str, Feed] = {
         "zeek",
         "MIT code, mixed data",
     ),
+    # The authoritative source for the one near-faithful Bluedot category: who is
+    # a Tor exit node is a public fact, and this is the Tor Project's own list.
+    "tor": Feed(
+        "https://check.torproject.org/torbulkexitlist",
+        "cidr",
+        "bluedot-tor",
+        "Tor Project, free to use",
+    ),
 }
 
 #: Sensible defaults, the sources Sagan's docs recommend for each role.
 DEFAULT_DENYLIST = ("dshield",)
 DEFAULT_ZEEK = ("criticalpath-threatfox",)
+DEFAULT_BLUEDOT_TOR = ("tor",)
 
 
 def fetch(url: str) -> list[str]:
@@ -128,8 +142,21 @@ def main(argv: list[str] | None = None) -> int:
         metavar="NAME",
         help=f"feed(s) for zeek-intel.mmdb (default: {', '.join(DEFAULT_ZEEK)})",
     )
+    parser.add_argument(
+        "--bluedot-tor-feed",
+        action="append",
+        choices=sorted(FEEDS),
+        metavar="NAME",
+        help=(
+            "feed(s) for bluedot-tor.mmdb, the substitution's near-faithful "
+            f"category (default: {', '.join(DEFAULT_BLUEDOT_TOR)})"
+        ),
+    )
     parser.add_argument("--no-denylist", action="store_true", help="skip the denylist")
     parser.add_argument("--no-zeek", action="store_true", help="skip the Zeek feed")
+    parser.add_argument(
+        "--no-bluedot-tor", action="store_true", help="skip the Bluedot Tor feed"
+    )
     parser.add_argument(
         "--output-dir", type=Path, default=Path(), help="where to write the MMDBs"
     )
@@ -154,6 +181,16 @@ def main(argv: list[str] | None = None) -> int:
         output = args.output_dir / "zeek-intel.mmdb"
         count = build_table(feeds, output, "sagan-zeek-intel")
         print(f"zeek-intel: {count} networks from {', '.join(feeds)} -> {output}")
+
+    if not args.no_bluedot_tor:
+        feeds = args.bluedot_tor_feed or list(DEFAULT_BLUEDOT_TOR)
+        output = args.output_dir / "bluedot-tor.mmdb"
+        count = build_table(feeds, output, "sagan-bluedot-tor")
+        print(f"bluedot-tor: {count} networks from {', '.join(feeds)} -> {output}")
+        print(
+            "  note: the proxy, malicious and honeypot Bluedot categories are your "
+            "choice; build each with tools/build_denylist_mmdb.py"
+        )
 
     return 0
 

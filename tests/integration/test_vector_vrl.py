@@ -38,6 +38,7 @@ TIME = VRL_DIR / "sagan-time.vrl"
 GEOIP = VRL_DIR / "sagan-geoip.vrl"
 DENYLIST = VRL_DIR / "sagan-denylist.vrl"
 ZEEK_INTEL = VRL_DIR / "sagan-zeek-intel.vrl"
+BLUEDOT = VRL_DIR / "sagan-bluedot.vrl"
 
 _BUILDER_PATH = Path(__file__).parents[2] / "tools" / "build_denylist_mmdb.py"
 
@@ -409,6 +410,99 @@ class TestIntelEnrichment:
         by_ip = {e.get("sagan_ip_1"): e for e in events}
         assert by_ip["203.0.113.42"].get(flag) is True
         assert flag not in by_ip["10.0.0.1"]
+
+
+@pytest.mark.skipif(
+    importlib.util.find_spec("mmdb_writer") is None,
+    reason="pip install mmdb-writer to run the bluedot substitution test",
+)
+class TestBluedotSubstitution:
+    """sagan-bluedot.vrl sets the right per-category flag from per-category feeds.
+
+    Each Bluedot category is a separate MMDB, so a listed address must set only
+    its own category flag and leave the others unset. Self-contained: the feeds
+    are built from fixed addresses known ahead of time.
+    """
+
+    _CATEGORIES: ClassVar[tuple[str, ...]] = ("tor", "proxy", "malicious", "honeypot")
+    #: One distinct listed address per category, plus an unlisted control.
+    _LISTED: ClassVar[dict[str, str]] = {
+        "tor": "203.0.113.10",
+        "proxy": "203.0.113.20",
+        "malicious": "203.0.113.30",
+        "honeypot": "203.0.113.40",
+    }
+
+    def _run(self, tmp_path: Path, messages: list[str]) -> list[dict]:
+        builder = _load_builder()
+        tables = ""
+        for category in self._CATEGORIES:
+            database = tmp_path / f"sagan_bluedot_{category}.mmdb"
+            builder.build_mmdb(
+                [(f"{self._LISTED[category]}/32", "test")],
+                database,
+                f"bluedot-{category}-test",
+            )
+            tables += (
+                f"  sagan_bluedot_{category}:\n    type: mmdb\n    path: {database}\n"
+            )
+        config = tmp_path / "bluedot.yaml"
+        config.write_text(
+            "enrichment_tables:\n" + tables + "sources:\n"
+            "  in: {type: stdin}\n"
+            "transforms:\n"
+            "  sagan_parse_ip:\n"
+            "    type: remap\n"
+            "    inputs: [in]\n"
+            f"    file: {PARSE_IP}\n"
+            "    drop_on_error: false\n"
+            "  sagan_bluedot:\n"
+            "    type: remap\n"
+            "    inputs: [sagan_parse_ip]\n"
+            f"    file: {BLUEDOT}\n"
+            "    drop_on_error: false\n"
+            "sinks:\n"
+            "  out:\n"
+            "    type: console\n"
+            "    inputs: [sagan_bluedot]\n"
+            "    encoding: {codec: json}\n",
+            encoding="utf-8",
+        )
+        process = subprocess.Popen(
+            [str(VECTOR), "--config", str(config), "--quiet"],
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+        try:
+            out, _ = process.communicate(input="\n".join(messages) + "\n", timeout=60)
+        except subprocess.TimeoutExpired:
+            process.kill()
+            out, _ = process.communicate()
+        return [
+            json.loads(line)
+            for line in out.splitlines()
+            if line.strip().startswith("{")
+        ]
+
+    def test_each_category_sets_only_its_own_flag(self, tmp_path: Path) -> None:
+        messages = [f"connection from {ip} seen" for ip in self._LISTED.values()]
+        messages.append("connection from 10.0.0.1 seen")  # unlisted control
+        events = self._run(tmp_path, messages)
+        by_ip = {e.get("sagan_ip_1"): e for e in events}
+
+        for category, ip in self._LISTED.items():
+            event = by_ip[ip]
+            assert event.get(f"sagan_bluedot_{category}_1") is True
+            # An address listed only in one category must not trip the others.
+            for other in self._CATEGORIES:
+                if other != category:
+                    assert f"sagan_bluedot_{other}_1" not in event
+
+        control = by_ip["10.0.0.1"]
+        for category in self._CATEGORIES:
+            assert f"sagan_bluedot_{category}_1" not in control
 
 
 class TestTimeDerivation:

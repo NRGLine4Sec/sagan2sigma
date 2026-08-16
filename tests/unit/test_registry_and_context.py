@@ -72,7 +72,7 @@ class TestRegistry:
             ("sid", "ignored"),
             ("offset", "positional"),
             ("within", "positional"),
-            ("bluedot", "blocking"),
+            ("bluedot", "handled"),
             ("never_seen_before", "unknown"),
         ],
     )

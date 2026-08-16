@@ -32,6 +32,25 @@ All notable changes to this project are documented here. The format follows
 
 ### Added
 
+- `bluedot` rules now convert under `--profile vector-enriched`, the project's one
+  deliberate break from faithful conversion. Bluedot is Quadrant's closed
+  commercial threat-intelligence API, which cannot be integrated legally and has
+  no faithful reproduction; a bluedot rule left refused can never fire under
+  RSigma at all. So its `ip_reputation` lookup is SUBSTITUTED: each parsed address
+  is matched against open-source feeds you supply, one MMDB per Bluedot category
+  (Tor, Proxy, Malicious, Honeypot), via the new `sagan-bluedot.vrl` transform,
+  and the rule becomes a disjunction over every (tracked position, category) flag.
+  The rule fires on your feeds, not on Bluedot: Tor is near-authoritative (the Tor
+  Project exit list is the same public ground truth Bluedot derives from), the
+  other categories diverge, and every converted rule carries the loud
+  `D_BLUEDOT_SUBSTITUTION` degradation saying so. This recovers 134 rules of the
+  upstream corpus (the address-tracking ones with a parsed position); hash and URL
+  lookups need a non-address enrichment table and stay refused, as do bluedot
+  rules whose address the converter cannot position. The four category tables are
+  emitted only when the corpus uses bluedot, built with
+  `tools/build_denylist_mmdb.py` like the denylist. This is an assumed compromise
+  and explicitly not a precedent; the reasoning and its engine basis are in
+  `docs/DESIGN-DECISIONS.md`.
 - `pcre` (and `json_pcre`) patterns the Rust engine spells differently are now
   rewritten into the equivalent accepted form instead of being refused with
   `E_PCRE_UNSUPPORTED`: a numbered subroutine `(?N)` is inlined as `(?:...)`, a

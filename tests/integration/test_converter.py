@@ -156,6 +156,48 @@ class TestByStringTracksUsername:
         assert correlation["group-by"] == ["sagan_ip_1", "sagan_username"]
 
 
+class TestBluedotSubstitutedUnderEnriched:
+    """bluedot (closed CTI) converts under enriched to open-source feed flags.
+
+    Refused by default (the syslog profile has no bluedot flags), it converts
+    under vector-enriched with the D_BLUEDOT_SUBSTITUTION degradation.
+    """
+
+    @pytest.fixture
+    def enriched_result(
+        self, enriched_context: Context, result_factory
+    ) -> ConversionResult:
+        return result_factory(enriched_context)
+
+    def test_refused_by_default(self, result: ConversionResult) -> None:
+        assert refusal_for(result, "9000029") is RefusalCode.EXTERNAL_ENRICHMENT
+
+    def test_converts_under_enriched_as_a_category_disjunction(
+        self, enriched_result: ConversionResult
+    ) -> None:
+        assert "9000029" in sids(enriched_result.converted)
+        detection = next(
+            item.documents[0]["detection"]
+            for item in enriched_result.converted
+            if item.sid == "9000029"
+        )
+        blocks = str(detection)
+        assert "sagan_bluedot_malicious_1" in blocks
+        assert "sagan_bluedot_tor_1" in blocks
+        assert " or " in detection["condition"]
+
+    def test_carries_the_substitution_degradation(
+        self, enriched_result: ConversionResult
+    ) -> None:
+        converted = next(
+            item for item in enriched_result.converted if item.sid == "9000029"
+        )
+        assert any(
+            d.code is DegradationCode.BLUEDOT_SUBSTITUTION
+            for d in converted.degradations
+        )
+
+
 class TestPcreRewrites:
     """pcre patterns the Rust engine rejects raw, recovered by rewriting.
 

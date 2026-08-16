@@ -1,7 +1,13 @@
-"""Threat-intelligence handlers: ``blacklist`` and ``zeek-intel``.
+"""Threat-intelligence handlers: ``blacklist``, ``zeek-intel`` and ``bluedot``.
 
-Both keywords fire when a parsed address is present in an external set of bad
-addresses. ``blacklist`` (``src/processors/blacklist.c``) reads an IP/CIDR
+All three fire when a parsed address is present in an external set of bad
+addresses. ``bluedot`` is the special case: it queries a closed commercial API,
+so its conversion is the project's one deliberate break from fidelity, matching
+the address against open-source feeds instead (see ``handle_bluedot`` and
+``docs/DESIGN-DECISIONS.md``). The other two match a feed the user already
+supplies, so they are faithful to the engine's "match whatever you loaded" model.
+
+``blacklist`` (``src/processors/blacklist.c``) reads an IP/CIDR
 denylist, for which the sample config recommends a public feed such as SANS
 DShield. ``zeek-intel`` (``src/processors/zeek-intel.c``) reads a Zeek
 Intelligence Framework feed; the original source it names, Critical Stack, has
@@ -167,6 +173,171 @@ def handle_blacklist(
             DegradationCode.DENYLIST_ENRICHMENT,
             "SANS DShield",
         )
+
+
+#: Bluedot IP-reputation categories the corpus uses, onto the profile's
+#: per-category positional fields. A category outside this set has no feed the
+#: substitution can stand in for, so the rule is refused rather than guessed.
+_BLUEDOT_CATEGORIES = {
+    "tor": "bluedot_tor",
+    "proxy": "bluedot_proxy",
+    "malicious": "bluedot_malicious",
+    "honeypot": "bluedot_honeypot",
+}
+
+
+def _parse_bluedot(value: str) -> tuple[str, set[str], list[str]]:
+    """Split a bluedot option into (lookup type, tracks, category names).
+
+    Grammar (``src/rules.c``): ``type <kind>, track <dir>, <freshness>, <cats>``
+    where freshness is ``mdate_effective_period N unit`` / ``cdate...`` / ``none``
+    and everything left is a category. The freshness filter is a Bluedot-only
+    recency bound with no feed-agnostic equivalent, so it is dropped, folded into
+    the substitution degradation rather than reproduced.
+    """
+    lookup_type = ""
+    tracks: set[str] = set()
+    categories: list[str] = []
+    for raw in value.split(","):
+        token = raw.strip()
+        low = token.lower()
+        if low.startswith("type"):
+            parts = token.split(None, 1)
+            lookup_type = parts[1].strip().lower() if len(parts) > 1 else ""
+        elif low.startswith("track"):
+            tracks |= {d for d in _ADDRESS_TRACKS if d in low}
+        elif low == "none" or low.startswith(("mdate", "cdate")):
+            continue
+        elif token:
+            categories.append(token)
+    return lookup_type, tracks, categories
+
+
+@handler("bluedot")
+def handle_bluedot(
+    rule: SaganRule,
+    draft: RuleDraft,
+    context: Context,
+    resolver: FieldResolver,
+    policy: CasePolicy,
+) -> None:
+    """``bluedot: type ip_reputation, track by_src, none, Tor;`` onto a match.
+
+    Bluedot is a closed commercial CTI source, so this is the project's one
+    deliberate break from faithful conversion: the address is matched against
+    open-source feeds the pipeline supplies, one per category, instead of against
+    Bluedot. See ``docs/DESIGN-DECISIONS.md`` and ``D_BLUEDOT_SUBSTITUTION``. Only
+    the ``ip_reputation`` lookup is reproduced; hash and URL lookups need a
+    non-address enrichment table and stay refused.
+    """
+    for option in rule.iter_options("bluedot"):
+        if option.value is None:
+            continue
+        lookup_type, tracks, categories = _parse_bluedot(option.value)
+
+        if lookup_type != "ip_reputation":
+            raise Refusal(
+                code=RefusalCode.EXTERNAL_ENRICHMENT,
+                detail=(
+                    f"bluedot type {lookup_type or '(unset)'!r} looks up a "
+                    "non-address indicator (hash, URL, filename or JA3); the "
+                    "substitution reproduces only ip_reputation, which maps onto "
+                    "the address enrichment tables"
+                ),
+                keywords=("bluedot",),
+            )
+        if not tracks:
+            raise Refusal(
+                code=RefusalCode.EXTERNAL_ENRICHMENT,
+                detail=f"bluedot declares no by_src/by_dst/both/all: {option.value!r}",
+                keywords=("bluedot",),
+            )
+
+        internals: list[str] = []
+        for name in categories:
+            internal = _BLUEDOT_CATEGORIES.get(name.lower())
+            if internal is None:
+                raise Refusal(
+                    code=RefusalCode.EXTERNAL_ENRICHMENT,
+                    detail=(
+                        f"bluedot category {name!r} has no open-source feed the "
+                        "substitution can stand in for; only Tor, Proxy, Malicious "
+                        "and Honeypot are mapped"
+                    ),
+                    keywords=("bluedot",),
+                )
+            internals.append(internal)
+        if not internals:
+            raise Refusal(
+                code=RefusalCode.EXTERNAL_ENRICHMENT,
+                detail=f"bluedot lists no category: {option.value!r}",
+                keywords=("bluedot",),
+            )
+
+        _emit_bluedot(draft, context, resolver, tracks, internals)
+
+
+def _emit_bluedot(
+    draft: RuleDraft,
+    context: Context,
+    resolver: FieldResolver,
+    tracks: set[str],
+    internals: list[str],
+) -> None:
+    """Emit an OR over every (tracked position, category) flag, or refuse."""
+    fields: list[str] = []
+    for position in _positions(tracks, resolver):
+        if position is None:
+            raise Refusal(
+                code=RefusalCode.EXTERNAL_ENRICHMENT,
+                detail=(
+                    "bluedot tracks an address the rule did not parse; the "
+                    "substitution needs the vector-enriched profile and the parsed "
+                    "address (parse_src_ip / parse_dst_ip)"
+                ),
+                keywords=("bluedot",),
+            )
+        for internal in internals:
+            field = context.profile.positional_field(internal, position)
+            if field is None:
+                raise Refusal(
+                    code=RefusalCode.EXTERNAL_ENRICHMENT,
+                    detail=(
+                        "bluedot substitution needs the vector-enriched profile, "
+                        "which supplies the per-category address flags"
+                    ),
+                    keywords=("bluedot",),
+                )
+            fields.append(field)
+
+    fields = list(dict.fromkeys(fields))
+    if len(fields) == 1:
+        draft.add(
+            Predicate(field=fields[0], modifiers=(), values=(True,), origin="bluedot")
+        )
+    else:
+        # Any listed category on any tracked address fires: a disjunction.
+        blocks = {
+            f"bluedot_hit_{index}": {field: True}
+            for index, field in enumerate(fields, 1)
+        }
+        draft.condition_groups.append(
+            ConditionGroup(blocks=blocks, condition=" or ".join(blocks))
+        )
+
+    draft.degrade(
+        Degradation(
+            code=DegradationCode.BLUEDOT_SUBSTITUTION,
+            detail=(
+                f"bluedot is matched against {', '.join(fields)}, set by the "
+                "bundled sagan-bluedot.vrl from open-source feeds you supply, one "
+                "per category, instead of Quadrant's closed Bluedot API. The rule "
+                "fires on your feeds, not on Bluedot; Tor is near-authoritative, "
+                "the other categories diverge. Bluedot's effective-period recency "
+                "filter is not reproduced"
+            ),
+        )
+    )
 
 
 @handler("zeek-intel", "bro-intel")

@@ -216,6 +216,7 @@ def main(argv: list[str] | None = None) -> int:
             time=DegradationCode.ALERT_TIME_EVENT_CLOCK in codes,
             denylist=DegradationCode.DENYLIST_ENRICHMENT in codes,
             zeek=DegradationCode.ZEEK_INTEL_ENRICHMENT in codes,
+            bluedot=DegradationCode.BLUEDOT_SUBSTITUTION in codes,
         )
 
     print(

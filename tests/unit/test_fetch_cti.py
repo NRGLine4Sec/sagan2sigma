@@ -21,11 +21,15 @@ class TestFeedRegistry:
     def test_every_feed_has_a_known_role_and_format(self) -> None:
         builder_formats = {"dshield", "cidr", "zeek"}
         for feed in fetch_cti.FEEDS.values():
-            assert feed.role in {"denylist", "zeek"}
+            assert feed.role in {"denylist", "zeek", "bluedot-tor"}
             assert feed.format in builder_formats
 
     def test_defaults_point_at_real_feeds(self) -> None:
-        for name in (*fetch_cti.DEFAULT_DENYLIST, *fetch_cti.DEFAULT_ZEEK):
+        for name in (
+            *fetch_cti.DEFAULT_DENYLIST,
+            *fetch_cti.DEFAULT_ZEEK,
+            *fetch_cti.DEFAULT_BLUEDOT_TOR,
+        ):
             assert name in fetch_cti.FEEDS
 
     def test_list_runs_cleanly(self, capsys: pytest.CaptureFixture[str]) -> None:
@@ -78,5 +82,30 @@ class TestBuildTable:
             "build_table",
             lambda feeds, output, dbtype: calls.append(dbtype) or 0,
         )
+        # --no-zeek skips only the Zeek table; denylist and the Bluedot Tor
+        # category still build, each of the others suppressible on its own.
         assert fetch_cti.main(["--no-zeek", "--output-dir", "/tmp"]) == 0
-        assert calls == ["sagan-denylist"]
+        assert calls == ["sagan-denylist", "sagan-bluedot-tor"]
+
+    def test_no_bluedot_tor_skips_only_that_table(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        calls: list[str] = []
+        monkeypatch.setattr(
+            fetch_cti,
+            "build_table",
+            lambda feeds, output, dbtype: calls.append(dbtype) or 0,
+        )
+        assert (
+            fetch_cti.main(
+                [
+                    "--no-denylist",
+                    "--no-zeek",
+                    "--no-bluedot-tor",
+                    "--output-dir",
+                    "/tmp",
+                ]
+            )
+            == 0
+        )
+        assert calls == []

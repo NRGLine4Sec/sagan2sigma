@@ -1,0 +1,117 @@
+# Per-address, per-category Bluedot-substitution flags.
+#
+# Why this exists
+# ---------------
+# Sagan's `bluedot` keyword queries Quadrant's Bluedot API, a closed commercial
+# threat-intelligence source (src/processors/bluedot.c). It cannot be
+# redistributed, so a converted rule cannot query it. But a bluedot rule that is
+# not converted can never fire under RSigma at all, so the conversion makes the
+# one deliberate break from fidelity the project allows: it SUBSTITUTES open
+# source feeds. The rule fires on your feed's addresses, not on Bluedot's.
+#
+# What it reproduces
+# ------------------
+# The corpus uses four Bluedot categories: Tor, Proxy, Malicious and Honeypot.
+# For each address .sagan_ip_N produced upstream, this transform looks it up in
+# one enrichment table per category and sets .sagan_bluedot_<category>_N when the
+# address is listed. Each table is a MaxMind-format MMDB you build from a feed of
+# your choosing (see docs/PIPELINE.md); the natural, near-authoritative source
+# for Tor is the Tor Project exit-node list. An address a feed does not list
+# leaves its flag unset, so the converted rule simply does not fire on it, the
+# way a Bluedot miss would not.
+#
+# The lookup is a longest-prefix network match, so CIDR entries match every host
+# inside them. Table names are literals because Vector resolves them at compile
+# time, so each category and position is written out explicitly.
+#
+# Output
+# ------
+#   .sagan_bluedot_tor_1 .. _5, and the same for proxy, malicious, honeypot.
+
+# --- Tor --------------------------------------------------------------------
+if exists(.sagan_ip_1) {
+    _, err = get_enrichment_table_record("sagan_bluedot_tor", {"ip": .sagan_ip_1})
+    if err == null { .sagan_bluedot_tor_1 = true }
+}
+if exists(.sagan_ip_2) {
+    _, err = get_enrichment_table_record("sagan_bluedot_tor", {"ip": .sagan_ip_2})
+    if err == null { .sagan_bluedot_tor_2 = true }
+}
+if exists(.sagan_ip_3) {
+    _, err = get_enrichment_table_record("sagan_bluedot_tor", {"ip": .sagan_ip_3})
+    if err == null { .sagan_bluedot_tor_3 = true }
+}
+if exists(.sagan_ip_4) {
+    _, err = get_enrichment_table_record("sagan_bluedot_tor", {"ip": .sagan_ip_4})
+    if err == null { .sagan_bluedot_tor_4 = true }
+}
+if exists(.sagan_ip_5) {
+    _, err = get_enrichment_table_record("sagan_bluedot_tor", {"ip": .sagan_ip_5})
+    if err == null { .sagan_bluedot_tor_5 = true }
+}
+
+# --- Proxy ------------------------------------------------------------------
+if exists(.sagan_ip_1) {
+    _, err = get_enrichment_table_record("sagan_bluedot_proxy", {"ip": .sagan_ip_1})
+    if err == null { .sagan_bluedot_proxy_1 = true }
+}
+if exists(.sagan_ip_2) {
+    _, err = get_enrichment_table_record("sagan_bluedot_proxy", {"ip": .sagan_ip_2})
+    if err == null { .sagan_bluedot_proxy_2 = true }
+}
+if exists(.sagan_ip_3) {
+    _, err = get_enrichment_table_record("sagan_bluedot_proxy", {"ip": .sagan_ip_3})
+    if err == null { .sagan_bluedot_proxy_3 = true }
+}
+if exists(.sagan_ip_4) {
+    _, err = get_enrichment_table_record("sagan_bluedot_proxy", {"ip": .sagan_ip_4})
+    if err == null { .sagan_bluedot_proxy_4 = true }
+}
+if exists(.sagan_ip_5) {
+    _, err = get_enrichment_table_record("sagan_bluedot_proxy", {"ip": .sagan_ip_5})
+    if err == null { .sagan_bluedot_proxy_5 = true }
+}
+
+# --- Malicious --------------------------------------------------------------
+if exists(.sagan_ip_1) {
+    _, err = get_enrichment_table_record("sagan_bluedot_malicious", {"ip": .sagan_ip_1})
+    if err == null { .sagan_bluedot_malicious_1 = true }
+}
+if exists(.sagan_ip_2) {
+    _, err = get_enrichment_table_record("sagan_bluedot_malicious", {"ip": .sagan_ip_2})
+    if err == null { .sagan_bluedot_malicious_2 = true }
+}
+if exists(.sagan_ip_3) {
+    _, err = get_enrichment_table_record("sagan_bluedot_malicious", {"ip": .sagan_ip_3})
+    if err == null { .sagan_bluedot_malicious_3 = true }
+}
+if exists(.sagan_ip_4) {
+    _, err = get_enrichment_table_record("sagan_bluedot_malicious", {"ip": .sagan_ip_4})
+    if err == null { .sagan_bluedot_malicious_4 = true }
+}
+if exists(.sagan_ip_5) {
+    _, err = get_enrichment_table_record("sagan_bluedot_malicious", {"ip": .sagan_ip_5})
+    if err == null { .sagan_bluedot_malicious_5 = true }
+}
+
+# --- Honeypot ---------------------------------------------------------------
+if exists(.sagan_ip_1) {
+    _, err = get_enrichment_table_record("sagan_bluedot_honeypot", {"ip": .sagan_ip_1})
+    if err == null { .sagan_bluedot_honeypot_1 = true }
+}
+if exists(.sagan_ip_2) {
+    _, err = get_enrichment_table_record("sagan_bluedot_honeypot", {"ip": .sagan_ip_2})
+    if err == null { .sagan_bluedot_honeypot_2 = true }
+}
+if exists(.sagan_ip_3) {
+    _, err = get_enrichment_table_record("sagan_bluedot_honeypot", {"ip": .sagan_ip_3})
+    if err == null { .sagan_bluedot_honeypot_3 = true }
+}
+if exists(.sagan_ip_4) {
+    _, err = get_enrichment_table_record("sagan_bluedot_honeypot", {"ip": .sagan_ip_4})
+    if err == null { .sagan_bluedot_honeypot_4 = true }
+}
+if exists(.sagan_ip_5) {
+    _, err = get_enrichment_table_record("sagan_bluedot_honeypot", {"ip": .sagan_ip_5})
+    if err == null { .sagan_bluedot_honeypot_5 = true }
+}

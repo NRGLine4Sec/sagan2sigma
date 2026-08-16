@@ -244,6 +244,57 @@ database with the tool and runs the transforms against real Vector, so the intel
 path is tested end to end rather than asserted. The match reflects the feed loaded
 at ingestion time, recorded as `D_DENYLIST_ENRICHMENT` / `D_ZEEK_INTEL_ENRICHMENT`.
 
+### `bluedot`: the one deliberate break from fidelity
+
+Everything else in this project earns its conversion by being faithful to the
+Sagan engine, and refuses when it cannot. `bluedot` is the single, deliberate
+exception, and it is worth being explicit about why.
+
+`bluedot` queries Quadrant's Bluedot API (`src/processors/bluedot.c`), a **closed
+commercial** threat-intelligence source. Its data cannot be redistributed, so it
+is impossible to integrate legally, and no faithful reproduction exists: a
+converted rule simply cannot ask Bluedot anything. The corpus depends on it
+heavily, though. It is 310 rules, 62% of everything the enriched profile refuses,
+and they are ordinary, useful detections ("this source address is a Tor exit / an
+open proxy / known malicious / a honeypot talker"). Reading the engine shows the
+dependency is only ever on standard indicator types and a tiny, standard
+taxonomy: five lookup types (`bluedot.h`: IP, hash, URL, filename, JA3), of which
+the corpus uses IP, URL and hash, and for IP just four categories, Tor, Proxy,
+Malicious and Honeypot. The match is a plain set membership: the API returns one
+category for the address and the rule fires if it is in the rule's list
+(`Sagan_Bluedot_Cat_Compare`).
+
+Here the fidelity rule and usefulness pull apart, and the resolution is purely
+logical. A `bluedot` rule left refused can **never** fire under RSigma, so
+keeping it "faithful" by refusing it guarantees the one outcome nobody wants: the
+detection is silently lost. Substituting an open-source feed changes *which*
+addresses fire it, but keeps the detection alive. Between a rule that is
+guaranteed dead and one that is alive against a different-but-related feed, the
+second is the better engineering outcome, and it is taken **as an assumed
+compromise**. This is the project's only such compromise; it is not a precedent,
+and nothing else here trades fidelity for coverage.
+
+The mechanism mirrors `blacklist`/`zeek-intel` exactly, extended by the category
+dimension. `sagan-bluedot.vrl` flags each parsed address in one enrichment table
+per category (`sagan_bluedot_tor_N` and so on), and a rule converts to a
+disjunction over every (tracked position, category) flag. Only the
+`ip_reputation` lookup is reproduced, because hash and URL indicators need a
+different, non-address enrichment table; those rules stay refused. The fidelity of
+the substitution is honestly uneven, and the degradation says so:
+
+* **Tor is near-authoritative.** Who is a Tor exit node is a public fact, and the
+  Tor Project's own exit list is the same ground truth Bluedot derives from, so
+  the Tor category is close to faithful.
+* **Malicious, Proxy and Honeypot diverge.** They depend entirely on the feed you
+  point each table at; different providers list different addresses, so the rule
+  will fire on a different population than Bluedot would.
+
+Every converted `bluedot` rule carries `D_BLUEDOT_SUBSTITUTION`, which spells out
+that it matches your feeds rather than Bluedot, that Tor is the trustworthy
+category and the rest approximate, and that Bluedot's effective-period recency
+filter is not reproduced. It is the loudest degradation in the taxonomy on
+purpose.
+
 ## Where the documentation and the engine disagree
 
 The rule-keywords documentation is the best available description of the

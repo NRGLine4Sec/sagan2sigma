@@ -208,6 +208,19 @@ and `zeek-intel` rules match on. Each reads its own `mmdb` enrichment table, so
 they are emitted, with the table, only when the corpus has those rules. See
 "Choosing threat-intel feeds" below for building the databases.
 
+`sagan-bluedot.vrl` is the substitute for `bluedot`, Sagan's closed commercial
+threat-intel lookup. Because that source cannot be integrated, this transform
+matches each parsed address against **open-source feeds you supply, one MMDB per
+Bluedot category** (`sagan_bluedot_tor_N`, `_proxy_N`, `_malicious_N`,
+`_honeypot_N`), and the converted rule fires on your feeds rather than on Bluedot.
+This is a deliberate, degraded substitution, not a faithful reproduction (see
+`docs/DESIGN-DECISIONS.md` and `D_BLUEDOT_SUBSTITUTION`). Point each table's path
+at a feed: for the Tor category use the Tor Project exit-node list, which is the
+authoritative source and makes that category near-faithful; the others are your
+choice and will diverge from Bluedot. Build each MMDB with
+`tools/build_denylist_mmdb.py`, exactly as for the denylist. The transform and its
+four tables are emitted only when the corpus has `bluedot` rules.
+
 `username-extraction.vrl` is **not** a port and says so at the top of the file.
 Sagan derives usernames through liblognorm rulebases, which are per-format data
 files with no algorithm to reproduce. It is a starter kit of patterns for the

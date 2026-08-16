@@ -54,6 +54,7 @@ class DegradationCode(str, Enum):
     DENYLIST_USERNAME_INERT = "D_DENYLIST_USERNAME_INERT"
     DENYLIST_ENRICHMENT = "D_DENYLIST_ENRICHMENT"
     ZEEK_INTEL_ENRICHMENT = "D_ZEEK_INTEL_ENRICHMENT"
+    BLUEDOT_SUBSTITUTION = "D_BLUEDOT_SUBSTITUTION"
 
 
 REFUSAL_HELP: dict[RefusalCode, str] = {
@@ -234,6 +235,21 @@ DEGRADATION_HELP: dict[DegradationCode, str] = {
         "Zeek-Intelligence-Feeds, runs in the ingestion pipeline. Only the address "
         "indicators the rule keyword uses are reproduced, not the domain, hash or "
         "URL indicators the feed may also carry."
+    ),
+    DegradationCode.BLUEDOT_SUBSTITUTION: (
+        "bluedot queries Quadrant's Bluedot threat-intelligence API, which is a "
+        "closed commercial source that cannot be redistributed. This conversion "
+        "deliberately SUBSTITUTES it: the rule matches the parsed address against "
+        "open-source feeds you supply, one per Bluedot category (Tor, Proxy, "
+        "Malicious, Honeypot), so it fires on your feed's addresses, not on "
+        "Bluedot's. This is the project's one accepted break from faithful "
+        "conversion, taken because a bluedot rule that is not converted can never "
+        "fire under RSigma at all, whereas a substituted one keeps the detection "
+        "intent. Fidelity varies by category: Tor is near-authoritative (the Tor "
+        "Project exit list is the same public ground truth Bluedot derives from); "
+        "Malicious, Proxy and Honeypot depend entirely on the feed you choose and "
+        "will diverge from Bluedot's verdicts. Only the address (ip_reputation) "
+        "lookup is reproduced; hash and URL lookups are still refused."
     ),
     DegradationCode.ALERT_TIME_EVENT_CLOCK: (
         "alert_time matches against weekday and hour-of-day fields the bundled "

@@ -61,6 +61,22 @@ class TestIntelConfig:
         assert "sagan_denylist" in config["enrichment_tables"]
         assert "sagan_zeek_intel" not in config["enrichment_tables"]
 
+    def test_bluedot_declares_one_mmdb_table_per_category(self) -> None:
+        config = yaml.safe_load(build_config("1.0", bluedot=True))
+        tables = config["enrichment_tables"]
+        for category in ("tor", "proxy", "malicious", "honeypot"):
+            assert tables[f"sagan_bluedot_{category}"]["type"] == "mmdb"
+        assert config["transforms"]["sagan_bluedot"]["file"].endswith(
+            "sagan-bluedot.vrl"
+        )
+
+    def test_bluedot_tables_absent_when_not_requested(self) -> None:
+        config = yaml.safe_load(build_config("1.0", denylist=True))
+        assert not any(
+            table.startswith("sagan_bluedot")
+            for table in config.get("enrichment_tables", {})
+        )
+
     def test_all_optionals_together_chain_and_validate(self) -> None:
         config = yaml.safe_load(
             build_config("1.0", geoip=True, denylist=True, zeek=True, time=True)
