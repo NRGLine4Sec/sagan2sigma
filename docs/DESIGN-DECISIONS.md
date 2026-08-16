@@ -279,6 +279,24 @@ than the original line.
 Handled by `mapping/fields.py::FieldResolver`, which every message-searching
 handler consults instead of hardcoding a field name.
 
+### `track by_string` is a synonym for `by_username`
+
+The documentation presents `by_string` as tracking on an application string,
+which reads like a value with no field equivalent, and refusing it on that basis
+is tempting. The engine says otherwise: in `src/rules.c` the `after` and
+`threshold` parsers set the **same** flag for both keys,
+
+    if (Sagan_strstr(tmptoken, "by_username") || Sagan_strstr(tmptoken, "by_string"))
+        rulestruct[...].method_username = true;
+
+and the correlation hash in `src/after.c` is then built from the username value.
+So `by_string` groups on exactly the field `by_username` does. Treating it as its
+own unresolvable key refused rules the engine tracks like any other user
+correlation; mapping it to `username` recovers them, under `--profile
+vector-enriched` where the VRL supplies `sagan_username`, and carries the same
+best-effort-username degradation. Encoded in
+`mapping/correlation.py::TRACK_TO_INTERNAL`.
+
 ### Sagan's option tokenisation ignores quotes
 
 Sagan splits the option block with a plain `strtok_r(rulestring, ";", …)`,

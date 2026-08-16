@@ -76,12 +76,30 @@ class TestAfterGroupByResolution:
             run(handle_after, rule, draft, context)
         assert excinfo.value.code is RefusalCode.GROUPBY_UNRESOLVED
 
-    def test_refuses_by_string(self, draft: RuleDraft, context) -> None:
+    def test_by_string_is_a_synonym_for_by_username(
+        self, draft: RuleDraft, context
+    ) -> None:
+        """The engine sets the same method_username flag for by_string and.
+
+        by_username (src/rules.c), then hashes on the username value, so
+        by_string groups on username, not on an unresolvable application string.
+        """
         rule = make_rule(
-            'msg:"t"; after: track by_string, count 5, seconds 300; sid:1;'
+            'msg:"t"; json_map:"username",".user"; '
+            "after: track by_string, count 5, seconds 300; sid:1;"
         )
-        with pytest.raises(Refusal, match="by_string"):
-            run(handle_after, rule, draft, context)
+        run(handle_after, rule, draft, context)
+        assert draft.correlations[0].group_by == ("user",)
+
+    def test_by_string_and_by_username_collapse_to_one_key(
+        self, draft: RuleDraft, context
+    ) -> None:
+        rule = make_rule(
+            'msg:"t"; json_map:"username",".user"; '
+            "after: track by_username&by_string, count 5, seconds 300; sid:1;"
+        )
+        run(handle_after, rule, draft, context)
+        assert draft.correlations[0].group_by == ("user",)
 
     def test_composite_tracking(self, draft: RuleDraft, context) -> None:
         rule = make_rule(

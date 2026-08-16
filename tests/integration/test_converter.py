@@ -124,6 +124,37 @@ class TestRawOnJsonRecoveredUnderEnriched:
         )
 
 
+class TestByStringTracksUsername:
+    """track by_string is the engine's synonym for by_username.
+
+    Refused by default (the username field is not in the syslog profile), it
+    converts under vector-enriched where the VRL supplies sagan_username.
+    """
+
+    @pytest.fixture
+    def enriched_result(
+        self, enriched_context: Context, result_factory
+    ) -> ConversionResult:
+        return result_factory(enriched_context)
+
+    def test_refused_by_default(self, result: ConversionResult) -> None:
+        assert refusal_for(result, "9000027") is RefusalCode.GROUPBY_UNRESOLVED
+
+    def test_converts_under_enriched_grouping_on_username(
+        self, enriched_result: ConversionResult
+    ) -> None:
+        assert "9000027" in sids(enriched_result.converted)
+        correlation = next(
+            document["correlation"]
+            for item in enriched_result.converted
+            if item.sid == "9000027"
+            for document in item.documents
+            if "correlation" in document
+        )
+        # by_src -> the parsed address, by_string -> the username field.
+        assert correlation["group-by"] == ["sagan_ip_1", "sagan_username"]
+
+
 class TestPcreRewrites:
     """pcre patterns the Rust engine rejects raw, recovered by rewriting.
 

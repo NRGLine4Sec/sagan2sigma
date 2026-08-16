@@ -53,11 +53,19 @@ _XBIT_TRACK = re.compile(r"track\s+(?P<key>ip_src|ip_dst|ip_pair)")
 _EXPIRE = re.compile(r"expire\s+(\d+)")
 
 #: ``after`` and ``threshold`` tracking keys onto Sagan internal values.
+#:
+#: ``by_string`` is a synonym for ``by_username``, not a separate key: the engine
+#: sets the same ``method_username`` flag for both (``src/rules.c``, the
+#: ``by_username`` / ``by_string`` branches), and correlation then hashes on the
+#: username value (``src/after.c``). Following the docs, which describe it as an
+#: application string, would refuse a rule the engine tracks exactly like any
+#: other ``by_username`` one.
 TRACK_TO_INTERNAL = {
     "by_src": "src_ip",
     "by_dst": "dest_ip",
     "by_username": "username",
     "by_user": "username",
+    "by_string": "username",
 }
 
 #: ``xbits`` tracking keys onto Sagan internal values.
@@ -209,15 +217,6 @@ def _group_by(
         if token == "by_tag":
             keys.append("syslog_tag")
             continue
-        if token == "by_string":
-            raise Refusal(
-                code=RefusalCode.GROUPBY_UNRESOLVED,
-                detail=(
-                    f"{keyword} track by_string groups on an application string "
-                    f"Sagan extracts internally, with no field equivalent"
-                ),
-                keywords=(keyword,),
-            )
         internal = TRACK_TO_INTERNAL.get(token)
         if internal is None:
             raise Refusal(

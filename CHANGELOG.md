@@ -6,6 +6,18 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+
+- `track by_string` in an `after` or `threshold` correlation is no longer refused
+  with `E_GROUPBY_UNRESOLVED`. The documentation presents it as an application
+  string with no field equivalent, but the engine (`src/rules.c`) sets the same
+  `method_username` flag for `by_string` as for `by_username` and then hashes on
+  the username value (`src/after.c`), so the two are synonyms. It now maps to the
+  `username` internal, recovering 5 rules under `--profile vector-enriched` (where
+  the VRL supplies `sagan_username`) with the same best-effort-username
+  degradation `by_username` already carries. The syslog profiles still refuse it,
+  exactly as they refuse `by_username`.
+
 ### Added
 
 - `pcre` (and `json_pcre`) patterns the Rust engine spells differently are now

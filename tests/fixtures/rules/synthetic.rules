@@ -52,6 +52,9 @@ alert any any any -> any any (msg:"[TEST] Tempered negation pcre"; program: test
 # An inert flag Sagan silently ignores: kept, not refused.
 alert any any any -> any any (msg:"[TEST] Inert pcre flag"; program: test; pcre:"/failed/iH"; classtype: user-activity; sid:9000026; rev:1;)
 
+# --- by_string tracks username; refused by default, recovered under enriched ---
+alert any any any -> any any (msg:"[TEST] by_string correlation"; program: test; content:"x"; parse_src_ip: 1; after: track by_src&by_string, count 3, seconds 60; classtype: user-activity; sid:9000027; rev:1;)
+
 # --- refusals --------------------------------------------------------------
 alert any any any -> any any (msg:"[TEST] Positional constraint"; program: test; content:"bob"; depth: 10; classtype: user-activity; sid:9000014; rev:1;)
 alert any any any -> any any (msg:"[TEST] External enrichment"; program: test; content:"x"; country_code: track by_src, isnot US; classtype: user-activity; sid:9000015; rev:1;)
