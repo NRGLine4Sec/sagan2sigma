@@ -1,0 +1,94 @@
+title: '[VMWARE-BLUEDOT] User login successful from a suspicious source'
+id: c96d3cf2-d91a-560d-ab58-de31cbde9921
+status: experimental
+description: Converted from Sagan rule SID 5002916 (rev 4), file vmware-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: vmware
+detection:
+  selection_1:
+    message|re|i: Accepted password for|login from
+  selection_2:
+    appname|cased:
+      - vmware-hostd
+      - vmware-authd
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5002916'
+  sagan.rev: '4'
+  sagan.source_file: vmware-bluedot.rules
+---
+title: '[VMWARE-BLUEDOT] User login successful from a suspicious source'
+id: 9e9db454-0d3f-5aa6-9735-08d9db7ef4f3
+status: experimental
+description: Converted from Sagan rule SID 5002917 (rev 4), file vmware-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: vmware
+detection:
+  selection_1:
+    message|contains|cased: ' logged in '
+  selection_2:
+    appname|cased: Hostd
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5002917'
+  sagan.rev: '4'
+  sagan.source_file: vmware-bluedot.rules
+---
+title: '[VMWARE-BLUEDOT] User login successful from a suspicious source'
+id: 99270b88-2dd0-5274-8993-c4f92bbf9db7
+status: experimental
+description: Converted from Sagan rule SID 5002918 (rev 3), file vmware-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: vmware
+detection:
+  selection_1:
+    message|contains|cased: Accepted password
+  selection_2:
+    appname|cased: Hostd
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5002918'
+  sagan.rev: '3'
+  sagan.source_file: vmware-bluedot.rules

@@ -1,0 +1,276 @@
+title: '[WINDOWS-BLUEDOT] RDP / Logon type 10 from a Bluedot listed IP'
+id: e1fd26f2-f96a-5f4c-b4ff-a6ab55f0e28d
+status: experimental
+description: Converted from Sagan rule SID 5002344 (rev 10), file windows-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID:
+      - 4624
+      - 540
+      - 528
+  selection_3:
+    message|contains|cased: 'Logon Type: 10 '
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and selection_3 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3
+    or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002344'
+  sagan.rev: '10'
+  sagan.source_file: windows-bluedot.rules
+  sagan.metadata: endpoint_command=FIREWALL_BLOCK_SRC_IP
+---
+title: '[WINDOWS-BLUEDOT] Login failure from a Bluedot listed IP [0/5]'
+id: f242b3de-d04c-5863-a54d-d834f588e666
+status: experimental
+description: Converted from Sagan rule SID 5002345 (rev 9), file windows-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 529
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002345'
+  sagan.rev: '9'
+  sagan.source_file: windows-bluedot.rules
+  sagan.metadata: endpoint_command=FIREWALL_BLOCK_SRC_IP
+  rsigma.suppress: 5m
+---
+title: '[WINDOWS-BLUEDOT] Login failure from a Bluedot listed IP [Time restriction] [0/5]'
+id: 77a8f1fb-d4e5-5d1e-aa58-2fa77096ac2f
+status: experimental
+description: Converted from Sagan rule SID 5002346 (rev 9), file windows-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 530
+  selection_2:
+    appname|cased: '*Security*'
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002346'
+  sagan.rev: '9'
+  sagan.source_file: windows-bluedot.rules
+  sagan.metadata: endpoint_command=FIREWALL_BLOCK_SRC_IP
+  rsigma.suppress: 5m
+---
+title: '[WINDOWS-BLUEDOT] Login failure from Bluedot listed IP - Account currently disabled [0/5]'
+id: da3053d5-0f07-525a-a7aa-1ee616946eb7
+status: experimental
+description: Converted from Sagan rule SID 5002347 (rev 8), file windows-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 531
+  filter_2:
+    message|contains|cased: 'User Name: Domain:'
+  selection_3:
+    appname|cased: '*Security*'
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_3 and not filter_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3
+    or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002347'
+  sagan.rev: '8'
+  sagan.source_file: windows-bluedot.rules
+  sagan.metadata: endpoint_command=FIREWALL_BLOCK_SRC_IP
+  rsigma.suppress: 5m
+---
+title: '[WINDOWS-BLUEDOT] Login failure from Bluedot listed IP - Specified account expired'
+id: e6b744ea-aca1-5714-99c0-46db300037c2
+status: experimental
+description: Converted from Sagan rule SID 5002348 (rev 8), file windows-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 532
+  selection_2:
+    appname|cased: '*Security*'
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002348'
+  sagan.rev: '8'
+  sagan.source_file: windows-bluedot.rules
+  sagan.metadata: endpoint_command=FIREWALL_BLOCK_SRC_IP
+---
+title: '[WINDOWS-BLUEDOT] Login failure from Bluedot listed IP - User not allowed to login at this computer'
+id: 4ed38807-a43c-54bf-be6e-9ed5f716f866
+status: experimental
+description: Converted from Sagan rule SID 5002349 (rev 8), file windows-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 533
+  selection_2:
+    appname|cased: '*Security*'
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002349'
+  sagan.rev: '8'
+  sagan.source_file: windows-bluedot.rules
+  sagan.metadata: endpoint_command=FIREWALL_BLOCK_SRC_IP
+---
+title: '[WINDOWS-BLUEDOT] Login failure from Bluedot listed IP - Account locked [0/1]'
+id: 168fc1a4-ddfa-58b5-9331-18e851cf154c
+status: experimental
+description: Converted from Sagan rule SID 5002350 (rev 9), file windows-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID: 539|
+  filter_2:
+    message|contains|cased: 'User Name: Domain: Logon Type:'
+  selection_3:
+    appname|cased: '*Security*'
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_3 and not filter_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3
+    or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002350'
+  sagan.rev: '9'
+  sagan.source_file: windows-bluedot.rules
+  sagan.metadata: endpoint_command=FIREWALL_BLOCK_SRC_IP
+  rsigma.suppress: 5m
+---
+title: '[WINDOWS-BLUEDOT] Windows DC Logon Failure from Bluedot listed IP'
+id: 216faf76-cd9d-5e11-897d-78b7f5091490
+status: experimental
+description: Converted from Sagan rule SID 5002351 (rev 10), file windows-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4771
+      - 4768
+      - 675
+      - 676
+      - 681
+  selection_2:
+    appname|cased: '*Security*'
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002351'
+  sagan.rev: '10'
+  sagan.source_file: windows-bluedot.rules
+  sagan.metadata: endpoint_command=FIREWALL_BLOCK_SRC_IP

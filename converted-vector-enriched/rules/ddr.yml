@@ -144,6 +144,66 @@ correlation:
     gte: 10
 level: low
 ---
+title: '[AWS] S3 GetObject Bluedot Suspicious IP Detected'
+id: 3d58f174-65f9-5035-9c67-062ea4b3e8bf
+status: experimental
+description: Converted from Sagan rule SID 991006 (rev 1), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: s3.amazonaws.com
+  selection_2:
+    eventName|cased: GetObject
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '991006'
+  sagan.rev: '1'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2025_07_30
+---
+title: '[AWS] S3 GetObject Bluedot Suspicious IP Detected'
+id: 0e81a416-7e28-5f83-af54-6f1e69254b2a
+status: experimental
+description: Converted from Sagan rule SID 5017062 (rev 1), file ddr.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: s3.amazonaws.com
+  selection_2:
+    eventName|cased: GetObject
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017062'
+  sagan.rev: '1'
+  sagan.source_file: ddr.rules
+  sagan.metadata: createdOn=2025_05_09,updatedOn=2025_07_30
+---
 title: '[AWS] S3 File Transfer (GetObject)'
 id: 1e5ca1f4-3899-55a2-81ff-2b1fc187af15
 name: sagan_5017063

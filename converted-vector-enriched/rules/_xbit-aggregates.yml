@@ -1676,7 +1676,7 @@ title: Aggregate of rules setting Sagan bit exploit_attempt
 id: aee13b8d-5d70-5016-a70c-77a55da530e2
 name: sagan_xbit_exploit_attempt
 status: experimental
-description: Synthetic rule. Sagan set the 'exploit_attempt' bit from 177 rule(s); since Sigma cannot
+description: Synthetic rule. Sagan set the 'exploit_attempt' bit from 178 rule(s); since Sigma cannot
   express an OR between correlated rules, their detections are gathered here. This rule is not meant to
   alert on its own.
 author: sagan2sigma
@@ -2009,15 +2009,21 @@ detection:
   s48_selection_4:
     appname|cased: CEF
   s49_selection_1:
-    message|contains|cased: "requestClientApplication=_\r\n"
-  s49_selection_2:
-    message|contains|cased: Zscaler
-  s49_selection_3:
-    message|contains|cased: act=Allowed
+    message|contains|cased: requestClientApplication={
+  s49_filter_2:
+    message|contains|cased: directory.gladinet.com
+  s49_filter_3:
+    message|contains|cased: "ff.avast.com\r\n"
   s49_selection_4:
+    message|contains|cased: Zscaler
+  s49_selection_5:
+    message|contains|cased: act=Allowed
+  s49_selection_6:
+    message|re|i: User-Agent\x3a \{[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\}
+  s49_selection_7:
     appname|cased: CEF
   s50_selection_1:
-    message|contains|cased: "requestClientApplication=Mozilla/5.0 (compatible, Viper 4.0)\r\n"
+    message|contains|cased: "requestClientApplication=_\r\n"
   s50_selection_2:
     message|contains|cased: Zscaler
   s50_selection_3:
@@ -2025,7 +2031,7 @@ detection:
   s50_selection_4:
     appname|cased: CEF
   s51_selection_1:
-    message|contains|cased: requestClientApplication=BlackSun
+    message|contains|cased: "requestClientApplication=Mozilla/5.0 (compatible, Viper 4.0)\r\n"
   s51_selection_2:
     message|contains|cased: Zscaler
   s51_selection_3:
@@ -2033,7 +2039,7 @@ detection:
   s51_selection_4:
     appname|cased: CEF
   s52_selection_1:
-    message|contains|cased: requestClientApplication=Mozzila
+    message|contains|cased: requestClientApplication=BlackSun
   s52_selection_2:
     message|contains|cased: Zscaler
   s52_selection_3:
@@ -2041,7 +2047,7 @@ detection:
   s52_selection_4:
     appname|cased: CEF
   s53_selection_1:
-    message|contains|cased: requestClientApplication=ScrapeBox
+    message|contains|cased: requestClientApplication=Mozzila
   s53_selection_2:
     message|contains|cased: Zscaler
   s53_selection_3:
@@ -2049,7 +2055,7 @@ detection:
   s53_selection_4:
     appname|cased: CEF
   s54_selection_1:
-    message|contains|cased: "requestClientApplication=msndown\r\n"
+    message|contains|cased: requestClientApplication=ScrapeBox
   s54_selection_2:
     message|contains|cased: Zscaler
   s54_selection_3:
@@ -2057,7 +2063,7 @@ detection:
   s54_selection_4:
     appname|cased: CEF
   s55_selection_1:
-    message|contains|cased: requestClientApplication=iamx/
+    message|contains|cased: "requestClientApplication=msndown\r\n"
   s55_selection_2:
     message|contains|cased: Zscaler
   s55_selection_3:
@@ -2065,7 +2071,7 @@ detection:
   s55_selection_4:
     appname|cased: CEF
   s56_selection_1:
-    message|contains|cased: requestClientApplication=Win32
+    message|contains|cased: requestClientApplication=iamx/
   s56_selection_2:
     message|contains|cased: Zscaler
   s56_selection_3:
@@ -2073,7 +2079,7 @@ detection:
   s56_selection_4:
     appname|cased: CEF
   s57_selection_1:
-    message|contains|cased: ' Our_Agent'
+    message|contains|cased: requestClientApplication=Win32
   s57_selection_2:
     message|contains|cased: Zscaler
   s57_selection_3:
@@ -2081,25 +2087,25 @@ detection:
   s57_selection_4:
     appname|cased: CEF
   s58_selection_1:
-    message|contains|cased: GET
+    message|contains|cased: ' Our_Agent'
   s58_selection_2:
-    message|contains|cased: requestClientApplication=REKOM
-  s58_selection_3:
     message|contains|cased: Zscaler
-  s58_selection_4:
+  s58_selection_3:
     message|contains|cased: act=Allowed
-  s58_selection_5:
+  s58_selection_4:
     appname|cased: CEF
   s59_selection_1:
-    message|contains|cased: requestClientApplication=Moxilla
+    message|contains|cased: GET
   s59_selection_2:
-    message|contains|cased: Zscaler
+    message|contains|cased: requestClientApplication=REKOM
   s59_selection_3:
-    message|contains|cased: act=Allowed
+    message|contains|cased: Zscaler
   s59_selection_4:
+    message|contains|cased: act=Allowed
+  s59_selection_5:
     appname|cased: CEF
   s60_selection_1:
-    message|contains|cased: requestClientApplication=VCTestClient
+    message|contains|cased: requestClientApplication=Moxilla
   s60_selection_2:
     message|contains|cased: Zscaler
   s60_selection_3:
@@ -2107,7 +2113,7 @@ detection:
   s60_selection_4:
     appname|cased: CEF
   s61_selection_1:
-    message|contains|cased: requestClientApplication=PrivacyInfoUpdate
+    message|contains|cased: requestClientApplication=VCTestClient
   s61_selection_2:
     message|contains|cased: Zscaler
   s61_selection_3:
@@ -2115,7 +2121,7 @@ detection:
   s61_selection_4:
     appname|cased: CEF
   s62_selection_1:
-    message|contains|cased: requestClientApplication=VMozilla
+    message|contains|cased: requestClientApplication=PrivacyInfoUpdate
   s62_selection_2:
     message|contains|cased: Zscaler
   s62_selection_3:
@@ -2123,7 +2129,7 @@ detection:
   s62_selection_4:
     appname|cased: CEF
   s63_selection_1:
-    message|contains|cased: requestClientApplication=sample
+    message|contains|cased: requestClientApplication=VMozilla
   s63_selection_2:
     message|contains|cased: Zscaler
   s63_selection_3:
@@ -2131,7 +2137,7 @@ detection:
   s63_selection_4:
     appname|cased: CEF
   s64_selection_1:
-    message|contains|cased: "requestClientApplication=Mozilla/3.0\r\n"
+    message|contains|cased: requestClientApplication=sample
   s64_selection_2:
     message|contains|cased: Zscaler
   s64_selection_3:
@@ -2139,7 +2145,7 @@ detection:
   s64_selection_4:
     appname|cased: CEF
   s65_selection_1:
-    message|contains|cased: requestClientApplication=IE6 on Windows XP
+    message|contains|cased: "requestClientApplication=Mozilla/3.0\r\n"
   s65_selection_2:
     message|contains|cased: Zscaler
   s65_selection_3:
@@ -2147,7 +2153,7 @@ detection:
   s65_selection_4:
     appname|cased: CEF
   s66_selection_1:
-    message|contains|cased: requestClientApplication=Lotto
+    message|contains|cased: requestClientApplication=IE6 on Windows XP
   s66_selection_2:
     message|contains|cased: Zscaler
   s66_selection_3:
@@ -2155,7 +2161,7 @@ detection:
   s66_selection_4:
     appname|cased: CEF
   s67_selection_1:
-    message|contains|cased: requestClientApplication=AskPartner
+    message|contains|cased: requestClientApplication=Lotto
   s67_selection_2:
     message|contains|cased: Zscaler
   s67_selection_3:
@@ -2163,7 +2169,7 @@ detection:
   s67_selection_4:
     appname|cased: CEF
   s68_selection_1:
-    message|contains|cased: requestClientApplication=VERTEXNET
+    message|contains|cased: requestClientApplication=AskPartner
   s68_selection_2:
     message|contains|cased: Zscaler
   s68_selection_3:
@@ -2171,7 +2177,7 @@ detection:
   s68_selection_4:
     appname|cased: CEF
   s69_selection_1:
-    message|contains|cased: "requestClientApplication=changhuatong\r\n"
+    message|contains|cased: requestClientApplication=VERTEXNET
   s69_selection_2:
     message|contains|cased: Zscaler
   s69_selection_3:
@@ -2179,7 +2185,7 @@ detection:
   s69_selection_4:
     appname|cased: CEF
   s70_selection_1:
-    message|contains|cased: requestClientApplication=CholTBAgent
+    message|contains|cased: "requestClientApplication=changhuatong\r\n"
   s70_selection_2:
     message|contains|cased: Zscaler
   s70_selection_3:
@@ -2187,19 +2193,17 @@ detection:
   s70_selection_4:
     appname|cased: CEF
   s71_selection_1:
-    message|contains|cased: GET
+    message|contains|cased: requestClientApplication=CholTBAgent
   s71_selection_2:
-    message|contains|cased: "requestClientApplication=mdms\r\n"
-  s71_selection_3:
     message|contains|cased: Zscaler
-  s71_selection_4:
+  s71_selection_3:
     message|contains|cased: act=Allowed
-  s71_selection_5:
+  s71_selection_4:
     appname|cased: CEF
   s72_selection_1:
     message|contains|cased: GET
   s72_selection_2:
-    message|contains|cased: "requestClientApplication=asd\r\n"
+    message|contains|cased: "requestClientApplication=mdms\r\n"
   s72_selection_3:
     message|contains|cased: Zscaler
   s72_selection_4:
@@ -2207,15 +2211,17 @@ detection:
   s72_selection_5:
     appname|cased: CEF
   s73_selection_1:
-    message|contains|cased: 'requestClientApplication=SimpleClient '
+    message|contains|cased: GET
   s73_selection_2:
-    message|contains|cased: Zscaler
+    message|contains|cased: "requestClientApplication=asd\r\n"
   s73_selection_3:
-    message|contains|cased: act=Allowed
+    message|contains|cased: Zscaler
   s73_selection_4:
+    message|contains|cased: act=Allowed
+  s73_selection_5:
     appname|cased: CEF
   s74_selection_1:
-    message|contains|cased: requestClientApplication=Cyberdog
+    message|contains|cased: 'requestClientApplication=SimpleClient '
   s74_selection_2:
     message|contains|cased: Zscaler
   s74_selection_3:
@@ -2223,7 +2229,7 @@ detection:
   s74_selection_4:
     appname|cased: CEF
   s75_selection_1:
-    message|contains|cased: requestClientApplication=EmailSiphon
+    message|contains|cased: requestClientApplication=Cyberdog
   s75_selection_2:
     message|contains|cased: Zscaler
   s75_selection_3:
@@ -2239,7 +2245,7 @@ detection:
   s76_selection_4:
     appname|cased: CEF
   s77_selection_1:
-    message|contains|cased: requestClientApplication=Binget/
+    message|contains|cased: requestClientApplication=EmailSiphon
   s77_selection_2:
     message|contains|cased: Zscaler
   s77_selection_3:
@@ -2247,7 +2253,7 @@ detection:
   s77_selection_4:
     appname|cased: CEF
   s78_selection_1:
-    message|contains|cased: requestClientApplication=pxyscand/
+    message|contains|cased: requestClientApplication=Binget/
   s78_selection_2:
     message|contains|cased: Zscaler
   s78_selection_3:
@@ -2255,7 +2261,7 @@ detection:
   s78_selection_4:
     appname|cased: CEF
   s79_selection_1:
-    message|contains|cased: requestClientApplication=PyCurl
+    message|contains|cased: requestClientApplication=pxyscand/
   s79_selection_2:
     message|contains|cased: Zscaler
   s79_selection_3:
@@ -2263,7 +2269,7 @@ detection:
   s79_selection_4:
     appname|cased: CEF
   s80_selection_1:
-    message|contains|cased: requestClientApplication=Atomic_Email_Hunter/
+    message|contains|cased: requestClientApplication=PyCurl
   s80_selection_2:
     message|contains|cased: Zscaler
   s80_selection_3:
@@ -2279,7 +2285,7 @@ detection:
   s81_selection_4:
     appname|cased: CEF
   s82_selection_1:
-    message|contains|cased: requestClientApplication=Revolution
+    message|contains|cased: requestClientApplication=Atomic_Email_Hunter/
   s82_selection_2:
     message|contains|cased: Zscaler
   s82_selection_3:
@@ -2287,7 +2293,7 @@ detection:
   s82_selection_4:
     appname|cased: CEF
   s83_selection_1:
-    message|contains|cased: requestClientApplication=BGroom
+    message|contains|cased: requestClientApplication=Revolution
   s83_selection_2:
     message|contains|cased: Zscaler
   s83_selection_3:
@@ -2295,33 +2301,33 @@ detection:
   s83_selection_4:
     appname|cased: CEF
   s84_selection_1:
-    message|contains|cased: "requestClientApplication=tiny\r\n"
+    message|contains|cased: requestClientApplication=BGroom
   s84_selection_2:
     message|contains|cased: Zscaler
   s84_selection_3:
     message|contains|cased: act=Allowed
   s84_selection_4:
     appname|cased: CEF
-  s85_filter_1:
-    message|contains|cased: econtrolsystems
+  s85_selection_1:
+    message|contains|cased: "requestClientApplication=tiny\r\n"
   s85_selection_2:
-    message|contains|cased: requestClientApplication=adlib/
+    message|contains|cased: Zscaler
   s85_selection_3:
-    message|contains|cased: Zscaler
+    message|contains|cased: act=Allowed
   s85_selection_4:
-    message|contains|cased: act=Allowed
-  s85_selection_5:
     appname|cased: CEF
-  s86_selection_1:
-    message|contains|cased: requestClientApplication=Mozilla/5.0 (Windows NT 5.1 ; v.
+  s86_filter_1:
+    message|contains|cased: econtrolsystems
   s86_selection_2:
-    message|contains|cased: Zscaler
+    message|contains|cased: requestClientApplication=adlib/
   s86_selection_3:
-    message|contains|cased: act=Allowed
+    message|contains|cased: Zscaler
   s86_selection_4:
+    message|contains|cased: act=Allowed
+  s86_selection_5:
     appname|cased: CEF
   s87_selection_1:
-    message|contains|cased: requestClientApplication=zeroup
+    message|contains|cased: requestClientApplication=Mozilla/5.0 (Windows NT 5.1 ; v.
   s87_selection_2:
     message|contains|cased: Zscaler
   s87_selection_3:
@@ -2329,7 +2335,7 @@ detection:
   s87_selection_4:
     appname|cased: CEF
   s88_selection_1:
-    message|contains: requestClientApplication=DownloadMR
+    message|contains|cased: requestClientApplication=zeroup
   s88_selection_2:
     message|contains|cased: Zscaler
   s88_selection_3:
@@ -2337,7 +2343,7 @@ detection:
   s88_selection_4:
     appname|cased: CEF
   s89_selection_1:
-    message|contains: requestClientApplication=ChilkatUpload
+    message|contains: requestClientApplication=DownloadMR
   s89_selection_2:
     message|contains|cased: Zscaler
   s89_selection_3:
@@ -2345,7 +2351,7 @@ detection:
   s89_selection_4:
     appname|cased: CEF
   s90_selection_1:
-    message|contains: requestClientApplication=Google page
+    message|contains: requestClientApplication=ChilkatUpload
   s90_selection_2:
     message|contains|cased: Zscaler
   s90_selection_3:
@@ -2353,7 +2359,7 @@ detection:
   s90_selection_4:
     appname|cased: CEF
   s91_selection_1:
-    message|contains|cased: "requestClientApplication=FOCA\r\n"
+    message|contains: requestClientApplication=Google page
   s91_selection_2:
     message|contains|cased: Zscaler
   s91_selection_3:
@@ -2361,8 +2367,7 @@ detection:
   s91_selection_4:
     appname|cased: CEF
   s92_selection_1:
-    message|contains|cased: "requestClientApplication=Mozilla/4.0 (compatible; MSIE 6.1; Windows NT)\r\
-      \n"
+    message|contains|cased: "requestClientApplication=FOCA\r\n"
   s92_selection_2:
     message|contains|cased: Zscaler
   s92_selection_3:
@@ -2370,7 +2375,8 @@ detection:
   s92_selection_4:
     appname|cased: CEF
   s93_selection_1:
-    message|contains|cased: 'requestClientApplication=WT Games App '
+    message|contains|cased: "requestClientApplication=Mozilla/4.0 (compatible; MSIE 6.1; Windows NT)\r\
+      \n"
   s93_selection_2:
     message|contains|cased: Zscaler
   s93_selection_3:
@@ -2378,7 +2384,7 @@ detection:
   s93_selection_4:
     appname|cased: CEF
   s94_selection_1:
-    message|contains|cased: requestClientApplication=Mozilla/5.0 (compatible; BLEXBot/
+    message|contains|cased: 'requestClientApplication=WT Games App '
   s94_selection_2:
     message|contains|cased: Zscaler
   s94_selection_3:
@@ -2386,25 +2392,25 @@ detection:
   s94_selection_4:
     appname|cased: CEF
   s95_selection_1:
-    message|contains|cased: requestClientApplication=Windows NT 10.
+    message|contains|cased: requestClientApplication=Mozilla/5.0 (compatible; BLEXBot/
   s95_selection_2:
-    message|contains|cased: Edge/12.
-  s95_selection_3:
     message|contains|cased: Zscaler
-  s95_selection_4:
+  s95_selection_3:
     message|contains|cased: act=Allowed
-  s95_selection_5:
+  s95_selection_4:
     appname|cased: CEF
   s96_selection_1:
-    message|contains|cased: "requestClientApplication=opera/8.11\r\n"
+    message|contains|cased: requestClientApplication=Windows NT 10.
   s96_selection_2:
-    message|contains|cased: Zscaler
+    message|contains|cased: Edge/12.
   s96_selection_3:
-    message|contains|cased: act=Allowed
+    message|contains|cased: Zscaler
   s96_selection_4:
+    message|contains|cased: act=Allowed
+  s96_selection_5:
     appname|cased: CEF
   s97_selection_1:
-    message|contains|cased: requestClientApplication=Gator
+    message|contains|cased: "requestClientApplication=opera/8.11\r\n"
   s97_selection_2:
     message|contains|cased: Zscaler
   s97_selection_3:
@@ -2412,7 +2418,7 @@ detection:
   s97_selection_4:
     appname|cased: CEF
   s98_selection_1:
-    message|contains|cased: requestClientApplication=IST
+    message|contains|cased: requestClientApplication=Gator
   s98_selection_2:
     message|contains|cased: Zscaler
   s98_selection_3:
@@ -2420,7 +2426,7 @@ detection:
   s98_selection_4:
     appname|cased: CEF
   s99_selection_1:
-    message|contains|cased: requestClientApplication=Poller
+    message|contains|cased: requestClientApplication=IST
   s99_selection_2:
     message|contains|cased: Zscaler
   s99_selection_3:
@@ -2428,7 +2434,7 @@ detection:
   s99_selection_4:
     appname|cased: CEF
   s100_selection_1:
-    message|contains|cased: requestClientApplication=SideStep
+    message|contains|cased: requestClientApplication=Poller
   s100_selection_2:
     message|contains|cased: Zscaler
   s100_selection_3:
@@ -2436,7 +2442,7 @@ detection:
   s100_selection_4:
     appname|cased: CEF
   s101_selection_1:
-    message|contains|cased: requestClientApplication=SAIv
+    message|contains|cased: requestClientApplication=SideStep
   s101_selection_2:
     message|contains|cased: Zscaler
   s101_selection_3:
@@ -2444,15 +2450,15 @@ detection:
   s101_selection_4:
     appname|cased: CEF
   s102_selection_1:
-    message|contains|cased: requestClientApplication=WORKED
+    message|contains|cased: requestClientApplication=SAIv
   s102_selection_2:
     message|contains|cased: Zscaler
   s102_selection_3:
     message|contains|cased: act=Allowed
   s102_selection_4:
     appname|cased: CEF
-  s103_filter_1:
-    message|contains|cased: cs4=Clean Transaction
+  s103_selection_1:
+    message|contains|cased: requestClientApplication=WORKED
   s103_selection_2:
     message|contains|cased: Zscaler
   s103_selection_3:
@@ -2460,22 +2466,30 @@ detection:
   s103_selection_4:
     appname|cased: CEF
   s104_filter_1:
-    message|contains|cased: cs5=None
+    message|contains|cased: cs4=Clean Transaction
   s104_selection_2:
     message|contains|cased: Zscaler
   s104_selection_3:
     message|contains|cased: act=Allowed
-  s104_filter_4:
-    message|contains|cased: Mobile Device information leakage
-  s104_filter_5:
-    message|contains|cased: Mobile PII Information Leakage
-  s104_selection_6:
+  s104_selection_4:
     appname|cased: CEF
-  s105_selection_1:
-    appname|cased: darktrace
+  s105_filter_1:
+    message|contains|cased: cs5=None
   s105_selection_2:
+    message|contains|cased: Zscaler
+  s105_selection_3:
+    message|contains|cased: act=Allowed
+  s105_filter_4:
+    message|contains|cased: Mobile Device information leakage
+  s105_filter_5:
+    message|contains|cased: Mobile PII Information Leakage
+  s105_selection_6:
+    appname|cased: CEF
+  s106_selection_1:
+    appname|cased: darktrace
+  s106_selection_2:
     message|re: ^.+}$
-  s105_filter_3:
+  s106_filter_3:
     message|contains|cased:
       - 'Anomalous Connection::'
       - 'Anomalous File::'
@@ -2488,208 +2502,198 @@ detection:
       - 'System::'
       - 'Unusual Activity::'
       - 'User::'
-  s105_filter_4:
+  s106_filter_4:
     message|contains|cased: config_alert_name
-  s106_selection_1:
-    appname|cased: darktrace
-  s106_selection_2:
-    message|contains|cased: 'Anomalous Connection::'
   s107_selection_1:
     appname|cased: darktrace
   s107_selection_2:
-    message|contains|cased: 'Anomalous File::'
+    message|contains|cased: 'Anomalous Connection::'
   s108_selection_1:
     appname|cased: darktrace
   s108_selection_2:
-    message|contains|cased: 'Anomalous Server Activity::'
+    message|contains|cased: 'Anomalous File::'
   s109_selection_1:
     appname|cased: darktrace
   s109_selection_2:
-    message|contains|cased: 'Antigena::'
+    message|contains|cased: 'Anomalous Server Activity::'
   s110_selection_1:
     appname|cased: darktrace
   s110_selection_2:
-    message|contains|cased: 'Compliance::'
+    message|contains|cased: 'Antigena::'
   s111_selection_1:
     appname|cased: darktrace
   s111_selection_2:
-    message|contains|cased: 'Compromise::'
+    message|contains|cased: 'Compliance::'
   s112_selection_1:
     appname|cased: darktrace
   s112_selection_2:
-    message|contains|cased: 'Device::'
+    message|contains|cased: 'Compromise::'
   s113_selection_1:
     appname|cased: darktrace
   s113_selection_2:
-    message|contains|cased: 'Infrastructure::'
+    message|contains|cased: 'Device::'
   s114_selection_1:
     appname|cased: darktrace
   s114_selection_2:
-    message|contains|cased: 'System::'
+    message|contains|cased: 'Infrastructure::'
   s115_selection_1:
     appname|cased: darktrace
   s115_selection_2:
-    message|contains|cased: 'Unusual Activity::'
+    message|contains|cased: 'System::'
   s116_selection_1:
     appname|cased: darktrace
   s116_selection_2:
-    message|contains|cased: 'User::'
+    message|contains|cased: 'Unusual Activity::'
   s117_selection_1:
     appname|cased: darktrace
   s117_selection_2:
-    message|contains|cased: Anomalous Connection
-  s117_selection_3:
-    message|contains|cased: Active Remote Desktop Tunnel
+    message|contains|cased: 'User::'
   s118_selection_1:
     appname|cased: darktrace
   s118_selection_2:
     message|contains|cased: Anomalous Connection
   s118_selection_3:
-    message|contains|cased: Application Protocol on Uncommon Port
+    message|contains|cased: Active Remote Desktop Tunnel
   s119_selection_1:
     appname|cased: darktrace
   s119_selection_2:
     message|contains|cased: Anomalous Connection
   s119_selection_3:
-    message|contains|cased: Data Sent to Rare Domain
+    message|contains|cased: Application Protocol on Uncommon Port
   s120_selection_1:
     appname|cased: darktrace
   s120_selection_2:
     message|contains|cased: Anomalous Connection
   s120_selection_3:
-    message|contains|cased: IPSec VPN to Rare IP
+    message|contains|cased: Data Sent to Rare Domain
   s121_selection_1:
     appname|cased: darktrace
   s121_selection_2:
     message|contains|cased: Anomalous Connection
   s121_selection_3:
-    message|contains|cased: Lots of New Connections
+    message|contains|cased: IPSec VPN to Rare IP
   s122_selection_1:
     appname|cased: darktrace
   s122_selection_2:
     message|contains|cased: Anomalous Connection
   s122_selection_3:
-    message|contains|cased: Low and Slow Exfiltration to IP
+    message|contains|cased: Lots of New Connections
   s123_selection_1:
     appname|cased: darktrace
   s123_selection_2:
     message|contains|cased: Anomalous Connection
   s123_selection_3:
-    message|contains|cased: Multiple Connections to New External UDP Port
+    message|contains|cased: Low and Slow Exfiltration to IP
   s124_selection_1:
     appname|cased: darktrace
   s124_selection_2:
     message|contains|cased: Anomalous Connection
   s124_selection_3:
-    message|contains|cased: Multiple HTTP POSTs to Rare Hostname
+    message|contains|cased: Multiple Connections to New External UDP Port
   s125_selection_1:
     appname|cased: darktrace
   s125_selection_2:
     message|contains|cased: Anomalous Connection
   s125_selection_3:
-    message|contains|cased: New User Agent to IP Without Hostname
+    message|contains|cased: Multiple HTTP POSTs to Rare Hostname
   s126_selection_1:
     appname|cased: darktrace
   s126_selection_2:
     message|contains|cased: Anomalous Connection
   s126_selection_3:
-    message|contains|cased: Possible IDN Homograph Attack
+    message|contains|cased: New User Agent to IP Without Hostname
   s127_selection_1:
     appname|cased: darktrace
   s127_selection_2:
     message|contains|cased: Anomalous Connection
   s127_selection_3:
-    message|contains|cased: Posting HTTP to IP Without Hostname
+    message|contains|cased: Possible IDN Homograph Attack
   s128_selection_1:
     appname|cased: darktrace
   s128_selection_2:
     message|contains|cased: Anomalous Connection
   s128_selection_3:
-    message|contains|cased: Rare External SSL Self-Signed
+    message|contains|cased: Posting HTTP to IP Without Hostname
   s129_selection_1:
     appname|cased: darktrace
   s129_selection_2:
     message|contains|cased: Anomalous Connection
   s129_selection_3:
-    message|contains|cased: Suspicious Expired SSL
+    message|contains|cased: Rare External SSL Self-Signed
   s130_selection_1:
     appname|cased: darktrace
   s130_selection_2:
     message|contains|cased: Anomalous Connection
   s130_selection_3:
-    message|contains|cased: Suspicious Self-Signed SSL
+    message|contains|cased: Suspicious Expired SSL
   s131_selection_1:
     appname|cased: darktrace
   s131_selection_2:
     message|contains|cased: Anomalous Connection
   s131_selection_3:
-    message|contains|cased: Unusual Admin RDP Session
+    message|contains|cased: Suspicious Self-Signed SSL
   s132_selection_1:
     appname|cased: darktrace
   s132_selection_2:
     message|contains|cased: Anomalous Connection
   s132_selection_3:
-    message|contains|cased: Unusual Incoming Data Volume
+    message|contains|cased: Unusual Admin RDP Session
   s133_selection_1:
     appname|cased: darktrace
   s133_selection_2:
     message|contains|cased: Anomalous Connection
   s133_selection_3:
-    message|contains|cased: Unusual Internal Remote Desktop
+    message|contains|cased: Unusual Incoming Data Volume
   s134_selection_1:
     appname|cased: darktrace
   s134_selection_2:
-    message|contains|cased: Anomalous File
+    message|contains|cased: Anomalous Connection
   s134_selection_3:
-    message|contains|cased: Anomalous Octet Stream
+    message|contains|cased: Unusual Internal Remote Desktop
   s135_selection_1:
     appname|cased: darktrace
   s135_selection_2:
     message|contains|cased: Anomalous File
   s135_selection_3:
-    message|contains|cased: Apple Application from Rare External Location
+    message|contains|cased: Anomalous Octet Stream
   s136_selection_1:
     appname|cased: darktrace
   s136_selection_2:
     message|contains|cased: Anomalous File
   s136_selection_3:
-    message|contains|cased: FTP Executable from Rare External Location
+    message|contains|cased: Apple Application from Rare External Location
   s137_selection_1:
     appname|cased: darktrace
   s137_selection_2:
     message|contains|cased: Anomalous File
   s137_selection_3:
-    message|contains|cased: Internal
-  s137_selection_4:
-    message|contains|cased: Unusual SMB Script Write
+    message|contains|cased: FTP Executable from Rare External Location
   s138_selection_1:
     appname|cased: darktrace
   s138_selection_2:
     message|contains|cased: Anomalous File
   s138_selection_3:
-    message|contains|cased: Zip or Gzip from Rare External Location
+    message|contains|cased: Internal
+  s138_selection_4:
+    message|contains|cased: Unusual SMB Script Write
   s139_selection_1:
     appname|cased: darktrace
   s139_selection_2:
-    message|contains|cased: Anomalous Server Activity
+    message|contains|cased: Anomalous File
   s139_selection_3:
-    message|contains|cased: Outgoing from Server
+    message|contains|cased: Zip or Gzip from Rare External Location
   s140_selection_1:
     appname|cased: darktrace
   s140_selection_2:
     message|contains|cased: Anomalous Server Activity
   s140_selection_3:
-    message|contains|cased: Server Activity on New Non-Standard Port
+    message|contains|cased: Outgoing from Server
   s141_selection_1:
     appname|cased: darktrace
   s141_selection_2:
-    message|contains|cased: Antigena
+    message|contains|cased: Anomalous Server Activity
   s141_selection_3:
-    message|contains|cased: Network
-  s141_selection_4:
-    message|contains|cased: Compliance
-  s141_selection_5:
-    message|contains|cased: Antigena Tor Block
+    message|contains|cased: Server Activity on New Non-Standard Port
   s142_selection_1:
     appname|cased: darktrace
   s142_selection_2:
@@ -2697,9 +2701,9 @@ detection:
   s142_selection_3:
     message|contains|cased: Network
   s142_selection_4:
-    message|contains|cased: Insider Threat
+    message|contains|cased: Compliance
   s142_selection_5:
-    message|contains|cased: Antigena Internal Anomalous File Activity
+    message|contains|cased: Antigena Tor Block
   s143_selection_1:
     appname|cased: darktrace
   s143_selection_2:
@@ -2707,216 +2711,226 @@ detection:
   s143_selection_3:
     message|contains|cased: Network
   s143_selection_4:
-    message|contains|cased: Significant Anomaly
+    message|contains|cased: Insider Threat
   s143_selection_5:
-    message|contains|cased: Antigena Breaches Over Time Block
+    message|contains|cased: Antigena Internal Anomalous File Activity
   s144_selection_1:
     appname|cased: darktrace
   s144_selection_2:
-    message|contains|cased: Compliance
+    message|contains|cased: Antigena
   s144_selection_3:
-    message|contains|cased: BitTorrent
+    message|contains|cased: Network
+  s144_selection_4:
+    message|contains|cased: Significant Anomaly
+  s144_selection_5:
+    message|contains|cased: Antigena Breaches Over Time Block
   s145_selection_1:
     appname|cased: darktrace
   s145_selection_2:
     message|contains|cased: Compliance
   s145_selection_3:
-    message|contains|cased: External Windows Communications
+    message|contains|cased: BitTorrent
   s146_selection_1:
     appname|cased: darktrace
   s146_selection_2:
     message|contains|cased: Compliance
   s146_selection_3:
-    message|contains|cased: Incoming Remote Desktop
+    message|contains|cased: External Windows Communications
   s147_selection_1:
     appname|cased: darktrace
   s147_selection_2:
     message|contains|cased: Compliance
   s147_selection_3:
-    message|contains|cased: Multiple SIP Requests From Rare
+    message|contains|cased: Incoming Remote Desktop
   s148_selection_1:
     appname|cased: darktrace
   s148_selection_2:
     message|contains|cased: Compliance
   s148_selection_3:
-    message|contains|cased: Possible DNS Over HTTPS/TLS
+    message|contains|cased: Multiple SIP Requests From Rare
   s149_selection_1:
     appname|cased: darktrace
   s149_selection_2:
     message|contains|cased: Compliance
   s149_selection_3:
-    message|contains|cased: Possible Unencrypted Password File On Server
+    message|contains|cased: Possible DNS Over HTTPS/TLS
   s150_selection_1:
     appname|cased: darktrace
   s150_selection_2:
     message|contains|cased: Compliance
   s150_selection_3:
-    message|contains|cased: Sensitive Terms in New or Unusual SMB Connection
+    message|contains|cased: Possible Unencrypted Password File On Server
   s151_selection_1:
     appname|cased: darktrace
   s151_selection_2:
     message|contains|cased: Compliance
   s151_selection_3:
-    message|contains|cased: SSH to Rare External Destination
+    message|contains|cased: Sensitive Terms in New or Unusual SMB Connection
   s152_selection_1:
     appname|cased: darktrace
   s152_selection_2:
-    message|contains|cased: Compromise
+    message|contains|cased: Compliance
   s152_selection_3:
-    message|contains|cased: Agent Beacon
+    message|contains|cased: SSH to Rare External Destination
   s153_selection_1:
     appname|cased: darktrace
   s153_selection_2:
     message|contains|cased: Compromise
   s153_selection_3:
-    message|contains|cased: Beaconing Activity To External Rare
+    message|contains|cased: Agent Beacon
   s154_selection_1:
     appname|cased: darktrace
   s154_selection_2:
     message|contains|cased: Compromise
   s154_selection_3:
-    message|contains|cased: DGA Beacon
+    message|contains|cased: Beaconing Activity To External Rare
   s155_selection_1:
     appname|cased: darktrace
   s155_selection_2:
     message|contains|cased: Compromise
   s155_selection_3:
-    message|contains|cased: High Volume of Connections with Beacon Score
+    message|contains|cased: DGA Beacon
   s156_selection_1:
     appname|cased: darktrace
   s156_selection_2:
     message|contains|cased: Compromise
   s156_selection_3:
-    message|contains|cased: Repeating Connections Over 4 Days
+    message|contains|cased: High Volume of Connections with Beacon Score
   s157_selection_1:
     appname|cased: darktrace
   s157_selection_2:
     message|contains|cased: Compromise
   s157_selection_3:
-    message|contains|cased:
-      - Sustained SSL or HTTP Increase
-      - SSL or HTTP Beacon
+    message|contains|cased: Repeating Connections Over 4 Days
   s158_selection_1:
     appname|cased: darktrace
   s158_selection_2:
-    message|contains|cased: Device
+    message|contains|cased: Compromise
   s158_selection_3:
-    message|contains|cased: Anomalous NTLM Bruteforce
+    message|contains|cased:
+      - Sustained SSL or HTTP Increase
+      - SSL or HTTP Beacon
   s159_selection_1:
     appname|cased: darktrace
   s159_selection_2:
     message|contains|cased: Device
   s159_selection_3:
-    message|contains|cased: Attack and Recon Tools
+    message|contains|cased: Anomalous NTLM Bruteforce
   s160_selection_1:
     appname|cased: darktrace
   s160_selection_2:
     message|contains|cased: Device
   s160_selection_3:
-    message|contains|cased: EXE Files Distributed to Multiple Devices
+    message|contains|cased: Attack and Recon Tools
   s161_selection_1:
     appname|cased: darktrace
   s161_selection_2:
     message|contains|cased: Device
   s161_selection_3:
-    message|contains|cased: Large Number of Connections to New Endpoints
+    message|contains|cased: EXE Files Distributed to Multiple Devices
   s162_selection_1:
     appname|cased: darktrace
   s162_selection_2:
     message|contains|cased: Device
   s162_selection_3:
-    message|contains|cased: Long Agent Connection to New Endpoint
+    message|contains|cased: Large Number of Connections to New Endpoints
   s163_selection_1:
     appname|cased: darktrace
   s163_selection_2:
     message|contains|cased: Device
   s163_selection_3:
-    message|contains|cased: Network Scan - Low Anomaly Score
+    message|contains|cased: Long Agent Connection to New Endpoint
   s164_selection_1:
     appname|cased: darktrace
   s164_selection_2:
     message|contains|cased: Device
   s164_selection_3:
-    message|contains|cased: New User Agent and New IP
+    message|contains|cased: Network Scan - Low Anomaly Score
   s165_selection_1:
     appname|cased: darktrace
   s165_selection_2:
     message|contains|cased: Device
   s165_selection_3:
-    message|contains|cased: Possible Active Directory Enumeration
+    message|contains|cased: New User Agent and New IP
   s166_selection_1:
     appname|cased: darktrace
   s166_selection_2:
     message|contains|cased: Device
   s166_selection_3:
-    message|contains|cased: Reverse DNS Sweep
+    message|contains|cased: Possible Active Directory Enumeration
   s167_selection_1:
     appname|cased: darktrace
   s167_selection_2:
     message|contains|cased: Device
   s167_selection_3:
-    message|contains|cased: Suspicious SMB Query
+    message|contains|cased: Reverse DNS Sweep
   s168_selection_1:
     appname|cased: darktrace
   s168_selection_2:
     message|contains|cased: Device
   s168_selection_3:
-    message|contains|cased: Unusual External DNS
+    message|contains|cased: Suspicious SMB Query
   s169_selection_1:
     appname|cased: darktrace
   s169_selection_2:
-    message|contains|cased: Infrastructure
+    message|contains|cased: Device
   s169_selection_3:
-    message|contains|cased: Proxy Server Change
+    message|contains|cased: Unusual External DNS
   s170_selection_1:
     appname|cased: darktrace
   s170_selection_2:
-    message|contains|cased: System
+    message|contains|cased: Infrastructure
   s170_selection_3:
-    message|contains|cased: Internal Domain Name Change
+    message|contains|cased: Proxy Server Change
   s171_selection_1:
     appname|cased: darktrace
   s171_selection_2:
-    message|contains|cased: Unusual Activity
+    message|contains|cased: System
   s171_selection_3:
-    message|contains|cased: Anomalous SMB Delete Volume
+    message|contains|cased: Internal Domain Name Change
   s172_selection_1:
-    message|contains|cased: Unusual Activity
-  s172_selection_2:
     appname|cased: darktrace
+  s172_selection_2:
+    message|contains|cased: Unusual Activity
   s172_selection_3:
-    message|contains|cased:
-      - Enhanced Unusual External Data Transfer
-      - Unusual File Storage Data Transfer
+    message|contains|cased: Anomalous SMB Delete Volume
   s173_selection_1:
     message|contains|cased: Unusual Activity
   s173_selection_2:
-    message|contains|cased: Internal Data Transfer
+    appname|cased: darktrace
   s173_selection_3:
-    appname|cased: darktrace
+    message|contains|cased:
+      - Enhanced Unusual External Data Transfer
+      - Unusual File Storage Data Transfer
   s174_selection_1:
-    appname|cased: darktrace
-  s174_selection_2:
     message|contains|cased: Unusual Activity
+  s174_selection_2:
+    message|contains|cased: Internal Data Transfer
   s174_selection_3:
-    message|contains|cased: SMB Access Failures
+    appname|cased: darktrace
   s175_selection_1:
     appname|cased: darktrace
   s175_selection_2:
     message|contains|cased: Unusual Activity
   s175_selection_3:
-    message|contains|cased: Unusual Activity from Re-Activated Device
+    message|contains|cased: SMB Access Failures
   s176_selection_1:
     appname|cased: darktrace
   s176_selection_2:
-    message|contains|cased: User
+    message|contains|cased: Unusual Activity
   s176_selection_3:
-    message|contains|cased: Kerberos Password Bruteforce
+    message|contains|cased: Unusual Activity from Re-Activated Device
   s177_selection_1:
     appname|cased: darktrace
   s177_selection_2:
     message|contains|cased: User
   s177_selection_3:
+    message|contains|cased: Kerberos Password Bruteforce
+  s178_selection_1:
+    appname|cased: darktrace
+  s178_selection_2:
+    message|contains|cased: User
+  s178_selection_3:
     message|contains|cased: New Admin Credentials on Client
   condition: (s1_selection_1 and s1_selection_2 and s1_selection_3) or (s2_selection_1 and s2_selection_2)
     or (s3_selection_1 and s3_selection_2) or (s4_selection_1 and s4_selection_2) or (s5_selection_1 and
@@ -2943,102 +2957,103 @@ detection:
     and s45_selection_2 and s45_selection_3 and s45_selection_4) or (s46_selection_1 and s46_selection_2
     and s46_selection_3 and s46_selection_4) or (s47_selection_1 and s47_selection_2 and s47_selection_3
     and s47_selection_4) or (s48_selection_1 and s48_selection_2 and s48_selection_3 and s48_selection_4)
-    or (s49_selection_1 and s49_selection_2 and s49_selection_3 and s49_selection_4) or (s50_selection_1
-    and s50_selection_2 and s50_selection_3 and s50_selection_4) or (s51_selection_1 and s51_selection_2
-    and s51_selection_3 and s51_selection_4) or (s52_selection_1 and s52_selection_2 and s52_selection_3
-    and s52_selection_4) or (s53_selection_1 and s53_selection_2 and s53_selection_3 and s53_selection_4)
-    or (s54_selection_1 and s54_selection_2 and s54_selection_3 and s54_selection_4) or (s55_selection_1
-    and s55_selection_2 and s55_selection_3 and s55_selection_4) or (s56_selection_1 and s56_selection_2
-    and s56_selection_3 and s56_selection_4) or (s57_selection_1 and s57_selection_2 and s57_selection_3
-    and s57_selection_4) or (s58_selection_1 and s58_selection_2 and s58_selection_3 and s58_selection_4
-    and s58_selection_5) or (s59_selection_1 and s59_selection_2 and s59_selection_3 and s59_selection_4)
-    or (s60_selection_1 and s60_selection_2 and s60_selection_3 and s60_selection_4) or (s61_selection_1
-    and s61_selection_2 and s61_selection_3 and s61_selection_4) or (s62_selection_1 and s62_selection_2
-    and s62_selection_3 and s62_selection_4) or (s63_selection_1 and s63_selection_2 and s63_selection_3
-    and s63_selection_4) or (s64_selection_1 and s64_selection_2 and s64_selection_3 and s64_selection_4)
-    or (s65_selection_1 and s65_selection_2 and s65_selection_3 and s65_selection_4) or (s66_selection_1
-    and s66_selection_2 and s66_selection_3 and s66_selection_4) or (s67_selection_1 and s67_selection_2
-    and s67_selection_3 and s67_selection_4) or (s68_selection_1 and s68_selection_2 and s68_selection_3
-    and s68_selection_4) or (s69_selection_1 and s69_selection_2 and s69_selection_3 and s69_selection_4)
-    or (s70_selection_1 and s70_selection_2 and s70_selection_3 and s70_selection_4) or (s71_selection_1
-    and s71_selection_2 and s71_selection_3 and s71_selection_4 and s71_selection_5) or (s72_selection_1
-    and s72_selection_2 and s72_selection_3 and s72_selection_4 and s72_selection_5) or (s73_selection_1
-    and s73_selection_2 and s73_selection_3 and s73_selection_4) or (s74_selection_1 and s74_selection_2
-    and s74_selection_3 and s74_selection_4) or (s75_selection_1 and s75_selection_2 and s75_selection_3
-    and s75_selection_4) or (s76_selection_1 and s76_selection_2 and s76_selection_3 and s76_selection_4)
-    or (s77_selection_1 and s77_selection_2 and s77_selection_3 and s77_selection_4) or (s78_selection_1
-    and s78_selection_2 and s78_selection_3 and s78_selection_4) or (s79_selection_1 and s79_selection_2
-    and s79_selection_3 and s79_selection_4) or (s80_selection_1 and s80_selection_2 and s80_selection_3
-    and s80_selection_4) or (s81_selection_1 and s81_selection_2 and s81_selection_3 and s81_selection_4)
-    or (s82_selection_1 and s82_selection_2 and s82_selection_3 and s82_selection_4) or (s83_selection_1
-    and s83_selection_2 and s83_selection_3 and s83_selection_4) or (s84_selection_1 and s84_selection_2
-    and s84_selection_3 and s84_selection_4) or (s85_selection_2 and s85_selection_3 and s85_selection_4
-    and s85_selection_5 and not s85_filter_1) or (s86_selection_1 and s86_selection_2 and s86_selection_3
-    and s86_selection_4) or (s87_selection_1 and s87_selection_2 and s87_selection_3 and s87_selection_4)
-    or (s88_selection_1 and s88_selection_2 and s88_selection_3 and s88_selection_4) or (s89_selection_1
-    and s89_selection_2 and s89_selection_3 and s89_selection_4) or (s90_selection_1 and s90_selection_2
-    and s90_selection_3 and s90_selection_4) or (s91_selection_1 and s91_selection_2 and s91_selection_3
-    and s91_selection_4) or (s92_selection_1 and s92_selection_2 and s92_selection_3 and s92_selection_4)
-    or (s93_selection_1 and s93_selection_2 and s93_selection_3 and s93_selection_4) or (s94_selection_1
-    and s94_selection_2 and s94_selection_3 and s94_selection_4) or (s95_selection_1 and s95_selection_2
-    and s95_selection_3 and s95_selection_4 and s95_selection_5) or (s96_selection_1 and s96_selection_2
-    and s96_selection_3 and s96_selection_4) or (s97_selection_1 and s97_selection_2 and s97_selection_3
-    and s97_selection_4) or (s98_selection_1 and s98_selection_2 and s98_selection_3 and s98_selection_4)
-    or (s99_selection_1 and s99_selection_2 and s99_selection_3 and s99_selection_4) or (s100_selection_1
-    and s100_selection_2 and s100_selection_3 and s100_selection_4) or (s101_selection_1 and s101_selection_2
-    and s101_selection_3 and s101_selection_4) or (s102_selection_1 and s102_selection_2 and s102_selection_3
-    and s102_selection_4) or (s103_selection_2 and s103_selection_3 and s103_selection_4 and not s103_filter_1)
-    or (s104_selection_2 and s104_selection_3 and s104_selection_6 and not (s104_filter_1 or s104_filter_4
-    or s104_filter_5)) or (s105_selection_1 and s105_selection_2 and not (s105_filter_3 or s105_filter_4))
-    or (s106_selection_1 and s106_selection_2) or (s107_selection_1 and s107_selection_2) or (s108_selection_1
+    or (s49_selection_1 and s49_selection_4 and s49_selection_5 and s49_selection_6 and s49_selection_7
+    and not (s49_filter_2 or s49_filter_3)) or (s50_selection_1 and s50_selection_2 and s50_selection_3
+    and s50_selection_4) or (s51_selection_1 and s51_selection_2 and s51_selection_3 and s51_selection_4)
+    or (s52_selection_1 and s52_selection_2 and s52_selection_3 and s52_selection_4) or (s53_selection_1
+    and s53_selection_2 and s53_selection_3 and s53_selection_4) or (s54_selection_1 and s54_selection_2
+    and s54_selection_3 and s54_selection_4) or (s55_selection_1 and s55_selection_2 and s55_selection_3
+    and s55_selection_4) or (s56_selection_1 and s56_selection_2 and s56_selection_3 and s56_selection_4)
+    or (s57_selection_1 and s57_selection_2 and s57_selection_3 and s57_selection_4) or (s58_selection_1
+    and s58_selection_2 and s58_selection_3 and s58_selection_4) or (s59_selection_1 and s59_selection_2
+    and s59_selection_3 and s59_selection_4 and s59_selection_5) or (s60_selection_1 and s60_selection_2
+    and s60_selection_3 and s60_selection_4) or (s61_selection_1 and s61_selection_2 and s61_selection_3
+    and s61_selection_4) or (s62_selection_1 and s62_selection_2 and s62_selection_3 and s62_selection_4)
+    or (s63_selection_1 and s63_selection_2 and s63_selection_3 and s63_selection_4) or (s64_selection_1
+    and s64_selection_2 and s64_selection_3 and s64_selection_4) or (s65_selection_1 and s65_selection_2
+    and s65_selection_3 and s65_selection_4) or (s66_selection_1 and s66_selection_2 and s66_selection_3
+    and s66_selection_4) or (s67_selection_1 and s67_selection_2 and s67_selection_3 and s67_selection_4)
+    or (s68_selection_1 and s68_selection_2 and s68_selection_3 and s68_selection_4) or (s69_selection_1
+    and s69_selection_2 and s69_selection_3 and s69_selection_4) or (s70_selection_1 and s70_selection_2
+    and s70_selection_3 and s70_selection_4) or (s71_selection_1 and s71_selection_2 and s71_selection_3
+    and s71_selection_4) or (s72_selection_1 and s72_selection_2 and s72_selection_3 and s72_selection_4
+    and s72_selection_5) or (s73_selection_1 and s73_selection_2 and s73_selection_3 and s73_selection_4
+    and s73_selection_5) or (s74_selection_1 and s74_selection_2 and s74_selection_3 and s74_selection_4)
+    or (s75_selection_1 and s75_selection_2 and s75_selection_3 and s75_selection_4) or (s76_selection_1
+    and s76_selection_2 and s76_selection_3 and s76_selection_4) or (s77_selection_1 and s77_selection_2
+    and s77_selection_3 and s77_selection_4) or (s78_selection_1 and s78_selection_2 and s78_selection_3
+    and s78_selection_4) or (s79_selection_1 and s79_selection_2 and s79_selection_3 and s79_selection_4)
+    or (s80_selection_1 and s80_selection_2 and s80_selection_3 and s80_selection_4) or (s81_selection_1
+    and s81_selection_2 and s81_selection_3 and s81_selection_4) or (s82_selection_1 and s82_selection_2
+    and s82_selection_3 and s82_selection_4) or (s83_selection_1 and s83_selection_2 and s83_selection_3
+    and s83_selection_4) or (s84_selection_1 and s84_selection_2 and s84_selection_3 and s84_selection_4)
+    or (s85_selection_1 and s85_selection_2 and s85_selection_3 and s85_selection_4) or (s86_selection_2
+    and s86_selection_3 and s86_selection_4 and s86_selection_5 and not s86_filter_1) or (s87_selection_1
+    and s87_selection_2 and s87_selection_3 and s87_selection_4) or (s88_selection_1 and s88_selection_2
+    and s88_selection_3 and s88_selection_4) or (s89_selection_1 and s89_selection_2 and s89_selection_3
+    and s89_selection_4) or (s90_selection_1 and s90_selection_2 and s90_selection_3 and s90_selection_4)
+    or (s91_selection_1 and s91_selection_2 and s91_selection_3 and s91_selection_4) or (s92_selection_1
+    and s92_selection_2 and s92_selection_3 and s92_selection_4) or (s93_selection_1 and s93_selection_2
+    and s93_selection_3 and s93_selection_4) or (s94_selection_1 and s94_selection_2 and s94_selection_3
+    and s94_selection_4) or (s95_selection_1 and s95_selection_2 and s95_selection_3 and s95_selection_4)
+    or (s96_selection_1 and s96_selection_2 and s96_selection_3 and s96_selection_4 and s96_selection_5)
+    or (s97_selection_1 and s97_selection_2 and s97_selection_3 and s97_selection_4) or (s98_selection_1
+    and s98_selection_2 and s98_selection_3 and s98_selection_4) or (s99_selection_1 and s99_selection_2
+    and s99_selection_3 and s99_selection_4) or (s100_selection_1 and s100_selection_2 and s100_selection_3
+    and s100_selection_4) or (s101_selection_1 and s101_selection_2 and s101_selection_3 and s101_selection_4)
+    or (s102_selection_1 and s102_selection_2 and s102_selection_3 and s102_selection_4) or (s103_selection_1
+    and s103_selection_2 and s103_selection_3 and s103_selection_4) or (s104_selection_2 and s104_selection_3
+    and s104_selection_4 and not s104_filter_1) or (s105_selection_2 and s105_selection_3 and s105_selection_6
+    and not (s105_filter_1 or s105_filter_4 or s105_filter_5)) or (s106_selection_1 and s106_selection_2
+    and not (s106_filter_3 or s106_filter_4)) or (s107_selection_1 and s107_selection_2) or (s108_selection_1
     and s108_selection_2) or (s109_selection_1 and s109_selection_2) or (s110_selection_1 and s110_selection_2)
     or (s111_selection_1 and s111_selection_2) or (s112_selection_1 and s112_selection_2) or (s113_selection_1
     and s113_selection_2) or (s114_selection_1 and s114_selection_2) or (s115_selection_1 and s115_selection_2)
-    or (s116_selection_1 and s116_selection_2) or (s117_selection_1 and s117_selection_2 and s117_selection_3)
-    or (s118_selection_1 and s118_selection_2 and s118_selection_3) or (s119_selection_1 and s119_selection_2
-    and s119_selection_3) or (s120_selection_1 and s120_selection_2 and s120_selection_3) or (s121_selection_1
-    and s121_selection_2 and s121_selection_3) or (s122_selection_1 and s122_selection_2 and s122_selection_3)
-    or (s123_selection_1 and s123_selection_2 and s123_selection_3) or (s124_selection_1 and s124_selection_2
-    and s124_selection_3) or (s125_selection_1 and s125_selection_2 and s125_selection_3) or (s126_selection_1
-    and s126_selection_2 and s126_selection_3) or (s127_selection_1 and s127_selection_2 and s127_selection_3)
-    or (s128_selection_1 and s128_selection_2 and s128_selection_3) or (s129_selection_1 and s129_selection_2
-    and s129_selection_3) or (s130_selection_1 and s130_selection_2 and s130_selection_3) or (s131_selection_1
-    and s131_selection_2 and s131_selection_3) or (s132_selection_1 and s132_selection_2 and s132_selection_3)
-    or (s133_selection_1 and s133_selection_2 and s133_selection_3) or (s134_selection_1 and s134_selection_2
-    and s134_selection_3) or (s135_selection_1 and s135_selection_2 and s135_selection_3) or (s136_selection_1
-    and s136_selection_2 and s136_selection_3) or (s137_selection_1 and s137_selection_2 and s137_selection_3
-    and s137_selection_4) or (s138_selection_1 and s138_selection_2 and s138_selection_3) or (s139_selection_1
-    and s139_selection_2 and s139_selection_3) or (s140_selection_1 and s140_selection_2 and s140_selection_3)
-    or (s141_selection_1 and s141_selection_2 and s141_selection_3 and s141_selection_4 and s141_selection_5)
-    or (s142_selection_1 and s142_selection_2 and s142_selection_3 and s142_selection_4 and s142_selection_5)
-    or (s143_selection_1 and s143_selection_2 and s143_selection_3 and s143_selection_4 and s143_selection_5)
-    or (s144_selection_1 and s144_selection_2 and s144_selection_3) or (s145_selection_1 and s145_selection_2
-    and s145_selection_3) or (s146_selection_1 and s146_selection_2 and s146_selection_3) or (s147_selection_1
-    and s147_selection_2 and s147_selection_3) or (s148_selection_1 and s148_selection_2 and s148_selection_3)
-    or (s149_selection_1 and s149_selection_2 and s149_selection_3) or (s150_selection_1 and s150_selection_2
-    and s150_selection_3) or (s151_selection_1 and s151_selection_2 and s151_selection_3) or (s152_selection_1
-    and s152_selection_2 and s152_selection_3) or (s153_selection_1 and s153_selection_2 and s153_selection_3)
-    or (s154_selection_1 and s154_selection_2 and s154_selection_3) or (s155_selection_1 and s155_selection_2
-    and s155_selection_3) or (s156_selection_1 and s156_selection_2 and s156_selection_3) or (s157_selection_1
-    and s157_selection_2 and s157_selection_3) or (s158_selection_1 and s158_selection_2 and s158_selection_3)
-    or (s159_selection_1 and s159_selection_2 and s159_selection_3) or (s160_selection_1 and s160_selection_2
-    and s160_selection_3) or (s161_selection_1 and s161_selection_2 and s161_selection_3) or (s162_selection_1
-    and s162_selection_2 and s162_selection_3) or (s163_selection_1 and s163_selection_2 and s163_selection_3)
-    or (s164_selection_1 and s164_selection_2 and s164_selection_3) or (s165_selection_1 and s165_selection_2
-    and s165_selection_3) or (s166_selection_1 and s166_selection_2 and s166_selection_3) or (s167_selection_1
-    and s167_selection_2 and s167_selection_3) or (s168_selection_1 and s168_selection_2 and s168_selection_3)
-    or (s169_selection_1 and s169_selection_2 and s169_selection_3) or (s170_selection_1 and s170_selection_2
-    and s170_selection_3) or (s171_selection_1 and s171_selection_2 and s171_selection_3) or (s172_selection_1
-    and s172_selection_2 and s172_selection_3) or (s173_selection_1 and s173_selection_2 and s173_selection_3)
-    or (s174_selection_1 and s174_selection_2 and s174_selection_3) or (s175_selection_1 and s175_selection_2
-    and s175_selection_3) or (s176_selection_1 and s176_selection_2 and s176_selection_3) or (s177_selection_1
-    and s177_selection_2 and s177_selection_3)
+    or (s116_selection_1 and s116_selection_2) or (s117_selection_1 and s117_selection_2) or (s118_selection_1
+    and s118_selection_2 and s118_selection_3) or (s119_selection_1 and s119_selection_2 and s119_selection_3)
+    or (s120_selection_1 and s120_selection_2 and s120_selection_3) or (s121_selection_1 and s121_selection_2
+    and s121_selection_3) or (s122_selection_1 and s122_selection_2 and s122_selection_3) or (s123_selection_1
+    and s123_selection_2 and s123_selection_3) or (s124_selection_1 and s124_selection_2 and s124_selection_3)
+    or (s125_selection_1 and s125_selection_2 and s125_selection_3) or (s126_selection_1 and s126_selection_2
+    and s126_selection_3) or (s127_selection_1 and s127_selection_2 and s127_selection_3) or (s128_selection_1
+    and s128_selection_2 and s128_selection_3) or (s129_selection_1 and s129_selection_2 and s129_selection_3)
+    or (s130_selection_1 and s130_selection_2 and s130_selection_3) or (s131_selection_1 and s131_selection_2
+    and s131_selection_3) or (s132_selection_1 and s132_selection_2 and s132_selection_3) or (s133_selection_1
+    and s133_selection_2 and s133_selection_3) or (s134_selection_1 and s134_selection_2 and s134_selection_3)
+    or (s135_selection_1 and s135_selection_2 and s135_selection_3) or (s136_selection_1 and s136_selection_2
+    and s136_selection_3) or (s137_selection_1 and s137_selection_2 and s137_selection_3) or (s138_selection_1
+    and s138_selection_2 and s138_selection_3 and s138_selection_4) or (s139_selection_1 and s139_selection_2
+    and s139_selection_3) or (s140_selection_1 and s140_selection_2 and s140_selection_3) or (s141_selection_1
+    and s141_selection_2 and s141_selection_3) or (s142_selection_1 and s142_selection_2 and s142_selection_3
+    and s142_selection_4 and s142_selection_5) or (s143_selection_1 and s143_selection_2 and s143_selection_3
+    and s143_selection_4 and s143_selection_5) or (s144_selection_1 and s144_selection_2 and s144_selection_3
+    and s144_selection_4 and s144_selection_5) or (s145_selection_1 and s145_selection_2 and s145_selection_3)
+    or (s146_selection_1 and s146_selection_2 and s146_selection_3) or (s147_selection_1 and s147_selection_2
+    and s147_selection_3) or (s148_selection_1 and s148_selection_2 and s148_selection_3) or (s149_selection_1
+    and s149_selection_2 and s149_selection_3) or (s150_selection_1 and s150_selection_2 and s150_selection_3)
+    or (s151_selection_1 and s151_selection_2 and s151_selection_3) or (s152_selection_1 and s152_selection_2
+    and s152_selection_3) or (s153_selection_1 and s153_selection_2 and s153_selection_3) or (s154_selection_1
+    and s154_selection_2 and s154_selection_3) or (s155_selection_1 and s155_selection_2 and s155_selection_3)
+    or (s156_selection_1 and s156_selection_2 and s156_selection_3) or (s157_selection_1 and s157_selection_2
+    and s157_selection_3) or (s158_selection_1 and s158_selection_2 and s158_selection_3) or (s159_selection_1
+    and s159_selection_2 and s159_selection_3) or (s160_selection_1 and s160_selection_2 and s160_selection_3)
+    or (s161_selection_1 and s161_selection_2 and s161_selection_3) or (s162_selection_1 and s162_selection_2
+    and s162_selection_3) or (s163_selection_1 and s163_selection_2 and s163_selection_3) or (s164_selection_1
+    and s164_selection_2 and s164_selection_3) or (s165_selection_1 and s165_selection_2 and s165_selection_3)
+    or (s166_selection_1 and s166_selection_2 and s166_selection_3) or (s167_selection_1 and s167_selection_2
+    and s167_selection_3) or (s168_selection_1 and s168_selection_2 and s168_selection_3) or (s169_selection_1
+    and s169_selection_2 and s169_selection_3) or (s170_selection_1 and s170_selection_2 and s170_selection_3)
+    or (s171_selection_1 and s171_selection_2 and s171_selection_3) or (s172_selection_1 and s172_selection_2
+    and s172_selection_3) or (s173_selection_1 and s173_selection_2 and s173_selection_3) or (s174_selection_1
+    and s174_selection_2 and s174_selection_3) or (s175_selection_1 and s175_selection_2 and s175_selection_3)
+    or (s176_selection_1 and s176_selection_2 and s176_selection_3) or (s177_selection_1 and s177_selection_2
+    and s177_selection_3) or (s178_selection_1 and s178_selection_2 and s178_selection_3)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: informational
 custom_attributes:
   sagan.xbit: exploit_attempt
-  sagan.xbit_setters: '177'
+  sagan.xbit_setters: '178'
 ---
 title: Aggregate of rules setting Sagan bit honeypot
 id: 1296a65c-5f49-5230-bfba-36adce815bf2

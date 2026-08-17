@@ -1561,6 +1561,47 @@ custom_attributes:
   sagan.source_file: windows-powershell.rules
   sagan.metadata: updated_at=2023_10_10
 ---
+title: '[WINDOWS-POWERSHELL] Possible Obfuscated Variable Names Technique'
+id: 81bd0749-f666-5d09-b7e3-84c1ad673cc7
+status: experimental
+description: Converted from Sagan rule SID 5007134 (rev 1), file windows-powershell.rules.
+references:
+  - https://bazaar.abuse.ch/download/08ce501a984a5cb366de6a40c762738fafaed6643a3be1268e13331f0196cf46/
+  - https://github.com/danielbohannon/Invoke-Obfuscation
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    message|contains: ForEach-Object
+  selection_4:
+    message|contains: -join
+  selection_5:
+    message|contains|cased: -split
+  selection_6:
+    message|re: \$\{[\!\-\%\(\)\[\]\-\+\/\#\'\`]{1,3}}.*?\$\{[\!\-\%\(\)\[\]\-\+\/\#\'\`]{1,3}}.*?\$\{[\!\-\%\(\)\[\]\-\+\/\#\'\`]{1,3}}
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1027.010
+  - attack.ta0005
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5007134'
+  sagan.rev: '1'
+  sagan.source_file: windows-powershell.rules
+  sagan.metadata: updated_at=2023_10_10
+---
 title: '[WINDOWS-POWERSHELL] Powershell StrReverse Obfuscation'
 id: 728d1a4d-e29c-5775-bd01-da07ef233585
 status: experimental
@@ -1924,6 +1965,42 @@ custom_attributes:
   sagan.rev: '2'
   sagan.source_file: windows-powershell.rules
   sagan.metadata: updated_at=2025_05_16
+---
+title: '[WINDOWS-POWERSHELL] String Format Detected - Possible Obfuscation'
+id: 32313574-95ce-5c14-b29a-b6f6fde2732e
+status: experimental
+description: Converted from Sagan rule SID 5007144 (rev 1), file windows-powershell.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    message|contains|cased: '{3}'
+  selection_4:
+    message|contains: -f
+  selection_5:
+    message|re: \{\d}\{\d}\{\d}\\*"\s*-f
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1027.010
+  - attack.ta0005
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5007144'
+  sagan.rev: '1'
+  sagan.source_file: windows-powershell.rules
+  sagan.metadata: updated_at=2023_10_10
 ---
 title: '[WINDOWS-POWERSHELL] Registry Query for WDigest UseLogonCredential'
 id: 1ebc4087-b7dc-5cf7-9f5a-9187d3536480

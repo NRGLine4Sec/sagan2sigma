@@ -1,0 +1,123 @@
+title: '[IMAPD-BLUEDOT] Login from a suspicious source'
+id: 1e354b8c-2032-5a3e-9b25-658247b8a25e
+status: experimental
+description: Converted from Sagan rule SID 5002075 (rev 4), file imapd-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: LOGIN,
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002075'
+  sagan.rev: '4'
+  sagan.source_file: imapd-bluedot.rules
+---
+title: '[IMAPD-BLUEDOT] Logout from a suspicious source'
+id: a2ebc633-3ec1-5a2d-be8c-20586266c11a
+status: experimental
+description: Converted from Sagan rule SID 5002076 (rev 4), file imapd-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: LOGOUT,
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002076'
+  sagan.rev: '4'
+  sagan.source_file: imapd-bluedot.rules
+---
+title: '[IMAPD-BLUEDOT] Timeout from a suspicious source'
+id: 6f2ab8eb-e7f7-5d30-aa04-a124b5d0b375
+status: experimental
+description: Converted from Sagan rule SID 5002077 (rev 4), file imapd-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: TIMEOUT,
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002077'
+  sagan.rev: '4'
+  sagan.source_file: imapd-bluedot.rules
+---
+title: '[IMAPD-BLUEDOT] Disconnect from a suspicious source'
+id: 08a4e7f6-79ea-53c2-93a3-0f4d908197d7
+status: experimental
+description: Converted from Sagan rule SID 5002078 (rev 34), file imapd-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: DISCONNECTED,
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002078'
+  sagan.rev: '34'
+  sagan.source_file: imapd-bluedot.rules

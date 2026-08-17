@@ -1,0 +1,169 @@
+title: '[FILE-BLUEDOT] Executable Downloaded from a suspicious source'
+id: ad1e97c1-831f-5f35-921b-78a20edb9b45
+status: experimental
+description: Converted from Sagan rule SID 5002910 (rev 5), file snort-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    message|contains|cased: FILE-IDENTIFY
+  selection_3:
+    message|contains|cased: Exe
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and selection_3 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3
+    or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5002910'
+  sagan.rev: '5'
+  sagan.source_file: snort-bluedot.rules
+---
+title: '[FILE-BLUEDOT] Java Downloaded from a suspicious source'
+id: ccaa074c-46b0-5c33-bfd6-896535c76d1f
+status: experimental
+description: Converted from Sagan rule SID 5002911 (rev 4), file snort-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    message|contains|cased: FILE-IDENTIFY
+  selection_3:
+    message|contains|cased: Java
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and selection_3 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3
+    or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5002911'
+  sagan.rev: '4'
+  sagan.source_file: snort-bluedot.rules
+---
+title: '[FILE-BLUEDOT] Jar/Zip Downloaded a suspicious source'
+id: f6239829-a4de-5703-af1d-cb41262b2a4d
+status: experimental
+description: Converted from Sagan rule SID 5002912 (rev 4), file snort-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    message|contains|cased: FILE-IDENTIFY
+  selection_3:
+    message|contains|cased: Jar
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and selection_3 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3
+    or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5002912'
+  sagan.rev: '4'
+  sagan.source_file: snort-bluedot.rules
+---
+title: '[FILE-BLUEDOT] PDF Downloaded a suspicious source'
+id: 15bdc081-87b7-5765-9fd4-40cdbaef5000
+status: experimental
+description: Converted from Sagan rule SID 5002913 (rev 4), file snort-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    message|contains|cased: FILE-IDENTIFY
+  selection_3:
+    message|contains|cased: PDF
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and selection_3 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3
+    or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5002913'
+  sagan.rev: '4'
+  sagan.source_file: snort-bluedot.rules
+---
+title: '[FILE-BLUEDOT] Flash Downloaded a suspicious source'
+id: 2a6606cc-6af1-5615-abad-aaa0347353fb
+status: experimental
+description: Converted from Sagan rule SID 5002914 (rev 4), file snort-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: snort
+  selection_2:
+    message|contains|cased: FILE-IDENTIFY
+  selection_3:
+    message|contains|cased: Flash
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and selection_3 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3
+    or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5002914'
+  sagan.rev: '4'
+  sagan.source_file: snort-bluedot.rules

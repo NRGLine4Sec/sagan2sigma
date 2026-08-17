@@ -1492,6 +1492,35 @@ correlation:
     gte: 10
 level: medium
 ---
+title: '[GCP] Google Login From Bluedot Flagged IP'
+id: 9c640db3-60c1-52ae-9ce4-99b4dd444784
+status: experimental
+description: Converted from Sagan rule SID 5017821 (rev 2), file gcp-cloud-audit.rules.
+author: sagan2sigma
+logsource:
+  product: gcp
+detection:
+  selection_1:
+    appname|cased: gcp
+  selection_2:
+    protoPayload.methodName|cased: google.login.LoginService.loginSuccess
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5017821'
+  sagan.rev: '2'
+  sagan.source_file: gcp-cloud-audit.rules
+---
 title: '[GCP] Google Login Challenge Failed'
 id: 688d8b34-4fad-5bfb-bbd9-5b46edc246c0
 status: experimental

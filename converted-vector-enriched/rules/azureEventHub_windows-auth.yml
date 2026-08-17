@@ -1570,6 +1570,39 @@ custom_attributes:
   sagan.source_file: azureEventHub_windows-auth.rules
   sagan.metadata: created_on=2022_11_22,old_sid=5003203
 ---
+title: '[WINDOWS-AUTH] Suspicious network login'
+id: 4bd130dc-51da-57f0-b472-bf15b11ee9dd
+status: experimental
+description: Converted from Sagan rule SID 5008555 (rev 2), file azureEventHub_windows-auth.rules.
+references:
+  - https://indingbad.blogspot.cz/2017/12/a-few-of-my-favorite-things-continued.html
+  - https://www.quadrantsec.com/about/blog/using_jack_crooks_log_analysis_concepts_with_sagan
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4624
+  selection_3:
+    RenderedDescription|contains|cased: 'Logon Type: 3'
+  filter_4:
+    RenderedDescription|contains|cased: 'Workstation Name: Source Network Address:'
+  filter_5:
+    RenderedDescription|re: 'Account Name: (.*)\$ '
+  condition: selection_1 and selection_2 and selection_3 and not (filter_4 or filter_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-login
+custom_attributes:
+  sagan.sid: '5008555'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-auth.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5003376
+---
 title: '[WINDOWS-AUTH] Suspicious network login from non-RFC1918'
 id: d9fc15f4-04d4-5e4e-9ab6-19f65cb05365
 status: experimental

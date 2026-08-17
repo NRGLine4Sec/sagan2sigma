@@ -24,6 +24,22 @@ enrichment_tables:
     # CHANGE ME: a Zeek Intel feed as a MaxMind-format MMDB, built from a feed
     # such as CriticalPathSecurity's with tools/build_denylist_mmdb.py.
     path: /etc/vector/zeek-intel.mmdb
+  sagan_bluedot_tor:
+    type: mmdb
+    # CHANGE ME: open-source substitutes for Bluedot's categories, one MMDB each,
+    # built with tools/build_denylist_mmdb.py. Tor is near-authoritative: use the
+    # Tor Project exit-node list. The rest are your choice and diverge from
+    # Bluedot (D_BLUEDOT_SUBSTITUTION). See docs/DESIGN-DECISIONS.md.
+    path: /etc/vector/bluedot-tor.mmdb
+  sagan_bluedot_proxy:
+    type: mmdb
+    path: /etc/vector/bluedot-proxy.mmdb
+  sagan_bluedot_malicious:
+    type: mmdb
+    path: /etc/vector/bluedot-malicious.mmdb
+  sagan_bluedot_honeypot:
+    type: mmdb
+    path: /etc/vector/bluedot-honeypot.mmdb
 
 sources:
   appliances:
@@ -61,9 +77,16 @@ transforms:
     # A malformed message must not drop the event: the enrichment is
     # best-effort and the detection rules still work without it.
     drop_on_error: false
-  sagan_time:
+  sagan_bluedot:
     type: remap
     inputs: [sagan_zeek_intel]
+    file: transforms/sagan-bluedot.vrl
+    # A malformed message must not drop the event: the enrichment is
+    # best-effort and the detection rules still work without it.
+    drop_on_error: false
+  sagan_time:
+    type: remap
+    inputs: [sagan_bluedot]
     file: transforms/sagan-time.vrl
     # A malformed message must not drop the event: the enrichment is
     # best-effort and the detection rules still work without it.

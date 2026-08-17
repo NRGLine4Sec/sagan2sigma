@@ -1,0 +1,30 @@
+title: '[RIVERBED-BLUEDOT] Administrator Login a suspicious source'
+id: bedbdb87-1a97-58f4-83c9-8dd8d1be6a78
+status: experimental
+description: Converted from Sagan rule SID 5002909 (rev 4), file riverbed-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: riverbed
+detection:
+  selection_1:
+    message|contains|cased: logged in
+  selection_2:
+    appname|cased: webasd
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5002909'
+  sagan.rev: '4'
+  sagan.source_file: riverbed-bluedot.rules

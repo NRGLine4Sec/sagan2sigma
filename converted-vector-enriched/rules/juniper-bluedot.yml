@@ -1,0 +1,112 @@
+title: '[JUNIPER-BLUEDOT] Juniper ScreenOS Admin Login from a known malicious IP'
+id: 8094cff4-f8ca-5442-aaa0-1bb20e268215
+status: experimental
+description: Converted from Sagan rule SID 5002774 (rev 5), file juniper-bluedot.rules.
+references:
+  - 2015-7755
+  - https://kb.juniper.net/InfoCenter/index?page=content&id=JSA10713&actp=search
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    message|contains|cased: has logged on via
+  selection_2:
+    message|contains|cased: '00515'
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5002774'
+  sagan.rev: '5'
+  sagan.source_file: juniper-bluedot.rules
+---
+title: '[JUNIPER-BLUEDOT] VPN Login from a known malicious source'
+id: de588a27-81dc-5242-810c-df951187c295
+status: experimental
+description: Converted from Sagan rule SID 5003112 (rev 2), file juniper-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    appname|cased: Juniper
+  selection_2:
+    message|re|i: Authentication successful|Login succeeded
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5003112'
+  sagan.rev: '2'
+  sagan.source_file: juniper-bluedot.rules
+---
+title: '[JUNIPER-BLUEDOT] VPN Logout from a known malicious source'
+id: 3170a3a9-e7e4-5326-b650-82dd12bb01fb
+status: experimental
+description: Converted from Sagan rule SID 5003113 (rev 2), file juniper-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    appname|cased: Juniper
+  selection_2:
+    message|contains|cased: Logout from
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5003113'
+  sagan.rev: '2'
+  sagan.source_file: juniper-bluedot.rules
+---
+title: '[JUNIPER-BLUEDOT] Juniper ScreenOS Admin Login from a known malicous source'
+id: df1be50b-0bdd-5736-8571-1d62b9f10a76
+status: experimental
+description: Converted from Sagan rule SID 5003114 (rev 2), file juniper-bluedot.rules.
+references:
+  - https://kb.juniper.net/InfoCenter/index?page=content&id=JSA10713&actp=search
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    message|contains|cased: Admin user
+  selection_2:
+    message|contains|cased: has logged on via
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5003114'
+  sagan.rev: '2'
+  sagan.source_file: juniper-bluedot.rules

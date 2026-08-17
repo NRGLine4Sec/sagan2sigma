@@ -1,0 +1,203 @@
+title: '[F5-BIG-IP-BLUEDOT] Command-line Login from suspicious source'
+id: e17aa67e-507a-5362-884f-8f4a733a07b5
+status: experimental
+description: Converted from Sagan rule SID 5002889 (rev 4), file f5-big-ip-bluedot.rules.
+references:
+  - https://support.f5.com/kb/en-us/solutions/public/13000/400/sol13426.html
+author: sagan2sigma
+logsource:
+  product: f5
+detection:
+  selection_1:
+    message|contains|cased: start=
+  filter_2:
+    message|contains|cased: end=
+  selection_3:
+    message|contains|cased: sshd
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_3 and not filter_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3
+    or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002889'
+  sagan.rev: '4'
+  sagan.source_file: f5-big-ip-bluedot.rules
+---
+title: '[F5-BIG-IP-BLUEDOT] Command-line Logout from suspicious source'
+id: 9a619746-3eef-5240-80bf-9063f495e189
+status: experimental
+description: Converted from Sagan rule SID 5002890 (rev 4), file f5-big-ip-bluedot.rules.
+references:
+  - https://support.f5.com/kb/en-us/solutions/public/13000/400/sol13426.html
+author: sagan2sigma
+logsource:
+  product: f5
+detection:
+  selection_1:
+    message|contains|cased: start=
+  selection_2:
+    message|contains|cased: end=
+  selection_3:
+    message|contains|cased: sshd
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and selection_3 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3
+    or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002890'
+  sagan.rev: '4'
+  sagan.source_file: f5-big-ip-bluedot.rules
+---
+title: '[F5-BIG-IP-BLUEDOT] Unsuccessful Command-line Login from suspicious source'
+id: 82e221e8-0671-50a1-bb57-4e451ecf5846
+status: experimental
+description: Converted from Sagan rule SID 5002891 (rev 4), file f5-big-ip-bluedot.rules.
+references:
+  - https://support.f5.com/kb/en-us/solutions/public/13000/400/sol13426.html
+author: sagan2sigma
+logsource:
+  product: f5
+detection:
+  selection_1:
+    message|contains|cased: failed to login after
+  selection_2:
+    message|contains|cased: sshd
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002891'
+  sagan.rev: '4'
+  sagan.source_file: f5-big-ip-bluedot.rules
+---
+title: '[F5-BIG-IP-BLUEDOT] Unsuccessful Command-line Login from suspicious source'
+id: 54f72463-6e33-588f-a5ff-ac2c953568af
+status: experimental
+description: Converted from Sagan rule SID 5002892 (rev 4), file f5-big-ip-bluedot.rules.
+references:
+  - https://support.f5.com/kb/en-us/solutions/public/13000/400/sol13426.html
+author: sagan2sigma
+logsource:
+  product: f5
+detection:
+  selection_1:
+    message|contains|cased: Authentication failure for root
+  selection_2:
+    message|contains|cased: sshd
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002892'
+  sagan.rev: '4'
+  sagan.source_file: f5-big-ip-bluedot.rules
+---
+title: '[F5-BIG-IP-BLUEDOT] Successful Configuration Utility Login from suspicious source'
+id: bea33962-c791-5278-bf03-5215a1471498
+status: experimental
+description: Converted from Sagan rule SID 5002893 (rev 4), file f5-big-ip-bluedot.rules.
+references:
+  - https://support.f5.com/kb/en-us/solutions/public/13000/400/sol13426.html
+author: sagan2sigma
+logsource:
+  product: f5
+detection:
+  selection_1:
+    message|contains|cased: mod_auth_pam
+  selection_2:
+    message|contains|cased: httpd
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002893'
+  sagan.rev: '4'
+  sagan.source_file: f5-big-ip-bluedot.rules
+---
+title: '[F5-BIG-IP-BLUEDOT] Unsuccessful Configuration Utility Login from suspicious source'
+id: f46e0455-cf3e-5c75-abae-a825949d995f
+status: experimental
+description: Converted from Sagan rule SID 5002894 (rev 4), file f5-big-ip-bluedot.rules.
+references:
+  - https://support.f5.com/kb/en-us/solutions/public/13000/400/sol13426.html
+author: sagan2sigma
+logsource:
+  product: f5
+detection:
+  selection_1:
+    message|contains|cased: failed to login after
+  selection_2:
+    message|contains|cased: httpd
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.unsuccessful-user
+custom_attributes:
+  sagan.sid: '5002894'
+  sagan.rev: '4'
+  sagan.source_file: f5-big-ip-bluedot.rules

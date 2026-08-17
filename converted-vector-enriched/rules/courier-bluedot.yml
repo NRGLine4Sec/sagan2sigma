@@ -1,0 +1,103 @@
+title: '[COURIER-BLUEDOT] Logout/disconnect from suspicious source'
+id: 861e0265-ca02-59e9-ac9c-dc2466c3089f
+status: experimental
+description: Converted from Sagan rule SID 5002886 (rev 5), file courier-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased:
+      - LOGOUT
+      - DISCONNECTED
+  selection_2:
+    appname|cased:
+      - imapd
+      - imapd-ssl
+      - courierlogger
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.not-suspicious
+custom_attributes:
+  sagan.sid: '5002886'
+  sagan.rev: '5'
+  sagan.source_file: courier-bluedot.rules
+---
+title: '[COURIER-BLUEDOT] User login from suspicious source'
+id: eec9724b-3023-50f1-ab6e-b9200a9e51e6
+status: experimental
+description: Converted from Sagan rule SID 5002887 (rev 4), file courier-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: LOGIN,
+  selection_2:
+    appname|cased:
+      - imapd
+      - imapd-ssl
+      - courierlogger
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002887'
+  sagan.rev: '4'
+  sagan.source_file: courier-bluedot.rules
+---
+title: '[COURIER-BLUEDOT] Timeout from suspicious source'
+id: 7dc149c8-0982-5fa9-b097-7dcd4c9d397b
+status: experimental
+description: Converted from Sagan rule SID 5002888 (rev 4), file courier-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: TIMEOUT
+  selection_2:
+    appname|cased:
+      - imapd
+      - imapd-ssl
+      - courierlogger
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002888'
+  sagan.rev: '4'
+  sagan.source_file: courier-bluedot.rules

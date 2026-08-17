@@ -2283,6 +2283,92 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: sonicwall.rules
 ---
+title: '[SONICWALL] VPN Radius Authentication Failed - Brute Force [3/1]'
+id: 43825a7f-3a96-5954-a419-14ec8ef29c8f
+name: sagan_5015138
+status: experimental
+description: Converted from Sagan rule SID 5015138 (rev 1), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/techdocs/pdf/SonicOS-X_7.0.1_LogEvents_ReferenceGuide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    message|contains|cased: 'm=140 '
+  selection_2:
+    message|contains|cased: fw_action=
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5015138'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+  rsigma.suppress: 1h
+---
+title: '[SONICWALL] VPN Radius Authentication Failed - Brute Force [3/1] (threshold 3 in 1m)'
+id: 9e7aaee2-99b5-5350-9a88-cac9d256fa95
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5015138
+  group-by:
+    - sagan_ip_2
+    - sagan_username
+  timespan: 1m
+  condition:
+    gte: 3
+level: low
+---
+title: '[SONICWALL] VPN Radius Authentication Failed - Brute Force [3/1]'
+id: f0a0573d-0a9d-5015-aef4-32031e9332bc
+name: sagan_5015139
+status: experimental
+description: Converted from Sagan rule SID 5015139 (rev 1), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/techdocs/pdf/SonicOS-X_7.0.1_LogEvents_ReferenceGuide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    appname|cased: sonicwall
+  selection_2:
+    message|contains|cased: '"msgid": 140,'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5015139'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+  rsigma.suppress: 1h
+---
+title: '[SONICWALL] VPN Radius Authentication Failed - Brute Force [3/1] (threshold 3 in 1m)'
+id: 97040d1e-9e74-52a0-8ba7-1f3332fabe33
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5015139
+  group-by:
+    - sagan_ip_1
+    - sagan_username
+  timespan: 1m
+  condition:
+    gte: 3
+level: low
+---
 title: '[SONICWALL] VPN Login Detected for Admin User'
 id: 9a0e0581-e4fc-5e5e-9659-b0720e24c6f8
 status: experimental
@@ -2432,6 +2518,92 @@ custom_attributes:
   sagan.sid: '5015145'
   sagan.rev: '1'
   sagan.source_file: sonicwall.rules
+---
+title: '[SONICWALL] Radius Authentication Failed - Brute Force [3/1]'
+id: 87005615-976b-5753-a383-aa96839930fb
+name: sagan_5015148
+status: experimental
+description: Converted from Sagan rule SID 5015148 (rev 1), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/techdocs/pdf/SonicOS-X_7.0.1_LogEvents_ReferenceGuide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    message|contains|cased: 'm=243 '
+  selection_2:
+    message|contains|cased: fw_action=
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5015148'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+  rsigma.suppress: 1h
+---
+title: '[SONICWALL] Radius Authentication Failed - Brute Force [3/1] (threshold 3 in 1m)'
+id: efce3255-b38e-555f-b7f1-20031a6efff0
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5015148
+  group-by:
+    - sagan_ip_2
+    - sagan_username
+  timespan: 1m
+  condition:
+    gte: 3
+level: low
+---
+title: '[SONICWALL] Radius Authentication Failed - Brute Force [3/1]'
+id: 03093985-e16d-5b70-a76e-4882cabf22a0
+name: sagan_5015149
+status: experimental
+description: Converted from Sagan rule SID 5015149 (rev 1), file sonicwall.rules.
+references:
+  - https://www.sonicwall.com/techdocs/pdf/SonicOS-X_7.0.1_LogEvents_ReferenceGuide.pdf
+author: sagan2sigma
+logsource:
+  product: sonicwall
+detection:
+  selection_1:
+    appname|cased: sonicwall
+  selection_2:
+    message|contains|cased: '"msgid": 243,'
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5015149'
+  sagan.rev: '1'
+  sagan.source_file: sonicwall.rules
+  rsigma.suppress: 1h
+---
+title: '[SONICWALL] Radius Authentication Failed - Brute Force [3/1] (threshold 3 in 1m)'
+id: b9895c3a-76f2-5aaa-97c0-425dde2881c5
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5015149
+  group-by:
+    - sagan_ip_1
+    - sagan_username
+  timespan: 1m
+  condition:
+    gte: 3
+level: low
 ---
 title: '[SONICWALL] User Login from Unauthorized Location Detected'
 id: b0125099-0f6f-5c45-8f75-7f1138bbec49

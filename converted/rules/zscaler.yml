@@ -437,6 +437,44 @@ custom_attributes:
   sagan.rev: '3'
   sagan.source_file: zscaler.rules
 ---
+title: '[ZSCALER] klm123.com Spyware User Agent'
+id: c14f4a8a-4e4f-57f2-b4e9-289dd8ba6060
+status: experimental
+description: Converted from Sagan rule SID 5003141 (rev 4), file zscaler.rules.
+references:
+  - https://doc.emergingthreats.net/2007616
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    _raw|contains|cased: requestClientApplication={
+  filter_2:
+    _raw|contains|cased: directory.gladinet.com
+  filter_3:
+    _raw|contains|cased: "ff.avast.com\r\n"
+  selection_4:
+    _raw|contains|cased: Zscaler
+  selection_5:
+    _raw|contains|cased: act=Allowed
+  selection_6:
+    _raw|re|i: User-Agent\x3a \{[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\}
+  selection_7:
+    appname|cased: CEF
+  condition: selection_1 and selection_4 and selection_5 and selection_6 and selection_7 and not (filter_2
+    or filter_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1043
+  - attack.t1105
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003141'
+  sagan.rev: '4'
+  sagan.source_file: zscaler.rules
+---
 title: '[ZSCALER] Suspicious User Agent (_)'
 id: 15c1e0ab-fd90-5fc9-9278-59309b787521
 status: experimental

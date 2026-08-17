@@ -1,0 +1,128 @@
+title: '[FORTINET-BLUEDOT] Login accepted from suspicious source'
+id: 17af4320-7c2a-58f6-89b8-8da92d4c314e
+status: experimental
+description: Converted from Sagan rule SID 5002881 (rev 5), file fortinet-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: 32006 type=
+  selection_2:
+    message|contains|cased: login
+  selection_3:
+    message|contains|cased:
+      - accepted
+      - successfully
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and selection_3 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3
+    or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5002881'
+  sagan.rev: '5'
+  sagan.source_file: fortinet-bluedot.rules
+---
+title: '[FORTINET-BLUEDOT] Administrator Login from suspicious source'
+id: 6c20b5c1-4cc8-5e7f-b52b-365eef5711c8
+status: experimental
+description: Converted from Sagan rule SID 5002882 (rev 4), file fortinet-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: 32001 type=
+  selection_2:
+    message|contains|cased: logged in
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5002882'
+  sagan.rev: '4'
+  sagan.source_file: fortinet-bluedot.rules
+---
+title: '[FORTINET-BLUEDOT] Admin authentication success suspicious source'
+id: 387ca8cc-a570-5e49-be7b-2d7a787fb572
+status: experimental
+description: Converted from Sagan rule SID 5002883 (rev 4), file fortinet-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: 38001 type=
+  selection_2:
+    message|contains|cased: succeeded in authentication
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5002883'
+  sagan.rev: '4'
+  sagan.source_file: fortinet-bluedot.rules
+---
+title: '[FORTINET-BLUEDOT] SSH traffic detected from suspicious source'
+id: 63b30ac3-8e5d-5766-b2ee-4fde1eedf080
+status: experimental
+description: Converted from Sagan rule SID 5002884 (rev 4), file fortinet-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: ' service=SSH '
+  filter_2:
+    message|contains|cased: duration=0 sentbyte=0 rcvdbyte=0
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and not filter_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002884'
+  sagan.rev: '4'
+  sagan.source_file: fortinet-bluedot.rules

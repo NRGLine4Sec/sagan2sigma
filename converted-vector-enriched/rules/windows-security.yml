@@ -5283,6 +5283,61 @@ custom_attributes:
   sagan.source_file: windows-security.rules
   sagan.metadata: deployment=Both,created_at=2023_04_27,updated_at=2023_04_27
 ---
+title: '[WINDOWS-SECURITY] Possible Bloodhound/Sharphound Activity'
+id: f1651ae3-739c-5eaa-94f2-3d3bc62fd0a9
+name: sagan_5014547
+status: experimental
+description: Converted from Sagan rule SID 5014547 (rev 1), file windows-security.rules.
+references:
+  - https://medium.com/securonix-tech-blog/detecting-ldap-enumeration-and-bloodhound-s-sharphound-collector-using-active-directory-decoys-dfc840f2f644
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 5145
+  filter_3:
+    Message|contains|cased: '$ Account Domain:'
+  filter_4:
+    Message|contains: 'Access Mask: 0x12019F'
+  selection_5:
+    Message|contains:
+      - 'Relative Target Name: samr '
+      - 'Relative Target Name: lsarpc '
+      - 'Relative Target Name: srvsvc '
+  condition: selection_1 and selection_2 and selection_5 and not (filter_3 or filter_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1018
+  - attack.ta0007
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014547'
+  sagan.rev: '1'
+  sagan.source_file: windows-security.rules
+  rsigma.suppress: 1d
+  sagan.metadata: deployment=Endpoint,created_at=2024_04_02,updated_at=2023_04_02
+---
+title: '[WINDOWS-SECURITY] Possible Bloodhound/Sharphound Activity (threshold 3 in 10s)'
+id: fe592239-df40-5dc9-8b66-12e239eaa55e
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5014547
+  group-by:
+    - sagan_ip_1
+    - sagan_username
+  timespan: 10s
+  condition:
+    gte: 3
+level: medium
+---
 title: '[WINDOWS-SECURITY] Possible Active Directory User Enumeration (READ)'
 id: 88421315-9ff3-5b41-8376-33dc791ddc79
 name: sagan_5014577
@@ -6038,6 +6093,34 @@ correlation:
     - sagan_ip_3
   timespan: 1d
 level: low
+---
+title: '[WINDOWS-SECURITY] NPS RADIUS Server Login from Malicious IP'
+id: 84ec88ef-450a-5103-a95f-47f919f277d8
+status: experimental
+description: Converted from Sagan rule SID 5015199 (rev 2), file windows-security.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: Security
+  selection_2:
+    EventID: 6272
+  bluedot_hit_1:
+    sagan_bluedot_malicious_3: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_3: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5015199'
+  sagan.rev: '2'
+  sagan.source_file: windows-security.rules
+  sagan.metadata: created_at=2024_10_28,updated_at=2025_04_16
 ---
 title: '[WINDOWS-SECURITY] CRITICAL - Microsoft Quick Assist Executed'
 id: 456075df-c50b-597b-932e-05b0188b5df5

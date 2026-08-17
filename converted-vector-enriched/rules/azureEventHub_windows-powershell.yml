@@ -1487,6 +1487,45 @@ custom_attributes:
   sagan.source_file: azureEventHub_windows-powershell.rules
   sagan.metadata: created_on=2022_11_22,old_sid=5007131
 ---
+title: '[WINDOWS-POWERSHELL] Possible Obfuscated Variable Names Technique'
+id: 9d8e569f-a93c-5ad7-b566-d40284ab8f6b
+status: experimental
+description: Converted from Sagan rule SID 5009347 (rev 1), file azureEventHub_windows-powershell.rules.
+references:
+  - https://bazaar.abuse.ch/download/08ce501a984a5cb366de6a40c762738fafaed6643a3be1268e13331f0196cf46/
+  - https://github.com/danielbohannon/Invoke-Obfuscation
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains: ForEach-Object
+  selection_4:
+    RenderedDescription|contains: -join
+  selection_5:
+    RenderedDescription|contains|cased: -split
+  selection_6:
+    RenderedDescription|re: \$\{[\!\-\%\(\)\[\]\-\+\/\#\'\`]{1,3}}.*?\$\{[\!\-\%\(\)\[\]\-\+\/\#\'\`]{1,3}}.*?\$\{[\!\-\%\(\)\[\]\-\+\/\#\'\`]{1,3}}
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009347'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007134
+---
 title: '[WINDOWS-POWERSHELL] Powershell StrReverse Obfuscation'
 id: 4c14e99a-79e4-5c45-9787-d2056524341f
 status: experimental
@@ -1830,6 +1869,40 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: azureEventHub_windows-powershell.rules
   sagan.metadata: created_on=2022_11_22,old_sid=5007143
+---
+title: '[WINDOWS-POWERSHELL] String Format Detected - Posible Obfuscation'
+id: b1cbb485-3ceb-5879-b0b4-468af06bb560
+status: experimental
+description: Converted from Sagan rule SID 5009357 (rev 1), file azureEventHub_windows-powershell.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    RenderedDescription|contains|cased: '{3}'
+  selection_4:
+    RenderedDescription|contains: -f
+  selection_5:
+    RenderedDescription|re: \{\\d}\{\\d}\{\\d}\\*"\s*-f
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009357'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5007144
 ---
 title: '[WINDOWS-POWERSHELL] Registry Query for WDigest UseLogonCredential'
 id: 3abb2fdf-a916-59a5-ae86-d214d9c48a07

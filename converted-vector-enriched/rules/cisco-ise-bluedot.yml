@@ -1,0 +1,30 @@
+title: '[CISCO-ISE-BLUEDOT] Successful authentication from outside HOME_COUNTRY'
+id: 88d3e2de-6a8c-576d-bdd0-25868c5a8cf2
+status: experimental
+description: Converted from Sagan rule SID 5003782 (rev 1), file cisco-ise-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: CISE_Passed_Authentications
+  selection_2:
+    message|contains|cased: Device IP Address
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5003782'
+  sagan.rev: '1'
+  sagan.source_file: cisco-ise-bluedot.rules

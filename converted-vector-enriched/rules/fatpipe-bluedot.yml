@@ -1,0 +1,64 @@
+title: '[FATPIPE-BLUEDOT] Login Success from suspicious source'
+id: 4f3570ab-029f-5513-b82b-5b73a6a9211c
+status: experimental
+description: Converted from Sagan rule SID 5002895 (rev 4), file fatpipe-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: fatpipe
+detection:
+  selection_1:
+    message|contains|cased: 'Login: Success'
+  selection_2:
+    appname|cased: xtremed
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5002895'
+  sagan.rev: '4'
+  sagan.source_file: fatpipe-bluedot.rules
+---
+title: '[FATPIPE-BLUEDOT] Login Success - ADMINISTRATOR - from suspicious source'
+id: bc46ab1a-65bb-503b-9019-c4c907870cfb
+status: experimental
+description: Converted from Sagan rule SID 5002896 (rev 4), file fatpipe-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: fatpipe
+detection:
+  selection_1:
+    message|contains|cased: 'Login: Success'
+  selection_2:
+    message|contains|cased: ADMINISTRATOR
+  selection_3:
+    appname|cased: xtremed
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and selection_3 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3
+    or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5002896'
+  sagan.rev: '4'
+  sagan.source_file: fatpipe-bluedot.rules

@@ -1,0 +1,1443 @@
+title: '[CISCO-BLUEDOT] Suspicious OUTBOUND TCP connection to Tor'
+id: 99e5e37e-b735-5f59-8e6b-c1d984536b38
+status: experimental
+description: Converted from Sagan rule SID 5005782 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302013
+  selection_2:
+    message|contains|cased: Built outbound
+  bluedot_hit_1:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_2: true
+  bluedot_hit_3:
+    sagan_bluedot_tor_3: true
+  bluedot_hit_4:
+    sagan_bluedot_tor_4: true
+  bluedot_hit_5:
+    sagan_bluedot_tor_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005782'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious OUTBOUND TCP connection to a Malicious IP'
+id: 8ff7f38d-ac8f-51b0-883c-6a74da581cc7
+status: experimental
+description: Converted from Sagan rule SID 5005783 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302013
+  selection_2:
+    message|contains|cased: Built outbound
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_malicious_2: true
+  bluedot_hit_3:
+    sagan_bluedot_malicious_3: true
+  bluedot_hit_4:
+    sagan_bluedot_malicious_4: true
+  bluedot_hit_5:
+    sagan_bluedot_malicious_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005783'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious OUTBOUND TCP connection to a Proxy IP'
+id: 46dcaed5-4e5e-5c8c-a036-a31dd78d193f
+status: experimental
+description: Converted from Sagan rule SID 5005784 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302013
+  selection_2:
+    message|contains|cased: Built outbound
+  bluedot_hit_1:
+    sagan_bluedot_proxy_1: true
+  bluedot_hit_2:
+    sagan_bluedot_proxy_2: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_3: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_4: true
+  bluedot_hit_5:
+    sagan_bluedot_proxy_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005784'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious OUTBOUND TCP connection to a know Honeypot attacker'
+id: fc22c32a-7b08-53fc-8d11-b027d61d9446
+status: experimental
+description: Converted from Sagan rule SID 5005785 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302013
+  selection_2:
+    message|contains|cased: Built outbound
+  bluedot_hit_1:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_2:
+    sagan_bluedot_honeypot_2: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_3: true
+  bluedot_hit_4:
+    sagan_bluedot_honeypot_4: true
+  bluedot_hit_5:
+    sagan_bluedot_honeypot_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005785'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious OUTBOUND UDP connection to a Malicious IP'
+id: 00c90303-93ff-55a6-bfc4-4b00c12dcadd
+status: experimental
+description: Converted from Sagan rule SID 5005787 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302015
+  selection_2:
+    message|contains|cased: Built outbound
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_malicious_2: true
+  bluedot_hit_3:
+    sagan_bluedot_malicious_3: true
+  bluedot_hit_4:
+    sagan_bluedot_malicious_4: true
+  bluedot_hit_5:
+    sagan_bluedot_malicious_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005787'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious OUTBOUND UDP connection to a Proxy IP'
+id: b2cc82dc-634d-5398-8ed9-c6acfd42792f
+status: experimental
+description: Converted from Sagan rule SID 5005788 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302015
+  selection_2:
+    message|contains|cased: Built outbound
+  bluedot_hit_1:
+    sagan_bluedot_proxy_1: true
+  bluedot_hit_2:
+    sagan_bluedot_proxy_2: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_3: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_4: true
+  bluedot_hit_5:
+    sagan_bluedot_proxy_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005788'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious OUTBOUND UDP connection to a known Honeypot attacker'
+id: 90e6fadd-775c-5ef4-b2d2-f0c6be4824e9
+status: experimental
+description: Converted from Sagan rule SID 5005789 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302015
+  selection_2:
+    message|contains|cased: Built outbound
+  bluedot_hit_1:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_2:
+    sagan_bluedot_honeypot_2: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_3: true
+  bluedot_hit_4:
+    sagan_bluedot_honeypot_4: true
+  bluedot_hit_5:
+    sagan_bluedot_honeypot_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005789'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious OUTBOUND ICMP connection to a Malicious IP'
+id: f4b88f6c-15bb-5e09-b183-0aa02b213e35
+status: experimental
+description: Converted from Sagan rule SID 5005791 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302020
+  selection_2:
+    message|contains|cased: Built outbound
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_malicious_2: true
+  bluedot_hit_3:
+    sagan_bluedot_malicious_3: true
+  bluedot_hit_4:
+    sagan_bluedot_malicious_4: true
+  bluedot_hit_5:
+    sagan_bluedot_malicious_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005791'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious OUTBOUND ICMP connection to a Proxy IP'
+id: 5e995ecc-bd68-5d10-83eb-7f29d68dc453
+status: experimental
+description: Converted from Sagan rule SID 5005792 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302020
+  selection_2:
+    message|contains|cased: Built outbound
+  bluedot_hit_1:
+    sagan_bluedot_proxy_1: true
+  bluedot_hit_2:
+    sagan_bluedot_proxy_2: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_3: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_4: true
+  bluedot_hit_5:
+    sagan_bluedot_proxy_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005792'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious OUTBOUND ICMP connection to a known Honeypot attacker'
+id: 807a4b85-ed34-529d-8118-ae5d814d67d9
+status: experimental
+description: Converted from Sagan rule SID 5005793 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302020
+  selection_2:
+    message|contains|cased: Built outbound
+  bluedot_hit_1:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_2:
+    sagan_bluedot_honeypot_2: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_3: true
+  bluedot_hit_4:
+    sagan_bluedot_honeypot_4: true
+  bluedot_hit_5:
+    sagan_bluedot_honeypot_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005793'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious OUTBOUND GRE connection to a Malicious IP'
+id: eaf70d4b-3dff-50bc-af9a-1244a431f39d
+status: experimental
+description: Converted from Sagan rule SID 5005795 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302017
+  selection_2:
+    message|contains|cased: Built outbound
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_malicious_2: true
+  bluedot_hit_3:
+    sagan_bluedot_malicious_3: true
+  bluedot_hit_4:
+    sagan_bluedot_malicious_4: true
+  bluedot_hit_5:
+    sagan_bluedot_malicious_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005795'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious OUTBOUND GRE connection to a Proxy IP'
+id: 946b09d9-0c2f-5cdd-9ce6-4f126b29716c
+status: experimental
+description: Converted from Sagan rule SID 5005796 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302017
+  selection_2:
+    message|contains|cased: Built outbound
+  bluedot_hit_1:
+    sagan_bluedot_proxy_1: true
+  bluedot_hit_2:
+    sagan_bluedot_proxy_2: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_3: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_4: true
+  bluedot_hit_5:
+    sagan_bluedot_proxy_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005796'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious OUTBOUND GRE connection to a known Honeypot attacker'
+id: 4b9a19b4-03ea-5fe9-a577-72c7fa0166e2
+status: experimental
+description: Converted from Sagan rule SID 5005797 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302017
+  selection_2:
+    message|contains|cased: Built outbound
+  bluedot_hit_1:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_2:
+    sagan_bluedot_honeypot_2: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_3: true
+  bluedot_hit_4:
+    sagan_bluedot_honeypot_4: true
+  bluedot_hit_5:
+    sagan_bluedot_honeypot_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005797'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious INBOUND TCP connection from Tor'
+id: 26cbfa3f-464d-5a92-855b-fc9bd504b707
+status: experimental
+description: Converted from Sagan rule SID 5005798 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302013
+  selection_2:
+    message|contains|cased: Built inbound
+  bluedot_hit_1:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_2: true
+  bluedot_hit_3:
+    sagan_bluedot_tor_3: true
+  bluedot_hit_4:
+    sagan_bluedot_tor_4: true
+  bluedot_hit_5:
+    sagan_bluedot_tor_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005798'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious INBOUND TCP connection from a Malicious IP'
+id: 804babb4-c885-5d3a-ae30-16082a60ef7b
+status: experimental
+description: Converted from Sagan rule SID 5005799 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302013
+  selection_2:
+    message|contains|cased: Built inbound
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_malicious_2: true
+  bluedot_hit_3:
+    sagan_bluedot_malicious_3: true
+  bluedot_hit_4:
+    sagan_bluedot_malicious_4: true
+  bluedot_hit_5:
+    sagan_bluedot_malicious_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005799'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious INBOUND TCP connection from a Proxy IP'
+id: 12805246-d051-52bc-ab92-90e22341a3ff
+status: experimental
+description: Converted from Sagan rule SID 5005800 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302013
+  selection_2:
+    message|contains|cased: Built inbound
+  bluedot_hit_1:
+    sagan_bluedot_proxy_1: true
+  bluedot_hit_2:
+    sagan_bluedot_proxy_2: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_3: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_4: true
+  bluedot_hit_5:
+    sagan_bluedot_proxy_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005800'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious INBOUND TCP connection from a know Honeypot attacker'
+id: 97f41c57-3fa6-5a4c-8cb3-0080b436a707
+status: experimental
+description: Converted from Sagan rule SID 5005801 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302013
+  selection_2:
+    message|contains|cased: Built inbound
+  bluedot_hit_1:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_2:
+    sagan_bluedot_honeypot_2: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_3: true
+  bluedot_hit_4:
+    sagan_bluedot_honeypot_4: true
+  bluedot_hit_5:
+    sagan_bluedot_honeypot_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005801'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious INBOUND UDP connection from a Malicious IP'
+id: 631f7b5a-df71-54f3-a3fd-5bea4e8b3803
+status: experimental
+description: Converted from Sagan rule SID 5005803 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302015
+  selection_2:
+    message|contains|cased: Built inbound
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_malicious_2: true
+  bluedot_hit_3:
+    sagan_bluedot_malicious_3: true
+  bluedot_hit_4:
+    sagan_bluedot_malicious_4: true
+  bluedot_hit_5:
+    sagan_bluedot_malicious_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005803'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious INBOUND UDP connection from a Proxy IP'
+id: 48d7c72b-f9c7-5bbe-8777-a7b1ac52cf0d
+status: experimental
+description: Converted from Sagan rule SID 5005804 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302015
+  selection_2:
+    message|contains|cased: Built inbound
+  bluedot_hit_1:
+    sagan_bluedot_proxy_1: true
+  bluedot_hit_2:
+    sagan_bluedot_proxy_2: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_3: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_4: true
+  bluedot_hit_5:
+    sagan_bluedot_proxy_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005804'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious INBOUND UDP connection from a know Honeypot attacker'
+id: cb5b1a71-848a-5aab-9b9c-177b8f8f818a
+status: experimental
+description: Converted from Sagan rule SID 5005805 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302015
+  selection_2:
+    message|contains|cased: Built inbound
+  bluedot_hit_1:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_2:
+    sagan_bluedot_honeypot_2: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_3: true
+  bluedot_hit_4:
+    sagan_bluedot_honeypot_4: true
+  bluedot_hit_5:
+    sagan_bluedot_honeypot_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005805'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious INBOUND ICMP connection from a Malicious IP'
+id: 485624f8-49cf-5b0a-8b52-890df1038c49
+status: experimental
+description: Converted from Sagan rule SID 5005807 (rev 2), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302020
+  selection_2:
+    message|contains|cased: Built inbound
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_malicious_2: true
+  bluedot_hit_3:
+    sagan_bluedot_malicious_3: true
+  bluedot_hit_4:
+    sagan_bluedot_malicious_4: true
+  bluedot_hit_5:
+    sagan_bluedot_malicious_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005807'
+  sagan.rev: '2'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious INBOUND ICMP connection from a Proxy IP'
+id: d7283bb9-ad68-5126-9630-8d685c93cdf2
+status: experimental
+description: Converted from Sagan rule SID 5005808 (rev 2), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302020
+  selection_2:
+    message|contains|cased: Built inbound
+  bluedot_hit_1:
+    sagan_bluedot_proxy_1: true
+  bluedot_hit_2:
+    sagan_bluedot_proxy_2: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_3: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_4: true
+  bluedot_hit_5:
+    sagan_bluedot_proxy_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005808'
+  sagan.rev: '2'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious INBOUND ICMP connection from a know Honeypot attacker'
+id: 84afcf4a-a5c8-59cb-98fd-f47913976301
+status: experimental
+description: Converted from Sagan rule SID 5005809 (rev 2), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302020
+  selection_2:
+    message|contains|cased: Built inbound
+  bluedot_hit_1:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_2:
+    sagan_bluedot_honeypot_2: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_3: true
+  bluedot_hit_4:
+    sagan_bluedot_honeypot_4: true
+  bluedot_hit_5:
+    sagan_bluedot_honeypot_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005809'
+  sagan.rev: '2'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious INBOUND GRE connection from a Malicious IP'
+id: a328cddf-e2a5-5f3c-ad95-9a4254b38b91
+status: experimental
+description: Converted from Sagan rule SID 5005811 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302018
+  selection_2:
+    message|contains|cased: Built inbound
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_malicious_2: true
+  bluedot_hit_3:
+    sagan_bluedot_malicious_3: true
+  bluedot_hit_4:
+    sagan_bluedot_malicious_4: true
+  bluedot_hit_5:
+    sagan_bluedot_malicious_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005811'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious INBOUND GRE connection from a Proxy IP'
+id: e330c389-97ab-56c3-86f7-3524ab66dd00
+status: experimental
+description: Converted from Sagan rule SID 5005812 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302018
+  selection_2:
+    message|contains|cased: Built inbound
+  bluedot_hit_1:
+    sagan_bluedot_proxy_1: true
+  bluedot_hit_2:
+    sagan_bluedot_proxy_2: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_3: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_4: true
+  bluedot_hit_5:
+    sagan_bluedot_proxy_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005812'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Suspicious INBOUND GRE connection from a know Honeypot attacker'
+id: 8bc7b0a1-42ff-5f20-b86b-ca21068c1173
+status: experimental
+description: Converted from Sagan rule SID 5005813 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-302018
+  selection_2:
+    message|contains|cased: Built inbound
+  bluedot_hit_1:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_2:
+    sagan_bluedot_honeypot_2: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_3: true
+  bluedot_hit_4:
+    sagan_bluedot_honeypot_4: true
+  bluedot_hit_5:
+    sagan_bluedot_honeypot_5: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
+    or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005813'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] VPN Login from Tor'
+id: 156237e8-8057-5ee5-b33c-10c96885caeb
+status: experimental
+description: Converted from Sagan rule SID 5005814 (rev 2), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased:
+      - -6-716038
+      - -6-605005
+      - -6-734001
+      - -6-722022
+      - -6-722023
+  bluedot_hit_1:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_2: true
+  bluedot_hit_3:
+    sagan_bluedot_tor_3: true
+  bluedot_hit_4:
+    sagan_bluedot_tor_4: true
+  bluedot_hit_5:
+    sagan_bluedot_tor_5: true
+  condition: selection_1 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4 or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005814'
+  sagan.rev: '2'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] VPN Login from known Proxy'
+id: 2a332f64-2d4a-5e43-8a22-3b1d327ee7d1
+status: experimental
+description: Converted from Sagan rule SID 5005815 (rev 2), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased:
+      - -6-716038
+      - -6-605005
+      - -6-734001
+      - -6-722022
+      - -6-722023
+  bluedot_hit_1:
+    sagan_bluedot_proxy_1: true
+  bluedot_hit_2:
+    sagan_bluedot_proxy_2: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_3: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_4: true
+  bluedot_hit_5:
+    sagan_bluedot_proxy_5: true
+  condition: selection_1 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4 or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005815'
+  sagan.rev: '2'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] VPN Login from an IP that has attacked Honeypots'
+id: 496e34d1-a4dc-59cf-86c2-c9c83a76924d
+status: experimental
+description: Converted from Sagan rule SID 5005816 (rev 3), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased:
+      - -6-716038
+      - -6-605005
+      - -6-734001
+      - -6-722022
+      - -6-722023
+  bluedot_hit_1:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_2:
+    sagan_bluedot_honeypot_2: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_3: true
+  bluedot_hit_4:
+    sagan_bluedot_honeypot_4: true
+  bluedot_hit_5:
+    sagan_bluedot_honeypot_5: true
+  condition: selection_1 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4 or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005816'
+  sagan.rev: '3'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] VPN Login from a known Malicious IP'
+id: d97c841e-0af7-5c86-a3f8-f79d11bbf47d
+status: experimental
+description: Converted from Sagan rule SID 5005817 (rev 2), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased:
+      - -6-716038
+      - -6-605005
+      - -6-734001
+      - -6-722022
+      - -6-722023
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_malicious_2: true
+  bluedot_hit_3:
+    sagan_bluedot_malicious_3: true
+  bluedot_hit_4:
+    sagan_bluedot_malicious_4: true
+  bluedot_hit_5:
+    sagan_bluedot_malicious_5: true
+  condition: selection_1 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4 or bluedot_hit_5)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005817'
+  sagan.rev: '2'
+  sagan.source_file: cisco-bluedot.rules
+  rsigma.suppress: 2h
+---
+title: '[CISCO-BLUEDOT] Console login from known malicious source'
+id: 7bed9bff-8687-588f-85cf-0f3f91817baa
+status: experimental
+description: Converted from Sagan rule SID 5005834 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: '%SEC_LOGIN-5-LOGIN_SUCCESS'
+  selection_2:
+    sagan_bluedot_malicious_1: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005834'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+---
+title: '[CISCO-BLUEDOT] Console login from Tor node'
+id: d22f1fff-bbfe-5a20-a662-75664e2175ba
+status: experimental
+description: Converted from Sagan rule SID 5005835 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: '%SEC_LOGIN-5-LOGIN_SUCCESS'
+  selection_2:
+    sagan_bluedot_tor_1: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005835'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+---
+title: '[CISCO-BLUEDOT] Console login from known proxy'
+id: db731f9a-f58b-59f4-9846-54c0e750909d
+status: experimental
+description: Converted from Sagan rule SID 5005837 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: '%SEC_LOGIN-5-LOGIN_SUCCESS'
+  selection_2:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005837'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+---
+title: '[CISCO-BLUEDOT] Console login from an IP associated with attacking a honeypot'
+id: 50e6babb-675b-52a8-b274-8808b1bc02d4
+status: experimental
+description: Converted from Sagan rule SID 5005836 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: '%SEC_LOGIN-5-LOGIN_SUCCESS'
+  selection_2:
+    sagan_bluedot_honeypot_1: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005836'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+---
+title: '[CISCO-BLUEDOT] Login permitted from Tor address'
+id: 0c9cfa9e-68e6-5033-b080-6f5728b3dcbe
+status: experimental
+description: Converted from Sagan rule SID 5005818 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-605005
+  selection_2:
+    sagan_bluedot_tor_1: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005818'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+---
+title: '[CISCO-BLUEDOT] Login permitted from a known malicious IP'
+id: 9fa2429f-cd57-59bd-b81b-6997fa58511d
+status: experimental
+description: Converted from Sagan rule SID 5005819 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-605005
+  selection_2:
+    sagan_bluedot_malicious_1: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005819'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+---
+title: '[CISCO-BLUEDOT] Login permitted from Proxy IP'
+id: fc1c2f8f-4967-5059-a4f8-4022db9ab73e
+status: experimental
+description: Converted from Sagan rule SID 5005820 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-605005
+  selection_2:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005820'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+---
+title: '[CISCO-BLUEDOT] Login permitted from an IP observed attacking Honeypots'
+id: 1f56f671-b2b2-518c-8205-de52152fde62
+status: experimental
+description: Converted from Sagan rule SID 5005821 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased: -6-605005
+  selection_2:
+    sagan_bluedot_honeypot_1: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005821'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+---
+title: '[CISCO-BLUEDOT] VPN disconnect from a known malicious source'
+id: 98d2b28c-f44d-5e23-b6f8-9d3c351e445a
+status: experimental
+description: Converted from Sagan rule SID 5005822 (rev 3), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased:
+      - -6-113019
+      - -6-716002
+      - -6-721018
+  selection_2:
+    sagan_bluedot_malicious_1: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005822'
+  sagan.rev: '3'
+  sagan.source_file: cisco-bluedot.rules
+---
+title: '[CISCO-BLUEDOT] VPN disconnect from a Tor address'
+id: d02f34fd-3e33-56cf-bb36-d1f2a58d38f8
+status: experimental
+description: Converted from Sagan rule SID 5005823 (rev 3), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased:
+      - -6-113019
+      - -6-716002
+      - -6-721018
+  selection_2:
+    sagan_bluedot_tor_1: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005823'
+  sagan.rev: '3'
+  sagan.source_file: cisco-bluedot.rules
+---
+title: '[CISCO-BLUEDOT] VPN disconnect from IP address that attack a honeypot'
+id: 968e3d7b-8362-521d-b5d4-3e34ead7e325
+status: experimental
+description: Converted from Sagan rule SID 5005824 (rev 3), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased:
+      - -6-113019
+      - -6-716002
+      - -6-721018
+  selection_2:
+    sagan_bluedot_honeypot_1: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005824'
+  sagan.rev: '3'
+  sagan.source_file: cisco-bluedot.rules
+---
+title: '[CISCO-BLUEDOT] VPN disconnect from known proxy IP'
+id: 2ac036cf-6df5-5240-95db-5d78e0c208a8
+status: experimental
+description: Converted from Sagan rule SID 5005825 (rev 3), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    message|contains|cased:
+      - -6-113019
+      - -6-716002
+      - -6-721018
+  selection_2:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005825'
+  sagan.rev: '3'
+  sagan.source_file: cisco-bluedot.rules
+---
+title: '[CISCO-BLUEDOT] ACS Login success from Tor IP'
+id: e72319f2-0084-58af-bf36-0771446544ae
+status: experimental
+description: Converted from Sagan rule SID 5005830 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: CisACS_01_PassedAuth
+  selection_2:
+    sagan_bluedot_tor_2: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005830'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+---
+title: '[CISCO-BLUEDOT] ACS Login success from Malicious IP'
+id: ae28c45d-7374-5c11-8896-8e66480d0676
+status: experimental
+description: Converted from Sagan rule SID 5005831 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: CisACS_01_PassedAuth
+  selection_2:
+    sagan_bluedot_malicious_2: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005831'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+---
+title: '[CISCO-BLUEDOT] ACS Login success from a known proxy IP'
+id: 73e3c91e-6586-5d36-8de2-d4cc84fab169
+status: experimental
+description: Converted from Sagan rule SID 5005832 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: CisACS_01_PassedAuth
+  selection_2:
+    sagan_bluedot_proxy_2: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005832'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules
+---
+title: '[CISCO-BLUEDOT] ACS Login success from an IP address associated with attack a honeypot'
+id: 65717ed6-7609-564b-a0de-cfdffc8f662f
+status: experimental
+description: Converted from Sagan rule SID 5005833 (rev 1), file cisco-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: cisco
+detection:
+  selection_1:
+    appname|cased: CisACS_01_PassedAuth
+  bluedot_hit_1:
+    sagan_bluedot_malicious_2: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_2: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_2: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_2: true
+  condition: selection_1 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5005833'
+  sagan.rev: '1'
+  sagan.source_file: cisco-bluedot.rules

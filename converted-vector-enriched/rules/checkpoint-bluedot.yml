@@ -1,0 +1,202 @@
+title: '[CHECKPOINT-BLUEDOT] Log In from a Bluedot listed address'
+id: 6f1a9e1b-04d0-5fbc-8df8-b3ebcd61a3f7
+status: experimental
+description: Converted from Sagan rule SID 5005726 (rev 1), file checkpoint-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: checkpoint
+detection:
+  selection_1:
+    message|contains|cased: '[action:"Log In";'
+  bluedot_hit_1:
+    sagan_bluedot_malicious_3: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_3: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_3: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_3: true
+  condition: selection_1 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005726'
+  sagan.rev: '1'
+  sagan.source_file: checkpoint-bluedot.rules
+---
+title: '[CHECKPOINT-BLUEDOT] Log Out from a Bluedot listed address'
+id: a83b9891-ceb1-5c5f-ad3e-e18c272949fb
+status: experimental
+description: Converted from Sagan rule SID 5005727 (rev 1), file checkpoint-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: checkpoint
+detection:
+  selection_1:
+    message|contains|cased: '[action:"Log Out";'
+  bluedot_hit_1:
+    sagan_bluedot_malicious_3: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_3: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_3: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_3: true
+  condition: selection_1 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005727'
+  sagan.rev: '1'
+  sagan.source_file: checkpoint-bluedot.rules
+---
+title: '[CHECKPOINT-BLUEDOT] Key Install from a Bluedot listed address'
+id: 40a1ac70-2548-5ef1-823e-afa875186f78
+status: experimental
+description: Converted from Sagan rule SID 5005728 (rev 1), file checkpoint-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: checkpoint
+detection:
+  selection_1:
+    message|contains|cased: '[action:"Key Install";'
+  bluedot_hit_1:
+    sagan_bluedot_malicious_3: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_3: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_3: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_3: true
+  condition: selection_1 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005728'
+  sagan.rev: '1'
+  sagan.source_file: checkpoint-bluedot.rules
+---
+title: '[CHECKPOINT-BLUEDOT] Encrypt from a Bluedot listed address'
+id: d10a6a16-1041-5120-9c21-cadbd438f645
+status: experimental
+description: Converted from Sagan rule SID 5005729 (rev 1), file checkpoint-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: checkpoint
+detection:
+  selection_1:
+    message|contains|cased: '[action:"Encrypt";'
+  bluedot_hit_1:
+    sagan_bluedot_malicious_3: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_3: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_3: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_3: true
+  condition: selection_1 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005729'
+  sagan.rev: '1'
+  sagan.source_file: checkpoint-bluedot.rules
+---
+title: '[CHECKPOINT-BLUEDOT] Decrypt from a Bluedot listed address'
+id: 2c5f9914-0ed3-5074-b958-e56ade366777
+status: experimental
+description: Converted from Sagan rule SID 5005730 (rev 1), file checkpoint-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: checkpoint
+detection:
+  selection_1:
+    message|contains|cased: '[action:"Decrypt";'
+  bluedot_hit_1:
+    sagan_bluedot_malicious_3: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_3: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_3: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_3: true
+  condition: selection_1 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005730'
+  sagan.rev: '1'
+  sagan.source_file: checkpoint-bluedot.rules
+---
+title: '[CHECKPOINT-BLUEDOT] Authorize from a Bluedot listed address'
+id: acf9d0fe-3781-5b6d-b21a-b55186f87101
+status: experimental
+description: Converted from Sagan rule SID 5005731 (rev 1), file checkpoint-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: checkpoint
+detection:
+  selection_1:
+    message|contains|cased: '[action:"Authorize";'
+  bluedot_hit_1:
+    sagan_bluedot_malicious_3: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_3: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_3: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_3: true
+  condition: selection_1 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005731'
+  sagan.rev: '1'
+  sagan.source_file: checkpoint-bluedot.rules
+---
+title: '[CHECKPOINT-BLUEDOT] Deauthorize from a Bluedot listed address'
+id: d48b5479-836a-502d-8d20-4fbbe91021c6
+status: experimental
+description: Converted from Sagan rule SID 5005732 (rev 1), file checkpoint-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: checkpoint
+detection:
+  selection_1:
+    message|contains|cased: '[action:"Deauthorize";'
+  bluedot_hit_1:
+    sagan_bluedot_malicious_3: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_3: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_3: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_3: true
+  condition: selection_1 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005732'
+  sagan.rev: '1'
+  sagan.source_file: checkpoint-bluedot.rules

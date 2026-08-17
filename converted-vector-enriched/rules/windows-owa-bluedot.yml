@@ -1,0 +1,30 @@
+title: '[WINDOWS-OWA-BLUEDOT] Login failure - Brute force [5/5]'
+id: f4b99ae5-d711-53cc-a197-630e82aa3a88
+status: experimental
+description: Converted from Sagan rule SID 5002352 (rev 8), file windows-owa-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    message|contains: /ews/exchange.asmx
+  filter_2:
+    message|contains|cased: ' 200'
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and not filter_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.brute-force
+custom_attributes:
+  sagan.sid: '5002352'
+  sagan.rev: '8'
+  sagan.source_file: windows-owa-bluedot.rules

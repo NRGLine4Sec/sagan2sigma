@@ -2370,6 +2370,35 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: fortinet.rules
 ---
+title: '[FORTINET] Botnet Communication Detected - Direction Outgoing'
+id: 18d378fa-88ed-5472-af36-abc98f7685de
+status: experimental
+description: Converted from Sagan rule SID 5014359 (rev 1), file fortinet.rules.
+references:
+  - https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/ef4bde1e-412e-11ee-8e6d-fa163e15d75b/FortiAnalyzer-7.4.1-Administration_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: trigger=Default-Botnet-Communication-Detection-By-
+  selection_2:
+    _raw|contains|cased: direction="outgoing"
+  filter_3:
+    _raw|contains|cased: '- - - -'
+  selection_4:
+    _raw|re: srcip=(10(\.(1?\d\d?|2([0-4]\d?|5[0-5])))(?:\.(1?\d\d?|2([0-4]\d?|5[0-5])))|172\.(1[6-9]|2\d|3[0-2])(?:\.(1?\d\d?|2([0-4]\d?|5[0-5])))|192\.168(?:\.(1?\d\d?|2([0-4]\d?|5[0-5]))))(?:\.(1?\d\d?|2([0-4]\d?|5[0-5])))
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014359'
+  sagan.rev: '1'
+  sagan.source_file: fortinet.rules
+---
 title: '[FORTINET] Compromised Host Detected'
 id: 16172608-bf8b-52ab-8bae-cda49e32ab8c
 status: experimental
@@ -3829,6 +3858,35 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5017300'
+  sagan.rev: '1'
+  sagan.source_file: fortinet.rules
+---
+title: '[FORTINET] Botnet Communication Detected - Direction Outgoing'
+id: 001217b6-d3bb-584e-8223-7854de0151b5
+status: experimental
+description: Converted from Sagan rule SID 5017301 (rev 1), file fortinet.rules.
+references:
+  - https://fortinetweb.s3.amazonaws.com/docs.fortinet.com/v2/attachments/ef4bde1e-412e-11ee-8e6d-fa163e15d75b/FortiAnalyzer-7.4.1-Administration_Guide.pdf
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    _raw|contains|cased: trigger=Default-Botnet-Communication-Detection-By-
+  selection_2:
+    _raw|contains|cased: direction="outgoing"
+  selection_3:
+    _raw|contains|cased: '- - - -'
+  selection_4:
+    _raw|re: srcip=(10(\.(1?\d\d?|2([0-4]\d?|5[0-5])))(?:\.(1?\d\d?|2([0-4]\d?|5[0-5])))|172\.(1[6-9]|2\d|3[0-2])(?:\.(1?\d\d?|2([0-4]\d?|5[0-5])))|192\.168(?:\.(1?\d\d?|2([0-4]\d?|5[0-5]))))(?:\.(1?\d\d?|2([0-4]\d?|5[0-5])))
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017301'
   sagan.rev: '1'
   sagan.source_file: fortinet.rules
 ---

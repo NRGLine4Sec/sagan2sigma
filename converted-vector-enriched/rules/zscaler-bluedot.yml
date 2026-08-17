@@ -1,0 +1,57 @@
+title: '[ZSCALER] Suspicious IP detected via Bluedot'
+id: 503affca-f7ec-551a-bcc2-469368ae2515
+status: experimental
+description: Converted from Sagan rule SID 5003199 (rev 2), file zscaler-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: zscaler
+detection:
+  selection_1:
+    appname|cased: CEF
+  selection_2:
+    message|contains|cased: Zscaler
+  selection_3:
+    message|contains|cased: act=Allowed
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_1: true
+  bluedot_hit_4:
+    sagan_bluedot_malicious_2: true
+  bluedot_hit_5:
+    sagan_bluedot_tor_2: true
+  bluedot_hit_6:
+    sagan_bluedot_proxy_2: true
+  bluedot_hit_7:
+    sagan_bluedot_malicious_3: true
+  bluedot_hit_8:
+    sagan_bluedot_tor_3: true
+  bluedot_hit_9:
+    sagan_bluedot_proxy_3: true
+  bluedot_hit_10:
+    sagan_bluedot_malicious_4: true
+  bluedot_hit_11:
+    sagan_bluedot_tor_4: true
+  bluedot_hit_12:
+    sagan_bluedot_proxy_4: true
+  bluedot_hit_13:
+    sagan_bluedot_malicious_5: true
+  bluedot_hit_14:
+    sagan_bluedot_tor_5: true
+  bluedot_hit_15:
+    sagan_bluedot_proxy_5: true
+  condition: selection_1 and selection_2 and selection_3 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3
+    or bluedot_hit_4 or bluedot_hit_5 or bluedot_hit_6 or bluedot_hit_7 or bluedot_hit_8 or bluedot_hit_9
+    or bluedot_hit_10 or bluedot_hit_11 or bluedot_hit_12 or bluedot_hit_13 or bluedot_hit_14 or bluedot_hit_15)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5003199'
+  sagan.rev: '2'
+  sagan.source_file: zscaler-bluedot.rules
+  rsigma.suppress: 1h

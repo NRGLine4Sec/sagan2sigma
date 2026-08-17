@@ -1,0 +1,154 @@
+title: '[IMAPD-BLUEDOT] Login from suspicious source'
+id: 30f18097-92c2-54b4-a2cd-29e4cc9cb9cf
+status: experimental
+description: Converted from Sagan rule SID 5002897 (rev 3), file imapd-geoip.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: LOGIN,
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002897'
+  sagan.rev: '3'
+  sagan.source_file: imapd-geoip.rules
+---
+title: '[IMAPD-BLUEDOT] Logout from suspicious source'
+id: 9ae8a4d2-5fd5-5b80-a892-527c682ce212
+status: experimental
+description: Converted from Sagan rule SID 5002898 (rev 3), file imapd-geoip.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: LOGOUT,
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002898'
+  sagan.rev: '3'
+  sagan.source_file: imapd-geoip.rules
+---
+title: '[IMAPD-BLUEDOT] Timeout from suspicious source'
+id: f3a8c0a7-20ad-5cb4-b656-561f2457875b
+status: experimental
+description: Converted from Sagan rule SID 5002899 (rev 3), file imapd-geoip.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: TIMEOUT,
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002899'
+  sagan.rev: '3'
+  sagan.source_file: imapd-geoip.rules
+---
+title: '[IMAPD-BLUEDOT] Disconnect from suspicious source'
+id: faea41c6-74c5-59ba-a14e-9535ad944285
+status: experimental
+description: Converted from Sagan rule SID 5002900 (rev 3), file imapd-geoip.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: DISCONNECTED,
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002900'
+  sagan.rev: '3'
+  sagan.source_file: imapd-geoip.rules
+---
+title: '[IMAPD-BLUEDOT] Connection from suspicious source'
+id: 2fa74f36-8aab-5c54-82d0-a7499f06ed37
+status: experimental
+description: Converted from Sagan rule SID 5002901 (rev 3), file imapd-geoip.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: imapd*
+  selection_2:
+    message|contains|cased: Connection,
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_1: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002901'
+  sagan.rev: '3'
+  sagan.source_file: imapd-geoip.rules

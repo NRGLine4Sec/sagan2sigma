@@ -1,0 +1,30 @@
+title: '[PROFTPD-BLUEDOT] Authentication success from suspicious source'
+id: 73798d76-a2b4-5db0-af2d-6568d51e0861
+status: experimental
+description: Converted from Sagan rule SID 5002908 (rev 4), file proftpd-bluedot.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Login successful
+  selection_2:
+    appname|cased: proftpd
+  bluedot_hit_1:
+    sagan_bluedot_malicious_3: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_3: true
+  bluedot_hit_3:
+    sagan_bluedot_honeypot_3: true
+  bluedot_hit_4:
+    sagan_bluedot_proxy_3: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002908'
+  sagan.rev: '4'
+  sagan.source_file: proftpd-bluedot.rules

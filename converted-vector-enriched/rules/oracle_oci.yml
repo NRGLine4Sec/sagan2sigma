@@ -62,6 +62,40 @@ custom_attributes:
   sagan.source_file: oracle_oci.rules
   sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
 ---
+title: '[ORACLE] OCI Audit - AuthenticationUser Bluedot Event Detected'
+id: 019e8750-e782-546e-8fa4-646dfefb31f8
+status: experimental
+description: Converted from Sagan rule SID 5016665 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: AuthenticationUser
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  selection_5:
+    sagan_bluedot_malicious_1: true
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016665'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
+---
 title: '[ORACLE] OCI Audit - AuthenticationUser BruteForce Event Detected'
 id: 7b92805b-a232-50f9-a218-75d9071b10fe
 name: sagan_5016666
@@ -593,6 +627,40 @@ custom_attributes:
   sagan.source_file: oracle_oci.rules
   sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
 ---
+title: '[ORACLE] OCI Audit - InitiateSSOAuthFactor Bluedot Event Detected'
+id: ac1101f5-c875-539f-964e-5e9ddc9f257c
+status: experimental
+description: Converted from Sagan rule SID 5016816 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: InitiateSSOAuthFactor
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  selection_5:
+    sagan_bluedot_malicious_1: true
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016816'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
+---
 title: '[ORACLE] OCI Audit - InitiateSSOAuthFactor BruteForce Event Detected'
 id: 95745d8a-d19c-50ce-9cc4-e02b8df3438d
 name: sagan_5016817
@@ -640,6 +708,40 @@ correlation:
   condition:
     gte: 10
 level: medium
+---
+title: '[ORACLE] OCI Audit - InteractiveLogin Bluedot Event Detected'
+id: 8c914d3d-39c0-5116-80f9-1f7edbaee3d8
+status: experimental
+description: Converted from Sagan rule SID 5016819 (rev 1), file oracle_oci.rules.
+references:
+  - https://www.oracle.com/cloud/service-comparison/
+  - https://docs.oracle.com/en-us/iaas/Content/Audit/Reference/logeventreference.htm#payload
+  - https://www.ateam-oracle.com/post/under-the-hood-oracle-identity-cloud-service-audits
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: oci-kafka-consumer_data
+  selection_2:
+    oracle.loggroupid|cased: _Audit
+  selection_3:
+    data.eventName|cased: InteractiveLogin
+  filter_4:
+    data.identity.principalName|cased: cloudguard
+  selection_5:
+    sagan_bluedot_malicious_1: true
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5016819'
+  sagan.rev: '1'
+  sagan.source_file: oracle_oci.rules
+  sagan.metadata: created_at=2025_06_10,updated_at=2025_06_10
 ---
 title: '[ORACLE] OCI Audit - InteractiveLogin BruteForce Event Detected'
 id: 38c76b53-5921-51e2-a815-822e7dd4e91e

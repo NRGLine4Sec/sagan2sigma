@@ -19,6 +19,56 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: ubiquiti.rules
 ---
+title: '[UBIQUITI] Admin Activity - Admin Accessed UniFi Network From Malicious IP'
+id: 466683bb-cc0a-54a7-bacb-05e498168254
+status: experimental
+description: Converted from Sagan rule SID 5016045 (rev 1), file ubiquiti.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Admin Accessed UniFi Network
+  selection_2:
+    message|contains|cased: opened UniFi Network
+  selection_3:
+    sagan_bluedot_malicious_1: true
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5016045'
+  sagan.rev: '1'
+  sagan.source_file: ubiquiti.rules
+---
+title: '[UBIQUITI] Admins - User Accessed UniFi OS From Malicious IP'
+id: 91b5ce89-776c-5d3e-a6b5-6ee2b0e05cdd
+status: experimental
+description: Converted from Sagan rule SID 5016047 (rev 1), file ubiquiti.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Admin Accessed UniFi Network
+  selection_2:
+    message|contains|cased: accessed the UniFi OS
+  selection_3:
+    sagan_bluedot_malicious_1: true
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5016047'
+  sagan.rev: '1'
+  sagan.source_file: ubiquiti.rules
+---
 title: '[UBIQUITI] Admins - An invitation email to join UniFi Identity has been sent'
 id: ecbd7de4-385b-5992-875a-811c0905309b
 status: experimental
@@ -37,5 +87,120 @@ tags:
   - sagan.classtype.system-event
 custom_attributes:
   sagan.sid: '5016048'
+  sagan.rev: '1'
+  sagan.source_file: ubiquiti.rules
+---
+title: '[UBIQUITI] LAN to WAN Allowed Traffic To Malicious IP'
+id: 3fb7e436-9409-532f-be2f-e4eaafd1936e
+status: experimental
+description: Converted from Sagan rule SID 5016054 (rev 1), file ubiquiti.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: LAN_WAN]Allow All Traffic
+  selection_2:
+    sagan_bluedot_malicious_2: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5016054'
+  sagan.rev: '1'
+  sagan.source_file: ubiquiti.rules
+---
+title: '[UBIQUITI] LOCAL to WAN Allowed Traffic To Malicious IP'
+id: bd95e88b-13fb-5536-b524-8a7ef7640f76
+status: experimental
+description: Converted from Sagan rule SID 5016055 (rev 1), file ubiquiti.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: LOCAL_WAN]Allow All Traffic
+  selection_2:
+    sagan_bluedot_malicious_2: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5016055'
+  sagan.rev: '1'
+  sagan.source_file: ubiquiti.rules
+---
+title: '[UBIQUITI] VPN to WAN Allowed Traffic To Malicious IP'
+id: f005c750-8277-52b6-882d-18e633f67447
+status: experimental
+description: Converted from Sagan rule SID 5016056 (rev 1), file ubiquiti.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: VPN_WAN]Allow All Traffic
+  selection_2:
+    sagan_bluedot_malicious_2: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5016056'
+  sagan.rev: '1'
+  sagan.source_file: ubiquiti.rules
+---
+title: '[UBIQUITI] WAN to LOCAL Allowed Traffic To Malicious IP'
+id: 05461ace-bc46-5d1e-805e-29fcca32cca5
+status: experimental
+description: Converted from Sagan rule SID 5016057 (rev 1), file ubiquiti.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: WAN_LOCAL]Allow All Traffic
+  selection_2:
+    sagan_bluedot_malicious_1: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5016057'
+  sagan.rev: '1'
+  sagan.source_file: ubiquiti.rules
+---
+title: '[UBIQUITI] WAN to LAN Allowed Traffic To Malicious IP'
+id: 605cc2a9-1f28-5fec-b439-41cb1b8f6a61
+status: experimental
+description: Converted from Sagan rule SID 5016058 (rev 1), file ubiquiti.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: WAN_LAN]Allow All Traffic
+  selection_2:
+    sagan_bluedot_malicious_1: true
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5016058'
   sagan.rev: '1'
   sagan.source_file: ubiquiti.rules

@@ -56,6 +56,42 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: sophos_firewall.rules
 ---
+title: '[SOPHOS_FIREWALL] HTTP AntiVirus Module - Suspicious IP Detected'
+id: 2bb50e60-5ba5-5766-b8d8-953b204b2d49
+status: experimental
+description: Converted from Sagan rule SID 5017403 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: log_type="Anti-Virus"
+  selection_3:
+    message|contains|cased: log_component="HTTP/HTTPS"
+  selection_4:
+    message|contains|cased: log_subtype="Clean"
+  bluedot_hit_1:
+    sagan_bluedot_malicious_2: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_2: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_2: true
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and (bluedot_hit_1 or bluedot_hit_2
+    or bluedot_hit_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017403'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
 title: '[SOPHOS_FIREWALL] FTP AntiVirus Module - Virus Detected'
 id: 3fae66c1-8401-5195-bd2b-759456cea09c
 status: experimental
@@ -82,6 +118,42 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5017404'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] FTP AntiVirus Module - Suspicious IP Detected'
+id: 1481e55c-b1d0-5f1c-b3ab-966d766e0116
+status: experimental
+description: Converted from Sagan rule SID 5017406 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: log_type="Anti-Virus"
+  selection_3:
+    message|contains|cased: log_component="FTP"
+  selection_4:
+    message|contains|cased: log_subtype="Clean"
+  bluedot_hit_1:
+    sagan_bluedot_malicious_2: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_2: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_2: true
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and (bluedot_hit_1 or bluedot_hit_2
+    or bluedot_hit_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017406'
   sagan.rev: '1'
   sagan.source_file: sophos_firewall.rules
 ---
@@ -314,6 +386,39 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5017414'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] HTTP AntiVirus Module - Suspicious IP Detected'
+id: d366d682-66c9-50f0-891c-6d2684b21520
+status: experimental
+description: Converted from Sagan rule SID 5017416 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: log_type="ATP"
+  selection_3:
+    message|contains|cased: log_subtype="Alert"
+  bluedot_hit_1:
+    sagan_bluedot_malicious_2: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_2: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_2: true
+  condition: selection_1 and selection_2 and selection_3 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017416'
   sagan.rev: '1'
   sagan.source_file: sophos_firewall.rules
 ---
@@ -955,6 +1060,42 @@ correlation:
   timespan: 1h
 level: medium
 ---
+title: '[SOPHOS_FIREWALL] Authentication Module - Suspicious IP Login'
+id: 03372665-5357-50a1-9420-e78d2aa7f4e4
+status: experimental
+description: Converted from Sagan rule SID 5017433 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: log_type="Event"
+  selection_3:
+    message|contains|cased: log_subtype="Authentication"
+  selection_4:
+    message|contains|cased: status="Successful"
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and (bluedot_hit_1 or bluedot_hit_2
+    or bluedot_hit_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017433'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
 title: '[SOPHOS_FIREWALL] Anti-Spam Module Detection'
 id: 78f3aa64-32ac-5f1d-92e7-b9c55bb61dd2
 status: experimental
@@ -1101,6 +1242,42 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: sophos_firewall.rules
 ---
+title: '[SOPHOS_FIREWALL] Authentication Module - Suspicious IP VPN Connection'
+id: c489f861-3c95-50a1-834b-115f96599942
+status: experimental
+description: Converted from Sagan rule SID 5017439 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: log_type="Event"
+  selection_3:
+    message|contains|cased: log_subtype="System"
+  selection_4:
+    message|contains|cased: '""established successfully'
+  bluedot_hit_1:
+    sagan_bluedot_malicious_2: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_2: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_2: true
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and (bluedot_hit_1 or bluedot_hit_2
+    or bluedot_hit_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017439'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
 title: '[SOPHOS_FIREWALL] Zero Day Protect Event Detected - Mail Allowed'
 id: 60bc7d04-c76b-5b47-8e37-d17302dab0f0
 status: experimental
@@ -1214,6 +1391,39 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5017443'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] SSL VPN Module - Suspicious Remote Access Connection'
+id: b0e8a84c-2f45-5b1f-9112-3acfcd8f316f
+status: experimental
+description: Converted from Sagan rule SID 5017445 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: log_type="SSL VPN"
+  selection_3:
+    message|contains|cased: mode="Remote Access"
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and selection_3 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017445'
   sagan.rev: '1'
   sagan.source_file: sophos_firewall.rules
 ---
@@ -1431,6 +1641,68 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: sophos_firewall.rules
 ---
+title: '[SOPHOS_FIREWALL] IPS Detected A Threat But Not Blocked From Bluedot IP Address'
+id: 854924e4-d6ea-5998-8349-d592fdfd6352
+status: experimental
+description: Converted from Sagan rule SID 5017722 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: log_type="IDP"
+  selection_3:
+    message|contains|cased: log_subtype="Detect"
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and selection_3 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017722'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
+title: '[SOPHOS_FIREWALL] WAF Alert From Bluedot IP Address'
+id: 292e7642-e918-5b95-a603-e31ad038b6ba
+status: experimental
+description: Converted from Sagan rule SID 5017723 (rev 1), file sophos_firewall.rules.
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: log_type="WAF"
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.web-application-attack
+custom_attributes:
+  sagan.sid: '5017723'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+---
 title: '[SOPHOS_FIREWALL] HTTP AntiVirus Module - Virus Detected'
 id: c0cfd431-12b0-53cd-8dac-09ca8afdb9ca
 status: experimental
@@ -1491,6 +1763,41 @@ custom_attributes:
   sagan.source_file: sophos_firewall.rules
   sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
 ---
+title: '[SOPHOS_FIREWALL] HTTP AntiVirus Module - Suspicious IP Detected'
+id: 628eada6-09c7-511a-846c-0ddbf433046d
+status: experimental
+description: Converted from Sagan rule SID 5017878 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: log_type="Anti-Virus"
+  selection_3:
+    message|contains|cased: log_component="HTTP/HTTPS"
+  bluedot_hit_1:
+    sagan_bluedot_malicious_2: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_2: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_2: true
+  condition: selection_1 and selection_2 and selection_3 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017878'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  rsigma.suppress: 1h
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
 title: '[SOPHOS_FIREWALL] FTP AntiVirus Module - Virus Detected'
 id: 87f58558-22ec-53ed-9f50-4ba97474d288
 status: experimental
@@ -1519,6 +1826,41 @@ custom_attributes:
   sagan.sid: '5017879'
   sagan.rev: '1'
   sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] FTP AntiVirus Module - Suspicious IP Detected'
+id: e1c3f037-3025-5bfa-8125-e89cbb51970d
+status: experimental
+description: Converted from Sagan rule SID 5017881 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: log_type="Anti-Virus"
+  selection_3:
+    message|contains|cased: log_component="FTP"
+  bluedot_hit_1:
+    sagan_bluedot_malicious_2: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_2: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_2: true
+  condition: selection_1 and selection_2 and selection_3 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017881'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  rsigma.suppress: 1h
   sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
 ---
 title: '[SOPHOS_FIREWALL] Firewall ATP Module - Malware Detected But Not Blocked'
@@ -1759,6 +2101,41 @@ custom_attributes:
   sagan.sid: '5017835'
   sagan.rev: '1'
   sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] ATP Module - Suspicious IP Detected'
+id: bdebbbdf-f3b3-58eb-866c-7f9481166904
+status: experimental
+description: Converted from Sagan rule SID 5017837 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: log_type="ATP"
+  selection_3:
+    message|contains|cased: log_subtype="Alert"
+  bluedot_hit_1:
+    sagan_bluedot_malicious_2: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_2: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_2: true
+  condition: selection_1 and selection_2 and selection_3 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017837'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  rsigma.suppress: 1h
   sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
 ---
 title: '[SOPHOS_FIREWALL] Firewall Authentication Module - Brute Force Attempt'
@@ -2399,6 +2776,43 @@ correlation:
   timespan: 1h
 level: medium
 ---
+title: '[SOPHOS_FIREWALL] Authentication Module - Suspicious IP Login'
+id: d3e4f225-1991-500f-91c5-9ccb3be7d70d
+status: experimental
+description: Converted from Sagan rule SID 5017854 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: log_type="Event"
+  selection_3:
+    message|contains|cased: log_subtype="Authentication"
+  selection_4:
+    message|contains|cased: status="Successful"
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and (bluedot_hit_1 or bluedot_hit_2
+    or bluedot_hit_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017854'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
 title: '[SOPHOS_FIREWALL] Anti-Spam Module Detection'
 id: fd06647c-c8a5-5d06-9fe8-810ef098cb53
 status: experimental
@@ -2554,6 +2968,47 @@ custom_attributes:
   sagan.source_file: sophos_firewall.rules
   sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
 ---
+title: '[SOPHOS_FIREWALL] Authentication Module - Login To VPN From Suspicious IP'
+id: e76095a5-a5ca-585c-a99e-639b299dcb94
+status: experimental
+description: Converted from Sagan rule SID 5017860 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: log_type="Event"
+  selection_3:
+    message|contains|cased: log_subtype="System"
+  selection_4:
+    message|contains|cased: '""established successfully'
+  selection_5:
+    message|contains|cased:
+      - log_component="L2TP"
+      - log_component="PPTP"
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and (bluedot_hit_1
+    or bluedot_hit_2 or bluedot_hit_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017860'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
 title: '[SOPHOS_FIREWALL] Zero Day Protect Event Detected - Mail Allowed'
 id: 91974d13-a8e7-5caf-9ed0-88279638320f
 status: experimental
@@ -2670,6 +3125,40 @@ tags:
   - sagan.classtype.suspicious-activity
 custom_attributes:
   sagan.sid: '5017864'
+  sagan.rev: '1'
+  sagan.source_file: sophos_firewall.rules
+  sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
+---
+title: '[SOPHOS_FIREWALL] SSL VPN Module - Suspicious Remote Access Connection'
+id: 9b2b2d6b-905c-51bf-bb72-f411a754f565
+status: experimental
+description: Converted from Sagan rule SID 5017866 (rev 1), file sophos_firewall.rules.
+references:
+  - https://docs.sophos.com/nsg/sophos-firewall/21.5/pdf/sf-syslog-guide-21.5.pdf
+author: sagan2sigma
+logsource:
+  product: sophos
+detection:
+  selection_1:
+    appname|cased: sophos
+  selection_2:
+    message|contains|cased: log_type="SSL VPN"
+  selection_3:
+    message|contains|cased: mode="Remote Access"
+  bluedot_hit_1:
+    sagan_bluedot_malicious_1: true
+  bluedot_hit_2:
+    sagan_bluedot_tor_1: true
+  bluedot_hit_3:
+    sagan_bluedot_proxy_1: true
+  condition: selection_1 and selection_2 and selection_3 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017866'
   sagan.rev: '1'
   sagan.source_file: sophos_firewall.rules
   sagan.metadata: createdOn=2026_04_03,updatedOn=2026_04_03
