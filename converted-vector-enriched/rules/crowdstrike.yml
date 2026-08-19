@@ -1793,7 +1793,7 @@ detection:
   selection_1:
     appname|cased: CrowdStrike
   selection_2:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   filter_3:
     message|contains|cased: AutomatedLeadSummaryEvent
   filter_4:
@@ -1853,7 +1853,7 @@ detection:
   selection_1:
     appname|cased: CrowdStrike
   selection_2:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   filter_3:
     message|contains|cased: msg=A number of behaviors occurred indicative of the Empyre Backdoor tool
   filter_4:
@@ -1938,7 +1938,7 @@ detection:
   selection_1:
     appname|cased: CrowdStrike
   selection_2:
-    message|contains|cased: tactic=Falcon Intel
+    message|contains|cased: cat=Falcon Intel
   filter_3:
     message|contains|cased: A domain lookup matched a CrowdStrike Intelligence indicator that has previously
       been used in targeted attacks
@@ -1967,7 +1967,7 @@ detection:
   selection_1:
     appname|cased: CrowdStrike
   selection_2:
-    message|contains|cased: tactic=Falcon Overwatch
+    message|contains|cased: cat=Falcon Overwatch
   filter_3:
     message|contains|cased:
       - A critical level detection was triggered on this process for testing purposes
@@ -1998,7 +1998,7 @@ detection:
   selection_1:
     appname|cased: CrowdStrike
   selection_2:
-    message|contains|cased: tactic=Impact
+    message|contains|cased: cat=Impact
   filter_3:
     message|contains|cased:
       - A process attempted to hide a Volume Shadow Snapshot
@@ -2064,7 +2064,7 @@ custom_attributes:
 title: '[CROWDSTRIKE] Machine Learning Tactic Catchall'
 id: d18019a7-34c1-5861-a32f-3cb81df4856f
 status: experimental
-description: Converted from Sagan rule SID 5016652 (rev 2), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5016652 (rev 3), file crowdstrike.rules.
 references:
   - https://www.reddit.com/r/crowdstrike/comments/rbbzwi/pattern_disposition_values_in_detect_api/
 author: sagan2sigma
@@ -2074,7 +2074,7 @@ detection:
   selection_1:
     appname|cased: CrowdStrike
   selection_2:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   filter_3:
     message|contains|cased: msg=This file meets the File Analysis ML algorithm's lowest-confidence threshold
       for malware
@@ -2109,7 +2109,7 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5016652'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: crowdstrike.rules
   sagan.metadata: created_at=2025_06_25,updated_at=2026_03_26
 ---
@@ -2126,7 +2126,7 @@ detection:
   selection_1:
     appname|cased: CrowdStrike
   selection_2:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   filter_3:
     message|contains|cased:
       - A file written to the file-system was classified as Adware/PUP based on its SHA256 hash
@@ -3844,7 +3844,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3873,7 +3873,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3902,7 +3902,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3931,7 +3931,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3960,7 +3960,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3989,7 +3989,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4018,7 +4018,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4047,7 +4047,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4076,7 +4076,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4105,7 +4105,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4134,7 +4134,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4163,7 +4163,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4191,7 +4191,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4219,7 +4219,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4247,7 +4247,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4275,7 +4275,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4303,7 +4303,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4331,7 +4331,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4360,7 +4360,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4389,7 +4389,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4418,7 +4418,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4447,7 +4447,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4476,7 +4476,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4505,7 +4505,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4533,7 +4533,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4561,7 +4561,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4589,7 +4589,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4617,7 +4617,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4645,7 +4645,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4673,7 +4673,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4701,7 +4701,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4729,7 +4729,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4757,7 +4757,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4785,7 +4785,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4813,7 +4813,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4841,7 +4841,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4869,7 +4869,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4897,7 +4897,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4925,7 +4925,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4953,7 +4953,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4981,7 +4981,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5009,7 +5009,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5038,7 +5038,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5067,7 +5067,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5096,7 +5096,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5124,7 +5124,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5152,7 +5152,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5180,7 +5180,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5208,7 +5208,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5236,7 +5236,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5264,7 +5264,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5292,7 +5292,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5320,7 +5320,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5348,7 +5348,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5377,7 +5377,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5406,7 +5406,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5435,7 +5435,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5463,7 +5463,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5491,7 +5491,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5519,7 +5519,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5549,7 +5549,7 @@ detection:
   selection_4:
     message|contains: blocked
   selection_5:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5579,7 +5579,7 @@ detection:
   selection_4:
     message|contains: killed
   selection_5:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5609,7 +5609,7 @@ detection:
   selection_4:
     message|contains: standard detection
   selection_5:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5639,7 +5639,7 @@ detection:
   selection_4:
     message|contains: blocked
   selection_5:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   filter_6:
     message|contains|cased:
       - fname=chrome.exe
@@ -5681,7 +5681,7 @@ detection:
   selection_4:
     message|contains: killed
   selection_5:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   filter_6:
     message|contains|cased:
       - fname=chrome.exe
@@ -5723,7 +5723,7 @@ detection:
   selection_4:
     message|contains: standard detection
   selection_5:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   filter_6:
     message|contains|cased:
       - fname=chrome.exe
@@ -5765,7 +5765,7 @@ detection:
   selection_4:
     message|contains: blocked
   selection_5:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5795,7 +5795,7 @@ detection:
   selection_4:
     message|contains: killed
   selection_5:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5825,7 +5825,7 @@ detection:
   selection_4:
     message|contains: standard detection
   selection_5:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5852,7 +5852,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5880,7 +5880,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5907,7 +5907,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5934,7 +5934,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5963,7 +5963,7 @@ detection:
   selection_4:
     message|contains: standard detection
   selection_5:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5992,7 +5992,7 @@ detection:
   selection_4:
     message|contains: standard detection
   selection_5:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6021,7 +6021,7 @@ detection:
   selection_4:
     message|contains: standard detection
   selection_5:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6050,7 +6050,7 @@ detection:
   selection_4:
     message|contains: standard detection
   selection_5:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6077,7 +6077,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6104,7 +6104,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6133,7 +6133,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6160,7 +6160,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6187,7 +6187,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6215,7 +6215,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6448,7 +6448,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Falcon Intel
+    message|contains|cased: cat=Falcon Intel
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6477,7 +6477,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Falcon Intel
+    message|contains|cased: cat=Falcon Intel
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6506,7 +6506,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Falcon Intel
+    message|contains|cased: cat=Falcon Intel
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6533,7 +6533,7 @@ detection:
     message|contains|cased: Ransomware file operation activity has been observed occurring over a remote
       SMB connection
   selection_3:
-    message|contains|cased: tactic=Impact
+    message|contains|cased: cat=Impact
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6558,7 +6558,7 @@ detection:
   selection_2:
     message|contains|cased: technique=Data Encrypted for Impact
   selection_3:
-    message|contains|cased: tactic=Impact
+    message|contains|cased: cat=Impact
   filter_4:
     message|contains|cased: Ransomware file operation activity has been observed occurring over a remote
       SMB connection
@@ -6588,7 +6588,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Impact
+    message|contains|cased: cat=Impact
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6615,7 +6615,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Impact
+    message|contains|cased: cat=Impact
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6642,7 +6642,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Impact
+    message|contains|cased: cat=Impact
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6733,7 +6733,7 @@ custom_attributes:
 title: '[CROWDSTRIKE] Machine Learning Analysis: Cloud-based ML high confidence malware detection - Blocked'
 id: 38af579a-4e56-58e4-b53a-f59048d1fae5
 status: experimental
-description: Converted from Sagan rule SID 5017627 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017627 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -6746,7 +6746,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6755,13 +6755,13 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017627'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis: Cloud-based ML high confidence malware detection - Killed'
 id: fcc9a037-87f2-5a70-8970-e3342dd8d9ef
 status: experimental
-description: Converted from Sagan rule SID 5017628 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017628 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -6774,7 +6774,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6783,13 +6783,13 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017628'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis: Cloud-based ML high confidence malware detection - Detected'
 id: f60e388c-42c0-52de-ba6e-b8b1b7f546f3
 status: experimental
-description: Converted from Sagan rule SID 5017629 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017629 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -6802,7 +6802,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6811,14 +6811,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017629'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis: Cloud-based ML medium confidence malware detection -
   Blocked'
 id: e753a3c3-4316-5fdd-9198-6923725a2c0b
 status: experimental
-description: Converted from Sagan rule SID 5017630 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017630 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -6831,7 +6831,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6840,14 +6840,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017630'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis: Cloud-based ML medium confidence malware detection -
   Killed'
 id: 539fc919-5857-5193-9ea1-9f0afb10736b
 status: experimental
-description: Converted from Sagan rule SID 5017631 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017631 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -6860,7 +6860,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6869,14 +6869,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017631'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis: Cloud-based ML medium confidence malware detection -
   Detected'
 id: c009dd8d-d17d-5a33-909b-c38e9ce23264
 status: experimental
-description: Converted from Sagan rule SID 5017632 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017632 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -6889,7 +6889,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6898,13 +6898,13 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017632'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis: On-sensor ML high confidence malware detection - Blocked'
 id: 5c35745d-e2b6-5abb-8cdd-28fb2fbcfc72
 status: experimental
-description: Converted from Sagan rule SID 5017633 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017633 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -6917,7 +6917,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6926,13 +6926,13 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017633'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis: On-sensor ML high confidence malware detection - Killed'
 id: 5793c2e0-cff8-5393-ad36-df691a87f99d
 status: experimental
-description: Converted from Sagan rule SID 5017634 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017634 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -6945,7 +6945,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6954,13 +6954,13 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017634'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis: On-sensor ML high confidence malware detection - Detected'
 id: 14f7638e-b014-5c04-9a66-53e17b214b4e
 status: experimental
-description: Converted from Sagan rule SID 5017635 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017635 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -6973,7 +6973,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6982,13 +6982,13 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017635'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis: On-sensor ML medium confidence malware detection - Blocked'
 id: 809013b7-9ad9-5d9c-b963-3f9d70fc7b90
 status: experimental
-description: Converted from Sagan rule SID 5017636 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017636 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -7001,7 +7001,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7010,13 +7010,13 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017636'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis: On-sensor ML medium confidence malware detection - Killed'
 id: 7d4337ec-4050-5fd9-ab63-2b4b398bae33
 status: experimental
-description: Converted from Sagan rule SID 5017637 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017637 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -7029,7 +7029,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7038,13 +7038,13 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017637'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis: On-sensor ML medium confidence malware detection - Detected'
 id: adb694b2-4294-5d35-b37a-df162b4b3e31
 status: experimental
-description: Converted from Sagan rule SID 5017638 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017638 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -7057,7 +7057,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7066,7 +7066,7 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017638'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] File classified as Adware or PUP based on SHA256 hash - Blocked'
@@ -7085,7 +7085,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7113,7 +7113,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7141,7 +7141,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7169,7 +7169,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7197,7 +7197,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7225,7 +7225,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7254,7 +7254,7 @@ detection:
   selection_4:
     message|contains: blocked
   selection_5:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7283,7 +7283,7 @@ detection:
   selection_4:
     message|contains: killed
   selection_5:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7312,7 +7312,7 @@ detection:
   selection_4:
     message|contains: standard detection
   selection_5:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7339,7 +7339,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7366,7 +7366,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7393,7 +7393,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7422,7 +7422,7 @@ detection:
   selection_4:
     message|contains: blocked
   selection_5:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   filter_6:
     message|contains|cased:
       - fname=chrome.exe
@@ -7463,7 +7463,7 @@ detection:
   selection_4:
     message|contains: killed
   selection_5:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   filter_6:
     message|contains|cased:
       - fname=chrome.exe
@@ -7504,7 +7504,7 @@ detection:
   selection_4:
     message|contains: standard detection
   selection_5:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   filter_6:
     message|contains|cased:
       - fname=chrome.exe
@@ -7545,7 +7545,7 @@ detection:
   selection_4:
     message|contains: blocked
   selection_5:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7574,7 +7574,7 @@ detection:
   selection_4:
     message|contains: killed
   selection_5:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7603,7 +7603,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7632,7 +7632,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7661,7 +7661,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7690,7 +7690,7 @@ detection:
   selection_4:
     message|contains: blocked
   selection_5:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7719,7 +7719,7 @@ detection:
   selection_4:
     message|contains: killed
   selection_5:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7748,7 +7748,7 @@ detection:
   selection_4:
     message|contains: standard detection
   selection_5:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7777,7 +7777,7 @@ detection:
   selection_4:
     message|contains: blocked
   selection_5:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7806,7 +7806,7 @@ detection:
   selection_4:
     message|contains: killed
   selection_5:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7835,7 +7835,7 @@ detection:
   selection_4:
     message|contains: standard detection
   selection_5:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7864,7 +7864,7 @@ detection:
   selection_4:
     message|contains: blocked
   selection_5:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7893,7 +7893,7 @@ detection:
   selection_4:
     message|contains: killed
   selection_5:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7922,7 +7922,7 @@ detection:
   selection_4:
     message|contains: standard detection
   selection_5:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7951,7 +7951,7 @@ detection:
   selection_4:
     message|contains: blocked
   selection_5:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7980,7 +7980,7 @@ detection:
   selection_4:
     message|contains: killed
   selection_5:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8009,7 +8009,7 @@ detection:
   selection_4:
     message|contains: standard detection
   selection_5:
-    message|contains|cased: tactic=Malware
+    message|contains|cased: cat=Malware
   condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8062,7 +8062,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Falcon Overwatch
+    message|contains|cased: cat=Falcon Overwatch
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8089,7 +8089,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Falcon Overwatch
+    message|contains|cased: cat=Falcon Overwatch
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8116,7 +8116,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Falcon Overwatch
+    message|contains|cased: cat=Falcon Overwatch
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8143,7 +8143,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Falcon Overwatch
+    message|contains|cased: cat=Falcon Overwatch
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8170,7 +8170,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Falcon Overwatch
+    message|contains|cased: cat=Falcon Overwatch
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8197,7 +8197,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Falcon Overwatch
+    message|contains|cased: cat=Falcon Overwatch
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8226,7 +8226,7 @@ detection:
   selection_4:
     message|contains: blocked
   selection_5:
-    message|contains|cased: tactic=Falcon Overwatch
+    message|contains|cased: cat=Falcon Overwatch
   filter_6:
     message|contains|cased:
       - fname=chrome.exe
@@ -8267,7 +8267,7 @@ detection:
   selection_4:
     message|contains: killed
   selection_5:
-    message|contains|cased: tactic=Falcon Overwatch
+    message|contains|cased: cat=Falcon Overwatch
   filter_6:
     message|contains|cased:
       - fname=chrome.exe
@@ -8308,7 +8308,7 @@ detection:
   selection_4:
     message|contains: standard detection
   selection_5:
-    message|contains|cased: tactic=Falcon Overwatch
+    message|contains|cased: cat=Falcon Overwatch
   filter_6:
     message|contains|cased:
       - fname=chrome.exe
@@ -8835,7 +8835,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8862,7 +8862,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8889,7 +8889,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8916,7 +8916,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8943,7 +8943,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8970,7 +8970,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8999,7 +8999,7 @@ detection:
   selection_4:
     message|contains: blocked
   selection_5:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9028,7 +9028,7 @@ detection:
   selection_4:
     message|contains: killed
   selection_5:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9057,7 +9057,7 @@ detection:
   selection_4:
     message|contains: blocked
   selection_5:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9086,7 +9086,7 @@ detection:
   selection_4:
     message|contains: killed
   selection_5:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9115,7 +9115,7 @@ detection:
   selection_4:
     message|contains: blocked
   selection_5:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9144,7 +9144,7 @@ detection:
   selection_4:
     message|contains: killed
   selection_5:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9173,7 +9173,7 @@ detection:
   selection_4:
     message|contains: blocked
   selection_5:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9202,7 +9202,7 @@ detection:
   selection_4:
     message|contains: killed
   selection_5:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9229,7 +9229,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9256,7 +9256,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9283,7 +9283,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9310,7 +9310,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9337,7 +9337,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9364,7 +9364,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9392,7 +9392,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9420,7 +9420,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9448,7 +9448,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9477,7 +9477,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9506,7 +9506,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9535,7 +9535,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9563,7 +9563,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9591,7 +9591,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9619,7 +9619,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9647,7 +9647,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9675,7 +9675,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9703,7 +9703,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9731,7 +9731,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9759,7 +9759,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9787,7 +9787,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9816,7 +9816,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9845,7 +9845,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9874,7 +9874,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9901,7 +9901,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9928,7 +9928,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9955,7 +9955,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Defense Evasion
+    message|contains|cased: cat=Defense Evasion
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -9981,7 +9981,7 @@ detection:
   selection_2:
     message|contains|cased: A suspicious script launched that might be related to malicious activity
   selection_3:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10008,7 +10008,7 @@ detection:
     message|contains: A PowerShell script related to this process is likely malicious or shares characteristics
       with known malicious scripts
   selection_3:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10034,7 +10034,7 @@ detection:
   selection_2:
     message|contains: A suspicious process leveraged mshta in an attempt to download and execute a payload
   selection_3:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10059,7 +10059,7 @@ detection:
   selection_2:
     message|contains: A suspicious process was identified by CrowdStrike
   selection_3:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10086,7 +10086,7 @@ detection:
     message|contains: A user executed a scheduled task RPC DCE/RPC command targeting a DC for the first
       time
   selection_3:
-    message|contains|cased: tactic=Execution
+    message|contains|cased: cat=Execution
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10117,7 +10117,7 @@ detection:
   selection_5:
     message|contains: blocked
   selection_6:
-    message|contains|cased: tactic=Impact
+    message|contains|cased: cat=Impact
   condition: selection_1 and selection_2 and selection_5 and selection_6 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10148,7 +10148,7 @@ detection:
   selection_5:
     message|contains: killed
   selection_6:
-    message|contains|cased: tactic=Impact
+    message|contains|cased: cat=Impact
   condition: selection_1 and selection_2 and selection_5 and selection_6 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10179,7 +10179,7 @@ detection:
   selection_5:
     message|contains: standard detection
   selection_6:
-    message|contains|cased: tactic=Impact
+    message|contains|cased: cat=Impact
   condition: selection_1 and selection_2 and selection_5 and selection_6 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10206,7 +10206,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Impact
+    message|contains|cased: cat=Impact
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10233,7 +10233,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Impact
+    message|contains|cased: cat=Impact
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10260,7 +10260,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Impact
+    message|contains|cased: cat=Impact
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10288,7 +10288,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Impact
+    message|contains|cased: cat=Impact
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10316,7 +10316,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Impact
+    message|contains|cased: cat=Impact
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10344,7 +10344,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Impact
+    message|contains|cased: cat=Impact
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10387,7 +10387,7 @@ title: '[CROWDSTRIKE] Machine Learning Analysis Blocked - File Meets File Analys
   Malware Threshold'
 id: cee9a5dc-f0c9-5dc1-9b00-f2ef43be74ad
 status: experimental
-description: Converted from Sagan rule SID 5017761 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017761 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -10400,7 +10400,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10409,14 +10409,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017761'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis Killed - File Meets File Analysis ML High-Confidence Malware
   Threshold'
 id: b2e758fe-1d19-597d-846a-fd1575c08e05
 status: experimental
-description: Converted from Sagan rule SID 5017762 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017762 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -10429,7 +10429,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10438,14 +10438,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017762'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis Detected - File Meets File Analysis ML High-Confidence
   Malware Threshold'
 id: ea811f29-063a-5160-86e1-6f17b69f6975
 status: experimental
-description: Converted from Sagan rule SID 5017763 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017763 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -10458,7 +10458,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10467,14 +10467,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017763'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis Blocked - Process Wrote Suspicious File Meeting Adware
   PUP Anti-Malware ML High-Confidence Threshold'
 id: 9a2fce20-c665-54a6-9050-8b895d77c773
 status: experimental
-description: Converted from Sagan rule SID 5017764 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017764 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -10487,7 +10487,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10496,14 +10496,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017764'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis Killed - Process Wrote Suspicious File Meeting Adware
   PUP Anti-Malware ML High-Confidence Threshold'
 id: 099ee9f8-90ed-5c7b-b151-9d6d0471cad1
 status: experimental
-description: Converted from Sagan rule SID 5017765 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017765 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -10516,7 +10516,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10525,14 +10525,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017765'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis Detected - Process Wrote Suspicious File Meeting Adware
   PUP Anti-Malware ML High-Confidence Threshold'
 id: b3a5747a-bbcd-504a-b28c-980971d5b6d0
 status: experimental
-description: Converted from Sagan rule SID 5017766 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017766 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -10545,7 +10545,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10554,14 +10554,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017766'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis Blocked - Process Wrote Suspicious File Meeting ML High-Confidence
   Adware PUP Detection Threshold'
 id: 8a345a45-add8-5680-a806-5a9d772e7b0b
 status: experimental
-description: Converted from Sagan rule SID 5017767 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017767 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -10574,7 +10574,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10583,14 +10583,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017767'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis Killed - Process Wrote Suspicious File Meeting ML High-Confidence
   Adware PUP Detection Threshold'
 id: 12773b8c-4b18-5d8d-bd0c-726820e81470
 status: experimental
-description: Converted from Sagan rule SID 5017768 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017768 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -10603,7 +10603,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10612,14 +10612,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017768'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis Detected - Process Wrote Suspicious File Meeting ML High-Confidence
   Adware PUP Detection Threshold'
 id: c2d06051-fc39-558d-8141-b0d08c12cbec
 status: experimental
-description: Converted from Sagan rule SID 5017769 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017769 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -10632,7 +10632,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10641,14 +10641,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017769'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis Blocked - Office File With Macro Written To File System
   Meets File Analysis ML High-Confidence Malware Threshold'
 id: 9b32afad-e806-5ac1-ba9b-dcbfc686228d
 status: experimental
-description: Converted from Sagan rule SID 5017770 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017770 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -10661,7 +10661,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10670,14 +10670,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017770'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis Killed - Office File With Macro Written To File System
   Meets File Analysis ML High-Confidence Malware Threshold'
 id: 15fe72ef-6dcf-5e4f-ba5d-467b906d299e
 status: experimental
-description: Converted from Sagan rule SID 5017771 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017771 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -10690,7 +10690,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10699,14 +10699,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017771'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis Detected - Office File With Macro Written To File System
   Meets File Analysis ML High-Confidence Malware Threshold'
 id: 4ea87d85-2968-53bd-89fa-c273b6fcad79
 status: experimental
-description: Converted from Sagan rule SID 5017772 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017772 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -10719,7 +10719,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10728,14 +10728,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017772'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis Blocked - File Meets Adware PUP Anti-Malware ML High-Confidence
   Threshold'
 id: e038418d-7ab9-5ec1-b73a-610da805cb61
 status: experimental
-description: Converted from Sagan rule SID 5017773 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017773 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -10748,7 +10748,7 @@ detection:
   selection_3:
     message|contains: blocked
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10757,14 +10757,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017773'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis Killed - File Meets Adware PUP Anti-Malware ML High-Confidence
   Threshold'
 id: 077cdd1b-378c-5770-9853-6a59a12efb68
 status: experimental
-description: Converted from Sagan rule SID 5017774 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017774 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -10777,7 +10777,7 @@ detection:
   selection_3:
     message|contains: killed
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10786,14 +10786,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017774'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis Detected - File Meets Adware PUP Anti-Malware ML High-Confidence
   Threshold'
 id: bc72b6a9-76b5-5d97-9555-67842dd3c01f
 status: experimental
-description: Converted from Sagan rule SID 5017775 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017775 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -10806,7 +10806,7 @@ detection:
   selection_3:
     message|contains: standard detection
   selection_4:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10815,14 +10815,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017775'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis Blocked - PSExec Network Access In An EPP Detection Summary
   Event'
 id: 2993db7f-c543-512e-a616-1b5b388ae0d3
 status: experimental
-description: Converted from Sagan rule SID 5017776 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017776 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -10838,7 +10838,7 @@ detection:
   filter_5:
     message|contains: msg=
   selection_6:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   filter_7:
     message|contains|cased:
       - fname=chrome.exe
@@ -10860,14 +10860,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017776'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis Blocked - PSExec Quarantined Files In A Detection Summary
   Event'
 id: 9136dd92-60f7-566b-b02a-b61148d77d40
 status: experimental
-description: Converted from Sagan rule SID 5017777 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017777 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -10883,7 +10883,7 @@ detection:
   filter_5:
     message|contains: msg=
   selection_6:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_6 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10892,14 +10892,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017777'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis Blocked - PSExec Quarantined Files In An EPP Detection
   Summary Event'
 id: 962cbd34-3537-5007-aac8-e6a5c5f4892f
 status: experimental
-description: Converted from Sagan rule SID 5017778 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017778 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -10915,7 +10915,7 @@ detection:
   filter_5:
     message|contains: msg=
   selection_6:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_6 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10924,14 +10924,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017778'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis Blocked - Mimikatz Network Access In An EPP Detection
   Summary Event'
 id: cf1fafbc-d70e-5a35-801f-d96a3e6634ce
 status: experimental
-description: Converted from Sagan rule SID 5017779 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017779 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -10947,7 +10947,7 @@ detection:
   filter_5:
     message|contains: msg=
   selection_6:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_6 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10956,14 +10956,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017779'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis Blocked - Mimikatz Quarantined Files In A Detection Summary
   Event'
 id: a2550ea3-7831-583d-8bc3-1410e2480305
 status: experimental
-description: Converted from Sagan rule SID 5017780 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017780 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -10979,7 +10979,7 @@ detection:
   filter_5:
     message|contains: msg=
   selection_6:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_6 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -10988,14 +10988,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017780'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis Blocked - ScreenConnect Network Access In An EPP Detection
   Summary Event'
 id: 3edff15d-36b2-5e1d-bf1e-8e0299896195
 status: experimental
-description: Converted from Sagan rule SID 5017781 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017781 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -11011,7 +11011,7 @@ detection:
   filter_5:
     message|contains: msg=
   selection_6:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_6 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -11020,14 +11020,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017781'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis Blocked - ScreenConnect Quarantined Files In An EPP Detection
   Summary Event'
 id: f7c27f60-0dae-58bd-b01b-df30bceb9ea2
 status: experimental
-description: Converted from Sagan rule SID 5017782 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017782 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -11043,7 +11043,7 @@ detection:
   filter_5:
     message|contains: msg=
   selection_6:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_6 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -11052,14 +11052,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017782'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis Blocked - AnyDesk Network Access In An EPP Detection Summary
   Event'
 id: 71c21a55-700e-58da-af15-92db577f4d0d
 status: experimental
-description: Converted from Sagan rule SID 5017783 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017783 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -11075,7 +11075,7 @@ detection:
   filter_5:
     message|contains: msg=
   selection_6:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_6 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -11084,14 +11084,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017783'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis Blocked - TeamViewer Quarantined Files In A Detection
   Summary Event'
 id: a84d1642-5b08-5614-87e9-2126b4da24e5
 status: experimental
-description: Converted from Sagan rule SID 5017784 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017784 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -11107,7 +11107,7 @@ detection:
   filter_5:
     message|contains: msg=
   selection_6:
-    message|contains|cased: tactic=Machine Learning
+    message|contains|cased: cat=Machine Learning
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_6 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -11116,7 +11116,7 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017784'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
 title: '[CROWDSTRIKE] Falcon Overwatch Blocked - Network Access In An Epp Detection Summary Event'
@@ -11136,7 +11136,7 @@ detection:
   selection_4:
     message|contains: blocked
   selection_5:
-    message|contains|cased: tactic=Falcon Overwatch
+    message|contains|cased: cat=Falcon Overwatch
   filter_6:
     message|contains|cased:
       - fname=chrome.exe
@@ -11177,7 +11177,7 @@ detection:
   selection_4:
     message|contains: killed
   selection_5:
-    message|contains|cased: tactic=Falcon Overwatch
+    message|contains|cased: cat=Falcon Overwatch
   filter_6:
     message|contains|cased:
       - fname=chrome.exe
@@ -11218,7 +11218,7 @@ detection:
   selection_4:
     message|contains: standard detection
   selection_5:
-    message|contains|cased: tactic=Falcon Overwatch
+    message|contains|cased: cat=Falcon Overwatch
   filter_6:
     message|contains|cased:
       - fname=chrome.exe

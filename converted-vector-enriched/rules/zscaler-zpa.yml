@@ -26,34 +26,3 @@ custom_attributes:
   sagan.source_file: zscaler-zpa.rules
   rsigma.suppress: 30m
   sagan.metadata: created_at=2026_08_11,updated_at=2026_08_11
----
-title: '[ZSCALER-ZPA][EXPERIMENTAL] Private access session setup failure'
-id: f4c92ed8-0139-5bcd-ab67-f4485a99a411
-status: experimental
-description: Converted from Sagan rule SID 9000031 (rev 1), file zscaler-zpa.rules.
-author: sagan2sigma
-logsource:
-  product: zscaler
-detection:
-  selection_1:
-    appname|cased: Zscaler
-  filter_2:
-    InternalReason|cased: BRK_MT_SETUP_FAIL_NO_POLICY_FOUND
-  selection_3:
-    InternalReason|re: SETUP_FAIL|SETUP_ERR|SETUP_TIMEOUT
-  filter_4:
-    sagan_raw|contains|cased: ZPA LSS Client
-  condition: selection_1 and selection_3 and not (filter_2 or filter_4)
-falsepositives:
-  - 'Unassessed: automatically converted, not yet tuned'
-level: high
-tags:
-  - attack.t1556
-  - attack.ta0006
-  - sagan.classtype.credential-access
-custom_attributes:
-  sagan.sid: '9000031'
-  sagan.rev: '1'
-  sagan.source_file: zscaler-zpa.rules
-  rsigma.suppress: 30m
-  sagan.metadata: created_at=2026_08_11,updated_at=2026_08_11

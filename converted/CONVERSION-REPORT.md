@@ -5,10 +5,10 @@
 | Metric | Value |
 | --- | --- |
 | Rule files processed | 342 |
-| Active rules parsed | 10019 |
-| Commented-out rules skipped | 9440 |
+| Active rules parsed | 10018 |
+| Commented-out rules skipped | 9441 |
 | Rules converted | 8680 (86.6%) |
-| Rules refused | 1339 (13.4%) |
+| Rules refused | 1338 (13.4%) |
 | Lines that failed to parse | 0 |
 | Synthetic rules added | 9 |
 | Sigma documents emitted | 9490 |
@@ -29,7 +29,7 @@ logsource catalog. It answers which kinds of device caused trouble.
 | Endpoint and EDR | 983 | 57 | 94.5% | 976 |
 | Google Cloud | 66 | 10 | 86.8% | 60 |
 | Infrastructure | 189 | 25 | 88.3% | 189 |
-| Network and firewalls | 1127 | 342 | 76.7% | 1050 |
+| Network and firewalls | 1127 | 341 | 76.8% | 1050 |
 | Network detection | 241 | 20 | 92.3% | 241 |
 | SaaS and identity | 308 | 36 | 89.5% | 152 |
 | State correlations | 9 | 0 | 100.0% | 0 |
@@ -41,8 +41,8 @@ logsource catalog. It answers which kinds of device caused trouble.
 
 | Code | Rules | Share | Meaning |
 | --- | ---: | ---: | --- |
-| `E_RAW_TEXT_ON_JSON_EVENT` | 536 | 40.0% | The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text. |
-| `E_EXTERNAL_ENRICHMENT` | 382 | 28.5% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
+| `E_RAW_TEXT_ON_JSON_EVENT` | 535 | 40.0% | The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text. |
+| `E_EXTERNAL_ENRICHMENT` | 382 | 28.6% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
 | `E_GROUPBY_UNRESOLVED` | 301 | 22.5% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
 | `E_POSITIONAL` | 40 | 3.0% | The rule constrains where a pattern sits in the log line with a non-zero offset, depth or distance. Sigma string modifiers cannot express a byte position, so no faithful translation exists. A zero-valued positional is a no-op in the Sagan engine and is converted. |
 | `E_PCRE_UNSUPPORTED` | 40 | 3.0% | The regular expression uses a PCRE construct the Rust engine cannot express and the converter cannot safely rewrite (recursion, look-around, back-references, control verbs). Recoverable constructs (numbered subroutines, literal braces, the whole-string negation idiom, inert flags) are rewritten instead of refused. |
@@ -79,7 +79,7 @@ correlation resolved the rules it references.
 
 ## Refused rules
 
-### `E_RAW_TEXT_ON_JSON_EVENT` (536 rules)
+### `E_RAW_TEXT_ON_JSON_EVENT` (535 rules)
 
 The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text.
 
@@ -485,7 +485,7 @@ The rule searches the raw message body while also using JSON operators. When the
 | `5005029` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] ExportArtifact from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5005030` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] ExportReport from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5005031` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] GenerateCustomVisualAADAccessToken from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| ... | ... | ... | *136 more rows omitted, see the JSON report* | | |
+| ... | ... | ... | *135 more rows omitted, see the JSON report* | | |
 
 ### `E_EXTERNAL_ENRICHMENT` (382 rules)
 

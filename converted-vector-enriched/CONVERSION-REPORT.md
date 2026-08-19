@@ -5,13 +5,13 @@
 | Metric | Value |
 | --- | --- |
 | Rule files processed | 342 |
-| Active rules parsed | 10019 |
-| Commented-out rules skipped | 9440 |
-| Rules converted | 9428 (94.1%) |
+| Active rules parsed | 10018 |
+| Commented-out rules skipped | 9441 |
+| Rules converted | 9427 (94.1%) |
 | Rules refused | 591 (5.9%) |
 | Lines that failed to parse | 0 |
 | Synthetic rules added | 19 |
-| Sigma documents emitted | 10578 |
+| Sigma documents emitted | 10577 |
 | pySigma validation issues | 0 |
 | Output profile | `vector-enriched` |
 | Case policy | `faithful` |
@@ -29,7 +29,7 @@ logsource catalog. It answers which kinds of device caused trouble.
 | Endpoint and EDR | 1024 | 16 | 98.5% | 1017 |
 | Google Cloud | 76 | 0 | 100.0% | 70 |
 | Infrastructure | 210 | 4 | 98.1% | 210 |
-| Network and firewalls | 1363 | 106 | 92.8% | 1286 |
+| Network and firewalls | 1362 | 106 | 92.8% | 1285 |
 | Network detection | 248 | 13 | 95.0% | 248 |
 | SaaS and identity | 331 | 13 | 96.2% | 170 |
 | State correlations | 19 | 0 | 100.0% | 0 |
@@ -57,10 +57,10 @@ reproduced. They are worth reviewing before the ruleset goes live.
 
 | Code | Rules | Meaning | Example SIDs |
 | --- | ---: | --- | --- |
-| `D_RAW_TEXT_MATCH` | 6413 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
+| `D_RAW_TEXT_MATCH` | 6412 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
 | `D_LOGSOURCE_FALLBACK` | 1977 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
 | `D_EVENT_ID_HEURISTIC` | 1932 | Without a json_map for event_id, Sagan looks for ' <id>: ' in the first 10 bytes of the message. The converted rule assumes a proper EventID field instead. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
-| `D_THRESHOLD_SUPPRESS` | 1481 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
+| `D_THRESHOLD_SUPPRESS` | 1480 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
 | `D_PASS_SHORT_CIRCUIT` | 515 | The rule used the pass action. In Sagan a matching pass rule still emits an alert (Send_Alert runs before the pass check) and then stops evaluating the remaining signatures for that event. The detection is converted faithfully; only the short-circuit, the suppression of other rules on the same event, is not reproduced, since Sigma evaluates every rule independently. | `5016065`, `5016066`, `5016067`, `5016068`, `5016069` |
 | `D_GROUPBY_SYSLOG_HOST` | 388 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
 | `D_POSITIONAL_IP_FIELD` | 288 | The group-by key comes from the bundled VRL transform rather than from the log itself. The correlation only works if that transform runs in the ingestion pipeline. | `5002942`, `5015097`, `5014021`, `5014177`, `5008654` |
