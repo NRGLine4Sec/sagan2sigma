@@ -32,6 +32,21 @@ def _escape(text: str) -> str:
     return text.replace("|", "\\|").replace("\n", " ").strip()
 
 
+def _collapsible(summary: str, body: list[str]) -> list[str]:
+    """Wrap ``body`` in a block the reader opens by clicking ``summary``.
+
+    ``<details>`` is HTML rather than Markdown, because Markdown has no such
+    construct. Every renderer that passes inline HTML through, which includes
+    GitHub, GitLab and the common editors, turns it into a real disclosure
+    widget. A renderer that strips HTML instead shows the body as ordinary
+    Markdown, so the content is never lost, only always visible.
+
+    The blank line after ``</summary>`` is not cosmetic: without it GitHub
+    treats what follows as raw HTML and the table renders as literal pipes.
+    """
+    return ["<details>", f"<summary>{summary}</summary>", "", *body, "", "</details>"]
+
+
 def _pct(part: int, total: int) -> str:
     return f"{100.0 * part / total:.1f}%" if total else "n/a"
 
@@ -120,28 +135,39 @@ def _refusal_detail(result: ConversionResult) -> list[str]:
 
     for code in sorted(by_code, key=lambda item: -len(by_code[item])):
         rules = sorted(by_code[code], key=lambda item: (item.source_file, item.sid))
+        # The heading and the explanation stay open: a reader scanning the
+        # report wants to see which refusals dominate and why without clicking
+        # anything. Only the per-rule listing, which runs to hundreds of rows,
+        # is folded away.
         lines.extend(
             [
                 f"### `{code.value}` ({len(rules)} rules)",
                 "",
                 REFUSAL_HELP.get(code, ""),
                 "",
-                "| SID | Source file | Family | Title | Keywords | Detail |",
-                "| --- | --- | --- | --- | --- | --- |",
             ]
         )
+        table = [
+            "| SID | Source file | Family | Title | Keywords | Detail |",
+            "| --- | --- | --- | --- | --- | --- |",
+        ]
         for refused in rules[:MAX_ROWS_PER_TABLE]:
             keywords = ", ".join(refused.keywords) or "-"
-            lines.append(
+            table.append(
                 f"| `{refused.sid}` | `{refused.source_file}` | "
                 f"{_escape(refused.category)} | {_escape(refused.title[:90])} | "
                 f"`{_escape(keywords)}` | {_escape(refused.detail[:180])} |"
             )
         if len(rules) > MAX_ROWS_PER_TABLE:
-            lines.append(
+            table.append(
                 f"| ... | ... | ... | *{len(rules) - MAX_ROWS_PER_TABLE} more rows "
                 f"omitted, see the JSON report* | | |"
             )
+        if len(rules) > MAX_ROWS_PER_TABLE:
+            summary = f"Show {MAX_ROWS_PER_TABLE} of the {len(rules)} refused rules"
+        else:
+            summary = f"Show the {len(rules)} refused rules"
+        lines.extend(_collapsible(summary, table))
         lines.append("")
     return lines
 

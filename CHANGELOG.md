@@ -36,6 +36,19 @@ All notable changes to this project are documented here. The format follows
   degradation `by_username` already carries. The syslog profiles still refuse it,
   exactly as they refuse `by_username`.
 
+### Changed
+
+- The per-rule listings under "Refused rules" in `CONVERSION-REPORT.md` are now
+  behind click-to-open blocks, one per refusal code. The section runs to
+  thousands of rows on the upstream corpus, which buried the part a reader
+  actually scans first. The heading and its explanation stay outside the block,
+  so the counts and the reason for each refusal are still visible at a glance,
+  and only the listing folds away. This uses HTML `<details>`, since Markdown has
+  no such construct: renderers that pass inline HTML through (GitHub, GitLab, the
+  common editors) show a real disclosure widget, and one that strips HTML shows
+  the table as before, so nothing is ever hidden from a reader whose viewer does
+  not support it.
+
 ### Added
 
 - Two verification layers for the regular expressions the converter emits, which

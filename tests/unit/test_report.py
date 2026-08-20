@@ -64,6 +64,29 @@ class TestMarkdownReport:
         text = markdown.render(sample_result(), "p", "faithful")
         assert "D_RAW_TEXT_MATCH" in text
 
+    def test_refused_rules_are_behind_a_disclosure_block(self) -> None:
+        """The per-rule listing runs to hundreds of rows, so it folds away.
+
+        The heading and the explanation stay outside the block: a reader
+        scanning the report must see which refusals dominate, and why, without
+        clicking anything.
+        """
+        text = markdown.render(sample_result(), "p", "faithful")
+        refused = text.split("## Refused rules", 1)[1]
+        assert "<details>" in refused and "</details>" in refused
+        heading, block = refused.split("<details>", 1)
+        assert "E_EXTERNAL_ENRICHMENT" in heading
+        assert "| SID | Source file |" in block
+
+    def test_disclosure_block_keeps_a_blank_line_after_the_summary(self) -> None:
+        """Without it GitHub renders the table as literal pipes rather than a.
+
+        table, which is the one way this markup silently degrades.
+        """
+        text = markdown.render(sample_result(), "p", "faithful")
+        after = text.split("</summary>", 1)[1]
+        assert after.startswith("\n\n")
+
     def test_records_the_settings(self) -> None:
         text = markdown.render(sample_result(), "vector-json", "relaxed")
         assert "vector-json" in text and "relaxed" in text
