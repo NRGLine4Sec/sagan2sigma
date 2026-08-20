@@ -38,6 +38,23 @@ All notable changes to this project are documented here. The format follows
 
 ### Added
 
+- Two verification layers for the regular expressions the converter emits, which
+  were until now the one keyword family never checked against the engine at
+  runtime. `tests/integration/test_engine_load.py` hands RSigma each committed
+  rule set whole and requires a clean compile: the engine aborts the entire load
+  on one bad rule, so a single non-portable pattern takes the whole detection set
+  offline rather than costing one rule, and nothing checked that before (the
+  corpus job validates with pySigma, a different and more permissive parser).
+  `tests/differential/test_regex_semantics.py` then extracts every distinct `|re`
+  pattern from the committed sets, 233 today, generates probes for each (matches
+  via `exrex`, near misses by mutation, noise from the pattern's own literals)
+  and requires Python's `re` and the real `rsigma` binary to agree on every
+  pattern/event pair, about 2.8 million of them in under a second by feeding the
+  engine NDJSON on stdin. Both carry a test proving they can fail. Running the
+  differential over unrestricted input surfaced a genuine engine difference, now
+  documented: Sagan compiles PCRE in byte mode (`PCRE_UTF8` is commented out in
+  `src/rules.c`) so its `\w` is ASCII, while the Rust engine is Unicode-aware, so
+  the two disagree on non-ASCII content. See `docs/DESIGN-DECISIONS.md`.
 - `bluedot` rules now convert under `--profile vector-enriched`, the project's one
   deliberate break from faithful conversion. Bluedot is Quadrant's closed
   commercial threat-intelligence API, which cannot be integrated legally and has

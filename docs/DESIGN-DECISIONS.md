@@ -817,6 +817,68 @@ evaluator and the converter happen to share. That limitation is exactly why the
 reference is written from the C rather than from the converter, and why the two
 are kept in separate packages.
 
+### The rule set has to load before any of this matters
+
+`tests/integration/test_engine_load.py` asks the cruder question that comes
+first: will RSigma accept the ruleset at all. The failure mode is unusually
+harsh, and it is the reason `mapping/regexes.py` refuses non-portable PCRE
+rather than emitting it hopefully. RSigma compiles every rule up front, and one
+rule it cannot compile aborts the **whole** load: no rules are registered, so a
+single bad regular expression takes the entire detection set offline instead of
+costing one rule. The test asserts exactly that by building a directory with one
+good rule and one bad one, and checking that the good rule stays silent.
+
+Nothing checked this before. The corpus job validates emitted documents with
+pySigma, a different and more permissive parser, and the differential feeds the
+engine rule by rule from generated documents, never the shipped set. So the two
+committed rule sets are now handed to the engine whole, and required to compile.
+
+### Regular expressions, the family the differential cannot reach
+
+`sagan_reference.py` puts `pcre` out of scope on purpose: generating events for
+an arbitrary regular expression is a different problem from evaluating
+`content`. That left a real gap, because regular expressions were checked only
+two weaker ways, neither of which involves the engine at runtime: the converter
+refuses non-portable constructs at conversion time, and the rewrites are fuzzed
+against a PCRE oracle in Python.
+
+`tests/differential/test_regex_semantics.py` closes it. It extracts every
+distinct `|re` pattern from the committed rule sets, 233 of them today,
+generates probes for each (strings the pattern accepts via `exrex`, near misses
+by mutation, and noise drawn from the pattern's own literals), and requires
+Python's `re` and the real `rsigma` binary to agree on every pattern/event pair.
+The engine reads NDJSON from stdin and evaluates the whole rule set per event, so
+a cross product of roughly 2.8 million pairs costs one process and under a
+second.
+
+The fidelity argument closes in two links, each tested somewhere. First, the
+original Sagan pattern is equivalent to the emitted one: for the large majority
+they are byte-identical, and for the four rewrites `tests/unit/test_regexes.py`
+fuzzes the rewrite against a PCRE oracle. Second, the emitted pattern behaves
+the same under a mainstream engine and under RSigma, which is this module.
+Together they say the shipped rule matches what Sagan matched.
+
+### Where Sagan and RSigma genuinely disagree: non-ASCII
+
+Running that harness over unrestricted input is what surfaced this, and it is
+worth stating plainly because it is not fixable in the converter.
+
+Sagan compiles every pattern in **byte mode**. The `PCRE_UTF8` case in
+`src/rules.c` sits inside the block commented "PCRE options that aren't really
+used?", so it is never set, and libpcre's `\w`, `\d` and `.` are therefore
+ASCII. The Rust engine behind RSigma is Unicode-aware by default, so its `\w`
+also matches `é`, and its `.` is a character rather than a byte. On non-ASCII log
+content the two engines will disagree, and a converted rule can fire where Sagan
+would not.
+
+This is a property of the two engines, not of the conversion, and nothing the
+converter emits changes it. It is left as a documented limitation rather than
+papered over: forcing ASCII semantics would mean emitting Rust-specific
+`(?-u:...)` syntax into rules that are meant to stay portable Sigma. The
+regex differential therefore probes printable ASCII, the domain where libpcre,
+Python and Rust agree, so that it measures the conversion instead of
+re-deriving this difference on every run.
+
 ## Honest metadata
 
 Every emitted rule carries:
