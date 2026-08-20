@@ -8,6 +8,12 @@ All notable changes to this project are documented here. The format follows
 
 ### Fixed
 
+- The declared `pysigma` floor moves from 1.0 to 1.1.0. Up to 1.0.2 pySigma's
+  rule-condition parser calls pyparsing's `parseString`, which current pyparsing
+  deprecates; 1.1.0 switched to `parse_string`. This is a genuine floor problem
+  rather than a test artefact, since the old spelling will eventually be removed
+  from pyparsing and take pySigma 1.0.x with it. The minimum-versions CI job,
+  which pins the declared floor and is what surfaced this, is pinned to match.
 - `country_code` rules that track an address the engine can never resolve (no
   `parse_src_ip` / `parse_dst_ip`, no `json_map` binding of the address, no
   `normalize`) are now refused as `E_NO_DETECTION` instead of the misleading

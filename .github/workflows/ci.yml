@@ -47,10 +47,13 @@ jobs:
       # cti brings mmdb-writer + maxminddb so the denylist MMDB build test runs
       # here rather than skipping; without it the build path goes unexercised.
       - run: pip install -e ".[dev,cti]"
+      # No coverage floor here on purpose. This job has neither rsigma nor
+      # Vector, so the engine-backed overlap and VRL tests skip and the measured
+      # figure would say "uncovered" about code that is in fact covered, just not
+      # from this environment. The floor is enforced in the differential job,
+      # which has the engine, by its final step.
       - name: Unit, property, golden and integration tests
-        run: pytest --cov --cov-report=term-missing --cov-report=xml
-      - name: Enforce coverage floor
-        run: coverage report --fail-under=90
+        run: pytest
 
   minimum-versions:
     name: Oldest supported dependencies
@@ -63,7 +66,7 @@ jobs:
           cache: pip
       # Installing the declared floor rather than the latest release. Without
       # this job a wrong lower bound ships silently and only breaks for users.
-      - run: pip install -e ".[dev]" "pysigma==1.0.0" "pyyaml==6.0.3"
+      - run: pip install -e ".[dev]" "pysigma==1.1.0" "pyyaml==6.0.3"
       - run: pytest -q
 
   packaging:
@@ -148,7 +151,14 @@ jobs:
           cache: pip
       - run: pip install -e ".[dev]"
       - uses: dtolnay/rust-toolchain@stable
-      - uses: Swatinem/rust-cache@v2
+      # Swatinem/rust-cache used to sit here and is deliberately gone. It keys
+      # its cache on the Cargo workspace of the checked-out repository, and this
+      # repository is Python: with no Cargo.toml every run failed with "cargo
+      # failed with exit code 101", cached nothing, and left a misleading Error
+      # in the log people read when the differential breaks. Caching the built
+      # binary instead was considered and rejected: rsigma is installed
+      # unpinned, so a cache hit would silently keep testing against a stale
+      # engine, which is the one thing this job exists to prevent.
       - name: Install the rsigma engine
         # The daemon feature carries the syslog input parser, without which the
         # harness cannot present events in the two shapes RSigma actually sees.
@@ -165,6 +175,15 @@ jobs:
           SAGAN_RULES_DIR: /tmp/sagan-rules
           SAGAN2SIGMA_DIFF_SAMPLE: "99999"
         run: pytest tests/differential -v
+      # The coverage floor lives here, not in the version matrix, because this is
+      # the only job with rsigma on PATH: the overlap analysis is engine-backed,
+      # so without the engine a third of it cannot execute and the figure
+      # measures the environment rather than the tests. SAGAN_RULES_DIR is left
+      # unset so the corpus-scale tests, already run above, are not repeated.
+      - name: Full suite with the engine present, and the coverage floor
+        run: |
+          pytest --cov --cov-report=term-missing --cov-report=xml
+          coverage report --fail-under=90
 
   corpus:
     name: Upstream corpus invariants

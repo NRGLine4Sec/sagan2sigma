@@ -35,7 +35,14 @@ dependencies = [
     # actually imports cleanly. 0.11.0 fails on a pyparsing incompatibility and
     # 0.11.20 rejects constructs the converter emits, so the floor is not
     # cosmetic. The minimum-versions CI job pins it.
-    "pysigma>=1.0",
+    #
+    # Raised to 1.1.0: up to 1.0.2 the rule-condition parser calls pyparsing's
+    # `parseString`, which current pyparsing deprecates. 1.1.0 moved that call
+    # to `parse_string`. The remaining `parseString` in pySigma sits in
+    # sigma/processing/condition_expressions.py, a pipeline path this converter
+    # never takes. The deprecation is a real floor problem, not a test artefact:
+    # once pyparsing removes the old spelling, pySigma 1.0.x stops working.
+    "pysigma>=1.1.0",
 ]
 
 [project.optional-dependencies]
