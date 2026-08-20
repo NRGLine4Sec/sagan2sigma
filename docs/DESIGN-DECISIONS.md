@@ -151,12 +151,29 @@ parsed address with its country (`sagan_geoip_country_N`), so under
 follows the same position.
 
 Two details from `src/geoip.c` and `src/processors/engine.c` decide the exact
-Sigma. First, `isnot` requires the address to be **present**, not the country: a
-private or unresolved address has no country, which Sagan reads as "not in the
-list", so it fires. The converted rule reproduces this by keying the presence
-test on the address field (`sagan_ip_N|exists: true`) and negating the country
-list, rather than requiring the country field, which would wrongly drop the
-private-address case.
+Sigma. First, and this is the one worth reading the C for, **both `is` and
+`isnot` require a country to have actually been resolved**. The obvious reading
+of `isnot` is "anything except these countries", which would make an address
+with no country satisfy it. The engine does not do that.
+`GeoIP2_Lookup_Country` returns `GEOIP_SKIP` from *every* path that fails to
+determine a country: a non-routable address, one inside the configured
+`skip_networks`, a lookup failure, and an address the database does not carry.
+`engine.c` runs the `is` / `isnot` comparison only when the result is not
+`GEOIP_SKIP`, so on a skip `geoip2_isset` stays false and `routing.c` drops the
+rule. Sagan is silent on any address it could not place. The converted rule
+therefore requires the **country** field to exist
+(`sagan_geoip_country_N|exists: true`) and negates the country list.
+
+This was wrong in the first implementation, in the direction that hurts. Keying
+the presence test on the address instead meant that any address the pipeline
+could not place still satisfied `isnot`, so every rule of the "connection from
+outside $HOME_COUNTRY" family, 138 of them convertible in the corpus, fired on
+all RFC1918 traffic. The committed snapshots never showed it, because those
+rules need `$HOME_COUNTRY` from a site `sagan.yaml` and are refused with
+`E_VAR_UNRESOLVED` without one: the defect only reached users converting with
+their own configuration, which is the documented way to use the tool.
+`tests/differential/test_geoip_semantics.py` now pins the full truth table
+against the real engine.
 
 Second, the database is not bundled, and the enrichment is deliberately
 **provider-agnostic**. GeoIP databases carry a licence, and MaxMind's GeoLite2

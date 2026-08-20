@@ -190,10 +190,12 @@ else.
 `sagan-geoip.vrl` enriches each parsed address with its country. For every
 `sagan_ip_N` it looks the address up in the `sagan_geoip` enrichment table (type
 `geoip`, pointing at the MaxMind database) and sets `sagan_geoip_country_N` to
-the ISO code. A private or unresolved address has no country, which is left
-unset, matching how `country_code: ... isnot` still fires on it. It is emitted
-only when the corpus has `country_code` rules, so a pipeline that does not need a
-GeoIP database is not made to require one.
+the ISO code. An address with no country, whether private, non-routable or just
+absent from the database, leaves the field unset. That matches the engine, which
+reports those as `GEOIP_SKIP` and then runs no `is` / `isnot` comparison at all,
+so the rule stays silent rather than treating "no country" as "not in the list".
+It is emitted only when the corpus has `country_code` rules, so a pipeline that
+does not need a GeoIP database is not made to require one.
 
 `sagan-time.vrl` derives the weekday (`sagan_event_weekday`, 0=Sunday) and the
 time as an HHMM integer (`sagan_event_hhmm`) from the event timestamp, the two

@@ -8,10 +8,19 @@ sets the routing flag:
 
 * ``track by_src`` / ``by_dst`` selects the source or destination address;
 * ``is`` fires when the looked-up country is in the list, ``isnot`` when it is
-  not; and, crucially, ``isnot`` requires only that the address be **present**.
-  A private or unresolved address yields no country, which is "not in the list",
-  so Sagan fires on it. The converted rule reproduces that by keying the
-  presence test on the address field, not on the country field.
+  not; and, crucially, **both require a country to have been resolved at all**.
+
+That last point is the one worth reading the C for, because the obvious reading
+is wrong. It is tempting to treat ``isnot`` as "anything but these countries",
+so that an address with no country satisfies it. The engine says otherwise.
+``GeoIP2_Lookup_Country`` returns ``GEOIP_SKIP`` from *every* path that fails to
+determine a country: a non-routable address, one inside the configured
+``skip_networks``, a lookup failure, and an address the database does not carry.
+``engine.c`` runs the ``is`` / ``isnot`` comparison only when the result is not
+``GEOIP_SKIP``, so ``geoip2_isset`` stays false and ``routing.c`` drops the rule.
+Sagan is therefore silent on any address it could not place, including every
+RFC1918 one. The converted rule reproduces that by requiring the *country* field
+to exist, not the address field.
 
 There is no field to match until an ingestion pipeline has both extracted the
 address and enriched it with a country. That is exactly what the
@@ -174,12 +183,16 @@ def handle_country_code(
                 )
             )
         else:
-            # isnot: the address must be present and its country not in the list.
-            # Keying presence on the address, not the country, reproduces Sagan
-            # firing on a private or unresolved address, whose country is empty.
+            # isnot: a country must actually have been resolved, and it must not
+            # be in the list. Keying presence on the *country* rather than on the
+            # address is what matches the engine: every path in
+            # GeoIP2_Lookup_Country that fails to determine a country returns
+            # GEOIP_SKIP, which src/processors/engine.c short-circuits past, so
+            # geoip2_isset stays false and src/routing.c drops the rule. Sagan is
+            # silent on an address it could not place, and so is this.
             draft.add(
                 Predicate(
-                    field=ip_field,
+                    field=country_field,
                     modifiers=("exists",),
                     values=(True,),
                     origin="country_code",

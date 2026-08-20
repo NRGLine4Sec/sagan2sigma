@@ -28,13 +28,18 @@ def _predicates(draft: RuleDraft) -> dict[str, tuple]:
 
 
 class TestConvertsUnderEnriched:
-    def test_isnot_keys_presence_on_the_address_not_the_country(
+    def test_isnot_requires_a_resolved_country_not_just_an_address(
         self, draft: RuleDraft, enriched_context: Context
     ) -> None:
-        """Isnot fires on a present address whose country is not in the list.
+        """Isnot needs a country that was actually resolved and is not listed.
 
-        Sagan fires on a private or unresolved address too, so the presence test
-        keys on the address field, not the country field.
+        The tempting reading, that isnot means "anything but these countries" so
+        an unplaceable address satisfies it, is what the engine does not do.
+        Every path in GeoIP2_Lookup_Country that cannot determine a country
+        returns GEOIP_SKIP, engine.c runs the comparison only when the result is
+        not GEOIP_SKIP, and routing.c then drops the rule. So the presence test
+        keys on the country field: an RFC1918 address must stay silent, and
+        keying it on the address made every one of them fire.
         """
         rule = make_rule(
             'msg:"t"; program: sshd; content:"x"; parse_src_ip: 1; '
@@ -42,8 +47,9 @@ class TestConvertsUnderEnriched:
         )
         run(handle_country_code, rule, draft, enriched_context)
         preds = _predicates(draft)
-        assert preds["sagan_ip_1|exists"] == (True, False)
+        assert preds["sagan_geoip_country_1|exists"] == (True, False)
         assert preds["sagan_geoip_country_1"] == (["US", "CA"], True)
+        assert "sagan_ip_1|exists" not in preds
 
     def test_is_matches_country_in_list(
         self, draft: RuleDraft, enriched_context: Context
@@ -67,7 +73,9 @@ class TestConvertsUnderEnriched:
         )
         run(handle_country_code, rule, draft, enriched_context)
         preds = _predicates(draft)
-        assert "sagan_ip_3|exists" in preds
+        # parse_src_ip: 3 means the third parsed address, so the country field
+        # the enrichment fills for that position is the one tested.
+        assert "sagan_geoip_country_3|exists" in preds
         assert "sagan_geoip_country_3" in preds
 
     def test_variable_home_country_is_expanded(

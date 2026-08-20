@@ -32,11 +32,12 @@
 #   * Sagan tracks by_src / by_dst, which map to the address parse_src_ip /
 #     parse_dst_ip selected; the converted rule reads the matching position, so
 #     the country here is attached per position, not once per event;
-#   * a private or unresolved address is absent from the database. Sagan then
-#     treats it as "not in the list", so an `isnot` rule fires on it. This
-#     transform leaves .sagan_geoip_country_N unset in that case, and the
-#     converted rule keys its presence test on the address field, reproducing
-#     that behaviour;
+#   * an address with no country, whether private, non-routable or simply
+#     absent from the database, leaves .sagan_geoip_country_N unset. That is
+#     exactly the case the engine reports as GEOIP_SKIP, and on a skip it runs
+#     no is/isnot comparison at all, so the rule stays silent. The converted
+#     rule matches by requiring the country field to exist, so an unset field
+#     fires neither form, as in Sagan;
 #   * the lookup happens in the pipeline, not in the rule, so the country
 #     reflects the database loaded at ingestion time.
 #

@@ -8,6 +8,22 @@ All notable changes to this project are documented here. The format follows
 
 ### Fixed
 
+- `country_code: ... isnot` no longer fires on an address the pipeline could not
+  place, which it did for every RFC1918 one. The converted rule required the
+  *address* field to exist and then negated the country list, on the reading that
+  "no country" satisfies "not in this list". The engine disagrees:
+  `GeoIP2_Lookup_Country` returns `GEOIP_SKIP` from every path that cannot
+  determine a country (non-routable, `skip_networks`, lookup failure, absent from
+  the database), `engine.c` compares only when the result is not `GEOIP_SKIP`, and
+  `routing.c` then drops the rule. Both `is` and `isnot` therefore require a
+  resolved country, and the emitted rule now requires the **country** field to
+  exist. 138 corpus rules are convertible with `isnot`, all of the "connection
+  from outside $HOME_COUNTRY" kind, so before this they alerted on all internal
+  traffic. The committed snapshots never showed it, since those rules need
+  `$HOME_COUNTRY` from a site `sagan.yaml` and are otherwise refused with
+  `E_VAR_UNRESOLVED`: only users converting with their own configuration were
+  affected. `tests/differential/test_geoip_semantics.py` pins the full truth
+  table against the real engine.
 - The declared `pysigma` floor moves from 1.0 to 1.1.0. Up to 1.0.2 pySigma's
   rule-condition parser calls pyparsing's `parseString`, which current pyparsing
   deprecates; 1.1.0 switched to `parse_string`. This is a genuine floor problem
