@@ -194,6 +194,29 @@ class TestBitName:
             bit_name(["isset", "brute_force", "track ip_src"], "isset") == "brute_force"
         )
 
+    def test_every_direction_the_engine_accepts_is_skipped(self) -> None:
+        # Flexbit_Type() in src/flexbit.c accepts these fourteen and rejects
+        # everything else, checked against a running engine. A direction missing
+        # from the converter's list is silently taken for the bit name, so the
+        # correlation is rebuilt around a bit no rule sets.
+        for direction in (
+            "none",
+            "both",
+            "by_src",
+            "by_dst",
+            "reverse",
+            "src_xbitdst",
+            "dst_xbitsrc",
+            "both_p",
+            "by_src_p",
+            "by_dst_p",
+            "reverse_p",
+            "src_xbitdst_p",
+            "dst_xbitsrc_p",
+            "username",
+        ):
+            assert bit_name(["isset", direction, "the_bit"], "isset") == "the_bit"
+
 
 class TestBits:
     def test_set_records_the_bit_and_its_expiry(
@@ -230,6 +253,51 @@ class TestBits:
         )
         run(handle_bits, rule, draft, context)
         assert draft.bit_group_by == ("s", "d")
+
+    def test_flexbits_groups_on_the_direction_it_names(
+        self, draft: RuleDraft, context
+    ) -> None:
+        # flexbits states its direction as a bare token, so the xbits pattern
+        # ("track ip_src") never matches and the group-by used to fall through
+        # to the source address whatever the rule asked for. On the upstream
+        # corpus that put nine correlations on an address where Sagan keys on
+        # the user.
+        rule = make_rule(
+            'msg:"t"; json_map:"username",".user"; '
+            "flexbits: isset, username, vpn_login; sid:1;"
+        )
+        run(handle_bits, rule, draft, context)
+        assert draft.tests_bits == {"vpn_login"}
+        assert draft.bit_group_by == ("user",)
+
+    def test_flexbits_by_dst_groups_on_the_destination(
+        self, draft: RuleDraft, context
+    ) -> None:
+        rule = make_rule(
+            'msg:"t"; json_map:"dest_ip",".d"; flexbits: isset, by_dst, b; sid:1;'
+        )
+        run(handle_bits, rule, draft, context)
+        assert draft.bit_group_by == ("d",)
+
+    def test_flexbits_both_groups_on_the_pair(self, draft: RuleDraft, context) -> None:
+        rule = make_rule(
+            'msg:"t"; json_map:"src_ip",".s"; json_map:"dest_ip",".d"; '
+            "flexbits: isset, both, b; sid:1;"
+        )
+        run(handle_bits, rule, draft, context)
+        assert draft.bit_group_by == ("s", "d")
+
+    @pytest.mark.parametrize("direction", ["none", "reverse", "by_src_p"])
+    def test_flexbits_directions_sigma_cannot_state_are_refused(
+        self, direction: str, draft: RuleDraft, context
+    ) -> None:
+        # none is a global bit with no key, reverse compares one event's source
+        # against another's destination, and the _p forms add the port. None is
+        # a group-by over a single field, so they refuse rather than approximate.
+        rule = make_rule(f'msg:"t"; flexbits: isset, {direction}, b; sid:1;')
+        with pytest.raises(Refusal) as excinfo:
+            run(handle_bits, rule, draft, context)
+        assert excinfo.value.code is RefusalCode.GROUPBY_UNRESOLVED
 
     def test_isnotset_is_refused(self, draft: RuleDraft, context) -> None:
         rule = make_rule('msg:"t"; xbits: isnotset,b,track ip_src; sid:1;')

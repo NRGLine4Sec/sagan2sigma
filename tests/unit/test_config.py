@@ -129,6 +129,41 @@ class TestLoadSaganYaml:
         path.write_text("other: 1\n", encoding="utf-8")
         assert load_sagan_yaml(path) == {}
 
+    def test_tolerates_tabs_the_way_libyaml_does(self, tmp_path: Path) -> None:
+        # Sagan's own etc/sagan.yaml ends one line with a tab and separates
+        # values from inline comments with tabs elsewhere. libyaml accepts that
+        # and the engine runs on the file unchanged; PyYAML refuses to scan it,
+        # so --sagan-yaml pointed at a stock install used to abort outright.
+        path = tmp_path / "sagan.yaml"
+        path.write_text(
+            "vars:\n"
+            "  address-groups:\n"
+            '    HOME_NET: "192.168.0.0/16"\t\n'
+            "    EXTERNAL_NET: any\t\t# tabs before a comment\n"
+            "  port-groups:\n"
+            '    SEP: "a\tb"\n',
+            encoding="utf-8",
+        )
+        variables = load_sagan_yaml(path)
+        assert variables["HOME_NET"] == ["192.168.0.0/16"]
+        assert variables["EXTERNAL_NET"] == ["any"]
+        # A tab inside a quoted scalar is part of the value and must survive.
+        assert variables["SEP"] == ["a\tb"]
+
+    def test_a_leading_tab_stays_an_error(self, tmp_path: Path) -> None:
+        # Turning an indentation tab into a space would change the structure of
+        # the document, so that one is still reported rather than repaired.
+        path = tmp_path / "sagan.yaml"
+        path.write_text("vars:\n\tHOME_NET: any\n", encoding="utf-8")
+        with pytest.raises(ValueError, match="not valid YAML"):
+            load_sagan_yaml(path)
+
+    def test_malformed_yaml_names_the_file(self, tmp_path: Path) -> None:
+        path = tmp_path / "sagan.yaml"
+        path.write_text("vars:\n  - [unclosed\n", encoding="utf-8")
+        with pytest.raises(ValueError, match="not valid YAML"):
+            load_sagan_yaml(path)
+
 
 class TestLoadConfig:
     def test_every_file_is_optional(self, tmp_path: Path) -> None:

@@ -151,9 +151,46 @@ def _flatten_variables(node: Any, out: dict[str, list[str]]) -> None:
             _flatten_variables(item, out)
 
 
+def _detab(line: str) -> str:
+    """Replace tabs that sit outside quotes with a space.
+
+    A tab in the leading indentation is left alone: it really is malformed
+    YAML, and silently turning it into a space would change the structure of
+    the document rather than just its whitespace.
+    """
+    body = line.lstrip(" ")
+    if body.startswith("\t") or "\t" not in line:
+        return line
+    indent = line[: len(line) - len(body)]
+    out: list[str] = []
+    quote = ""
+    for char in body:
+        if quote:
+            if char == quote:
+                quote = ""
+        elif char in "\"'":
+            quote = char
+        elif char == "\t":
+            char = " "
+        out.append(char)
+    return indent + "".join(out)
+
+
 def load_sagan_yaml(path: Path) -> dict[str, list[str]]:
-    """Load the variables declared in a ``sagan.yaml``."""
-    document = yaml.safe_load(path.read_text(encoding="utf-8", errors="replace"))
+    """Load the variables declared in a ``sagan.yaml``.
+
+    Tabs outside quoted scalars become spaces first. Sagan's own
+    ``etc/sagan.yaml`` separates values from their inline comments with tabs and
+    ends other lines with one. libyaml accepts that and the engine runs on the
+    file unchanged, while PyYAML refuses to scan it at all, so the flag whose
+    documented use is to point at a stock install would abort on one.
+    """
+    text = path.read_text(encoding="utf-8", errors="replace")
+    cleaned = "\n".join(_detab(line) for line in text.splitlines())
+    try:
+        document = yaml.safe_load(cleaned)
+    except yaml.YAMLError as error:
+        raise ValueError(f"{path} is not valid YAML: {error}") from error
     variables: dict[str, list[str]] = {}
     if isinstance(document, dict):
         _flatten_variables(document.get("vars", {}), variables)

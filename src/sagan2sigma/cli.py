@@ -175,9 +175,15 @@ def main(argv: list[str] | None = None) -> int:
             print(f"error: no such path: {path}", file=sys.stderr)
             return 1
 
+    try:
+        config = load_config(rules_dir=args.rules[0], sagan_yaml=args.sagan_yaml)
+    except ValueError as error:
+        print(f"error: {error}", file=sys.stderr)
+        return 1
+
     context = Context(
         profile=load_profile(str(args.profile)),
-        config=load_config(rules_dir=args.rules[0], sagan_yaml=args.sagan_yaml),
+        config=config,
         catalog=load_catalog(str(args.catalog) if args.catalog else None),
     )
     converter = Converter(

@@ -6,6 +6,44 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+
+- `flexbits` correlations grouped on the source address whatever direction the
+  rule named. `flexbits` states its direction as a bare token where `xbits`
+  writes `track ip_src`, so the pattern that reads the tracking key never
+  matched a `flexbits` option and every one of them fell through to the
+  `ip_src` default. On the upstream corpus that put nine correlations on an
+  address where Sagan keys on the user: a different detection, not a narrower
+  one. `by_dst`, `both` and `username` now resolve to the field they name.
+- `flexbits` directions that Sigma cannot state are refused instead of being
+  grouped on the source address. `none` sets a global bit with no key at all,
+  `reverse` compares one event's source against another's destination, and the
+  `_p` forms add the port to the key. One corpus rule is affected, and it now
+  refuses with `E_GROUPBY_UNRESOLVED` rather than converting into something
+  that correlates on the wrong thing.
+- The list of `flexbits` tracking keys held six of the fourteen tokens
+  `Flexbit_Type()` accepts. An unrecognised one is silently taken for the bit
+  name, so the correlation would be rebuilt around a bit no rule ever sets. No
+  corpus rule uses the missing eight, but the corpus is an input, not a
+  specification. Verified against the engine: all fourteen load and anything
+  else is rejected.
+- `--sagan-yaml` aborted on Sagan's own `etc/sagan.yaml`. That file separates
+  values from inline comments with tabs and ends one line with a tab, which
+  libyaml accepts and PyYAML refuses to scan, so the flag whose documented use
+  is to point at a stock install failed on one, and failed with a traceback
+  rather than a message. Tabs outside quoted scalars are now normalised, tabs
+  inside them are preserved, an indentation tab is still an error, and a
+  malformed file names itself.
+
+### Changed
+
+- `docs/DESIGN-DECISIONS.md` records an engine defect that makes converted
+  `flexbits` correlations fire where Sagan is silent. The address directions
+  compare the printable address buffer rather than the binary form the struct
+  also carries, sixteen bytes of it, so the result depends on the bytes
+  following the address in the message rather than on the address. Reproducing
+  it is not an option; it is documented instead.
+
 ## [0.2.0] - 2026-08-21
 
 ### Added

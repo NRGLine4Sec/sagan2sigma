@@ -408,6 +408,51 @@ converter drops `by_string` from an `after` group-by and records
 because Sagan refuses it too. `threshold` never reaches a group-by at all, being
 alert-volume control, so nothing downstream depends on its half of the story.
 
+### `flexbits` names its direction where `xbits` writes `track`
+
+`xbits` spells its tracking key `track ip_src`; `flexbits` puts a bare token in
+the same argument slot, `flexbits: isset, by_src, name`, so the direction sits
+*before* the bit name. Two things follow, and both were wrong here.
+
+The pattern that reads a tracking key looks for `track …`, which never matches a
+`flexbits` option, so every `flexbits` correlation fell through to the source
+address regardless of what the rule asked for. Nine upstream correlations keyed
+on the user were rebuilt keyed on an address. That is not a narrower detection
+or a noisier one, it is a different one. Directions are now read from the option
+itself, and the ones Sigma cannot state as a group-by over a single field are
+refused: `none` (a global bit with no key), `reverse` (one event's source
+against another's destination) and the `_p` forms (which add the port).
+
+Second, an unrecognised direction is silently taken for the bit name, so the
+correlation is rebuilt around a bit nothing sets. `Flexbit_Type()` in
+`src/flexbit.c` accepts fourteen tokens; the converter listed six. All fourteen
+were confirmed to load against a running engine, and anything else to be
+rejected at load, so the list is now the engine's list.
+
+### `flexbits` address directions do not work in the engine
+
+A converted `flexbits` correlation can fire where Sagan stays silent, and no
+amount of care in the converter changes that.
+
+`Flexbit_Set` is handed `SaganProcSyslog_LOCAL->src_ip`, the *printable*
+address, and copies `sizeof(dest)` bytes of it into an `unsigned char[16]`.
+`isset` then compares that whole sixteen-byte window. The struct carries a
+proper binary form in `ip_src_bits` a few fields away, which is what the
+comparison should have used, and `xbits` is unaffected.
+
+Sixteen bytes is longer than `10.0.0.1`, so the compare runs past the
+terminator into whatever follows. Through the syslog envelope that tail is
+filled identically for every event and the match holds. Through `parse_src_ip`,
+`engine.c` copies `MAXIP` bytes out of the per-event lookup cache, so the tail
+carries whatever followed the address *in that message*. Measured against a
+locally built engine: same source, differing message tails, no correlation;
+same source, identical tails, correlation. The address alone does not decide it.
+
+Reproducing that would mean encoding a memory defect into a detection rule, so
+the converter does not. Rules of this shape convert on their stated intent and
+will correlate where Sagan did not. Three upstream rules take their address
+from `parse_src_ip` or `normalize` and are affected.
+
 ### Sagan's option tokenisation ignores quotes
 
 Sagan splits the option block with a plain `strtok_r(rulestring, ";", …)`,

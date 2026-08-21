@@ -83,10 +83,39 @@ XBIT_TO_INTERNAL: dict[str, tuple[str, ...]] = {
     "ip_pair": ("src_ip", "dest_ip"),
 }
 
+#: ``flexbits`` directions onto Sagan internal values, for the ones Sigma can
+#: state as a group-by. See ``_flexbit_internals`` for the rest, which are
+#: refused. ``both`` keys on the pair, the same shape as ``xbits ip_pair``.
+FLEXBIT_TO_INTERNAL: dict[str, tuple[str, ...]] = {
+    "by_src": ("src_ip",),
+    "by_dst": ("dest_ip",),
+    "both": ("src_ip", "dest_ip"),
+    "username": ("username",),
+}
+
 #: ``flexbits`` tracking keys, which sit before the bit name in the argument
-#: list, unlike ``xbits``.
+#: list, unlike ``xbits``. This is the complete list accepted by
+#: ``Flexbit_Type()`` in Sagan's ``src/flexbit.c``, verified against the engine:
+#: a rule using any other token is rejected at load time. The list has to be
+#: complete, because an unrecognised key here is silently taken for the bit
+#: name, and the correlation is then rebuilt around a bit no rule ever sets.
 FLEXBIT_TRACK_KEYS = frozenset(
-    {"by_src", "by_dst", "both", "reverse", "username", "none"}
+    {
+        "none",
+        "both",
+        "by_src",
+        "by_dst",
+        "reverse",
+        "src_xbitdst",
+        "dst_xbitsrc",
+        "both_p",
+        "by_src_p",
+        "by_dst_p",
+        "reverse_p",
+        "src_xbitdst_p",
+        "dst_xbitsrc_p",
+        "username",
+    }
 )
 
 #: Default window for a rebuilt state correlation when the setter rules declare
@@ -455,6 +484,36 @@ def bit_name(parts: list[str], operation: str) -> str:
     return candidate
 
 
+def _flexbit_internals(value: str, keyword: str) -> tuple[str, ...]:
+    """Internal values a ``flexbits`` direction groups on.
+
+    ``flexbits`` states its direction as a bare token where ``xbits`` writes
+    ``track ip_src``, so the ``xbits`` pattern never matches a ``flexbits``
+    option. Falling through to the ``ip_src`` default would group every
+    correlation on the source address whatever the rule asked for, which is
+    wrong for ``username`` and for the directions below.
+
+    Only the directions Sigma can state are translated. ``none`` sets a global
+    bit with no key at all; ``reverse`` and the ``*_xbit*`` forms compare one
+    event's source against another's destination; the ``_p`` forms add the port
+    to the key. None of those is a group-by over a single field, so they are
+    refused rather than approximated.
+    """
+    parts = [part.strip().lower() for part in value.split(",") if part.strip()]
+    direction = parts[1] if len(parts) > 1 else ""
+    internals = FLEXBIT_TO_INTERNAL.get(direction)
+    if internals is None:
+        raise Refusal(
+            code=RefusalCode.GROUPBY_UNRESOLVED,
+            detail=(
+                f"{keyword} tracks by '{direction}', which is not a group-by "
+                f"over a single field: Sigma cannot express it"
+            ),
+            keywords=(keyword,),
+        )
+    return internals
+
+
 def _bit_group_by(
     value: str,
     rule: SaganRule,
@@ -464,8 +523,11 @@ def _bit_group_by(
     keyword: str,
 ) -> tuple[str, ...]:
     """Group-by key of a correlation rebuilt from an ``isset``."""
-    match = _XBIT_TRACK.search(value)
-    internals = XBIT_TO_INTERNAL.get(match.group("key") if match else "ip_src")
+    if keyword == "flexbits":
+        internals: tuple[str, ...] | None = _flexbit_internals(value, keyword)
+    else:
+        match = _XBIT_TRACK.search(value)
+        internals = XBIT_TO_INTERNAL.get(match.group("key") if match else "ip_src")
     if internals is None:  # pragma: no cover - defensive
         internals = ("src_ip",)
     return tuple(
