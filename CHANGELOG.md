@@ -6,88 +6,7 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
-### Fixed
-
-- `after: count N` now emits a Sigma threshold of `N+1`, because that is when
-  Sagan alerts. `src/after.c` seeds its tracking entry with `count = 1` on the
-  first match and alerts only while `after2_count < count`, a strictly-greater
-  comparison: N events pass in silence and the next one alerts. A Sigma
-  `event_count` with `gte: N` fires as soon as the window holds N, one event
-  early, so all 970 corpus correlations were slightly more trigger-happy than
-  the rules they came from. The title keeps the rule's own number. This document
-  had asserted "alert from N+1" since the beginning while the code emitted
-  `gte: N`. Settled by running both engines on the same six events, repeatedly
-  and from a clean state: Sagan alerts from the N+1th for every N tested, and
-  rsigma reproduces it exactly once the threshold is raised.
-- `track by_string` in an `after` correlation no longer refuses the rule, and
-  does not group on the username either: it is inert there. The two correlation
-  parsers disagree, and only the C shows it. `threshold` tests the intact option
-  token, so there `by_string` really is a synonym for `by_username`, while
-  `after` calls `strtok_r` first and then tests a token already truncated to
-  `"track"` (`src/rules.c`), so its `by_string` branch can never fire. `after`
-  therefore drops the key, recording `D_AFTER_BY_STRING_INERT`, and refuses a
-  rule whose only key is `by_string`, because Sagan rejects that at load. Five
-  corpus rules are recovered under `--profile vector-enriched`, grouping on the
-  source alone. Settled by building the engine and running it, after an earlier
-  reading had mapped `by_string` to the username for both keywords.
-- `blacklist`, `zeek-intel` and `bluedot` tracking `both` now require both
-  addresses to be present, not just either one to be listed. Every `both` branch
-  in `src/processors/engine.c` is gated on
-  `ip_src_is_valid == true && ip_dst_is_valid == true`, so an event carrying only
-  one of the two is never tested, even when that address is on the feed; the
-  converter emitted a bare disjunction and would have fired. No corpus rule uses
-  `both`, so nothing shipped wrong. Found while extending the engine-backed
-  checks to the remaining enrichment families, and pinned by
-  `tests/differential/test_intel_semantics.py`, which covers all three against
-  the real engine: a listed address fires, an unlisted or absent one stays
-  silent, and bluedot matches only the categories its rule lists.
-- `country_code: ... isnot` no longer fires on an address the pipeline could not
-  place, which it did for every RFC1918 one. The converted rule required the
-  *address* field to exist and then negated the country list, on the reading that
-  "no country" satisfies "not in this list". The engine disagrees:
-  `GeoIP2_Lookup_Country` returns `GEOIP_SKIP` from every path that cannot
-  determine a country (non-routable, `skip_networks`, lookup failure, absent from
-  the database), `engine.c` compares only when the result is not `GEOIP_SKIP`, and
-  `routing.c` then drops the rule. Both `is` and `isnot` therefore require a
-  resolved country, and the emitted rule now requires the **country** field to
-  exist. 138 corpus rules are convertible with `isnot`, all of the "connection
-  from outside $HOME_COUNTRY" kind, so before this they alerted on all internal
-  traffic. The committed snapshots never showed it, since those rules need
-  `$HOME_COUNTRY` from a site `sagan.yaml` and are otherwise refused with
-  `E_VAR_UNRESOLVED`: only users converting with their own configuration were
-  affected. `tests/differential/test_geoip_semantics.py` pins the full truth
-  table against the real engine.
-- The declared `pysigma` floor moves from 1.0 to 1.1.0. Up to 1.0.2 pySigma's
-  rule-condition parser calls pyparsing's `parseString`, which current pyparsing
-  deprecates; 1.1.0 switched to `parse_string`. This is a genuine floor problem
-  rather than a test artefact, since the old spelling will eventually be removed
-  from pyparsing and take pySigma 1.0.x with it. The minimum-versions CI job,
-  which pins the declared floor and is what surfaced this, is pinned to match.
-- `country_code` rules that track an address the engine can never resolve (no
-  `parse_src_ip` / `parse_dst_ip`, no `json_map` binding of the address, no
-  `normalize`) are now refused as `E_NO_DETECTION` instead of the misleading
-  `E_EXTERNAL_ENRICHMENT`. The engine only geo-locates an address it marked valid
-  (`src/processors/engine.c`), and with no source that flag is never set, so the
-  lookup is skipped and `src/routing.c` drops the rule: it can never fire, so no
-  enrichment could recover it. Two upstream rules are reclassified; the honest
-  reason replaces one that implied they were recoverable. The wider analysis of
-  why the `country_code by_src` family (which geo-locates a per-rule `json_map`
-  JSON field, is gated on `$HOME_COUNTRY`, and depends on engine behaviours Vector
-  cannot reproduce) stays an architectural refusal is documented in
-  `docs/DESIGN-DECISIONS.md`.
-
-### Changed
-
-- The per-rule listings under "Refused rules" in `CONVERSION-REPORT.md` are now
-  behind click-to-open blocks, one per refusal code. The section runs to
-  thousands of rows on the upstream corpus, which buried the part a reader
-  actually scans first. The heading and its explanation stay outside the block,
-  so the counts and the reason for each refusal are still visible at a glance,
-  and only the listing folds away. This uses HTML `<details>`, since Markdown has
-  no such construct: renderers that pass inline HTML through (GitHub, GitLab, the
-  common editors) show a real disclosure widget, and one that strips HTML shows
-  the table as before, so nothing is ever hidden from a reader whose viewer does
-  not support it.
+## [0.2.0] - 2026-08-21
 
 ### Added
 
@@ -187,9 +106,6 @@ All notable changes to this project are documented here. The format follows
   the `tools/refresh_converted_rules.py` script it runs, reconvert the whole
   corpus whenever it moves and commit only when the output changes, so rules
   modified or removed upstream are reflected, not only new ones.
-
-### Added
-
 - The upstream corpus converted with the `vector-enriched` profile is now
   committed under `converted-vector-enriched/`, alongside the default
   `rsigma-syslog` snapshot in `converted/`, and refreshed by the same workflow.
@@ -270,6 +186,16 @@ All notable changes to this project are documented here. The format follows
 
 ### Changed
 
+- The per-rule listings under "Refused rules" in `CONVERSION-REPORT.md` are now
+  behind click-to-open blocks, one per refusal code. The section runs to
+  thousands of rows on the upstream corpus, which buried the part a reader
+  actually scans first. The heading and its explanation stay outside the block,
+  so the counts and the reason for each refusal are still visible at a glance,
+  and only the listing folds away. This uses HTML `<details>`, since Markdown has
+  no such construct: renderers that pass inline HTML through (GitHub, GitLab, the
+  common editors) show a real disclosure widget, and one that strips HTML shows
+  the table as before, so nothing is ever hidden from a reader whose viewer does
+  not support it.
 - `pass` rules are now converted as ordinary `alert` rules instead of being
   refused with `E_PASS_RULE`. The previous refusal assumed `pass` was a silent
   whitelist, the Snort and Suricata reading. The Sagan engine disagrees: the
@@ -303,6 +229,82 @@ All notable changes to this project are documented here. The format follows
 
 ### Fixed
 
+- `docs/DESIGN-DECISIONS.md` and `docs/PIPELINE.md` quoted stale and mutually
+  inconsistent counts for the normalization trade-off: 88 and 78 rules carrying
+  `D_NORMALIZE_PRECEDENCE` against 80 in the shipped report, and 14 refused
+  against 9. Both now match `converted-vector-enriched/CONVERSION-REPORT.md`.
+  The precedence itself, that liblognorm overrides `parse_src_ip` when it
+  resolves an address and positional parsing only fills what it left unset, is
+  now established by running a real Sagan engine on messages where the two
+  mechanisms name different hosts, rather than by reading the guard in
+  `engine.c`.
+- `after: count N` now emits a Sigma threshold of `N+1`, because that is when
+  Sagan alerts. `src/after.c` seeds its tracking entry with `count = 1` on the
+  first match and alerts only while `after2_count < count`, a strictly-greater
+  comparison: N events pass in silence and the next one alerts. A Sigma
+  `event_count` with `gte: N` fires as soon as the window holds N, one event
+  early, so all 970 corpus correlations were slightly more trigger-happy than
+  the rules they came from. The title keeps the rule's own number. This document
+  had asserted "alert from N+1" since the beginning while the code emitted
+  `gte: N`. Settled by running both engines on the same six events, repeatedly
+  and from a clean state: Sagan alerts from the N+1th for every N tested, and
+  rsigma reproduces it exactly once the threshold is raised.
+- `track by_string` in an `after` correlation no longer refuses the rule, and
+  does not group on the username either: it is inert there. The two correlation
+  parsers disagree, and only the C shows it. `threshold` tests the intact option
+  token, so there `by_string` really is a synonym for `by_username`, while
+  `after` calls `strtok_r` first and then tests a token already truncated to
+  `"track"` (`src/rules.c`), so its `by_string` branch can never fire. `after`
+  therefore drops the key, recording `D_AFTER_BY_STRING_INERT`, and refuses a
+  rule whose only key is `by_string`, because Sagan rejects that at load. Five
+  corpus rules are recovered under `--profile vector-enriched`, grouping on the
+  source alone. Settled by building the engine and running it, after an earlier
+  reading had mapped `by_string` to the username for both keywords.
+- `blacklist`, `zeek-intel` and `bluedot` tracking `both` now require both
+  addresses to be present, not just either one to be listed. Every `both` branch
+  in `src/processors/engine.c` is gated on
+  `ip_src_is_valid == true && ip_dst_is_valid == true`, so an event carrying only
+  one of the two is never tested, even when that address is on the feed; the
+  converter emitted a bare disjunction and would have fired. No corpus rule uses
+  `both`, so nothing shipped wrong. Found while extending the engine-backed
+  checks to the remaining enrichment families, and pinned by
+  `tests/differential/test_intel_semantics.py`, which covers all three against
+  the real engine: a listed address fires, an unlisted or absent one stays
+  silent, and bluedot matches only the categories its rule lists.
+- `country_code: ... isnot` no longer fires on an address the pipeline could not
+  place, which it did for every RFC1918 one. The converted rule required the
+  *address* field to exist and then negated the country list, on the reading that
+  "no country" satisfies "not in this list". The engine disagrees:
+  `GeoIP2_Lookup_Country` returns `GEOIP_SKIP` from every path that cannot
+  determine a country (non-routable, `skip_networks`, lookup failure, absent from
+  the database), `engine.c` compares only when the result is not `GEOIP_SKIP`, and
+  `routing.c` then drops the rule. Both `is` and `isnot` therefore require a
+  resolved country, and the emitted rule now requires the **country** field to
+  exist. 138 corpus rules are convertible with `isnot`, all of the "connection
+  from outside $HOME_COUNTRY" kind, so before this they alerted on all internal
+  traffic. The committed snapshots never showed it, since those rules need
+  `$HOME_COUNTRY` from a site `sagan.yaml` and are otherwise refused with
+  `E_VAR_UNRESOLVED`: only users converting with their own configuration were
+  affected. `tests/differential/test_geoip_semantics.py` pins the full truth
+  table against the real engine.
+- The declared `pysigma` floor moves from 1.0 to 1.1.0. Up to 1.0.2 pySigma's
+  rule-condition parser calls pyparsing's `parseString`, which current pyparsing
+  deprecates; 1.1.0 switched to `parse_string`. This is a genuine floor problem
+  rather than a test artefact, since the old spelling will eventually be removed
+  from pyparsing and take pySigma 1.0.x with it. The minimum-versions CI job,
+  which pins the declared floor and is what surfaced this, is pinned to match.
+- `country_code` rules that track an address the engine can never resolve (no
+  `parse_src_ip` / `parse_dst_ip`, no `json_map` binding of the address, no
+  `normalize`) are now refused as `E_NO_DETECTION` instead of the misleading
+  `E_EXTERNAL_ENRICHMENT`. The engine only geo-locates an address it marked valid
+  (`src/processors/engine.c`), and with no source that flag is never set, so the
+  lookup is skipped and `src/routing.c` drops the rule: it can never fire, so no
+  enrichment could recover it. Two upstream rules are reclassified; the honest
+  reason replaces one that implied they were recoverable. The wider analysis of
+  why the `country_code by_src` family (which geo-locates a per-rule `json_map`
+  JSON field, is gated on `$HOME_COUNTRY`, and depends on engine behaviours Vector
+  cannot reproduce) stays an architectural refusal is documented in
+  `docs/DESIGN-DECISIONS.md`.
 - Regular expressions using lookahead, lookbehind or backreferences were emitted
   despite the Rust `regex` engine behind RSigma refusing all of them. Because one
   uncompilable rule aborts the entire rule load, the affected rules made the

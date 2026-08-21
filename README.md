@@ -155,7 +155,7 @@ Each of these carries a stable code in the report, with the reasoning attached.
 
 ## Status and what has not been verified
 
-This is a 0.1.0 release and the rules it emits are marked `status:
+This is a 0.2.0 release and the rules it emits are marked `status:
 experimental` for a reason.
 
 **What is verified.** Every emitted document is parsed by
@@ -170,8 +170,19 @@ reference implementation of Sagan semantics written from the engine C source,
 and the real [rsigma](https://github.com/timescale/rsigma) engine evaluating
 the converted rule. Tens of thousands of event evaluations, no disagreements.
 This is what caught the field-naming defect that silently broke a quarter of the
-corpus
-before release.
+corpus before release.
+
+Behind that reference evaluator sits a second line of checking. Reading Sagan's
+C is not the same as knowing what Sagan does, so the behaviours this converter
+depends on are pinned down by running a locally built engine and comparing.
+That exercise corrected three of them, each of which had made the converted
+rules noisier than the originals: `after: count N` alerted one event early
+across 970 correlations, `after: track by_string` grouped too finely, and
+`both` accepted a single address. The first had been documented one way and
+implemented the other since the project began. The verified behaviours now live
+in this repository as converter code, tests and design notes; the engine lab
+itself is kept outside it, since it needs a compiled binary and a hand-made
+GeoIP database that CI could only skip.
 
 The bundled VRL transforms are executed against a real Vector binary in CI, and
 their address extraction is checked case by case against the branches of
@@ -180,8 +191,7 @@ Sagan's own `Parse_IP()`.
 **What is not verified.** The differential harness covers detection semantics
 only. Correlation rules, `pcre` and effective (non-zero) positional constructs
 are outside what the reference evaluator can judge, and are skipped rather than
-approximated. No
-test replays real production traffic. Treat the first deployment as a tuning
+approximated. No test replays real production traffic. Treat the first deployment as a tuning
 exercise, not a migration, and read the conversion report before trusting any
 of it.
 

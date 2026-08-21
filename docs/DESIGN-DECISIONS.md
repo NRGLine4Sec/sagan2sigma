@@ -150,12 +150,22 @@ by user.
 
 The same honesty applies to precedence. `engine.c:797` shows that liblognorm
 wins when it resolves an address and positional parsing is only the fallback.
-88 corpus rules carry both. They convert against the fallback and carry
-`D_NORMALIZE_PRECEDENCE`, because reproducing half a mechanism and calling it
-whole is exactly the kind of silent divergence this document exists to prevent.
+80 rules in the enriched profile carry both. They convert against the fallback
+and carry `D_NORMALIZE_PRECEDENCE`, because reproducing half a mechanism and
+calling it whole is exactly the kind of silent divergence this document exists
+to prevent.
 
-The 14 rules that still refuse are the honest residue: they group on a value
-only liblognorm produced, with no positional fallback to inherit.
+That precedence is not taken on the strength of reading the guard. A locally
+built engine was given a message whose normalized source is the *first* address
+and asked for `parse_src_ip: 2`, so the two mechanisms name different hosts. The
+alert carries the normalized one. Remove the rulebase match and the same rule
+falls back to the second address; leave a rule that resolves a source but no
+destination and the source stays normalized while the destination comes from
+its position. All three branches of the comment above `engine.c:797` behave as
+written.
+
+The 9 rules refused as `E_GROUPBY_UNRESOLVED` are the honest residue: they group
+on a value only liblognorm produced, with no positional fallback to inherit.
 
 ### The rules and the transforms are one deliverable
 

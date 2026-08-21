@@ -256,11 +256,12 @@ directly.
 
 ### What it still does not recover
 
-14 rules remain refused, and they are the honest residue: they group on a value
+9 rules remain refused, and they are the honest residue: they group on a value
 that only liblognorm produced, with no `parse_src_ip` fallback to fall back to.
-78 more convert but carry `D_NORMALIZE_PRECEDENCE`, because Sagan would have
+80 more convert but carry `D_NORMALIZE_PRECEDENCE`, because Sagan would have
 let liblognorm resolve the address first and only the positional fallback is
-reproduced.
+reproduced. That ordering is verified against a real engine, not inferred:
+see "Where the port stops, and why it says so" in `docs/DESIGN-DECISIONS.md`.
 
 ## Option C: Vector normalises first, without enrichment
 
