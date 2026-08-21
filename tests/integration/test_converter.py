@@ -125,11 +125,15 @@ class TestRawOnJsonRecoveredUnderEnriched:
         )
 
 
-class TestByStringTracksUsername:
-    """track by_string is the engine's synonym for by_username.
+class TestAfterIgnoresByString:
+    """track by_string is inert under `after`, and the rule still converts.
 
-    Refused by default (the username field is not in the syslog profile), it
-    converts under vector-enriched where the VRL supplies sagan_username.
+    The `after` parser tests a token strtok_r has already truncated to "track",
+    so its by_string branch can never fire: Sagan groups on the remaining keys.
+    Verified against a locally built engine, where `after: track by_string`
+    alone is rejected at load. Under `threshold`, whose parser tests the intact
+    token, by_string really is a synonym for by_username, but threshold never
+    reaches a group-by so nothing downstream depends on it.
     """
 
     @pytest.fixture
@@ -141,7 +145,7 @@ class TestByStringTracksUsername:
     def test_refused_by_default(self, result: ConversionResult) -> None:
         assert refusal_for(result, "9000027") is RefusalCode.GROUPBY_UNRESOLVED
 
-    def test_converts_under_enriched_grouping_on_username(
+    def test_converts_under_enriched_grouping_on_the_source_only(
         self, enriched_result: ConversionResult
     ) -> None:
         assert "9000027" in sids(enriched_result.converted)
@@ -152,8 +156,18 @@ class TestByStringTracksUsername:
             for document in item.documents
             if "correlation" in document
         )
-        # by_src -> the parsed address, by_string -> the username field.
-        assert correlation["group-by"] == ["sagan_ip_1", "sagan_username"]
+        # by_src resolves to the parsed address; by_string is dropped, because
+        # grouping on the username would invent a split Sagan does not make.
+        assert correlation["group-by"] == ["sagan_ip_1"]
+
+    def test_records_the_inert_key(self, enriched_result: ConversionResult) -> None:
+        converted = next(
+            item for item in enriched_result.converted if item.sid == "9000027"
+        )
+        assert any(
+            d.code is DegradationCode.AFTER_BY_STRING_INERT
+            for d in converted.degradations
+        )
 
 
 class TestBluedotSubstitutedUnderEnriched:
@@ -381,7 +395,9 @@ class TestCorrelations:
         correlation = converted.documents[1]["correlation"]
         assert correlation["type"] == "event_count"
         assert correlation["group-by"] == ["sourceIPAddress"]
-        assert correlation["condition"] == {"gte": 5}
+        # The fixture declares `count 5`, and Sagan alerts from the 6th event,
+        # so the Sigma threshold is one higher than the rule's own number.
+        assert correlation["condition"] == {"gte": 6}
         assert correlation["timespan"] == "5m"
 
     def test_base_rule_gets_a_name(self, result: ConversionResult) -> None:

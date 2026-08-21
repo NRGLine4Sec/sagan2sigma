@@ -49,6 +49,26 @@ and is dropped with `D_THRESHOLD_LIMIT`.
 The corpus has 1,143 `suppress` and 146 `limit` uses, against 970 real `after`
 correlations.
 
+The "alert from N+1" is not a rounding detail, and this document asserted it
+while the code did something else. `src/after.c` seeds its tracking entry with
+`count = 1` on the first match and then alerts only while
+`after2_count < count`: the comparison is strictly greater, so N events pass in
+silence and the next one alerts. A Sigma `event_count` with `condition: {gte: N}`
+fires as soon as the window holds N, which is one event earlier. Every one of the
+970 correlations was therefore slightly more trigger-happy than the rule it came
+from, so the emitted threshold is now N+1 while the title keeps the rule's own
+number, which is what an analyst reads.
+
+Settled by running both engines on the same six events. For `count 3` Sagan
+alerts on the 4th, 5th and 6th; rsigma with `gte: 3` alerted on the 3rd through
+6th, and with `gte: 4` reproduces Sagan exactly. Worth recording how the Sagan
+half was obtained: the `after` code path in current Sagan overruns its own
+tracking structure (`after.c` copies up to `message_buffer_size` into a
+zero-length array member), so a hardened build aborts and an unhardened one
+gives results that do not always reproduce. The static read of the C is what
+carries the conclusion; the run corroborates it, and the rsigma half, which is
+not affected, is what confirms the fix.
+
 ### 3. Group-by keys need not exist as fields
 
 Sagan reasons over internal values (`src_ip`, `username`) that are populated
@@ -347,23 +367,29 @@ than the original line.
 Handled by `mapping/fields.py::FieldResolver`, which every message-searching
 handler consults instead of hardcoding a field name.
 
-### `track by_string` is a synonym for `by_username`
+### `track by_string` means different things to `after` and `threshold`
 
 The documentation presents `by_string` as tracking on an application string,
-which reads like a value with no field equivalent, and refusing it on that basis
-is tempting. The engine says otherwise: in `src/rules.c` the `after` and
-`threshold` parsers set the **same** flag for both keys,
+which reads like a value with no field equivalent. The engine is stranger than
+that, and the two correlation keywords disagree with each other.
 
-    if (Sagan_strstr(tmptoken, "by_username") || Sagan_strstr(tmptoken, "by_string"))
-        rulestruct[...].method_username = true;
+Under `threshold`, `by_string` really is a synonym for `by_username`: that
+parser tests the intact option token, so both spellings set the same
+`method_username` flag. Under `after` the parser first calls
+`strtok_r(tmptoken, " ", ...)`, which truncates the token to `"track"`, and only
+then tests *that* for `by_string` (`src/rules.c`). The branch can therefore
+never fire, and `after` ignores the key entirely.
 
-and the correlation hash in `src/after.c` is then built from the username value.
-So `by_string` groups on exactly the field `by_username` does. Treating it as its
-own unresolvable key refused rules the engine tracks like any other user
-correlation; mapping it to `username` recovers them, under `--profile
-vector-enriched` where the VRL supplies `sagan_username`, and carries the same
-best-effort-username degradation. Encoded in
-`mapping/correlation.py::TRACK_TO_INTERNAL`.
+This was got wrong once, in the direction that invents detail: mapping
+`by_string` to the username for both keywords made five corpus rules group on
+(source, username) where Sagan groups on the source alone. Running the engine is
+what settled it. `after: track by_string` on its own is **rejected at load**,
+which is only possible if the key contributes nothing to the parser's validity
+count, while the same expression under `threshold` loads cleanly. So the
+converter drops `by_string` from an `after` group-by and records
+`D_AFTER_BY_STRING_INERT`; a rule whose only key is `by_string` is refused,
+because Sagan refuses it too. `threshold` never reaches a group-by at all, being
+alert-volume control, so nothing downstream depends on its half of the story.
 
 ### Sagan's option tokenisation ignores quotes
 

@@ -76,30 +76,34 @@ class TestAfterGroupByResolution:
             run(handle_after, rule, draft, context)
         assert excinfo.value.code is RefusalCode.GROUPBY_UNRESOLVED
 
-    def test_by_string_is_a_synonym_for_by_username(
+    def test_after_drops_by_string_and_keeps_the_rest(
         self, draft: RuleDraft, context
     ) -> None:
-        """The engine sets the same method_username flag for by_string and.
+        """Sagan groups on the source alone here.
 
-        by_username (src/rules.c), then hashes on the username value, so
-        by_string groups on username, not on an unresolvable application string.
+        Grouping on the username too would invent a distinction it does not make.
         """
+        rule = make_rule(
+            'msg:"t"; json_map:"src_ip",".ip"; json_map:"username",".user"; '
+            "after: track by_src&by_string, count 5, seconds 300; sid:1;"
+        )
+        run(handle_after, rule, draft, context)
+        assert draft.correlations[0].group_by == ("ip",)
+        assert any(
+            d.code is DegradationCode.AFTER_BY_STRING_INERT for d in draft.degradations
+        )
+
+    def test_after_with_only_by_string_is_refused(
+        self, draft: RuleDraft, context
+    ) -> None:
+        """Sagan rejects such a rule at load, so there is nothing to emit."""
         rule = make_rule(
             'msg:"t"; json_map:"username",".user"; '
             "after: track by_string, count 5, seconds 300; sid:1;"
         )
-        run(handle_after, rule, draft, context)
-        assert draft.correlations[0].group_by == ("user",)
-
-    def test_by_string_and_by_username_collapse_to_one_key(
-        self, draft: RuleDraft, context
-    ) -> None:
-        rule = make_rule(
-            'msg:"t"; json_map:"username",".user"; '
-            "after: track by_username&by_string, count 5, seconds 300; sid:1;"
-        )
-        run(handle_after, rule, draft, context)
-        assert draft.correlations[0].group_by == ("user",)
+        with pytest.raises(Refusal) as excinfo:
+            run(handle_after, rule, draft, context)
+        assert excinfo.value.code is RefusalCode.PARSE
 
     def test_composite_tracking(self, draft: RuleDraft, context) -> None:
         rule = make_rule(
@@ -112,12 +116,23 @@ class TestAfterGroupByResolution:
 
 class TestAfter:
     def test_builds_an_event_count_correlation(self, draft: RuleDraft, context) -> None:
+        """`count N` becomes `gte: N+1`, because Sagan alerts from the N+1th.
+
+        The engine seeds its counter at 1 on the first match and alerts only
+        while `after2_count < count` (src/after.c), so N events pass in silence
+        and the next one alerts. A Sigma event_count of `gte: N` fires as soon
+        as the window holds N, one event early. Both engines were run on the
+        same six events to settle it: Sagan alerts on the 4th, 5th and 6th for
+        `count 3`, and rsigma reproduces that exactly with `gte: 4`.
+        """
         rule = make_rule('msg:"t"; after: track by_src, count 10, seconds 300; sid:1;')
         run(handle_after, rule, draft, context)
         spec = draft.correlations[0]
         assert spec.correlation_type == "event_count"
-        assert spec.condition == {"gte": 10}
+        assert spec.condition == {"gte": 11}
         assert spec.timespan == "5m"
+        # The title keeps the rule's own number, which is what an analyst reads.
+        assert "threshold 10" in spec.title_suffix
 
     def test_refuses_an_incomplete_after(self, draft: RuleDraft, context) -> None:
         with pytest.raises(Refusal, match="incomplete"):

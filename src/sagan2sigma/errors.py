@@ -55,6 +55,7 @@ class DegradationCode(str, Enum):
     DENYLIST_ENRICHMENT = "D_DENYLIST_ENRICHMENT"
     ZEEK_INTEL_ENRICHMENT = "D_ZEEK_INTEL_ENRICHMENT"
     BLUEDOT_SUBSTITUTION = "D_BLUEDOT_SUBSTITUTION"
+    AFTER_BY_STRING_INERT = "D_AFTER_BY_STRING_INERT"
 
 
 REFUSAL_HELP: dict[RefusalCode, str] = {
@@ -250,6 +251,14 @@ DEGRADATION_HELP: dict[DegradationCode, str] = {
         "Malicious, Proxy and Honeypot depend entirely on the feed you choose and "
         "will diverge from Bluedot's verdicts. Only the address (ip_reputation) "
         "lookup is reproduced; hash and URL lookups are still refused."
+    ),
+    DegradationCode.AFTER_BY_STRING_INERT: (
+        "after tracked by_string, which that parser never recognises: it tests "
+        "an option token strtok_r has already truncated to 'track', so the "
+        "branch is dead. Sagan groups on the remaining keys only, and rejects "
+        "the rule outright when by_string is the only key. Confirmed against a "
+        "locally built engine. threshold is unaffected: its parser tests the "
+        "intact token, so there by_string really is a synonym for by_username."
     ),
     DegradationCode.ALERT_TIME_EVENT_CLOCK: (
         "alert_time matches against weekday and hour-of-day fields the bundled "

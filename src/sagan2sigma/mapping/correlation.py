@@ -54,18 +54,26 @@ _EXPIRE = re.compile(r"expire\s+(\d+)")
 
 #: ``after`` and ``threshold`` tracking keys onto Sagan internal values.
 #:
-#: ``by_string`` is a synonym for ``by_username``, not a separate key: the engine
-#: sets the same ``method_username`` flag for both (``src/rules.c``, the
-#: ``by_username`` / ``by_string`` branches), and correlation then hashes on the
-#: username value (``src/after.c``). Following the docs, which describe it as an
-#: application string, would refuse a rule the engine tracks exactly like any
-#: other ``by_username`` one.
+#: ``by_string`` is where the two keywords part company, and the difference is
+#: an accident of the C rather than a design. Under ``threshold`` it really is a
+#: synonym for ``by_username``: that parser tests the intact option token, so
+#: ``by_string`` sets the same ``method_username`` flag. Under ``after`` the
+#: parser first calls ``strtok_r(tmptoken, " ", ...)``, truncating the token to
+#: ``"track"``, and then tests *that* for ``by_string`` (``src/rules.c``), so the
+#: branch can never fire. ``_group_by`` therefore drops it: that function serves
+#: ``after`` alone, since ``threshold`` never reaches a group-by at all (it is
+#: alert-volume control, carried over as an attribute). The ``threshold`` half is
+#: recorded here because it is easy to rediscover and get backwards.
+#:
+#: Both halves were confirmed against a locally built engine rather than read
+#: alone: ``after: track by_string`` is rejected at load, which is only possible
+#: if the key contributes nothing, while the same expression under ``threshold``
+#: loads cleanly.
 TRACK_TO_INTERNAL = {
     "by_src": "src_ip",
     "by_dst": "dest_ip",
     "by_username": "username",
     "by_user": "username",
-    "by_string": "username",
 }
 
 #: ``xbits`` tracking keys onto Sagan internal values.
@@ -217,6 +225,28 @@ def _group_by(
         if token == "by_tag":
             keys.append("syslog_tag")
             continue
+        if token == "by_string":
+            # by_string groups on the username under `threshold`, and on nothing
+            # at all under `after`. The two parsers differ by an accident that is
+            # only visible in the C: `threshold` tests the intact option token,
+            # while `after` tests it *after* strtok_r has truncated it to
+            # "track", so its by_string branch can never fire. Confirmed against
+            # the engine: `after: track by_string` alone is rejected at load,
+            # which is only possible if the token contributes nothing, while the
+            # same expression under `threshold` loads. Grouping on the username
+            # here would invent a distinction Sagan does not make.
+            draft.degrade(
+                Degradation(
+                    code=DegradationCode.AFTER_BY_STRING_INERT,
+                    detail=(
+                        f"{keyword} tracked by_string, which the engine's after "
+                        "parser never recognises (it tests a token strtok_r has "
+                        "already truncated), so Sagan groups on the remaining "
+                        "keys only; the inert key was dropped"
+                    ),
+                )
+            )
+            continue
         internal = TRACK_TO_INTERNAL.get(token)
         if internal is None:
             raise Refusal(
@@ -226,6 +256,17 @@ def _group_by(
             )
         keys.append(
             resolve_group_key(internal, rule, draft, context, resolver, keyword)
+        )
+    if not keys:
+        # Every key was inert. Sagan refuses to load such a rule at all, so
+        # there is nothing faithful to emit.
+        raise Refusal(
+            code=RefusalCode.PARSE,
+            detail=(
+                f"{keyword} declares no tracking key the engine recognises "
+                f"({tracks!r}); Sagan rejects the rule at load time"
+            ),
+            keywords=(keyword,),
         )
     return tuple(dict.fromkeys(keys))
 
@@ -253,6 +294,16 @@ def handle_after(
             )
 
         timespan = format_timespan(int(seconds.group(1)))
+        # `after: count N` alerts from the N+1th event, not the Nth. The engine
+        # creates its tracking entry with ``count = 1`` on the first match and
+        # then alerts only while ``after2_count < count`` (``src/after.c``), so
+        # the comparison is strictly greater: N events pass in silence and the
+        # next one alerts. A Sigma ``event_count`` with ``gte: N`` fires as soon
+        # as the window holds N, which is one event early, so the threshold is
+        # emitted as N+1. Confirmed by running both engines on the same six
+        # events: Sagan alerts on the 4th, 5th and 6th for ``count 3``, and
+        # rsigma reproduces exactly that with ``gte: 4``.
+        threshold = int(count.group(1)) + 1
         draft.correlations.append(
             CorrelationSpec(
                 correlation_type="event_count",
@@ -260,7 +311,7 @@ def handle_after(
                     track.group("keys"), rule, draft, context, resolver, "after"
                 ),
                 timespan=timespan,
-                condition={"gte": int(count.group(1))},
+                condition={"gte": threshold},
                 title_suffix=f"threshold {count.group(1)} in {timespan}",
                 description=(
                     "Correlation derived from the Sagan after keyword. The base "

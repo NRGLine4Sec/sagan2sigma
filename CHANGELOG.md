@@ -8,6 +8,27 @@ All notable changes to this project are documented here. The format follows
 
 ### Fixed
 
+- `after: count N` now emits a Sigma threshold of `N+1`, because that is when
+  Sagan alerts. `src/after.c` seeds its tracking entry with `count = 1` on the
+  first match and alerts only while `after2_count < count`, a strictly-greater
+  comparison: N events pass in silence and the next one alerts. A Sigma
+  `event_count` with `gte: N` fires as soon as the window holds N, one event
+  early, so all 970 corpus correlations were slightly more trigger-happy than
+  the rules they came from. The title keeps the rule's own number. This document
+  had asserted "alert from N+1" since the beginning while the code emitted
+  `gte: N`; running both engines on the same six events settled it, with rsigma
+  reproducing Sagan exactly once the threshold was raised.
+- `track by_string` in an `after` correlation no longer refuses the rule, and
+  does not group on the username either: it is inert there. The two correlation
+  parsers disagree, and only the C shows it. `threshold` tests the intact option
+  token, so there `by_string` really is a synonym for `by_username`, while
+  `after` calls `strtok_r` first and then tests a token already truncated to
+  `"track"` (`src/rules.c`), so its `by_string` branch can never fire. `after`
+  therefore drops the key, recording `D_AFTER_BY_STRING_INERT`, and refuses a
+  rule whose only key is `by_string`, because Sagan rejects that at load. Five
+  corpus rules are recovered under `--profile vector-enriched`, grouping on the
+  source alone. Settled by building the engine and running it, after an earlier
+  reading had mapped `by_string` to the username for both keywords.
 - `blacklist`, `zeek-intel` and `bluedot` tracking `both` now require both
   addresses to be present, not just either one to be listed. Every `both` branch
   in `src/processors/engine.c` is gated on
@@ -53,15 +74,6 @@ All notable changes to this project are documented here. The format follows
   JSON field, is gated on `$HOME_COUNTRY`, and depends on engine behaviours Vector
   cannot reproduce) stays an architectural refusal is documented in
   `docs/DESIGN-DECISIONS.md`.
-- `track by_string` in an `after` or `threshold` correlation is no longer refused
-  with `E_GROUPBY_UNRESOLVED`. The documentation presents it as an application
-  string with no field equivalent, but the engine (`src/rules.c`) sets the same
-  `method_username` flag for `by_string` as for `by_username` and then hashes on
-  the username value (`src/after.c`), so the two are synonyms. It now maps to the
-  `username` internal, recovering 5 rules under `--profile vector-enriched` (where
-  the VRL supplies `sagan_username`) with the same best-effort-username
-  degradation `by_username` already carries. The syslog profiles still refuse it,
-  exactly as they refuse `by_username`.
 
 ### Changed
 
