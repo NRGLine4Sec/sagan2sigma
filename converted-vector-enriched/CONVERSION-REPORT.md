@@ -57,10 +57,10 @@ reproduced. They are worth reviewing before the ruleset goes live.
 
 | Code | Rules | Meaning | Example SIDs |
 | --- | ---: | --- | --- |
-| `D_RAW_TEXT_MATCH` | 6412 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
+| `D_RAW_TEXT_MATCH` | 6411 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
 | `D_LOGSOURCE_FALLBACK` | 1977 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
 | `D_EVENT_ID_HEURISTIC` | 1932 | Without a json_map for event_id, Sagan looks for ' <id>: ' in the first 10 bytes of the message. The converted rule assumes a proper EventID field instead. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
-| `D_THRESHOLD_SUPPRESS` | 1480 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
+| `D_THRESHOLD_SUPPRESS` | 1481 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
 | `D_PASS_SHORT_CIRCUIT` | 515 | The rule used the pass action. In Sagan a matching pass rule still emits an alert (Send_Alert runs before the pass check) and then stops evaluating the remaining signatures for that event. The detection is converted faithfully; only the short-circuit, the suppression of other rules on the same event, is not reproduced, since Sigma evaluates every rule independently. | `5016065`, `5016066`, `5016067`, `5016068`, `5016069` |
 | `D_GROUPBY_SYSLOG_HOST` | 388 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
 | `D_POSITIONAL_IP_FIELD` | 288 | The group-by key comes from the bundled VRL transform rather than from the log itself. The correlation only works if that transform runs in the ingestion pipeline. | `5002942`, `5015097`, `5014021`, `5014177`, `5008654` |
@@ -87,6 +87,9 @@ correlation resolved the rules it references.
 ### `E_EXTERNAL_ENRICHMENT` (322 rules)
 
 The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed.
+
+<details>
+<summary>Show the 322 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -405,17 +408,22 @@ The rule queries an external source. Bluedot threat intelligence is out of scope
 | `5002920` | `vsftpd-bluedot.rules` | Applications and web | [VSFTPD-BLUEDOT] File uploaded from a suspicious IP | `bluedot` | bluedot tracks an address the rule did not parse; the substitution needs the vector-enriched profile and the parsed address (parse_src_ip / parse_dst_ip) |
 | `5017458` | `windows-bluedot.rules` | Windows | [WINDOWS-SYSMON-BLUEDOT] DNS Request To Malicious URL Detected | `bluedot` | bluedot type 'url' looks up a non-address indicator (hash, URL, filename or JA3); the substitution reproduces only ip_reputation, which maps onto the address enrichment tables |
 | `5002940` | `zeek-bluedot.rules` | Network detection | [BLUEDOT] Suspicious file hash detected | `bluedot` | bluedot type 'file_hash' looks up a non-address indicator (hash, URL, filename or JA3); the substitution reproduces only ip_reputation, which maps onto the address enrichment table |
-| `9000020` | `zscaler-zia-bluedot.rules` | Network and firewalls | [ZSCALER-ZIA-BLUEDOT][EXPERIMENTAL] Outbound connection to Malicious IP | `bluedot` | bluedot tracks an address the rule did not parse; the substitution needs the vector-enriched profile and the parsed address (parse_src_ip / parse_dst_ip) |
-| `9000021` | `zscaler-zia-bluedot.rules` | Network and firewalls | [ZSCALER-ZIA-BLUEDOT][EXPERIMENTAL] Outbound connection to Tor exit node | `bluedot` | bluedot tracks an address the rule did not parse; the substitution needs the vector-enriched profile and the parsed address (parse_src_ip / parse_dst_ip) |
-| `9000022` | `zscaler-zia-bluedot.rules` | Network and firewalls | [ZSCALER-ZIA-BLUEDOT][EXPERIMENTAL] Outbound connection to open Proxy IP | `bluedot` | bluedot tracks an address the rule did not parse; the substitution needs the vector-enriched profile and the parsed address (parse_src_ip / parse_dst_ip) |
-| `9000050` | `zscaler-zpa-bluedot.rules` | Network and firewalls | [ZSCALER-ZPA-BLUEDOT][EXPERIMENTAL] Private app access from a known Malicious IP | `bluedot` | bluedot tracks an address the rule did not parse; the substitution needs the vector-enriched profile and the parsed address (parse_src_ip / parse_dst_ip) |
-| `9000051` | `zscaler-zpa-bluedot.rules` | Network and firewalls | [ZSCALER-ZPA-BLUEDOT][EXPERIMENTAL] Private app access from a Tor exit node | `bluedot` | bluedot tracks an address the rule did not parse; the substitution needs the vector-enriched profile and the parsed address (parse_src_ip / parse_dst_ip) |
-| `9000052` | `zscaler-zpa-bluedot.rules` | Network and firewalls | [ZSCALER-ZPA-BLUEDOT][EXPERIMENTAL] Private app access from an open Proxy IP | `bluedot` | bluedot tracks an address the rule did not parse; the substitution needs the vector-enriched profile and the parsed address (parse_src_ip / parse_dst_ip) |
-| `9000040` | `zscaler-zpa-geoip.rules` | Network and firewalls | [ZSCALER-ZPA-GEOIP][EXPERIMENTAL] Private application access from outside HOME_COUNTRY | `country_code` | country_code needs a GeoIP country field, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled GeoIP transform; the tracke |
+| `5017948` | `zscaler-zia-bluedot.rules` | Network and firewalls | [ZSCALER-ZIA-BLUEDOT] Outbound connection to Malicious IP | `bluedot` | bluedot tracks an address the rule did not parse; the substitution needs the vector-enriched profile and the parsed address (parse_src_ip / parse_dst_ip) |
+| `5017949` | `zscaler-zia-bluedot.rules` | Network and firewalls | [ZSCALER-ZIA-BLUEDOT] Outbound connection to Tor exit node | `bluedot` | bluedot tracks an address the rule did not parse; the substitution needs the vector-enriched profile and the parsed address (parse_src_ip / parse_dst_ip) |
+| `5017950` | `zscaler-zia-bluedot.rules` | Network and firewalls | [ZSCALER-ZIA-BLUEDOT] Outbound connection to open Proxy IP | `bluedot` | bluedot tracks an address the rule did not parse; the substitution needs the vector-enriched profile and the parsed address (parse_src_ip / parse_dst_ip) |
+| `5017954` | `zscaler-zpa-bluedot.rules` | Network and firewalls | [ZSCALER-ZPA-BLUEDOT] Private app access from a known Malicious IP | `bluedot` | bluedot tracks an address the rule did not parse; the substitution needs the vector-enriched profile and the parsed address (parse_src_ip / parse_dst_ip) |
+| `5017955` | `zscaler-zpa-bluedot.rules` | Network and firewalls | [ZSCALER-ZPA-BLUEDOT] Private app access from a Tor exit node | `bluedot` | bluedot tracks an address the rule did not parse; the substitution needs the vector-enriched profile and the parsed address (parse_src_ip / parse_dst_ip) |
+| `5017956` | `zscaler-zpa-bluedot.rules` | Network and firewalls | [ZSCALER-ZPA-BLUEDOT] Private app access from an open Proxy IP | `bluedot` | bluedot tracks an address the rule did not parse; the substitution needs the vector-enriched profile and the parsed address (parse_src_ip / parse_dst_ip) |
+| `5017953` | `zscaler-zpa-geoip.rules` | Network and firewalls | [ZSCALER-ZPA-GEOIP] Private application access from outside HOME_COUNTRY | `country_code` | country_code needs a GeoIP country field, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled GeoIP transform; the tracke |
+
+</details>
 
 ### `E_VAR_UNRESOLVED` (165 rules)
 
 The rule references a sagan.yaml variable that was not supplied. Re-run with --sagan-yaml to resolve it.
+
+<details>
+<summary>Show the 165 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -585,9 +593,14 @@ The rule references a sagan.yaml variable that was not supplied. Re-run with --s
 | `5003035` | `zimbra-geoip.rules` | Applications and web | [ZIMBRA-GEOIP] NGNIX Authentication from outside HOME_COUNTRY | `country_code` | variable $HOME_COUNTRY in country_code is undefined; supply the sagan.yaml with --sagan-yaml |
 | `5003036` | `zimbra-geoip.rules` | Applications and web | [ZIMBRA-GEOIP] EWS Authentication from outside HOME_COUNTRY | `country_code` | variable $HOME_COUNTRY in country_code is undefined; supply the sagan.yaml with --sagan-yaml |
 
+</details>
+
 ### `E_PCRE_UNSUPPORTED` (41 rules)
 
 The regular expression uses a PCRE construct the Rust engine cannot express and the converter cannot safely rewrite (recursion, look-around, back-references, control verbs). Recoverable constructs (numbered subroutines, literal braces, the whole-string negation idiom, inert flags) are rewritten instead of refused.
+
+<details>
+<summary>Show the 41 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -633,9 +646,14 @@ The regular expression uses a PCRE construct the Rust engine cannot express and 
 | `5017046` | `windows-sysmon.rules` | Windows | [WINDOWS_SYSMON] w3wp.exe Network Connection to Suspicious IP | `pcre` | non-portable PCRE construct: lookahead, unsupported by the Rust regex engine |
 | `5017392` | `windows-sysmon.rules` | Windows | [WINDOWS-SYSMON] Suspicious svchost.exe Binary Running from Non-Standard Directory - Criti | `pcre` | non-portable PCRE construct: lookahead, unsupported by the Rust regex engine |
 
+</details>
+
 ### `E_POSITIONAL` (40 rules)
 
 The rule constrains where a pattern sits in the log line with a non-zero offset, depth or distance. Sigma string modifiers cannot express a byte position, so no faithful translation exists. A zero-valued positional is a no-op in the Sagan engine and is converted.
+
+<details>
+<summary>Show the 40 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -680,9 +698,14 @@ The rule constrains where a pattern sits in the log line with a non-zero offset,
 | `5007215` | `windows-security.rules` | Windows | [WINDOWS-SECURITY] A user's local group membership was enumerated (Domain Groups) | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
 | `5005993` | `windows-sysmon.rules` | Windows | [WINDOWS-SYSMON] Possible Command To Disable Crash Logging Detected | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
 
+</details>
+
 ### `E_GROUPBY_UNRESOLVED` (9 rules)
 
 The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline.
+
+<details>
+<summary>Show the 9 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -696,9 +719,14 @@ The group-by key required by after does not exist as a field in any event: Sagan
 | `5017724` | `sophos_firewall.rules` | Endpoint and EDR | [SOPHOS_FIREWALL] VPN Authentication - Credential Stuffing Attempt | `after` | dest_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `9870006` | `windows-security.rules` | Windows | [EXPERIMENTAL][WINDOWS-SECURITY] SMB - Suspected Authentication Coercion IPC\|24\| Access fo | `xbits` | dest_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 
+</details>
+
 ### `E_STATE_ABSENCE` (8 rules)
 
 The rule requires that an earlier event did NOT happen (xbits or flexbits isnotset). Sigma cannot express a negative correlation.
+
+<details>
+<summary>Show the 8 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -711,9 +739,14 @@ The rule requires that an earlier event did NOT happen (xbits or flexbits isnots
 | `5002011` | `windows-malware.rules` | Windows | [WINDOWS-MALWARE] System protection disabled | `flexbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
 | `5015930` | `windows-misc.rules` | Windows | [WINDOWS-MISC] NXLog has Stopped On Host | `xbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
 
+</details>
+
 ### `E_NO_DETECTION` (5 rules)
 
 The rule can never produce an alert: nothing is left to match on after conversion (it carried only side effects or metadata), or it carries a mandatory condition the engine can never satisfy, so it never fires in Sagan either.
+
+<details>
+<summary>Show the 5 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -723,10 +756,17 @@ The rule can never produce an alert: nothing is left to match on after conversio
 | `5002388` | `vsftpd-geoip.rules` | Applications and web | [VSFTPD-GEOIP] File uploaded from outside HOME_COUNTRY | `country_code` | country_code tracks by_src but the rule gives src_ip no source the engine accepts (no parse_src_ip / parse_dst_ip, no json_map binding, no normalize), so ip_src_is_valid is never s |
 | `5002270` | `zeek-intel.rules` | Network detection | [BRO-INTEL] Suspicious communications detected via Bro-Intel | `after, bro-intel, classtype, msg, normalize, parse_dst_ip, parse_proto, parse_proto_program, parse_src_ip, rev, sid, threshold` | no positive constraint remains after conversion: the rule carried only negations or side effects |
 
+</details>
+
 ### `E_PARSE` (1 rules)
 
 The rule could not be parsed, or it uses a construct that Sagan itself would reject at load time.
 
+<details>
+<summary>Show the 1 refused rules</summary>
+
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
 | `9870101` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [EXPERIMENTAL][AZURE-EVENTHUB-AD] Non-Interactive SignIn - Possible AiTM Session Theft via | `json_meta_content` | unparsable json_meta_content arguments: '!".properties".deviceDetail",Azure\|20\|AD\|20\|joined,Azure\|20\|AD\|20\|Registered,Hybrid\|20\|Azure\|20\|AD\|20\|joined' |
+
+</details>

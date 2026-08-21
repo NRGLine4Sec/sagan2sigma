@@ -2416,43 +2416,6 @@ custom_attributes:
   sagan.source_file: crowdstrike.rules
   sagan.metadata: CreatedOn=2025_08_08
 ---
-title: '[CROWDSTRIKE] Network Access In An Epp Detection Summary Event'
-id: 659815b8-8eea-53d6-ac55-64a0affdb992
-status: experimental
-description: Converted from Sagan rule SID 5017164 (rev 1), file crowdstrike.rules.
-author: sagan2sigma
-logsource:
-  product: crowdstrike
-detection:
-  selection_1:
-    appname|cased: CrowdStrike
-  selection_2:
-    _raw|contains|cased: Network Access In An Epp Detection Summary Event
-  filter_3:
-    _raw|contains|cased: $ fname=
-  filter_4:
-    _raw|contains|cased:
-      - fname=chrome.exe
-      - fname=msedge.exe
-      - fname=firefox.exe
-      - fname=explorer.exe
-      - fname=opera.exe
-      - fname=chromium.exe
-      - fname=brave.exe
-      - fname=iexplore.exe
-      - fname=yandex.exe
-      - fname=vivaldi.exe
-  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
-falsepositives:
-  - 'Unassessed: automatically converted, not yet tuned'
-level: medium
-tags:
-  - sagan.classtype.suspicious-traffic
-custom_attributes:
-  sagan.sid: '5017164'
-  sagan.rev: '1'
-  sagan.source_file: crowdstrike.rules
----
 title: '[CROWDSTRIKE] Network Access In A Detection Summary Event'
 id: 933f2cfb-df68-5193-8a31-b50333fa919e
 status: experimental

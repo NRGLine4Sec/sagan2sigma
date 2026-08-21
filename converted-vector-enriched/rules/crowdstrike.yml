@@ -2420,7 +2420,7 @@ custom_attributes:
 title: '[CROWDSTRIKE] Network Access In An Epp Detection Summary Event'
 id: 659815b8-8eea-53d6-ac55-64a0affdb992
 status: experimental
-description: Converted from Sagan rule SID 5017164 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017164 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -2428,11 +2428,21 @@ detection:
   selection_1:
     appname|cased: CrowdStrike
   selection_2:
-    message|contains|cased: Network Access In An Epp Detection Summary Event
+    sagan_raw|contains|cased: Network Access In An Epp Detection Summary Event
   filter_3:
-    message|contains|cased: $ fname=
-  filter_4:
-    message|contains|cased:
+    sagan_raw|contains|cased: $ fname=
+  selection_4:
+    sagan_raw|contains|cased:
+      - cat=Malware
+      - cat=Ransomware
+      - cat=Exploit
+      - cat=Credential Access
+      - cat=Command and Control
+      - cat=Defense Evasion
+      - cat=Privilege Escalation
+      - cat=Lateral Movement
+  filter_5:
+    sagan_raw|contains|cased:
       - fname=chrome.exe
       - fname=msedge.exe
       - fname=firefox.exe
@@ -2443,7 +2453,7 @@ detection:
       - fname=iexplore.exe
       - fname=yandex.exe
       - fname=vivaldi.exe
-  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+  condition: selection_1 and selection_2 and selection_4 and not (filter_3 or filter_5)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -2451,8 +2461,10 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017164'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
+  rsigma.suppress: 1h
+  sagan.metadata: updatedOn=2026_08_20
 ---
 title: '[CROWDSTRIKE] Network Access In A Detection Summary Event'
 id: 933f2cfb-df68-5193-8a31-b50333fa919e

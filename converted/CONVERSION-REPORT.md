@@ -26,10 +26,10 @@ logsource catalog. It answers which kinds of device caused trouble.
 | AWS | 534 | 101 | 84.1% | 534 |
 | Applications and web | 180 | 72 | 71.4% | 171 |
 | Azure and Microsoft 365 | 1340 | 407 | 76.7% | 547 |
-| Endpoint and EDR | 983 | 57 | 94.5% | 976 |
+| Endpoint and EDR | 982 | 58 | 94.4% | 975 |
 | Google Cloud | 66 | 10 | 86.8% | 60 |
 | Infrastructure | 189 | 25 | 88.3% | 189 |
-| Network and firewalls | 1127 | 341 | 76.8% | 1050 |
+| Network and firewalls | 1128 | 340 | 76.8% | 1051 |
 | Network detection | 241 | 20 | 92.3% | 241 |
 | SaaS and identity | 308 | 36 | 89.5% | 152 |
 | State correlations | 9 | 0 | 100.0% | 0 |
@@ -58,10 +58,10 @@ reproduced. They are worth reviewing before the ruleset goes live.
 
 | Code | Rules | Meaning | Example SIDs |
 | --- | ---: | --- | --- |
-| `D_RAW_TEXT_MATCH` | 5774 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
+| `D_RAW_TEXT_MATCH` | 5773 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
 | `D_LOGSOURCE_FALLBACK` | 1866 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
 | `D_EVENT_ID_HEURISTIC` | 1858 | Without a json_map for event_id, Sagan looks for ' <id>: ' in the first 10 bytes of the message. The converted rule assumes a proper EventID field instead. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
-| `D_THRESHOLD_SUPPRESS` | 1105 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
+| `D_THRESHOLD_SUPPRESS` | 1106 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
 | `D_PASS_SHORT_CIRCUIT` | 513 | The rule used the pass action. In Sagan a matching pass rule still emits an alert (Send_Alert runs before the pass check) and then stops evaluating the remaining signatures for that event. The detection is converted faithfully; only the short-circuit, the suppression of other rules on the same event, is not reproduced, since Sigma evaluates every rule independently. | `5016065`, `5016066`, `5016067`, `5016068`, `5016069` |
 | `D_GROUPBY_SYSLOG_HOST` | 387 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
 | `D_SIDE_EFFECT_DROPPED` | 232 | Engine-specific side effect (external, email, dynamic_load, unset) with no Sigma equivalent. | `5008539`, `5003022`, `5003023`, `5002959`, `5002960` |
@@ -82,6 +82,9 @@ correlation resolved the rules it references.
 ### `E_RAW_TEXT_ON_JSON_EVENT` (535 rules)
 
 The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text.
+
+<details>
+<summary>Show 400 of the 535 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -211,6 +214,7 @@ The rule searches the raw message body while also using JSON operators. When the
 | `5000055` | `cisco-ios.rules` | Network and firewalls | [CISCO-IOS] Configuration from console | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5000111` | `cisco-ios.rules` | Network and firewalls | [CISCO-IOS] IOS configuration changed | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5010582` | `cisco-sca-alarms.rules` | Network and firewalls | [CISCO-SCA] Non-Service Port Scanner | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
+| `5017164` | `crowdstrike.rules` | Endpoint and EDR | [CROWDSTRIKE] Network Access In An Epp Detection Summary Event | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5017063` | `ddr.rules` | Unclassified | [AWS] S3 File Transfer (GetObject) | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `991009` | `ddr.rules` | Unclassified | [AWS] S3 File Transfer (PutObject) | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `991010` | `ddr.rules` | Unclassified | [AWS] EC2 Describe Volumes | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
@@ -484,12 +488,16 @@ The rule searches the raw message body while also using JSON operators. When the
 | `5005028` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] EditReport from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5005029` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] ExportArtifact from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5005030` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] ExportReport from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| `5005031` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] GenerateCustomVisualAADAccessToken from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | ... | ... | ... | *135 more rows omitted, see the JSON report* | | |
+
+</details>
 
 ### `E_EXTERNAL_ENRICHMENT` (382 rules)
 
 The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed.
+
+<details>
+<summary>Show the 382 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -872,13 +880,18 @@ The rule queries an external source. Bluedot threat intelligence is out of scope
 | `5003035` | `zimbra-geoip.rules` | Applications and web | [ZIMBRA-GEOIP] NGNIX Authentication from outside HOME_COUNTRY | `country_code` | country_code needs a GeoIP country field, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled GeoIP transform; the tracke |
 | `5003036` | `zimbra-geoip.rules` | Applications and web | [ZIMBRA-GEOIP] EWS Authentication from outside HOME_COUNTRY | `country_code` | country_code needs a GeoIP country field, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled GeoIP transform; the tracke |
 | `5003199` | `zscaler-bluedot.rules` | Network and firewalls | [ZSCALER] Suspicious IP detected via Bluedot | `bluedot` | bluedot substitution needs the vector-enriched profile, which supplies the per-category address flags |
-| `9000020` | `zscaler-zia-bluedot.rules` | Network and firewalls | [ZSCALER-ZIA-BLUEDOT][EXPERIMENTAL] Outbound connection to Malicious IP | `bluedot` | bluedot tracks an address the rule did not parse; the substitution needs the vector-enriched profile and the parsed address (parse_src_ip / parse_dst_ip) |
-| `9000021` | `zscaler-zia-bluedot.rules` | Network and firewalls | [ZSCALER-ZIA-BLUEDOT][EXPERIMENTAL] Outbound connection to Tor exit node | `bluedot` | bluedot tracks an address the rule did not parse; the substitution needs the vector-enriched profile and the parsed address (parse_src_ip / parse_dst_ip) |
-| `9000022` | `zscaler-zia-bluedot.rules` | Network and firewalls | [ZSCALER-ZIA-BLUEDOT][EXPERIMENTAL] Outbound connection to open Proxy IP | `bluedot` | bluedot tracks an address the rule did not parse; the substitution needs the vector-enriched profile and the parsed address (parse_src_ip / parse_dst_ip) |
+| `5017948` | `zscaler-zia-bluedot.rules` | Network and firewalls | [ZSCALER-ZIA-BLUEDOT] Outbound connection to Malicious IP | `bluedot` | bluedot tracks an address the rule did not parse; the substitution needs the vector-enriched profile and the parsed address (parse_src_ip / parse_dst_ip) |
+| `5017949` | `zscaler-zia-bluedot.rules` | Network and firewalls | [ZSCALER-ZIA-BLUEDOT] Outbound connection to Tor exit node | `bluedot` | bluedot tracks an address the rule did not parse; the substitution needs the vector-enriched profile and the parsed address (parse_src_ip / parse_dst_ip) |
+| `5017950` | `zscaler-zia-bluedot.rules` | Network and firewalls | [ZSCALER-ZIA-BLUEDOT] Outbound connection to open Proxy IP | `bluedot` | bluedot tracks an address the rule did not parse; the substitution needs the vector-enriched profile and the parsed address (parse_src_ip / parse_dst_ip) |
+
+</details>
 
 ### `E_GROUPBY_UNRESOLVED` (301 rules)
 
 The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline.
+
+<details>
+<summary>Show the 301 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -1184,9 +1197,14 @@ The group-by key required by after does not exist as a field in any event: Sagan
 | `5003033` | `zimbra.rules` | Applications and web | [ZIMBRA] SYNC - Brute force invalid username or password [5/3] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5003037` | `zimbra.rules` | Applications and web | [ZIMBRA] SYNC - User password mismatch [5/3] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 
+</details>
+
 ### `E_POSITIONAL` (40 rules)
 
 The rule constrains where a pattern sits in the log line with a non-zero offset, depth or distance. Sigma string modifiers cannot express a byte position, so no faithful translation exists. A zero-valued positional is a no-op in the Sagan engine and is converted.
+
+<details>
+<summary>Show the 40 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -1231,9 +1249,14 @@ The rule constrains where a pattern sits in the log line with a non-zero offset,
 | `5007215` | `windows-security.rules` | Windows | [WINDOWS-SECURITY] A user's local group membership was enumerated (Domain Groups) | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
 | `5005993` | `windows-sysmon.rules` | Windows | [WINDOWS-SYSMON] Possible Command To Disable Crash Logging Detected | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
 
+</details>
+
 ### `E_PCRE_UNSUPPORTED` (40 rules)
 
 The regular expression uses a PCRE construct the Rust engine cannot express and the converter cannot safely rewrite (recursion, look-around, back-references, control verbs). Recoverable constructs (numbered subroutines, literal braces, the whole-string negation idiom, inert flags) are rewritten instead of refused.
+
+<details>
+<summary>Show the 40 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -1278,9 +1301,14 @@ The regular expression uses a PCRE construct the Rust engine cannot express and 
 | `5017046` | `windows-sysmon.rules` | Windows | [WINDOWS_SYSMON] w3wp.exe Network Connection to Suspicious IP | `pcre` | non-portable PCRE construct: lookahead, unsupported by the Rust regex engine |
 | `5017392` | `windows-sysmon.rules` | Windows | [WINDOWS-SYSMON] Suspicious svchost.exe Binary Running from Non-Standard Directory - Criti | `pcre` | non-portable PCRE construct: lookahead, unsupported by the Rust regex engine |
 
+</details>
+
 ### `E_TIME_WINDOW` (29 rules)
 
 The rule only fires on given weekdays or hour ranges (alert_time). Sigma has no recurring-time operator, so this is refused unless --profile vector-enriched is used, whose bundled time transform supplies the weekday and hour-of-day fields the window matches on.
+
+<details>
+<summary>Show the 29 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -1314,9 +1342,14 @@ The rule only fires on given weekdays or hour ranges (alert_time). Sigma has no 
 | `5002056` | `windows-aetas.rules` | Windows | [WINDOWS-AETAS] RDP / Logon type 10 at suspicious time | `alert_time` | alert_time needs weekday and hour fields, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled time transform |
 | `5002057` | `windows-aetas.rules` | Windows | [WINDOWS-AETAS] Logon attempt using explicit credentials at suspicious time | `alert_time` | alert_time needs weekday and hour fields, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled time transform |
 
+</details>
+
 ### `E_STATE_ABSENCE` (5 rules)
 
 The rule requires that an earlier event did NOT happen (xbits or flexbits isnotset). Sigma cannot express a negative correlation.
+
+<details>
+<summary>Show the 5 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -1326,9 +1359,14 @@ The rule requires that an earlier event did NOT happen (xbits or flexbits isnots
 | `5003125` | `nxlog.rules` | Unclassified | [NXLOG] Service restart to correct problem [CLEAR XBIT] | `flexbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
 | `5002011` | `windows-malware.rules` | Windows | [WINDOWS-MALWARE] System protection disabled | `flexbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
 
+</details>
+
 ### `E_VAR_UNRESOLVED` (4 rules)
 
 The rule references a sagan.yaml variable that was not supplied. Re-run with --sagan-yaml to resolve it.
+
+<details>
+<summary>Show the 4 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -1337,11 +1375,18 @@ The rule references a sagan.yaml variable that was not supplied. Re-run with --s
 | `5002770` | `fipaypin.rules` | Unclassified | [FIPAYPIN] Replace macro from outside RFC1918 | `meta_content` | variable $RFC1918 is undefined; supply the sagan.yaml with --sagan-yaml |
 | `5002799` | `windows-sysmon.rules` | Windows | [WINDOWS-SYSMON] PSExec execution detected | `meta_content` | variable $PSEXEC_MD5 is undefined; supply the sagan.yaml with --sagan-yaml |
 
+</details>
+
 ### `E_NO_DETECTION` (2 rules)
 
 The rule can never produce an alert: nothing is left to match on after conversion (it carried only side effects or metadata), or it carries a mandatory condition the engine can never satisfy, so it never fires in Sagan either.
+
+<details>
+<summary>Show the 2 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
 | `5002387` | `vsftpd-geoip.rules` | Applications and web | [VSFTPD-GEOIP] Authentication successful from outside HOME_COUNTRY | `country_code` | country_code tracks by_src but the rule gives src_ip no source the engine accepts (no parse_src_ip / parse_dst_ip, no json_map binding, no normalize), so ip_src_is_valid is never s |
 | `5002388` | `vsftpd-geoip.rules` | Applications and web | [VSFTPD-GEOIP] File uploaded from outside HOME_COUNTRY | `country_code` | country_code tracks by_src but the rule gives src_ip no source the engine accepts (no parse_src_ip / parse_dst_ip, no json_map binding, no normalize), so ip_src_is_valid is never s |
+
+</details>
