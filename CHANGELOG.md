@@ -8,6 +8,17 @@ All notable changes to this project are documented here. The format follows
 
 ### Fixed
 
+- `blacklist`, `zeek-intel` and `bluedot` tracking `both` now require both
+  addresses to be present, not just either one to be listed. Every `both` branch
+  in `src/processors/engine.c` is gated on
+  `ip_src_is_valid == true && ip_dst_is_valid == true`, so an event carrying only
+  one of the two is never tested, even when that address is on the feed; the
+  converter emitted a bare disjunction and would have fired. No corpus rule uses
+  `both`, so nothing shipped wrong. Found while extending the engine-backed
+  checks to the remaining enrichment families, and pinned by
+  `tests/differential/test_intel_semantics.py`, which covers all three against
+  the real engine: a listed address fires, an unlisted or absent one stays
+  silent, and bluedot matches only the categories its rule lists.
 - `country_code: ... isnot` no longer fires on an address the pipeline could not
   place, which it did for every RFC1918 one. The converted rule required the
   *address* field to exist and then negated the country list, on the reading that

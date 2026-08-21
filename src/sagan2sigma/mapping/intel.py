@@ -17,8 +17,21 @@ is maintained in the same format.
 The rule keyword selects which address is tested (``src/processors/engine.c``):
 
 * ``by_src`` / ``by_dst`` test the source or destination address;
-* ``both`` tests the source or the destination (an OR);
-* ``all`` tests every address parsed from the message.
+* ``both`` tests the source **or** the destination, but only once both are
+  present: every ``both`` branch in the engine is gated on
+  ``ip_src_is_valid == true && ip_dst_is_valid == true``, so an event carrying
+  one of the two is not tested at all;
+* ``all`` tests every address in the engine's lookup cache. Two things about
+  that cache decide what ``all`` really means, and neither is obvious from the
+  keyword. It is filled by ``Parse_IP`` only when the rule declares
+  ``parse_src_ip`` or ``parse_dst_ip`` (``engine.c``: ``lookup_cache_size``
+  starts at zero and is assigned inside that branch alone), so an ``all`` rule
+  declaring no position walks nothing and never fires. And it holds up to
+  ``MAX_PARSE_IP`` (30) addresses, while the bundled transform exposes the first
+  five, so a message carrying more than five can hold a listed one the converted
+  rule never sees. Every corpus rule using ``all`` declares a position, so only
+  the second limit bites; it is an under-match, never a false alarm, and it is
+  recorded in ``docs/PIPELINE.md``.
 
 Two details from the engine shape the conversion. First, ``zeek-intel``'s rule
 keyword only ever tests IP indicators, even though the feed also carries domain,
@@ -72,6 +85,43 @@ def _positions(tracks: set[str], resolver: FieldResolver) -> list[int | None]:
     return positions
 
 
+def _require_both_addresses(
+    draft: RuleDraft,
+    context: Context,
+    resolver: FieldResolver,
+    tracks: set[str],
+    keyword: str,
+) -> None:
+    """For ``both``, require that both addresses are present before testing.
+
+    ``both`` reads like a plain disjunction, and the lookup inside it is one,
+    but the engine reaches that lookup only when **both** addresses are valid:
+    ``src/processors/engine.c`` gates every ``both`` branch on
+    ``ip_src_is_valid == true && ip_dst_is_valid == true``. So an event
+    carrying only one of the two makes Sagan silent even when that one address
+    is listed, and a bare disjunction would fire on it.
+
+    No corpus rule uses ``both`` today, so this changes no emitted rule; it is
+    fixed because it is wrong, and pinned by tests so it stays that way.
+    """
+    if "both" not in tracks:
+        return
+    for internal in ("src_ip", "dest_ip"):
+        position = resolver.positions.get(internal)
+        if position is None:
+            continue
+        address = context.profile.positional_field(internal, position)
+        if address is not None:
+            draft.add(
+                Predicate(
+                    field=address,
+                    modifiers=("exists",),
+                    values=(True,),
+                    origin=keyword,
+                )
+            )
+
+
 def _emit_match(
     rule: SaganRule,
     draft: RuleDraft,
@@ -103,6 +153,8 @@ def _emit_match(
                 keywords=(keyword,),
             )
         fields.append(field)
+
+    _require_both_addresses(draft, context, resolver, tracks, keyword)
 
     fields = list(dict.fromkeys(fields))
     if len(fields) == 1:
@@ -285,6 +337,7 @@ def _emit_bluedot(
     internals: list[str],
 ) -> None:
     """Emit an OR over every (tracked position, category) flag, or refuse."""
+    _require_both_addresses(draft, context, resolver, tracks, "bluedot")
     fields: list[str] = []
     for position in _positions(tracks, resolver):
         if position is None:

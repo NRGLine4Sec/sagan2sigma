@@ -187,6 +187,21 @@ each converted rule targets the index it actually declared. `src_ip` and
 conventions in the corpus, and are never used where a rule asked for something
 else.
 
+Five positions is a deliberate ceiling, and the one place it shows is
+`blacklist: all` / `zeek-intel: all` / `bluedot: ... track all`, where the engine
+walks its whole lookup cache of up to `MAX_PARSE_IP` (30) addresses. A message
+carrying more than five addresses can hold a listed one the converted rule never
+looks at. The error is always an under-match, never a false alarm, and a few
+dozen corpus rules use `all`, so the limit is exercised rather than theoretical.
+Raising the ceiling is a matter of widening the transform and the profile
+together, should a deployment need it.
+
+Worth knowing alongside it: in the engine that cache is filled only for a rule
+that declares `parse_src_ip` or `parse_dst_ip`, so an `all` rule declaring
+neither scans nothing at all and never fires. Every corpus rule using `all`
+declares a position, so this does not bite today, but it is why `all` cannot be
+read as "every address in the message" on its own.
+
 `sagan-geoip.vrl` enriches each parsed address with its country. For every
 `sagan_ip_N` it looks the address up in the `sagan_geoip` enrichment table (type
 `geoip`, pointing at the MaxMind database) and sets `sagan_geoip_country_N` to
