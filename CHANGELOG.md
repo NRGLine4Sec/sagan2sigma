@@ -16,8 +16,9 @@ All notable changes to this project are documented here. The format follows
   early, so all 970 corpus correlations were slightly more trigger-happy than
   the rules they came from. The title keeps the rule's own number. This document
   had asserted "alert from N+1" since the beginning while the code emitted
-  `gte: N`; running both engines on the same six events settled it, with rsigma
-  reproducing Sagan exactly once the threshold was raised.
+  `gte: N`. Settled by running both engines on the same six events, repeatedly
+  and from a clean state: Sagan alerts from the N+1th for every N tested, and
+  rsigma reproduces it exactly once the threshold is raised.
 - `track by_string` in an `after` correlation no longer refuses the rule, and
   does not group on the username either: it is inert there. The two correlation
   parsers disagree, and only the C shows it. `threshold` tests the intact option

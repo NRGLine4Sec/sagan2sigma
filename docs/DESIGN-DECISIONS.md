@@ -59,15 +59,22 @@ fires as soon as the window holds N, which is one event earlier. Every one of th
 from, so the emitted threshold is now N+1 while the title keeps the rule's own
 number, which is what an analyst reads.
 
-Settled by running both engines on the same six events. For `count 3` Sagan
-alerts on the 4th, 5th and 6th; rsigma with `gte: 3` alerted on the 3rd through
-6th, and with `gte: 4` reproduces Sagan exactly. Worth recording how the Sagan
-half was obtained: the `after` code path in current Sagan overruns its own
-tracking structure (`after.c` copies up to `message_buffer_size` into a
-zero-length array member), so a hardened build aborts and an unhardened one
-gives results that do not always reproduce. The static read of the C is what
-carries the conclusion; the run corroborates it, and the rsigma half, which is
-not affected, is what confirms the fix.
+Settled by running both engines on the same six events, repeatedly and with a
+clean state. For `count 1` through `4` Sagan alerts from the N+1th every time;
+rsigma with `gte: N` alerted one event early, and with `gte: N+1` reproduces
+Sagan exactly.
+
+Getting a trustworthy measurement took two corrections worth recording, because
+both are easy to hit again. First, the `after` code path in current Sagan
+overruns its own tracking entry: `after.c` passes `config->message_buffer_size`
+as the destination size when copying the message into a zero-length array
+member, where the update path a few lines above correctly passes `sizeof`. A
+hardened build aborts there. Second, and this was the one that produced
+nonsense rather than a crash, Sagan keeps its correlation state in
+`/dev/shm/sagan-*.shared`, which outlives the process: a test harness that does
+not wipe it inherits the previous run's counters, so a rule that is already over
+threshold alerts on the very first event. Neither problem touches the counting
+logic itself, which is the only part this conclusion rests on.
 
 ### 3. Group-by keys need not exist as fields
 
