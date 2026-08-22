@@ -56,6 +56,34 @@ class TestParsePcre:
         """
         assert parse_pcre('"/abc/iH"')[2] == ("re", "i")
 
+    def test_tolerates_ungreedy(self) -> None:
+        """G is a real case in the engine's switch, and still inert here.
+
+        PCRE_UNGREEDY decides how much text a match consumes, not whether one
+        exists, and a detection only asks the latter. Checked against a running
+        engine: the same pattern matches with and without it.
+        """
+        assert parse_pcre('"/a.*b/G"')[2] == ("re",)
+
+    @pytest.mark.parametrize(
+        ("flag", "why"),
+        [("A", "anchored"), ("x", "extended")],
+    )
+    def test_refuses_flags_that_change_matching(self, flag: str, why: str) -> None:
+        """A and x were dropped silently until the engine was asked what they do.
+
+        On a message reading "zzab tail", /ab/ matches and /ab/A does not,
+        because an anchored match may not start at offset 2: dropping the flag
+        makes the converted rule fire where Sagan is silent. /z z a b/ does not
+        match and /z z a b/x does, because extended mode ignores the whitespace
+        in the pattern: dropping it makes the rule look for something else.
+        Neither is expressible in Sigma, so both refuse.
+        """
+        with pytest.raises(Refusal) as excinfo:
+            parse_pcre(f'"/abc/{flag}"')
+        assert excinfo.value.code is RefusalCode.PCRE_UNSUPPORTED
+        assert "changes what the pattern matches" in excinfo.value.detail
+
 
 class TestValidateRegex:
     @pytest.mark.parametrize(

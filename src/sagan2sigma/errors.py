@@ -56,6 +56,7 @@ class DegradationCode(str, Enum):
     ZEEK_INTEL_ENRICHMENT = "D_ZEEK_INTEL_ENRICHMENT"
     BLUEDOT_SUBSTITUTION = "D_BLUEDOT_SUBSTITUTION"
     AFTER_BY_STRING_INERT = "D_AFTER_BY_STRING_INERT"
+    TRACK_KEY_INERT = "D_TRACK_KEY_INERT"
 
 
 REFUSAL_HELP: dict[RefusalCode, str] = {
@@ -259,6 +260,14 @@ DEGRADATION_HELP: dict[DegradationCode, str] = {
         "the rule outright when by_string is the only key. Confirmed against a "
         "locally built engine. threshold is unaffected: its parser tests the "
         "intact token, so there by_string really is a synonym for by_username."
+    ),
+    DegradationCode.TRACK_KEY_INERT: (
+        "The rule tracks by a key the engine's parser does not recognise. "
+        "after compares each &-separated token with strcmp, so a near miss "
+        "like by_user (not by_username) or a key with no branch at all "
+        "(by_tag, by_hostname) sets no method and contributes nothing to the "
+        "counter key. Sagan groups on the remaining keys only. Confirmed "
+        "against a locally built engine."
     ),
     DegradationCode.ALERT_TIME_EVENT_CLOCK: (
         "alert_time matches against weekday and hour-of-day fields the bundled "

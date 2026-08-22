@@ -32,10 +32,38 @@ _FLAG_MAP = {"i": "i", "m": "m", "s": "s"}
 #: rather than refused. The engine's flag switch (``src/rules.c``) handles
 #: ``i s m x A E G`` and has **no default case**, so any other letter is
 #: silently ignored at load time; refusing a rule over such a letter would make
-#: the converter stricter than the engine it targets. ``H`` is the one the
-#: corpus carries: a Suricata ``http_header`` buffer modifier Sagan never
-#: implemented and therefore treats as a no-op.
-_FLAG_IGNORED = frozenset("gxAEOSUDH")
+#: the converter stricter than the engine it targets. ``U`` and ``H`` are the
+#: ones the corpus carries, ``H`` being a Suricata ``http_header`` buffer
+#: modifier Sagan never implemented.
+#:
+#: ``G`` is here despite being a real case in the switch. It sets
+#: ``PCRE_UNGREEDY``, which decides how much text a match consumes, not whether
+#: one exists, and a detection only asks the latter. Checked against the
+#: engine rather than assumed.
+#:
+#: ``A`` and ``x`` are deliberately **not** here: both change what matches. See
+#: ``_FLAG_UNSUPPORTED``.
+_FLAG_IGNORED = frozenset("gGEOSUDH")
+
+#: Flags that change matching and have no Sigma equivalent, so a rule carrying
+#: one is refused rather than converted without it. Both were in the dropped
+#: set until a locally built engine was asked what they do:
+#:
+#: * ``A`` is ``PCRE_ANCHORED``. On a message reading ``zzab tail``, ``/ab/``
+#:   matches and ``/ab/A`` does not, because the match may not start at offset
+#:   2. Dropping the flag lets the converted rule match anywhere, so it fires
+#:   where Sagan stays silent.
+#: * ``x`` is ``PCRE_EXTENDED``, which makes the engine ignore whitespace
+#:   inside the pattern. ``/z z a b/`` does not match that message and
+#:   ``/z z a b/x`` does. Dropping the flag leaves the whitespace literal, so
+#:   the converted rule looks for something the original never looked for.
+#:
+#: No upstream rule uses either, which is precisely why the gap survived: the
+#: corpus exercises what people happened to write.
+_FLAG_UNSUPPORTED = {
+    "A": "PCRE_ANCHORED, which Sigma cannot express",
+    "x": "PCRE_EXTENDED, which changes how the pattern itself is read",
+}
 
 #: PCRE constructs outside the Sigma subset.
 #:
@@ -352,6 +380,16 @@ def parse_pcre(value: str, keyword: str = "pcre") -> tuple[bool, str, tuple[str,
     for flag in match.group("flags"):
         if flag in _FLAG_MAP:
             modifiers.append(_FLAG_MAP[flag])
+        elif flag in _FLAG_UNSUPPORTED:
+            raise Refusal(
+                code=RefusalCode.PCRE_UNSUPPORTED,
+                detail=(
+                    f"PCRE flag {flag!r} changes what the pattern matches "
+                    f"({_FLAG_UNSUPPORTED[flag]}); converting without it would "
+                    f"emit a rule that detects something else"
+                ),
+                keywords=(keyword,),
+            )
         elif flag not in _FLAG_IGNORED:
             raise Refusal(
                 code=RefusalCode.PCRE_UNSUPPORTED,

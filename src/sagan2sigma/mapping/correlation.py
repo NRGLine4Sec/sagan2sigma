@@ -69,12 +69,33 @@ _EXPIRE = re.compile(r"expire\s+(\d+)")
 #: alone: ``after: track by_string`` is rejected at load, which is only possible
 #: if the key contributes nothing, while the same expression under ``threshold``
 #: loads cleanly.
+#: These are the five branches in the ``after`` parser, which compares each
+#: ``&``-separated token with ``strcmp``. Anything else sets no method at all.
 TRACK_TO_INTERNAL = {
     "by_src": "src_ip",
     "by_dst": "dest_ip",
     "by_username": "username",
-    "by_user": "username",
+    "by_srcport": "src_port",
+    "by_dstport": "dest_port",
 }
+
+#: Tokens the upstream corpus uses that the parser does not recognise, kept for
+#: documentation only. ``_group_by`` does not gate on this set: anything absent
+#: from ``TRACK_TO_INTERNAL`` is treated as inert, which is exactly what the
+#: engine does, so there is no second list to keep in step with the first.
+#:
+#: ``after`` compares with ``strcmp``, so ``by_user`` is not ``by_username``
+#: and ``byusername`` is an upstream typo that matches nothing; ``by_tag`` and
+#: ``by_hostname`` have no branch at all. All contribute nothing to the counter
+#: key, verified against a running engine: two events differing only in the
+#: inert key still share a bucket. Honouring one would group the converted rule
+#: more finely than Sagan groups it, so it would fire less often than the rule
+#: it came from.
+#:
+#: A rule whose *only* key is inert is rejected by Sagan at load time: the
+#: parser needs a validity count of four, made of "track", a recognised key,
+#: "count" and "seconds", and an inert key scores three.
+KNOWN_INERT_TRACK_KEYS = frozenset({"by_user", "byusername", "by_tag", "by_hostname"})
 
 #: ``xbits`` tracking keys onto Sagan internal values.
 XBIT_TO_INTERNAL: dict[str, tuple[str, ...]] = {
@@ -251,9 +272,6 @@ def _group_by(
     keys: list[str] = []
     for token in tracks.split("&"):
         token = token.strip().lower()
-        if token == "by_tag":
-            keys.append("syslog_tag")
-            continue
         if token == "by_string":
             # by_string groups on the username under `threshold`, and on nothing
             # at all under `after`. The two parsers differ by an accident that is
@@ -278,11 +296,23 @@ def _group_by(
             continue
         internal = TRACK_TO_INTERNAL.get(token)
         if internal is None:
-            raise Refusal(
-                code=RefusalCode.GROUPBY_UNRESOLVED,
-                detail=f"unknown tracking key: {token!r}",
-                keywords=(keyword,),
+            # Not one of the five branches, so the parser sets no method and
+            # the key contributes nothing. The engine ignores it rather than
+            # rejecting the rule, and refusing here would make the converter
+            # stricter than what it targets. Deciding this by membership of
+            # TRACK_TO_INTERNAL rather than by a second list of known-bad
+            # tokens is deliberate: one table to keep in step, not two.
+            draft.degrade(
+                Degradation(
+                    code=DegradationCode.TRACK_KEY_INERT,
+                    detail=(
+                        f"{keyword} tracked by {token!r}, which the engine's "
+                        f"parser does not recognise, so it contributes nothing "
+                        f"to the counter key; the inert key was dropped"
+                    ),
+                )
             )
+            continue
         keys.append(
             resolve_group_key(internal, rule, draft, context, resolver, keyword)
         )

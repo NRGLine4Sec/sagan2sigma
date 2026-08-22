@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import pytest
 
 import sagan2sigma.mapping  # noqa: F401 - populates the registry
@@ -46,6 +48,41 @@ class TestRegistry:
     )
     def test_core_keywords_have_handlers(self, keyword: str) -> None:
         assert get_handler(keyword) is not None
+
+    def test_the_registry_matches_the_engine_keyword_for_keyword(self) -> None:
+        """The converter's tables are hand-copies of the engine's branches.
+
+        Drift is silent in both directions and both have happened. Accepting a
+        keyword Sagan rejects turns a rule that cannot load anywhere into
+        working Sigma: `facility`, `level` and `tag` were accepted as bare
+        aliases of the `syslog_` forms and are not keywords at all. Missing one
+        Sagan accepts refuses a rule that works: `syslog_priority` is a real
+        envelope selector that was reported as unknown.
+
+        tests/data/engine-keywords.txt is the list from src/rules.c, checked
+        against a locally built engine name by name.
+        """
+        from sagan2sigma.mapping.positional import POSITIONAL_KEYWORDS
+
+        path = Path(__file__).resolve().parents[1] / "data" / "engine-keywords.txt"
+        engine = {
+            line.strip()
+            for line in path.read_text(encoding="utf-8").splitlines()
+            if line.strip() and not line.startswith("#")
+        }
+        known = (
+            registered_keywords()
+            | MODIFIERS
+            | IGNORED.keys()
+            | BLOCKING.keys()
+            | POSITIONAL_KEYWORDS
+        )
+        assert not engine - known, "keywords Sagan accepts that we do not handle"
+        # The converse, restricted to the envelope selectors this test was
+        # written for. The full converse is not an invariant: the converter
+        # deliberately knows names the parser reaches by other routes.
+        invented = {"facility", "level", "tag"} & known
+        assert not invented, "bare aliases the engine rejects"
 
     def test_families_are_disjoint(self) -> None:
         """A keyword in two families would be handled inconsistently."""

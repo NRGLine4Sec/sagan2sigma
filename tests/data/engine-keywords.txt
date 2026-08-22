@@ -1,0 +1,77 @@
+# Every rule option Sagan's parser recognises, one per line.
+#
+# Extracted from strcmp(rulesplit, "...") in src/rules.c on the main
+# branch, and checked against a locally built engine: each name below
+# loads, and a name absent from it aborts the ruleset.
+#
+# The list is here so tests/unit/test_registry_and_context.py can fail
+# when the converter's tables drift from the engine's, in either
+# direction. Accepting a keyword Sagan rejects converts a rule that
+# cannot load anywhere; missing one it accepts refuses a rule that works.
+# Both have happened.
+after
+alert_time
+append_program
+blacklist
+bluedot
+classtype
+content
+country_code
+default_dst_port
+default_proto
+default_src_port
+depth
+distance
+dynamic_load
+email
+event_id
+event_type
+external
+flexbits
+flexbits_pause
+flexbits_upause
+json_contains
+json_content
+json_decode_base64
+json_decode_base64_meta
+json_decode_base64_pcre
+json_map
+json_meta_contains
+json_meta_content
+json_meta_nocase
+json_nocase
+json_pcre
+meta_content
+metadata
+meta_depth
+meta_distance
+meta_nocase
+meta_offset
+meta_within
+msg
+nocase
+normalize
+offload
+offset
+parse_dst_ip
+parse_hash
+parse_port
+parse_proto
+parse_proto_program
+parse_src_ip
+pcre
+pri
+priority
+program
+reference
+rev
+sid
+syslog_facility
+syslog_level
+syslog_priority
+syslog_tag
+threshold
+within
+xbits
+xbits_pause
+xbits_upause

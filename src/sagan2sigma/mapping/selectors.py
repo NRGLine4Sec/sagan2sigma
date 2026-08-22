@@ -127,7 +127,7 @@ def _envelope_selector(
         )
 
 
-@handler("syslog_facility", "facility")
+@handler("syslog_facility")
 def handle_facility(
     rule: SaganRule,
     draft: RuleDraft,
@@ -135,12 +135,20 @@ def handle_facility(
     resolver: FieldResolver,
     policy: CasePolicy,
 ) -> None:
-    """``syslog_facility: daemon|auth`` onto the profile facility field."""
-    for keyword in ("syslog_facility", "facility"):
-        _envelope_selector(rule, draft, keyword, resolver.envelope("facility"), policy)
+    """``syslog_facility: daemon|auth`` onto the profile facility field.
+
+    Only the prefixed form exists. A bare ``facility:`` is not an alias, it is
+    not a keyword at all: Sagan aborts the whole ruleset on it, verified
+    against the engine. Accepting one here would convert a rule that cannot
+    load anywhere into working Sigma, so it falls through to
+    ``E_UNKNOWN_KEYWORD`` like any other invalid option.
+    """
+    _envelope_selector(
+        rule, draft, "syslog_facility", resolver.envelope("facility"), policy
+    )
 
 
-@handler("syslog_level", "level")
+@handler("syslog_level")
 def handle_level(
     rule: SaganRule,
     draft: RuleDraft,
@@ -148,12 +156,52 @@ def handle_level(
     resolver: FieldResolver,
     policy: CasePolicy,
 ) -> None:
-    """``syslog_level: notice|warning`` onto the profile severity field."""
-    for keyword in ("syslog_level", "level"):
-        _envelope_selector(rule, draft, keyword, resolver.envelope("level"), policy)
+    """``syslog_level: notice|warning`` onto the profile severity field.
+
+    As with ``syslog_facility``, the bare ``level:`` form is not a keyword.
+    """
+    _envelope_selector(rule, draft, "syslog_level", resolver.envelope("level"), policy)
 
 
-@handler("syslog_tag", "tag")
+@handler("syslog_priority")
+def handle_syslog_priority(
+    rule: SaganRule,
+    draft: RuleDraft,
+    context: Context,
+    resolver: FieldResolver,
+    policy: CasePolicy,
+) -> None:
+    """``syslog_priority: warning`` selects on the envelope priority field.
+
+    This is a real detection selector, distinct from ``priority``/``pri``: those
+    set the alert's own severity through ``atoi`` into ``s_pri``, while this one
+    compares a string against the envelope, with ``|`` alternation and an exact
+    ``strcmp`` (``engine.c``). Both facts were confirmed against the engine, as
+    was the field being distinct from ``syslog_level``: one event carrying
+    ``priority=warning`` and ``level=notice`` matches each keyword only on its
+    own value.
+
+    It is refused rather than mapped. Sagan's pipe input carries priority and
+    level as separate fields, but decoded syslog has no third value: the PRI
+    byte yields a facility and a severity, and that is all RSigma exposes.
+    Mapping this onto the severity would silently answer a question the event
+    cannot answer. No upstream rule uses the keyword.
+    """
+    if not rule.has("syslog_priority"):
+        return
+    raise Refusal(
+        code=RefusalCode.NO_DETECTION,
+        detail=(
+            "syslog_priority selects on an envelope field decoded syslog does "
+            "not carry: the PRI byte yields a facility and a severity, and "
+            "Sagan's priority is neither. Match on syslog_level instead if the "
+            "severity is what the rule means"
+        ),
+        keywords=("syslog_priority",),
+    )
+
+
+@handler("syslog_tag")
 def handle_tag(
     rule: SaganRule,
     draft: RuleDraft,
@@ -167,10 +215,9 @@ def handle_tag(
     the RFC 3164 tag separate from the app name. The predicate is emitted
     against a conventional field name and the gap is reported.
     """
-    if not (rule.has("syslog_tag") or rule.has("tag")):
+    if not rule.has("syslog_tag"):
         return
-    for keyword in ("syslog_tag", "tag"):
-        _envelope_selector(rule, draft, keyword, "syslog_tag", policy)
+    _envelope_selector(rule, draft, "syslog_tag", "syslog_tag", policy)
     draft.degrade(
         Degradation(
             code=DegradationCode.SIDE_EFFECT_DROPPED,

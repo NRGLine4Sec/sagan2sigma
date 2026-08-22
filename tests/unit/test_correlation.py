@@ -7,6 +7,7 @@ from tests.conftest import make_rule, run
 
 from sagan2sigma.errors import DegradationCode, Refusal, RefusalCode
 from sagan2sigma.mapping.correlation import (
+    KNOWN_INERT_TRACK_KEYS,
     bit_name,
     format_timespan,
     handle_after,
@@ -104,6 +105,74 @@ class TestAfterGroupByResolution:
         with pytest.raises(Refusal) as excinfo:
             run(handle_after, rule, draft, context)
         assert excinfo.value.code is RefusalCode.PARSE
+
+    @pytest.mark.parametrize("inert", sorted(KNOWN_INERT_TRACK_KEYS))
+    def test_keys_the_engine_ignores_are_dropped(
+        self, inert: str, draft: RuleDraft, context
+    ) -> None:
+        """The after parser compares tokens with strcmp, so these set nothing.
+
+        by_user is not by_username, byusername is an upstream typo, and neither
+        by_tag nor by_hostname has a branch at all. Honouring one would group
+        the converted rule more finely than Sagan groups it, so it would fire
+        less often than the original. Checked against a running engine: two
+        events differing only in the inert key still share a counter.
+        """
+        rule = make_rule(
+            f'msg:"t"; json_map:"src_ip",".ip"; json_map:"username",".user"; '
+            f"after: track by_src&{inert}, count 5, seconds 300; sid:1;"
+        )
+        run(handle_after, rule, draft, context)
+        assert draft.correlations[0].group_by == ("ip",)
+        assert any(
+            d.code is DegradationCode.TRACK_KEY_INERT for d in draft.degradations
+        )
+
+    def test_an_arbitrary_unknown_key_is_inert_too(
+        self, draft: RuleDraft, context
+    ) -> None:
+        """Inertness is decided by the engine's rule, not by a list of typos.
+
+        The parser recognises five tokens and ignores everything else, so the
+        converter treats anything outside TRACK_TO_INTERNAL as inert rather
+        than keeping a second list of known-bad tokens in step with the first.
+        Refusing here would make the converter stricter than what it targets:
+        Sagan loads and runs this rule, grouping on the source alone.
+        """
+        rule = make_rule(
+            'msg:"t"; json_map:"src_ip",".ip"; '
+            "after: track by_src&by_notarealkey, count 5, seconds 300; sid:1;"
+        )
+        run(handle_after, rule, draft, context)
+        assert draft.correlations[0].group_by == ("ip",)
+        assert any(
+            d.code is DegradationCode.TRACK_KEY_INERT for d in draft.degradations
+        )
+
+    def test_a_lone_inert_key_is_refused(self, draft: RuleDraft, context) -> None:
+        """Sagan needs a validity count of four and an inert key scores three.
+
+        Two upstream rules track by_tag alone and two by_hostname alone, so the
+        engine refuses to load them and there is nothing faithful to emit.
+        """
+        rule = make_rule('msg:"t"; after: track by_tag, count 5, seconds 300; sid:1;')
+        with pytest.raises(Refusal) as excinfo:
+            run(handle_after, rule, draft, context)
+        assert excinfo.value.code is RefusalCode.PARSE
+
+    @pytest.mark.parametrize(
+        ("token", "field"), [("by_srcport", "sp"), ("by_dstport", "dp")]
+    )
+    def test_the_port_keys_resolve(
+        self, token: str, field: str, draft: RuleDraft, context
+    ) -> None:
+        """by_srcport and by_dstport are real branches the converter lacked."""
+        rule = make_rule(
+            f'msg:"t"; json_map:"src_port",".sp"; json_map:"dest_port",".dp"; '
+            f"after: track {token}, count 5, seconds 300; sid:1;"
+        )
+        run(handle_after, rule, draft, context)
+        assert draft.correlations[0].group_by == (field,)
 
     def test_composite_tracking(self, draft: RuleDraft, context) -> None:
         rule = make_rule(

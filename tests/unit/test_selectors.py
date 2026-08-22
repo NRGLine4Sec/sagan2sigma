@@ -5,8 +5,9 @@ from __future__ import annotations
 import pytest
 from tests.conftest import make_rule, run
 
-from sagan2sigma.errors import DegradationCode, Refusal
+from sagan2sigma.errors import DegradationCode, Refusal, RefusalCode
 from sagan2sigma.mapping.ir import RuleDraft
+from sagan2sigma.mapping.registry import get_handler
 from sagan2sigma.mapping.selectors import (
     handle_append_program,
     handle_event_id,
@@ -14,6 +15,7 @@ from sagan2sigma.mapping.selectors import (
     handle_level,
     handle_priority,
     handle_program,
+    handle_syslog_priority,
     handle_tag,
 )
 from sagan2sigma.mapping.values import CasePolicy
@@ -109,6 +111,61 @@ class TestEventId:
         assert any(
             d.code is DegradationCode.EVENT_ID_HEURISTIC for d in draft.degradations
         )
+
+
+class TestKeywordsTheEngineDoesNotHave:
+    """The converter used to accept three keywords Sagan rejects outright.
+
+    A bare `facility:`, `level:` or `tag:` is not an alias of the `syslog_`
+    form, it is not a keyword at all: Sagan aborts the whole ruleset on one,
+    verified against the engine. Accepting them turned a rule that cannot load
+    anywhere into working Sigma, which is the silent divergence this project
+    exists to prevent. They now fall through to E_UNKNOWN_KEYWORD.
+    """
+
+    @pytest.mark.parametrize("keyword", ["facility", "level", "tag"])
+    def test_the_bare_form_has_no_handler(self, keyword: str) -> None:
+        assert get_handler(keyword) is None
+
+    @pytest.mark.parametrize(
+        "keyword", ["syslog_facility", "syslog_level", "syslog_tag"]
+    )
+    def test_the_prefixed_form_does(self, keyword: str) -> None:
+        assert get_handler(keyword) is not None
+
+
+class TestSyslogPriority:
+    """A real selector the converter did not know, refused rather than mapped.
+
+    It is distinct from priority/pri, which set the alert's own severity
+    through atoi. This one compares a string against the envelope's priority
+    field, which is itself distinct from the level: an event carrying
+    priority=warning and level=notice matches each keyword only on its own
+    value. Decoded syslog has no such third field, so there is nothing
+    faithful to map it onto.
+    """
+
+    def test_it_is_a_known_keyword(self) -> None:
+        assert get_handler("syslog_priority") is not None
+
+    def test_it_refuses_rather_than_guessing(self, draft: RuleDraft, context) -> None:
+        with pytest.raises(Refusal) as excinfo:
+            run(
+                handle_syslog_priority,
+                make_rule('msg:"t"; syslog_priority: warning; sid:1;'),
+                draft,
+                context,
+            )
+        assert excinfo.value.code is RefusalCode.NO_DETECTION
+
+    def test_it_is_silent_when_absent(self, draft: RuleDraft, context) -> None:
+        run(
+            handle_syslog_priority,
+            make_rule('msg:"t"; content:"x"; sid:1;'),
+            draft,
+            context,
+        )
+        assert draft.predicates == []
 
 
 class TestFacilityAndLevel:

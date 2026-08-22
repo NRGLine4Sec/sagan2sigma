@@ -408,6 +408,40 @@ converter drops `by_string` from an `after` group-by and records
 because Sagan refuses it too. `threshold` never reaches a group-by at all, being
 alert-volume control, so nothing downstream depends on its half of the story.
 
+### The keyword tables are copies, and copies drift
+
+Most of what the converter knows about Sagan's rule language is a hand-copy of a
+branch list in `src/rules.c`: which options exist, which tracking keys count,
+which directions a bit accepts. Every copy can drift from its original, and the
+drift is silent in both directions.
+
+Accepting more than the engine turns a rule that cannot load anywhere into
+working Sigma. `facility`, `level` and `tag` were accepted as bare aliases of
+the `syslog_` forms; Sagan has no such options and aborts the whole ruleset on
+one, so an operator could have deployed a detection that never existed upstream.
+
+Accepting less refuses rules that work, or worse, honours a key the engine
+ignores. `after` compares each `&`-separated token with `strcmp`, so `by_user`
+is not `by_username` and `by_tag` has no branch at all: both contribute nothing
+to the counter key. The converter honoured them, so four upstream correlations
+grouped on a key Sagan does not use. Grouping more finely than the engine makes
+the converted rule fire *less* often than the original, which is the quietest
+kind of wrong: nothing errors, the rule just does not alert.
+
+The same applies to the PCRE flag letters, which are a table of a different
+shape. Sagan's switch handles `i s m x A E G` and has no default case, so an
+unknown letter is ignored rather than rejected, and the converter must not be
+stricter about it than the engine is. But two letters had been filed as inert
+without being asked: `A` (anchored) and `x` (extended) both change what
+matches, so dropping them silently converted a rule into a different detection.
+They now refuse. `G` had been refused although the engine accepts it and
+ungreediness cannot change whether a match exists; it is now dropped.
+
+Neither the corpus nor the test suite revealed any of this, because a corpus
+exercises what people happened to write and a test suite exercises what its
+author already knew. `tests/data/engine-keywords.txt` now holds the engine's
+list and a test compares the tables against it in both directions.
+
 ### `flexbits` names its direction where `xbits` writes `track`
 
 `xbits` spells its tracking key `track ip_src`; `flexbits` puts a bare token in

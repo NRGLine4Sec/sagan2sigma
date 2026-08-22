@@ -6,8 +6,60 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- `tests/data/engine-keywords.txt`, the list of rule options Sagan's parser
+  recognises, and a test asserting the converter's tables match it. The
+  converter's keyword tables are hand-copies of branches in `src/rules.c`, and
+  every defect below is one of them having drifted: the drift is silent, the
+  corpus does not reveal it, and nothing else in the suite was watching. The
+  test fails in both directions and was checked to fail by reintroducing each
+  defect.
+
 ### Fixed
 
+- `after` honoured tracking keys the engine ignores. Its parser compares each
+  `&`-separated token with `strcmp`, so `by_user` is not `by_username`,
+  `byusername` is an upstream typo, and neither `by_tag` nor `by_hostname` has
+  a branch at all. All four set no method and contribute nothing to the counter
+  key. The converter mapped `by_user` onto the username and `by_tag` onto the
+  syslog tag, so four upstream correlations grouped *more finely* than Sagan
+  groups them and therefore fired less often than the rules they came from.
+  They now drop the inert key with `D_TRACK_KEY_INERT`. Verified against a
+  running engine: two events differing only in the inert key share a counter.
+  Inertness is decided the way the engine decides it, by absence from the list
+  of five recognised branches, rather than by a second list of known-bad
+  tokens. An unrecognised key was previously refused outright, which made the
+  converter stricter than the engine on a rule Sagan loads and runs.
+- A rule whose only tracking key is inert now refuses. Sagan needs a validity
+  count of four, made of `track`, a *recognised* key, `count` and `seconds`, so
+  it rejects such a rule at load. One corpus rule tracks `by_tag` alone.
+- `by_srcport` and `by_dstport` were missing from the tracking table. Both are
+  real branches, and an unknown key was refused outright, so a rule using
+  either was rejected for a reason that was not true.
+- `facility`, `level` and `tag` were accepted as bare aliases of the `syslog_`
+  forms. They are not aliases: Sagan has no such options and aborts the whole
+  ruleset on one. Accepting them turned a rule that cannot load anywhere into
+  working Sigma, so an operator could deploy a detection that never existed
+  upstream. They now fall through to `E_UNKNOWN_KEYWORD`.
+- The PCRE flags `A` and `x` were dropped silently although both change what
+  matches. On a message reading `zzab tail`, `/ab/` matches and `/ab/A` does
+  not, because an anchored match may not start at offset 2: dropping the flag
+  made the converted rule fire where Sagan stays silent. `/z z a b/` does not
+  match and `/z z a b/x` does, because extended mode ignores the whitespace in
+  the pattern: dropping it made the rule look for something the original never
+  looked for. Neither is expressible in Sigma, so both now refuse. Measured
+  against a running engine; no upstream rule uses either, which is why the gap
+  survived.
+- The PCRE flag `G` was refused although the engine accepts it. It sets
+  `PCRE_UNGREEDY`, which decides how much text a match consumes rather than
+  whether one exists, so it is now dropped like the other inert letters.
+- `syslog_priority` was reported as an unknown keyword. It is a real envelope
+  selector, distinct from `priority`/`pri` which set the alert's own severity
+  through `atoi`, and distinct from `syslog_level`: an event carrying
+  `priority=warning` and `level=notice` matches each keyword only on its own
+  value. It is now refused explicitly, because decoded syslog carries no such
+  third field, rather than being mapped onto the severity.
 - `flexbits` correlations grouped on the source address whatever direction the
   rule named. `flexbits` states its direction as a bare token where `xbits`
   writes `track ip_src`, so the pattern that reads the tracking key never
