@@ -51,7 +51,7 @@ correlation:
     - UserId
   timespan: 5m
   condition:
-    gte: 5
+    gte: 6
 level: low
 ---
 title: '[MSAPI-AZUREAD] Successful Login after Brute Force'
@@ -467,7 +467,7 @@ correlation:
     - sagan_xbit_aitm_recon
     - sagan_99550
   group-by:
-    - ClientIP
+    - UserId
   timespan: 1d
 level: high
 ---
@@ -538,7 +538,7 @@ correlation:
     - sagan_xbit_aitm_login
     - sagan_99551
   group-by:
-    - ClientIP
+    - UserId
   timespan: 1d
 level: high
 ---
@@ -609,7 +609,7 @@ correlation:
     - UserId
   timespan: 1m
   condition:
-    gte: 25
+    gte: 26
 level: high
 ---
 title: '[EXPERIMENTAL][MSAPI-AZUREAD] Security Threat Detected In User Login - Multiple Keep Me Signed
@@ -680,7 +680,7 @@ correlation:
     - UserId
   timespan: 1m
   condition:
-    gte: 1
+    gte: 2
 level: high
 ---
 title: '[EXPERIMENTAL][MSAPI-AZUREAD] Initial Access: Potential AiTM Token Replay via Unknown ObjectId'
@@ -805,7 +805,7 @@ correlation:
     - UserId
   timespan: 1h
   condition:
-    gte: 5
+    gte: 6
 level: high
 ---
 title: '[EXPERIMENTAL][MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon [20/5Days]'
@@ -875,7 +875,7 @@ correlation:
     - UserId
   timespan: 1m
   condition:
-    gte: 25
+    gte: 26
 level: high
 ---
 title: '[EXPERIMENTAL][MSAPI-AZUREAD] Successful User Login From UnManaged/UnTrusted Device To Known AITM

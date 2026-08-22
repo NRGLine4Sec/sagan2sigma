@@ -7,11 +7,11 @@
 | Rule files processed | 342 |
 | Active rules parsed | 10018 |
 | Commented-out rules skipped | 9441 |
-| Rules converted | 8680 (86.6%) |
-| Rules refused | 1338 (13.4%) |
+| Rules converted | 8677 (86.6%) |
+| Rules refused | 1341 (13.4%) |
 | Lines that failed to parse | 0 |
 | Synthetic rules added | 9 |
-| Sigma documents emitted | 9490 |
+| Sigma documents emitted | 9485 |
 | pySigma validation issues | 0 |
 | Output profile | `rsigma-syslog` |
 | Case policy | `faithful` |
@@ -33,17 +33,17 @@ logsource catalog. It answers which kinds of device caused trouble.
 | Network detection | 241 | 20 | 92.3% | 241 |
 | SaaS and identity | 308 | 36 | 89.5% | 152 |
 | State correlations | 9 | 0 | 100.0% | 0 |
-| Unclassified | 1549 | 114 | 93.1% | 1549 |
+| Unclassified | 1547 | 116 | 93.0% | 1547 |
 | Unix and Linux | 177 | 39 | 81.9% | 173 |
-| Windows | 1986 | 116 | 94.5% | 1951 |
+| Windows | 1985 | 117 | 94.4% | 1950 |
 
 ## Refusals by code
 
 | Code | Rules | Share | Meaning |
 | --- | ---: | ---: | --- |
-| `E_RAW_TEXT_ON_JSON_EVENT` | 535 | 40.0% | The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text. |
-| `E_EXTERNAL_ENRICHMENT` | 382 | 28.6% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
-| `E_GROUPBY_UNRESOLVED` | 301 | 22.5% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
+| `E_RAW_TEXT_ON_JSON_EVENT` | 535 | 39.9% | The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text. |
+| `E_EXTERNAL_ENRICHMENT` | 382 | 28.5% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
+| `E_GROUPBY_UNRESOLVED` | 304 | 22.7% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
 | `E_POSITIONAL` | 40 | 3.0% | The rule constrains where a pattern sits in the log line with a non-zero offset, depth or distance. Sigma string modifiers cannot express a byte position, so no faithful translation exists. A zero-valued positional is a no-op in the Sagan engine and is converted. |
 | `E_PCRE_UNSUPPORTED` | 40 | 3.0% | The regular expression uses a PCRE construct the Rust engine cannot express and the converter cannot safely rewrite (recursion, look-around, back-references, control verbs). Recoverable constructs (numbered subroutines, literal braces, the whole-string negation idiom, inert flags) are rewritten instead of refused. |
 | `E_TIME_WINDOW` | 29 | 2.2% | The rule only fires on given weekdays or hour ranges (alert_time). Sigma has no recurring-time operator, so this is refused unless --profile vector-enriched is used, whose bundled time transform supplies the weekday and hour-of-day fields the window matches on. |
@@ -58,17 +58,17 @@ reproduced. They are worth reviewing before the ruleset goes live.
 
 | Code | Rules | Meaning | Example SIDs |
 | --- | ---: | --- | --- |
-| `D_RAW_TEXT_MATCH` | 5773 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
-| `D_LOGSOURCE_FALLBACK` | 1866 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
-| `D_EVENT_ID_HEURISTIC` | 1858 | Without a json_map for event_id, Sagan looks for ' <id>: ' in the first 10 bytes of the message. The converted rule assumes a proper EventID field instead. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
+| `D_RAW_TEXT_MATCH` | 5772 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
+| `D_LOGSOURCE_FALLBACK` | 1864 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
+| `D_EVENT_ID_HEURISTIC` | 1857 | Without a json_map for event_id, Sagan looks for ' <id>: ' in the first 10 bytes of the message. The converted rule assumes a proper EventID field instead. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
 | `D_THRESHOLD_SUPPRESS` | 1106 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
 | `D_PASS_SHORT_CIRCUIT` | 513 | The rule used the pass action. In Sagan a matching pass rule still emits an alert (Send_Alert runs before the pass check) and then stops evaluating the remaining signatures for that event. The detection is converted faithfully; only the short-circuit, the suppression of other rules on the same event, is not reproduced, since Sigma evaluates every rule independently. | `5016065`, `5016066`, `5016067`, `5016068`, `5016069` |
-| `D_GROUPBY_SYSLOG_HOST` | 387 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
+| `D_GROUPBY_SYSLOG_HOST` | 386 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
 | `D_SIDE_EFFECT_DROPPED` | 232 | Engine-specific side effect (external, email, dynamic_load, unset) with no Sigma equivalent. | `5008539`, `5003022`, `5003023`, `5002959`, `5002960` |
 | `D_THRESHOLD_LIMIT` | 146 | threshold type limit caps alert volume, not detection. Sigma has no equivalent, so the constraint is dropped. | `5017933`, `5008570`, `5008760`, `5009316`, `5009317` |
 | `D_APPEND_PROGRAM` | 74 | append_program makes Sagan append the program field to the message before matching. The converted rule searches the message alone. | `5000419`, `5000470`, `5000489`, `5000519`, `5000521` |
-| `D_XBIT_SET_DROPPED` | 65 | The rule set or tested an xbit that no converted rule consumes. The state link is lost. | `5009285`, `5009290`, `5007210`, `5007211`, `5005994` |
-| `D_XBIT_ISSET_SYNTHETIC` | 21 | The state correlation was rebuilt through a synthetic aggregate rule gathering every rule that sets the bit. | `5014091`, `5008539`, `5009793`, `5015226`, `5014479` |
+| `D_XBIT_SET_DROPPED` | 64 | The rule set or tested an xbit that no converted rule consumes. The state link is lost. | `5009285`, `5009290`, `5007210`, `5007211`, `5005994` |
+| `D_XBIT_ISSET_SYNTHETIC` | 19 | The state correlation was rebuilt through a synthetic aggregate rule gathering every rule that sets the bit. | `5014091`, `5008539`, `5009793`, `5015226`, `5014479` |
 | `D_DROP_ACTION` | 13 | The rule used the drop action. Sigma has no action concept; it was converted as a normal detection rule. | `5000102`, `5000103`, `5000193`, `5000018`, `5000071` |
 | `D_DENYLIST_USERNAME_INERT` | 4 | The blacklist keyword tracked by_username, which the engine's denylist processor ignores: it matches IP addresses only (src/processors/blacklist.c), and the rule parser sets no flag for by_username (src/rules.c), so the option is inert. It is dropped and the rest of the rule is converted, exactly as the engine evaluates it. | `5008573`, `5008574`, `5008575`, `5008578` |
 
@@ -886,12 +886,12 @@ The rule queries an external source. Bluedot threat intelligence is out of scope
 
 </details>
 
-### `E_GROUPBY_UNRESOLVED` (301 rules)
+### `E_GROUPBY_UNRESOLVED` (304 rules)
 
 The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline.
 
 <details>
-<summary>Show the 301 refused rules</summary>
+<summary>Show the 304 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -961,8 +961,8 @@ The group-by key required by after does not exist as a field in any event: Sagan
 | `5003239` | `citrix-correlated.rules` | Network and firewalls | [CITRIX-CORRELATED] AAA LOGIN_FAILED after honeypot activity | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5003240` | `citrix-correlated.rules` | Network and firewalls | [CITRIX-CORRELATED] AAA LOGIN_FAILED after exploit attempt | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5001379` | `citrix.rules` | Network and firewalls | [CITRIX] Netscaler - AAA module failed to login the user - Brute force [5/5] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
-| `5007212` | `citrix.rules` | Network and firewalls | [CITRIX] Netscaler - Impossible Traveler Login Successful [2/2] | `flexbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
-| `5007213` | `citrix.rules` | Network and firewalls | [CITRIX] Netscaler - Impossible Traveler Login Failed [2/2] | `flexbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
+| `5007212` | `citrix.rules` | Network and firewalls | [CITRIX] Netscaler - Impossible Traveler Login Successful [2/2] | `flexbits` | username comes from liblognorm rulebases, which are per-format data files with no algorithm to reproduce; supply the field upstream in the ingestion pipeline |
+| `5007213` | `citrix.rules` | Network and firewalls | [CITRIX] Netscaler - Impossible Traveler Login Failed [2/2] | `flexbits` | username comes from liblognorm rulebases, which are per-format data files with no algorithm to reproduce; supply the field upstream in the ingestion pipeline |
 | `5005774` | `cloudgenix.rules` | Network and firewalls | [CLOUDGENIX] PAM Authentication failure - Brute force [10/1] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5005775` | `cloudgenix.rules` | Network and firewalls | [CLOUDGENIX] Authentication failure for root - Brute force [5/5] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5005776` | `cloudgenix.rules` | Network and firewalls | [CLOUDGENIX] Invalid user [Brute Force] [10/1] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
@@ -1024,7 +1024,7 @@ The group-by key required by after does not exist as a field in any event: Sagan
 | `5017306` | `fortinet.rules` | Network and firewalls | [FORTINET] Risky Destination Detected [100/1] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5017308` | `fortinet.rules` | Network and firewalls | [FORTINET] UTM dns Event Detected - Suspicious Traffic [250/2hours] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5017313` | `fortinet.rules` | Network and firewalls | [FORTINET] VPN Brute Force for Same User [10/300sec] | `after` | username comes from liblognorm rulebases, which are per-format data files with no algorithm to reproduce; supply the field upstream in the ingestion pipeline |
-| `5017314` | `fortinet.rules` | Network and firewalls | [FORTINET] VPN Login After Brute Force for Same User | `flexbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
+| `5017314` | `fortinet.rules` | Network and firewalls | [FORTINET] VPN Login After Brute Force for Same User | `flexbits` | username comes from liblognorm rulebases, which are per-format data files with no algorithm to reproduce; supply the field upstream in the ingestion pipeline |
 | `5017931` | `fortinet.rules` | Network and firewalls | [FORTIGATE] ArcheClient C2 - Unidentified TCP Beaconing on Port 9000 | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `9870020` | `fortinet.rules` | Network and firewalls | [EXPERIMENTAL] [FORTIGATE] Suspicious - Unknown Application on High Destination Port | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `991059` | `gcp-cloud-audit.rules` | Google Cloud | [GCP] Google Audit Brute Force Attempt [25/5] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
@@ -1058,6 +1058,8 @@ The group-by key required by after does not exist as a field in any event: Sagan
 | `5017930` | `juniper.rules` | Network and firewalls | [JUNIPER] ArcheClient C2 - Unidentified TCP Beaconing on Port 9000 | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `9870016` | `juniper.rules` | Network and firewalls | [EXPERIMENTAL] [JUNIPER] Suspicious - Unknown Application on High Destination Port | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5014637` | `linux-security.rules` | Unix and Linux | [LINUX-SECURITY] Multiple Failed SUDO Auth Attempts | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
+| `5015242` | `netskope.rules` | Unclassified | [NETSKOPE] Login Successful After Brute Force Event Detected | `flexbits` | group-by key 'username' cannot be resolved to a field |
+| `5015243` | `netskope.rules` | Unclassified | [NETSKOPE] SSO Login Successful After Brute Force Event Detected | `flexbits` | group-by key 'username' cannot be resolved to a field |
 | `5010294` | `netwrix.rules` | Network and firewalls | [NETWRIX] Logon Activity - Possible Brute Force Attempt [10/1] | `after` | username comes from liblognorm rulebases, which are per-format data files with no algorithm to reproduce; supply the field upstream in the ingestion pipeline |
 | `5001997` | `nfcapd.rules` | Infrastructure | [NFCAPD] PUSH/ACK Traffic Detected - Port 2222 [5/5] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5001998` | `nfcapd.rules` | Infrastructure | [NFCAPD] Telnet Traffic Detected via PUSH/ACK [5/5] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
@@ -1165,11 +1167,12 @@ The group-by key required by after does not exist as a field in any event: Sagan
 | `5002958` | `windows-correlated.rules` | Windows | [WINDOWS-CORRELATED] Successful RDP login after exploit attempt | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5003341` | `windows-correlated.rules` | Windows | [WINDOWS-CORRELATED] Successful RDP login after honeypot activity | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5003386` | `windows-correlated.rules` | Windows | [WINDOWS-CORRELATED] Possible remote WMIC command execution | `flexbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
+| `5015944` | `windows-correlated.rules` | Windows | [WINDOWS-CORRELATED] WmiPrvse Detected After Possible Remote WMIC Command | `flexbits` | group-by key 'username' cannot be resolved to a field |
 | `5006734` | `windows-malware.rules` | Windows | [WINDOWS-MALWARE] Locky ransomware file extension detected (.zepto) | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5006745` | `windows-malware.rules` | Windows | [WINDOWS-MALWARE] Various ransomware file extension detected (.locked) | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5006926` | `windows-malware.rules` | Windows | [WINDOWS-MALWARE] Locky ransomware file extension detected (.zepto) | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5006939` | `windows-malware.rules` | Windows | [WINDOWS-MALWARE] Various ransomware file extension detected (.locked) | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
-| `5015179` | `windows-malware.rules` | Windows | [WINDOWS-SECURITY] WFP Provider Change After EDRSilencer Detection | `flexbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
+| `5015179` | `windows-malware.rules` | Windows | [WINDOWS-SECURITY] WFP Provider Change After EDRSilencer Detection | `flexbits` | flexbits tracks by 'none', which is not a group-by over a single field: Sigma cannot express it |
 | `5015962` | `windows-misc.rules` | Windows | [WINDOWS-SENTINELONE] Multiple Product Versions (4/5) | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5001641` | `windows-mssql.rules` | Windows | [WINDOWS-MSSQL] Login Failure - Brute force [25/1] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5002402` | `windows-mssql.rules` | Windows | [WINDOWS-MSSQL] Login Failure from non-trusted connection - Brute force [25/1] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |

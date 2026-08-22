@@ -27,31 +27,3 @@ custom_attributes:
   sagan.sid: '5003385'
   sagan.rev: '7'
   sagan.source_file: windows-correlated.rules
----
-title: '[WINDOWS-CORRELATED] WmiPrvse Detected After Possible Remote WMIC Command'
-id: a77d2163-e1e6-5c7e-b7cb-68f727c27a4e
-status: experimental
-description: Converted from Sagan rule SID 5015944 (rev 1), file windows-correlated.rules.
-references:
-  - https://findingbad.blogspot.cz/2017/12/a-few-of-my-favorite-things-continued.html
-  - https://thedfirreport.com/2025/01/27/cobalt-strike-and-a-pair-of-socks-lead-to-lockbit-ransomware/
-author: sagan2sigma
-logsource:
-  product: windows
-detection:
-  selection_1:
-    appname|cased: '*Security*'
-  selection_2:
-    EventID: 4688
-  selection_3:
-    _raw|contains|cased: \\WmiPrvse.exe Token
-  condition: selection_1 and selection_2 and selection_3
-falsepositives:
-  - 'Unassessed: automatically converted, not yet tuned'
-level: high
-tags:
-  - sagan.classtype.suspicious-command
-custom_attributes:
-  sagan.sid: '5015944'
-  sagan.rev: '1'
-  sagan.source_file: windows-correlated.rules

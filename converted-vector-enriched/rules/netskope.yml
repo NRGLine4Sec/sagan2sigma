@@ -302,7 +302,7 @@ correlation:
     - user
   timespan: 5m
   condition:
-    gte: 5
+    gte: 6
 level: medium
 ---
 title: '[NETSKOPE] Multiple SSO Login Failed Events Detected'
@@ -345,7 +345,7 @@ correlation:
     - user
   timespan: 5m
   condition:
-    gte: 5
+    gte: 6
 level: medium
 ---
 title: '[NETSKOPE] Admin logged out because of successive login failures Event Detected'
@@ -414,7 +414,7 @@ correlation:
     - sagan_xbit_brute-force
     - sagan_5015242
   group-by:
-    - srcip
+    - sagan_username
   timespan: 1d
 level: medium
 ---
@@ -457,7 +457,7 @@ correlation:
     - sagan_xbit_brute-force
     - sagan_5015243
   group-by:
-    - srcip
+    - sagan_username
   timespan: 1d
 level: medium
 ---
@@ -501,7 +501,7 @@ correlation:
     - user
   timespan: 5m
   condition:
-    gte: 3
+    gte: 4
 level: medium
 ---
 title: '[NETSKOPE] Password Change Successful Event Detected'

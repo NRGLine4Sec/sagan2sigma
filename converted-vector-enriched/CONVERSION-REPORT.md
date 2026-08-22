@@ -7,11 +7,11 @@
 | Rule files processed | 342 |
 | Active rules parsed | 10018 |
 | Commented-out rules skipped | 9441 |
-| Rules converted | 9427 (94.1%) |
-| Rules refused | 591 (5.9%) |
+| Rules converted | 9426 (94.1%) |
+| Rules refused | 592 (5.9%) |
 | Lines that failed to parse | 0 |
-| Synthetic rules added | 19 |
-| Sigma documents emitted | 10577 |
+| Synthetic rules added | 18 |
+| Sigma documents emitted | 10574 |
 | pySigma validation issues | 0 |
 | Output profile | `vector-enriched` |
 | Case policy | `faithful` |
@@ -32,21 +32,21 @@ logsource catalog. It answers which kinds of device caused trouble.
 | Network and firewalls | 1362 | 106 | 92.8% | 1285 |
 | Network detection | 248 | 13 | 95.0% | 248 |
 | SaaS and identity | 331 | 13 | 96.2% | 170 |
-| State correlations | 19 | 0 | 100.0% | 0 |
+| State correlations | 18 | 0 | 100.0% | 0 |
 | Unclassified | 1587 | 76 | 95.4% | 1587 |
 | Unix and Linux | 203 | 13 | 94.0% | 199 |
-| Windows | 2070 | 32 | 98.5% | 2035 |
+| Windows | 2069 | 33 | 98.4% | 2034 |
 
 ## Refusals by code
 
 | Code | Rules | Share | Meaning |
 | --- | ---: | ---: | --- |
-| `E_EXTERNAL_ENRICHMENT` | 322 | 54.5% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
+| `E_EXTERNAL_ENRICHMENT` | 322 | 54.4% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
 | `E_VAR_UNRESOLVED` | 165 | 27.9% | The rule references a sagan.yaml variable that was not supplied. Re-run with --sagan-yaml to resolve it. |
 | `E_PCRE_UNSUPPORTED` | 41 | 6.9% | The regular expression uses a PCRE construct the Rust engine cannot express and the converter cannot safely rewrite (recursion, look-around, back-references, control verbs). Recoverable constructs (numbered subroutines, literal braces, the whole-string negation idiom, inert flags) are rewritten instead of refused. |
 | `E_POSITIONAL` | 40 | 6.8% | The rule constrains where a pattern sits in the log line with a non-zero offset, depth or distance. Sigma string modifiers cannot express a byte position, so no faithful translation exists. A zero-valued positional is a no-op in the Sagan engine and is converted. |
-| `E_GROUPBY_UNRESOLVED` | 9 | 1.5% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
-| `E_STATE_ABSENCE` | 8 | 1.4% | The rule requires that an earlier event did NOT happen (xbits or flexbits isnotset). Sigma cannot express a negative correlation. |
+| `E_STATE_ABSENCE` | 10 | 1.7% | The rule requires that an earlier event did NOT happen (xbits or flexbits isnotset). Sigma cannot express a negative correlation. |
+| `E_GROUPBY_UNRESOLVED` | 8 | 1.4% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
 | `E_NO_DETECTION` | 5 | 0.8% | The rule can never produce an alert: nothing is left to match on after conversion (it carried only side effects or metadata), or it carries a mandatory condition the engine can never satisfy, so it never fires in Sagan either. |
 | `E_PARSE` | 1 | 0.2% | The rule could not be parsed, or it uses a construct that Sagan itself would reject at load time. |
 
@@ -57,23 +57,24 @@ reproduced. They are worth reviewing before the ruleset goes live.
 
 | Code | Rules | Meaning | Example SIDs |
 | --- | ---: | --- | --- |
-| `D_RAW_TEXT_MATCH` | 6411 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
+| `D_RAW_TEXT_MATCH` | 6410 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
 | `D_LOGSOURCE_FALLBACK` | 1977 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
-| `D_EVENT_ID_HEURISTIC` | 1932 | Without a json_map for event_id, Sagan looks for ' <id>: ' in the first 10 bytes of the message. The converted rule assumes a proper EventID field instead. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
+| `D_EVENT_ID_HEURISTIC` | 1931 | Without a json_map for event_id, Sagan looks for ' <id>: ' in the first 10 bytes of the message. The converted rule assumes a proper EventID field instead. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
 | `D_THRESHOLD_SUPPRESS` | 1481 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
 | `D_PASS_SHORT_CIRCUIT` | 515 | The rule used the pass action. In Sagan a matching pass rule still emits an alert (Send_Alert runs before the pass check) and then stops evaluating the remaining signatures for that event. The detection is converted faithfully; only the short-circuit, the suppression of other rules on the same event, is not reproduced, since Sigma evaluates every rule independently. | `5016065`, `5016066`, `5016067`, `5016068`, `5016069` |
-| `D_GROUPBY_SYSLOG_HOST` | 388 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
-| `D_POSITIONAL_IP_FIELD` | 288 | The group-by key comes from the bundled VRL transform rather than from the log itself. The correlation only works if that transform runs in the ingestion pipeline. | `5002942`, `5015097`, `5014021`, `5014177`, `5008654` |
+| `D_GROUPBY_SYSLOG_HOST` | 387 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
+| `D_POSITIONAL_IP_FIELD` | 286 | The group-by key comes from the bundled VRL transform rather than from the log itself. The correlation only works if that transform runs in the ingestion pipeline. | `5002942`, `5015097`, `5014021`, `5014177`, `5008654` |
 | `D_SIDE_EFFECT_DROPPED` | 232 | Engine-specific side effect (external, email, dynamic_load, unset) with no Sigma equivalent. | `5008539`, `5003022`, `5003023`, `5002959`, `5002960` |
 | `D_THRESHOLD_LIMIT` | 170 | threshold type limit caps alert volume, not detection. Sigma has no equivalent, so the constraint is dropped. | `5017933`, `5008570`, `5008760`, `5009316`, `5009317` |
-| `D_XBIT_ISSET_SYNTHETIC` | 155 | The state correlation was rebuilt through a synthetic aggregate rule gathering every rule that sets the bit. | `5014084`, `5014091`, `5008539`, `5008654`, `5008655` |
+| `D_XBIT_ISSET_SYNTHETIC` | 154 | The state correlation was rebuilt through a synthetic aggregate rule gathering every rule that sets the bit. | `5014084`, `5014091`, `5008539`, `5008654`, `5008655` |
 | `D_BLUEDOT_SUBSTITUTION` | 134 | bluedot queries Quadrant's Bluedot threat-intelligence API, which is a closed commercial source that cannot be redistributed. This conversion deliberately SUBSTITUTES it: the rule matches the parsed address against open-source feeds you supply, one per Bluedot category (Tor, Proxy, Malicious, Honeypot), so it fires on your feed's addresses, not on Bluedot's. This is the project's one accepted break from faithful conversion, taken because a bluedot rule that is not converted can never fire under RSigma at all, whereas a substituted one keeps the detection intent. Fidelity varies by category: Tor is near-authoritative (the Tor Project exit list is the same public ground truth Bluedot derives from); Malicious, Proxy and Honeypot depend entirely on the feed you choose and will diverge from Bluedot's verdicts. Only the address (ip_reputation) lookup is reproduced; hash and URL lookups are still refused. | `5005726`, `5005727`, `5005728`, `5005729`, `5005730` |
 | `D_APPEND_PROGRAM` | 117 | append_program makes Sagan append the program field to the message before matching. The converted rule searches the message alone. | `5005782`, `5005783`, `5005784`, `5005785`, `5005787` |
-| `D_NORMALIZE_PRECEDENCE` | 80 | The rule carries both normalize and parse_src_ip. Sagan lets liblognorm win when it resolves the address and falls back to positional parsing otherwise; only the fallback is reproduced. | `5002942`, `5014805`, `5014806`, `5000113`, `5015130` |
-| `D_XBIT_SET_DROPPED` | 69 | The rule set or tested an xbit that no converted rule consumes. The state link is lost. | `5017158`, `5017159`, `5015948`, `5009285`, `5009290` |
+| `D_NORMALIZE_PRECEDENCE` | 78 | The rule carries both normalize and parse_src_ip. Sagan lets liblognorm win when it resolves the address and falls back to positional parsing otherwise; only the fallback is reproduced. | `5002942`, `5014805`, `5014806`, `5000113`, `5015130` |
+| `D_XBIT_SET_DROPPED` | 72 | The rule set or tested an xbit that no converted rule consumes. The state link is lost. | `5017158`, `5017159`, `5015948`, `5009285`, `5009290` |
 | `D_DENYLIST_ENRICHMENT` | 32 | blacklist matches the address against an IP denylist the bundled Vector enrichment carries, not the log itself. The rule only fires if that enrichment, built from a feed such as SANS DShield, runs in the ingestion pipeline. Sagan evaluates the denylist on the address at processing time; the converted rule evaluates it on the extracted address field. | `5008572`, `5008576`, `5008577`, `5008579`, `5005736` |
 | `D_ZEEK_INTEL_ENRICHMENT` | 29 | zeek-intel matches the address against a Zeek Intelligence Framework feed the bundled Vector enrichment carries, not the log itself. The rule only fires if that enrichment, built from a feed such as CriticalPathSecurity's Zeek-Intelligence-Feeds, runs in the ingestion pipeline. Only the address indicators the rule keyword uses are reproduced, not the domain, hash or URL indicators the feed may also carry. | `5010226`, `5010227`, `5010228`, `5010229`, `5010230` |
 | `D_DROP_ACTION` | 20 | The rule used the drop action. Sigma has no action concept; it was converted as a normal detection rule. | `5000102`, `5000103`, `5000113`, `5000193`, `5001592` |
+| `D_AFTER_BY_STRING_INERT` | 5 | after tracked by_string, which that parser never recognises: it tests an option token strtok_r has already truncated to 'track', so the branch is dead. Sagan groups on the remaining keys only, and rejects the rule outright when by_string is the only key. Confirmed against a locally built engine. threshold is unaffected: its parser tests the intact token, so there by_string really is a synonym for by_username. | `5015138`, `5015139`, `5015148`, `5015149`, `5014547` |
 | `D_DENYLIST_USERNAME_INERT` | 4 | The blacklist keyword tracked by_username, which the engine's denylist processor ignores: it matches IP addresses only (src/processors/blacklist.c), and the rule parser sets no flag for by_username (src/rules.c), so the option is inert. It is dropped and the rest of the rule is converted, exactly as the engine evaluates it. | `5008573`, `5008574`, `5008575`, `5008578` |
 | `D_ALERT_TIME_EVENT_CLOCK` | 3 | alert_time matches against weekday and hour-of-day fields the bundled Vector time transform derives from the event timestamp. Sagan evaluates the window against the wall clock at processing time, not the event's own time; the two coincide in near-real-time ingestion. The comparison uses the timezone Vector formats in, which must match the Sagan host's local time for the window to align. | `9870022`, `9870018`, `9870026` |
 
@@ -700,12 +701,34 @@ The rule constrains where a pattern sits in the log line with a non-zero offset,
 
 </details>
 
-### `E_GROUPBY_UNRESOLVED` (9 rules)
+### `E_STATE_ABSENCE` (10 rules)
+
+The rule requires that an earlier event did NOT happen (xbits or flexbits isnotset). Sigma cannot express a negative correlation.
+
+<details>
+<summary>Show the 10 refused rules</summary>
+
+| SID | Source file | Family | Title | Keywords | Detail |
+| --- | --- | --- | --- | --- | --- |
+| `5008678` | `azureEventHub_windows-malware.rules` | Azure and Microsoft 365 | [WINDOWS-MALWARE] System protection disabled | `flexbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
+| `5009291` | `azureEventHub_windows-misc.rules` | Azure and Microsoft 365 | [WINDOWS-MISC] Suspicious event logging service shutdown. | `flexbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
+| `5007212` | `citrix.rules` | Network and firewalls | [CITRIX] Netscaler - Impossible Traveler Login Successful [2/2] | `flexbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
+| `5007213` | `citrix.rules` | Network and firewalls | [CITRIX] Netscaler - Impossible Traveler Login Failed [2/2] | `flexbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
+| `5015354` | `msapi-exchange.rules` | Azure and Microsoft 365 | [MSAPI-EXCHANGE] Admin Audit Add-RecipientPermission SendAs Set | `flexbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
+| `5012117` | `msapi-securitycompliancecenter.rules` | Azure and Microsoft 365 | [MSAPI-SECURITYCOMPLIANCECENTER] Alert Entity Generated (CATCHALL RULE) | `flexbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
+| `5003108` | `nxlog.rules` | Unclassified | [NXLOG] Unable to read eventlog | `flexbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
+| `5003125` | `nxlog.rules` | Unclassified | [NXLOG] Service restart to correct problem [CLEAR XBIT] | `flexbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
+| `5002011` | `windows-malware.rules` | Windows | [WINDOWS-MALWARE] System protection disabled | `flexbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
+| `5015930` | `windows-misc.rules` | Windows | [WINDOWS-MISC] NXLog has Stopped On Host | `xbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
+
+</details>
+
+### `E_GROUPBY_UNRESOLVED` (8 rules)
 
 The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline.
 
 <details>
-<summary>Show the 9 refused rules</summary>
+<summary>Show the 8 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -713,31 +736,10 @@ The group-by key required by after does not exist as a field in any event: Sagan
 | `5003226` | `cisco-correlated.rules` | Network and firewalls | [CISCO-CORRELATED] FTP file transfer after honeypot activity | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5003227` | `cisco-correlated.rules` | Network and firewalls | [CISCO-CORRELATED] FTP file transfer after exploit attempt | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5003237` | `cisco-correlated.rules` | Network and firewalls | [CISCO-CORRELATED] FTP file transfer after brute force activity | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
-| `5007212` | `citrix.rules` | Network and firewalls | [CITRIX] Netscaler - Impossible Traveler Login Successful [2/2] | `flexbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
-| `5007213` | `citrix.rules` | Network and firewalls | [CITRIX] Netscaler - Impossible Traveler Login Failed [2/2] | `flexbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5014637` | `linux-security.rules` | Unix and Linux | [LINUX-SECURITY] Multiple Failed SUDO Auth Attempts | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5017724` | `sophos_firewall.rules` | Endpoint and EDR | [SOPHOS_FIREWALL] VPN Authentication - Credential Stuffing Attempt | `after` | dest_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
+| `5015179` | `windows-malware.rules` | Windows | [WINDOWS-SECURITY] WFP Provider Change After EDRSilencer Detection | `flexbits` | flexbits tracks by 'none', which is not a group-by over a single field: Sigma cannot express it |
 | `9870006` | `windows-security.rules` | Windows | [EXPERIMENTAL][WINDOWS-SECURITY] SMB - Suspected Authentication Coercion IPC\|24\| Access fo | `xbits` | dest_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
-
-</details>
-
-### `E_STATE_ABSENCE` (8 rules)
-
-The rule requires that an earlier event did NOT happen (xbits or flexbits isnotset). Sigma cannot express a negative correlation.
-
-<details>
-<summary>Show the 8 refused rules</summary>
-
-| SID | Source file | Family | Title | Keywords | Detail |
-| --- | --- | --- | --- | --- | --- |
-| `5008678` | `azureEventHub_windows-malware.rules` | Azure and Microsoft 365 | [WINDOWS-MALWARE] System protection disabled | `flexbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
-| `5009291` | `azureEventHub_windows-misc.rules` | Azure and Microsoft 365 | [WINDOWS-MISC] Suspicious event logging service shutdown. | `flexbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
-| `5015354` | `msapi-exchange.rules` | Azure and Microsoft 365 | [MSAPI-EXCHANGE] Admin Audit Add-RecipientPermission SendAs Set | `flexbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
-| `5012117` | `msapi-securitycompliancecenter.rules` | Azure and Microsoft 365 | [MSAPI-SECURITYCOMPLIANCECENTER] Alert Entity Generated (CATCHALL RULE) | `flexbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
-| `5003108` | `nxlog.rules` | Unclassified | [NXLOG] Unable to read eventlog | `flexbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
-| `5003125` | `nxlog.rules` | Unclassified | [NXLOG] Service restart to correct problem [CLEAR XBIT] | `flexbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
-| `5002011` | `windows-malware.rules` | Windows | [WINDOWS-MALWARE] System protection disabled | `flexbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
-| `5015930` | `windows-misc.rules` | Windows | [WINDOWS-MISC] NXLog has Stopped On Host | `xbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
 
 </details>
 

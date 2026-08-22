@@ -204,56 +204,6 @@ custom_attributes:
   sagan.xbit: AITM_RECON
   sagan.xbit_setters: '3'
 ---
-title: Aggregate of rules setting Sagan bit EDRSilencer
-id: afb8e0a8-27f9-5c77-ab56-f9a9f87185a4
-name: sagan_xbit_edrsilencer
-status: experimental
-description: Synthetic rule. Sagan set the 'EDRSilencer' bit from 3 rule(s); since Sigma cannot express
-  an OR between correlated rules, their detections are gathered here. This rule is not meant to alert
-  on its own.
-author: sagan2sigma
-logsource:
-  product: syslog
-detection:
-  s1_selection_1:
-    appname|cased:
-      - Security
-      - '*Sysmon'
-  s1_selection_2:
-    EventID:
-      - 4688
-      - 1
-  s1_selection_3:
-    message|contains: EDRSilencer.exe
-  s2_selection_1:
-    appname|cased:
-      - Security
-      - '*Sysmon'
-  s2_selection_2:
-    EventID:
-      - 4688
-      - 1
-  s2_selection_3:
-    message|contains: blockedr
-  s3_selection_1:
-    appname|cased:
-      - Security
-      - '*Sysmon'
-  s3_selection_2:
-    EventID:
-      - 4688
-      - 1
-  s3_selection_3:
-    message|contains: block "C:\\
-  condition: (s1_selection_1 and s1_selection_2 and s1_selection_3) or (s2_selection_1 and s2_selection_2
-    and s2_selection_3) or (s3_selection_1 and s3_selection_2 and s3_selection_3)
-falsepositives:
-  - 'Unassessed: automatically converted, not yet tuned'
-level: informational
-custom_attributes:
-  sagan.xbit: EDRSilencer
-  sagan.xbit_setters: '3'
----
 title: Aggregate of rules setting Sagan bit SophosFirewall.Admin.BruteForce
 id: 6e333876-1c0c-5183-ab64-22e8dc4efc79
 name: sagan_xbit_sophosfirewall_admin_bruteforce
