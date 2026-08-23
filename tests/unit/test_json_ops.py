@@ -5,7 +5,7 @@ from __future__ import annotations
 import pytest
 from tests.conftest import make_rule, run
 
-from sagan2sigma.errors import Refusal, RefusalCode
+from sagan2sigma.errors import DegradationCode, Refusal, RefusalCode
 from sagan2sigma.mapping.ir import RuleDraft
 from sagan2sigma.mapping.json_ops import (
     handle_json_content,
@@ -91,10 +91,10 @@ class TestJsonContent:
         run(handle_json_content, rule, draft, context)
         assert draft.predicates[0].values == ("x:y",)
 
-    @pytest.mark.parametrize(
-        "flag",
-        ["json_decode_base64", "json_base64_decode"],
-    )
+    # Only this spelling exists. json_base64_decode is not in Sagan's
+    # VALID_RULE_OPTIONS and the engine aborts the ruleset on it, so it is no
+    # longer recognised here either and falls through to E_UNKNOWN_KEYWORD.
+    @pytest.mark.parametrize("flag", ["json_decode_base64"])
     def test_refuses_base64_field_decoding(
         self, draft: RuleDraft, context, flag: str
     ) -> None:
@@ -142,3 +142,33 @@ class TestJsonPcre:
         with pytest.raises(Refusal) as excinfo:
             run(handle_json_pcre, rule, draft, context)
         assert excinfo.value.code is RefusalCode.PCRE_UNSUPPORTED
+
+    def test_reports_the_absent_key_divergence(self, draft: RuleDraft, context) -> None:
+        """Sagan counts a missing key as a match here; the Sigma rule does not.
+
+        JSON_Pcre() tests only keys the event carries and returns false only on
+        a failed match, so an absent key falls through to true. Measured
+        against a running engine, including with a pattern that can match
+        nothing. json_content and json_meta_content do not share this.
+        """
+        rule = make_rule('msg:"t"; json_pcre:".sni","/x/"; sid:1;')
+        run(handle_json_pcre, rule, draft, context)
+        assert any(
+            d.code is DegradationCode.JSON_PCRE_ABSENT_KEY for d in draft.degradations
+        )
+
+    @pytest.mark.parametrize("flag", ["A", "x"])
+    def test_uses_the_shared_flag_handling(
+        self, flag: str, draft: RuleDraft, context
+    ) -> None:
+        """json_pcre filtered flags itself, so the pcre refusals never reached it.
+
+        Its own `flag in ("i", "m", "s")` test dropped everything else in
+        silence, including the two letters that change what the pattern
+        matches.
+        """
+        rule = make_rule(f'msg:"t"; json_pcre:".a","/abc/{flag}"; sid:1;')
+        with pytest.raises(Refusal) as excinfo:
+            run(handle_json_pcre, rule, draft, context)
+        assert excinfo.value.code is RefusalCode.PCRE_UNSUPPORTED
+        assert "changes what the pattern matches" in excinfo.value.detail

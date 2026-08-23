@@ -67,14 +67,23 @@ def handle_event_id(
 ) -> None:
     """``event_id: 4624,4625`` onto an EventID field.
 
-    The documentation spells out both behaviours: on mapped JSON the value of
-    the key bound to ``event_id`` is used, and on unstructured text the keyword
-    degrades to ``meta_content: " %sagan%: ", {id}...; meta_depth: 10;``,
-    because most Windows agents put the event ID at the start of the message.
+    On mapped JSON the value bound to ``event_id`` is compared whole, with
+    ``strcmp``, so ``46240`` does not match a rule asking for ``4624``. That is
+    the branch this handler reproduces.
 
-    Only the structured form is emitted. The positional heuristic exists solely
-    to compensate for missing structure and has no Sigma equivalent, so it is
-    recorded as a degradation.
+    Without such a binding, ``Event_ID()`` in ``src/event-id.c`` falls back to
+    searching for ``" <id>: "`` inside ``strlcpy(alter_message, message, 10)``,
+    which is a **nine** character window, not the ten the size argument
+    suggests. Two consequences were measured against the engine rather than
+    read: the spaces are part of the searched string, so an ID at offset 0
+    never matches, and ``xx 4624: `` is found while ``xxx 4624: `` is not.
+    Sagan's own comment above that code says ``depth: 8``, agreeing with
+    neither the code nor its documentation.
+
+    Only the structured form is emitted. The heuristic exists to compensate for
+    missing structure, has no Sigma equivalent, and is *narrower* than a field
+    comparison, so the converted rule fires on events Sagan would have missed.
+    That is recorded as a degradation.
     """
     field = resolver.resolve("event_id")
     if field is None:

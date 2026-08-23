@@ -376,8 +376,18 @@ def parse_pcre(value: str, keyword: str = "pcre") -> tuple[bool, str, tuple[str,
     body = normalise_regex(body)
     validate_regex(body, keyword)
 
+    return negated, body, pcre_modifiers(match.group("flags"), keyword)
+
+
+def pcre_modifiers(flags: str, keyword: str) -> tuple[str, ...]:
+    """Sigma modifiers for a PCRE flag string, refusing what cannot be kept.
+
+    Shared by ``pcre`` and ``json_pcre``. The latter used to filter flags with
+    its own ``flag in ("i", "m", "s")`` test, which silently dropped everything
+    else, so a fix applied here would not have reached it.
+    """
     modifiers: list[str] = ["re"]
-    for flag in match.group("flags"):
+    for flag in flags:
         if flag in _FLAG_MAP:
             modifiers.append(_FLAG_MAP[flag])
         elif flag in _FLAG_UNSUPPORTED:
@@ -396,7 +406,7 @@ def parse_pcre(value: str, keyword: str = "pcre") -> tuple[bool, str, tuple[str,
                 detail=f"unsupported PCRE flag: {flag!r}",
                 keywords=(keyword,),
             )
-    return negated, body, tuple(modifiers)
+    return tuple(modifiers)
 
 
 @handler("pcre")

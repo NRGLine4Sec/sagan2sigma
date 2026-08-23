@@ -20,13 +20,13 @@ from __future__ import annotations
 
 import re
 
-from ..errors import Refusal, RefusalCode
+from ..errors import Degradation, DegradationCode, Refusal, RefusalCode
 from ..sagan.hexdec import decode_hex
 from ..sagan.model import SaganRule
 from .context import Context
 from .fields import FieldResolver
 from .ir import Predicate, RuleDraft, Scalar
-from .regexes import DELIMITED, normalise_regex, validate_regex
+from .regexes import DELIMITED, normalise_regex, pcre_modifiers, validate_regex
 from .registry import handler
 from .values import CasePolicy, case_modifiers, coerce_scalar, escape_literal
 
@@ -35,32 +35,39 @@ _JSON_ARGS = re.compile(
     r'^\s*(?P<neg>!?)\s*"?\.?(?P<key>[A-Za-z0-9_.\[\]@-]+)"?\s*,\s*(?P<rest>.+)$', re.S
 )
 
+#: Modifiers that qualify a preceding ``json_content``.
+#:
+#: ``json_strstr`` and ``json_meta_strstr`` are deliberately absent although
+#: ``VALID_RULE_OPTIONS`` accepts them, so a rule carrying one loads. Only
+#: ``json_contains`` and ``json_meta_contains`` have a parsing branch that sets
+#: the substring flag, so those two spellings load and do nothing; confirmed
+#: against the engine, where a ``json_meta_strstr`` rule still failed to match
+#: a substring of the value. Treating them as synonyms, as this did, emitted
+#: ``|contains`` where Sagan compares whole values, which is broader than the
+#: rule it came from. They are classified as inert in ``registry.IGNORED``.
 _CONTENT_MODIFIERS = frozenset(
     {
         "json_nocase",
         "json_contains",
-        "json_strstr",
         "json_decode_base64",
-        "json_base64_decode",
     }
 )
 _META_MODIFIERS = frozenset(
     {
         "json_meta_nocase",
         "json_meta_contains",
-        "json_meta_strstr",
         "json_decode_base64_meta",
-        "json_base64_decode_meta",
     }
 )
+
+#: The word order is not interchangeable: ``json_base64_decode`` and its
+#: siblings are not in ``VALID_RULE_OPTIONS`` and Sagan aborts the ruleset on
+#: one. Only the ``json_decode_base64`` spellings exist.
 _BASE64_FLAGS = frozenset(
     {
         "json_decode_base64",
-        "json_base64_decode",
         "json_decode_base64_meta",
-        "json_base64_decode_meta",
         "json_decode_base64_pcre",
-        "json_base64_decode_pcre",
     }
 )
 
@@ -148,7 +155,7 @@ def handle_json_content(
         reject_base64(modifiers, "json_content")
 
         nocase = "json_nocase" in modifiers
-        contains = bool(modifiers & {"json_contains", "json_strstr"})
+        contains = "json_contains" in modifiers
         text = decode_hex(rest.strip().strip('"'))
         values = (_scalar(text, contains),)
 
@@ -180,7 +187,7 @@ def handle_json_meta_content(
         reject_base64(modifiers, "json_meta_content")
 
         nocase = "json_meta_nocase" in modifiers
-        contains = bool(modifiers & {"json_meta_contains", "json_meta_strstr"})
+        contains = "json_meta_contains" in modifiers
 
         raw_values = [
             decode_hex(part.strip().strip('"'))
@@ -214,16 +221,29 @@ def handle_json_pcre(
     resolver: FieldResolver,
     policy: CasePolicy,
 ) -> None:
-    r"""``json_pcre: ".sni", "/www\.example\.com/i";``."""
+    r"""``json_pcre: ".sni", "/www\.example\.com/i";``.
+
+    Sagan treats a key the event does not carry as a **match**. ``JSON_Pcre()``
+    walks the event's keys, runs ``pcre_exec`` only on one that exists, and
+    returns false only when a match fails, so an absent key is never tested and
+    the function falls through to ``return(true)``. Measured against the
+    engine, including with a pattern that can match nothing.
+
+    Sigma has the opposite convention: ``field|re`` on a field the event does
+    not carry never matches. The converted rule is therefore narrower than the
+    original and stays silent on events lacking the key, which is recorded as a
+    degradation rather than reproduced. Emitting the faithful form would mean a
+    disjunction firing on every event without the field, which inverts what the
+    rule is plainly written to detect. ``json_content`` and
+    ``json_meta_content`` do not share this behaviour: both return false on a
+    missing key, which was checked at the same time.
+    """
     for option in rule.iter_options("json_pcre"):
         if option.value is None:
             continue
         negated, key, rest = parse_json_args(option.value, "json_pcre")
         reject_base64(
-            rule.modifiers_after(
-                option.index,
-                frozenset({"json_decode_base64_pcre", "json_base64_decode_pcre"}),
-            ),
+            rule.modifiers_after(option.index, frozenset({"json_decode_base64_pcre"})),
             "json_pcre",
         )
 
@@ -238,14 +258,20 @@ def handle_json_pcre(
         body = normalise_regex(match.group("body"))
         validate_regex(body, "json_pcre")
 
-        modifiers = ["re"]
-        modifiers.extend(
-            flag for flag in match.group("flags") if flag in ("i", "m", "s")
+        draft.degrade(
+            Degradation(
+                code=DegradationCode.JSON_PCRE_ABSENT_KEY,
+                detail=(
+                    f"Sagan treats {key!r} being absent from the event as a "
+                    f"match for this json_pcre; the converted predicate does "
+                    f"not fire on such events"
+                ),
+            )
         )
         draft.add(
             Predicate(
                 field=key,
-                modifiers=tuple(modifiers),
+                modifiers=pcre_modifiers(match.group("flags"), "json_pcre"),
                 values=(body,),
                 negated=negated,
                 origin="json_pcre",

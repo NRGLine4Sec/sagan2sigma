@@ -57,6 +57,7 @@ class DegradationCode(str, Enum):
     BLUEDOT_SUBSTITUTION = "D_BLUEDOT_SUBSTITUTION"
     AFTER_BY_STRING_INERT = "D_AFTER_BY_STRING_INERT"
     TRACK_KEY_INERT = "D_TRACK_KEY_INERT"
+    JSON_PCRE_ABSENT_KEY = "D_JSON_PCRE_ABSENT_KEY"
 
 
 REFUSAL_HELP: dict[RefusalCode, str] = {
@@ -194,9 +195,11 @@ DEGRADATION_HELP: dict[DegradationCode, str] = {
         "rule independently."
     ),
     DegradationCode.EVENT_ID_HEURISTIC: (
-        "Without a json_map for event_id, Sagan looks for ' <id>: ' in the "
-        "first 10 bytes of the message. The converted rule assumes a proper "
-        "EventID field instead."
+        "Without a json_map for event_id, Sagan looks for ' <id>: ', with the "
+        "surrounding spaces, in the first nine characters of the message, so "
+        "an ID at the very start never matches. The converted rule assumes a "
+        "proper EventID field instead, which fires on events the heuristic "
+        "would have missed. Measured against a locally built engine."
     ),
     DegradationCode.NORMALIZE_PRECEDENCE: (
         "The rule carries both normalize and parse_src_ip. Sagan lets "
@@ -260,6 +263,14 @@ DEGRADATION_HELP: dict[DegradationCode, str] = {
         "the rule outright when by_string is the only key. Confirmed against a "
         "locally built engine. threshold is unaffected: its parser tests the "
         "intact token, so there by_string really is a synonym for by_username."
+    ),
+    DegradationCode.JSON_PCRE_ABSENT_KEY: (
+        "Sagan treats a key the event does not carry as a match for json_pcre: "
+        "JSON_Pcre() tests only keys that exist and returns false only on a "
+        "failed match, so an absent key falls through to true. Sigma has the "
+        "opposite convention, so the converted rule stays silent on events "
+        "lacking the key. json_content and json_meta_content do not share this "
+        "behaviour. Measured against a locally built engine."
     ),
     DegradationCode.TRACK_KEY_INERT: (
         "The rule tracks by a key the engine's parser does not recognise. "

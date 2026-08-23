@@ -78,11 +78,13 @@ class TestRegistry:
             | POSITIONAL_KEYWORDS
         )
         assert not engine - known, "keywords Sagan accepts that we do not handle"
-        # The converse, restricted to the envelope selectors this test was
-        # written for. The full converse is not an invariant: the converter
-        # deliberately knows names the parser reaches by other routes.
-        invented = {"facility", "level", "tag"} & known
-        assert not invented, "bare aliases the engine rejects"
+        # The converse matters just as much and used to be checked for three
+        # hardcoded names, which is why five more invented spellings survived:
+        # json_strstr and json_meta_strstr were treated as synonyms of the
+        # working json_contains forms, and json_base64_decode and its two
+        # siblings do not exist at all. Comparing the whole set is what caught
+        # them.
+        assert not known - engine, "options we accept that Sagan rejects"
 
     def test_families_are_disjoint(self) -> None:
         """A keyword in two families would be handled inconsistently."""

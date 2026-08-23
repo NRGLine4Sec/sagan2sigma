@@ -76,14 +76,9 @@ MODIFIERS: frozenset[str] = frozenset(
         "json_meta_nocase",
         "json_contains",
         "json_meta_contains",
-        "json_strstr",
-        "json_meta_strstr",
         "json_decode_base64",
-        "json_base64_decode",
         "json_decode_base64_pcre",
-        "json_base64_decode_pcre",
         "json_decode_base64_meta",
-        "json_base64_decode_meta",
     }
 )
 
@@ -112,6 +107,13 @@ IGNORED: dict[str, bool] = {
     "email": True,
     "dynamic_load": True,
     "offload": True,
+    # Accepted by VALID_RULE_OPTIONS but with no parsing branch, so the engine
+    # loads them and does nothing. Only json_contains and json_meta_contains
+    # actually switch the comparison to a substring search; confirmed against
+    # the engine, where a json_meta_strstr rule still failed to match a
+    # substring. Ignoring them loses nothing, because they mean nothing.
+    "json_strstr": False,
+    "json_meta_strstr": False,
     # Bit timers: they delay the state check, which Sigma cannot express.
     "xbits_pause": True,
     "xbits_upause": True,

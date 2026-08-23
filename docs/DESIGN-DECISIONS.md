@@ -442,6 +442,41 @@ exercises what people happened to write and a test suite exercises what its
 author already knew. `tests/data/engine-keywords.txt` now holds the engine's
 list and a test compares the tables against it in both directions.
 
+That list itself had to be corrected once. It was first scraped from the
+`strcmp()` calls scattered through `rules.c`, which missed four options,
+including two that reveal something the scrape could never have shown: Sagan
+validates every option against one whitelist, `VALID_RULE_OPTIONS` in
+`rules.h`, and `json_strstr` and `json_meta_strstr` are *in that whitelist with
+no parsing branch anywhere*. They load and do nothing. The converter had been
+treating them as synonyms of `json_contains` and `json_meta_contains`, so a
+rule using one emitted `|contains` where Sagan compares whole values. Reading
+the branches told the wrong story precisely because the authority is elsewhere.
+
+The converse half of the same test was, at first, a check of three hardcoded
+names. That is why five more invented spellings survived a pass that had been
+written to catch exactly this: three `json_base64_decode` word-order variants
+that Sagan rejects outright, plus the two above. Comparing the whole set in
+both directions is what found them.
+
+### `json_pcre` treats a missing key as a match
+
+`JSON_Pcre()` walks the event's keys, runs `pcre_exec` only on a key that
+exists, and returns false only when a match *fails*. A key the event does not
+carry is therefore never tested, and the function falls through to
+`return(true)`. Measured against the engine, including with a pattern that can
+match nothing at all.
+
+Sigma has the opposite convention: `field|re` on an absent field never matches.
+The converted rule is therefore narrower than the original and stays silent on
+events lacking the key. Mirroring the engine would mean emitting a disjunction
+that fires on every event without the field, which inverts what these rules are
+plainly written to detect, so the divergence is recorded as
+`D_JSON_PCRE_ABSENT_KEY` instead. Two corpus rules carry it.
+
+The asymmetry is real and was checked rather than assumed: `json_content` and
+`json_meta_content` both return false on a missing key. Only `json_pcre` is
+vacuously true.
+
 ### `flexbits` names its direction where `xbits` writes `track`
 
 `xbits` spells its tracking key `track ip_src`; `flexbits` puts a bare token in

@@ -1,19 +1,22 @@
-# Every rule option Sagan's parser recognises, one per line.
+# Every rule option Sagan's parser accepts, one per line.
 #
-# Extracted from strcmp(rulesplit, "...") in src/rules.c on the main
-# branch, and checked against a locally built engine: each name below
-# loads, and a name absent from it aborts the ruleset.
+# This is VALID_RULE_OPTIONS from src/rules.h on the main branch, the
+# single whitelist the parser checks every option against before
+# reporting 'Got bad rule option'. It is the authority; an earlier
+# version of this file was scraped from the strcmp() calls instead and
+# missed four entries, including two that are whitelisted but have no
+# parsing branch at all (json_strstr, json_meta_strstr).
 #
-# The list is here so tests/unit/test_registry_and_context.py can fail
-# when the converter's tables drift from the engine's, in either
-# direction. Accepting a keyword Sagan rejects converts a rule that
-# cannot load anywhere; missing one it accepts refuses a rule that works.
-# Both have happened.
+# tests/unit/test_registry_and_context.py compares the converter's
+# tables against this list in both directions. Accepting an option
+# Sagan rejects converts a rule that cannot load anywhere; missing one
+# it accepts refuses a rule that works. Both have happened.
 after
 alert_time
 append_program
 blacklist
 bluedot
+bro-intel
 classtype
 content
 country_code
@@ -39,8 +42,10 @@ json_map
 json_meta_contains
 json_meta_content
 json_meta_nocase
+json_meta_strstr
 json_nocase
 json_pcre
+json_strstr
 meta_content
 metadata
 meta_depth
@@ -75,3 +80,4 @@ within
 xbits
 xbits_pause
 xbits_upause
+zeek-intel

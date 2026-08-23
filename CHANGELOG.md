@@ -6,6 +6,50 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+
+- The keyword list the completeness test compares against was scraped from the
+  `strcmp()` calls in `src/rules.c` and missed four entries. Sagan validates
+  every option against a single whitelist, `VALID_RULE_OPTIONS` in
+  `src/rules.h`, which is now the source. Two of the four, `json_strstr` and
+  `json_meta_strstr`, are whitelisted but have *no parsing branch at all*.
+- `json_strstr` and `json_meta_strstr` were treated as synonyms of
+  `json_contains` and `json_meta_contains`, so a rule using one emitted
+  `|contains` where Sagan compares whole values, which is broader than the rule
+  it came from. Only the `contains` spellings set the substring flag; the other
+  two load and do nothing, confirmed against the engine. They are now
+  classified as inert.
+- `json_base64_decode`, `json_base64_decode_pcre` and `json_base64_decode_meta`
+  were accepted. The word order is not interchangeable: none is in
+  `VALID_RULE_OPTIONS` and Sagan aborts the ruleset on one, so accepting them
+  converted rules that cannot load anywhere.
+- The converse half of the completeness test checked three hardcoded names,
+  which is why those five invented spellings survived the previous pass. It now
+  compares the whole set, in both directions.
+- `json_pcre` applied its own `flag in ("i", "m", "s")` filter instead of the
+  shared flag handling, so the `A` and `x` refusals added for `pcre` never
+  reached it and both flags were still dropped silently. Both keywords now go
+  through `pcre_modifiers()`.
+- `event_id` degradation text said Sagan searches the first 10 bytes of the
+  message. `strlcpy(alter_message, message, 10)` copies **nine** characters,
+  and the searched string is `" <id>: "` including both spaces, so an ID at
+  offset 0 never matches. Measured by padding: `xx 4624: ` is found and
+  `xxx 4624: ` is not. Sagan's own comment above that code says `depth: 8`,
+  agreeing with neither.
+
+### Added
+
+- `D_JSON_PCRE_ABSENT_KEY`, recording that Sagan treats a key the event does
+  not carry as a *match* for `json_pcre`. `JSON_Pcre()` tests only keys that
+  exist and returns false only on a failed match, so an absent key falls
+  through to `return(true)`. Sigma has the opposite convention, so the
+  converted rule is narrower and stays silent on those events. Two corpus rules
+  carry it. Reproducing the engine here would mean a disjunction firing on
+  every event without the field, which inverts what the rule is written to
+  detect, so the divergence is documented rather than mirrored.
+  `json_content` and `json_meta_content` do not share the behaviour, which was
+  checked at the same time.
+
 ### Added
 
 - `tests/data/engine-keywords.txt`, the list of rule options Sagan's parser
