@@ -6,6 +6,49 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- `D_JSON_PCRE_ABSENT_KEY`, recording that Sagan treats a key the event does
+  not carry as a *match* for `json_pcre`. `JSON_Pcre()` tests only keys that
+  exist and returns false only on a failed match, so an absent key falls
+  through to `return(true)`. Sigma has the opposite convention, so the
+  converted rule is narrower and stays silent on those events. Two corpus rules
+  carry it. Reproducing the engine here would mean a disjunction firing on
+  every event without the field, which inverts what the rule is written to
+  detect, so the divergence is documented rather than mirrored.
+  `json_content` and `json_meta_content` do not share the behaviour, which was
+  checked at the same time.
+- `tests/data/engine-keywords.txt`, the list of rule options Sagan's parser
+  recognises, and a test asserting the converter's tables match it. The
+  converter's keyword tables are hand-copies of branches in `src/rules.c`, and
+  every defect below is one of them having drifted: the drift is silent, the
+  corpus does not reveal it, and nothing else in the suite was watching. The
+  test fails in both directions and was checked to fail by reintroducing each
+  defect.
+
+### Changed
+
+- `alert_time` is now verified against a running engine rather than read.
+  `Aetas()` calls `time(NULL)` and `localtime()`, and both halves of
+  `D_ALERT_TIME_EVENT_CLOCK` were measured under a faked clock: an event
+  stamped Sunday 03:00 fires a Tuesday-afternoon window when the machine
+  believes it is Tuesday afternoon and stays silent on a window matching its
+  own stamp, and one fixed instant falls inside a 1400-1500 window in UTC and
+  outside it in Tokyo. The degradation text was accurate as written. The
+  midnight-crossing branches were checked case by case on `days 2, hours
+  1800-0800`, and the emitted condition agrees with the engine on all five
+  boundary cases, including the morning half firing on the alert day itself.
+- The refusal for an `alert_time` missing its `days` or `hours` called the
+  value unrecognised. Sagan recognises an hours-only window, loads it, and can
+  never fire it, because the parser only ORs day bits in so the mask stays
+  empty. The message now says that. Nothing changes in what converts.
+- `docs/DESIGN-DECISIONS.md` records an engine defect that makes converted
+  `flexbits` correlations fire where Sagan is silent. The address directions
+  compare the printable address buffer rather than the binary form the struct
+  also carries, sixteen bytes of it, so the result depends on the bytes
+  following the address in the message rather than on the address. Reproducing
+  it is not an option; it is documented instead.
+
 ### Fixed
 
 - The keyword list the completeness test compares against was scraped from the
@@ -36,32 +79,6 @@ All notable changes to this project are documented here. The format follows
   offset 0 never matches. Measured by padding: `xx 4624: ` is found and
   `xxx 4624: ` is not. Sagan's own comment above that code says `depth: 8`,
   agreeing with neither.
-
-### Added
-
-- `D_JSON_PCRE_ABSENT_KEY`, recording that Sagan treats a key the event does
-  not carry as a *match* for `json_pcre`. `JSON_Pcre()` tests only keys that
-  exist and returns false only on a failed match, so an absent key falls
-  through to `return(true)`. Sigma has the opposite convention, so the
-  converted rule is narrower and stays silent on those events. Two corpus rules
-  carry it. Reproducing the engine here would mean a disjunction firing on
-  every event without the field, which inverts what the rule is written to
-  detect, so the divergence is documented rather than mirrored.
-  `json_content` and `json_meta_content` do not share the behaviour, which was
-  checked at the same time.
-
-### Added
-
-- `tests/data/engine-keywords.txt`, the list of rule options Sagan's parser
-  recognises, and a test asserting the converter's tables match it. The
-  converter's keyword tables are hand-copies of branches in `src/rules.c`, and
-  every defect below is one of them having drifted: the drift is silent, the
-  corpus does not reveal it, and nothing else in the suite was watching. The
-  test fails in both directions and was checked to fail by reintroducing each
-  defect.
-
-### Fixed
-
 - `after` honoured tracking keys the engine ignores. Its parser compares each
   `&`-separated token with `strcmp`, so `by_user` is not `by_username`,
   `byusername` is an upstream typo, and neither `by_tag` nor `by_hostname` has
@@ -130,15 +147,6 @@ All notable changes to this project are documented here. The format follows
   rather than a message. Tabs outside quoted scalars are now normalised, tabs
   inside them are preserved, an indentation tab is still an error, and a
   malformed file names itself.
-
-### Changed
-
-- `docs/DESIGN-DECISIONS.md` records an engine defect that makes converted
-  `flexbits` correlations fire where Sagan is silent. The address directions
-  compare the printable address buffer rather than the binary form the struct
-  also carries, sixteen bytes of it, so the result depends on the bytes
-  following the address in the message rather than on the address. Reproducing
-  it is not an option; it is documented instead.
 
 ## [0.2.0] - 2026-08-21
 

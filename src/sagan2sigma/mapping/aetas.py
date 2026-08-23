@@ -8,15 +8,31 @@ the time as an HHMM integer, exactly the two values ``Check_Time`` compares.
 
 The engine reads the time as ``atoi("HHMM")`` and compares it as an integer, so
 an integer ``gte`` / ``lte`` on the HHMM field reproduces the window exactly,
-minute boundaries included. What cannot follow is that Sagan evaluates the clock
-at processing time and in the host's local timezone, recorded as the
-``D_ALERT_TIME_EVENT_CLOCK`` degradation.
+minute boundaries included, and both bounds were confirmed inclusive against a
+running engine.
 
-A window whose start is after its end crosses midnight. ``Check_Time`` then also
-fires in the morning of the day after an alert day (``next_day`` with an off
-day), so the morning half of the window matches on the alert days shifted one day
-forward as well. This disjunction of conjunctions is what a flat predicate list
-cannot express, so the handler emits a :class:`ConditionGroup`.
+What cannot follow is the clock itself. ``Aetas()`` calls ``time(NULL)`` and
+``localtime()``, so the window is evaluated against the wall clock at
+processing time in the host's timezone, not against the event's own timestamp.
+Both halves of that were measured under a faked clock: an event stamped Sunday
+03:00 fires a Tuesday-afternoon window when the machine believes it is Tuesday
+afternoon, and does not fire a window matching its own stamp; and one fixed
+instant falls inside a 1400-1500 window in UTC and outside it in Tokyo. The gap
+is recorded as ``D_ALERT_TIME_EVENT_CLOCK``.
+
+A window whose start is after its end crosses midnight, and the engine then
+takes two separate branches: on an alert day it tests ``current >= start ||
+current <= end``, an **or**, so the morning half fires on the alert day itself;
+and on an off day that follows an alert day it tests ``current <= end`` alone.
+The morning half therefore matches on the alert days *and* on the day after each
+of them, which is why ``_rollover`` returns the union rather than the shift.
+This disjunction of conjunctions is what a flat predicate list cannot express,
+so the handler emits a :class:`ConditionGroup`.
+
+That behaviour was measured rather than inferred, on ``days 2, hours
+1800-0800``: Tuesday 02:00 and 23:00 both fire, Wednesday 02:00 fires,
+Wednesday 23:00 and Monday 02:00 do not. The emitted condition agrees on all
+five.
 
 The fields only exist under a profile that supplies them, so the rule converts
 under ``vector-enriched`` and is refused, recoverably, under any other.
@@ -110,9 +126,18 @@ def handle_alert_time(
         days_match = _DAYS.search(value)
         hours_match = _HOURS.search(value)
         if days_match is None or hours_match is None:
+            # An hours range with no days is accepted by Sagan and can never
+            # fire: the parser only ORs day bits in, so the mask stays empty and
+            # Check_Day is false for every weekday. Verified against the engine.
+            # Refusing loses no detection, since there was none to lose.
+            missing = "days" if days_match is None else "hours"
             raise Refusal(
                 code=RefusalCode.PARSE,
-                detail=f"unrecognised alert_time: {option.value!r}",
+                detail=(
+                    f"alert_time declares no {missing}: {option.value!r}. Sagan "
+                    f"loads such a rule but it never fires, because an empty "
+                    f"day mask matches no weekday"
+                ),
                 keywords=("alert_time",),
             )
 
