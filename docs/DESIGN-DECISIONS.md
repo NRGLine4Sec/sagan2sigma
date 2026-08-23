@@ -689,10 +689,18 @@ The regex, matching non-greedily, kept the stray quote and emitted a search for
 matched nothing. Parsing the way the engine does fixes them: the search becomes
 `%ASA`, which a `%ASA-2-...` line does contain.
 
-Values are kept verbatim, quotes and all, because the engine does not trim them
-either; the stray closing quote a rule leaves on its last value is part of what
-the engine searches for. All of this is validated by the differential harness,
-which now judges these rules and reports no disagreement.
+Values keep their quotes, because the engine does not strip those: the stray
+closing quote a rule leaves on its last value is part of what it searches for.
+Whitespace is the exception. 156 corpus options write `, value` rather than
+`,value`, and that space does not reach the search: a rule reading
+`meta_content:""%sagan%", %ASA,%FWSM` matches a line with no space before
+`%ASA`, which is what the converter emits too. Deeper whitespace cases, several
+spaces or a space on a later value, behave inconsistently in the engine and are
+deliberately not claimed here; no upstream rule writes either shape.
+
+All of this is validated by the differential harness, which judges these rules
+and reports no disagreement, and each statement above is pinned by
+`check_meta_content.py` in the engine lab.
 
 ## `pass` rules alert first, then short-circuit
 

@@ -9,11 +9,11 @@ Sagan engine itself has seen little movement in years. This tool moves the
 rules to a format other engines can run, notably
 [RSigma](https://github.com/timescale/rsigma).
 
-On the upstream corpus (10,000 active rules across 337 files) it converts
-**86.6%** into 9,465 Sigma documents, with zero parse failures, zero documents
+On the upstream corpus (10,018 active rules across 342 files) it converts
+**86.6%** into 9,483 Sigma documents, with zero parse failures, zero documents
 rejected by pySigma, and zero rules the RSigma engine refuses to load. With
 `--profile vector-enriched`, which ships the transforms needed to recreate the
-fields Sagan derived from raw text, the rate rises to **89.4%**, and to **90.8%**
+fields Sagan derived from raw text, the rate rises to **94.1%**, and to **95.7%**
 once its GeoIP transform and a `$HOME_COUNTRY` value let the `country_code` rules
 convert.
 
@@ -155,7 +155,7 @@ Each of these carries a stable code in the report, with the reasoning attached.
 
 ## Status and what has not been verified
 
-This is a 0.2.0 release and the rules it emits are marked `status:
+This is a 0.3.0 release and the rules it emits are marked `status:
 experimental` for a reason.
 
 **What is verified.** Every emitted document is parsed by

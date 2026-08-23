@@ -6,26 +6,7 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
-### Fixed
-
-- `blacklist: all` and `zeek-intel: all` converted into a match over every
-  address position even when the rule declared none. The engine scans the
-  address cache `Parse_IP` fills, and it fills that cache only for a rule that
-  declares a position, so with none the lookup finds nothing, routing rejects
-  the event and the rule cannot alert at all. The converted rule fired where
-  Sagan is silent. Both now refuse with `E_NO_DETECTION`. This is the opposite
-  of the `by_username` case, where the direction is unrecognised, the flag
-  stays clear and routing skips the denylist entirely so the rule fires on its
-  other conditions: that one is still dropped as inert. Both behaviours were
-  measured against a running engine, and confusing them is what made the first
-  attempt at this fix wrong in the noisier direction.
-- The refusal for a `zeek-intel` tracking the converter cannot reproduce called
-  the value unrecognised. The engine accepts `domain`, `file_hash`, `url`,
-  `software`, `email`, `user_name`, `file_name` and `cert_hash`, and each sets
-  the flag, so such a rule really is filtered on that indicator type rather
-  than left inert: a rule tracking `domain` loads and does not fire on an
-  address the feed lists. The message now says the bundled enrichment carries
-  address indicators only.
+## [0.3.0] - 2026-08-23
 
 ### Added
 
@@ -49,6 +30,19 @@ All notable changes to this project are documented here. The format follows
 
 ### Changed
 
+- `meta_content` splitting is now pinned against a running engine. All three
+  claims in `docs/DESIGN-DECISIONS.md` hold: the first comma separates helper
+  from values wherever it sits, `Between_Quotes` drops every quote it meets so
+  a doubled opening quote yields the helper `%sagan%`, and a value keeps the
+  stray closing quote a rule leaves on it. The 72 Cisco rules search for `%ASA`
+  and match a real `%ASA-2-...` line.
+- Correct one imprecise sentence in that section. It said values are kept
+  verbatim "because the engine does not trim them either". Whitespace is the
+  exception: 156 corpus options write `, value` rather than `,value`, and that
+  space does not reach the search, which is what the converter emits too.
+  Deeper whitespace cases behave inconsistently in the engine and are now
+  explicitly not claimed rather than covered by a sentence that reads as
+  though they were.
 - `alert_time` is now verified against a running engine rather than read.
   `Aetas()` calls `time(NULL)` and `localtime()`, and both halves of
   `D_ALERT_TIME_EVENT_CLOCK` were measured under a faked clock: an event
@@ -72,6 +66,24 @@ All notable changes to this project are documented here. The format follows
 
 ### Fixed
 
+- `blacklist: all` and `zeek-intel: all` converted into a match over every
+  address position even when the rule declared none. The engine scans the
+  address cache `Parse_IP` fills, and it fills that cache only for a rule that
+  declares a position, so with none the lookup finds nothing, routing rejects
+  the event and the rule cannot alert at all. The converted rule fired where
+  Sagan is silent. Both now refuse with `E_NO_DETECTION`. This is the opposite
+  of the `by_username` case, where the direction is unrecognised, the flag
+  stays clear and routing skips the denylist entirely so the rule fires on its
+  other conditions: that one is still dropped as inert. Both behaviours were
+  measured against a running engine, and confusing them is what made the first
+  attempt at this fix wrong in the noisier direction.
+- The refusal for a `zeek-intel` tracking the converter cannot reproduce called
+  the value unrecognised. The engine accepts `domain`, `file_hash`, `url`,
+  `software`, `email`, `user_name`, `file_name` and `cert_hash`, and each sets
+  the flag, so such a rule really is filtered on that indicator type rather
+  than left inert: a rule tracking `domain` loads and does not fire on an
+  address the feed lists. The message now says the bundled enrichment carries
+  address indicators only.
 - The keyword list the completeness test compares against was scraped from the
   `strcmp()` calls in `src/rules.c` and missed four entries. Sagan validates
   every option against a single whitelist, `VALID_RULE_OPTIONS` in
