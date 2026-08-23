@@ -368,6 +368,34 @@ class TestBits:
             run(handle_bits, rule, draft, context)
         assert excinfo.value.code is RefusalCode.GROUPBY_UNRESOLVED
 
+    @pytest.mark.parametrize("setter", ["set_srcport", "set_dstport", "set_ports"])
+    def test_the_port_recording_setters_still_set_the_bit(
+        self, setter: str, draft: RuleDraft, context
+    ) -> None:
+        """The keyword has three variants of set, and all three set the bit.
+
+        Ignoring them, as this did, loses the setter: a correlation rebuilt
+        from an isset omits those rules and fires less often than the original,
+        or not at all when every setter uses one. Checked against the engine,
+        where a bit set by set_ports is seen by a plain isset.
+        """
+        rule = make_rule(f'msg:"t"; flexbits: {setter}, vpn_bit, 300; sid:1;')
+        run(handle_bits, rule, draft, context)
+        assert draft.sets_bits == {"vpn_bit": 300}
+
+    def test_xbits_toggle_is_refused(self, draft: RuleDraft, context) -> None:
+        """Sagan aborts the ruleset on it, so there is nothing to convert.
+
+        The engine's own error message lists toggle as a valid action and the
+        upstream rule validator accepts it, but the branch that would honour it
+        is commented out in src/rules.c with a 2019 note saying the semantics
+        were never settled. Verified by loading such a rule: rejected.
+        """
+        rule = make_rule('msg:"t"; xbits: toggle,b,track ip_src; sid:1;')
+        with pytest.raises(Refusal) as excinfo:
+            run(handle_bits, rule, draft, context)
+        assert excinfo.value.code is RefusalCode.PARSE
+
     def test_isnotset_is_refused(self, draft: RuleDraft, context) -> None:
         rule = make_rule('msg:"t"; xbits: isnotset,b,track ip_src; sid:1;')
         with pytest.raises(Refusal) as excinfo:

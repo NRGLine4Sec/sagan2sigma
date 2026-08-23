@@ -6,6 +6,29 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+
+- `flexbits` setters lost their expiry. The two keywords write it differently
+  and only the `xbits` form, `expire N`, was read; `flexbits` puts a bare number
+  third, `flexbits: set, name, 532800`, and the engine rejects the rule without
+  it. Every `flexbits` setter therefore fell back to the one-day default, so 13
+  rebuilt correlations were measured over the wrong window: eight over a day
+  instead of eight hours, one instead of six days, and two over a day instead
+  of ten and thirty seconds. The window decides whether two events are seen as
+  related at all, so the short ones fired far more often than the rule they
+  came from.
+- `flexbits: set_srcport`, `set_dstport` and `set_ports` were ignored. All
+  three set a bit a later `isset` sees, checked against the engine, so
+  ignoring them dropped the setter: a correlation rebuilt from an `isset` would
+  omit those rules and fire less often, or not at all when every setter uses
+  one.
+- `xbits: toggle` converted into a rule without the bit. Sagan rejects it at
+  load: the branch is commented out in `src/rules.c`, with a 2019 note saying
+  the semantics were never settled, so `xbit_type` stays zero and the ruleset
+  aborts. The engine's own error message lists the action as valid, and so does
+  the upstream rule validator, which is why this looked supported. It now
+  refuses.
+
 ## [0.3.0] - 2026-08-23
 
 ### Added

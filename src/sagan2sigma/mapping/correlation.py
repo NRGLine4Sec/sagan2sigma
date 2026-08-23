@@ -104,6 +104,17 @@ XBIT_TO_INTERNAL: dict[str, tuple[str, ...]] = {
     "ip_pair": ("src_ip", "dest_ip"),
 }
 
+#: Operations that make a bit visible to a later ``isset``.
+#:
+#: ``flexbits`` has three variants of ``set`` that also record ports. They were
+#: ignored here, which loses the setter: a correlation rebuilt from an ``isset``
+#: would omit those rules and so fire less often than the original, or not at
+#: all when every setter uses one. Checked against the engine, where a bit set
+#: by ``set_srcport`` or ``set_ports`` is seen by a plain ``isset`` exactly as
+#: one set by ``set``. The ports they additionally record are not reproduced;
+#: nothing in Sigma consumes them.
+SET_OPERATIONS = frozenset({"set", "set_srcport", "set_dstport", "set_ports"})
+
 #: ``flexbits`` directions onto Sagan internal values, for the ones Sigma can
 #: state as a group-by. See ``_flexbit_internals`` for the rest, which are
 #: refused. ``both`` keys on the pair, the same shape as ``xbits ip_pair``.
@@ -455,6 +466,25 @@ def handle_bits(
             if operation in ("noalert", "noeve"):
                 continue
 
+            if keyword == "xbits" and operation == "toggle":
+                # The engine's error message lists 'toggle' as valid and the
+                # upstream rule validator accepts it, but the branch that would
+                # honour it is commented out in src/rules.c, with a 2019 note
+                # saying the semantics were never settled. So xbit_type stays 0
+                # and Sagan aborts the whole ruleset. Verified by loading such a
+                # rule: it is rejected. Ignoring the option, as this did, would
+                # convert a rule that cannot run anywhere.
+                raise Refusal(
+                    code=RefusalCode.PARSE,
+                    detail=(
+                        "xbits: toggle is rejected by Sagan at load time: the "
+                        "branch is commented out in the parser, so the rule "
+                        "cannot run even though the error message lists the "
+                        "action as valid"
+                    ),
+                    keywords=(keyword,),
+                )
+
             if operation == "isnotset":
                 raise Refusal(
                     code=RefusalCode.STATE_ABSENCE,
@@ -473,11 +503,8 @@ def handle_bits(
                 )
 
             name = bit_name(parts, operation)
-            if operation == "set":
-                expire = _EXPIRE.search(option.value)
-                draft.sets_bits[name] = (
-                    int(expire.group(1)) if expire else DEFAULT_STATE_TIMESPAN_SECONDS
-                )
+            if operation in SET_OPERATIONS:
+                draft.sets_bits[name] = _expire_seconds(parts, option.value, keyword)
             elif operation == "isset":
                 draft.tests_bits.add(name)
                 draft.bit_group_by = _bit_group_by(
@@ -493,6 +520,29 @@ def handle_bits(
                         ),
                     )
                 )
+
+
+def _expire_seconds(parts: list[str], value: str, keyword: str) -> int:
+    """How long a set bit stays visible, in seconds.
+
+    The two keywords write it differently and only the ``xbits`` form was read.
+    ``xbits`` appends ``expire N`` to the option; ``flexbits`` puts a bare
+    number in the third position, ``flexbits: set, name, 532800``, and the
+    engine rejects the rule if it is missing or zero (``src/rules.c``).
+
+    Reading only the ``expire N`` form meant every ``flexbits`` setter fell back
+    to the default, so 122 corpus rules produced a correlation window of one day
+    where the rule had asked for anything from ten seconds to six days. The
+    window is what the rebuilt correlation is measured over, so it decides
+    whether the pair of events is seen as related at all.
+    """
+    if keyword == "flexbits":
+        for part in parts[2:]:
+            if part.isdigit() and int(part) > 0:
+                return int(part)
+        return DEFAULT_STATE_TIMESPAN_SECONDS
+    expire = _EXPIRE.search(value)
+    return int(expire.group(1)) if expire else DEFAULT_STATE_TIMESPAN_SECONDS
 
 
 def bit_name(parts: list[str], operation: str) -> str:
