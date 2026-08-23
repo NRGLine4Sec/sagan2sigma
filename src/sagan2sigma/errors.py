@@ -231,7 +231,13 @@ DEGRADATION_HELP: dict[DegradationCode, str] = {
         "enrichment carries, not the log itself. The rule only fires if that "
         "enrichment, built from a feed such as SANS DShield, runs in the ingestion "
         "pipeline. Sagan evaluates the denylist on the address at processing time; "
-        "the converted rule evaluates it on the extracted address field."
+        "the converted rule evaluates it on the extracted address field. Expect "
+        "the two to disagree on the same feed: Sagan never resets its mask buffer "
+        "between denylist lines, so an entry whose prefix is shorter than one "
+        "above it is silently narrowed to that longer prefix, while the bundled "
+        "enrichment matches CIDR normally. Measured against a locally built "
+        "engine: 198.51.100.0/24 covers the range on its own and only its network "
+        "address once a /32 precedes it."
     ),
     DegradationCode.ZEEK_INTEL_ENRICHMENT: (
         "zeek-intel matches the address against a Zeek Intelligence Framework feed "

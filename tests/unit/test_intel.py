@@ -50,7 +50,7 @@ class TestInertUsernameDenylist:
 
 
 class TestAddressDenylistRefused:
-    @pytest.mark.parametrize("track", ["by_src", "by_dst", "both", "all"])
+    @pytest.mark.parametrize("track", ["by_src", "by_dst", "both"])
     def test_address_tracking_is_refused_pending_enrichment(
         self, draft: RuleDraft, context, track: str
     ) -> None:
@@ -60,6 +60,27 @@ class TestAddressDenylistRefused:
         with pytest.raises(Refusal) as excinfo:
             run(handle_blacklist, rule, draft, context)
         assert excinfo.value.code is RefusalCode.EXTERNAL_ENRICHMENT
+
+    @pytest.mark.parametrize(
+        ("handler", "keyword"),
+        [(handle_blacklist, "blacklist"), (handle_zeek_intel, "zeek-intel")],
+    )
+    def test_all_without_a_declared_position_can_never_fire(
+        self, handler, keyword: str, draft: RuleDraft, context
+    ) -> None:
+        """`all` scans the address cache, which only a declared position fills.
+
+        With none declared the cache is empty, the lookup never matches, and
+        routing rejects the event: the rule cannot alert in Sagan at all. That
+        is different from an unrecognised direction, which leaves the flag
+        clear so the rule fires on its other conditions. Both measured against
+        a running engine. Emitting the address match anyway would produce a
+        rule that fires where Sagan is silent.
+        """
+        rule = make_rule(f'msg:"t"; program: sshd; content:"x"; {keyword}: all; sid:1;')
+        with pytest.raises(Refusal) as excinfo:
+            run(handler, rule, draft, context)
+        assert excinfo.value.code is RefusalCode.NO_DETECTION
 
     def test_username_combined_with_address_is_refused(
         self, draft: RuleDraft, context

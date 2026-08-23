@@ -202,6 +202,9 @@ def handle_blacklist(
         if not tracks & _ADDRESS_TRACKS:
             # by_username, or tokens the engine does not act on: the denylist
             # processor matches IP addresses only, so this option changes nothing.
+            # Verified against the engine, where blacklist_flag is set only
+            # inside the four recognised direction branches, so routing never
+            # consults the denylist and the rule fires on its other conditions.
             draft.degrade(
                 Degradation(
                     code=DegradationCode.DENYLIST_USERNAME_INERT,
@@ -214,6 +217,28 @@ def handle_blacklist(
                 )
             )
             continue
+        if tracks == {"all"} and not resolver.positions:
+            # `all` scans the address cache Parse_IP fills, and engine.c fills
+            # it only for a rule that declares a position. With none declared
+            # the cache is empty, so nothing is ever found.
+            #
+            # This is *not* the by_username case. There the direction is
+            # unrecognised, blacklist_flag stays clear and routing skips the
+            # denylist entirely, so the rule fires on its other conditions.
+            # Here the flag is set, the lookup fails, and routing rejects the
+            # event: the rule can never alert. Measured both ways against the
+            # engine. Dropping the option would emit a rule that fires where
+            # Sagan is silent.
+            raise Refusal(
+                code=RefusalCode.NO_DETECTION,
+                detail=(
+                    "blacklist tracks all but the rule declares no "
+                    "parse_src_ip or parse_dst_ip, so the engine's address "
+                    "cache stays empty, the denylist lookup never matches and "
+                    "the rule cannot alert in Sagan either"
+                ),
+                keywords=("blacklist",),
+            )
         _emit_match(
             rule,
             draft,
@@ -408,9 +433,34 @@ def handle_zeek_intel(
                 continue
             tracks = _tracks(option.value) & _ADDRESS_TRACKS
             if not tracks:
+                # Not "unrecognised": the engine accepts domain, file_hash, url,
+                # software, email, user_name, file_name and cert_hash, and each
+                # sets zeekintel_flag, so the rule really is filtered on that
+                # indicator type rather than left inert. Checked against the
+                # engine: a rule tracking `domain` loads and does not fire on an
+                # address the feed lists. The bundled enrichment carries address
+                # indicators only, so there is nothing to match those against.
                 raise Refusal(
                     code=RefusalCode.EXTERNAL_ENRICHMENT,
-                    detail=f"unrecognised {keyword} tracking: {option.value!r}",
+                    detail=(
+                        f"{keyword} tracks a non-address indicator "
+                        f"({option.value!r}); the bundled enrichment carries "
+                        f"address indicators only"
+                    ),
+                    keywords=(keyword,),
+                )
+            if tracks == {"all"} and not resolver.positions:
+                # Same cache dependency as blacklist, and the same consequence:
+                # the flag is set, the lookup finds nothing, routing rejects the
+                # event. Measured on both keywords.
+                raise Refusal(
+                    code=RefusalCode.NO_DETECTION,
+                    detail=(
+                        f"{keyword} tracks all but the rule declares no "
+                        f"parse_src_ip or parse_dst_ip, so the engine's address "
+                        f"cache stays empty, the feed lookup never matches and "
+                        f"the rule cannot alert in Sagan either"
+                    ),
                     keywords=(keyword,),
                 )
             _emit_match(

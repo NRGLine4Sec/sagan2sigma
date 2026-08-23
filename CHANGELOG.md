@@ -6,6 +6,27 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+
+- `blacklist: all` and `zeek-intel: all` converted into a match over every
+  address position even when the rule declared none. The engine scans the
+  address cache `Parse_IP` fills, and it fills that cache only for a rule that
+  declares a position, so with none the lookup finds nothing, routing rejects
+  the event and the rule cannot alert at all. The converted rule fired where
+  Sagan is silent. Both now refuse with `E_NO_DETECTION`. This is the opposite
+  of the `by_username` case, where the direction is unrecognised, the flag
+  stays clear and routing skips the denylist entirely so the rule fires on its
+  other conditions: that one is still dropped as inert. Both behaviours were
+  measured against a running engine, and confusing them is what made the first
+  attempt at this fix wrong in the noisier direction.
+- The refusal for a `zeek-intel` tracking the converter cannot reproduce called
+  the value unrecognised. The engine accepts `domain`, `file_hash`, `url`,
+  `software`, `email`, `user_name`, `file_name` and `cert_hash`, and each sets
+  the flag, so such a rule really is filtered on that indicator type rather
+  than left inert: a rule tracking `domain` loads and does not fire on an
+  address the feed lists. The message now says the bundled enrichment carries
+  address indicators only.
+
 ### Added
 
 - `D_JSON_PCRE_ABSENT_KEY`, recording that Sagan treats a key the event does
