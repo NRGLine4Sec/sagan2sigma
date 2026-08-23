@@ -7,11 +7,11 @@
 | Rule files processed | 342 |
 | Active rules parsed | 10018 |
 | Commented-out rules skipped | 9441 |
-| Rules converted | 8677 (86.6%) |
-| Rules refused | 1341 (13.4%) |
+| Rules converted | 8676 (86.6%) |
+| Rules refused | 1342 (13.4%) |
 | Lines that failed to parse | 0 |
 | Synthetic rules added | 9 |
-| Sigma documents emitted | 9485 |
+| Sigma documents emitted | 9483 |
 | pySigma validation issues | 0 |
 | Output profile | `rsigma-syslog` |
 | Case policy | `faithful` |
@@ -25,7 +25,7 @@ logsource catalog. It answers which kinds of device caused trouble.
 | --- | ---: | ---: | ---: | ---: |
 | AWS | 534 | 101 | 84.1% | 534 |
 | Applications and web | 180 | 72 | 71.4% | 171 |
-| Azure and Microsoft 365 | 1340 | 407 | 76.7% | 547 |
+| Azure and Microsoft 365 | 1339 | 408 | 76.6% | 546 |
 | Endpoint and EDR | 982 | 58 | 94.4% | 975 |
 | Google Cloud | 66 | 10 | 86.8% | 60 |
 | Infrastructure | 189 | 25 | 88.3% | 189 |
@@ -50,6 +50,7 @@ logsource catalog. It answers which kinds of device caused trouble.
 | `E_STATE_ABSENCE` | 5 | 0.4% | The rule requires that an earlier event did NOT happen (xbits or flexbits isnotset). Sigma cannot express a negative correlation. |
 | `E_VAR_UNRESOLVED` | 4 | 0.3% | The rule references a sagan.yaml variable that was not supplied. Re-run with --sagan-yaml to resolve it. |
 | `E_NO_DETECTION` | 2 | 0.1% | The rule can never produce an alert: nothing is left to match on after conversion (it carried only side effects or metadata), or it carries a mandatory condition the engine can never satisfy, so it never fires in Sagan either. |
+| `E_PARSE` | 1 | 0.1% | The rule could not be parsed, or it uses a construct that Sagan itself would reject at load time. |
 
 ## Converted with semantic loss
 
@@ -65,7 +66,7 @@ reproduced. They are worth reviewing before the ruleset goes live.
 | `D_PASS_SHORT_CIRCUIT` | 513 | The rule used the pass action. In Sagan a matching pass rule still emits an alert (Send_Alert runs before the pass check) and then stops evaluating the remaining signatures for that event. The detection is converted faithfully; only the short-circuit, the suppression of other rules on the same event, is not reproduced, since Sigma evaluates every rule independently. | `5016065`, `5016066`, `5016067`, `5016068`, `5016069` |
 | `D_GROUPBY_SYSLOG_HOST` | 386 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
 | `D_SIDE_EFFECT_DROPPED` | 232 | Engine-specific side effect (external, email, dynamic_load, unset) with no Sigma equivalent. | `5008539`, `5003022`, `5003023`, `5002959`, `5002960` |
-| `D_THRESHOLD_LIMIT` | 146 | threshold type limit caps alert volume, not detection. Sigma has no equivalent, so the constraint is dropped. | `5017933`, `5008570`, `5008760`, `5009316`, `5009317` |
+| `D_THRESHOLD_LIMIT` | 145 | threshold type limit caps alert volume, not detection. Sigma has no equivalent, so the constraint is dropped. | `5017933`, `5008570`, `5009316`, `5009317`, `5009318` |
 | `D_APPEND_PROGRAM` | 74 | append_program makes Sagan append the program field to the message before matching. The converted rule searches the message alone. | `5000419`, `5000470`, `5000489`, `5000519`, `5000521` |
 | `D_XBIT_SET_DROPPED` | 64 | The rule set or tested an xbit that no converted rule consumes. The state link is lost. | `5009285`, `5009290`, `5007210`, `5007211`, `5005994` |
 | `D_XBIT_ISSET_SYNTHETIC` | 19 | The state correlation was rebuilt through a synthetic aggregate rule gathering every rule that sets the bit. | `5014091`, `5008539`, `5009793`, `5015226`, `5014479` |
@@ -1391,5 +1392,18 @@ The rule can never produce an alert: nothing is left to match on after conversio
 | --- | --- | --- | --- | --- | --- |
 | `5002387` | `vsftpd-geoip.rules` | Applications and web | [VSFTPD-GEOIP] Authentication successful from outside HOME_COUNTRY | `country_code` | country_code tracks by_src but the rule gives src_ip no source the engine accepts (no parse_src_ip / parse_dst_ip, no json_map binding, no normalize), so ip_src_is_valid is never s |
 | `5002388` | `vsftpd-geoip.rules` | Applications and web | [VSFTPD-GEOIP] File uploaded from outside HOME_COUNTRY | `country_code` | country_code tracks by_src but the rule gives src_ip no source the engine accepts (no parse_src_ip / parse_dst_ip, no json_map binding, no normalize), so ip_src_is_valid is never s |
+
+</details>
+
+### `E_PARSE` (1 rules)
+
+The rule could not be parsed, or it uses a construct that Sagan itself would reject at load time.
+
+<details>
+<summary>Show the 1 refused rules</summary>
+
+| SID | Source file | Family | Title | Keywords | Detail |
+| --- | --- | --- | --- | --- | --- |
+| `5008760` | `azureEventHub_windows-malware.rules` | Azure and Microsoft 365 | [WINDOWS-MALWARE] Suspicious RDPV.exe detected | `after` | after declares no tracking key the engine recognises ('by_tag'); Sagan rejects the rule at load time |
 
 </details>

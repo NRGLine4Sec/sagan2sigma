@@ -7,11 +7,11 @@
 | Rule files processed | 342 |
 | Active rules parsed | 10018 |
 | Commented-out rules skipped | 9441 |
-| Rules converted | 9426 (94.1%) |
-| Rules refused | 592 (5.9%) |
+| Rules converted | 9425 (94.1%) |
+| Rules refused | 593 (5.9%) |
 | Lines that failed to parse | 0 |
 | Synthetic rules added | 18 |
-| Sigma documents emitted | 10574 |
+| Sigma documents emitted | 10572 |
 | pySigma validation issues | 0 |
 | Output profile | `vector-enriched` |
 | Case policy | `faithful` |
@@ -25,7 +25,7 @@ logsource catalog. It answers which kinds of device caused trouble.
 | --- | ---: | ---: | ---: | ---: |
 | AWS | 634 | 1 | 99.8% | 634 |
 | Applications and web | 235 | 17 | 93.3% | 226 |
-| Azure and Microsoft 365 | 1447 | 300 | 82.8% | 654 |
+| Azure and Microsoft 365 | 1446 | 301 | 82.8% | 653 |
 | Endpoint and EDR | 1024 | 16 | 98.5% | 1017 |
 | Google Cloud | 76 | 0 | 100.0% | 70 |
 | Infrastructure | 210 | 4 | 98.1% | 210 |
@@ -41,14 +41,14 @@ logsource catalog. It answers which kinds of device caused trouble.
 
 | Code | Rules | Share | Meaning |
 | --- | ---: | ---: | --- |
-| `E_EXTERNAL_ENRICHMENT` | 322 | 54.4% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
-| `E_VAR_UNRESOLVED` | 165 | 27.9% | The rule references a sagan.yaml variable that was not supplied. Re-run with --sagan-yaml to resolve it. |
+| `E_EXTERNAL_ENRICHMENT` | 322 | 54.3% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
+| `E_VAR_UNRESOLVED` | 165 | 27.8% | The rule references a sagan.yaml variable that was not supplied. Re-run with --sagan-yaml to resolve it. |
 | `E_PCRE_UNSUPPORTED` | 41 | 6.9% | The regular expression uses a PCRE construct the Rust engine cannot express and the converter cannot safely rewrite (recursion, look-around, back-references, control verbs). Recoverable constructs (numbered subroutines, literal braces, the whole-string negation idiom, inert flags) are rewritten instead of refused. |
-| `E_POSITIONAL` | 40 | 6.8% | The rule constrains where a pattern sits in the log line with a non-zero offset, depth or distance. Sigma string modifiers cannot express a byte position, so no faithful translation exists. A zero-valued positional is a no-op in the Sagan engine and is converted. |
+| `E_POSITIONAL` | 40 | 6.7% | The rule constrains where a pattern sits in the log line with a non-zero offset, depth or distance. Sigma string modifiers cannot express a byte position, so no faithful translation exists. A zero-valued positional is a no-op in the Sagan engine and is converted. |
 | `E_STATE_ABSENCE` | 10 | 1.7% | The rule requires that an earlier event did NOT happen (xbits or flexbits isnotset). Sigma cannot express a negative correlation. |
-| `E_GROUPBY_UNRESOLVED` | 8 | 1.4% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
+| `E_GROUPBY_UNRESOLVED` | 8 | 1.3% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
 | `E_NO_DETECTION` | 5 | 0.8% | The rule can never produce an alert: nothing is left to match on after conversion (it carried only side effects or metadata), or it carries a mandatory condition the engine can never satisfy, so it never fires in Sagan either. |
-| `E_PARSE` | 1 | 0.2% | The rule could not be parsed, or it uses a construct that Sagan itself would reject at load time. |
+| `E_PARSE` | 2 | 0.3% | The rule could not be parsed, or it uses a construct that Sagan itself would reject at load time. |
 
 ## Converted with semantic loss
 
@@ -65,7 +65,7 @@ reproduced. They are worth reviewing before the ruleset goes live.
 | `D_GROUPBY_SYSLOG_HOST` | 387 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
 | `D_POSITIONAL_IP_FIELD` | 286 | The group-by key comes from the bundled VRL transform rather than from the log itself. The correlation only works if that transform runs in the ingestion pipeline. | `5002942`, `5015097`, `5014021`, `5014177`, `5008654` |
 | `D_SIDE_EFFECT_DROPPED` | 232 | Engine-specific side effect (external, email, dynamic_load, unset) with no Sigma equivalent. | `5008539`, `5003022`, `5003023`, `5002959`, `5002960` |
-| `D_THRESHOLD_LIMIT` | 170 | threshold type limit caps alert volume, not detection. Sigma has no equivalent, so the constraint is dropped. | `5017933`, `5008570`, `5008760`, `5009316`, `5009317` |
+| `D_THRESHOLD_LIMIT` | 169 | threshold type limit caps alert volume, not detection. Sigma has no equivalent, so the constraint is dropped. | `5017933`, `5008570`, `5009316`, `5009317`, `5009318` |
 | `D_XBIT_ISSET_SYNTHETIC` | 154 | The state correlation was rebuilt through a synthetic aggregate rule gathering every rule that sets the bit. | `5014084`, `5014091`, `5008539`, `5008654`, `5008655` |
 | `D_BLUEDOT_SUBSTITUTION` | 134 | bluedot queries Quadrant's Bluedot threat-intelligence API, which is a closed commercial source that cannot be redistributed. This conversion deliberately SUBSTITUTES it: the rule matches the parsed address against open-source feeds you supply, one per Bluedot category (Tor, Proxy, Malicious, Honeypot), so it fires on your feed's addresses, not on Bluedot's. This is the project's one accepted break from faithful conversion, taken because a bluedot rule that is not converted can never fire under RSigma at all, whereas a substituted one keeps the detection intent. Fidelity varies by category: Tor is near-authoritative (the Tor Project exit list is the same public ground truth Bluedot derives from); Malicious, Proxy and Honeypot depend entirely on the feed you choose and will diverge from Bluedot's verdicts. Only the address (ip_reputation) lookup is reproduced; hash and URL lookups are still refused. | `5005726`, `5005727`, `5005728`, `5005729`, `5005730` |
 | `D_APPEND_PROGRAM` | 117 | append_program makes Sagan append the program field to the message before matching. The converted rule searches the message alone. | `5005782`, `5005783`, `5005784`, `5005785`, `5005787` |
@@ -76,6 +76,7 @@ reproduced. They are worth reviewing before the ruleset goes live.
 | `D_DROP_ACTION` | 20 | The rule used the drop action. Sigma has no action concept; it was converted as a normal detection rule. | `5000102`, `5000103`, `5000113`, `5000193`, `5001592` |
 | `D_AFTER_BY_STRING_INERT` | 5 | after tracked by_string, which that parser never recognises: it tests an option token strtok_r has already truncated to 'track', so the branch is dead. Sagan groups on the remaining keys only, and rejects the rule outright when by_string is the only key. Confirmed against a locally built engine. threshold is unaffected: its parser tests the intact token, so there by_string really is a synonym for by_username. | `5015138`, `5015139`, `5015148`, `5015149`, `5014547` |
 | `D_DENYLIST_USERNAME_INERT` | 4 | The blacklist keyword tracked by_username, which the engine's denylist processor ignores: it matches IP addresses only (src/processors/blacklist.c), and the rule parser sets no flag for by_username (src/rules.c), so the option is inert. It is dropped and the rest of the rule is converted, exactly as the engine evaluates it. | `5008573`, `5008574`, `5008575`, `5008578` |
+| `D_TRACK_KEY_INERT` | 4 | The rule tracks by a key the engine's parser does not recognise. after compares each &-separated token with strcmp, so a near miss like by_user (not by_username) or a key with no branch at all (by_tag, by_hostname) sets no method and contributes nothing to the counter key. Sagan groups on the remaining keys only. Confirmed against a locally built engine. | `5017890`, `5017891`, `5017892`, `5017897` |
 | `D_ALERT_TIME_EVENT_CLOCK` | 3 | alert_time matches against weekday and hour-of-day fields the bundled Vector time transform derives from the event timestamp. Sagan evaluates the window against the wall clock at processing time, not the event's own time; the two coincide in near-real-time ingestion. The comparison uses the timezone Vector formats in, which must match the Sagan host's local time for the window to align. | `9870022`, `9870018`, `9870026` |
 
 ## pySigma validation
@@ -760,15 +761,16 @@ The rule can never produce an alert: nothing is left to match on after conversio
 
 </details>
 
-### `E_PARSE` (1 rules)
+### `E_PARSE` (2 rules)
 
 The rule could not be parsed, or it uses a construct that Sagan itself would reject at load time.
 
 <details>
-<summary>Show the 1 refused rules</summary>
+<summary>Show the 2 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
 | `9870101` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [EXPERIMENTAL][AZURE-EVENTHUB-AD] Non-Interactive SignIn - Possible AiTM Session Theft via | `json_meta_content` | unparsable json_meta_content arguments: '!".properties".deviceDetail",Azure\|20\|AD\|20\|joined,Azure\|20\|AD\|20\|Registered,Hybrid\|20\|Azure\|20\|AD\|20\|joined' |
+| `5008760` | `azureEventHub_windows-malware.rules` | Azure and Microsoft 365 | [WINDOWS-MALWARE] Suspicious RDPV.exe detected | `after` | after declares no tracking key the engine recognises ('by_tag'); Sagan rejects the rule at load time |
 
 </details>
