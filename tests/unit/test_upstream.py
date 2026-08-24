@@ -40,6 +40,15 @@ class TestWillNotLoad:
         raw = 'msg:"t"; content:"x"; xbits: toggle,b,track ip_src; sid:1;'
         assert DefectCode.WILL_NOT_LOAD in codes(raw)
 
+    def test_non_hex_after_an_unterminated_pipe(self) -> None:
+        """Validate_HEX rejects the pair and aborts the load.
+
+        Measured: `content:"al|pha"` makes the engine exit 1 with
+        `Invalid 'ph' Hex detected`.
+        """
+        raw = 'msg:"t"; content:"al|pha"; sid:1;'
+        assert DefectCode.WILL_NOT_LOAD in codes(raw)
+
     def test_by_string_alone_is_not_flagged(self) -> None:
         """by_string is inert under after but counts toward validity.
 
@@ -99,6 +108,59 @@ class TestCannotMatch:
         """
         raw = f'msg:"t"; json_content:".{key}","v"; sid:1;'
         assert (DefectCode.CANNOT_MATCH in codes(raw)) is flagged
+
+
+class TestUnterminatedHex:
+    """A `|` that opens a hex sequence and never closes it.
+
+    Every row here was measured on a reduced rule against a locally built
+    Sagan, because the outcome is not guessable from the syntax: two of the
+    shapes are harmless and the rest are not.
+    """
+
+    @pytest.mark.parametrize(
+        ("value", "flagged"),
+        [
+            ("|7c|DetectionSummaryEvent|4", True),  # sid 5004756, as it ships
+            ("|7c|DetectionSummaryEvent|7c|4", False),  # the fix
+            ("alpha|", False),  # a trailing pipe adds nothing
+            ("alpha|41", False),  # two digits land on the end and convert
+            ("alpha|412", True),
+            ("alpha|4142", True),
+            ("|7c|plain|7c|", False),
+        ],
+    )
+    def test_content(self, value: str, flagged: bool) -> None:
+        raw = f'msg:"t"; content:"{value}"; sid:1;'
+        assert (DefectCode.CANNOT_MATCH in codes(raw)) is flagged
+
+    def test_the_negated_form_is_flagged_too(self) -> None:
+        """A dead negation is worse: the rule matches everything instead."""
+        raw = 'msg:"t"; content:"x"; content:!"|7c|Event|4"; sid:1;'
+        assert DefectCode.CANNOT_MATCH in codes(raw)
+
+    def test_a_pcre_value_on_the_same_line_is_not_examined(self) -> None:
+        """The pcre option does not go through Content_Pipe.
+
+        This is the mistake worth guarding: reading every quoted string after a
+        keyword instead of that keyword's own argument turns every `(a|b)` in a
+        neighbouring pcre into a false positive.
+        """
+        raw = 'msg:"t"; content:"ok"; pcre:"/dstport=(80|443)[^\\d]/"; sid:1;'
+        assert codes(raw) == set()
+
+    def test_meta_content_list_is_examined_whole(self) -> None:
+        """The whole comma-separated list is expanded before it is split.
+
+        Both rows were measured. The comma matters: mid-list the pair is `4,`,
+        which Validate_HEX rejects and the load aborts, while at the end of the
+        list the pair is `4` alone and the rule loads and matches nothing.
+        """
+        mid = 'msg:"t"; content:"x"; meta_content:"%sagan%",aaa,bb|4,ccc; sid:1;'
+        assert DefectCode.WILL_NOT_LOAD in codes(mid)
+
+        end = 'msg:"t"; content:"x"; meta_content:"%sagan%",aaa,bbb|4; sid:1;'
+        assert DefectCode.CANNOT_MATCH in codes(end)
 
 
 class TestWrongGrouping:

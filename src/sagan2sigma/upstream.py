@@ -4,18 +4,20 @@ Every other part of this tool asks whether the *conversion* is faithful. This
 one asks something the conversion cannot: whether the rule it started from
 works at all in the engine it was written for.
 
-The question is not academic. 749 corpus rules fall into the two silent
-categories below, and a migration that converts them faithfully inherits rules
-that never fired. Someone comparing the converted output against a running
-Sagan would find them agreeing perfectly, both silent, and conclude the
-conversion was sound.
+The question is not academic. 752 corpus rules fall into the silent category
+below, and a migration that converts them faithfully inherits rules that never
+fired. Someone comparing the converted output against a running Sagan would find
+them agreeing perfectly, both silent, and conclude the conversion was sound.
 
 Each detector below corresponds to an engine behaviour established by running a
 locally built Sagan, not by reading it. The comments name what was measured, so
 that a reader can disagree with the conclusion rather than with an assertion.
+That matters most where the syntax looks decisive and is not: an unbalanced `|`
+is harmless in two of its shapes and fatal in the rest, and only the engine
+says which is which.
 
-Three of the five have a fix upstream, proposed as pull requests against
-`quadrantsec/sagan-rules`. `JSON_KEY_TOO_LONG` does not: the key names come from
+Four of the six have a fix upstream, proposed as pull requests against
+`quadrantsec/sagan-rules`. The JSON key length does not: the key names come from
 the log formats, so only the engine can fix it.
 
 What this deliberately does **not** do is judge intent. A rule can load, fire,
@@ -68,8 +70,80 @@ AFTER_INERT_BUT_COUNTED = frozenset({"by_string"})
 #: was never stored. Measured to the character: 30 matches, 31 does not.
 MAX_JSON_KEY = 30
 
+#: The options whose values Sagan expands with `Content_Pipe`, turning `|3a|`
+#: into a byte. `src/rules.c` calls it from lines 1942 and 1962 for
+#: `meta_content`, 2202 for `json_content`, 2500 for `json_meta_content` and
+#: 2828 for `content`.
+PIPE_EXPANDED = frozenset(
+    {"content", "meta_content", "json_content", "json_meta_content"}
+)
+
+_HEX = frozenset("0123456789abcdefABCDEF")
 _TRACK = re.compile(r"track\s+([a-z_&]+)", re.I)
 _JSON_KEY = re.compile(r'json_(?:meta_)?content\s*:\s*!?\s*"\.([A-Za-z0-9_.\[\]@-]+)"')
+_QUOTED = re.compile(r'"([^"]*)"')
+
+
+def _piped_values(rule: SaganRule) -> list[tuple[str, str]]:
+    """Every string handed to `Content_Pipe`, with the option carrying it."""
+    values: list[tuple[str, str]] = []
+    for option in rule.options:
+        if option.name not in PIPE_EXPANDED or not option.value:
+            continue
+        if option.name == "meta_content":
+            # The quoted helper is expanded on its own, and the whole
+            # comma-separated remainder is expanded as one string *before* it
+            # is split, so an unterminated pipe anywhere in the list counts.
+            helper, comma, rest = option.value.partition(",")
+            quoted = _QUOTED.search(helper)
+            if quoted:
+                values.append((option.name, quoted.group(1)))
+            if comma:
+                values.append((option.name, rest))
+        else:
+            values.extend((option.name, v) for v in _QUOTED.findall(option.value))
+    return values
+
+
+def _unterminated_hex(value: str) -> tuple[DefectCode, str] | None:
+    """How the engine ends up reading a value whose hex section never closes.
+
+    `Content_Pipe` sets a flag on the first `|` and clears it only on finding a
+    closing `|` three characters later. Until then it takes the next two
+    characters as a hex pair on every pass, with nothing checking that the
+    sequence was closed before the value ran out. What that produces depends on
+    what is left, and only one of the outcomes is loud:
+
+    ==================  ==========================================
+    ``alpha|``          matches; the trailing pipe adds nothing
+    ``|alpha``          ruleset refused, "Invalid 'al' Hex detected"
+    ``alpha|4``         loads, matches nothing, 0x04 appended
+    ``alpha|41``        matches ``alphaA``; the pair lands on the end
+    ``alpha|412``       loads, matches nothing
+    ``alpha|4142``      loads, matches nothing
+    ==================  ==========================================
+
+    Measured on a locally built Sagan, one reduced rule per row. The two benign
+    rows are why this cannot simply flag an odd number of pipes.
+    """
+    if value.count("|") % 2 == 0:
+        return None
+    tail = value.rsplit("|", 1)[1]
+    if tail == "":
+        return None
+    if not all(c in _HEX for c in tail[:2]):
+        return (
+            DefectCode.WILL_NOT_LOAD,
+            f"the hex sequence opened in {value!r} is never closed, and "
+            f"{tail[:2]!r} is not hex; Validate_HEX aborts the load",
+        )
+    if len(tail) == 2:
+        return None
+    return (
+        DefectCode.CANNOT_MATCH,
+        f"the hex sequence opened in {value!r} is never closed, so the parser "
+        f"converts {tail!r} and appends a control byte no message carries",
+    )
 
 
 def _after_keys(rule: SaganRule) -> list[set[str]]:
@@ -157,6 +231,18 @@ def inspect(rule: SaganRule) -> list[UpstreamDefect]:
                 )
             )
             break
+
+    # An unterminated hex sequence lands in either category above depending on
+    # what follows the pipe, so it is judged once and filed by its own verdict.
+    for keyword, value in _piped_values(rule):
+        verdict = _unterminated_hex(value)
+        if verdict is None:
+            continue
+        code, detail = verdict
+        found.append(
+            UpstreamDefect(rule.sid, rule.source_file, code, f"{keyword}: {detail}")
+        )
+        break
 
     # --- the rule loads, matches, and groups on the wrong thing --------------
     for keys in _after_keys(rule):
