@@ -427,10 +427,24 @@ class TestCorrelations:
     def test_state_correlation_references_the_aggregate(
         self, result: ConversionResult
     ) -> None:
+        """By id, and the ids have to be the ones the batch actually declares.
+
+        RSigma 0.21.0 resolves a `rules:` entry by name for `event_count` only;
+        for temporal correlations it records hits under the rule id, so a name
+        reference matches nothing and the correlation never fires. Asserting the
+        ids here keeps that decision visible: the spec allows either form, and
+        this is the one place the tool departs from names.
+        """
         converted = next(item for item in result.converted if item.sid == "9000011")
         correlation = converted.documents[1]["correlation"]
+        aggregate = next(
+            item for item in result.synthetic_rules if item.documents[0].get("name")
+        )
         assert correlation["type"] == "temporal_ordered"
-        assert correlation["rules"] == ["sagan_xbit_brute_force", "sagan_9000011"]
+        assert correlation["rules"] == [
+            aggregate.documents[0]["id"],
+            converted.documents[0]["id"],
+        ]
         assert correlation["timespan"] == "6h"
 
     def test_state_window_comes_from_the_setter_expiry(

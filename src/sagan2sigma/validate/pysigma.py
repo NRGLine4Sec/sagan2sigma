@@ -55,11 +55,16 @@ def validate_all(documents: list[dict[str, Any]]) -> list[ValidationIssue]:
 def resolve_references(documents: list[dict[str, Any]]) -> list[ValidationIssue]:
     """Check that every correlation resolves the rules it references.
 
-    A correlation pointing at a missing ``name:`` is syntactically valid but
-    functionally dead. This catches reference breakage introduced by partial
-    filtering of the corpus.
+    A correlation pointing at a reference nothing declares is syntactically
+    valid but functionally dead. This catches reference breakage introduced by
+    partial filtering of the corpus.
+
+    Both forms count. The Sigma spec lets ``rules:`` name a rule by ``name:`` or
+    by ``id:``, and this tool emits ids for temporal correlations, so resolving
+    names alone reported every one of them as unresolved.
     """
     names = {doc["name"] for doc in documents if "name" in doc}
+    names |= {doc["id"] for doc in documents if "id" in doc}
     issues: list[ValidationIssue] = []
     for document in documents:
         correlation = document.get("correlation")

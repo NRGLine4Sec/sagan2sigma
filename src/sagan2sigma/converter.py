@@ -21,6 +21,7 @@ from .emit.sigma import (
     build_rule_document,
     build_xbit_aggregate,
     rule_name,
+    stable_uuid,
 )
 from .errors import Degradation, DegradationCode, Refusal, RefusalCode
 from .mapping.context import Context
@@ -458,7 +459,17 @@ class Converter:
                     correlation_type="temporal_ordered",
                     group_by=draft.bit_group_by or (self.context.syslog_host_field,),
                     timespan=timespan,
-                    referenced_rules=(aggregate["name"], rule_name(sid)),
+                    # By id, not by name. Both are legal references in the
+                    # Sigma correlation spec, and this tool uses names
+                    # everywhere else, but RSigma 0.21.0 resolves a name only
+                    # for `event_count`: for `temporal` and `temporal_ordered`
+                    # a name reference silently matches nothing, so the
+                    # correlation never fires. Measured on one hand-written
+                    # pair of rules, changing only the reference style:
+                    # event_count fires either way, temporal_ordered fires by
+                    # id and never by name. Revert this once RSigma resolves
+                    # names for temporal correlations.
+                    referenced_rules=(aggregate["id"], stable_uuid("rule", sid)),
                     title_suffix=f"correlated with {bit}",
                     description=(
                         f"Reconstruction of the Sagan '{bit}' bit. The window "

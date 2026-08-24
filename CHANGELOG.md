@@ -29,6 +29,26 @@ All notable changes to this project are documented here. The format follows
 
 ### Fixed
 
+- Every rebuilt `xbits` correlation was inert. RSigma 0.21.0 resolves a
+  `rules:` entry by name for `event_count` only; for `temporal` and
+  `temporal_ordered` it records each hit under the rule id, so a name reference
+  matches nothing and the correlation never fires, without a warning. The Sigma
+  spec allows either form, so the temporal correlations now reference ids. This
+  is a workaround for an engine defect, kept to the one place that needs it and
+  marked for reversal; it is reported upstream in
+  `rsigma-issues/01-temporal-correlation-rule-names`. Measured on a hand-written
+  pair of rules where only the reference style changes, then on the corpus: 9 of
+  the 14 judgeable correlations go from never firing to firing.
+- A correlation falling back to the syslog sender grouped on `hostname` even
+  when the rule targets JSON events, for which RSigma exposes the envelope as
+  `syslog_hostname` and no unprefixed `hostname` exists at all. No two events
+  ever shared a group key, so the correlation could not pair them. The fallback
+  now goes through the field resolver, which already knows the event shape.
+  4 correlations were affected.
+- `resolve_references` checked correlation references against `name:` only, so
+  the id references above would have been reported as pointing outside the
+  batch. It accepts either form now, as the spec does.
+
 - A negated `json_content` or `json_meta_content` fired on events that do not
   carry the key at all. Sagan walks the event's keys and can only satisfy a
   condition on a key it finds, so a missing key fails the rule; Sigma reads

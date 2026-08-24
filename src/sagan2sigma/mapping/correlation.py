@@ -244,7 +244,14 @@ def resolve_group_key(
                 ),
             )
         )
-        return context.syslog_host_field
+        # Through the resolver rather than the profile directly: once the body
+        # is JSON, RSigma exposes the envelope under prefixed names and the
+        # unprefixed `hostname` does not exist on the event at all. Grouping on
+        # it means no two events ever share a key, so the correlation can never
+        # pair them. Measured on sid 5014047, whose events carry
+        # `syslog_hostname`: both referenced rules fire and the correlation
+        # does not.
+        return resolver.envelope("syslog_host")
 
     # Any other internal value, chiefly username. A profile that declares the
     # field takes it; otherwise liblognorm is the only source and there is
