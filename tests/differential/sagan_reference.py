@@ -343,7 +343,15 @@ class SaganEvaluator:
                 nocase="json_nocase" in flags,
                 substring=bool(flags & {"json_contains", "json_strstr"}),
             )
-            if present == (parsed.group("neg") == "!"):
+            negated = parsed.group("neg") == "!"
+            if negated and actual is None:
+                # The engine walks the event's keys and can only satisfy a
+                # condition on a key it finds, so a missing key fails the rule
+                # even when the condition is negated. This model had the
+                # opposite, Sigma-like reading until the engine-backed
+                # differential measured it.
+                return False
+            if present == negated:
                 return False
         return True
 
@@ -370,7 +378,12 @@ class SaganEvaluator:
                 nocase="json_meta_nocase" in flags,
                 substring=bool(flags & {"json_meta_contains", "json_meta_strstr"}),
             )
-            if present == (parsed.group("neg") == "!"):
+            negated = parsed.group("neg") == "!"
+            if negated and actual is None:
+                # As for json_content: a key the event does not carry fails the
+                # rule, negated or not.
+                return False
+            if present == negated:
                 return False
         return True
 

@@ -105,6 +105,35 @@ def reject_base64(modifiers: frozenset[str], keyword: str) -> None:
         )
 
 
+def _require_key(draft: RuleDraft, key: str, keyword: str) -> None:
+    """A negated JSON condition also requires the key to be present.
+
+    Sagan and Sigma disagree on the empty case, and the disagreement is not
+    academic: 200 upstream rules carry a negated ``json_content`` or
+    ``json_meta_content``. The engine walks the event's keys and can only
+    satisfy the condition on a key it finds, so a missing key fails the rule;
+    Sigma treats ``not field: value`` as satisfied when the field is absent,
+    which is the broader reading.
+
+    Measured against a locally built engine on
+    ``json_content:".action","x"; json_content:!".type","pdf"``: no ``.type``
+    at all does not fire, ``.type`` holding something else fires, and ``.type``
+    holding the forbidden value does not. Emitting an ``exists`` guard beside
+    the negation reproduces all three.
+
+    Found by the engine-backed differential, which is the first thing in this
+    project to judge the Sagan side by running Sagan.
+    """
+    draft.add(
+        Predicate(
+            field=key,
+            modifiers=("exists",),
+            values=(True,),
+            origin=keyword,
+        )
+    )
+
+
 def _scalar(text: str, contains: bool) -> Scalar:
     """Coerce a JSON value, escaping wildcards for substring searches.
 
@@ -159,6 +188,8 @@ def handle_json_content(
         text = decode_hex(rest.strip().strip('"'))
         values = (_scalar(text, contains),)
 
+        if negated:
+            _require_key(draft, key, "json_content")
         draft.add(
             Predicate(
                 field=key,
@@ -202,6 +233,8 @@ def handle_json_meta_content(
             )
 
         values = tuple(_scalar(value, contains) for value in raw_values)
+        if negated:
+            _require_key(draft, key, "json_meta_content")
         draft.add(
             Predicate(
                 field=key,

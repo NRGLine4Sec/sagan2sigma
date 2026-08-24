@@ -522,6 +522,35 @@ the converter does not. Rules of this shape convert on their stated intent and
 will correlate where Sagan did not. Three upstream rules take their address
 from `parse_src_ip` or `normalize` and are affected.
 
+### Two engine limits make a rule search for something else
+
+Both were found by running the corpus through Sagan and RSigma side by side,
+and both have the same shape: the rule the engine runs is not the rule that was
+written, and nothing reports it.
+
+**A colon truncates a `meta_content` value.** The option's value is extracted
+with `strtok` on `":"`, so everything from the first colon onward is lost:
+`meta_content:"%sagan%",c:\program files\AVAST\` searches for `c`. Verified
+three ways, including on a message holding nothing but that letter. 734 corpus
+rules carry a Windows path this way. `content` is unaffected, extracting its
+value differently, so the two had to be checked apart rather than assumed
+alike; the corpus writes `|3a|` where it means a literal colon, which is the
+working form.
+
+**A JSON key path longer than 30 characters is truncated.** `JSON_MAX_KEY_SIZE`
+is 32 and the parser terminates the stored path early, so a rule naming a
+longer key never matches. Measured to the character: 30 matches, 31 does not,
+and nesting does not change it because the whole path counts. 14 corpus rules
+name such a key, one of them a 50-character CloudTrail path.
+
+Neither is reproduced. Emitting what Sagan actually searches for would mean a
+detection on the single letter `c`, or a match on a truncated key name, and
+shipping that would be worse than the divergence. Nor are those rules refused,
+which would drop 748 rules for a defect that is upstream rather than here. They
+convert on their written intent, and the divergence is recorded here so that a
+reader comparing behaviour against a running Sagan is not surprised by it.
+Both are pinned in `checks/check_engine_limits.py` in the engine lab.
+
 ### Sagan's option tokenisation ignores quotes
 
 Sagan splits the option block with a plain `strtok_r(rulestring, ";", …)`,

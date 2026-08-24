@@ -8,6 +8,33 @@ All notable changes to this project are documented here. The format follows
 
 ### Fixed
 
+- A negated `json_content` or `json_meta_content` fired on events that do not
+  carry the key at all. Sagan walks the event's keys and can only satisfy a
+  condition on a key it finds, so a missing key fails the rule; Sigma reads
+  `not field: value` as satisfied when the field is absent, which is the
+  broader reading. Measured against a running engine on
+  `json_content:".action","x"; json_content:!".type","pdf"`: no `.type` does
+  not fire, `.type` holding something else fires, `.type` holding the forbidden
+  value does not. An `exists` guard beside the negation reproduces all three.
+  200 upstream rules carry such a condition, and 35 converted files change.
+- `tests/differential/sagan_reference.py` modelled the same wrong belief, which
+  is why the existing harness reported agreement on those rules. It now
+  requires the key to be present, as the engine does.
+
+### Changed
+
+- `docs/DESIGN-DECISIONS.md` records two engine limits that make a rule search
+  for something other than what it says, both found by running the corpus
+  through Sagan and RSigma side by side. A colon truncates a `meta_content`
+  value, so `c:\program files\AVAST\` searches for `c`, affecting 734 rules;
+  `content` is unaffected. And a JSON key path longer than 30 characters is
+  truncated, so a rule naming one never matches, affecting 14 rules. Neither is
+  reproduced and neither is refused, for reasons the document sets out; they
+  convert on their written intent and the divergence is now stated.
+
+
+### Fixed
+
 - `flexbits` setters lost their expiry. The two keywords write it differently
   and only the `xbits` form, `expire N`, was read; `flexbits` puts a bare number
   third, `flexbits: set, name, 532800`, and the engine rejects the rule without

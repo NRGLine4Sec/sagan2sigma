@@ -110,13 +110,15 @@ detection:
     syslog_appname|cased: cloudtrail.amazonaws.com
   selection_2:
     eventName|cased: CreateTrail
-  filter_3:
+  selection_3:
+    userIdentity.type|exists: true
+  filter_4:
     userIdentity.type|cased: AssumedRole
-  selection_4:
+  selection_5:
     awsRegion|cased:
       - us-east-1
       - eu-west-1
-  condition: selection_1 and selection_2 and selection_4 and not filter_3
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: low

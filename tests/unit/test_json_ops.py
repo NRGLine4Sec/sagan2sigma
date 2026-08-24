@@ -81,10 +81,21 @@ class TestJsonContent:
         run(handle_json_content, rule, draft, context)
         assert draft.predicates[0].values == ("404",)
 
-    def test_negation(self, draft: RuleDraft, context) -> None:
+    def test_negation_also_requires_the_key(self, draft: RuleDraft, context) -> None:
+        """Sagan can only satisfy a negated condition on a key it finds.
+
+        The engine walks the event's keys, so a missing key fails the rule,
+        while Sigma reads `not field: value` as satisfied when the field is
+        absent. Measured against a running engine, and the exists guard beside
+        the negation reproduces all three cases. 200 upstream rules carry one.
+        """
         rule = make_rule('msg:"t"; json_content:!".sni","www.example.com"; sid:1;')
         run(handle_json_content, rule, draft, context)
-        assert draft.predicates[0].negated
+        guard, negated = draft.predicates
+        assert guard.field == "sni"
+        assert guard.modifiers == ("exists",)
+        assert guard.rendered_value is True
+        assert negated.negated
 
     def test_decodes_hex_escapes(self, draft: RuleDraft, context) -> None:
         rule = make_rule('msg:"t"; json_content:".a","x|3a|y"; sid:1;')
@@ -111,10 +122,13 @@ class TestJsonMetaContent:
         run(handle_json_meta_content, rule, draft, context)
         assert draft.predicates[0].values == ("medium", "low")
 
-    def test_negation(self, draft: RuleDraft, context) -> None:
+    def test_negation_also_requires_the_key(self, draft: RuleDraft, context) -> None:
+        """As for json_content: the key has to exist for Sagan to be satisfied."""
         rule = make_rule('msg:"t"; json_meta_content:!".threat",low; sid:1;')
         run(handle_json_meta_content, rule, draft, context)
-        assert draft.predicates[0].negated
+        guard, negated = draft.predicates
+        assert guard.modifiers == ("exists",)
+        assert negated.negated
 
     def test_json_meta_contains(self, draft: RuleDraft, context) -> None:
         rule = make_rule(
