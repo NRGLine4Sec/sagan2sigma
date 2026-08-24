@@ -172,17 +172,27 @@ the converted rule. Tens of thousands of event evaluations, no disagreements.
 This is what caught the field-naming defect that silently broke a quarter of the
 corpus before release.
 
-Behind that reference evaluator sits a second line of checking. Reading Sagan's
-C is not the same as knowing what Sagan does, so the behaviours this converter
-depends on are pinned down by running a locally built engine and comparing.
-That exercise corrected three of them, each of which had made the converted
-rules noisier than the originals: `after: count N` alerted one event early
-across 970 correlations, `after: track by_string` grouped too finely, and
-`both` accepted a single address. The first had been documented one way and
-implemented the other since the project began. The verified behaviours now live
-in this repository as converter code, tests and design notes; the engine lab
-itself is kept outside it, since it needs a compiled binary and a hand-made
-GeoIP database that CI could only skip.
+That harness has a limit it states itself: the Sagan side is a reference
+implementation, so a misreading it shares with the converter survives both. It
+did. `after: count N` alerted an event early across 970 correlations while the
+harness reported perfect agreement, because the same belief shaped the model and
+the code.
+
+So behind it sits a second line of checking, which runs a locally built Sagan
+instead of modelling one. It judges 6,581 corpus rules, the difference being
+`pcre` and effective positional constructs that no model can decide, and it
+separately walks the 372 `after` correlations it can drive to their threshold,
+checking that each stays silent at N events and alerts at N+1. Both report no
+disagreement, and both were shown able to fail before being believed: with the
+old `gte: N` reinstated, the correlation check flags every rule.
+
+That exercise corrected a dozen behaviours the source reading had missed, most
+of them making the converted rules noisier than the originals. It also found
+limits in the engine that no converter can reproduce, which are recorded in
+`docs/DESIGN-DECISIONS.md` rather than imitated. The verified behaviours live in
+this repository as converter code, tests and design notes; the engine lab itself
+is kept outside it, since it needs a compiled binary and a hand-made GeoIP
+database that CI could only skip.
 
 The bundled VRL transforms are executed against a real Vector binary in CI, and
 their address extraction is checked case by case against the branches of

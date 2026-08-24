@@ -23,6 +23,12 @@ All notable changes to this project are documented here. The format follows
 
 ### Changed
 
+- The README no longer presents the Python differential harness as the whole of
+  the behavioural checking. That harness states its own limit, a misreading
+  shared between the model and the converter, and the limit was reached: the
+  `after` off-by-one across 970 correlations survived it. The engine-backed
+  differential that replaced the model is now described alongside it, with what
+  each covers.
 - `docs/DESIGN-DECISIONS.md` records two engine limits that make a rule search
   for something other than what it says, both found by running the corpus
   through Sagan and RSigma side by side. A colon truncates a `meta_content`
