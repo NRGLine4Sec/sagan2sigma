@@ -6,6 +6,20 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- A report section listing upstream rules that do not work in Sagan, and the
+  `sagan2sigma.upstream` module behind it. Every other part of this tool asks
+  whether the conversion is faithful; this asks whether the rule it started
+  from ever worked, which no comparison against a running Sagan can reveal,
+  because a dead rule and its faithful conversion agree by staying silent.
+  On the upstream corpus: 748 rules that load and can never fire, 1 that makes
+  the engine refuse to start, and 4 that fire while grouping on fewer keys than
+  they name. Each detector rests on an engine behaviour measured by execution,
+  and the module says which. Judging whether a working rule detects anything
+  useful is out of reach and stated as such.
+
+
 ### Fixed
 
 - A negated `json_content` or `json_meta_content` fired on events that do not

@@ -32,6 +32,8 @@ from .mapping.registry import BLOCKING, IGNORED, MODIFIERS, get_handler
 from .mapping.values import CasePolicy
 from .sagan.model import ParseFailure, SaganRule
 from .sagan.parser import iter_rule_files, parse_file
+from .upstream import UpstreamDefect
+from .upstream import inspect as inspect_upstream
 from .validate.pysigma import ValidationIssue, resolve_references, validate_document
 
 #: Maximum number of branches in a bit aggregate rule. Past this point the rule
@@ -86,6 +88,7 @@ class ConversionResult:
     disabled_rules: int = 0
     files_processed: int = 0
     unknown_keywords: dict[str, int] = field(default_factory=dict)
+    upstream_defects: list[UpstreamDefect] = field(default_factory=list)
 
     @property
     def documents(self) -> list[dict[str, Any]]:
@@ -285,6 +288,7 @@ class Converter:
                 result.parse_failures.extend(rule_file.failures)
 
                 for rule in rule_file.rules:
+                    result.upstream_defects.extend(inspect_upstream(rule))
                     entry = self.context.catalog.resolve(rule.source_file)
                     try:
                         draft = self.convert_rule(rule)

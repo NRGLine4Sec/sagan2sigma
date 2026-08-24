@@ -18,6 +18,7 @@ from collections import Counter, defaultdict
 from typing import TYPE_CHECKING
 
 from ..errors import DEGRADATION_HELP, REFUSAL_HELP, DegradationCode, RefusalCode
+from ..upstream import UpstreamDefect
 
 if TYPE_CHECKING:  # pragma: no cover
     from ..converter import ConversionResult, RefusedRule
@@ -266,6 +267,61 @@ def _validation(result: ConversionResult) -> list[str]:
     return lines
 
 
+def _upstream_defects(result: ConversionResult) -> list[str]:
+    """Rules that do not do what they say in Sagan, before any conversion.
+
+    This section answers a different question from the rest of the report.
+    Everywhere else the subject is what the conversion lost; here it is what
+    the original never had. A rule that cannot fire in Sagan converts into a
+    Sigma rule that may well fire, so the divergence runs the other way and no
+    comparison against a running Sagan would reveal it: both stay silent.
+
+    Each entry rests on an engine behaviour measured by execution. See
+    `sagan2sigma/upstream.py` for what was measured and how.
+    """
+    if not result.upstream_defects:
+        return []
+
+    by_code: dict[str, list[UpstreamDefect]] = defaultdict(list)
+    for defect in result.upstream_defects:
+        by_code[defect.code.value].append(defect)
+
+    lines = [
+        "## Upstream rules that do not work in Sagan",
+        "",
+        "These are defects in the rules as written, not in the conversion. They",
+        "are listed because a migration inherits them: the converted rule may",
+        "detect something the original never could, which looks like a",
+        "conversion error and is the opposite of one.",
+        "",
+        "| Code | Rules | What it means |",
+        "| --- | --- | --- |",
+    ]
+    meaning = {
+        "U_WILL_NOT_LOAD": "Sagan refuses the ruleset; the engine does not start",
+        "U_CANNOT_MATCH": "the rule loads and can never fire",
+        "U_WRONG_GROUPING": "the rule fires, but groups on fewer keys than it names",
+    }
+    for code in sorted(by_code):
+        lines.append(f"| `{code}` | {len(by_code[code])} | {meaning.get(code, '')} |")
+    lines.append("")
+
+    for code in sorted(by_code):
+        defects = by_code[code]
+        body = ["| SID | File | Detail |", "| --- | --- | --- |"]
+        for defect in sorted(defects, key=lambda d: d.sid)[:200]:
+            body.append(
+                f"| `{defect.sid}` | `{_escape(defect.source_file)}` "
+                f"| {_escape(defect.detail)} |"
+            )
+        if len(defects) > 200:
+            body.append("")
+            body.append(f"...and {len(defects) - 200} more.")
+        lines += _collapsible(f"<code>{code}</code> ({len(defects)} rules)", body)
+        lines.append("")
+    return lines
+
+
 def render(result: ConversionResult, profile: str = "?", case_policy: str = "?") -> str:
     """Render the full Markdown report."""
     sections: list[str] = []
@@ -275,6 +331,7 @@ def render(result: ConversionResult, profile: str = "?", case_policy: str = "?")
         sections += _by_refusal_code(result)
     sections += _degradations(result)
     sections += _unknown_keywords(result)
+    sections += _upstream_defects(result)
     sections += _validation(result)
     if result.refused:
         sections += _refusal_detail(result)
