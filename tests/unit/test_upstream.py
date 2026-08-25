@@ -10,11 +10,24 @@ from __future__ import annotations
 import pytest
 from tests.conftest import make_rule
 
+from sagan2sigma.sagan.parser import parse_rule
 from sagan2sigma.upstream import DefectCode, inspect
 
 
-def codes(raw: str) -> set[DefectCode]:
-    return {defect.code for defect in inspect(make_rule(raw))}
+def codes(
+    raw: str,
+    header: str = "alert any",
+    destination_port: str = "any",
+) -> set[DefectCode]:
+    """Defect codes for one rule, built from its options and header.
+
+    ``header`` carries the action and the protocol together, since the two
+    sit side by side in the rule and some detectors read the protocol.
+    """
+    if header == "alert any" and destination_port == "any":
+        return {defect.code for defect in inspect(make_rule(raw))}
+    line = f"{header} $EXTERNAL_NET any -> $HOME_NET {destination_port} ({raw})"
+    return {defect.code for defect in inspect(parse_rule(line, "test.rules", 1))}
 
 
 class TestWillNotLoad:
@@ -161,6 +174,97 @@ class TestUnterminatedHex:
 
         end = 'msg:"t"; content:"x"; meta_content:"%sagan%",aaa,bbb|4; sid:1;'
         assert DefectCode.CANNOT_MATCH in codes(end)
+
+
+class TestPunctuation:
+    """A forgotten `;` swallows the next option into a quoted argument."""
+
+    def test_content_missing_its_semicolon(self) -> None:
+        """Measured on the twelve web-attack rules: they match nothing at all."""
+        raw = 'msg:"t"; content:"index.php?system=" default_proto:tcp; sid:1;'
+        assert DefectCode.CANNOT_MATCH in codes(raw)
+
+    def test_program_missing_its_semicolon(self) -> None:
+        raw = (
+            'msg:"t"; content:"x"; '
+            "program: DigitalPersona* after: track by_src, count 5, seconds 300; sid:1;"
+        )
+        assert DefectCode.CANNOT_MATCH in codes(raw)
+
+    def test_a_doubled_opening_quote_is_harmless(self) -> None:
+        """`content:""text` looks broken and is not.
+
+        Between_Quotes lowers its flag on the second quote and raises it again
+        on the same character, so the value captured is the text that follows.
+        Measured: the rule alerts. Three corpus rules of this shape were first
+        reported as unloadable, which was Bluedot and dynamic_load in the same
+        files rather than the quotes; the prediction and the observation were
+        wrong together, which is why this case is pinned.
+        """
+        raw = 'msg:"t"; content:""established successfully; sid:1;'
+        assert codes(raw) == set()
+
+    def test_a_stray_quote_alone_is_harmless(self) -> None:
+        """A trailing bare quote is harmless, as sid 5007405 shows.
+
+        The distinction matters: flagging any trailing character reported it as
+        dead, and the engine disagreed.
+        """
+        raw = 'msg:"t"; content:"\xa0""; sid:1;'
+        assert codes(raw) == set()
+
+    def test_a_normal_content_is_clean(self) -> None:
+        raw = 'msg:"t"; content:"index.php?system="; default_proto:tcp; sid:1;'
+        assert codes(raw) == set()
+
+
+class TestHeaderConditions:
+    """Header fields the engine holds an event to, and those it does not."""
+
+    def test_tcp_header_without_default_proto(self) -> None:
+        """A syslog event defaults to udp, so tcp never matches."""
+        raw = 'msg:"t"; content:"x"; sid:1;'
+        assert DefectCode.CANNOT_MATCH in codes(raw, header="alert tcp")
+
+    def test_tcp_header_with_default_proto_is_fine(self) -> None:
+        raw = 'msg:"t"; content:"x"; default_proto:tcp; sid:1;'
+        assert codes(raw, header="alert tcp") == set()
+
+    @pytest.mark.parametrize("protocol", ["any", "udp", "syslog"])
+    def test_protocols_a_syslog_event_satisfies(self, protocol: str) -> None:
+        raw = 'msg:"t"; content:"x"; sid:1;'
+        assert codes(raw, header=f"alert {protocol}") == set()
+
+    def test_destination_port_without_default(self) -> None:
+        raw = 'msg:"t"; content:"x"; sid:1;'
+        assert DefectCode.CANNOT_MATCH in codes(
+            raw, header="alert any", destination_port="$FTP_PORT"
+        )
+
+    def test_an_address_variable_in_the_port_slot_is_not_a_port(self) -> None:
+        """`-> any $HOME_NET` puts an address where the port goes and matches.
+
+        Treating every non-`any` port slot as a filter reported 22 rules, 14 of
+        them healthy, which is how this case was found.
+        """
+        raw = 'msg:"t"; content:"x"; sid:1;'
+        assert codes(raw, header="alert any", destination_port="$HOME_NET") == set()
+
+
+class TestInvertedCondition:
+    def test_negated_pcre(self) -> None:
+        """Sagan has no negation for pcre, so the `!` is silently dropped.
+
+        Measured both ways on a reduced rule: with the pattern absent the rule
+        stays silent, and with it present the rule alerts. That is the opposite
+        of what it says.
+        """
+        raw = 'msg:"t"; content:"x"; pcre:!"/ZZZ/"; sid:1;'
+        assert DefectCode.INVERTED_CONDITION in codes(raw)
+
+    def test_a_positive_pcre_is_clean(self) -> None:
+        raw = 'msg:"t"; content:"x"; pcre:"/ZZZ/"; sid:1;'
+        assert codes(raw) == set()
 
 
 class TestWrongGrouping:

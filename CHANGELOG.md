@@ -25,6 +25,25 @@ All notable changes to this project are documented here. The format follows
   message carries. Four upstream rules take the third path, all in
   `crowdstrike.rules`, where `content:"|7c|DetectionSummaryEvent|4"` means to
   search for `|DetectionSummaryEvent|4`. The corpus figure above includes them.
+- Four more upstream detectors, each resting on a behaviour measured against a
+  running engine rather than read from it, and each found by following a
+  disagreement the engine differential reported.
+  - A `content` or `program` option missing its `;`. The argument runs to the
+    next semicolon, so the following option is swallowed into it and the rule
+    matches nothing at all, not even its own literal. 15 corpus rules, twelve
+    of them consecutive in `web-attack.rules`.
+  - A header protocol a syslog event cannot satisfy. Measured: `any`, `udp` and
+    `syslog` match, `tcp` and `icmp` do not, and `default_proto` is what
+    supplies the protocol otherwise.
+  - A header destination port with no `default_dst_port`. The header ports are
+    a matching condition; the addresses, measured in all four combinations, are
+    not. An address variable left in the port slot is not a port either, which
+    is why the detector recognises port shapes instead of testing for `any`.
+  - A `program` whose value contains a space, which no event can satisfy.
+  - `pcre:!` under a new `U_INVERTED_CONDITION` code. Sagan has no negation for
+    `pcre`: the parser never looks for the `!` and `PcreS` has no flag to
+    invert, so the condition asserts what it means to forbid. Measured both
+    ways: absent pattern stays silent, present pattern alerts.
 
 
 ### Fixed

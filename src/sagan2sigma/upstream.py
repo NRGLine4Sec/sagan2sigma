@@ -43,6 +43,8 @@ class DefectCode(str, Enum):
     CANNOT_MATCH = "U_CANNOT_MATCH"
     #: The rule loads and matches, but groups on fewer keys than it names.
     WRONG_GROUPING = "U_WRONG_GROUPING"
+    #: The rule loads and matches, but the condition means its opposite.
+    INVERTED_CONDITION = "U_INVERTED_CONDITION"
 
 
 @dataclass(frozen=True, slots=True)
@@ -82,6 +84,34 @@ _HEX = frozenset("0123456789abcdefABCDEF")
 _TRACK = re.compile(r"track\s+([a-z_&]+)", re.I)
 _JSON_KEY = re.compile(r'json_(?:meta_)?content\s*:\s*!?\s*"\.([A-Za-z0-9_.\[\]@-]+)"')
 _QUOTED = re.compile(r'"([^"]*)"')
+
+
+#: Options whose argument is a single quoted string. Anything after the closing
+#: quote means a `;` was forgotten and the next option was swallowed into this
+#: one. Measured: the rule loads without complaint and then matches nothing at
+#: all, not even a message holding the quoted text, and the same happens
+#: whatever the swallowed text is.
+_SINGLE_QUOTED = frozenset({"content", "program"})
+_QUOTED_ARGUMENT = re.compile(r'^\s*!?\s*"([^"]*)"(.*)$', re.S)
+
+#: Header protocols an event arriving through syslog can satisfy on its own.
+#: Measured: `any`, `udp` and `syslog` match, `tcp` and `icmp` do not, and
+#: `default_proto` is what supplies the protocol for the rest.
+SYSLOG_PROTOCOLS = frozenset({"any", "udp", "syslog"})
+
+#: A port slot the engine actually enforces: a number, or a variable named for
+#: a port. Anything else there is not a port at all and does not constrain
+#: matching, which is worth stating because the corpus puts other things there:
+#: `alert any $EXTERNAL_NET any -> any $HOME_NET` leaves an address variable in
+#: the port slot, and such rules match normally. Measured: `21`, `$FTP_PORT`
+#: and `$HTTP_PORT` each stop a syslog event from matching, `$HOME_NET` does
+#: not. Flagging on "not any" instead reported 22 rules, 14 of them healthy.
+_PORT_SLOT = re.compile(r"^(?:\d+|\$[A-Za-z0-9_]*PORTS?)$", re.I)
+
+
+def _enforced_port(slot: str) -> bool:
+    """Whether this header port slot is one the engine will hold an event to."""
+    return bool(_PORT_SLOT.match(slot.strip()))
 
 
 def _piped_values(rule: SaganRule) -> list[tuple[str, str]]:
@@ -243,6 +273,101 @@ def inspect(rule: SaganRule) -> list[UpstreamDefect]:
             UpstreamDefect(rule.sid, rule.source_file, code, f"{keyword}: {detail}")
         )
         break
+
+    for option in rule.options:
+        if option.name not in _SINGLE_QUOTED or not option.value:
+            continue
+        argument = _QUOTED_ARGUMENT.match(option.value)
+        if argument is None:
+            continue
+        quoted, remainder = argument.group(1), argument.group(2)
+        if quoted == "":
+            # `content:""established successfully` is harmless, which is not
+            # what it looks like. Between_Quotes lowers its flag on the second
+            # quote and raises it again on the same character, so the value
+            # captured is the text that follows and the rule matches normally.
+            # Measured on a reduced rule: it alerts. Three corpus rules of this
+            # shape were first reported as unloadable, which turned out to be
+            # Bluedot and dynamic_load in the same files rather than the quotes.
+            continue
+        if remainder.replace('"', "").strip():
+            # A forgotten `;`, so the next option is swallowed into this one.
+            # A remainder of nothing but quotes is harmless, measured on sid
+            # 5007405, which alerts normally; anything else is not.
+            found.append(
+                UpstreamDefect(
+                    rule.sid,
+                    rule.source_file,
+                    DefectCode.CANNOT_MATCH,
+                    f"the {option.name} option is missing its semicolon, so the "
+                    f"text after the closing quote is swallowed into its "
+                    f"argument and the rule matches nothing: "
+                    f"{option.value.strip()[:60]!r}",
+                )
+            )
+            break
+
+    for option in rule.iter_options("program"):
+        if option.value and " " in option.value.strip():
+            # Measured: `program: slapd ldap daemon` never matches, whatever the
+            # event's program is, while the same name without spaces does.
+            found.append(
+                UpstreamDefect(
+                    rule.sid,
+                    rule.source_file,
+                    DefectCode.CANNOT_MATCH,
+                    f"the program {option.value.strip()!r} contains a space; "
+                    f"no event can satisfy it",
+                )
+            )
+            break
+
+    header = rule.header
+    if header.protocol.lower() not in SYSLOG_PROTOCOLS and not rule.has(
+        "default_proto"
+    ):
+        found.append(
+            UpstreamDefect(
+                rule.sid,
+                rule.source_file,
+                DefectCode.CANNOT_MATCH,
+                f"the header asks for protocol {header.protocol!r} and nothing "
+                f"sets it; a syslog event defaults to udp, so the rule never "
+                f"matches",
+            )
+        )
+    if _enforced_port(header.destination_port) and not rule.has("default_dst_port"):
+        found.append(
+            UpstreamDefect(
+                rule.sid,
+                rule.source_file,
+                DefectCode.CANNOT_MATCH,
+                f"the header asks for destination port "
+                f"{header.destination_port!r} and no default_dst_port supplies "
+                f"one, so the rule never matches",
+            )
+        )
+
+    # --- the rule loads, matches, and means the opposite ---------------------
+    for option in rule.iter_options("pcre"):
+        if option.value and option.value.lstrip().startswith("!"):
+            # `content` has Check_Content_Not; `pcre` has no equivalent. The
+            # parser hands the quoted pattern straight to Between_Quotes and
+            # PcreS() counts matches with no negation flag anywhere, so the `!`
+            # is dropped and the condition asserts what it meant to forbid.
+            # Measured both ways: absent pattern stays silent, present pattern
+            # alerts, which is exactly backwards.
+            found.append(
+                UpstreamDefect(
+                    rule.sid,
+                    rule.source_file,
+                    DefectCode.INVERTED_CONDITION,
+                    "a negated pcre is read as a positive one: Sagan has no "
+                    "negation for pcre, so the rule requires what it means to "
+                    "exclude",
+                )
+            )
+            break
 
     # --- the rule loads, matches, and groups on the wrong thing --------------
     for keys in _after_keys(rule):
