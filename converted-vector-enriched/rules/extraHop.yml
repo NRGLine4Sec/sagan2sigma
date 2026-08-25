@@ -13160,9 +13160,11 @@ detection:
     appname|cased: exabeam-api_data
   selection_2:
     alert_type|contains|cased: perf.auth
-  filter_3:
+  selection_3:
+    alert_name|exists: true
+  filter_4:
     alert_name|cased: Kerberos Client Service Unknown Errors
-  condition: selection_1 and selection_2 and not filter_3
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -13426,9 +13428,11 @@ detection:
     appname|cased: exabeam-api_data
   selection_2:
     alert_type|contains|cased: perf
-  filter_3:
+  selection_3:
+    alert_name|exists: true
+  filter_4:
     alert_name|cased: Kerberos Client Service Unknown Errors
-  condition: selection_1 and selection_2 and not filter_3
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium

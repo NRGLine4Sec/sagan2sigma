@@ -340,13 +340,16 @@ detection:
     Subtype|cased: url
   selection_4:
     VendorSeverity|cased: Medium
-  filter_5:
+  selection_5:
+    URLCategoryList|exists: true
+  filter_6:
     URLCategoryList|contains|cased: low-risk
-  selection_6:
+  selection_7:
     Action|cased:
       - alert
       - allow
-  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_6 and not filter_5
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_7
+    and not filter_6
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium

@@ -11,9 +11,11 @@ logsource:
 detection:
   selection_1:
     sagan_raw|contains|cased: User attempted unauthorized access to app
-  filter_2:
+  selection_2:
+    debugContext.debugData.threatSuspected|exists: true
+  filter_3:
     debugContext.debugData.threatSuspected|cased: 'false'
-  condition: selection_1 and not filter_2
+  condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -262,8 +264,8 @@ description: Reconstruction of the Sagan 'brute_force' bit. The window comes fro
 correlation:
   type: temporal_ordered
   rules:
-    - sagan_xbit_brute_force
-    - sagan_5006606
+    - d096d8bc-eae7-5535-9ff1-02c0aeca8e2c
+    - fb3e02e9-0568-5883-9efa-f0ecc95581ab
   group-by:
     - sagan_ip_1
   timespan: 1d
@@ -304,8 +306,8 @@ description: Reconstruction of the Sagan 'brute_force' bit. The window comes fro
 correlation:
   type: temporal_ordered
   rules:
-    - sagan_xbit_brute_force
-    - sagan_5006607
+    - d096d8bc-eae7-5535-9ff1-02c0aeca8e2c
+    - d8c5715e-5589-55db-bdc7-8c7aceb55597
   group-by:
     - sagan_ip_1
   timespan: 1d

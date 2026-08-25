@@ -127,13 +127,18 @@ detection:
     Workload|cased: OneDrive
   selection_3:
     Operation|cased: FileAccessed
-  filter_4:
-    UserId|cased: app@sharepoint
+  selection_4:
+    UserId|exists: true
   filter_5:
+    UserId|cased: app@sharepoint
+  selection_6:
+    ApplicationDisplayName|exists: true
+  filter_7:
     ApplicationDisplayName|cased:
       - Power BI
       - OneNoteLegacyClient
-  condition: selection_1 and selection_2 and selection_3 and not (filter_4 or filter_5)
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_6 and not (filter_5
+    or filter_7)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium

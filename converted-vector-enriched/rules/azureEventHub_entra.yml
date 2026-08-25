@@ -163,13 +163,15 @@ detection:
       - UnfamiliarIP
       - UnfamiliarLocation
       - UnfamiliarDevice
-  filter_4:
+  selection_4:
+    properties.riskDetail|exists: true
+  filter_5:
     properties.riskDetail|cased:
       - aiconfirmedSigninSafe
       - adminConfirmedAccountSafe
       - adminDismissedAllRiskForUser
       - hidden
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: high
@@ -238,9 +240,12 @@ detection:
     properties.originalTransferMethod|cased: deviceCodeFlow
   selection_5:
     properties.appDisplayName|cased: Microsoft Authentication Broker
-  filter_6:
+  selection_6:
+    properties.deviceDetail.isManaged|exists: true
+  filter_7:
     properties.deviceDetail.isManaged: 'true'
-  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and not filter_6
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+    and not filter_7
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium

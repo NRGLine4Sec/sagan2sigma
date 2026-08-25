@@ -457,7 +457,9 @@ detection:
     syslog_appname|cased: salesforce_streaming_api_data
   s48_selection_2:
     channel|cased: /event/LoginEventStream
-  s48_filter_3:
+  s48_selection_3:
+    data.payload.Status|exists: true
+  s48_filter_4:
     data.payload.Status: Success
   s49_selection_1:
     logid: 101039426
@@ -487,7 +489,7 @@ detection:
     and s44_selection_7 and not (s44_filter_3 or s44_filter_4 or s44_filter_5)) or (s45_selection_1 and
     s45_selection_2 and s45_selection_3) or (s46_selection_1 and s46_selection_5 and not (s46_filter_2
     or s46_filter_3 or s46_filter_4)) or (s47_selection_1 and s47_selection_2) or (s48_selection_1 and
-    s48_selection_2 and not s48_filter_3) or (s49_selection_1)
+    s48_selection_2 and s48_selection_3 and not s48_filter_4) or (s49_selection_1)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: informational

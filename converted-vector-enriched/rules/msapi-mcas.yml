@@ -160,7 +160,9 @@ logsource:
 detection:
   selection_1:
     appname|cased: MCAS
-  filter_2:
+  selection_2:
+    Operation|exists: true
+  filter_3:
     Operation|cased:
       - MCAS_ALERT_ANUBIS_DETECTION_NEW_COUNTRY
       - MCAS_ALERT_ANUBIS_DETECTION_REPEATED_ACTIVITY_DELETE
@@ -170,7 +172,7 @@ detection:
       - MCAS_ALERT_ANUBIS_DETECTION_INBOX_HIDING
       - MCAS_ALERT_ANUBIS_DETECTION_REPEATED_ACTIVITY_DOWNLOAD
       - MCAS_ALERT_ANUBIS_DETECTION_REPEATED_ACTIVITY_ADMIN_ACTIVITY
-  condition: selection_1 and not filter_2
+  condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium

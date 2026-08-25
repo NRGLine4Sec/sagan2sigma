@@ -411,8 +411,8 @@ description: Reconstruction of the Sagan 'brute-force' bit. The window comes fro
 correlation:
   type: temporal_ordered
   rules:
-    - sagan_xbit_brute-force
-    - sagan_5015242
+    - 0963d753-5563-54a1-848d-c4d0d89d0221
+    - 3f5dcf44-d04d-5d29-87f6-f432f19d0ae7
   group-by:
     - sagan_username
   timespan: 8h
@@ -454,8 +454,8 @@ description: Reconstruction of the Sagan 'brute-force' bit. The window comes fro
 correlation:
   type: temporal_ordered
   rules:
-    - sagan_xbit_brute-force
-    - sagan_5015243
+    - 0963d753-5563-54a1-848d-c4d0d89d0221
+    - d43ffb4f-c2f6-547f-bd67-17588704dfd9
   group-by:
     - sagan_username
   timespan: 8h
@@ -1427,13 +1427,15 @@ detection:
     appname|cased: netskope-api_data
   selection_2:
     record_type: alert
-  filter_3:
+  selection_3:
+    action|exists: true
+  filter_4:
     action: block
-  selection_4:
-    alert_type: malware
   selection_5:
+    alert_type: malware
+  selection_6:
     severity: Low
-  condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and selection_6 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1459,13 +1461,15 @@ detection:
     appname|cased: netskope-api_data
   selection_2:
     record_type: alert
-  filter_3:
+  selection_3:
+    action|exists: true
+  filter_4:
     action: block
-  selection_4:
-    alert_type: malware
   selection_5:
+    alert_type: malware
+  selection_6:
     severity: Medium
-  condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and selection_6 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1491,13 +1495,15 @@ detection:
     appname|cased: netskope-api_data
   selection_2:
     record_type: alert
-  filter_3:
+  selection_3:
+    action|exists: true
+  filter_4:
     action: block
-  selection_4:
-    alert_type: malware
   selection_5:
+    alert_type: malware
+  selection_6:
     severity: High
-  condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and selection_6 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium

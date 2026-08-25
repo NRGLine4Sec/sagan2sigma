@@ -284,11 +284,13 @@ detection:
     kind|cased: LastGasp
   selection_3:
     action|cased: Report
-  filter_4:
-    summary.applicationName|cased: Halcyon
+  selection_4:
+    summary.applicationName|exists: true
   filter_5:
+    summary.applicationName|cased: Halcyon
+  filter_6:
     summary.applicationName|cased: Microsoft Defender
-  condition: selection_1 and selection_2 and selection_3 and not (filter_4 or filter_5)
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not (filter_5 or filter_6)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium

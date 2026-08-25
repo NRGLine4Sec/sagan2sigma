@@ -19,27 +19,29 @@ detection:
     UserType: 0
   s1_selection_5:
     ApplicationId|cased: 4765445b-32c6-49b0-83e6-1d93765276ca
-  s1_filter_6:
+  s1_selection_6:
+    UserId|exists: true
+  s1_filter_7:
     UserId|contains|cased: _jit@
-  s1_selection_7:
+  s1_selection_8:
     sagan_raw|contains|cased: Login:login
-  s1_filter_8:
-    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   s1_filter_9:
-    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   s1_filter_10:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
   s1_filter_11:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
   s1_filter_12:
-    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
   s1_filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  s1_filter_14:
     sagan_raw|contains|cased: '"TrustType", "Value": "1"'
-  s1_selection_14:
+  s1_selection_15:
     sagan_raw|contains|cased:
       - 'IsCompliantAndManaged", "Value": "False"'
       - IsCompliantAndManaged","Value":"False""
-  s1_selection_15:
+  s1_selection_16:
     sagan_raw|contains|cased:
       - UserAuthenticationMethod","Value":"16"
       - UserAuthenticationMethod\\",\\"Value\\":\\"16\\"
@@ -55,32 +57,34 @@ detection:
     ObjectId|cased: Unknown
   s2_selection_6:
     ApplicationId|cased: 4765445b-32c6-49b0-83e6-1d93765276ca
-  s2_filter_7:
+  s2_selection_7:
+    UserId|exists: true
+  s2_filter_8:
     UserId|contains|cased: _jit@
-  s2_selection_8:
+  s2_selection_9:
     sagan_raw|contains|cased: OAuth2:Authorize
-  s2_filter_9:
-    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   s2_filter_10:
-    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   s2_filter_11:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
   s2_filter_12:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
   s2_filter_13:
-    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
   s2_filter_14:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  s2_filter_15:
     sagan_raw|contains|cased: '"TrustType", "Value": "1"'
-  s2_selection_15:
+  s2_selection_16:
     sagan_raw|contains|cased:
       - 'IsCompliantAndManaged", "Value": "False"'
       - IsCompliantAndManaged","Value":"False""
   condition: (s1_selection_1 and s1_selection_2 and s1_selection_3 and s1_selection_4 and s1_selection_5
-    and s1_selection_7 and s1_selection_14 and s1_selection_15 and not (s1_filter_6 or s1_filter_8 or
-    s1_filter_9 or s1_filter_10 or s1_filter_11 or s1_filter_12 or s1_filter_13)) or (s2_selection_1 and
-    s2_selection_2 and s2_selection_3 and s2_selection_4 and s2_selection_5 and s2_selection_6 and s2_selection_8
-    and s2_selection_15 and not (s2_filter_7 or s2_filter_9 or s2_filter_10 or s2_filter_11 or s2_filter_12
-    or s2_filter_13 or s2_filter_14))
+    and s1_selection_6 and s1_selection_8 and s1_selection_15 and s1_selection_16 and not (s1_filter_7
+    or s1_filter_9 or s1_filter_10 or s1_filter_11 or s1_filter_12 or s1_filter_13 or s1_filter_14)) or
+    (s2_selection_1 and s2_selection_2 and s2_selection_3 and s2_selection_4 and s2_selection_5 and s2_selection_6
+    and s2_selection_7 and s2_selection_9 and s2_selection_16 and not (s2_filter_8 or s2_filter_10 or
+    s2_filter_11 or s2_filter_12 or s2_filter_13 or s2_filter_14 or s2_filter_15))
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: informational
@@ -109,23 +113,25 @@ detection:
     UserType: 0
   s1_selection_5:
     ApplicationId|cased: 04b07795-8ddb-461a-bbee-02f9e1bf7b46
-  s1_filter_6:
+  s1_selection_6:
+    UserId|exists: true
+  s1_filter_7:
     UserId|contains|cased: _jit@
-  s1_selection_7:
+  s1_selection_8:
     sagan_raw|contains|cased: OAuth2:Token
-  s1_filter_8:
-    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   s1_filter_9:
-    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   s1_filter_10:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
   s1_filter_11:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
   s1_filter_12:
-    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
   s1_filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  s1_filter_14:
     sagan_raw|contains|cased: '"TrustType", "Value": "1"'
-  s1_selection_14:
+  s1_selection_15:
     sagan_raw|contains|cased:
       - 'IsCompliantAndManaged", "Value": "False"'
       - IsCompliantAndManaged","Value":"False""
@@ -139,23 +145,25 @@ detection:
     UserType: 0
   s2_selection_5:
     ApplicationId|cased: 04b07795-8ddb-461a-bbee-02f9e1bf7b46
-  s2_filter_6:
+  s2_selection_6:
+    UserId|exists: true
+  s2_filter_7:
     UserId|contains|cased: _jit@
-  s2_selection_7:
+  s2_selection_8:
     sagan_raw|contains|cased: OAuth2:Token
-  s2_filter_8:
-    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   s2_filter_9:
-    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   s2_filter_10:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
   s2_filter_11:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
   s2_filter_12:
-    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
   s2_filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  s2_filter_14:
     sagan_raw|contains|cased: '"TrustType", "Value": "1"'
-  s2_selection_14:
+  s2_selection_15:
     sagan_raw|contains|cased:
       - 'IsCompliantAndManaged", "Value": "False"'
       - IsCompliantAndManaged","Value":"False""
@@ -169,34 +177,36 @@ detection:
     UserType: 0
   s3_selection_5:
     ApplicationId|cased: 04b07795-8ddb-461a-bbee-02f9e1bf7b46
-  s3_filter_6:
+  s3_selection_6:
+    UserId|exists: true
+  s3_filter_7:
     UserId|contains|cased: _jit@
-  s3_selection_7:
+  s3_selection_8:
     sagan_raw|contains|cased: OAuth2:Token
-  s3_filter_8:
-    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   s3_filter_9:
-    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   s3_filter_10:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
   s3_filter_11:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
   s3_filter_12:
-    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
   s3_filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  s3_filter_14:
     sagan_raw|contains|cased: '"TrustType", "Value": "1"'
-  s3_selection_14:
+  s3_selection_15:
     sagan_raw|contains|cased:
       - 'IsCompliantAndManaged", "Value": "False"'
       - IsCompliantAndManaged","Value":"False""
   condition: (s1_selection_1 and s1_selection_2 and s1_selection_3 and s1_selection_4 and s1_selection_5
-    and s1_selection_7 and s1_selection_14 and not (s1_filter_6 or s1_filter_8 or s1_filter_9 or s1_filter_10
-    or s1_filter_11 or s1_filter_12 or s1_filter_13)) or (s2_selection_1 and s2_selection_2 and s2_selection_3
-    and s2_selection_4 and s2_selection_5 and s2_selection_7 and s2_selection_14 and not (s2_filter_6
-    or s2_filter_8 or s2_filter_9 or s2_filter_10 or s2_filter_11 or s2_filter_12 or s2_filter_13)) or
-    (s3_selection_1 and s3_selection_2 and s3_selection_3 and s3_selection_4 and s3_selection_5 and s3_selection_7
-    and s3_selection_14 and not (s3_filter_6 or s3_filter_8 or s3_filter_9 or s3_filter_10 or s3_filter_11
-    or s3_filter_12 or s3_filter_13))
+    and s1_selection_6 and s1_selection_8 and s1_selection_15 and not (s1_filter_7 or s1_filter_9 or s1_filter_10
+    or s1_filter_11 or s1_filter_12 or s1_filter_13 or s1_filter_14)) or (s2_selection_1 and s2_selection_2
+    and s2_selection_3 and s2_selection_4 and s2_selection_5 and s2_selection_6 and s2_selection_8 and
+    s2_selection_15 and not (s2_filter_7 or s2_filter_9 or s2_filter_10 or s2_filter_11 or s2_filter_12
+    or s2_filter_13 or s2_filter_14)) or (s3_selection_1 and s3_selection_2 and s3_selection_3 and s3_selection_4
+    and s3_selection_5 and s3_selection_6 and s3_selection_8 and s3_selection_15 and not (s3_filter_7
+    or s3_filter_9 or s3_filter_10 or s3_filter_11 or s3_filter_12 or s3_filter_13 or s3_filter_14))
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: informational
@@ -1393,7 +1403,9 @@ detection:
     appname|cased: salesforce_streaming_api_data
   s121_selection_2:
     channel|cased: /event/LoginEventStream
-  s121_filter_3:
+  s121_selection_3:
+    data.payload.Status|exists: true
+  s121_filter_4:
     data.payload.Status: Success
   s122_selection_1:
     appname|cased: '*TACACS*'
@@ -1518,13 +1530,13 @@ detection:
     and s117_selection_6 and s117_selection_7 and not (s117_filter_3 or s117_filter_4 or s117_filter_5))
     or (s118_selection_1 and s118_selection_2 and s118_selection_3) or (s119_selection_1 and s119_selection_5
     and not (s119_filter_2 or s119_filter_3 or s119_filter_4)) or (s120_selection_1 and s120_selection_2)
-    or (s121_selection_1 and s121_selection_2 and not s121_filter_3) or (s122_selection_1 and s122_selection_2)
-    or (s123_selection_1 and s123_selection_2) or (s124_selection_1 and s124_selection_2) or (s125_selection_1)
-    or (s126_selection_1 and s126_selection_2 and s126_selection_3 and not s126_filter_4) or (s127_selection_1
-    and s127_selection_2) or (s128_selection_1 and s128_selection_2) or (s129_selection_1 and s129_selection_2
-    and s129_selection_3) or (s130_selection_1 and s130_selection_2 and s130_selection_3 and s130_selection_4)
-    or (s131_selection_1 and s131_selection_2 and s131_selection_3 and s131_selection_4) or (s132_selection_1
-    and s132_selection_2)
+    or (s121_selection_1 and s121_selection_2 and s121_selection_3 and not s121_filter_4) or (s122_selection_1
+    and s122_selection_2) or (s123_selection_1 and s123_selection_2) or (s124_selection_1 and s124_selection_2)
+    or (s125_selection_1) or (s126_selection_1 and s126_selection_2 and s126_selection_3 and not s126_filter_4)
+    or (s127_selection_1 and s127_selection_2) or (s128_selection_1 and s128_selection_2) or (s129_selection_1
+    and s129_selection_2 and s129_selection_3) or (s130_selection_1 and s130_selection_2 and s130_selection_3
+    and s130_selection_4) or (s131_selection_1 and s131_selection_2 and s131_selection_3 and s131_selection_4)
+    or (s132_selection_1 and s132_selection_2)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: informational

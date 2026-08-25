@@ -210,9 +210,11 @@ detection:
     appname|cased: mimecast
   selection_2:
     eventType|cased: internal email protect
-  filter_3:
+  selection_3:
+    urlCategory|exists: true
+  filter_4:
     urlCategory|cased: Blocked
-  condition: selection_1 and selection_2 and not filter_3
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium

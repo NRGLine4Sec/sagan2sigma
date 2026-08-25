@@ -1341,13 +1341,15 @@ detection:
     syslog_appname|cased: netskope-api_data
   selection_2:
     record_type: alert
-  filter_3:
+  selection_3:
+    action|exists: true
+  filter_4:
     action: block
-  selection_4:
-    alert_type: malware
   selection_5:
+    alert_type: malware
+  selection_6:
     severity: Low
-  condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and selection_6 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1373,13 +1375,15 @@ detection:
     syslog_appname|cased: netskope-api_data
   selection_2:
     record_type: alert
-  filter_3:
+  selection_3:
+    action|exists: true
+  filter_4:
     action: block
-  selection_4:
-    alert_type: malware
   selection_5:
+    alert_type: malware
+  selection_6:
     severity: Medium
-  condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and selection_6 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1405,13 +1409,15 @@ detection:
     syslog_appname|cased: netskope-api_data
   selection_2:
     record_type: alert
-  filter_3:
+  selection_3:
+    action|exists: true
+  filter_4:
     action: block
-  selection_4:
-    alert_type: malware
   selection_5:
+    alert_type: malware
+  selection_6:
     severity: High
-  condition: selection_1 and selection_2 and selection_4 and selection_5 and not filter_3
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and selection_6 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium

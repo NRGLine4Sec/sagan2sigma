@@ -416,33 +416,35 @@ detection:
     UserType: 0
   selection_5:
     ApplicationId|cased: 4765445b-32c6-49b0-83e6-1d93765276ca
-  filter_6:
+  selection_6:
+    UserId|exists: true
+  filter_7:
     UserId|contains|cased: _jit@
-  selection_7:
+  selection_8:
     sagan_raw|contains|cased: Login:login
-  filter_8:
-    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   filter_9:
-    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   filter_10:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
   filter_11:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
   filter_12:
-    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
   filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  filter_14:
     sagan_raw|contains|cased: '"TrustType", "Value": "1"'
-  selection_14:
+  selection_15:
     sagan_raw|contains|cased:
       - 'IsCompliantAndManaged", "Value": "False"'
       - IsCompliantAndManaged","Value":"False""
-  selection_15:
+  selection_16:
     sagan_raw|contains|cased:
       - UserAuthenticationMethod","Value":"16"
       - UserAuthenticationMethod\\",\\"Value\\":\\"16\\"
-  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_7
-    and selection_14 and selection_15 and not (filter_6 or filter_8 or filter_9 or filter_10 or filter_11
-    or filter_12 or filter_13)
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+    and selection_8 and selection_15 and selection_16 and not (filter_7 or filter_9 or filter_10 or filter_11
+    or filter_12 or filter_13 or filter_14)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: high
@@ -464,8 +466,8 @@ description: Reconstruction of the Sagan 'AITM_RECON' bit. The window comes from
 correlation:
   type: temporal_ordered
   rules:
-    - sagan_xbit_aitm_recon
-    - sagan_99550
+    - 23827b44-4883-5423-82c7-aaa660ab9c59
+    - 5f81f255-3149-5b0e-8077-4121400ce245
   group-by:
     - UserId
   timespan: 10h
@@ -491,29 +493,31 @@ detection:
     UserType: 0
   selection_5:
     ApplicationId|cased: 4765445b-32c6-49b0-83e6-1d93765276ca
-  filter_6:
+  selection_6:
+    UserId|exists: true
+  filter_7:
     UserId|contains|cased: _jit@
-  selection_7:
+  selection_8:
     sagan_raw|contains|cased: Kmsi
-  filter_8:
-    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   filter_9:
-    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   filter_10:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
   filter_11:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
   filter_12:
-    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
   filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  filter_14:
     sagan_raw|contains|cased: '"TrustType", "Value": "1"'
-  selection_14:
+  selection_15:
     sagan_raw|contains|cased:
       - 'IsCompliantAndManaged", "Value": "False"'
       - IsCompliantAndManaged","Value":"False""
-  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_7
-    and selection_14 and not (filter_6 or filter_8 or filter_9 or filter_10 or filter_11 or filter_12
-    or filter_13)
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+    and selection_8 and selection_15 and not (filter_7 or filter_9 or filter_10 or filter_11 or filter_12
+    or filter_13 or filter_14)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: high
@@ -535,8 +539,8 @@ description: Reconstruction of the Sagan 'AITM_LOGIN' bit. The window comes from
 correlation:
   type: temporal_ordered
   rules:
-    - sagan_xbit_aitm_login
-    - sagan_99551
+    - c642d4c7-b04c-5cb9-85c5-4fdcbd0fd4f2
+    - 642ee80a-f231-544c-9f7f-f4f8b0cf1515
   group-by:
     - UserId
   timespan: 148h
@@ -561,29 +565,31 @@ detection:
     UserType: 0
   selection_5:
     ApplicationId|cased: 04b07795-8ddb-461a-bbee-02f9e1bf7b46
-  filter_6:
+  selection_6:
+    UserId|exists: true
+  filter_7:
     UserId|contains|cased: _jit@
-  selection_7:
+  selection_8:
     sagan_raw|contains|cased: OAuth2:Token
-  filter_8:
-    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   filter_9:
-    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   filter_10:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
   filter_11:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
   filter_12:
-    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
   filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  filter_14:
     sagan_raw|contains|cased: '"TrustType", "Value": "1"'
-  selection_14:
+  selection_15:
     sagan_raw|contains|cased:
       - 'IsCompliantAndManaged", "Value": "False"'
       - IsCompliantAndManaged","Value":"False""
-  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_7
-    and selection_14 and not (filter_6 or filter_8 or filter_9 or filter_10 or filter_11 or filter_12
-    or filter_13)
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+    and selection_8 and selection_15 and not (filter_7 or filter_9 or filter_10 or filter_11 or filter_12
+    or filter_13 or filter_14)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: high
@@ -632,29 +638,31 @@ detection:
     UserType: 0
   selection_5:
     ApplicationId|cased: 4765445b-32c6-49b0-83e6-1d93765276ca
-  filter_6:
+  selection_6:
+    UserId|exists: true
+  filter_7:
     UserId|contains|cased: _jit@
-  selection_7:
+  selection_8:
     sagan_raw|contains|cased: Kmsi
-  filter_8:
-    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   filter_9:
-    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   filter_10:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
   filter_11:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
   filter_12:
-    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
   filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  filter_14:
     sagan_raw|contains|cased: '"TrustType", "Value": "1"'
-  selection_14:
+  selection_15:
     sagan_raw|contains|cased:
       - 'IsCompliantAndManaged", "Value": "False"'
       - IsCompliantAndManaged","Value":"False""
-  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_7
-    and selection_14 and not (filter_6 or filter_8 or filter_9 or filter_10 or filter_11 or filter_12
-    or filter_13)
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+    and selection_8 and selection_15 and not (filter_7 or filter_9 or filter_10 or filter_11 or filter_12
+    or filter_13 or filter_14)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: high
@@ -703,29 +711,31 @@ detection:
     ObjectId|cased: Unknown
   selection_6:
     ApplicationId|cased: 4765445b-32c6-49b0-83e6-1d93765276ca
-  filter_7:
+  selection_7:
+    UserId|exists: true
+  filter_8:
     UserId|contains|cased: _jit@
-  selection_8:
+  selection_9:
     sagan_raw|contains|cased: OAuth2:Authorize
-  filter_9:
-    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   filter_10:
-    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   filter_11:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
   filter_12:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
   filter_13:
-    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
   filter_14:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  filter_15:
     sagan_raw|contains|cased: '"TrustType", "Value": "1"'
-  selection_15:
+  selection_16:
     sagan_raw|contains|cased:
       - 'IsCompliantAndManaged", "Value": "False"'
       - IsCompliantAndManaged","Value":"False""
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
-    and selection_8 and selection_15 and not (filter_7 or filter_9 or filter_10 or filter_11 or filter_12
-    or filter_13 or filter_14)
+    and selection_7 and selection_9 and selection_16 and not (filter_8 or filter_10 or filter_11 or filter_12
+    or filter_13 or filter_14 or filter_15)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: high
@@ -757,29 +767,31 @@ detection:
     UserType: 0
   selection_5:
     ApplicationId|cased: 04b07795-8ddb-461a-bbee-02f9e1bf7b46
-  filter_6:
+  selection_6:
+    UserId|exists: true
+  filter_7:
     UserId|contains|cased: _jit@
-  selection_7:
+  selection_8:
     sagan_raw|contains|cased: OAuth2:Token
-  filter_8:
-    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   filter_9:
-    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   filter_10:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
   filter_11:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
   filter_12:
-    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
   filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  filter_14:
     sagan_raw|contains|cased: '"TrustType", "Value": "1"'
-  selection_14:
+  selection_15:
     sagan_raw|contains|cased:
       - 'IsCompliantAndManaged", "Value": "False"'
       - IsCompliantAndManaged","Value":"False""
-  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_7
-    and selection_14 and not (filter_6 or filter_8 or filter_9 or filter_10 or filter_11 or filter_12
-    or filter_13)
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+    and selection_8 and selection_15 and not (filter_7 or filter_9 or filter_10 or filter_11 or filter_12
+    or filter_13 or filter_14)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: high
@@ -827,29 +839,31 @@ detection:
     UserType: 0
   selection_5:
     ApplicationId|cased: 04b07795-8ddb-461a-bbee-02f9e1bf7b46
-  filter_6:
+  selection_6:
+    UserId|exists: true
+  filter_7:
     UserId|contains|cased: _jit@
-  selection_7:
+  selection_8:
     sagan_raw|contains|cased: OAuth2:Token
-  filter_8:
-    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   filter_9:
-    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   filter_10:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
   filter_11:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
   filter_12:
-    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
   filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  filter_14:
     sagan_raw|contains|cased: '"TrustType", "Value": "1"'
-  selection_14:
+  selection_15:
     sagan_raw|contains|cased:
       - 'IsCompliantAndManaged", "Value": "False"'
       - IsCompliantAndManaged","Value":"False""
-  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_7
-    and selection_14 and not (filter_6 or filter_8 or filter_9 or filter_10 or filter_11 or filter_12
-    or filter_13)
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+    and selection_8 and selection_15 and not (filter_7 or filter_9 or filter_10 or filter_11 or filter_12
+    or filter_13 or filter_14)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: high
@@ -897,33 +911,35 @@ detection:
     UserType: 0
   selection_5:
     ApplicationId|cased: 4765445b-32c6-49b0-83e6-1d93765276ca
-  filter_6:
+  selection_6:
+    UserId|exists: true
+  filter_7:
     UserId|contains|cased: _jit@
-  selection_7:
+  selection_8:
     sagan_raw|contains|cased: Login:login
-  filter_8:
-    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   filter_9:
-    sagan_raw|contains|cased: '"TrustType","Value":"1"'
+    sagan_raw|contains|cased: '"TrustType","Value":"2"'
   filter_10:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
+    sagan_raw|contains|cased: '"TrustType","Value":"1"'
   filter_11:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
   filter_12:
-    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
   filter_13:
+    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
+  filter_14:
     sagan_raw|contains|cased: '"TrustType", "Value": "1"'
-  selection_14:
+  selection_15:
     sagan_raw|contains|cased:
       - 'IsCompliantAndManaged", "Value": "False"'
       - IsCompliantAndManaged","Value":"False""
-  selection_15:
+  selection_16:
     sagan_raw|contains|cased:
       - UserAuthenticationMethod","Value":"16"
       - UserAuthenticationMethod\\",\\"Value\\":\\"16\\"
-  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_7
-    and selection_14 and selection_15 and not (filter_6 or filter_8 or filter_9 or filter_10 or filter_11
-    or filter_12 or filter_13)
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+    and selection_8 and selection_15 and selection_16 and not (filter_7 or filter_9 or filter_10 or filter_11
+    or filter_12 or filter_13 or filter_14)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: high

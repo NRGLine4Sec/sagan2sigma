@@ -10,20 +10,29 @@ detection:
     Workload|cased: ThreatIntelligence
   selection_2:
     Verdict|cased: Phish
-  filter_3:
-    DeliveryAction|cased: Blocked
+  selection_3:
+    DeliveryAction|exists: true
   filter_4:
+    DeliveryAction|cased: Blocked
+  selection_5:
+    LatestDeliveryLocation|exists: true
+  filter_6:
     LatestDeliveryLocation|cased:
       - Failed
       - JunkFolder
       - Quarantine
-  filter_5:
+  selection_7:
+    OriginalDeliveryLocation|exists: true
+  filter_8:
     OriginalDeliveryLocation|cased:
       - JunkFolder
       - Quarantine
-  filter_6:
+  selection_9:
+    SystemOverrides[0].Result|exists: true
+  filter_10:
     SystemOverrides[0].Result|cased: Allow
-  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6)
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and selection_7 and selection_9
+    and not (filter_4 or filter_6 or filter_8 or filter_10)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -46,20 +55,27 @@ detection:
     Workload|cased: ThreatIntelligence
   selection_2:
     Verdict|cased: Malware
-  filter_3:
-    DeliveryAction|cased: Blocked
+  selection_3:
+    DeliveryAction|exists: true
   filter_4:
+    DeliveryAction|cased: Blocked
+  selection_5:
+    LatestDeliveryLocation|exists: true
+  filter_6:
     LatestDeliveryLocation|cased:
       - Failed
       - JunkFolder
       - Quarantine
-  filter_5:
+  selection_7:
+    OriginalDeliveryLocation|exists: true
+  filter_8:
     OriginalDeliveryLocation|cased:
       - JunkFolder
       - Quarantine
-  filter_6:
+  filter_9:
     sagan_raw|contains|cased: psm.knowbe4.com
-  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6)
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and selection_7 and not (filter_4
+    or filter_6 or filter_8 or filter_9)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: high

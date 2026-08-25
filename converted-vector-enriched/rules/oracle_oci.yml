@@ -16,9 +16,11 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: addprivateendpointoutboundconnection
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -48,9 +50,11 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: AssignCloudShellHost
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -80,11 +84,13 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: AuthenticationUser
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  selection_5:
+  selection_6:
     sagan_bluedot_malicious_1: true
-  condition: selection_1 and selection_2 and selection_3 and selection_5 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_6 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -117,9 +123,11 @@ detection:
     data.eventName|cased: AuthenticationUser
   selection_4:
     data.additionalDetails.eventId|cased: admin.user.authentication.failure
-  filter_5:
+  selection_5:
+    data.identity.principalName|exists: true
+  filter_6:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and not filter_6
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -165,9 +173,11 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: CreateCredential
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -197,9 +207,11 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: CreateFederatedUser
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -229,9 +241,11 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: CreateHost
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -261,9 +275,11 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: CreateIdentityprovider
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -293,9 +309,11 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: createintegrationinstance
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -325,9 +343,11 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: CreateOrResetMyPasswordRequest
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -357,9 +377,11 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: CreateOrResetPassword
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -389,9 +411,11 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: CreateTerminal
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -421,9 +445,11 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: CreateUser
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -453,9 +479,11 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: DeleteApp
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -485,9 +513,11 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: DeleteCredential
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -517,9 +547,11 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: DeleteDevice
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -549,9 +581,11 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: DeleteUser
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -581,9 +615,11 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: FactorMfa
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -613,9 +649,11 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: FailureDecide
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -645,11 +683,13 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: InitiateSSOAuthFactor
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  selection_5:
+  selection_6:
     sagan_bluedot_malicious_1: true
-  condition: selection_1 and selection_2 and selection_3 and selection_5 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_6 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -680,9 +720,11 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: InitiateSSOAuthFactor
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -727,11 +769,13 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: InteractiveLogin
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  selection_5:
+  selection_6:
     sagan_bluedot_malicious_1: true
-  condition: selection_1 and selection_2 and selection_3 and selection_5 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_6 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -764,9 +808,11 @@ detection:
     data.eventName|cased: InteractiveLogin
   selection_4:
     data.additionalDetails.eventId|cased: sso.authentication.failure
-  filter_5:
+  selection_5:
+    data.identity.principalName|exists: true
+  filter_6:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and not filter_6
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -811,9 +857,11 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: listgateways
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -843,9 +891,11 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: SendVerificationEmail
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -875,9 +925,11 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: UpdateRule
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -907,9 +959,11 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: UpdateSecurityList
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -939,9 +993,11 @@ detection:
     oracle.loggroupid|cased: _Audit
   selection_3:
     data.eventName|cased: VerifyRecoveryEmail
-  filter_4:
+  selection_4:
+    data.identity.principalName|exists: true
+  filter_5:
     data.identity.principalName|cased: cloudguard
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium

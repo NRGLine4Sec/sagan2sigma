@@ -1128,14 +1128,18 @@ logsource:
 detection:
   selection_1:
     logid: 419016384
-  filter_2:
-    action|cased: dropped
+  selection_2:
+    action|exists: true
   filter_3:
+    action|cased: dropped
+  selection_4:
+    severity|exists: true
+  filter_5:
     severity|cased:
       - info
       - low
       - medium
-  condition: selection_1 and not (filter_2 or filter_3)
+  condition: selection_1 and selection_2 and selection_4 and not (filter_3 or filter_5)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1156,12 +1160,14 @@ logsource:
 detection:
   selection_1:
     logid: 419016385
-  filter_2:
+  selection_2:
+    severity|exists: true
+  filter_3:
     severity|cased:
       - info
       - low
       - medium
-  condition: selection_1 and not filter_2
+  condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1182,12 +1188,14 @@ logsource:
 detection:
   selection_1:
     logid: 419016386
-  filter_2:
+  selection_2:
+    severity|exists: true
+  filter_3:
     severity|cased:
       - info
       - low
       - medium
-  condition: selection_1 and not filter_2
+  condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1336,12 +1344,14 @@ logsource:
 detection:
   selection_1:
     logid: 720018432
-  filter_2:
+  selection_2:
+    severity|exists: true
+  filter_3:
     severity|cased:
       - info
       - low
       - medium
-  condition: selection_1 and not filter_2
+  condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1362,12 +1372,14 @@ logsource:
 detection:
   selection_1:
     logid: 720018433
-  filter_2:
+  selection_2:
+    severity|exists: true
+  filter_3:
     severity|cased:
       - info
       - low
       - medium
-  condition: selection_1 and not filter_2
+  condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1388,12 +1400,14 @@ logsource:
 detection:
   selection_1:
     logid: 720018434
-  filter_2:
+  selection_2:
+    severity|exists: true
+  filter_3:
     severity|cased:
       - info
       - low
       - medium
-  condition: selection_1 and not filter_2
+  condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1473,8 +1487,8 @@ description: Reconstruction of the Sagan 'brute_force' bit. The window comes fro
 correlation:
   type: temporal_ordered
   rules:
-    - sagan_xbit_brute_force
-    - sagan_5014479
+    - d096d8bc-eae7-5535-9ff1-02c0aeca8e2c
+    - 7d81850b-ce4b-5e0e-bded-2b72ccb5a934
   group-by:
     - srcip
   timespan: 1d
@@ -1615,17 +1629,24 @@ detection:
     type|cased: utm
   selection_2:
     subtype|cased: virus
-  filter_3:
+  selection_3:
+    level|exists: true
+  filter_4:
     level|cased:
       - notice
       - information
-  filter_4:
+  selection_5:
+    logid|exists: true
+  filter_6:
     logid:
       - 211008192
       - 211008193
-  filter_5:
+  selection_7:
+    eventtype|exists: true
+  filter_8:
     eventtype|cased: analytics
-  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and selection_7 and not (filter_4
+    or filter_6 or filter_8)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1650,17 +1671,24 @@ detection:
     type|cased: utm
   selection_2:
     subtype|cased: app-ctl
-  filter_3:
-    severity|cased: low
+  selection_3:
+    severity|exists: true
   filter_4:
+    severity|cased: low
+  selection_5:
+    level|exists: true
+  filter_6:
     level|cased:
       - information
       - notice
-  filter_5:
+  selection_7:
+    apprisk|exists: true
+  filter_8:
     apprisk|cased:
       - low
       - medium
-  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and selection_7 and not (filter_4
+    or filter_6 or filter_8)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1712,11 +1740,15 @@ detection:
     type|cased: utm
   selection_2:
     subtype|cased: gtp
-  filter_3:
-    severity|cased: low
+  selection_3:
+    severity|exists: true
   filter_4:
+    severity|cased: low
+  selection_5:
+    level|exists: true
+  filter_6:
     level|cased: low
-  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and not (filter_4 or filter_6)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1741,11 +1773,15 @@ detection:
     type|cased: utm
   selection_2:
     subtype|cased: ssh
-  filter_3:
-    severity|cased: low
+  selection_3:
+    severity|exists: true
   filter_4:
+    severity|cased: low
+  selection_5:
+    level|exists: true
+  filter_6:
     level|cased: low
-  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and not (filter_4 or filter_6)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1770,11 +1806,15 @@ detection:
     type|cased: utm
   selection_2:
     subtype|cased: icap
-  filter_3:
-    severity|cased: low
+  selection_3:
+    severity|exists: true
   filter_4:
+    severity|cased: low
+  selection_5:
+    level|exists: true
+  filter_6:
     level|cased: low
-  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and not (filter_4 or filter_6)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1799,11 +1839,15 @@ detection:
     type|cased: utm
   selection_2:
     subtype|cased: forti-switch
-  filter_3:
-    severity|cased: low
+  selection_3:
+    severity|exists: true
   filter_4:
+    severity|cased: low
+  selection_5:
+    level|exists: true
+  filter_6:
     level|cased: low
-  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and not (filter_4 or filter_6)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1828,11 +1872,15 @@ detection:
     type|cased: utm
   selection_2:
     subtype|cased: virtual-patch
-  filter_3:
-    severity|cased: low
+  selection_3:
+    severity|exists: true
   filter_4:
+    severity|cased: low
+  selection_5:
+    level|exists: true
+  filter_6:
     level|cased: low
-  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and not (filter_4 or filter_6)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1857,11 +1905,15 @@ detection:
     type|cased: utm
   selection_2:
     subtype|cased: casb
-  filter_3:
-    severity|cased: low
+  selection_3:
+    severity|exists: true
   filter_4:
+    severity|cased: low
+  selection_5:
+    level|exists: true
+  filter_6:
     level|cased: low
-  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and not (filter_4 or filter_6)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium

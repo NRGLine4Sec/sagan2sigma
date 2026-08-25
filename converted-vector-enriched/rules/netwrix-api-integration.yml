@@ -66,9 +66,11 @@ detection:
     DataSource|cased: Active Directory
   selection_3:
     Action|contains|cased: Added user
-  filter_4:
+  selection_4:
+    Details|exists: true
+  filter_5:
     Details|cased: Security Universal Group
-  condition: selection_1 and selection_2 and selection_3 and not filter_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium

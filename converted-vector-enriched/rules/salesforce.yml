@@ -116,13 +116,15 @@ detection:
     appname|cased: salesforce_streaming_api_data
   selection_2:
     channel|cased: /event/IdentityVerificationEvent
-  filter_3:
+  selection_3:
+    data.payload.Status|exists: true
+  filter_4:
     data.payload.Status:
       - AutomatedSuccess
       - InProgress
       - Initiated
       - Succeeded
-  condition: selection_1 and selection_2 and not filter_3
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -175,9 +177,11 @@ detection:
     appname|cased: salesforce_streaming_api_data
   selection_2:
     channel|cased: /event/LoginEventStream
-  filter_3:
+  selection_3:
+    data.payload.Status|exists: true
+  filter_4:
     data.payload.Status: Success
-  condition: selection_1 and selection_2 and not filter_3
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -240,8 +244,8 @@ description: Reconstruction of the Sagan 'brute_force' bit. The window comes fro
 correlation:
   type: temporal_ordered
   rules:
-    - sagan_xbit_brute_force
-    - sagan_5014047
+    - d096d8bc-eae7-5535-9ff1-02c0aeca8e2c
+    - 6dcff786-2dab-5159-b35b-b6fd426f884d
   group-by:
     - hostname
   timespan: 1d

@@ -1170,11 +1170,13 @@ logsource:
 detection:
   selection_1:
     event_type_id: 145
-  filter_2:
+  selection_2:
+    actor_user_name|exists: true
+  filter_3:
     actor_user_name|cased: OneLogin Cloud Directory Smart Password
-  selection_3:
+  selection_4:
     syslog_appname|cased: onelogin
-  condition: selection_1 and selection_3 and not filter_2
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium

@@ -684,9 +684,11 @@ detection:
     sagan_raw|contains|cased: 'eventName": "CreateFunction20150331'
   filter_3:
     sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
-  filter_4:
+  selection_4:
+    userIdentity.sessionContext.sessionIssuer.userName|exists: true
+  filter_5:
     userIdentity.sessionContext.sessionIssuer.userName|cased: AWSServiceRoleForLambdaReplicator
-  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+  condition: selection_1 and selection_2 and selection_4 and not (filter_3 or filter_5)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: high

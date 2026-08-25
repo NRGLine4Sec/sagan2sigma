@@ -12,9 +12,11 @@ detection:
     Workload|cased: AirInvestigation
   selection_2:
     Status|cased: Investigation Started
-  filter_3:
+  selection_3:
+    Description|exists: true
+  filter_4:
     Description|cased: Email messages containing malicious URL removed after delivery
-  condition: selection_1 and selection_2 and not filter_3
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium

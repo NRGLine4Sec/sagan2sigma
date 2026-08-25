@@ -120,13 +120,15 @@ detection:
     Operation|cased: SearchQueryPerformed
   selection_2:
     SearchQueryText|cased: \*
-  filter_3:
+  selection_3:
+    UserId|exists: true
+  filter_4:
     UserId|cased: app@sharepoint
-  selection_4:
+  selection_5:
     sagan_raw|contains|cased:
       - python-requests
       - Go-http-client
-  condition: selection_1 and selection_2 and selection_4 and not filter_3
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -147,13 +149,15 @@ logsource:
 detection:
   selection_1:
     Operation|cased: SearchQueryPerformed
-  filter_2:
+  selection_2:
+    UserId|exists: true
+  filter_3:
     UserId|cased: app@sharepoint
-  selection_3:
+  selection_4:
     sagan_raw|contains|cased:
       - python-requests
       - Go-http-client
-  condition: selection_1 and selection_3 and not filter_2
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -200,13 +204,15 @@ logsource:
 detection:
   selection_1:
     Operation|cased: FileAccessed
-  filter_2:
+  selection_2:
+    UserId|exists: true
+  filter_3:
     UserId|cased: app@sharepoint
-  selection_3:
+  selection_4:
     sagan_raw|contains|cased:
       - python-requests
       - Go-http-client
-  condition: selection_1 and selection_3 and not filter_2
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -248,19 +254,31 @@ detection:
     Workload|cased: SharePoint
   selection_3:
     Operation|cased: FileAccessed
-  filter_4:
-    UserId|cased: app@sharepoint
+  selection_4:
+    UserId|exists: true
   filter_5:
-    UserAgent|contains|cased: ODMTADemand-Transform_Thumbnail
-  filter_6:
-    IsManagedDevice|cased: 'true'
+    UserId|cased: app@sharepoint
+  selection_6:
+    UserAgent|exists: true
   filter_7:
+    UserAgent|contains|cased: ODMTADemand-Transform_Thumbnail
+  selection_8:
+    IsManagedDevice|exists: true
+  filter_9:
+    IsManagedDevice|cased: 'true'
+  selection_10:
+    SourceRelativeUrl|exists: true
+  filter_11:
     SourceRelativeUrl|cased: User Photos/Profile Pictures
-  filter_8:
+  selection_12:
+    ApplicationDisplayName|exists: true
+  filter_13:
     ApplicationDisplayName|cased:
       - Power BI
       - OneNoteLegacyClient
-  filter_9:
+  selection_14:
+    SourceFileExtension|exists: true
+  filter_15:
     SourceFileExtension|cased:
       - svg
       - gif
@@ -271,12 +289,15 @@ detection:
       - ico
       - heic
       - heif
-  filter_10:
+  selection_16:
+    SourceRelativeUrl|exists: true
+  filter_17:
     SourceRelativeUrl|contains:
       - User Photos
       - Profile Pictures
-  condition: selection_1 and selection_2 and selection_3 and not (filter_4 or filter_5 or filter_6 or
-    filter_7 or filter_8 or filter_9 or filter_10)
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_6 and selection_8
+    and selection_10 and selection_12 and selection_14 and selection_16 and not (filter_5 or filter_7
+    or filter_9 or filter_11 or filter_13 or filter_15 or filter_17)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium

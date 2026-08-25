@@ -74,6 +74,260 @@ reproduced. They are worth reviewing before the ruleset goes live.
 | `D_JSON_PCRE_ABSENT_KEY` | 5 | Sagan treats a key the event does not carry as a match for json_pcre: JSON_Pcre() tests only keys that exist and returns false only on a failed match, so an absent key falls through to true. Sigma has the opposite convention, so the converted rule stays silent on events lacking the key. json_content and json_meta_content do not share this behaviour. Measured against a locally built engine. | `5017941`, `5017944`, `5017945`, `5017946`, `5017947` |
 | `D_DENYLIST_USERNAME_INERT` | 4 | The blacklist keyword tracked by_username, which the engine's denylist processor ignores: it matches IP addresses only (src/processors/blacklist.c), and the rule parser sets no flag for by_username (src/rules.c), so the option is inert. It is dropped and the rest of the rule is converted, exactly as the engine evaluates it. | `5008573`, `5008574`, `5008575`, `5008578` |
 
+## Upstream rules that do not work in Sagan
+
+These are defects in the rules as written, not in the conversion. They
+are listed because a migration inherits them: the converted rule may
+detect something the original never could, which looks like a
+conversion error and is the opposite of one.
+
+| Code | Rules | What it means |
+| --- | --- | --- |
+| `U_CANNOT_MATCH` | 772 | the rule loads and can never fire |
+| `U_INVERTED_CONDITION` | 1 |  |
+| `U_WILL_NOT_LOAD` | 1 | Sagan refuses the ruleset; the engine does not start |
+| `U_WRONG_GROUPING` | 4 | the rule fires, but groups on fewer keys than it names |
+
+<details>
+<summary><code>U_CANNOT_MATCH</code> (772 rules)</summary>
+
+| SID | File | Detail |
+| --- | --- | --- |
+| `5001439` | `digitalpersona.rules` | the program 'DigitalPersona* after: track by_src, count 5, seconds 300' contains a space; no event can satisfy it |
+| `5001568` | `huawei.rules` | the header asks for destination port '$FTP_PORT' and no default_dst_port supplies one, so the rule never matches |
+| `5002737` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"index.php?system=" default_proto:tcp' |
+| `5002738` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"/wp-login.php" default_proto:tcp' |
+| `5002739` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"/wp-login.php" default_proto:tcp' |
+| `5002740` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"/include/config.php" default_proto:tcp' |
+| `5002741` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"/changelog.php" default_proto:tcp' |
+| `5002742` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"robots.txt" default_proto:tcp' |
+| `5002743` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"\|3b\|--" default_proto:tcp' |
+| `5002744` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"/sites/default/settings.php" default_proto:tcp' |
+| `5002745` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"/configuration.php" default_proto:tcp' |
+| `5002746` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"/db.php" default_proto:tcp' |
+| `5002747` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"/inc/mysql.php" default_proto:tcp' |
+| `5002748` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"/iisamples" default_proto:tcp' |
+| `5004756` | `crowdstrike.rules` | content: the hex sequence opened in '\|7c\|DetectionSummaryEvent\|4' is never closed, so the parser converts '4' and appends a control byte no message carries |
+| `5004757` | `crowdstrike.rules` | content: the hex sequence opened in '\|7c\|DetectionSummaryEvent\|5' is never closed, so the parser converts '5' and appends a control byte no message carries |
+| `5004758` | `crowdstrike.rules` | content: the hex sequence opened in '\|7c\|DetectionSummaryEvent\|2' is never closed, so the parser converts '2' and appends a control byte no message carries |
+| `5004759` | `crowdstrike.rules` | content: the hex sequence opened in '\|7c\|DetectionSummaryEvent\|3' is never closed, so the parser converts '3' and appends a control byte no message carries |
+| `5004773` | `azure-eventhub-ad.rules` | the JSON key path 'properties.riskLevelDuringSignIn' is 32 characters; the parser stores only the first 30, so this condition can never match |
+| `5005776` | `cloudgenix.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"sshd\|2d\|all\|3a\|Invalid user\\"\|2d\|all\|3a\|Invalid user"' |
+| `5005921` | `confluent.rules` | the JSON key path 'data.authorizationInfo.operation' is 32 characters; the parser stores only the first 30, so this condition can never match |
+| `5005923` | `confluent.rules` | the JSON key path 'data.authenticationInfo.metadata.mechanism' is 42 characters; the parser stores only the first 30, so this condition can never match |
+| `5005924` | `confluent.rules` | the JSON key path 'data.authenticationInfo.metadata.mechanism' is 42 characters; the parser stores only the first 30, so this condition can never match |
+| `5005926` | `confluent.rules` | the JSON key path 'data.authenticationInfo.metadata.mechanism' is 42 characters; the parser stores only the first 30, so this condition can never match |
+| `5005927` | `confluent.rules` | the JSON key path 'data.authenticationInfo.metadata.mechanism' is 42 characters; the parser stores only the first 30, so this condition can never match |
+| `5005934` | `confluent.rules` | the JSON key path 'data.authorizationInfo.operation' is 32 characters; the parser stores only the first 30, so this condition can never match |
+| `5005935` | `confluent.rules` | the JSON key path 'data.authorizationInfo.operation' is 32 characters; the parser stores only the first 30, so this condition can never match |
+| `5005936` | `confluent.rules` | the JSON key path 'data.authorizationInfo.operation' is 32 characters; the parser stores only the first 30, so this condition can never match |
+| `5005943` | `confluent.rules` | the JSON key path 'data.authorizationInfo.superUserAuthorization' is 45 characters; the parser stores only the first 30, so this condition can never match |
+| `5005944` | `confluent.rules` | the JSON key path 'data.authorizationInfo.superUserAuthorization' is 45 characters; the parser stores only the first 30, so this condition can never match |
+| `5006600` | `okta.rules` | the JSON key path 'debugContext.debugData.threatSuspected' is 38 characters; the parser stores only the first 30, so this condition can never match |
+| `5007737` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007738` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007739` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007740` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007741` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007742` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007743` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007744` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007746` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007749` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007750` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007751` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007752` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007753` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007754` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007755` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007757` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007758` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007759` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007760` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007761` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007762` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007763` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007764` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007765` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007766` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007767` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007768` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007769` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007770` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007774` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007775` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007776` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007777` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007778` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007779` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007780` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007781` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007782` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007783` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007784` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007785` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007787` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007789` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007790` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007791` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007792` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007793` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007794` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007795` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007796` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007797` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007798` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007799` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007800` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007801` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007802` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007803` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007804` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007805` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007806` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007807` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007808` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007809` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007810` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007811` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007812` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007813` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007815` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007816` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007817` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007818` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007819` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007820` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007821` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007822` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007823` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007824` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007825` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007826` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007827` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007828` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007829` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007830` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007831` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007832` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007834` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007835` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007836` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007837` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007838` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007839` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007840` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007841` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007842` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007843` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007844` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007845` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007846` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007847` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007848` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007849` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007850` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007851` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007852` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007853` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007855` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007856` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007857` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007858` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007860` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007861` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007862` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007863` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007864` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007865` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007866` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007867` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007868` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007869` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007870` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007871` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007872` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007873` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007875` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007876` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007877` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007878` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007879` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007882` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007883` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007884` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007885` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007886` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007888` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007889` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007890` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007891` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007892` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007893` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007894` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007895` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007896` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007897` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007898` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007899` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007900` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007902` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007903` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007904` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007905` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007906` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007909` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007911` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007912` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007913` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007914` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007915` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007916` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007918` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007919` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007920` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007922` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007924` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007927` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007928` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007929` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007930` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007931` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+
+...and 572 more.
+
+</details>
+
+<details>
+<summary><code>U_INVERTED_CONDITION</code> (1 rules)</summary>
+
+| SID | File | Detail |
+| --- | --- | --- |
+| `5007143` | `windows-powershell.rules` | a negated pcre is read as a positive one: Sagan has no negation for pcre, so the rule requires what it means to exclude |
+
+</details>
+
+<details>
+<summary><code>U_WILL_NOT_LOAD</code> (1 rules)</summary>
+
+| SID | File | Detail |
+| --- | --- | --- |
+| `5008760` | `azureEventHub_windows-malware.rules` | after tracks by_tag, which the parser does not recognise; the engine refuses the whole ruleset |
+
+</details>
+
+<details>
+<summary><code>U_WRONG_GROUPING</code> (4 rules)</summary>
+
+| SID | File | Detail |
+| --- | --- | --- |
+| `5017890` | `msapi-exchange.rules` | after tracks by_user, which the parser ignores; the correlation groups on the remaining keys only |
+| `5017891` | `msapi-exchange.rules` | after tracks by_user, which the parser ignores; the correlation groups on the remaining keys only |
+| `5017892` | `msapi-exchange.rules` | after tracks by_user, which the parser ignores; the correlation groups on the remaining keys only |
+| `5017897` | `msapi-onedrive.rules` | after tracks by_user, which the parser ignores; the correlation groups on the remaining keys only |
+
+</details>
+
 ## pySigma validation
 
 Every emitted document was accepted by pySigma, and every

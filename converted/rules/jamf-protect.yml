@@ -13,9 +13,11 @@ detection:
     syslog_appname|cased: jamf_protect
   selection_2:
     header.event_name|cased: AUE_auth_user
-  filter_3:
+  selection_3:
+    return.error|exists: true
+  filter_4:
     return.error: 0
-  condition: selection_1 and selection_2 and not filter_3
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -56,9 +58,11 @@ detection:
     syslog_appname|cased: jamf_protect
   selection_2:
     header.event_name|cased: AUE_lw_login
-  filter_3:
+  selection_3:
+    return.error|exists: true
+  filter_4:
     return.error: 0
-  condition: selection_1 and selection_2 and not filter_3
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -108,9 +112,11 @@ detection:
     syslog_appname|cased: jamf_protect
   selection_2:
     header.event_name|cased: AUE_modify_password
-  filter_3:
+  selection_3:
+    subject.user_name|exists: true
+  filter_4:
     subject.user_name|cased: root
-  condition: selection_1 and selection_2 and not filter_3
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium

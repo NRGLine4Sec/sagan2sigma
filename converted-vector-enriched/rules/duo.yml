@@ -11,11 +11,13 @@ detection:
     sagan_raw|contains|cased: 'event_type": "authentication'
   selection_2:
     sagan_raw|contains|cased: 'result": "denied'
-  filter_3:
+  selection_3:
+    reason|exists: true
+  filter_4:
     reason|cased: user_cancelled
-  selection_4:
+  selection_5:
     appname|cased: duo
-  condition: selection_1 and selection_2 and selection_4 and not filter_3
+  condition: selection_1 and selection_2 and selection_3 and selection_5 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: high
@@ -316,8 +318,8 @@ description: Reconstruction of the Sagan 'brute_force' bit. The window comes fro
 correlation:
   type: temporal_ordered
   rules:
-    - sagan_xbit_brute_force
-    - sagan_5013956
+    - d096d8bc-eae7-5535-9ff1-02c0aeca8e2c
+    - 9f4791b5-4172-5fa0-a992-d5ffbd91d3f6
   group-by:
     - hostname
   timespan: 1d

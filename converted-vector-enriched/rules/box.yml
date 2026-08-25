@@ -179,9 +179,11 @@ detection:
     appname|cased: box-api_data
   selection_2:
     event_type|cased: DOWNLOAD
-  filter_3:
+  selection_3:
+    service_name|exists: true
+  filter_4:
     service_name|cased: CloudAlly
-  condition: selection_1 and selection_2 and not filter_3
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -565,8 +567,8 @@ description: Reconstruction of the Sagan 'brute-force' bit. The window comes fro
 correlation:
   type: temporal_ordered
   rules:
-    - sagan_xbit_brute-force
-    - sagan_5015226
+    - 0963d753-5563-54a1-848d-c4d0d89d0221
+    - dbfdd3a5-decf-5ce1-9c83-2a32b059230c
   group-by:
     - ip_address
   timespan: 8h
