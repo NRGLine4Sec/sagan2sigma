@@ -109,7 +109,7 @@ custom_attributes:
 title: '[AZURE-EVENTHUB-ENTRA] High level User Risk Event'
 id: 19a84396-5988-5afd-a13b-ad487fb30e7f
 status: experimental
-description: Converted from Sagan rule SID 5014031 (rev 2), file azureEventHub_entra.rules.
+description: Converted from Sagan rule SID 5014031 (rev 3), file azureEventHub_entra.rules.
 references:
   - https://learn.microsoft.com/en-us/azure/active-directory/identity-protection/howto-identity-protection-investigate-risk
   - https://learn.microsoft.com/en-us/entra/identity/monitoring-health/reference-azure-monitor-sign-ins-log-schema
@@ -120,15 +120,17 @@ detection:
   selection_1:
     syslog_appname|cased: azureEventHub
   selection_2:
-    category|cased: UserRiskEvents
+    operationName|cased: User Risk Detection
   selection_3:
-    properties.riskLevel: high
+    category|cased: UserRiskEvents
   selection_4:
+    properties.riskLevel: high
+  selection_5:
     properties.riskState:
       - atRisk
       - confirmedCompromised
       - unknownFutureValue
-  condition: selection_1 and selection_2 and selection_3 and selection_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -138,9 +140,9 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5014031'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: azureEventHub_entra.rules
-  sagan.metadata: deployment=Server,affected_product=Microsoft_Entra,created_at=2023_10_17,updated_at=2023_10_17
+  sagan.metadata: deployment=Server,affected_product=Microsoft_Entra,created_at=2023_10_17,updated_at=2026_08_26
 ---
 title: '[AZURE-EVENTHUB-ENTRA][EXPERIMENTAL] Non-Interactive Refresh Token Replay via Device Code Flow
   on Unmanaged Device'

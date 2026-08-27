@@ -1794,7 +1794,7 @@ custom_attributes:
 title: '[WINDOWS-POWERSHELL] Path to ProgramData PS1 Script'
 id: ee66bf60-e7d9-553e-aae4-45e78e3d0753
 status: experimental
-description: Converted from Sagan rule SID 5007140 (rev 1), file windows-powershell.rules.
+description: Converted from Sagan rule SID 5007140 (rev 2), file windows-powershell.rules.
 references:
   - https://bazaar.abuse.ch/download/aa87d136aacebb0496371be929657834d541209ef53695e45dc0acc8b65663a7/
 author: sagan2sigma
@@ -1810,12 +1810,14 @@ detection:
       - 4103
       - 4104
   selection_3:
-    message|contains: -Path
+    sagan_raw|contains: -Path
   selection_4:
-    message|contains: c:\\ProgramData
-  selection_5:
-    message|re|i: C\:\\ProgramData\\(?:[\-\w]+\\)+\w+.ps1
-  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+    sagan_raw|contains: c:\\ProgramData
+  filter_5:
+    sagan_raw|contains|cased: \\AzureWindowsBaseline\\
+  selection_6:
+    sagan_raw|re|i: C\:\\ProgramData\\(?:[\-\w]+\\)+\w+.ps1
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_6 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: high
@@ -1825,9 +1827,10 @@ tags:
   - sagan.classtype.suspicious-command
 custom_attributes:
   sagan.sid: '5007140'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: windows-powershell.rules
-  sagan.metadata: updated_at=2023_10_10
+  rsigma.suppress: 1h
+  sagan.metadata: updated_at=2026_08_26
 ---
 title: '[WINDOWS-POWERSHELL] Suspicious XOR Command'
 id: b2c83198-1612-5b25-9f6b-3ef871dcb438

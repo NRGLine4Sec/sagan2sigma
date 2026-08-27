@@ -173,11 +173,11 @@ custom_attributes:
   sagan.source_file: syslog.rules
   rsigma.suppress: 5m
 ---
-title: '[SYSLOG] Authentication failure - Brute force [25/1]'
+title: '[SYSLOG] Authentication failure - Brute force [25/5]'
 id: 77b9d104-56b0-57d5-b4ae-469dfb1721be
 name: sagan_5000119
 status: experimental
-description: Converted from Sagan rule SID 5000119 (rev 20), file syslog.rules.
+description: Converted from Sagan rule SID 5000119 (rev 21), file syslog.rules.
 author: sagan2sigma
 logsource:
   product: linux
@@ -197,11 +197,13 @@ detection:
     message|contains|cased: 'IPSEC: Received an ESP packet'
   filter_7:
     message|contains|cased: reason="IEEE 802.1X authentication failed
-  selection_8:
+  filter_8:
+    message|contains|cased: session.token.rotate
+  selection_9:
     message|re|i: failed to authorize|failed authentication|wrong password given|repeated login failures|authentication
       failed|authentication failures|access denied|access not allowed|failed to authenticate
-  condition: selection_8 and not (filter_1 or filter_2 or filter_3 or filter_4 or filter_5 or filter_6
-    or filter_7)
+  condition: selection_9 and not (filter_1 or filter_2 or filter_3 or filter_4 or filter_5 or filter_6
+    or filter_7 or filter_8)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: low
@@ -209,11 +211,11 @@ tags:
   - sagan.classtype.brute-force
 custom_attributes:
   sagan.sid: '5000119'
-  sagan.rev: '20'
+  sagan.rev: '21'
   sagan.source_file: syslog.rules
   rsigma.suppress: 1d
 ---
-title: '[SYSLOG] Authentication failure - Brute force [25/1] (threshold 25 in 5m)'
+title: '[SYSLOG] Authentication failure - Brute force [25/5] (threshold 25 in 5m)'
 id: 136186d8-2443-59ba-9213-28863d6ab36b
 status: experimental
 description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.

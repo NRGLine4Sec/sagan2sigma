@@ -109,7 +109,7 @@ custom_attributes:
 title: '[AZURE-EVENTHUB-ENTRA] High level User Risk Event'
 id: 19a84396-5988-5afd-a13b-ad487fb30e7f
 status: experimental
-description: Converted from Sagan rule SID 5014031 (rev 2), file azureEventHub_entra.rules.
+description: Converted from Sagan rule SID 5014031 (rev 3), file azureEventHub_entra.rules.
 references:
   - https://learn.microsoft.com/en-us/azure/active-directory/identity-protection/howto-identity-protection-investigate-risk
   - https://learn.microsoft.com/en-us/entra/identity/monitoring-health/reference-azure-monitor-sign-ins-log-schema
@@ -120,15 +120,17 @@ detection:
   selection_1:
     appname|cased: azureEventHub
   selection_2:
-    category|cased: UserRiskEvents
+    operationName|cased: User Risk Detection
   selection_3:
-    properties.riskLevel: high
+    category|cased: UserRiskEvents
   selection_4:
+    properties.riskLevel: high
+  selection_5:
     properties.riskState:
       - atRisk
       - confirmedCompromised
       - unknownFutureValue
-  condition: selection_1 and selection_2 and selection_3 and selection_4
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -138,50 +140,9 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5014031'
-  sagan.rev: '2'
-  sagan.source_file: azureEventHub_entra.rules
-  sagan.metadata: deployment=Server,affected_product=Microsoft_Entra,created_at=2023_10_17,updated_at=2023_10_17
----
-title: '[AZURE-EVENTHUB-ENTRA] User Risk Detected'
-id: c381b9fa-9091-57be-9f12-b74a0364ce0a
-status: experimental
-description: Converted from Sagan rule SID 5017896 (rev 3), file azureEventHub_entra.rules.
-references:
-  - https://learn.microsoft.com/en-us/entra/id-protection/concept-identity-protection-risks
-  - https://support.blumira.com/hc/en-us/articles/45766986695571-Investigating-Azure-Identity-Protection-Risky-Sign-in-findings
-author: sagan2sigma
-logsource:
-  product: azure
-detection:
-  selection_1:
-    appname|cased: azureEventHub
-  selection_2:
-    operationName|cased: User Risk Detection
-  selection_3:
-    sagan_raw|contains|cased:
-      - UnfamiliarASN
-      - UnfamiliarIP
-      - UnfamiliarLocation
-      - UnfamiliarDevice
-  selection_4:
-    properties.riskDetail|exists: true
-  filter_5:
-    properties.riskDetail|cased:
-      - aiconfirmedSigninSafe
-      - adminConfirmedAccountSafe
-      - adminDismissedAllRiskForUser
-      - hidden
-  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
-falsepositives:
-  - 'Unassessed: automatically converted, not yet tuned'
-level: high
-tags:
-  - sagan.classtype.initial-access
-custom_attributes:
-  sagan.sid: '5017896'
   sagan.rev: '3'
   sagan.source_file: azureEventHub_entra.rules
-  sagan.metadata: createdOn=2026_05_04,updatedOn=2026_05_29,mitreTacticID=TA0001,mitreTacticName=InitialAccess,mitreTechniqueID=T1078.004,mitreTechniqueName=ValidCloudAccounts
+  sagan.metadata: deployment=Server,affected_product=Microsoft_Entra,created_at=2023_10_17,updated_at=2026_08_26
 ---
 title: '[AZURE-EVENTHUB-ENTRA] User Risk Detected - Details Hidden'
 id: eb3737ca-7573-5e7e-8ff4-863abc36364b

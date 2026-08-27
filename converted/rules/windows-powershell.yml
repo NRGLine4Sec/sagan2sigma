@@ -1791,44 +1791,6 @@ custom_attributes:
   sagan.source_file: windows-powershell.rules
   sagan.metadata: updated_at=2023_10_10
 ---
-title: '[WINDOWS-POWERSHELL] Path to ProgramData PS1 Script'
-id: ee66bf60-e7d9-553e-aae4-45e78e3d0753
-status: experimental
-description: Converted from Sagan rule SID 5007140 (rev 1), file windows-powershell.rules.
-references:
-  - https://bazaar.abuse.ch/download/aa87d136aacebb0496371be929657834d541209ef53695e45dc0acc8b65663a7/
-author: sagan2sigma
-logsource:
-  product: windows
-detection:
-  selection_1:
-    appname|cased: '*PowerShell*'
-  selection_2:
-    EventID:
-      - 400
-      - 800
-      - 4103
-      - 4104
-  selection_3:
-    _raw|contains: -Path
-  selection_4:
-    _raw|contains: c:\\ProgramData
-  selection_5:
-    _raw|re|i: C\:\\ProgramData\\(?:[\-\w]+\\)+\w+.ps1
-  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
-falsepositives:
-  - 'Unassessed: automatically converted, not yet tuned'
-level: high
-tags:
-  - attack.t1059.001
-  - attack.ta0002
-  - sagan.classtype.suspicious-command
-custom_attributes:
-  sagan.sid: '5007140'
-  sagan.rev: '1'
-  sagan.source_file: windows-powershell.rules
-  sagan.metadata: updated_at=2023_10_10
----
 title: '[WINDOWS-POWERSHELL] Suspicious XOR Command'
 id: b2c83198-1612-5b25-9f6b-3ef871dcb438
 status: experimental

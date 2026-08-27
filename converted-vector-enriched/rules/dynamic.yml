@@ -4551,16 +4551,20 @@ custom_attributes:
 title: '[DYNAMIC] Fortinet JSON Logs Detected'
 id: 2fff97d4-d681-50a3-8d2c-2c66e63cc403
 status: experimental
-description: Converted from Sagan rule SID 5017342 (rev 1), file dynamic.rules.
+description: Converted from Sagan rule SID 5017342 (rev 2), file dynamic.rules.
 author: sagan2sigma
 logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: '"type"'
+    message|contains|cased: '":devid":'
   selection_2:
-    message|contains|cased: '"subtype"'
-  condition: selection_1 and selection_2
+    message|contains|cased: '"type":'
+  selection_3:
+    message|contains|cased: '"subtype":'
+  selection_4:
+    message|contains|cased: '"logid":'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -4568,7 +4572,7 @@ tags:
   - sagan.classtype.dynamic-rules
 custom_attributes:
   sagan.sid: '5017342'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: dynamic.rules
 ---
 title: '[DYNAMIC] GCP Cloud Audit Logs Detected'

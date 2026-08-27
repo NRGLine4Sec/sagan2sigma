@@ -6253,33 +6253,6 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: windows-security.rules
 ---
-title: '[WINDOWS-SECURITY] Hidden Scheduled Task Created - Critical'
-id: c491011f-1269-5b23-8d78-be99d1b7d7db
-status: experimental
-description: Converted from Sagan rule SID 5017396 (rev 1), file windows-security.rules.
-author: sagan2sigma
-logsource:
-  product: windows
-detection:
-  selection_1:
-    appname|cased: '*Security*'
-  selection_2:
-    EventID: 4698
-  selection_3:
-    _raw|contains|cased: <hidden>true</hidden>
-  condition: selection_1 and selection_2 and selection_3
-falsepositives:
-  - 'Unassessed: automatically converted, not yet tuned'
-level: high
-tags:
-  - attack.t1053
-  - sagan.classtype.evasion
-custom_attributes:
-  sagan.sid: '5017396'
-  sagan.rev: '1'
-  sagan.source_file: windows-security.rules
-  sagan.metadata: mitre_tactic_name1=Persistance,mitre_tactic_name2=DefenseEvasion,mitre_tactic_id2=TA0005,mitre_technique_name=ScheduledTaskJob
----
 title: '[WINDOWS-SECURITY] Use Of LOLBIN Detected - wlrmdr.exe'
 id: 98a69f2c-2d73-5b32-aac2-ef7ed98c5a67
 status: experimental

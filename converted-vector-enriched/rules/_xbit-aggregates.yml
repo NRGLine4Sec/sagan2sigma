@@ -640,7 +640,9 @@ detection:
     message|contains|cased: 'IPSEC: Received an ESP packet'
   s13_filter_7:
     message|contains|cased: reason="IEEE 802.1X authentication failed
-  s13_selection_8:
+  s13_filter_8:
+    message|contains|cased: session.token.rotate
+  s13_selection_9:
     message|re|i: failed to authorize|failed authentication|wrong password given|repeated login failures|authentication
       failed|authentication failures|access denied|access not allowed|failed to authenticate
   s14_selection_1:
@@ -1471,72 +1473,72 @@ detection:
     or (s3_selection_1 and s3_selection_2) or (s4_selection_1 and s4_selection_3 and not s4_filter_2)
     or (s5_selection_1 and s5_selection_2) or (s6_selection_1 and s6_selection_2) or (s7_selection_1)
     or (s8_selection_1 and s8_selection_2) or (s9_selection_1 and s9_selection_2) or (s10_selection_1
-    and s10_selection_2) or (s11_selection_1 and s11_selection_2) or (s12_selection_1) or (s13_selection_8
+    and s10_selection_2) or (s11_selection_1 and s11_selection_2) or (s12_selection_1) or (s13_selection_9
     and not (s13_filter_1 or s13_filter_2 or s13_filter_3 or s13_filter_4 or s13_filter_5 or s13_filter_6
-    or s13_filter_7)) or (s14_selection_1 and s14_selection_2) or (s15_selection_1 and s15_selection_2)
-    or (s16_selection_1 and s16_selection_2) or (s17_selection_1 and s17_selection_2) or (s18_selection_1
-    and s18_selection_2 and s18_selection_3) or (s19_selection_1 and s19_selection_2) or (s20_selection_1
-    and s20_selection_2) or (s21_selection_1 and s21_selection_2 and not s21_filter_3) or (s22_selection_1
-    and s22_selection_2) or (s23_selection_1 and s23_selection_2) or (s24_selection_1) or (s25_selection_1)
-    or (s26_selection_1 and s26_selection_2) or (s27_selection_1 and s27_selection_5 and not (s27_filter_2
-    or s27_filter_3 or s27_filter_4)) or (s28_selection_1 and s28_selection_2) or (s29_selection_1 and
-    s29_selection_2) or (s30_selection_1 and s30_selection_2) or (s31_selection_1 and s31_selection_2)
-    or (s32_selection_1 and s32_selection_2) or (s33_selection_1 and s33_selection_2 and not (s33_filter_3
-    or s33_filter_4)) or (s34_selection_1 and s34_selection_2 and s34_selection_4 and not s34_filter_3)
-    or (s35_selection_1 and s35_selection_3 and not s35_filter_2) or (s36_selection_1 and s36_selection_4
-    and s36_selection_5 and s36_selection_6 and not (s36_filter_2 or s36_filter_3)) or (s37_selection_1
-    and s37_selection_2 and s37_selection_3 and s37_selection_4) or (s38_selection_1 and s38_selection_2
-    and s38_selection_3 and s38_selection_4) or (s39_selection_1 and s39_selection_2 and s39_selection_3)
-    or (s40_selection_1 and s40_selection_2 and s40_selection_3) or (s41_selection_1 and s41_selection_3
-    and s41_selection_5 and not (s41_filter_2 or s41_filter_4)) or (s42_selection_1 and s42_selection_2
-    and s42_selection_3) or (s43_selection_1 and s43_selection_2 and s43_selection_3) or (s44_selection_1
-    and s44_selection_2 and s44_selection_3) or (s45_selection_1 and s45_selection_2 and s45_selection_3)
-    or (s46_selection_1 and s46_selection_2) or (s47_selection_1 and s47_selection_2) or (s48_selection_1
-    and s48_selection_2) or (s49_selection_1 and s49_selection_2) or (s50_selection_1 and s50_selection_2)
-    or (s51_selection_1 and s51_selection_2) or (s52_selection_1 and s52_selection_2) or (s53_selection_1
-    and s53_selection_2) or (s54_selection_1 and s54_selection_2) or (s55_selection_1 and s55_selection_2)
-    or (s56_selection_1 and s56_selection_2) or (s57_selection_1 and s57_selection_2) or (s58_selection_1
-    and s58_selection_2) or (s59_selection_1 and s59_selection_2) or (s60_selection_1 and s60_selection_2)
-    or (s61_selection_1 and s61_selection_2 and s61_selection_3) or (s62_selection_1 and s62_selection_2)
-    or (s63_selection_1 and s63_selection_2) or (s64_selection_1 and s64_selection_2) or (s65_selection_1
-    and s65_selection_2) or (s66_selection_1 and s66_selection_2) or (s67_selection_1 and s67_selection_2)
-    or (s68_selection_1 and s68_selection_2) or (s69_selection_1 and s69_selection_2) or (s70_selection_1
-    and s70_selection_2) or (s71_selection_1) or (s72_selection_1 and s72_selection_2) or (s73_selection_1
-    and s73_selection_2 and s73_selection_3) or (s74_selection_1 and s74_selection_2 and s74_selection_3)
-    or (s75_selection_1 and s75_selection_2 and s75_selection_3) or (s76_selection_1 and s76_selection_2)
-    or (s77_selection_1 and s77_selection_2) or (s78_selection_1 and s78_selection_2 and s78_selection_3)
-    or (s79_selection_1 and s79_selection_2 and s79_selection_3) or (s80_selection_1 and s80_selection_2)
-    or (s81_selection_1 and s81_selection_2) or (s82_selection_1 and s82_selection_2 and s82_selection_3)
-    or (s83_selection_1 and s83_selection_2) or (s84_selection_1 and s84_selection_2 and s84_selection_3)
-    or (s85_selection_1 and s85_selection_2 and s85_selection_3) or (s86_selection_1 and s86_selection_2
-    and s86_selection_3) or (s87_selection_1 and s87_selection_2 and s87_selection_3 and not s87_filter_4)
-    or (s88_selection_1) or (s89_selection_1) or (s90_selection_1) or (s91_selection_1) or (s92_selection_1)
-    or (s93_selection_1 and s93_selection_2) or (s94_selection_1 and s94_selection_2) or (s95_selection_1
-    and s95_selection_2) or (s96_selection_1 and s96_selection_2) or (s97_selection_1 and s97_selection_2)
-    or (s98_selection_1 and s98_selection_2) or (s99_selection_1 and s99_selection_2 and s99_selection_3)
-    or (s100_selection_1 and s100_selection_2 and s100_selection_3) or (s101_selection_1 and s101_selection_2
-    and s101_selection_3 and not s101_filter_4) or (s102_selection_1 and s102_selection_2) or (s103_selection_1
-    and s103_selection_4 and s103_selection_5 and s103_selection_6 and not (s103_filter_2 or s103_filter_3))
-    or (s104_selection_2 and s104_selection_5 and s104_selection_6 and s104_selection_7 and not (s104_filter_1
-    or s104_filter_3 or s104_filter_4)) or (s105_selection_1 and s105_selection_2 and s105_selection_3
-    and s105_selection_4) or (s106_selection_1 and s106_selection_2 and s106_selection_3 and s106_selection_4)
-    or (s107_selection_1 and s107_selection_2 and s107_selection_3) or (s108_selection_1 and s108_selection_2
-    and s108_selection_3) or (s109_selection_1 and s109_selection_2 and s109_selection_3) or (s110_selection_1
-    and s110_selection_3 and s110_selection_4 and not s110_filter_2) or (s111_selection_1 and s111_selection_2
-    and s111_selection_3) or (s112_selection_1 and s112_selection_2 and s112_selection_3) or (s113_selection_1
-    and s113_selection_2 and s113_selection_3) or (s114_selection_1 and s114_selection_2 and s114_selection_3)
-    or (s115_selection_1 and s115_selection_2 and s115_selection_3 and s115_selection_4) or (s116_selection_1
-    and s116_selection_2 and s116_selection_3 and s116_selection_4) or (s117_selection_1 and s117_selection_2
-    and s117_selection_6 and s117_selection_7 and not (s117_filter_3 or s117_filter_4 or s117_filter_5))
-    or (s118_selection_1 and s118_selection_2 and s118_selection_3) or (s119_selection_1 and s119_selection_5
-    and not (s119_filter_2 or s119_filter_3 or s119_filter_4)) or (s120_selection_1 and s120_selection_2)
-    or (s121_selection_1 and s121_selection_2 and s121_selection_3 and not s121_filter_4) or (s122_selection_1
-    and s122_selection_2) or (s123_selection_1 and s123_selection_2) or (s124_selection_1 and s124_selection_2)
-    or (s125_selection_1) or (s126_selection_1 and s126_selection_2 and s126_selection_3 and not s126_filter_4)
-    or (s127_selection_1 and s127_selection_2) or (s128_selection_1 and s128_selection_2) or (s129_selection_1
-    and s129_selection_2 and s129_selection_3) or (s130_selection_1 and s130_selection_2 and s130_selection_3
-    and s130_selection_4) or (s131_selection_1 and s131_selection_2 and s131_selection_3 and s131_selection_4)
-    or (s132_selection_1 and s132_selection_2)
+    or s13_filter_7 or s13_filter_8)) or (s14_selection_1 and s14_selection_2) or (s15_selection_1 and
+    s15_selection_2) or (s16_selection_1 and s16_selection_2) or (s17_selection_1 and s17_selection_2)
+    or (s18_selection_1 and s18_selection_2 and s18_selection_3) or (s19_selection_1 and s19_selection_2)
+    or (s20_selection_1 and s20_selection_2) or (s21_selection_1 and s21_selection_2 and not s21_filter_3)
+    or (s22_selection_1 and s22_selection_2) or (s23_selection_1 and s23_selection_2) or (s24_selection_1)
+    or (s25_selection_1) or (s26_selection_1 and s26_selection_2) or (s27_selection_1 and s27_selection_5
+    and not (s27_filter_2 or s27_filter_3 or s27_filter_4)) or (s28_selection_1 and s28_selection_2) or
+    (s29_selection_1 and s29_selection_2) or (s30_selection_1 and s30_selection_2) or (s31_selection_1
+    and s31_selection_2) or (s32_selection_1 and s32_selection_2) or (s33_selection_1 and s33_selection_2
+    and not (s33_filter_3 or s33_filter_4)) or (s34_selection_1 and s34_selection_2 and s34_selection_4
+    and not s34_filter_3) or (s35_selection_1 and s35_selection_3 and not s35_filter_2) or (s36_selection_1
+    and s36_selection_4 and s36_selection_5 and s36_selection_6 and not (s36_filter_2 or s36_filter_3))
+    or (s37_selection_1 and s37_selection_2 and s37_selection_3 and s37_selection_4) or (s38_selection_1
+    and s38_selection_2 and s38_selection_3 and s38_selection_4) or (s39_selection_1 and s39_selection_2
+    and s39_selection_3) or (s40_selection_1 and s40_selection_2 and s40_selection_3) or (s41_selection_1
+    and s41_selection_3 and s41_selection_5 and not (s41_filter_2 or s41_filter_4)) or (s42_selection_1
+    and s42_selection_2 and s42_selection_3) or (s43_selection_1 and s43_selection_2 and s43_selection_3)
+    or (s44_selection_1 and s44_selection_2 and s44_selection_3) or (s45_selection_1 and s45_selection_2
+    and s45_selection_3) or (s46_selection_1 and s46_selection_2) or (s47_selection_1 and s47_selection_2)
+    or (s48_selection_1 and s48_selection_2) or (s49_selection_1 and s49_selection_2) or (s50_selection_1
+    and s50_selection_2) or (s51_selection_1 and s51_selection_2) or (s52_selection_1 and s52_selection_2)
+    or (s53_selection_1 and s53_selection_2) or (s54_selection_1 and s54_selection_2) or (s55_selection_1
+    and s55_selection_2) or (s56_selection_1 and s56_selection_2) or (s57_selection_1 and s57_selection_2)
+    or (s58_selection_1 and s58_selection_2) or (s59_selection_1 and s59_selection_2) or (s60_selection_1
+    and s60_selection_2) or (s61_selection_1 and s61_selection_2 and s61_selection_3) or (s62_selection_1
+    and s62_selection_2) or (s63_selection_1 and s63_selection_2) or (s64_selection_1 and s64_selection_2)
+    or (s65_selection_1 and s65_selection_2) or (s66_selection_1 and s66_selection_2) or (s67_selection_1
+    and s67_selection_2) or (s68_selection_1 and s68_selection_2) or (s69_selection_1 and s69_selection_2)
+    or (s70_selection_1 and s70_selection_2) or (s71_selection_1) or (s72_selection_1 and s72_selection_2)
+    or (s73_selection_1 and s73_selection_2 and s73_selection_3) or (s74_selection_1 and s74_selection_2
+    and s74_selection_3) or (s75_selection_1 and s75_selection_2 and s75_selection_3) or (s76_selection_1
+    and s76_selection_2) or (s77_selection_1 and s77_selection_2) or (s78_selection_1 and s78_selection_2
+    and s78_selection_3) or (s79_selection_1 and s79_selection_2 and s79_selection_3) or (s80_selection_1
+    and s80_selection_2) or (s81_selection_1 and s81_selection_2) or (s82_selection_1 and s82_selection_2
+    and s82_selection_3) or (s83_selection_1 and s83_selection_2) or (s84_selection_1 and s84_selection_2
+    and s84_selection_3) or (s85_selection_1 and s85_selection_2 and s85_selection_3) or (s86_selection_1
+    and s86_selection_2 and s86_selection_3) or (s87_selection_1 and s87_selection_2 and s87_selection_3
+    and not s87_filter_4) or (s88_selection_1) or (s89_selection_1) or (s90_selection_1) or (s91_selection_1)
+    or (s92_selection_1) or (s93_selection_1 and s93_selection_2) or (s94_selection_1 and s94_selection_2)
+    or (s95_selection_1 and s95_selection_2) or (s96_selection_1 and s96_selection_2) or (s97_selection_1
+    and s97_selection_2) or (s98_selection_1 and s98_selection_2) or (s99_selection_1 and s99_selection_2
+    and s99_selection_3) or (s100_selection_1 and s100_selection_2 and s100_selection_3) or (s101_selection_1
+    and s101_selection_2 and s101_selection_3 and not s101_filter_4) or (s102_selection_1 and s102_selection_2)
+    or (s103_selection_1 and s103_selection_4 and s103_selection_5 and s103_selection_6 and not (s103_filter_2
+    or s103_filter_3)) or (s104_selection_2 and s104_selection_5 and s104_selection_6 and s104_selection_7
+    and not (s104_filter_1 or s104_filter_3 or s104_filter_4)) or (s105_selection_1 and s105_selection_2
+    and s105_selection_3 and s105_selection_4) or (s106_selection_1 and s106_selection_2 and s106_selection_3
+    and s106_selection_4) or (s107_selection_1 and s107_selection_2 and s107_selection_3) or (s108_selection_1
+    and s108_selection_2 and s108_selection_3) or (s109_selection_1 and s109_selection_2 and s109_selection_3)
+    or (s110_selection_1 and s110_selection_3 and s110_selection_4 and not s110_filter_2) or (s111_selection_1
+    and s111_selection_2 and s111_selection_3) or (s112_selection_1 and s112_selection_2 and s112_selection_3)
+    or (s113_selection_1 and s113_selection_2 and s113_selection_3) or (s114_selection_1 and s114_selection_2
+    and s114_selection_3) or (s115_selection_1 and s115_selection_2 and s115_selection_3 and s115_selection_4)
+    or (s116_selection_1 and s116_selection_2 and s116_selection_3 and s116_selection_4) or (s117_selection_1
+    and s117_selection_2 and s117_selection_6 and s117_selection_7 and not (s117_filter_3 or s117_filter_4
+    or s117_filter_5)) or (s118_selection_1 and s118_selection_2 and s118_selection_3) or (s119_selection_1
+    and s119_selection_5 and not (s119_filter_2 or s119_filter_3 or s119_filter_4)) or (s120_selection_1
+    and s120_selection_2) or (s121_selection_1 and s121_selection_2 and s121_selection_3 and not s121_filter_4)
+    or (s122_selection_1 and s122_selection_2) or (s123_selection_1 and s123_selection_2) or (s124_selection_1
+    and s124_selection_2) or (s125_selection_1) or (s126_selection_1 and s126_selection_2 and s126_selection_3
+    and not s126_filter_4) or (s127_selection_1 and s127_selection_2) or (s128_selection_1 and s128_selection_2)
+    or (s129_selection_1 and s129_selection_2 and s129_selection_3) or (s130_selection_1 and s130_selection_2
+    and s130_selection_3 and s130_selection_4) or (s131_selection_1 and s131_selection_2 and s131_selection_3
+    and s131_selection_4) or (s132_selection_1 and s132_selection_2)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: informational

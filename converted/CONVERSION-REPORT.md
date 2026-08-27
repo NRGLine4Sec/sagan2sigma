@@ -5,13 +5,13 @@
 | Metric | Value |
 | --- | --- |
 | Rule files processed | 342 |
-| Active rules parsed | 10018 |
-| Commented-out rules skipped | 9441 |
-| Rules converted | 8676 (86.6%) |
-| Rules refused | 1342 (13.4%) |
+| Active rules parsed | 10017 |
+| Commented-out rules skipped | 9442 |
+| Rules converted | 8674 (86.6%) |
+| Rules refused | 1343 (13.4%) |
 | Lines that failed to parse | 0 |
 | Synthetic rules added | 9 |
-| Sigma documents emitted | 9483 |
+| Sigma documents emitted | 9481 |
 | pySigma validation issues | 0 |
 | Output profile | `rsigma-syslog` |
 | Case policy | `faithful` |
@@ -25,7 +25,7 @@ logsource catalog. It answers which kinds of device caused trouble.
 | --- | ---: | ---: | ---: | ---: |
 | AWS | 534 | 101 | 84.1% | 534 |
 | Applications and web | 180 | 72 | 71.4% | 171 |
-| Azure and Microsoft 365 | 1339 | 408 | 76.6% | 546 |
+| Azure and Microsoft 365 | 1339 | 407 | 76.7% | 546 |
 | Endpoint and EDR | 982 | 58 | 94.4% | 975 |
 | Google Cloud | 66 | 10 | 86.8% | 60 |
 | Infrastructure | 189 | 25 | 88.3% | 189 |
@@ -35,15 +35,15 @@ logsource catalog. It answers which kinds of device caused trouble.
 | State correlations | 9 | 0 | 100.0% | 0 |
 | Unclassified | 1547 | 116 | 93.0% | 1547 |
 | Unix and Linux | 177 | 39 | 81.9% | 173 |
-| Windows | 1985 | 117 | 94.4% | 1950 |
+| Windows | 1983 | 119 | 94.3% | 1948 |
 
 ## Refusals by code
 
 | Code | Rules | Share | Meaning |
 | --- | ---: | ---: | --- |
-| `E_RAW_TEXT_ON_JSON_EVENT` | 535 | 39.9% | The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text. |
-| `E_EXTERNAL_ENRICHMENT` | 382 | 28.5% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
-| `E_GROUPBY_UNRESOLVED` | 304 | 22.7% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
+| `E_RAW_TEXT_ON_JSON_EVENT` | 536 | 39.9% | The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text. |
+| `E_EXTERNAL_ENRICHMENT` | 382 | 28.4% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
+| `E_GROUPBY_UNRESOLVED` | 304 | 22.6% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
 | `E_POSITIONAL` | 40 | 3.0% | The rule constrains where a pattern sits in the log line with a non-zero offset, depth or distance. Sigma string modifiers cannot express a byte position, so no faithful translation exists. A zero-valued positional is a no-op in the Sagan engine and is converted. |
 | `E_PCRE_UNSUPPORTED` | 40 | 3.0% | The regular expression uses a PCRE construct the Rust engine cannot express and the converter cannot safely rewrite (recursion, look-around, back-references, control verbs). Recoverable constructs (numbered subroutines, literal braces, the whole-string negation idiom, inert flags) are rewritten instead of refused. |
 | `E_TIME_WINDOW` | 29 | 2.2% | The rule only fires on given weekdays or hour ranges (alert_time). Sigma has no recurring-time operator, so this is refused unless --profile vector-enriched is used, whose bundled time transform supplies the weekday and hour-of-day fields the window matches on. |
@@ -59,9 +59,9 @@ reproduced. They are worth reviewing before the ruleset goes live.
 
 | Code | Rules | Meaning | Example SIDs |
 | --- | ---: | --- | --- |
-| `D_RAW_TEXT_MATCH` | 5772 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
+| `D_RAW_TEXT_MATCH` | 5770 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
 | `D_LOGSOURCE_FALLBACK` | 1864 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
-| `D_EVENT_ID_HEURISTIC` | 1857 | Without a json_map for event_id, Sagan looks for ' <id>: ', with the surrounding spaces, in the first nine characters of the message, so an ID at the very start never matches. The converted rule assumes a proper EventID field instead, which fires on events the heuristic would have missed. Measured against a locally built engine. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
+| `D_EVENT_ID_HEURISTIC` | 1855 | Without a json_map for event_id, Sagan looks for ' <id>: ', with the surrounding spaces, in the first nine characters of the message, so an ID at the very start never matches. The converted rule assumes a proper EventID field instead, which fires on events the heuristic would have missed. Measured against a locally built engine. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
 | `D_THRESHOLD_SUPPRESS` | 1106 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
 | `D_PASS_SHORT_CIRCUIT` | 513 | The rule used the pass action. In Sagan a matching pass rule still emits an alert (Send_Alert runs before the pass check) and then stops evaluating the remaining signatures for that event. The detection is converted faithfully; only the short-circuit, the suppression of other rules on the same event, is not reproduced, since Sigma evaluates every rule independently. | `5016065`, `5016066`, `5016067`, `5016068`, `5016069` |
 | `D_GROUPBY_SYSLOG_HOST` | 386 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
@@ -335,12 +335,12 @@ correlation resolved the rules it references.
 
 ## Refused rules
 
-### `E_RAW_TEXT_ON_JSON_EVENT` (535 rules)
+### `E_RAW_TEXT_ON_JSON_EVENT` (536 rules)
 
 The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text.
 
 <details>
-<summary>Show 400 of the 535 refused rules</summary>
+<summary>Show 400 of the 536 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -463,7 +463,6 @@ The rule searches the raw message body while also using JSON operators. When the
 | `9870102` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [EXPERIMENTAL][AZURE-EVENTHUB-AD] Suspicious Device Registration - Add Registered User/Own | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `9870103` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [EXPERIMENTAL][AZURE-EVENTHUB-AD] Suspicious Device Registration - Add Registered User wit | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `9870104` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [EXPERIMENTAL][AZURE-EVENTHUB-AD] Suspicious Device Registration - Add Registered Owner wi | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| `5017896` | `azureEventHub_entra.rules` | Azure and Microsoft 365 | [AZURE-EVENTHUB-ENTRA] User Risk Detected | `meta_content` | meta_content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding |
 | `5017924` | `azureEventHub_entra.rules` | Azure and Microsoft 365 | [AZURE-EVENTHUB-ENTRA] User Risk Detected - Details Hidden | `meta_content` | meta_content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding |
 | `5004304` | `centrify.rules` | SaaS and identity | [DELINEA] Successful dzdo to user ROOT executed | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5003879` | `cisco-amp.rules` | Network and firewalls | [CISCO-SECUREENDPOINT] Threat Detected | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
@@ -744,7 +743,8 @@ The rule searches the raw message body while also using JSON operators. When the
 | `5005028` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] EditReport from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5005029` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] ExportArtifact from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5005030` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] ExportReport from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| ... | ... | ... | *135 more rows omitted, see the JSON report* | | |
+| `5005031` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] GenerateCustomVisualAADAccessToken from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
+| ... | ... | ... | *136 more rows omitted, see the JSON report* | | |
 
 </details>
 
@@ -1393,7 +1393,7 @@ The group-by key required by after does not exist as a field in any event: Sagan
 | `5003315` | `ssh-tectia-server-correlated.rules` | Unix and Linux | [SSH-TECTIA-SERVER-CORRELATED] Authentication success after exploit attempt | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5003316` | `ssh-tectia-server-correlated.rules` | Unix and Linux | [SSH-TECTIA-SERVER-CORRELATED] Authentication success after brute force activity | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5001877` | `ssh-tectia-server.rules` | Unix and Linux | [SSH-TECTIA-SERVER] Authentication Failure - Brute force [5/5] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
-| `5000119` | `syslog.rules` | Unix and Linux | [SYSLOG] Authentication failure - Brute force [25/1] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
+| `5000119` | `syslog.rules` | Unix and Linux | [SYSLOG] Authentication failure - Brute force [25/5] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5003317` | `vmware-correlated.rules` | Infrastructure | [VMWARE-CORRELATED] User login successful after recon activity | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5003318` | `vmware-correlated.rules` | Infrastructure | [VMWARE-CORRELATED] User login successful after honeypot activity | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5003319` | `vmware-correlated.rules` | Infrastructure | [VMWARE-CORRELATED] User login successful after exploit attempt | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
