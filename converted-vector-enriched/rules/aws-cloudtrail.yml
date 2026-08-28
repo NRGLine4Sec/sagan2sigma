@@ -685,9 +685,9 @@ detection:
   filter_3:
     sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   selection_4:
-    userIdentity.sessionContext.sessionIssuer.userName|exists: true
+    userIdentity.sessionContext.se|exists: true
   filter_5:
-    userIdentity.sessionContext.sessionIssuer.userName|cased: AWSServiceRoleForLambdaReplicator
+    userIdentity.sessionContext.se|cased: AWSServiceRoleForLambdaReplicator
   condition: selection_1 and selection_2 and selection_4 and not (filter_3 or filter_5)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

@@ -144,11 +144,11 @@ custom_attributes:
   sagan.source_file: azureEventHub_entra.rules
   sagan.metadata: deployment=Server,affected_product=Microsoft_Entra,created_at=2023_10_17,updated_at=2026_08_26
 ---
-title: '[AZURE-EVENTHUB-ENTRA][EXPERIMENTAL] Non-Interactive Refresh Token Replay via Device Code Flow
-  on Unmanaged Device'
+title: '[AZURE-EVENTHUB-ENTRA] Non-Interactive Refresh Token Replay via Device Code Flow on Unmanaged
+  Device'
 id: c894b6ab-eecf-5989-8cf3-66ca5a81ebb6
 status: experimental
-description: Converted from Sagan rule SID 5017933 (rev 1), file azureEventHub_entra.rules.
+description: Converted from Sagan rule SID 5017933 (rev 2), file azureEventHub_entra.rules.
 references:
   - https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code
   - https://attack.mitre.org/techniques/T1550/001
@@ -163,13 +163,13 @@ detection:
   selection_3:
     resultType: 0
   selection_4:
-    properties.originalTransferMethod|cased: deviceCodeFlow
+    properties.originalTransferMet|cased: deviceCodeFlow
   selection_5:
     properties.appDisplayName|cased: Microsoft Authentication Broker
   selection_6:
-    properties.deviceDetail.isManaged|exists: true
+    properties.deviceDetail.isMana|exists: true
   filter_7:
-    properties.deviceDetail.isManaged: 'true'
+    properties.deviceDetail.isMana: 'true'
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
     and not filter_7
 falsepositives:
@@ -181,6 +181,6 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5017933'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: azureEventHub_entra.rules
-  sagan.metadata: deployment=Server,affected_product=Microsoft_Entra,created_at=2026_06_26,updated_at=2026_06_26
+  sagan.metadata: deployment=Server,affected_product=Microsoft_Entra,created_at=2026_06_26,updated_at=2026_08_27

@@ -89,13 +89,13 @@ conversion error and is the opposite of one.
 
 | Code | Rules | What it means |
 | --- | --- | --- |
-| `U_CANNOT_MATCH` | 772 | the rule loads and can never fire |
+| `U_CANNOT_MATCH` | 758 | the rule loads and can never fire |
 | `U_INVERTED_CONDITION` | 1 |  |
 | `U_WILL_NOT_LOAD` | 1 | Sagan refuses the ruleset; the engine does not start |
 | `U_WRONG_GROUPING` | 4 | the rule fires, but groups on fewer keys than it names |
 
 <details>
-<summary><code>U_CANNOT_MATCH</code> (772 rules)</summary>
+<summary><code>U_CANNOT_MATCH</code> (758 rules)</summary>
 
 | SID | File | Detail |
 | --- | --- | --- |
@@ -117,19 +117,7 @@ conversion error and is the opposite of one.
 | `5004757` | `crowdstrike.rules` | content: the hex sequence opened in '\|7c\|DetectionSummaryEvent\|5' is never closed, so the parser converts '5' and appends a control byte no message carries |
 | `5004758` | `crowdstrike.rules` | content: the hex sequence opened in '\|7c\|DetectionSummaryEvent\|2' is never closed, so the parser converts '2' and appends a control byte no message carries |
 | `5004759` | `crowdstrike.rules` | content: the hex sequence opened in '\|7c\|DetectionSummaryEvent\|3' is never closed, so the parser converts '3' and appends a control byte no message carries |
-| `5004773` | `azure-eventhub-ad.rules` | the JSON key path 'properties.riskLevelDuringSignIn' is 32 characters; the parser stores only the first 30, so this condition can never match |
 | `5005776` | `cloudgenix.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"sshd\|2d\|all\|3a\|Invalid user\\"\|2d\|all\|3a\|Invalid user"' |
-| `5005921` | `confluent.rules` | the JSON key path 'data.authorizationInfo.operation' is 32 characters; the parser stores only the first 30, so this condition can never match |
-| `5005923` | `confluent.rules` | the JSON key path 'data.authenticationInfo.metadata.mechanism' is 42 characters; the parser stores only the first 30, so this condition can never match |
-| `5005924` | `confluent.rules` | the JSON key path 'data.authenticationInfo.metadata.mechanism' is 42 characters; the parser stores only the first 30, so this condition can never match |
-| `5005926` | `confluent.rules` | the JSON key path 'data.authenticationInfo.metadata.mechanism' is 42 characters; the parser stores only the first 30, so this condition can never match |
-| `5005927` | `confluent.rules` | the JSON key path 'data.authenticationInfo.metadata.mechanism' is 42 characters; the parser stores only the first 30, so this condition can never match |
-| `5005934` | `confluent.rules` | the JSON key path 'data.authorizationInfo.operation' is 32 characters; the parser stores only the first 30, so this condition can never match |
-| `5005935` | `confluent.rules` | the JSON key path 'data.authorizationInfo.operation' is 32 characters; the parser stores only the first 30, so this condition can never match |
-| `5005936` | `confluent.rules` | the JSON key path 'data.authorizationInfo.operation' is 32 characters; the parser stores only the first 30, so this condition can never match |
-| `5005943` | `confluent.rules` | the JSON key path 'data.authorizationInfo.superUserAuthorization' is 45 characters; the parser stores only the first 30, so this condition can never match |
-| `5005944` | `confluent.rules` | the JSON key path 'data.authorizationInfo.superUserAuthorization' is 45 characters; the parser stores only the first 30, so this condition can never match |
-| `5006600` | `okta.rules` | the JSON key path 'debugContext.debugData.threatSuspected' is 38 characters; the parser stores only the first 30, so this condition can never match |
 | `5007737` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
 | `5007738` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
 | `5007739` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
@@ -299,8 +287,20 @@ conversion error and is the opposite of one.
 | `5007929` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
 | `5007930` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
 | `5007931` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007933` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007934` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007935` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007936` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007937` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007938` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007939` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007941` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007942` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007943` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007944` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
+| `5007945` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
 
-...and 572 more.
+...and 558 more.
 
 </details>
 
