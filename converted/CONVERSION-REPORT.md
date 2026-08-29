@@ -4,11 +4,11 @@
 
 | Metric | Value |
 | --- | --- |
-| Rule files processed | 342 |
-| Active rules parsed | 10017 |
+| Rule files processed | 343 |
+| Active rules parsed | 10021 |
 | Commented-out rules skipped | 9442 |
 | Rules converted | 8674 (86.6%) |
-| Rules refused | 1343 (13.4%) |
+| Rules refused | 1347 (13.4%) |
 | Lines that failed to parse | 0 |
 | Synthetic rules added | 9 |
 | Sigma documents emitted | 9481 |
@@ -25,7 +25,7 @@ logsource catalog. It answers which kinds of device caused trouble.
 | --- | ---: | ---: | ---: | ---: |
 | AWS | 534 | 101 | 84.1% | 534 |
 | Applications and web | 180 | 72 | 71.4% | 171 |
-| Azure and Microsoft 365 | 1339 | 407 | 76.7% | 546 |
+| Azure and Microsoft 365 | 1339 | 411 | 76.5% | 546 |
 | Endpoint and EDR | 982 | 58 | 94.4% | 975 |
 | Google Cloud | 66 | 10 | 86.8% | 60 |
 | Infrastructure | 189 | 25 | 88.3% | 189 |
@@ -41,7 +41,7 @@ logsource catalog. It answers which kinds of device caused trouble.
 
 | Code | Rules | Share | Meaning |
 | --- | ---: | ---: | --- |
-| `E_RAW_TEXT_ON_JSON_EVENT` | 536 | 39.9% | The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text. |
+| `E_RAW_TEXT_ON_JSON_EVENT` | 540 | 40.1% | The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text. |
 | `E_EXTERNAL_ENRICHMENT` | 382 | 28.4% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
 | `E_GROUPBY_UNRESOLVED` | 304 | 22.6% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
 | `E_POSITIONAL` | 40 | 3.0% | The rule constrains where a pattern sits in the log line with a non-zero offset, depth or distance. Sigma string modifiers cannot express a byte position, so no faithful translation exists. A zero-valued positional is a no-op in the Sagan engine and is converted. |
@@ -335,12 +335,12 @@ correlation resolved the rules it references.
 
 ## Refused rules
 
-### `E_RAW_TEXT_ON_JSON_EVENT` (536 rules)
+### `E_RAW_TEXT_ON_JSON_EVENT` (540 rules)
 
 The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text.
 
 <details>
-<summary>Show 400 of the 536 refused rules</summary>
+<summary>Show 400 of the 540 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -576,6 +576,8 @@ The rule searches the raw message body while also using JSON operators. When the
 | `5017903` | `msapi-azuread.rules` | Azure and Microsoft 365 | [MSAPI-AZUREAD] User Login Failed Because Strong Auth Requirement w/ Check Me Signed In | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5017904` | `msapi-azuread.rules` | Azure and Microsoft 365 | [MSAPI-AZUREAD] User Login Failed Because External Challenge Requirement w/ Check Me Signe | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5017905` | `msapi-azuread.rules` | Azure and Microsoft 365 | [MSAPI-AZUREAD] Login Blocked by Conditional Access Policy w/ CMSI | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
+| `5017957` | `msapi-azuread.rules` | Azure and Microsoft 365 | [MSAPI-AZUREAD] Consent to Application Granted High Level Privilege | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
+| `5017958` | `msapi-azuread.rules` | Azure and Microsoft 365 | [MSAPI-AZUREAD] Application Delegated High Level Privilege Grant | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `9870105` | `msapi-azuread.rules` | Azure and Microsoft 365 | [EXPERIMENTAL][MSAPI-AZUREAD] Suspicious Device Registration - Add Registered Owner with A | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `9870106` | `msapi-azuread.rules` | Azure and Microsoft 365 | [EXPERIMENTAL][MSAPI-AZUREAD] Suspicious Device Registration - Add Registered User with An | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `99550` | `msapi-azuread.rules` | Azure and Microsoft 365 | [EXPERIMENTAL][MSAPI-AZUREAD] Successful User Login From UnTrusted Device To Known AITM La | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
@@ -642,6 +644,8 @@ The rule searches the raw message body while also using JSON operators. When the
 | `5004891` | `msapi-microsoftstream-geoip.rules` | Azure and Microsoft 365 | [MSAPI-MICROSOFTSTREAM-GEOIP] Stream action from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5004894` | `msapi-microsoftteams-bluedot.rules` | Azure and Microsoft 365 | [MSAPI-MICROSOFTTEAMS-BLUEDOT] Teams session started from Bluedot listed IP address | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5004895` | `msapi-microsoftteams-geoip.rules` | Azure and Microsoft 365 | [MSAPI-MICROSOFTTEAMS-GEOIP] Teams session started from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
+| `5017959` | `msapi-microsoftteams.rules` | Azure and Microsoft 365 | [MSAPI-MICROSOFTTEAMS] Archive File Link Repeatedly Sent to Foreign Tenant User | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
+| `5017960` | `msapi-microsoftteams.rules` | Azure and Microsoft 365 | [MSAPI-MICROSOFTTEAMS] Multiple Files Sent to Foreign Tenant User | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5004957` | `msapi-onedrive-bluedot.rules` | Azure and Microsoft 365 | [MSAPI-ONEDRIVE-BLUEDOT] AccessRequestApproved from Bluedot listed IP address | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5004958` | `msapi-onedrive-bluedot.rules` | Azure and Microsoft 365 | [MSAPI-ONEDRIVE-BLUEDOT] AccessRequestCreated from Bluedot listed IP address | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5004959` | `msapi-onedrive-bluedot.rules` | Azure and Microsoft 365 | [MSAPI-ONEDRIVE-BLUEDOT] AddedToGroup from Bluedot listed IP address | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
@@ -740,11 +744,7 @@ The rule searches the raw message body while also using JSON operators. When the
 | `5005025` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] DeleteReport from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5005026` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] DownloadReport from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5005027` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] EditDataset from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| `5005028` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] EditReport from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| `5005029` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] ExportArtifact from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| `5005030` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] ExportReport from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| `5005031` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] GenerateCustomVisualAADAccessToken from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| ... | ... | ... | *136 more rows omitted, see the JSON report* | | |
+| ... | ... | ... | *140 more rows omitted, see the JSON report* | | |
 
 </details>
 

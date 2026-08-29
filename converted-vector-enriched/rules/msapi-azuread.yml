@@ -269,6 +269,78 @@ custom_attributes:
   sagan.source_file: msapi-azuread.rules
   sagan.metadata: created_on=2024_05_15
 ---
+title: '[MSAPI-AZUREAD] Consent to Application Granted High Level Privilege'
+id: 551e0497-8c7d-5036-9fcb-9efb2592ab6e
+status: experimental
+description: Converted from Sagan rule SID 5017957 (rev 1), file msapi-azuread.rules.
+references:
+  - https://www.semperis.com/blog/app-consent-attack-hidden-consent-grant/
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    Workload|cased: AzureActiveDirectory
+  selection_2:
+    Operation|cased: Consent to application.
+  selection_3:
+    sagan_raw|contains|cased: ConsentAction.Permissions
+  selection_4:
+    sagan_raw|contains|cased: offline_access
+  filter_5:
+    sagan_raw|contains|cased: Azure ESTS Service
+  selection_6:
+    sagan_raw|re: Domain\.ReadWrite\.All|Directory\.ReadWrite\.All|OAuth2PermissionGrant\.ReadWrite\.All|EWS\.AccessAsUser\.All
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_6 and not filter_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1671
+  - attack.ta0003
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5017957'
+  sagan.rev: '1'
+  sagan.source_file: msapi-azuread.rules
+  sagan.metadata: created_on=2026_08_28
+---
+title: '[MSAPI-AZUREAD] Application Delegated High Level Privilege Grant'
+id: f431613b-af86-5180-b88c-c509d868a88c
+status: experimental
+description: Converted from Sagan rule SID 5017958 (rev 1), file msapi-azuread.rules.
+references:
+  - https://www.semperis.com/blog/app-consent-attack-hidden-consent-grant/
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    Workload|cased: AzureActiveDirectory
+  selection_2:
+    Operation|cased: Add delegated permission grant.
+  selection_3:
+    sagan_raw|contains|cased: DelegatedPermissionGrant.Scope
+  selection_4:
+    sagan_raw|contains|cased: offline_access
+  filter_5:
+    sagan_raw|contains|cased: Azure ESTS Service
+  selection_6:
+    sagan_raw|re: Domain\.ReadWrite\.All|Directory\.ReadWrite\.All|OAuth2PermissionGrant\.ReadWrite\.All|EWS\.AccessAsUser\.All
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_6 and not filter_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1671
+  - attack.ta0003
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5017958'
+  sagan.rev: '1'
+  sagan.source_file: msapi-azuread.rules
+  sagan.metadata: created_on=2026_08_28
+---
 title: '[MSAPI-AZUREAD] VSCode Tunnel Detected - Critical'
 id: 9e029592-cb5c-5cd0-9747-897060a089d6
 status: experimental

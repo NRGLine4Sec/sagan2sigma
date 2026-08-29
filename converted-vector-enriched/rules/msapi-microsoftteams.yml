@@ -1,0 +1,104 @@
+title: '[MSAPI-MICROSOFTTEAMS] Archive File Link Repeatedly Sent to Foreign Tenant User'
+id: 10956fcf-a330-5bc1-a99d-208c831ca2b0
+name: sagan_5017959
+status: experimental
+description: Converted from Sagan rule SID 5017959 (rev 1), file msapi-microsoftteams.rules.
+references:
+  - https://learn.microsoft.com/en-us/office/office-365-management-api/office-365-management-activity-api-schema#detection-technologies
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    sagan_raw|contains|cased: ClientIP
+  selection_2:
+    Workload|cased: MicrosoftTeams
+  selection_3:
+    Operation|cased: MessageCreatedHasLink
+  selection_4:
+    ParticipantInfo.HasForeignTena|cased: 'true'
+  selection_5:
+    sagan_raw|re|i: FileUrl[^,}]*\.(zip|tar|gz)
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1048
+  - attack.ta0010
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017959'
+  sagan.rev: '1'
+  sagan.source_file: msapi-microsoftteams.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2026_08_28
+---
+title: '[MSAPI-MICROSOFTTEAMS] Archive File Link Repeatedly Sent to Foreign Tenant User (threshold 6 in
+  1h)'
+id: fee5a280-36df-5e27-bea0-ce8e5969d73f
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017959
+  group-by:
+    - UserId
+  timespan: 1h
+  condition:
+    gte: 7
+level: medium
+---
+title: '[MSAPI-MICROSOFTTEAMS] Multiple Files Sent to Foreign Tenant User'
+id: 46ca345e-9530-5b67-83ab-8aef14165e8e
+name: sagan_5017960
+status: experimental
+description: Converted from Sagan rule SID 5017960 (rev 1), file msapi-microsoftteams.rules.
+references:
+  - https://learn.microsoft.com/en-us/office/office-365-management-api/office-365-management-activity-api-schema#detection-technologies
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    sagan_raw|contains|cased: ClientIP
+  selection_2:
+    sagan_raw|contains|cased: MessageFiles
+  filter_3:
+    sagan_raw|contains|cased: '"MessageFiles":[]'
+  selection_4:
+    Workload|cased: MicrosoftTeams
+  selection_5:
+    Operation|cased: MessageCreatedHasLink
+  selection_6:
+    ParticipantInfo.HasForeignTena|cased: 'true'
+  condition: selection_1 and selection_2 and selection_4 and selection_5 and selection_6 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1048
+  - attack.ta0010
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017960'
+  sagan.rev: '1'
+  sagan.source_file: msapi-microsoftteams.rules
+  rsigma.suppress: 1d
+  sagan.metadata: created_on=2026_08_28
+---
+title: '[MSAPI-MICROSOFTTEAMS] Multiple Files Sent to Foreign Tenant User (threshold 20 in 5m)'
+id: 956a99c3-c975-5c1d-abae-88edb4ead1d0
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017960
+  group-by:
+    - UserId
+  timespan: 5m
+  condition:
+    gte: 21
+level: medium
