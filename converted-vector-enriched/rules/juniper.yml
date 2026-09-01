@@ -1047,11 +1047,11 @@ custom_attributes:
   sagan.rev: '4'
   sagan.source_file: juniper.rules
 ---
-title: '[EXPERIMENTAL] [JUNIPER] Suspicious - Unknown Application on High Destination Port'
-id: 6084d4e5-d876-5d5f-b6a2-3e9a800f9c28
-name: sagan_9870016
+title: '[JUNIPER] Suspicious - Unknown Application on High Destination Port'
+id: 91534548-f628-563f-86b0-07dea875b55d
+name: sagan_5017983
 status: experimental
-description: Converted from Sagan rule SID 9870016 (rev 1), file juniper.rules.
+description: Converted from Sagan rule SID 5017983 (rev 1), file juniper.rules.
 references:
   - https://attack.mitre.org/techniques/T1071/001
 author: sagan2sigma
@@ -1075,21 +1075,20 @@ level: medium
 tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
-  sagan.sid: '9870016'
+  sagan.sid: '5017983'
   sagan.rev: '1'
   sagan.source_file: juniper.rules
   rsigma.suppress: 1h
   sagan.metadata: created_on=2026_06_17,updated_on=2026_06_17,mitreTactic=TA0011,mitreTechnique=T1071.001
 ---
-title: '[EXPERIMENTAL] [JUNIPER] Suspicious - Unknown Application on High Destination Port (threshold
-  3 in 10m)'
-id: 801976a4-a678-53d5-8913-ff2aa6abb999
+title: '[JUNIPER] Suspicious - Unknown Application on High Destination Port (threshold 3 in 10m)'
+id: 2183fb64-e1d0-537b-adb5-0f66f1d4ac15
 status: experimental
 description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
 correlation:
   type: event_count
   rules:
-    - sagan_9870016
+    - sagan_5017983
   group-by:
     - sagan_ip_1
   timespan: 10m
@@ -1097,10 +1096,10 @@ correlation:
     gte: 4
 level: medium
 ---
-title: '[EXPERIMENTAL] [JUNIPER] Suspicious - Large Outbound Data Transfer with Unknown Application'
-id: 3916aeb5-ab8d-5e21-9c31-bf6e0b85a52f
+title: '[JUNIPER] Suspicious - Large Outbound Data Transfer with Unknown Application'
+id: d62b7a45-8f39-5f93-97e0-3d9ceef54113
 status: experimental
-description: Converted from Sagan rule SID 9870017 (rev 1), file juniper.rules.
+description: Converted from Sagan rule SID 5017984 (rev 1), file juniper.rules.
 references:
   - https://attack.mitre.org/techniques/T1071/001
 author: sagan2sigma
@@ -1124,7 +1123,7 @@ level: medium
 tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
-  sagan.sid: '9870017'
+  sagan.sid: '5017984'
   sagan.rev: '1'
   sagan.source_file: juniper.rules
   rsigma.suppress: 1h

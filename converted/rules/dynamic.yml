@@ -5026,3 +5026,24 @@ custom_attributes:
   sagan.sid: '5017935'
   sagan.rev: '1'
   sagan.source_file: dynamic.rules
+---
+title: '[DYNAMIC] MSAPI-MicrosoftTeams logs detected via program'
+id: e16d9b9d-2838-556a-9367-7fb3dc1bde27
+status: experimental
+description: Converted from Sagan rule SID 5017961 (rev 1), file dynamic.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: MicrosoftTeams
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.dynamic-rules
+custom_attributes:
+  sagan.sid: '5017961'
+  sagan.rev: '1'
+  sagan.source_file: dynamic.rules

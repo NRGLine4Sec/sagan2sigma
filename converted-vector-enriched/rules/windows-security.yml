@@ -6754,11 +6754,11 @@ custom_attributes:
   rsigma.suppress: 1h
   sagan.metadata: createdOn=2026_06_11,updatedOn=2026_06_16
 ---
-title: '[EXPERIMENTAL][WINDOWS-SECURITY] Authentication - Anonymous NTLM V1 Logon After Brute Force'
-id: f41783af-dec4-5014-9117-1bad3631f9b6
-name: sagan_9870001
+title: '[WINDOWS-SECURITY] Authentication - Anonymous NTLM V1 Logon After Brute Force'
+id: 9df98e16-680b-50ca-8609-73f40d33fa95
+name: sagan_5017962
 status: experimental
-description: Converted from Sagan rule SID 9870001 (rev 1), file windows-security.rules.
+description: Converted from Sagan rule SID 5017962 (rev 1), file windows-security.rules.
 references:
   - https://attack.mitre.org/techniques/T1187/
 author: sagan2sigma
@@ -6782,15 +6782,15 @@ level: high
 tags:
   - sagan.classtype.credential-access
 custom_attributes:
-  sagan.sid: '9870001'
+  sagan.sid: '5017962'
   sagan.rev: '1'
   sagan.source_file: windows-security.rules
   rsigma.suppress: 1h
   sagan.metadata: createdOn=2026_06_16,updatedOn=2026_06_16
 ---
-title: '[EXPERIMENTAL][WINDOWS-SECURITY] Authentication - Anonymous NTLM V1 Logon After Brute Force (correlated
-  with ntlm_bruteforce)'
-id: ffa28e84-999f-54a0-9cf8-08ae8a62c5d4
+title: '[WINDOWS-SECURITY] Authentication - Anonymous NTLM V1 Logon After Brute Force (correlated with
+  ntlm_bruteforce)'
+id: 334e8dab-3c84-5356-b91e-69ba1f09b09f
 status: experimental
 description: Reconstruction of the Sagan 'ntlm_bruteforce' bit. The window comes from the expire time
   declared by the rules that set the bit.
@@ -6798,17 +6798,17 @@ correlation:
   type: temporal_ordered
   rules:
     - 6875732e-214a-5d6e-a049-45cedf729751
-    - f41783af-dec4-5014-9117-1bad3631f9b6
+    - 9df98e16-680b-50ca-8609-73f40d33fa95
   group-by:
     - sagan_ip_1
   timespan: 6h
 level: high
 ---
-title: '[EXPERIMENTAL][WINDOWS-SECURITY] Authentication - Multiple Failed NTLM V1 Logon via NtLmSsp [3/10Mins]'
-id: 236c0411-db07-52fa-9987-c543c25e414b
-name: sagan_9870002
+title: '[WINDOWS-SECURITY] Authentication - Multiple Failed NTLM V1 Logon via NtLmSsp [3/10Mins]'
+id: c86f821b-b7dd-5094-9b0f-973e6e0f06c8
+name: sagan_5017963
 status: experimental
-description: Converted from Sagan rule SID 9870002 (rev 2), file windows-security.rules.
+description: Converted from Sagan rule SID 5017963 (rev 2), file windows-security.rules.
 references:
   - https://attack.mitre.org/techniques/T1187/
 author: sagan2sigma
@@ -6830,21 +6830,21 @@ level: high
 tags:
   - sagan.classtype.credential-access
 custom_attributes:
-  sagan.sid: '9870002'
+  sagan.sid: '5017963'
   sagan.rev: '2'
   sagan.source_file: windows-security.rules
   rsigma.suppress: 1h
   sagan.metadata: createdOn=2026_06_16,updatedOn=2026_06_16
 ---
-title: '[EXPERIMENTAL][WINDOWS-SECURITY] Authentication - Multiple Failed NTLM V1 Logon via NtLmSsp [3/10Mins]
-  (threshold 3 in 10m)'
-id: 716a7ee5-6132-5e3d-b642-d777621b559d
+title: '[WINDOWS-SECURITY] Authentication - Multiple Failed NTLM V1 Logon via NtLmSsp [3/10Mins] (threshold
+  3 in 10m)'
+id: b67ef642-3abc-59bb-8bd6-2426ea1f584e
 status: experimental
 description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
 correlation:
   type: event_count
   rules:
-    - sagan_9870002
+    - sagan_5017963
   group-by:
     - sagan_ip_1
   timespan: 10m
@@ -6852,10 +6852,10 @@ correlation:
     gte: 4
 level: high
 ---
-title: '[EXPERIMENTAL][WINDOWS-SECURITY] SMB - Anonymous Access to IPC$ Share'
-id: b45f8e8d-b30b-54c9-a646-c94f63e57728
+title: '[WINDOWS-SECURITY] SMB - Anonymous Access to IPC$ Share'
+id: dcf09015-ebe7-560e-8c15-f01abcab9285
 status: experimental
-description: Converted from Sagan rule SID 9870003 (rev 2), file windows-security.rules.
+description: Converted from Sagan rule SID 5017964 (rev 2), file windows-security.rules.
 references:
   - https://attack.mitre.org/techniques/T1135/
 author: sagan2sigma
@@ -6877,7 +6877,7 @@ level: medium
 tags:
   - sagan.classtype.discovery
 custom_attributes:
-  sagan.sid: '9870003'
+  sagan.sid: '5017964'
   sagan.rev: '2'
   sagan.source_file: windows-security.rules
   rsigma.suppress: 6h
@@ -7041,10 +7041,10 @@ correlation:
     gte: 6
 level: high
 ---
-title: '[EXPERIMENTAL][WINDOWS-SECURITY] Kerberos - AS-REP Roasting Attempt with RC4-Encrypted Ticket'
-id: cb6f061b-93ab-563a-b0a2-dc4fd07eef1b
+title: '[WINDOWS-SECURITY] Kerberos - AS-REP Roasting Attempt with RC4-Encrypted Ticket'
+id: 84e9dd2e-e9f9-5d97-9c40-30f087fb5aa7
 status: experimental
-description: Converted from Sagan rule SID 9870009 (rev 3), file windows-security.rules.
+description: Converted from Sagan rule SID 5017965 (rev 3), file windows-security.rules.
 references:
   - https://attack.mitre.org/techniques/T1558/004/
 author: sagan2sigma
@@ -7066,18 +7066,17 @@ level: high
 tags:
   - sagan.classtype.credential-access
 custom_attributes:
-  sagan.sid: '9870009'
+  sagan.sid: '5017965'
   sagan.rev: '3'
   sagan.source_file: windows-security.rules
   rsigma.suppress: 1h
   sagan.metadata: createdOn=2026_06_11,updatedOn=2026_06_16
 ---
-title: '[EXPERIMENTAL][WINDOWS-SECURITY] Kerberos - AS-REP Roasting Bulk Enumeration Multiple Accounts
-  RC4'
-id: cdb7ef12-2ee5-5a08-b895-ddb8c1ed2135
-name: sagan_9870010
+title: '[WINDOWS-SECURITY] Kerberos - AS-REP Roasting Bulk Enumeration Multiple Accounts RC4'
+id: 80f8a6d2-0827-5738-bed5-501a3a42f584
+name: sagan_5017966
 status: experimental
-description: Converted from Sagan rule SID 9870010 (rev 2), file windows-security.rules.
+description: Converted from Sagan rule SID 5017966 (rev 2), file windows-security.rules.
 references:
   - https://attack.mitre.org/techniques/T1558/004/
 author: sagan2sigma
@@ -7099,21 +7098,21 @@ level: high
 tags:
   - sagan.classtype.credential-access
 custom_attributes:
-  sagan.sid: '9870010'
+  sagan.sid: '5017966'
   sagan.rev: '2'
   sagan.source_file: windows-security.rules
   rsigma.suppress: 1h
   sagan.metadata: createdOn=2026_06_11,updatedOn=2026_06_16
 ---
-title: '[EXPERIMENTAL][WINDOWS-SECURITY] Kerberos - AS-REP Roasting Bulk Enumeration Multiple Accounts
-  RC4 (threshold 3 in 5m)'
-id: f5d2eb0a-a865-56cd-a1dd-557ddaa45990
+title: '[WINDOWS-SECURITY] Kerberos - AS-REP Roasting Bulk Enumeration Multiple Accounts RC4 (threshold
+  3 in 5m)'
+id: 38b01dd6-08b2-5936-97e4-db590de8455a
 status: experimental
 description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
 correlation:
   type: event_count
   rules:
-    - sagan_9870010
+    - sagan_5017966
   group-by:
     - sagan_ip_1
   timespan: 5m
@@ -7121,11 +7120,11 @@ correlation:
     gte: 4
 level: high
 ---
-title: '[EXPERIMENTAL][WINDOWS-SECURITY] AD CS - Certificate Services Template Loaded (Possible Enumeration)'
-id: 364216fb-8eea-5e7f-b5f0-000a57148da0
-name: sagan_9870011
+title: '[WINDOWS-SECURITY] AD CS - Certificate Services Template Loaded (Possible Enumeration)'
+id: 323b41d0-102d-5f0a-93b6-b4a8c3c31dc7
+name: sagan_5017967
 status: experimental
-description: Converted from Sagan rule SID 9870011 (rev 2), file windows-security.rules.
+description: Converted from Sagan rule SID 5017967 (rev 2), file windows-security.rules.
 references:
   - https://attack.mitre.org/techniques/T1649/
 author: sagan2sigma
@@ -7145,21 +7144,21 @@ level: medium
 tags:
   - sagan.classtype.discovery
 custom_attributes:
-  sagan.sid: '9870011'
+  sagan.sid: '5017967'
   sagan.rev: '2'
   sagan.source_file: windows-security.rules
   rsigma.suppress: 1h
   sagan.metadata: createdOn=2026_06_11,updatedOn=2026_06_16
 ---
-title: '[EXPERIMENTAL][WINDOWS-SECURITY] AD CS - Certificate Services Template Loaded (Possible Enumeration)
-  (threshold 3 in 5m)'
-id: 0e59a63c-dc54-5de2-9ce7-a2cf5c167cbd
+title: '[WINDOWS-SECURITY] AD CS - Certificate Services Template Loaded (Possible Enumeration) (threshold
+  3 in 5m)'
+id: eeff653c-fa12-5e1d-ba5d-4bbe57be36d3
 status: experimental
 description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
 correlation:
   type: event_count
   rules:
-    - sagan_9870011
+    - sagan_5017967
   group-by:
     - sagan_ip_1
   timespan: 5m
@@ -7213,11 +7212,11 @@ correlation:
     gte: 3
 level: high
 ---
-title: '[EXPERIMENTAL][WINDOWS-SECURITY] Kerberos - SPN Enumeration via setspn.exe'
-id: f8dbfe4d-3d2d-5b4c-ba1f-9384050d1c23
-name: sagan_9870013
+title: '[WINDOWS-SECURITY] Kerberos - SPN Enumeration via setspn.exe'
+id: 6af04033-5044-5064-be90-40f6c7c145e4
+name: sagan_5017968
 status: experimental
-description: Converted from Sagan rule SID 9870013 (rev 2), file windows-security.rules.
+description: Converted from Sagan rule SID 5017968 (rev 2), file windows-security.rules.
 references:
   - https://attack.mitre.org/techniques/T1558/003/
 author: sagan2sigma
@@ -7241,20 +7240,20 @@ level: medium
 tags:
   - sagan.classtype.discovery
 custom_attributes:
-  sagan.sid: '9870013'
+  sagan.sid: '5017968'
   sagan.rev: '2'
   sagan.source_file: windows-security.rules
   rsigma.suppress: 1h
   sagan.metadata: createdOn=2026_06_11,updatedOn=2026_06_16
 ---
-title: '[EXPERIMENTAL][WINDOWS-SECURITY] Kerberos - SPN Enumeration via setspn.exe (threshold 3 in 5m)'
-id: 46c3404e-9d38-5580-9965-b194b013cf82
+title: '[WINDOWS-SECURITY] Kerberos - SPN Enumeration via setspn.exe (threshold 3 in 5m)'
+id: ea5884ad-8e49-5f7a-b9c3-ac0685d987d5
 status: experimental
 description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
 correlation:
   type: event_count
   rules:
-    - sagan_9870013
+    - sagan_5017968
   group-by:
     - xff
   timespan: 5m
@@ -7262,11 +7261,11 @@ correlation:
     gte: 4
 level: medium
 ---
-title: '[EXPERIMENTAL][WINDOWS-SECURITY] Kerberos - RC4 Kerberoasting followed by AD CS Template Load'
-id: a421b4e6-ecbb-5856-a32e-d5bd9982952f
-name: sagan_9870014
+title: '[WINDOWS-SECURITY] Kerberos - RC4 Kerberoasting followed by AD CS Template Load'
+id: f732e45f-8f6c-53bd-af05-27c031d10970
+name: sagan_5017969
 status: experimental
-description: Converted from Sagan rule SID 9870014 (rev 2), file windows-security.rules.
+description: Converted from Sagan rule SID 5017969 (rev 2), file windows-security.rules.
 references:
   - https://attack.mitre.org/techniques/T1649/
 author: sagan2sigma
@@ -7286,15 +7285,15 @@ level: high
 tags:
   - sagan.classtype.credential-access
 custom_attributes:
-  sagan.sid: '9870014'
+  sagan.sid: '5017969'
   sagan.rev: '2'
   sagan.source_file: windows-security.rules
   rsigma.suppress: 1h
   sagan.metadata: createdOn=2026_06_11,updatedOn=2026_06_16
 ---
-title: '[EXPERIMENTAL][WINDOWS-SECURITY] Kerberos - RC4 Kerberoasting followed by AD CS Template Load
-  (correlated with kerb.rc4.request)'
-id: e77868cd-04ce-5291-b88d-92224b52a9bc
+title: '[WINDOWS-SECURITY] Kerberos - RC4 Kerberoasting followed by AD CS Template Load (correlated with
+  kerb.rc4.request)'
+id: 8651fc2e-4dc8-518a-a8c2-1f586930c86a
 status: experimental
 description: Reconstruction of the Sagan 'kerb.rc4.request' bit. The window comes from the expire time
   declared by the rules that set the bit.
@@ -7302,7 +7301,7 @@ correlation:
   type: temporal_ordered
   rules:
     - 4a36d7f9-877a-55d3-bc5a-a8afb95c1efb
-    - a421b4e6-ecbb-5856-a32e-d5bd9982952f
+    - f732e45f-8f6c-53bd-af05-27c031d10970
   group-by:
     - sagan_ip_1
   timespan: 1h

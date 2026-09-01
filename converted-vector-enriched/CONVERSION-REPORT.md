@@ -5,13 +5,13 @@
 | Metric | Value |
 | --- | --- |
 | Rule files processed | 343 |
-| Active rules parsed | 10021 |
+| Active rules parsed | 10022 |
 | Commented-out rules skipped | 9442 |
-| Rules converted | 9428 (94.1%) |
+| Rules converted | 9429 (94.1%) |
 | Rules refused | 593 (5.9%) |
 | Lines that failed to parse | 0 |
 | Synthetic rules added | 18 |
-| Sigma documents emitted | 10577 |
+| Sigma documents emitted | 10578 |
 | pySigma validation issues | 0 |
 | Output profile | `vector-enriched` |
 | Case policy | `faithful` |
@@ -33,7 +33,7 @@ logsource catalog. It answers which kinds of device caused trouble.
 | Network detection | 248 | 13 | 95.0% | 248 |
 | SaaS and identity | 331 | 13 | 96.2% | 170 |
 | State correlations | 18 | 0 | 100.0% | 0 |
-| Unclassified | 1587 | 76 | 95.4% | 1587 |
+| Unclassified | 1588 | 76 | 95.4% | 1588 |
 | Unix and Linux | 203 | 13 | 94.0% | 199 |
 | Windows | 2069 | 33 | 98.4% | 2034 |
 
@@ -58,13 +58,13 @@ reproduced. They are worth reviewing before the ruleset goes live.
 | Code | Rules | Meaning | Example SIDs |
 | --- | ---: | --- | --- |
 | `D_RAW_TEXT_MATCH` | 6413 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
-| `D_LOGSOURCE_FALLBACK` | 1977 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
+| `D_LOGSOURCE_FALLBACK` | 1978 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
 | `D_EVENT_ID_HEURISTIC` | 1931 | Without a json_map for event_id, Sagan looks for ' <id>: ', with the surrounding spaces, in the first nine characters of the message, so an ID at the very start never matches. The converted rule assumes a proper EventID field instead, which fires on events the heuristic would have missed. Measured against a locally built engine. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
 | `D_THRESHOLD_SUPPRESS` | 1485 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
 | `D_PASS_SHORT_CIRCUIT` | 515 | The rule used the pass action. In Sagan a matching pass rule still emits an alert (Send_Alert runs before the pass check) and then stops evaluating the remaining signatures for that event. The detection is converted faithfully; only the short-circuit, the suppression of other rules on the same event, is not reproduced, since Sigma evaluates every rule independently. | `5016065`, `5016066`, `5016067`, `5016068`, `5016069` |
 | `D_GROUPBY_SYSLOG_HOST` | 387 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
 | `D_POSITIONAL_IP_FIELD` | 286 | The group-by key comes from the bundled VRL transform rather than from the log itself. The correlation only works if that transform runs in the ingestion pipeline. | `5002942`, `5015097`, `5014021`, `5014177`, `5008654` |
-| `D_SIDE_EFFECT_DROPPED` | 232 | Engine-specific side effect (external, email, dynamic_load, unset) with no Sigma equivalent. | `5008539`, `5003022`, `5003023`, `5002959`, `5002960` |
+| `D_SIDE_EFFECT_DROPPED` | 233 | Engine-specific side effect (external, email, dynamic_load, unset) with no Sigma equivalent. | `5008539`, `5003022`, `5003023`, `5002959`, `5002960` |
 | `D_THRESHOLD_LIMIT` | 169 | threshold type limit caps alert volume, not detection. Sigma has no equivalent, so the constraint is dropped. | `5017933`, `5008570`, `5009316`, `5009317`, `5009318` |
 | `D_XBIT_ISSET_SYNTHETIC` | 154 | The state correlation was rebuilt through a synthetic aggregate rule gathering every rule that sets the bit. | `5014084`, `5014091`, `5008539`, `5008654`, `5008655` |
 | `D_BLUEDOT_SUBSTITUTION` | 134 | bluedot queries Quadrant's Bluedot threat-intelligence API, which is a closed commercial source that cannot be redistributed. This conversion deliberately SUBSTITUTES it: the rule matches the parsed address against open-source feeds you supply, one per Bluedot category (Tor, Proxy, Malicious, Honeypot), so it fires on your feed's addresses, not on Bluedot's. This is the project's one accepted break from faithful conversion, taken because a bluedot rule that is not converted can never fire under RSigma at all, whereas a substituted one keeps the detection intent. Fidelity varies by category: Tor is near-authoritative (the Tor Project exit list is the same public ground truth Bluedot derives from); Malicious, Proxy and Honeypot depend entirely on the feed you choose and will diverge from Bluedot's verdicts. Only the address (ip_reputation) lookup is reproduced; hash and URL lookups are still refused. | `5005726`, `5005727`, `5005728`, `5005729`, `5005730` |
@@ -78,7 +78,7 @@ reproduced. They are worth reviewing before the ruleset goes live.
 | `D_AFTER_BY_STRING_INERT` | 5 | after tracked by_string, which that parser never recognises: it tests an option token strtok_r has already truncated to 'track', so the branch is dead. Sagan groups on the remaining keys only, and rejects the rule outright when by_string is the only key. Confirmed against a locally built engine. threshold is unaffected: its parser tests the intact token, so there by_string really is a synonym for by_username. | `5015138`, `5015139`, `5015148`, `5015149`, `5014547` |
 | `D_DENYLIST_USERNAME_INERT` | 4 | The blacklist keyword tracked by_username, which the engine's denylist processor ignores: it matches IP addresses only (src/processors/blacklist.c), and the rule parser sets no flag for by_username (src/rules.c), so the option is inert. It is dropped and the rest of the rule is converted, exactly as the engine evaluates it. | `5008573`, `5008574`, `5008575`, `5008578` |
 | `D_TRACK_KEY_INERT` | 4 | The rule tracks by a key the engine's parser does not recognise. after compares each &-separated token with strcmp, so a near miss like by_user (not by_username) or a key with no branch at all (by_tag, by_hostname) sets no method and contributes nothing to the counter key. Sagan groups on the remaining keys only. Confirmed against a locally built engine. | `5017890`, `5017891`, `5017892`, `5017897` |
-| `D_ALERT_TIME_EVENT_CLOCK` | 3 | alert_time matches against weekday and hour-of-day fields the bundled Vector time transform derives from the event timestamp. Sagan evaluates the window against the wall clock at processing time, not the event's own time; the two coincide in near-real-time ingestion. The comparison uses the timezone Vector formats in, which must match the Sagan host's local time for the window to align. | `9870022`, `9870018`, `9870026` |
+| `D_ALERT_TIME_EVENT_CLOCK` | 3 | alert_time matches against weekday and hour-of-day fields the bundled Vector time transform derives from the event timestamp. Sagan evaluates the window against the wall clock at processing time, not the event's own time; the two coincide in near-real-time ingestion. The comparison uses the timezone Vector formats in, which must match the Sagan host's local time for the window to align. | `5017981`, `5017985`, `5017977` |
 
 ## Upstream rules that do not work in Sagan
 

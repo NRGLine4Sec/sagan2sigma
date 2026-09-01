@@ -468,12 +468,12 @@ custom_attributes:
   rsigma.suppress: 30m
   sagan.metadata: created_at=2026_05_06,updated_at=2026_06_12
 ---
-title: '[EXPERIMENTAL][MSAPI-AZUREAD] Successful User Login From UnTrusted Device To Known AITM Landing
-  Page - Possible AITM'
-id: 5f81f255-3149-5b0e-8077-4121400ce245
-name: sagan_99550
+title: '[MSAPI-AZUREAD] Successful User Login From UnTrusted Device To Known AITM Landing Page - Possible
+  AITM'
+id: ff50abae-0949-54e2-9cfc-bc4618bd750e
+name: sagan_5017971
 status: experimental
-description: Converted from Sagan rule SID 99550 (rev 6), file msapi-azuread.rules.
+description: Converted from Sagan rule SID 5017971 (rev 6), file msapi-azuread.rules.
 author: sagan2sigma
 logsource:
   product: m365
@@ -523,15 +523,15 @@ level: high
 tags:
   - sagan.classtype.suspicious-activity
 custom_attributes:
-  sagan.sid: '99550'
+  sagan.sid: '5017971'
   sagan.rev: '6'
   sagan.source_file: msapi-azuread.rules
   rsigma.suppress: 1h
   sagan.metadata: createdOn=2026_05_13,updatedOn=2026_05_28
 ---
-title: '[EXPERIMENTAL][MSAPI-AZUREAD] Successful User Login From UnTrusted Device To Known AITM Landing
-  Page - Possible AITM (correlated with AITM_RECON)'
-id: 22a701f3-5008-5893-b375-e6676996590c
+title: '[MSAPI-AZUREAD] Successful User Login From UnTrusted Device To Known AITM Landing Page - Possible
+  AITM (correlated with AITM_RECON)'
+id: e96a7eec-210a-56ac-9b55-b732ac45c75f
 status: experimental
 description: Reconstruction of the Sagan 'AITM_RECON' bit. The window comes from the expire time declared
   by the rules that set the bit.
@@ -539,18 +539,18 @@ correlation:
   type: temporal_ordered
   rules:
     - 23827b44-4883-5423-82c7-aaa660ab9c59
-    - 5f81f255-3149-5b0e-8077-4121400ce245
+    - ff50abae-0949-54e2-9cfc-bc4618bd750e
   group-by:
     - UserId
   timespan: 10h
 level: high
 ---
-title: '[EXPERIMENTAL][MSAPI-AZUREAD] Successful User Login From UnTrusted Device To Known AITM Landing
-  Page - Possible Persistence Setup Via Keep Me Signed In'
-id: 642ee80a-f231-544c-9f7f-f4f8b0cf1515
-name: sagan_99551
+title: '[MSAPI-AZUREAD] Successful User Login From UnTrusted Device To Known AITM Landing Page - Possible
+  Persistence Setup Via Keep Me Signed In'
+id: 0a0e5cb7-fd18-5689-b71e-b2bc37fc8479
+name: sagan_5017972
 status: experimental
-description: Converted from Sagan rule SID 99551 (rev 4), file msapi-azuread.rules.
+description: Converted from Sagan rule SID 5017972 (rev 4), file msapi-azuread.rules.
 author: sagan2sigma
 logsource:
   product: m365
@@ -596,15 +596,15 @@ level: high
 tags:
   - sagan.classtype.suspicious-activity
 custom_attributes:
-  sagan.sid: '99551'
+  sagan.sid: '5017972'
   sagan.rev: '4'
   sagan.source_file: msapi-azuread.rules
   rsigma.suppress: 1h
   sagan.metadata: createdOn=2026_05_13,updatedOn=2026_05_28
 ---
-title: '[EXPERIMENTAL][MSAPI-AZUREAD] Successful User Login From UnTrusted Device To Known AITM Landing
-  Page - Possible Persistence Setup Via Keep Me Signed In (correlated with AITM_LOGIN)'
-id: bb4542db-ba08-5174-9517-f2bd4630114c
+title: '[MSAPI-AZUREAD] Successful User Login From UnTrusted Device To Known AITM Landing Page - Possible
+  Persistence Setup Via Keep Me Signed In (correlated with AITM_LOGIN)'
+id: e4ea9f65-6c4b-54e6-b258-8e03f828b7ec
 status: experimental
 description: Reconstruction of the Sagan 'AITM_LOGIN' bit. The window comes from the expire time declared
   by the rules that set the bit.
@@ -612,7 +612,7 @@ correlation:
   type: temporal_ordered
   rules:
     - c642d4c7-b04c-5cb9-85c5-4fdcbd0fd4f2
-    - 642ee80a-f231-544c-9f7f-f4f8b0cf1515
+    - 0a0e5cb7-fd18-5689-b71e-b2bc37fc8479
   group-by:
     - UserId
   timespan: 148h
@@ -763,10 +763,10 @@ correlation:
     gte: 2
 level: high
 ---
-title: '[EXPERIMENTAL][MSAPI-AZUREAD] Initial Access: Potential AiTM Token Replay via Unknown ObjectId'
-id: f2930bf6-3bc4-58fb-bdd5-7c1bca2aa7bc
+title: '[MSAPI-AZUREAD] Initial Access: Potential AiTM Token Replay via Unknown ObjectId'
+id: 81e4b243-c872-5e41-9ac2-0a54e75fb083
 status: experimental
-description: Converted from Sagan rule SID 99554 (rev 3), file msapi-azuread.rules.
+description: Converted from Sagan rule SID 5017973 (rev 3), file msapi-azuread.rules.
 author: sagan2sigma
 logsource:
   product: m365
@@ -814,7 +814,7 @@ level: high
 tags:
   - sagan.classtype.suspicious-activity
 custom_attributes:
-  sagan.sid: '99554'
+  sagan.sid: '5017973'
   sagan.rev: '3'
   sagan.source_file: msapi-azuread.rules
   rsigma.suppress: 1h
