@@ -5,13 +5,13 @@
 | Metric | Value |
 | --- | --- |
 | Rule files processed | 343 |
-| Active rules parsed | 10022 |
+| Active rules parsed | 10025 |
 | Commented-out rules skipped | 9442 |
-| Rules converted | 8675 (86.6%) |
+| Rules converted | 8678 (86.6%) |
 | Rules refused | 1347 (13.4%) |
 | Lines that failed to parse | 0 |
-| Synthetic rules added | 9 |
-| Sigma documents emitted | 9482 |
+| Synthetic rules added | 10 |
+| Sigma documents emitted | 9487 |
 | pySigma validation issues | 0 |
 | Output profile | `rsigma-syslog` |
 | Case policy | `faithful` |
@@ -25,14 +25,14 @@ logsource catalog. It answers which kinds of device caused trouble.
 | --- | ---: | ---: | ---: | ---: |
 | AWS | 534 | 101 | 84.1% | 534 |
 | Applications and web | 180 | 72 | 71.4% | 171 |
-| Azure and Microsoft 365 | 1339 | 411 | 76.5% | 546 |
+| Azure and Microsoft 365 | 1342 | 411 | 76.6% | 547 |
 | Endpoint and EDR | 982 | 58 | 94.4% | 975 |
 | Google Cloud | 66 | 10 | 86.8% | 60 |
 | Infrastructure | 189 | 25 | 88.3% | 189 |
 | Network and firewalls | 1128 | 340 | 76.8% | 1051 |
 | Network detection | 241 | 20 | 92.3% | 241 |
 | SaaS and identity | 308 | 36 | 89.5% | 152 |
-| State correlations | 9 | 0 | 100.0% | 0 |
+| State correlations | 10 | 0 | 100.0% | 0 |
 | Unclassified | 1548 | 116 | 93.0% | 1548 |
 | Unix and Linux | 177 | 39 | 81.9% | 173 |
 | Windows | 1983 | 119 | 94.3% | 1948 |
@@ -62,14 +62,14 @@ reproduced. They are worth reviewing before the ruleset goes live.
 | `D_RAW_TEXT_MATCH` | 5770 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
 | `D_LOGSOURCE_FALLBACK` | 1865 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
 | `D_EVENT_ID_HEURISTIC` | 1855 | Without a json_map for event_id, Sagan looks for ' <id>: ', with the surrounding spaces, in the first nine characters of the message, so an ID at the very start never matches. The converted rule assumes a proper EventID field instead, which fires on events the heuristic would have missed. Measured against a locally built engine. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
-| `D_THRESHOLD_SUPPRESS` | 1106 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
+| `D_THRESHOLD_SUPPRESS` | 1107 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
 | `D_PASS_SHORT_CIRCUIT` | 513 | The rule used the pass action. In Sagan a matching pass rule still emits an alert (Send_Alert runs before the pass check) and then stops evaluating the remaining signatures for that event. The detection is converted faithfully; only the short-circuit, the suppression of other rules on the same event, is not reproduced, since Sigma evaluates every rule independently. | `5016065`, `5016066`, `5016067`, `5016068`, `5016069` |
 | `D_GROUPBY_SYSLOG_HOST` | 386 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
 | `D_SIDE_EFFECT_DROPPED` | 233 | Engine-specific side effect (external, email, dynamic_load, unset) with no Sigma equivalent. | `5008539`, `5003022`, `5003023`, `5002959`, `5002960` |
 | `D_THRESHOLD_LIMIT` | 145 | threshold type limit caps alert volume, not detection. Sigma has no equivalent, so the constraint is dropped. | `5017933`, `5008570`, `5009316`, `5009317`, `5009318` |
 | `D_APPEND_PROGRAM` | 74 | append_program makes Sagan append the program field to the message before matching. The converted rule searches the message alone. | `5000419`, `5000470`, `5000489`, `5000519`, `5000521` |
 | `D_XBIT_SET_DROPPED` | 64 | The rule set or tested an xbit that no converted rule consumes. The state link is lost. | `5009285`, `5009290`, `5007210`, `5007211`, `5005994` |
-| `D_XBIT_ISSET_SYNTHETIC` | 19 | The state correlation was rebuilt through a synthetic aggregate rule gathering every rule that sets the bit. | `5014091`, `5008539`, `5009793`, `5015226`, `5014479` |
+| `D_XBIT_ISSET_SYNTHETIC` | 20 | The state correlation was rebuilt through a synthetic aggregate rule gathering every rule that sets the bit. | `9870107`, `5014091`, `5008539`, `5009793`, `5015226` |
 | `D_DROP_ACTION` | 13 | The rule used the drop action. Sigma has no action concept; it was converted as a normal detection rule. | `5000102`, `5000103`, `5000193`, `5000018`, `5000071` |
 | `D_JSON_PCRE_ABSENT_KEY` | 5 | Sagan treats a key the event does not carry as a match for json_pcre: JSON_Pcre() tests only keys that exist and returns false only on a failed match, so an absent key falls through to true. Sigma has the opposite convention, so the converted rule stays silent on events lacking the key. json_content and json_meta_content do not share this behaviour. Measured against a locally built engine. | `5017941`, `5017944`, `5017945`, `5017946`, `5017947` |
 | `D_DENYLIST_USERNAME_INERT` | 4 | The blacklist keyword tracked by_username, which the engine's denylist processor ignores: it matches IP addresses only (src/processors/blacklist.c), and the rule parser sets no flag for by_username (src/rules.c), so the option is inert. It is dropped and the rest of the rule is converted, exactly as the engine evaluates it. | `5008573`, `5008574`, `5008575`, `5008578` |
@@ -1442,7 +1442,7 @@ The group-by key required by after does not exist as a field in any event: Sagan
 | `5015197` | `windows-security.rules` | Windows | [WINDOWS-SECURITY] NPS RADIUS Server Login After Brute Force | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5017966` | `windows-security.rules` | Windows | [WINDOWS-SECURITY] Kerberos - AS-REP Roasting Bulk Enumeration Multiple Accounts RC4 | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5017967` | `windows-security.rules` | Windows | [WINDOWS-SECURITY] AD CS - Certificate Services Template Loaded (Possible Enumeration) | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
-| `5017969` | `windows-security.rules` | Windows | [WINDOWS-SECURITY] Kerberos - RC4 Kerberoasting followed by AD CS Template Load | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
+| `5017969` | `windows-security.rules` | Windows | [WINDOWS-SECURITY] Kerberos - RC4 Kerberoasting followed by AD CS Template Load | `flexbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `9870005` | `windows-security.rules` | Windows | [EXPERIMENTAL][WINDOWS-SECURITY] SMB - Multiple Authentication Failures [3/5Mins] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `9870006` | `windows-security.rules` | Windows | [EXPERIMENTAL][WINDOWS-SECURITY] SMB - Suspected Authentication Coercion IPC\|24\| Access fo | `xbits` | dest_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `9870008` | `windows-security.rules` | Windows | [EXPERIMENTAL][WINDOWS-SECURITY] Kerberos - Multiple RC4 Service Ticket Requests from Sing | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |

@@ -5,13 +5,13 @@
 | Metric | Value |
 | --- | --- |
 | Rule files processed | 343 |
-| Active rules parsed | 10022 |
+| Active rules parsed | 10025 |
 | Commented-out rules skipped | 9442 |
-| Rules converted | 9429 (94.1%) |
+| Rules converted | 9432 (94.1%) |
 | Rules refused | 593 (5.9%) |
 | Lines that failed to parse | 0 |
-| Synthetic rules added | 18 |
-| Sigma documents emitted | 10578 |
+| Synthetic rules added | 19 |
+| Sigma documents emitted | 10583 |
 | pySigma validation issues | 0 |
 | Output profile | `vector-enriched` |
 | Case policy | `faithful` |
@@ -25,14 +25,14 @@ logsource catalog. It answers which kinds of device caused trouble.
 | --- | ---: | ---: | ---: | ---: |
 | AWS | 634 | 1 | 99.8% | 634 |
 | Applications and web | 235 | 17 | 93.3% | 226 |
-| Azure and Microsoft 365 | 1449 | 301 | 82.8% | 656 |
+| Azure and Microsoft 365 | 1452 | 301 | 82.8% | 657 |
 | Endpoint and EDR | 1024 | 16 | 98.5% | 1017 |
 | Google Cloud | 76 | 0 | 100.0% | 70 |
 | Infrastructure | 210 | 4 | 98.1% | 210 |
 | Network and firewalls | 1362 | 106 | 92.8% | 1285 |
 | Network detection | 248 | 13 | 95.0% | 248 |
 | SaaS and identity | 331 | 13 | 96.2% | 170 |
-| State correlations | 18 | 0 | 100.0% | 0 |
+| State correlations | 19 | 0 | 100.0% | 0 |
 | Unclassified | 1588 | 76 | 95.4% | 1588 |
 | Unix and Linux | 203 | 13 | 94.0% | 199 |
 | Windows | 2069 | 33 | 98.4% | 2034 |
@@ -60,13 +60,13 @@ reproduced. They are worth reviewing before the ruleset goes live.
 | `D_RAW_TEXT_MATCH` | 6413 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
 | `D_LOGSOURCE_FALLBACK` | 1978 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
 | `D_EVENT_ID_HEURISTIC` | 1931 | Without a json_map for event_id, Sagan looks for ' <id>: ', with the surrounding spaces, in the first nine characters of the message, so an ID at the very start never matches. The converted rule assumes a proper EventID field instead, which fires on events the heuristic would have missed. Measured against a locally built engine. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
-| `D_THRESHOLD_SUPPRESS` | 1485 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
+| `D_THRESHOLD_SUPPRESS` | 1486 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
 | `D_PASS_SHORT_CIRCUIT` | 515 | The rule used the pass action. In Sagan a matching pass rule still emits an alert (Send_Alert runs before the pass check) and then stops evaluating the remaining signatures for that event. The detection is converted faithfully; only the short-circuit, the suppression of other rules on the same event, is not reproduced, since Sigma evaluates every rule independently. | `5016065`, `5016066`, `5016067`, `5016068`, `5016069` |
 | `D_GROUPBY_SYSLOG_HOST` | 387 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
 | `D_POSITIONAL_IP_FIELD` | 286 | The group-by key comes from the bundled VRL transform rather than from the log itself. The correlation only works if that transform runs in the ingestion pipeline. | `5002942`, `5015097`, `5014021`, `5014177`, `5008654` |
 | `D_SIDE_EFFECT_DROPPED` | 233 | Engine-specific side effect (external, email, dynamic_load, unset) with no Sigma equivalent. | `5008539`, `5003022`, `5003023`, `5002959`, `5002960` |
 | `D_THRESHOLD_LIMIT` | 169 | threshold type limit caps alert volume, not detection. Sigma has no equivalent, so the constraint is dropped. | `5017933`, `5008570`, `5009316`, `5009317`, `5009318` |
-| `D_XBIT_ISSET_SYNTHETIC` | 154 | The state correlation was rebuilt through a synthetic aggregate rule gathering every rule that sets the bit. | `5014084`, `5014091`, `5008539`, `5008654`, `5008655` |
+| `D_XBIT_ISSET_SYNTHETIC` | 155 | The state correlation was rebuilt through a synthetic aggregate rule gathering every rule that sets the bit. | `5014084`, `9870107`, `5014091`, `5008539`, `5008654` |
 | `D_BLUEDOT_SUBSTITUTION` | 134 | bluedot queries Quadrant's Bluedot threat-intelligence API, which is a closed commercial source that cannot be redistributed. This conversion deliberately SUBSTITUTES it: the rule matches the parsed address against open-source feeds you supply, one per Bluedot category (Tor, Proxy, Malicious, Honeypot), so it fires on your feed's addresses, not on Bluedot's. This is the project's one accepted break from faithful conversion, taken because a bluedot rule that is not converted can never fire under RSigma at all, whereas a substituted one keeps the detection intent. Fidelity varies by category: Tor is near-authoritative (the Tor Project exit list is the same public ground truth Bluedot derives from); Malicious, Proxy and Honeypot depend entirely on the feed you choose and will diverge from Bluedot's verdicts. Only the address (ip_reputation) lookup is reproduced; hash and URL lookups are still refused. | `5005726`, `5005727`, `5005728`, `5005729`, `5005730` |
 | `D_APPEND_PROGRAM` | 117 | append_program makes Sagan append the program field to the message before matching. The converted rule searches the message alone. | `5005782`, `5005783`, `5005784`, `5005785`, `5005787` |
 | `D_NORMALIZE_PRECEDENCE` | 78 | The rule carries both normalize and parse_src_ip. Sagan lets liblognorm win when it resolves the address and falls back to positional parsing otherwise; only the fallback is reproduced. | `5002942`, `5014805`, `5014806`, `5000113`, `5015130` |

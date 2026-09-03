@@ -184,3 +184,77 @@ custom_attributes:
   sagan.rev: '2'
   sagan.source_file: azureEventHub_entra.rules
   sagan.metadata: deployment=Server,affected_product=Microsoft_Entra,created_at=2026_06_26,updated_at=2026_08_27
+---
+title: '[AZURE-EVENTHUB-ENTRA] Admin Manually Confirmed Account Compromised via Identity Protection'
+id: e5396bde-4d2d-5bfd-8216-da20e0f9f58d
+status: experimental
+description: Converted from Sagan rule SID 5017987 (rev 1), file azureEventHub_entra.rules.
+references:
+  - https://learn.microsoft.com/en-us/entra/identity/monitoring-health/reference-audit-activities
+  - https://attack.mitre.org/techniques/T1078/004/
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    syslog_appname|cased: azureEventHub
+  selection_2:
+    category|cased: AuditLogs
+  selection_3:
+    operationName|cased: ConfirmAccountCompromised
+  selection_4:
+    properties.result|cased: success
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1078.004
+  - attack.ta0001
+  - sagan.classtype.initial-access
+custom_attributes:
+  sagan.sid: '5017987'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_entra.rules
+  sagan.metadata: deployment=Server,affected_product=Microsoft_Entra,created_at=2026_09_02,updated_at=2026_09_02
+---
+title: '[AZURE-EVENTHUB-ENTRA] [FLEXBIT SET] Device-Code Refresh Token Redemption - Tracked for Device-Join
+  Correlation'
+id: e081cf44-d363-58e9-ab4b-34bc68c8fc15
+status: experimental
+description: Converted from Sagan rule SID 5017986 (rev 1), file azureEventHub_entra.rules.
+references:
+  - https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code
+  - https://attack.mitre.org/techniques/T1550/001
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    syslog_appname|cased: azureEventHub
+  selection_2:
+    category|cased: NonInteractiveUserSignInLogs
+  selection_3:
+    resultType: 0
+  selection_4:
+    properties.originalTransferMet|cased: deviceCodeFlow
+  selection_5:
+    properties.appDisplayName|cased: Microsoft Authentication Broker
+  selection_6:
+    properties.deviceDetail.isMana|exists: true
+  filter_7:
+    properties.deviceDetail.isMana: 'true'
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
+    and not filter_7
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1550.001
+  - attack.ta0005
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5017986'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_entra.rules
+  sagan.metadata: deployment=Server,affected_product=Microsoft_Entra,created_at=2026_09_02,updated_at=2026_09_02

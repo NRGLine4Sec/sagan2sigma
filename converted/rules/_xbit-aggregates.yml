@@ -560,6 +560,40 @@ custom_attributes:
   sagan.xbit: creddrump
   sagan.xbit_setters: '2'
 ---
+title: Aggregate of rules setting Sagan bit device_code_theft
+id: be8c8ae8-a103-535b-b530-e78e6bb95c4d
+name: sagan_xbit_device_code_theft
+status: experimental
+description: Synthetic rule. Sagan set the 'device_code_theft' bit from 1 rule(s); since Sigma cannot
+  express an OR between correlated rules, their detections are gathered here. This rule is not meant to
+  alert on its own.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  s1_selection_1:
+    syslog_appname|cased: azureEventHub
+  s1_selection_2:
+    category|cased: NonInteractiveUserSignInLogs
+  s1_selection_3:
+    resultType: 0
+  s1_selection_4:
+    properties.originalTransferMet|cased: deviceCodeFlow
+  s1_selection_5:
+    properties.appDisplayName|cased: Microsoft Authentication Broker
+  s1_selection_6:
+    properties.deviceDetail.isMana|exists: true
+  s1_filter_7:
+    properties.deviceDetail.isMana: 'true'
+  condition: (s1_selection_1 and s1_selection_2 and s1_selection_3 and s1_selection_4 and s1_selection_5
+    and s1_selection_6 and not s1_filter_7)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: informational
+custom_attributes:
+  sagan.xbit: device_code_theft
+  sagan.xbit_setters: '1'
+---
 title: Aggregate of rules setting Sagan bit exploit_attempt
 id: aee13b8d-5d70-5016-a70c-77a55da530e2
 name: sagan_xbit_exploit_attempt

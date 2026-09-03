@@ -351,3 +351,49 @@ custom_attributes:
   sagan.sid: '5004776'
   sagan.rev: '6'
   sagan.source_file: azure-eventhub-ad.rules
+---
+title: '[EXPERIMENTAL][AZURE-EVENTHUB-AD] Device Registration Attempt Following Device-Code Refresh Token
+  Theft [FLEXBIT CORRELATED]'
+id: 162baf2b-f62a-51d6-9063-751763ec4043
+name: sagan_9870107
+status: experimental
+description: Converted from Sagan rule SID 9870107 (rev 1), file azure-eventhub-ad.rules.
+references:
+  - https://attack.mitre.org/techniques/T1098/005/
+  - https://research.eye.security/device-code-phishing-forensics/
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    syslog_appname|cased: azureEventHub
+  selection_2:
+    operationName|cased: Register device
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '9870107'
+  sagan.rev: '1'
+  sagan.source_file: azure-eventhub-ad.rules
+  rsigma.suppress: 1h
+  sagan.metadata: createdOn=2026_09_02
+---
+title: '[EXPERIMENTAL][AZURE-EVENTHUB-AD] Device Registration Attempt Following Device-Code Refresh Token
+  Theft [FLEXBIT CORRELATED] (correlated with device_code_theft)'
+id: 4abda95f-0d21-5688-8994-8960f4e9f466
+status: experimental
+description: Reconstruction of the Sagan 'device_code_theft' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - be8c8ae8-a103-535b-b530-e78e6bb95c4d
+    - 162baf2b-f62a-51d6-9063-751763ec4043
+  group-by:
+    - callerIpAddress
+  timespan: 1h
+level: high
