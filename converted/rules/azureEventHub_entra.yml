@@ -185,10 +185,11 @@ custom_attributes:
   sagan.source_file: azureEventHub_entra.rules
   sagan.metadata: deployment=Server,affected_product=Microsoft_Entra,created_at=2026_06_26,updated_at=2026_08_27
 ---
-title: '[AZURE-EVENTHUB-ENTRA] Admin Manually Confirmed Account Compromised via Identity Protection'
+title: '[AZURE-EVENTHUB-ENTRA] Application Confirmed Account Compromised via Identity Protection (Possible
+  Malicious Automation)'
 id: e5396bde-4d2d-5bfd-8216-da20e0f9f58d
 status: experimental
-description: Converted from Sagan rule SID 5017987 (rev 1), file azureEventHub_entra.rules.
+description: Converted from Sagan rule SID 5017987 (rev 2), file azureEventHub_entra.rules.
 references:
   - https://learn.microsoft.com/en-us/entra/identity/monitoring-health/reference-audit-activities
   - https://attack.mitre.org/techniques/T1078/004/
@@ -204,7 +205,9 @@ detection:
     operationName|cased: ConfirmAccountCompromised
   selection_4:
     properties.result|cased: success
-  condition: selection_1 and selection_2 and selection_3 and selection_4
+  selection_5:
+    properties.initiatedBy|cased: app
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: high
@@ -214,9 +217,44 @@ tags:
   - sagan.classtype.initial-access
 custom_attributes:
   sagan.sid: '5017987'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_entra.rules
+  sagan.metadata: deployment=Server,affected_product=Microsoft_Entra,created_at=2026_09_02,updated_at=2026_09_04
+---
+title: '[AZURE-EVENTHUB-ENTRA] Admin Manually Confirmed Account Compromised via Identity Protection'
+id: 425cea6c-b866-5c87-8cf4-89028625c68b
+status: experimental
+description: Converted from Sagan rule SID 5017988 (rev 1), file azureEventHub_entra.rules.
+references:
+  - https://learn.microsoft.com/en-us/entra/identity/monitoring-health/reference-audit-activities
+  - https://attack.mitre.org/techniques/T1078/004/
+author: sagan2sigma
+logsource:
+  product: azure
+detection:
+  selection_1:
+    syslog_appname|cased: azureEventHub
+  selection_2:
+    category|cased: AuditLogs
+  selection_3:
+    operationName|cased: ConfirmAccountCompromised
+  selection_4:
+    properties.result|cased: success
+  selection_5:
+    properties.initiatedBy|cased: user
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - attack.t1078.004
+  - attack.ta0001
+  - sagan.classtype.admin-activity
+custom_attributes:
+  sagan.sid: '5017988'
   sagan.rev: '1'
   sagan.source_file: azureEventHub_entra.rules
-  sagan.metadata: deployment=Server,affected_product=Microsoft_Entra,created_at=2026_09_02,updated_at=2026_09_02
+  sagan.metadata: deployment=Server,affected_product=Microsoft_Entra,created_at=2026_09_04,updated_at=2026_09_04
 ---
 title: '[AZURE-EVENTHUB-ENTRA] [FLEXBIT SET] Device-Code Refresh Token Redemption - Tracked for Device-Join
   Correlation'

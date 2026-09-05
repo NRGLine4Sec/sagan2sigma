@@ -5,13 +5,13 @@
 | Metric | Value |
 | --- | --- |
 | Rule files processed | 343 |
-| Active rules parsed | 10025 |
+| Active rules parsed | 10026 |
 | Commented-out rules skipped | 9442 |
-| Rules converted | 9432 (94.1%) |
+| Rules converted | 9433 (94.1%) |
 | Rules refused | 593 (5.9%) |
 | Lines that failed to parse | 0 |
 | Synthetic rules added | 19 |
-| Sigma documents emitted | 10583 |
+| Sigma documents emitted | 10584 |
 | pySigma validation issues | 0 |
 | Output profile | `vector-enriched` |
 | Case policy | `faithful` |
@@ -25,7 +25,7 @@ logsource catalog. It answers which kinds of device caused trouble.
 | --- | ---: | ---: | ---: | ---: |
 | AWS | 634 | 1 | 99.8% | 634 |
 | Applications and web | 235 | 17 | 93.3% | 226 |
-| Azure and Microsoft 365 | 1452 | 301 | 82.8% | 657 |
+| Azure and Microsoft 365 | 1453 | 301 | 82.8% | 657 |
 | Endpoint and EDR | 1024 | 16 | 98.5% | 1017 |
 | Google Cloud | 76 | 0 | 100.0% | 70 |
 | Infrastructure | 210 | 4 | 98.1% | 210 |
