@@ -10,7 +10,7 @@ from __future__ import annotations
 import pytest
 from tests.conftest import make_rule
 
-from sagan2sigma.sagan.parser import parse_rule
+from sagan2sigma.sagan.parser import parse_lines, parse_rule
 from sagan2sigma.upstream import DefectCode, inspect
 
 
@@ -298,3 +298,49 @@ class TestQuietRules:
     def test_an_ordinary_rule_reports_nothing(self) -> None:
         raw = 'msg:"t"; program: sshd; content:"failed"; sid:1;'
         assert codes(raw) == set()
+
+
+class TestClippedKeyPath:
+    """Upstream's clipped-key workaround does not always reach the value.
+
+    The engine stores a dotted key path clipped to 31 characters, counting the
+    leading dot, and upstream names the clipped path so the exact strcmp
+    succeeds. That holds only when the clip lands on the last segment.
+    """
+
+    MARK = (
+        "# [truncated for JSON_MAX_KEY_SIZE=32 engine limit -- legacy engine "
+        "stores keys clipped to 31 chars, full path never matches] "
+    )
+
+    def defects(self, full: str, short: str) -> set[DefectCode]:
+        lines = [
+            self.MARK + f".{full} -> .{short}",
+            f'alert any any any -> any any (msg:"t"; '
+            f'json_content:".{short}","v"; sid:1;)',
+        ]
+        rules, _, _ = parse_lines(lines, "f.rules")
+        return {defect.code for defect in inspect(rules[0])}
+
+    def test_a_clip_landing_on_the_last_segment_is_fine(self) -> None:
+        """A clip landing on the last segment is fine, as sid 5005921 shows.
+
+        Measured: the rule alerts on an event carrying the full path.
+        """
+        assert (
+            self.defects(
+                "data.authorizationInfo.operation", "data.authorizationInfo.operati"
+            )
+            == set()
+        )
+
+    def test_a_clip_above_a_further_level_is_dead(self) -> None:
+        """In sid 5005923 the clip lands inside `metadata`, `mechanism` below it.
+
+        Measured: neither the clipped nor the full key matches, and nesting
+        depth alone is not the cause, five short levels matching fine.
+        """
+        assert DefectCode.CANNOT_MATCH in self.defects(
+            "data.authenticationInfo.metadata.mechanism",
+            "data.authenticationInfo.metada",
+        )

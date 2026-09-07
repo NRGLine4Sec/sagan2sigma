@@ -83,6 +83,7 @@ PIPE_EXPANDED = frozenset(
 _HEX = frozenset("0123456789abcdefABCDEF")
 _TRACK = re.compile(r"track\s+([a-z_&]+)", re.I)
 _JSON_KEY = re.compile(r'json_(?:meta_)?content\s*:\s*!?\s*"\.([A-Za-z0-9_.\[\]@-]+)"')
+_JSON_PCRE_KEY = re.compile(r'json_pcre\s*:\s*!?\s*"\.([A-Za-z0-9_.\[\]@-]+)"')
 _QUOTED = re.compile(r'"([^"]*)"')
 
 
@@ -347,6 +348,34 @@ def inspect(rule: SaganRule) -> list[UpstreamDefect]:
                 f"one, so the rule never matches",
             )
         )
+
+    searched = set(_JSON_KEY.findall(rule.raw)) | set(_JSON_PCRE_KEY.findall(rule.raw))
+    for short, full in rule.key_restorations.items():
+        # Only when the key is a detection condition. The same unreachable path
+        # under `json_map` binds an internal value and nothing else, so the
+        # rule still fires on its other conditions and is not dead; flagging
+        # those too reported 17 rules where 5 are dead.
+        if short in searched and "." in full[MAX_JSON_KEY:]:
+            # Upstream's workaround for the engine's key limit is to name the
+            # clipped path, which the engine matches against its own clipped
+            # copy. That only holds when the clip lands on the last segment:
+            # `data.authorizationInfo.operation` clips to a leaf and matches,
+            # while `data.authenticationInfo.metadata.mechanism` clips inside
+            # `metadata`, leaving `mechanism` below the stored path where
+            # nothing reaches it. Measured both ways on the deep path: neither
+            # the clipped nor the full key matches, and depth alone is not the
+            # cause, five short levels matching fine.
+            found.append(
+                UpstreamDefect(
+                    rule.sid,
+                    rule.source_file,
+                    DefectCode.CANNOT_MATCH,
+                    f"the key path {full!r} is clipped to {short!r} by the "
+                    f"engine, and the rest of the path lies below that point, "
+                    f"so no spelling of the key can reach the value",
+                )
+            )
+            break
 
     # --- the rule loads, matches, and means the opposite ---------------------
     for option in rule.iter_options("pcre"):
