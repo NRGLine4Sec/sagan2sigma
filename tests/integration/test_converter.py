@@ -486,3 +486,38 @@ class TestDeterminismAndProfiles:
         assert any(key.startswith("message|") for key in keys)
         assert not any(key.startswith("_raw") for key in keys)
 
+
+class TestGroupByShapeSplit:
+    """A bit set by rules reading a different event shape loses those setters.
+
+    RSigma exposes the syslog envelope as `hostname` for a plain body and
+    `syslog_hostname` for a JSON one. A rebuilt state correlation grouping on
+    the sender names one of them, so only events of that shape carry the field.
+    sid 9000031 tests a bit whose only setter, sid 9000030, reads a plain body.
+    """
+
+    def test_the_loss_is_reported(self, result: ConversionResult) -> None:
+        converted = next(item for item in result.converted if item.sid == "9000031")
+        assert any(
+            degradation.code is DegradationCode.GROUPBY_SHAPE_SPLIT
+            for degradation in converted.degradations
+        )
+
+    def test_the_correlation_is_still_emitted(self, result: ConversionResult) -> None:
+        """Degraded, not refused.
+
+        On the real corpus these correlations keep most of their setters, sid
+        5003332 pairing with 25 of 49, so dropping them would lose more than it
+        spares. The fixture's pair is the degenerate case, 1 of 1.
+        """
+        assert "9000031" not in sids(result.refused)
+        converted = next(item for item in result.converted if item.sid == "9000031")
+        assert any("correlation" in document for document in converted.documents)
+
+    def test_a_pair_of_one_shape_is_not_flagged(self, result: ConversionResult) -> None:
+        """Both sids 9000010 and 9000011 read JSON, so nothing is lost."""
+        converted = next(item for item in result.converted if item.sid == "9000011")
+        assert not any(
+            degradation.code is DegradationCode.GROUPBY_SHAPE_SPLIT
+            for degradation in converted.degradations
+        )

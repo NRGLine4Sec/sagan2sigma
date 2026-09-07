@@ -481,6 +481,68 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: synthetic.rules
 ---
+title: '[TEST] Shape split setter'
+id: a4808945-d8ca-51a5-8274-cdb2f3907bd6
+status: experimental
+description: Converted from Sagan rule SID 9000030 (rev 1), file synthetic.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: test
+  selection_2:
+    message|contains|cased: shape split seen
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.misc-activity
+custom_attributes:
+  sagan.sid: '9000030'
+  sagan.rev: '1'
+  sagan.source_file: synthetic.rules
+---
+title: '[TEST] Shape split tester'
+id: f4c92ed8-0139-5bcd-ab67-f4485a99a411
+name: sagan_9000031
+status: experimental
+description: Converted from Sagan rule SID 9000031 (rev 1), file synthetic.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: test
+  selection_2:
+    stage|cased: second
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '9000031'
+  sagan.rev: '1'
+  sagan.source_file: synthetic.rules
+---
+title: '[TEST] Shape split tester (correlated with shape_split)'
+id: c6c41a99-3375-560d-8b0b-46555468a670
+status: experimental
+description: Reconstruction of the Sagan 'shape_split' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - 49cbb7ae-46ab-5b3f-9629-c23f00c4d874
+    - f4c92ed8-0139-5bcd-ab67-f4485a99a411
+  group-by:
+    - hostname
+  timespan: 5m
+level: high
+---
 title: Aggregate of rules setting Sagan bit brute_force
 id: d096d8bc-eae7-5535-9ff1-02c0aeca8e2c
 name: sagan_xbit_brute_force
@@ -502,4 +564,27 @@ falsepositives:
 level: informational
 custom_attributes:
   sagan.xbit: brute_force
+  sagan.xbit_setters: '1'
+---
+title: Aggregate of rules setting Sagan bit shape_split
+id: 49cbb7ae-46ab-5b3f-9629-c23f00c4d874
+name: sagan_xbit_shape_split
+status: experimental
+description: Synthetic rule. Sagan set the 'shape_split' bit from 1 rule(s); since Sigma cannot express
+  an OR between correlated rules, their detections are gathered here. This rule is not meant to alert
+  on its own.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  s1_selection_1:
+    appname|cased: test
+  s1_selection_2:
+    message|contains|cased: shape split seen
+  condition: (s1_selection_1 and s1_selection_2)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: informational
+custom_attributes:
+  sagan.xbit: shape_split
   sagan.xbit_setters: '1'

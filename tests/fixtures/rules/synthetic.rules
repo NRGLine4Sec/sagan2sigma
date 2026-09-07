@@ -72,3 +72,12 @@ alert any any any -> any any (msg:"[TEST] Dead country_code"; program: test; con
 
 # --- commented out, must be counted but not converted ----------------------
 #alert any any any -> any any (msg:"[TEST] Disabled"; program: test; content:"z"; sid:9000021; rev:1;)
+
+# --- xbits pair whose setter and tester read different event shapes ---------
+# RSigma exposes the syslog envelope as hostname for a plain body and
+# syslog_hostname for a JSON one. Neither rule maps src_ip, so the group-by
+# falls back to the sender and names the envelope field of one shape only:
+# the tester is JSON and the setter is not, so they cannot pair.
+alert any any any -> any any (msg:"[TEST] Shape split setter"; program: test; content:"shape split seen"; xbits: set,shape_split,track ip_src, expire 300; classtype: misc-activity; sid:9000030; rev:1;)
+alert any any any -> any any (msg:"[TEST] Shape split tester"; program: test; json_content:".stage","second"; xbits: isset,shape_split,track ip_src; classtype: correlated-attack; sid:9000031; rev:1;)
+
