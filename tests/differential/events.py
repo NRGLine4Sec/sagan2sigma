@@ -117,6 +117,14 @@ def json_body(rule: SaganRule) -> dict[str, Any]:
     body: dict[str, Any] = {}
 
     def assign(key: str, value: Any) -> None:
+        # The event has to carry the field a producer emits, not the one the
+        # rule names. Where upstream clipped a key path to fit the engine's
+        # 31-character limit, the rule says `data.authorizationInfo.operati`
+        # and Confluent says `data.authorizationInfo.operation`; Sagan clips
+        # the event's key on its way in and matches either way, so building the
+        # probe from the rule text produced a document no producer emits and
+        # made 11 rules disagree for a property of the probe.
+        key = rule.key_restorations.get(key, key)
         parts = key.replace("[]", "").split(".")
         cursor = body
         for part in parts[:-1]:
