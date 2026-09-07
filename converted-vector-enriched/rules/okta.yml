@@ -12,9 +12,9 @@ detection:
   selection_1:
     sagan_raw|contains|cased: User attempted unauthorized access to app
   selection_2:
-    debugContext.debugData.threatS|exists: true
+    debugContext.debugData.threatSuspected|exists: true
   filter_3:
-    debugContext.debugData.threatS|cased: 'false'
+    debugContext.debugData.threatSuspected|cased: 'false'
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

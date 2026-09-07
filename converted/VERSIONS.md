@@ -15,6 +15,7 @@ The **version** is the short hash of the `sagan-rules` commit and the
 
 | Version | sagan-rules commit | sagan-rules date | sagan2sigma | Generated | Default | Enriched |
 | --- | --- | --- | --- | --- | ---: | ---: |
+| `0a2b7f74a95e` | [`c6fddfda44ce`](https://github.com/quadrantsec/sagan-rules/commit/c6fddfda44cef201bb905761a8474f0453393252) | 2026-09-04 | `4b10d6cfc90e` | 2026-09-07 | 8679 / 10026 (86.6%) | 9433 / 10026 (94.1%) |
 | `4829898a876e` | [`c6fddfda44ce`](https://github.com/quadrantsec/sagan-rules/commit/c6fddfda44cef201bb905761a8474f0453393252) | 2026-09-04 | `91ce46a8ca3a` | 2026-09-05 | 8679 / 10026 (86.6%) | 9433 / 10026 (94.1%) |
 | `9fa397946702` | [`27f7c0f8c328`](https://github.com/quadrantsec/sagan-rules/commit/27f7c0f8c328f770b8b8deb2c753f8fce84d416d) | 2026-09-02 | `dad3549950de` | 2026-09-03 | 8678 / 10025 (86.6%) | 9432 / 10025 (94.1%) |
 | `bbcbd0f5336a` | [`09297fd813c1`](https://github.com/quadrantsec/sagan-rules/commit/09297fd813c1091da4cb8ca96b0bc41c6af9476a) | 2026-08-31 | `6738358a0874` | 2026-09-01 | 8675 / 10022 (86.6%) | 9429 / 10022 (94.1%) |

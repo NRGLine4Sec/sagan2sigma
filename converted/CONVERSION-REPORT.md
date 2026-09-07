@@ -25,7 +25,7 @@ logsource catalog. It answers which kinds of device caused trouble.
 | --- | ---: | ---: | ---: | ---: |
 | AWS | 534 | 101 | 84.1% | 534 |
 | Applications and web | 180 | 72 | 71.4% | 171 |
-| Azure and Microsoft 365 | 1343 | 411 | 76.6% | 547 |
+| Azure and Microsoft 365 | 1343 | 411 | 76.6% | 549 |
 | Endpoint and EDR | 982 | 58 | 94.4% | 975 |
 | Google Cloud | 66 | 10 | 86.8% | 60 |
 | Infrastructure | 189 | 25 | 88.3% | 189 |
@@ -70,9 +70,11 @@ reproduced. They are worth reviewing before the ruleset goes live.
 | `D_APPEND_PROGRAM` | 74 | append_program makes Sagan append the program field to the message before matching. The converted rule searches the message alone. | `5000419`, `5000470`, `5000489`, `5000519`, `5000521` |
 | `D_XBIT_SET_DROPPED` | 64 | The rule set or tested an xbit that no converted rule consumes. The state link is lost. | `5009285`, `5009290`, `5007210`, `5007211`, `5005994` |
 | `D_XBIT_ISSET_SYNTHETIC` | 20 | The state correlation was rebuilt through a synthetic aggregate rule gathering every rule that sets the bit. | `9870107`, `5014091`, `5008539`, `5009793`, `5015226` |
+| `D_JSON_KEY_RESTORED` | 15 | The rule names a JSON key that upstream clipped to 31 characters so that Sagan, which stores key paths clipped and compares them with an exact strcmp, would match it at all. The full path is recorded in a comment above the rule and is what the log carries, so the converted rule uses that instead: Sigma has no such limit, and emitting the clipped name would match nothing outside Sagan. | `5004773`, `5017933`, `5017933`, `5005921`, `5005923` |
 | `D_DROP_ACTION` | 13 | The rule used the drop action. Sigma has no action concept; it was converted as a normal detection rule. | `5000102`, `5000103`, `5000193`, `5000018`, `5000071` |
 | `D_JSON_PCRE_ABSENT_KEY` | 5 | Sagan treats a key the event does not carry as a match for json_pcre: JSON_Pcre() tests only keys that exist and returns false only on a failed match, so an absent key falls through to true. Sigma has the opposite convention, so the converted rule stays silent on events lacking the key. json_content and json_meta_content do not share this behaviour. Measured against a locally built engine. | `5017941`, `5017944`, `5017945`, `5017946`, `5017947` |
 | `D_DENYLIST_USERNAME_INERT` | 4 | The blacklist keyword tracked by_username, which the engine's denylist processor ignores: it matches IP addresses only (src/processors/blacklist.c), and the rule parser sets no flag for by_username (src/rules.c), so the option is inert. It is dropped and the rest of the rule is converted, exactly as the engine evaluates it. | `5008573`, `5008574`, `5008575`, `5008578` |
+| `D_VALUE_TRUNCATED` | 3 | Sagan cuts a json_content or json_meta_content value at its first colon or comma and searches only for the part before it, the value being taken with strtok and never put back together. The converted rule reproduces the truncation, so it agrees with the engine and is broader than the rule reads. Measured against a locally built engine: json_content:".K","c:\temp" matches an event whose key holds exactly 'c' and not one holding 'c:\temp'. | `5016531`, `5017909`, `5017951` |
 
 ## Upstream rules that do not work in Sagan
 
