@@ -60,6 +60,7 @@ class DegradationCode(str, Enum):
     JSON_PCRE_ABSENT_KEY = "D_JSON_PCRE_ABSENT_KEY"
     VALUE_TRUNCATED = "D_VALUE_TRUNCATED"
     JSON_KEY_RESTORED = "D_JSON_KEY_RESTORED"
+    GROUPBY_SHAPE_SPLIT = "D_GROUPBY_SHAPE_SPLIT"
 
 
 REFUSAL_HELP: dict[RefusalCode, str] = {
@@ -271,6 +272,13 @@ DEGRADATION_HELP: dict[DegradationCode, str] = {
         "the rule outright when by_string is the only key. Confirmed against a "
         "locally built engine. threshold is unaffected: its parser tests the "
         "intact token, so there by_string really is a synonym for by_username."
+    ),
+    DegradationCode.GROUPBY_SHAPE_SPLIT: (
+        "A rebuilt state correlation groups on the syslog sender, whose field "
+        "name differs between JSON-bodied and plain events in RSigma. The bit "
+        "is set by rules of both shapes, so the correlation pairs with the "
+        "setters matching the tester and misses the others. Degraded rather "
+        "than refused: most of these keep the majority of their setters."
     ),
     DegradationCode.JSON_KEY_RESTORED: (
         "The rule names a JSON key that upstream clipped to 31 characters so "

@@ -26,7 +26,7 @@ from .emit.sigma import (
 from .errors import Degradation, DegradationCode, Refusal, RefusalCode
 from .mapping.context import Context
 from .mapping.correlation import format_timespan
-from .mapping.fields import FieldResolver
+from .mapping.fields import JSON_KEYWORDS, FieldResolver
 from .mapping.ir import CorrelationSpec, RuleDraft
 from .mapping.positional import POSITIONAL_KEYWORDS, effective_positional
 from .mapping.registry import BLOCKING, IGNORED, MODIFIERS, get_handler
@@ -325,10 +325,17 @@ class Converter:
         """Emit documents, state correlations included."""
         setters: dict[str, list[tuple[str, RuleDraft]]] = defaultdict(list)
         expiries: dict[str, list[int]] = defaultdict(list)
+        #: Whether each setter of a bit reads JSON-bodied events. RSigma
+        #: exposes the syslog envelope under `syslog_` prefixed names for those
+        #: and unprefixed for the rest, so a correlation grouping on the sender
+        #: can only pair events of one shape.
+        shapes: dict[str, list[bool]] = defaultdict(list)
         for rule, draft in drafts:
+            json_bodied = bool(rule.keywords & JSON_KEYWORDS)
             for bit, expire in draft.sets_bits.items():
                 setters[bit].append((rule.sid, draft))
                 expiries[bit].append(expire)
+                shapes[bit].append(json_bodied)
 
         tested = {bit for _, draft in drafts for bit in draft.tests_bits}
         aggregates = self._build_aggregates(tested, setters, drafts)
@@ -347,7 +354,16 @@ class Converter:
                 )
 
             specs = list(draft.correlations)
-            specs.extend(self._state_specs(draft, aggregates, expiries, rule.sid))
+            specs.extend(
+                self._state_specs(
+                    draft,
+                    aggregates,
+                    expiries,
+                    rule.sid,
+                    shapes,
+                    bool(rule.keywords & JSON_KEYWORDS),
+                )
+            )
             self._flag_orphan_bits(draft, aggregates)
 
             base_name = rule_name(rule.sid)
@@ -429,6 +445,8 @@ class Converter:
         aggregates: dict[str, dict[str, Any]],
         expiries: dict[str, list[int]],
         sid: str,
+        shapes: dict[str, list[bool]] | None = None,
+        json_bodied: bool = False,
     ) -> list[CorrelationSpec]:
         """Build the ``temporal_ordered`` correlations from bit tests.
 
@@ -454,10 +472,12 @@ class Converter:
                     ),
                 )
             )
+            group_by = draft.bit_group_by or (self.context.syslog_host_field,)
+            self._flag_mixed_shapes(draft, bit, group_by, shapes, json_bodied)
             specs.append(
                 CorrelationSpec(
                     correlation_type="temporal_ordered",
-                    group_by=draft.bit_group_by or (self.context.syslog_host_field,),
+                    group_by=group_by,
                     timespan=timespan,
                     # By id, not by name. Both are legal references in the
                     # Sigma correlation spec, and this tool uses names
@@ -479,6 +499,48 @@ class Converter:
                 )
             )
         return specs
+
+    def _flag_mixed_shapes(
+        self,
+        draft: RuleDraft,
+        bit: str,
+        group_by: tuple[str, ...],
+        shapes: dict[str, list[bool]] | None,
+        json_bodied: bool,
+    ) -> None:
+        """Report setters a host-grouped correlation cannot pair with.
+
+        RSigma exposes the syslog envelope under `syslog_` prefixed names once
+        the body is JSON and unprefixed otherwise, so a correlation grouping on
+        the sender names one field and only events of that shape carry it. When
+        a bit is set by rules of both shapes, the tester pairs with the matching
+        half and silently misses the rest.
+
+        This is a partial loss and not a dead correlation, which is why it is
+        degraded rather than refused: sid 5003332 pairs with 105 of its 135
+        setters, and dropping it would lose those 105 to spare the 30.
+        """
+        envelope = {
+            self.context.syslog_host_field,
+            self.context.profile.envelope_field("syslog_host", True),
+        }
+        if shapes is None or set(group_by) - envelope:
+            return
+        candidates = shapes.get(bit) or []
+        unpairable = sum(1 for setter in candidates if setter != json_bodied)
+        if not unpairable:
+            return
+        draft.degrade(
+            Degradation(
+                code=DegradationCode.GROUPBY_SHAPE_SPLIT,
+                detail=(
+                    f"the '{bit}' bit is set by rules reading a different event "
+                    f"shape from this one, and the group-by names the envelope "
+                    f"field of one shape only; {unpairable} of "
+                    f"{len(candidates)} setters cannot pair with it"
+                ),
+            )
+        )
 
     @staticmethod
     def _flag_orphan_bits(

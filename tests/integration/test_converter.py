@@ -485,3 +485,4 @@ class TestDeterminismAndProfiles:
         }
         assert any(key.startswith("message|") for key in keys)
         assert not any(key.startswith("_raw") for key in keys)
+
