@@ -59,6 +59,7 @@ class DegradationCode(str, Enum):
     TRACK_KEY_INERT = "D_TRACK_KEY_INERT"
     JSON_PCRE_ABSENT_KEY = "D_JSON_PCRE_ABSENT_KEY"
     VALUE_TRUNCATED = "D_VALUE_TRUNCATED"
+    JSON_KEY_RESTORED = "D_JSON_KEY_RESTORED"
 
 
 REFUSAL_HELP: dict[RefusalCode, str] = {
@@ -270,6 +271,14 @@ DEGRADATION_HELP: dict[DegradationCode, str] = {
         "the rule outright when by_string is the only key. Confirmed against a "
         "locally built engine. threshold is unaffected: its parser tests the "
         "intact token, so there by_string really is a synonym for by_username."
+    ),
+    DegradationCode.JSON_KEY_RESTORED: (
+        "The rule names a JSON key that upstream clipped to 31 characters so "
+        "that Sagan, which stores key paths clipped and compares them with an "
+        "exact strcmp, would match it at all. The full path is recorded in a "
+        "comment above the rule and is what the log carries, so the converted "
+        "rule uses that instead: Sigma has no such limit, and emitting the "
+        "clipped name would match nothing outside Sagan."
     ),
     DegradationCode.VALUE_TRUNCATED: (
         "Sagan cuts a json_content or json_meta_content value at its first "

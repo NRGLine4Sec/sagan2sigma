@@ -30,7 +30,7 @@ damaged file does not abort conversion of the whole corpus.
 from __future__ import annotations
 
 import re
-from collections.abc import Iterable, Iterator
+from collections.abc import Iterable, Iterator, Mapping
 from pathlib import Path
 
 from .model import Header, Option, ParseFailure, RuleFile, SaganRule
@@ -46,6 +46,28 @@ _HEADER = re.compile(
 )
 
 _DISABLED = re.compile(r"^\s*#\s*(alert|drop|pass)\s", re.IGNORECASE)
+
+#: The comment upstream writes above a rule whose JSON keys it had to clip.
+#:
+#: Sagan stores a dotted key path clipped to 31 characters and compares it with
+#: an exact ``strcmp``, so a rule naming the real field never matches. Rather
+#: than lose those rules, upstream writes the clipped name and records the
+#: original beside it (``quadrantsec/sagan-rules@6211ab5``), one comment line
+#: per rule and ``;``-separated when a rule has several::
+#:
+#:     # [truncated for JSON_MAX_KEY_SIZE=32 engine limit -- ...]
+#:       .data.authorizationInfo.operation -> .data.authorizationInfo.operati
+#:
+#: Reading it is what lets the conversion emit the field the log actually
+#: carries. Guessing instead is not an option: key length alone says nothing,
+#: since ``data.authorizationInfo.granted`` is exactly 30 characters and is the
+#: real name.
+_KEY_RESTORATION = re.compile(
+    r"^#\s*\[truncated for JSON_MAX_KEY_SIZE[^\]]*\]\s*(.+)$", re.IGNORECASE
+)
+_RESTORATION_PAIR = re.compile(
+    r"(\.[A-Za-z0-9_.\[\]@-]+)\s*->\s*(\.[A-Za-z0-9_.\[\]@-]+)"
+)
 
 
 class LexError(ValueError):
@@ -100,8 +122,16 @@ def parse_option(text: str, index: int) -> Option:
     return Option(name=name.strip().lower(), value=value.strip(), index=index)
 
 
-def parse_rule(line: str, source_file: str, line_number: int) -> SaganRule:
+def parse_rule(
+    line: str,
+    source_file: str,
+    line_number: int,
+    key_restorations: Mapping[str, str] | None = None,
+) -> SaganRule:
     """Parse one complete rule line.
+
+    ``key_restorations`` carries the truncated-to-real JSON key names read
+    from the comment above the rule, if any.
 
     Raises :class:`LexError` when the header or the option block is malformed.
     """
@@ -134,6 +164,7 @@ def parse_rule(line: str, source_file: str, line_number: int) -> SaganRule:
         source_file=source_file,
         line_number=line_number,
         raw=line.rstrip("\n"),
+        key_restorations=dict(key_restorations or {}),
     )
 
 
@@ -144,6 +175,7 @@ def parse_lines(
     rules: list[SaganRule] = []
     failures: list[ParseFailure] = []
     disabled = 0
+    restorations: dict[str, str] = {}
 
     for line_number, line in enumerate(lines, start=1):
         stripped = line.strip()
@@ -153,11 +185,20 @@ def parse_lines(
             disabled += 1
             continue
         if stripped.startswith("#"):
+            marker = _KEY_RESTORATION.match(stripped)
+            if marker:
+                restorations.update(
+                    {
+                        short.lstrip("."): full.lstrip(".")
+                        for full, short in _RESTORATION_PAIR.findall(marker.group(1))
+                    }
+                )
             continue
         if not _HEADER.match(stripped):
             continue
         try:
-            rules.append(parse_rule(stripped, source_file, line_number))
+            rules.append(parse_rule(stripped, source_file, line_number, restorations))
+            restorations = {}
         except LexError as error:
             failures.append(
                 ParseFailure(

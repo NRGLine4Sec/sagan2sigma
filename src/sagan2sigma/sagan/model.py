@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterator
+from collections.abc import Iterator, Mapping
 from dataclasses import dataclass, field
 
 #: Rule actions Sagan accepts, per the rule-syntax documentation.
@@ -54,6 +54,17 @@ class SaganRule:
     source_file: str
     line_number: int
     raw: str
+    #: JSON key paths this rule writes truncated, mapped to their real names.
+    #:
+    #: Sagan stores a dotted key path clipped to 31 characters and compares it
+    #: with an exact ``strcmp``, so a rule naming the real field never matches.
+    #: Upstream works around that by writing the clipped name in the rule and
+    #: recording the original above it in a comment. Sigma has no such limit and
+    #: the log carries the full name, so the conversion has to put it back;
+    #: emitting the clipped name would produce a rule that matches nothing
+    #: outside Sagan. Populated by the parser from those comments, and empty for
+    #: every rule that does not carry one.
+    key_restorations: Mapping[str, str] = field(default_factory=dict)
 
     def values(self, name: str) -> list[str | None]:
         """Every value carried by a keyword, in order of appearance."""

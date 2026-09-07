@@ -158,3 +158,61 @@ class TestParseLines:
         assert rules == []
         assert len(failures) == 1
         assert failures[0].line_number == 1
+
+
+class TestKeyRestorations:
+    """Upstream records a clipped JSON key's real name above the rule.
+
+    Sagan stores a dotted key path clipped to 31 characters and compares it with
+    an exact strcmp, so upstream writes the clipped name and keeps the original
+    in a comment (quadrantsec/sagan-rules@6211ab5). Sigma has no such limit, so
+    the conversion has to put the real name back.
+    """
+
+    MARK = (
+        "# [truncated for JSON_MAX_KEY_SIZE=32 engine limit -- legacy engine "
+        "stores keys clipped to 31 chars, full path never matches] "
+    )
+
+    def test_reads_the_comment_above_the_rule(self) -> None:
+        lines = [
+            self.MARK + ".data.authorizationInfo.operation -> "
+            ".data.authorizationInfo.operati",
+            'alert any any any -> any any (msg:"t"; '
+            'json_content:".data.authorizationInfo.operati","x"; sid:1;)',
+        ]
+        rules, _, _ = parse_lines(lines, "f.rules")
+        assert rules[0].key_restorations == {
+            "data.authorizationInfo.operati": "data.authorizationInfo.operation"
+        }
+
+    def test_several_keys_on_one_line(self) -> None:
+        lines = [
+            self.MARK + ".a.operation -> .a.operati; .b.superUserAuthorization -> "
+            ".b.superUs",
+            'alert any any any -> any any (msg:"t"; content:"x"; sid:1;)',
+        ]
+        rules, _, _ = parse_lines(lines, "f.rules")
+        assert rules[0].key_restorations == {
+            "a.operati": "a.operation",
+            "b.superUs": "b.superUserAuthorization",
+        }
+
+    def test_the_table_does_not_leak_to_the_next_rule(self) -> None:
+        """It describes one rule, and the comment sits directly above it."""
+        lines = [
+            self.MARK + ".a.operation -> .a.operati",
+            'alert any any any -> any any (msg:"t"; content:"x"; sid:1;)',
+            'alert any any any -> any any (msg:"t"; content:"y"; sid:2;)',
+        ]
+        rules, _, _ = parse_lines(lines, "f.rules")
+        assert rules[0].key_restorations
+        assert rules[1].key_restorations == {}
+
+    def test_an_ordinary_comment_carries_nothing(self) -> None:
+        lines = [
+            "# just a comment about .a.operation -> .a.operati",
+            'alert any any any -> any any (msg:"t"; content:"x"; sid:1;)',
+        ]
+        rules, _, _ = parse_lines(lines, "f.rules")
+        assert rules[0].key_restorations == {}

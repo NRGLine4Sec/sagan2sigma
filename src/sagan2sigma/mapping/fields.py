@@ -90,7 +90,13 @@ def json_map(rule: SaganRule) -> dict[str, str]:
             continue
         parts = [part.strip().strip('"') for part in option.value.split(",", 1)]
         if len(parts) == 2 and parts[0] in INTERNAL_VALUES:
-            mapping[parts[0]] = parts[1].lstrip(".")
+            key = parts[1].lstrip(".")
+            # Upstream clips a key path at 31 characters when the engine would
+            # otherwise never match it, and records the original above the rule.
+            # A json_map key decides a field name and a correlation group-by, so
+            # a clipped one propagates further than a json_content does; 13 keys
+            # in the corpus are in that state.
+            mapping[parts[0]] = rule.key_restorations.get(key, key)
     return mapping
 
 

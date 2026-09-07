@@ -84,6 +84,34 @@ def parse_json_args(value: str, keyword: str) -> tuple[bool, str, str]:
     return match.group("neg") == "!", match.group("key"), match.group("rest").strip()
 
 
+def restore_key(key: str, rule: SaganRule, draft: RuleDraft) -> str:
+    """The field name the log carries, undoing an upstream key truncation.
+
+    Sagan clips a dotted key path at 31 characters and compares it with an
+    exact ``strcmp``, so upstream writes the clipped name in the rule and
+    records the original in a comment above it. Sigma has no such limit and the
+    event carries the full name, so emitting the clipped one would produce a
+    rule that matches nothing outside Sagan. Measured against RSigma:
+    ``data.authorizationInfo.operati`` matches an event carrying that exact
+    field and not one carrying ``data.authorizationInfo.operation``, which is
+    what every real Confluent event carries.
+    """
+    full = rule.key_restorations.get(key)
+    if full is None or full == key:
+        return key
+    draft.degrade(
+        Degradation(
+            code=DegradationCode.JSON_KEY_RESTORED,
+            detail=(
+                f"the rule names {key!r}, which upstream clipped to fit the "
+                f"engine's 31-character key limit; the converted rule uses "
+                f"{full!r}, the field the log actually carries"
+            ),
+        )
+    )
+    return full
+
+
 def reject_base64(modifiers: frozenset[str], keyword: str) -> None:
     """Refuse the base64 variants, which have no faithful Sigma equivalent.
 
@@ -214,6 +242,7 @@ def handle_json_content(
         if option.value is None:
             continue
         negated, key, rest = parse_json_args(option.value, "json_content")
+        key = restore_key(key, rule, draft)
         modifiers = rule.modifiers_after(option.index, _CONTENT_MODIFIERS)
         reject_base64(modifiers, "json_content")
 
@@ -261,6 +290,7 @@ def handle_json_meta_content(
         if option.value is None:
             continue
         negated, key, rest = parse_json_args(option.value, "json_meta_content")
+        key = restore_key(key, rule, draft)
         modifiers = rule.modifiers_after(option.index, _META_MODIFIERS)
         reject_base64(modifiers, "json_meta_content")
 
@@ -337,6 +367,7 @@ def handle_json_pcre(
         if option.value is None:
             continue
         negated, key, rest = parse_json_args(option.value, "json_pcre")
+        key = restore_key(key, rule, draft)
         reject_base64(
             rule.modifiers_after(option.index, frozenset({"json_decode_base64_pcre"})),
             "json_pcre",

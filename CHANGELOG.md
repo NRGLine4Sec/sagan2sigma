@@ -64,6 +64,26 @@ All notable changes to this project are documented here. The format follows
   ever shared a group key, so the correlation could not pair them. The fallback
   now goes through the field resolver, which already knows the event shape.
   4 correlations were affected.
+- Converted rules named a JSON field that no producer emits. Sagan stores a
+  dotted key path clipped to 31 characters and compares it with an exact
+  `strcmp`, so upstream now writes the clipped name in the rule and records the
+  original above it in a comment (`quadrantsec/sagan-rules@6211ab5`). Sigma has
+  no such limit and the log carries the full name, so the conversion has to put
+  it back; emitting the clipped one produced a rule matching nothing outside
+  Sagan. Measured with RSigma on sid 5005921: the clipped
+  `data.authorizationInfo.operati` does not match an event carrying
+  `data.authorizationInfo.operation`, which is what Confluent emits. The parser
+  reads those comments and the conversion restores the real name, reported as
+  `D_JSON_KEY_RESTORED`, in `json_content`, `json_meta_content`, `json_pcre`
+  and `json_map` alike. 15 rules carry a restored search key and 13 `json_map`
+  bindings are corrected, the latter deciding field names and correlation
+  group-by keys.
+
+  The comments are the only usable signal: key length says nothing, since
+  `data.authorizationInfo.granted` is exactly 30 characters and is a real field
+  name sitting in the same rules. The engine differential could not have found
+  this either, because the probe generator builds its event from the rule's own
+  key, so both sides agree on a name no log carries.
 - A `json_content` or `json_meta_content` value is cut by the engine at its
   first colon or comma, the value being taken with `strtok` and never put back
   together, and the converted rule demanded the whole string. Measured:
