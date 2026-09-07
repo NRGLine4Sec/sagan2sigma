@@ -6,8 +6,9 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
-### Added
+## [0.4.0] - 2026-09-07
 
+### Added
 - A report section listing upstream rules that do not work in Sagan, and the
   `sagan2sigma.upstream` module behind it. Every other part of this tool asks
   whether the conversion is faithful; this asks whether the rule it started
@@ -45,9 +46,7 @@ All notable changes to this project are documented here. The format follows
     invert, so the condition asserts what it means to forbid. Measured both
     ways: absent pattern stays silent, present pattern alerts.
 
-
 ### Fixed
-
 - Every rebuilt `xbits` correlation was inert. RSigma 0.21.0 resolves a
   `rules:` entry by name for `event_count` only; for `temporal` and
   `temporal_ordered` it records each hit under the rule id, so a name reference
@@ -98,7 +97,6 @@ All notable changes to this project are documented here. The format follows
 - `resolve_references` checked correlation references against `name:` only, so
   the id references above would have been reported as pointing outside the
   batch. It accepts either form now, as the spec does.
-
 - A negated `json_content` or `json_meta_content` fired on events that do not
   carry the key at all. Sagan walks the event's keys and can only satisfy a
   condition on a key it finds, so a missing key fails the rule; Sigma reads
@@ -111,27 +109,6 @@ All notable changes to this project are documented here. The format follows
 - `tests/differential/sagan_reference.py` modelled the same wrong belief, which
   is why the existing harness reported agreement on those rules. It now
   requires the key to be present, as the engine does.
-
-### Changed
-
-- The README no longer presents the Python differential harness as the whole of
-  the behavioural checking. That harness states its own limit, a misreading
-  shared between the model and the converter, and the limit was reached: the
-  `after` off-by-one across 970 correlations survived it. The engine-backed
-  differential that replaced the model is now described alongside it, with what
-  each covers.
-- `docs/DESIGN-DECISIONS.md` records two engine limits that make a rule search
-  for something other than what it says, both found by running the corpus
-  through Sagan and RSigma side by side. A colon truncates a `meta_content`
-  value, so `c:\program files\AVAST\` searches for `c`, affecting 734 rules;
-  `content` is unaffected. And a JSON key path longer than 30 characters is
-  truncated, so a rule naming one never matches, affecting 14 rules. Neither is
-  reproduced and neither is refused, for reasons the document sets out; they
-  convert on their written intent and the divergence is now stated.
-
-
-### Fixed
-
 - `flexbits` setters lost their expiry. The two keywords write it differently
   and only the `xbits` form, `expire N`, was read; `flexbits` puts a bare number
   third, `flexbits: set, name, 532800`, and the engine rejects the rule without
@@ -152,6 +129,25 @@ All notable changes to this project are documented here. The format follows
   aborts. The engine's own error message lists the action as valid, and so does
   the upstream rule validator, which is why this looked supported. It now
   refuses.
+
+### Changed
+- The README no longer presents the Python differential harness as the whole of
+  the behavioural checking. That harness states its own limit, a misreading
+  shared between the model and the converter, and the limit was reached: the
+  `after` off-by-one across 970 correlations survived it. The engine-backed
+  differential that replaced the model is now described alongside it, with what
+  each covers.
+- `docs/DESIGN-DECISIONS.md` records the engine limits that make a rule search
+  for something other than what it says, all found by running the corpus
+  through Sagan and RSigma side by side, and says which are reproduced and why.
+  A colon truncates a `meta_content` value, so `c:\program files\AVAST\`
+  searches for `c`, affecting 734 rules; that one is not reproduced, since
+  matching every message containing a `c` is a flood. The same truncation in
+  `json_content` and `json_meta_content` is reproduced, the search there being
+  scoped to a field rather than the whole message. And a JSON key path over 31
+  characters is clipped by the engine, which upstream now works around in the
+  rules themselves, so the conversion restores the real name from the comment
+  they leave behind.
 
 ## [0.3.0] - 2026-08-23
 

@@ -155,7 +155,7 @@ Each of these carries a stable code in the report, with the reasoning attached.
 
 ## Status and what has not been verified
 
-This is a 0.3.0 release and the rules it emits are marked `status:
+This is a 0.4.0 release and the rules it emits are marked `status:
 experimental` for a reason.
 
 **What is verified.** Every emitted document is parsed by

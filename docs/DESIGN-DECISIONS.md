@@ -537,19 +537,43 @@ value differently, so the two had to be checked apart rather than assumed
 alike; the corpus writes `|3a|` where it means a literal colon, which is the
 working form.
 
-**A JSON key path longer than 30 characters is truncated.** `JSON_MAX_KEY_SIZE`
-is 32 and the parser terminates the stored path early, so a rule naming a
-longer key never matches. Measured to the character: 30 matches, 31 does not,
-and nesting does not change it because the whole path counts. 14 corpus rules
-name such a key, one of them a 50-character CloudTrail path.
+The `meta_content` truncation is **not** reproduced. Emitting what Sagan
+actually searches for would mean a rule matching every message containing the
+letter `c`, and shipping that would be worse than the divergence. Nor are those
+rules refused, which would drop them for a defect that is upstream rather than
+here. They convert on their written intent, the divergence is recorded here,
+and the negated ones, which cannot fire at all, are reported by
+`sagan2sigma.upstream` as `U_CANNOT_MATCH` rather than passed off as working.
 
-Neither is reproduced. Emitting what Sagan actually searches for would mean a
-detection on the single letter `c`, or a match on a truncated key name, and
-shipping that would be worse than the divergence. Nor are those rules refused,
-which would drop 748 rules for a defect that is upstream rather than here. They
-convert on their written intent, and the divergence is recorded here so that a
-reader comparing behaviour against a running Sagan is not surprised by it.
-Both are pinned in `checks/check_engine_limits.py` in the engine lab.
+**The same truncation in the JSON operators is reproduced**, which looks
+inconsistent and is deliberate. `json_content` and `json_meta_content` values
+are cut at the first `:` or `,` in the same way, so `json_content:".K","c:\temp"`
+searches for `c`. The difference is what the search is scoped to: reproducing
+`meta_content` means "the message contains `c`", which fires on nearly
+everything, while reproducing `json_content` means "this field equals `c`",
+which is narrow. One is a flood and the other is a faithful, checkable
+condition, so they are treated differently and the loss is reported as
+`D_VALUE_TRUNCATED`. The truncation runs before hex expansion, as the engine
+does it, so a colon written `|3a|` survives.
+
+**A JSON key path longer than 31 characters is clipped.** `JSON_MAX_KEY_SIZE`
+is 32 and the parser terminates the stored path early, so a rule naming a
+longer key never matches. Measured to the character, counting the leading dot:
+31 matches, 32 does not, and nesting does not change it because the whole path
+counts.
+
+Upstream has since worked around this from the rules side
+(`quadrantsec/sagan-rules@6211ab5`): the rule now carries the **clipped** name,
+which the engine matches, and the original is recorded in a comment above it.
+The conversion reads that comment and emits the real field name, because Sigma
+has no such limit and the log carries the full path; shipping the clipped name
+would produce a rule matching nothing outside Sagan. That is reported as
+`D_JSON_KEY_RESTORED`. The comment is the only usable signal: key length says
+nothing, `data.authorizationInfo.granted` being exactly 30 characters and a real
+field name in the same rules.
+
+Both engine limits are pinned in `checks/check_engine_limits.py` in the engine
+lab.
 
 ### Sagan's option tokenisation ignores quotes
 
