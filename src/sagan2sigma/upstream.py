@@ -4,10 +4,12 @@ Every other part of this tool asks whether the *conversion* is faithful. This
 one asks something the conversion cannot: whether the rule it started from
 works at all in the engine it was written for.
 
-The question is not academic. 752 corpus rules fall into the silent category
+The question is not academic. 764 corpus rules fall into the silent category
 below, and a migration that converts them faithfully inherits rules that never
 fired. Someone comparing the converted output against a running Sagan would find
 them agreeing perfectly, both silent, and conclude the conversion was sound.
+Five more load and fire while grouping on fewer keys than they name, two stop
+the engine from starting, and one asserts what it means to forbid.
 
 Each detector below corresponds to an engine behaviour established by running a
 locally built Sagan, not by reading it. The comments name what was measured, so
@@ -16,9 +18,10 @@ That matters most where the syntax looks decisive and is not: an unbalanced `|`
 is harmless in two of its shapes and fatal in the rest, and only the engine
 says which is which.
 
-Four of the six have a fix upstream, proposed as pull requests against
-`quadrantsec/sagan-rules`. The JSON key length does not: the key names come from
-the log formats, so only the engine can fix it.
+Most have a fix upstream, proposed as pull requests against
+`quadrantsec/sagan-rules`. Two do not, both being engine defects rather than
+rule ones: `pcre:!` has no negation to fix in the rules, and a key path clipped
+above the level that names the value cannot be written any other way.
 
 What this deliberately does **not** do is judge intent. A rule can load, fire,
 and still be useless because its pattern matches nothing any real appliance
@@ -177,6 +180,39 @@ def _unterminated_hex(value: str) -> tuple[DefectCode, str] | None:
     )
 
 
+#: Tracking keys the `threshold` parser recognises, and how it recognises them.
+#:
+#: It differs from `after` in both the set and the test. `by_string` is a real
+#: synonym for `by_username` here, that parser reading the intact option token,
+#: while under `after` a `strtok_r` on " " truncates the token to "track" before
+#: the comparison, so the branch can never fire.
+#:
+#: And the test is `Sagan_strstr` against the whole track value rather than a
+#: per-token `strcmp`, so a key counts when it appears anywhere in the value.
+#: That is why `by_src&byusername` keeps `by_src` and loses the username:
+#: "by_username" is not a substring of it, the underscore being absent.
+#: Measured on sid 5014022's shape, three events with different usernames from
+#: one source under `type suppress, count 1`: `by_src&by_username` alerts three
+#: times, `by_src&byusername` once, and `by_src` alone once. The typo behaves
+#: exactly like dropping the key.
+THRESHOLD_KEYS = AFTER_KEYS | {"by_string"}
+
+_THRESHOLD_TRACK = re.compile(r"track\s+([a-z_&]+)", re.I)
+
+
+def _threshold_keys(rule: SaganRule) -> list[tuple[str, set[str]]]:
+    """Each `threshold` option's track value, and the tokens it names."""
+    found: list[tuple[str, set[str]]] = []
+    for option in rule.iter_options("threshold"):
+        if option.value is None:
+            continue
+        match = _THRESHOLD_TRACK.search(option.value)
+        if match:
+            whole = match.group(1).lower()
+            found.append((whole, {k.strip() for k in whole.split("&") if k.strip()}))
+    return found
+
+
 def _after_keys(rule: SaganRule) -> list[set[str]]:
     """The tracking keys each `after` option names."""
     keys: list[set[str]] = []
@@ -223,6 +259,31 @@ def inspect(rule: SaganRule) -> list[UpstreamDefect]:
                     DefectCode.WILL_NOT_LOAD,
                     "xbits: toggle is parsed by no branch in the engine; the "
                     "ruleset is refused at load",
+                )
+            )
+
+    for whole, written in _threshold_keys(rule):
+        honoured = {key for key in THRESHOLD_KEYS if key in whole}
+        mistyped = sorted(token for token in written if token not in THRESHOLD_KEYS)
+        if not honoured:
+            found.append(
+                UpstreamDefect(
+                    rule.sid,
+                    rule.source_file,
+                    DefectCode.WILL_NOT_LOAD,
+                    f"threshold tracks {whole!r}, which the parser does not "
+                    f"recognise; the engine refuses the whole ruleset",
+                )
+            )
+        elif mistyped:
+            found.append(
+                UpstreamDefect(
+                    rule.sid,
+                    rule.source_file,
+                    DefectCode.WRONG_GROUPING,
+                    f"threshold tracks {', '.join(mistyped)}, which the parser "
+                    f"never finds in the option value; the suppression groups "
+                    f"on {', '.join(sorted(honoured))} only",
                 )
             )
 

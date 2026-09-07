@@ -344,3 +344,47 @@ class TestClippedKeyPath:
             "data.authenticationInfo.metadata.mechanism",
             "data.authenticationInfo.metada",
         )
+
+
+class TestThresholdKeys:
+    """threshold recognises its keys differently from after.
+
+    It tests the whole track value with Sagan_strstr rather than comparing each
+    token with strcmp, and by_string is a real synonym for by_username there.
+    Measured on sid 5014022's shape, three events with different usernames from
+    one source under `type suppress, count 1`: by_src&by_username alerts three
+    times, by_src&byusername once, and by_src alone once.
+    """
+
+    def test_a_mistyped_key_is_never_found(self) -> None:
+        """`by_username` is not a substring of `by_src&byusername`."""
+        raw = (
+            'msg:"t"; content:"x"; '
+            "threshold: type suppress, track by_src&byusername, count 1, "
+            "seconds 3600; sid:1;"
+        )
+        assert DefectCode.WRONG_GROUPING in codes(raw)
+
+    def test_the_correct_spelling_is_clean(self) -> None:
+        raw = (
+            'msg:"t"; content:"x"; '
+            "threshold: type suppress, track by_src&by_username, count 1, "
+            "seconds 3600; sid:1;"
+        )
+        assert codes(raw) == set()
+
+    def test_by_string_is_a_synonym_here(self) -> None:
+        """Unlike under after, where the token is truncated before the test."""
+        raw = (
+            'msg:"t"; content:"x"; '
+            "threshold: type suppress, track by_string, count 1, seconds 3600; sid:1;"
+        )
+        assert codes(raw) == set()
+
+    def test_no_recognised_key_stops_the_load(self) -> None:
+        """Sid 5008760 does this, and rules.c:3370 rejects the option."""
+        raw = (
+            'msg:"t"; content:"x"; '
+            "threshold: type suppress, track by_tag, count 1, seconds 3600; sid:1;"
+        )
+        assert DefectCode.WILL_NOT_LOAD in codes(raw)
