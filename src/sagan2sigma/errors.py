@@ -58,6 +58,7 @@ class DegradationCode(str, Enum):
     AFTER_BY_STRING_INERT = "D_AFTER_BY_STRING_INERT"
     TRACK_KEY_INERT = "D_TRACK_KEY_INERT"
     JSON_PCRE_ABSENT_KEY = "D_JSON_PCRE_ABSENT_KEY"
+    VALUE_TRUNCATED = "D_VALUE_TRUNCATED"
 
 
 REFUSAL_HELP: dict[RefusalCode, str] = {
@@ -269,6 +270,15 @@ DEGRADATION_HELP: dict[DegradationCode, str] = {
         "the rule outright when by_string is the only key. Confirmed against a "
         "locally built engine. threshold is unaffected: its parser tests the "
         "intact token, so there by_string really is a synonym for by_username."
+    ),
+    DegradationCode.VALUE_TRUNCATED: (
+        "Sagan cuts a json_content or json_meta_content value at its first "
+        "colon or comma and searches only for the part before it, the value "
+        "being taken with strtok and never put back together. The converted "
+        "rule reproduces the truncation, so it agrees with the engine and is "
+        "broader than the rule reads. Measured against a locally built engine: "
+        'json_content:".K","c:\\temp" matches an event whose key holds '
+        "exactly 'c' and not one holding 'c:\\temp'."
     ),
     DegradationCode.JSON_PCRE_ABSENT_KEY: (
         "Sagan treats a key the event does not carry as a match for json_pcre: "

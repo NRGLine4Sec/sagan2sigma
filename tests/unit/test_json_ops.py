@@ -98,9 +98,31 @@ class TestJsonContent:
         assert negated.negated
 
     def test_decodes_hex_escapes(self, draft: RuleDraft, context) -> None:
+        """An escaped colon survives, which is the point of writing it |3a|.
+
+        The engine cuts the value at a bare colon and expands |3a| afterwards,
+        so the order matters here too: truncating the decoded text instead
+        would search for `x` and undo the escape the rule author added.
+        Measured: the rule matches an event whose key holds `x:y` and not one
+        holding `x`.
+        """
         rule = make_rule('msg:"t"; json_content:".a","x|3a|y"; sid:1;')
         run(handle_json_content, rule, draft, context)
         assert draft.predicates[0].values == ("x:y",)
+
+    def test_truncates_at_a_bare_colon(self, draft: RuleDraft, context) -> None:
+        """Sagan searches only the text before the first colon."""
+        rule = make_rule('msg:"t"; json_content:".a","c:\\temp"; sid:1;')
+        run(handle_json_content, rule, draft, context)
+        assert draft.predicates[0].values == ("c",)
+
+    def test_truncates_at_a_comma(self, draft: RuleDraft, context) -> None:
+        """The engine searches for `TCP NULL`, as sid 5016531 shows."""
+        rule = make_rule(
+            'msg:"t"; json_content:".a","TCP NULL, FIN, or XMAS Scan"; sid:1;'
+        )
+        run(handle_json_content, rule, draft, context)
+        assert draft.predicates[0].values == ("TCP NULL",)
 
     # Only this spelling exists. json_base64_decode is not in Sagan's
     # VALID_RULE_OPTIONS and the engine aborts the ruleset on it, so it is no

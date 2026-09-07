@@ -64,6 +64,17 @@ All notable changes to this project are documented here. The format follows
   ever shared a group key, so the correlation could not pair them. The fallback
   now goes through the field resolver, which already knows the event shape.
   4 correlations were affected.
+- A `json_content` or `json_meta_content` value is cut by the engine at its
+  first colon or comma, the value being taken with `strtok` and never put back
+  together, and the converted rule demanded the whole string. Measured:
+  `json_content:".K","c:\temp"` matches an event whose key holds exactly `c`
+  and not one holding `c:\temp`, and `"TCP NULL, FIN, or XMAS Scan"` searches
+  for `TCP NULL`. The truncation is now reproduced and reported as
+  `D_VALUE_TRUNCATED`, which makes the converted rule agree with the engine and
+  broader than the rule reads. The truncation runs on the raw text, before hex
+  escapes are expanded, so a colon written `|3a|` survives it as it does in the
+  engine; doing it the other way round would have undone the escape that PR 3
+  adds upstream.
 - `resolve_references` checked correlation references against `name:` only, so
   the id references above would have been reported as pointing outside the
   batch. It accepts either form now, as the spec does.

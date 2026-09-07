@@ -134,6 +134,40 @@ def _require_key(draft: RuleDraft, key: str, keyword: str) -> None:
     )
 
 
+#: Characters that end a JSON option's value inside the engine.
+#:
+#: Sagan takes these values with ``strtok`` and never puts them back together,
+#: so the search is only the text before the first ``:`` or ``,``. Measured on
+#: a reduced rule, one key and one value at a time:
+#:
+#: ===========================================  ==========================
+#: ``json_content:".K","c:\temp"``              matches ``c``, not ``c:\temp``
+#: ``json_content:".K","TCP NULL, FIN, or X"``  matches ``TCP NULL``
+#: ``json_meta_content:".K",contentclass:STS``  matches ``contentclass``
+#: ===========================================  ==========================
+#:
+#: For ``json_meta_content`` the comma is the list separator and is split on
+#: before this runs, so only the colon applies there.
+#:
+#: Reproducing the truncation is what makes the converted rule agree with the
+#: engine. It also makes it broader than the rule reads, which is the honest
+#: outcome: the engine is what runs today, and a converted rule that demanded
+#: the full string would stay silent where Sagan alerts.
+_VALUE_END = re.compile(r"[:,]")
+
+
+def truncate_like_sagan(text: str) -> tuple[str, bool]:
+    """The part of a JSON option value the engine actually searches for.
+
+    Returns the text and whether anything was cut, so the caller can report the
+    loss rather than apply it silently.
+    """
+    match = _VALUE_END.search(text)
+    if match is None:
+        return text, False
+    return text[: match.start()], True
+
+
 def _scalar(text: str, contains: bool) -> Scalar:
     """Coerce a JSON value, escaping wildcards for substring searches.
 
@@ -185,7 +219,20 @@ def handle_json_content(
 
         nocase = "json_nocase" in modifiers
         contains = "json_contains" in modifiers
-        text = decode_hex(rest.strip().strip('"'))
+        raw, cut = truncate_like_sagan(rest.strip().strip('"'))
+        text = decode_hex(raw)
+        if cut:
+            draft.degrade(
+                Degradation(
+                    code=DegradationCode.VALUE_TRUNCATED,
+                    detail=(
+                        f"Sagan searches only {text!r}, the part of the "
+                        f"json_content value before its first ':' or ','; the "
+                        f"converted rule reproduces that and is broader than "
+                        f"the rule reads"
+                    ),
+                )
+            )
         values = (_scalar(text, contains),)
 
         if negated:
@@ -220,11 +267,26 @@ def handle_json_meta_content(
         nocase = "json_meta_nocase" in modifiers
         contains = "json_meta_contains" in modifiers
 
-        raw_values = [
-            decode_hex(part.strip().strip('"'))
-            for part in rest.split(",")
-            if part.strip()
-        ]
+        raw_values = []
+        truncated = False
+        for part in rest.split(","):
+            if not part.strip():
+                continue
+            raw, cut = truncate_like_sagan(part.strip().strip('"'))
+            truncated = truncated or cut
+            raw_values.append(decode_hex(raw))
+        if truncated:
+            draft.degrade(
+                Degradation(
+                    code=DegradationCode.VALUE_TRUNCATED,
+                    detail=(
+                        "Sagan cuts each json_meta_content value at its first "
+                        "colon, so the search is the text before it; the "
+                        "converted rule reproduces that and is broader than "
+                        "the rule reads"
+                    ),
+                )
+            )
         if not raw_values:
             raise Refusal(
                 code=RefusalCode.PARSE,
