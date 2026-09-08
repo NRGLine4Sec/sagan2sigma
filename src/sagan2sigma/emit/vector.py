@@ -187,8 +187,14 @@ def _enabled(flags: dict[str, bool]) -> list[_Optional]:
     return [option for option in _OPTIONALS if flags.get(option.flag)]
 
 
-def _pipeline_transforms(flags: dict[str, bool]) -> list[tuple[str, str]]:
-    """Every transform to write, in pipeline order."""
+def pipeline_transforms(flags: dict[str, bool]) -> list[tuple[str, str]]:
+    """Every transform to write, in pipeline order.
+
+    Public because the order is a contract rather than an implementation
+    detail: the engine lab builds a runnable pipeline from it to produce the
+    RSigma side of the enriched differential, so a rule and the transforms it
+    depends on are judged together. A rename here breaks that silently.
+    """
     return [
         _JSON,
         _PARSE_IP,
@@ -222,7 +228,7 @@ def build_config(
 
     blocks: list[str] = []
     previous = source
-    for name, filename in _pipeline_transforms(flags):
+    for name, filename in pipeline_transforms(flags):
         blocks.append(
             _TRANSFORM_BLOCK.format(name=name, previous=previous, filename=filename)
         )
@@ -281,7 +287,7 @@ def write_pipeline(
     )
 
     written = [config_path]
-    for _, filename in _pipeline_transforms(flags):
+    for _, filename in pipeline_transforms(flags):
         path = transforms_dir / filename
         path.write_text(read_transform(filename), encoding="utf-8")
         written.append(path)
