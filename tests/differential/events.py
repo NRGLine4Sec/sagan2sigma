@@ -47,13 +47,14 @@ from collections.abc import Sequence
 from dataclasses import dataclass, replace
 from typing import Any
 
+from sagan2sigma.errors import Refusal
+from sagan2sigma.mapping.content import split_meta_content
 from sagan2sigma.mapping.context import Profile, load_profile
 from sagan2sigma.sagan.hexdec import decode_hex
 from sagan2sigma.sagan.model import SaganRule
 
 from .sagan_reference import SaganEvent, expand_values, json_map
 
-_META = re.compile(r'^\s*(?P<neg>!?)\s*"(?P<pattern>.*?)"\s*,\s*(?P<values>.+)$', re.S)
 _JSON_ARGS = re.compile(
     r'^\s*(?P<neg>!?)\s*"?\.?(?P<key>[A-Za-z0-9_.\[\]@-]+)"?\s*,\s*(?P<rest>.+)$', re.S
 )
@@ -127,13 +128,21 @@ def positive_literals(
     for option in rule.iter_options("meta_content"):
         if option.value is None:
             continue
-        match = _META.match(option.value)
-        if match is None or match.group("neg") == "!":
+        # Split the way the engine does, through the converter's own reader,
+        # which `sagan_reference` already uses. A private regex here required a
+        # comma after the closing quote and quietly produced no literal for the
+        # four corpus options that put it elsewhere, so those rules were judged
+        # on their other conditions alone: sid 5013804 stayed silent while
+        # carrying a real defect, and the run counted it as measured.
+        try:
+            negated, pattern, raw_values = split_meta_content(option.value)
+        except Refusal:
             continue
-        pattern = decode_hex(match.group("pattern"))
-        values = expand_values(match.group("values"), variables or {})
+        if negated:
+            continue
+        values = expand_values(raw_values, variables or {})
         if values:
-            literals.append(pattern.replace("%sagan%", values[0]))
+            literals.append(decode_hex(pattern).replace("%sagan%", values[0]))
     return literals
 
 

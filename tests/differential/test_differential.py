@@ -332,7 +332,9 @@ CORPUS = os.environ.get("SAGAN_RULES_DIR")
 #: and one whose condition the engine can never satisfy. The two sides then
 #: disagree by design, so judging such a rule measures that policy rather than
 #: the conversion. `differential/engine_differential.py` excludes the same four
-#: codes, and for the same reason.
+#: codes, and for the same reason. `U_PARTIAL_MATCH` is not among them: the
+#: converter reproduces the split that causes it, so both sides look for the
+#: same text and the rule is judgeable.
 #:
 #: This became visible when the reference evaluator learned to clip JSON keys
 #: the way the engine's key table does. Before that it walked the document and
@@ -346,7 +348,6 @@ DEAD_UPSTREAM = frozenset(
         DefectCode.CANNOT_MATCH,
         DefectCode.INVERTED_CONDITION,
         DefectCode.INERT_CONDITION,
-        DefectCode.PARTIAL_MATCH,
     }
 )
 
