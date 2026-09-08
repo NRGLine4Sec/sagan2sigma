@@ -10,7 +10,7 @@ detection:
   selection_1:
     EventID: 529
   selection_2:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -51,7 +51,7 @@ detection:
   selection_1:
     EventID: 530
   selection_2:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -77,7 +77,7 @@ detection:
   filter_2:
     RenderedDescription|contains|cased: 'User Name: Domain:'
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -102,7 +102,7 @@ detection:
   selection_1:
     EventID: 533
   selection_2:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -126,7 +126,7 @@ detection:
   selection_1:
     EventID: 534
   selection_2:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -154,7 +154,7 @@ detection:
   filter_3:
     RenderedDescription|contains|cased: 'Source Network Address: -'
   selection_4:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_4 and not (filter_2 or filter_3)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -181,7 +181,7 @@ detection:
       - 4767
       - 671
   selection_2:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -207,7 +207,7 @@ detection:
       - 4728
       - 632
   selection_2:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -233,7 +233,7 @@ detection:
       - 4732
       - 636
   selection_2:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -259,7 +259,7 @@ detection:
       - 4756
       - 660
   selection_2:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -283,7 +283,7 @@ detection:
   selection_1:
     EventID: 1012
   selection_2:
-    appname|cased: TermService
+    syslog_appname|cased: TermService
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -313,7 +313,7 @@ detection:
       - 20049
       - 20189
   selection_2:
-    appname|cased: RemoteAccess
+    syslog_appname|cased: RemoteAccess
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -337,7 +337,7 @@ detection:
   selection_1:
     EventID: 20158
   selection_2:
-    appname|cased: RemoteAccess
+    syslog_appname|cased: RemoteAccess
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -361,7 +361,7 @@ detection:
   selection_1:
     EventID: 640
   selection_2:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -392,7 +392,7 @@ detection:
   selection_2:
     RenderedDescription|contains|cased: 'Failure Code: 0x1F'
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -423,7 +423,7 @@ detection:
   selection_2:
     RenderedDescription|contains|cased: 'Failure Code: 0x22'
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -454,7 +454,7 @@ detection:
   selection_2:
     RenderedDescription|contains|cased: 'Failure Code: 0x25'
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -483,7 +483,7 @@ detection:
   selection_2:
     RenderedDescription|contains|cased: 'S-1-5-32-556 '
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -511,7 +511,7 @@ detection:
   selection_2:
     RenderedDescription|contains|cased: 'S-1-5-32-1101 '
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -539,7 +539,7 @@ detection:
   selection_2:
     RenderedDescription|re: 'S-1-5-21-\d{5,15}\-\d{5,15}\-\d{5,15}-512 '
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -567,7 +567,7 @@ detection:
   selection_2:
     RenderedDescription|re: 'S-1-5-21-\d{5,15}\-\d{5,15}\-\d{5,15}-519 '
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -595,7 +595,7 @@ detection:
   selection_2:
     RenderedDescription|re: 'S-1-5-21-\d{5,15}\-\d{5,15}\-\d{5,15}-520 '
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -623,7 +623,7 @@ detection:
   selection_2:
     RenderedDescription|re: 'S-1-5-21-\d{5,15}\-\d{5,15}\-\d{5,15}-518 '
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -658,7 +658,7 @@ detection:
   selection_5:
     RenderedDescription|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
   selection_6:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_4 and selection_5 and selection_6 and not (filter_2 or filter_3)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -712,7 +712,7 @@ detection:
   selection_6:
     RenderedDescription|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
   selection_7:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_2 and selection_5 and selection_6 and selection_7 and not (filter_1 or filter_3
     or filter_4)
 falsepositives:
@@ -761,7 +761,7 @@ detection:
   selection_3:
     RenderedDescription|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
   selection_4:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -808,7 +808,7 @@ detection:
   selection_3:
     RenderedDescription|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
   selection_4:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -853,7 +853,7 @@ detection:
       - 4625
       - 4776
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -903,7 +903,7 @@ detection:
   selection_2:
     RenderedDescription|contains|cased: ' 0x6 Client '
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -952,7 +952,7 @@ detection:
   selection_2:
     RenderedDescription|contains|cased: ' 0xC '
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1004,7 +1004,7 @@ detection:
   selection_3:
     RenderedDescription|contains|cased: ' 0x18 '
   selection_4:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_3 and selection_4 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1053,7 +1053,7 @@ detection:
   selection_2:
     RenderedDescription|contains|cased: ' 0x22 '
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1103,7 +1103,7 @@ detection:
   selection_2:
     RenderedDescription|contains|cased: ' 0x24 '
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1152,7 +1152,7 @@ detection:
   selection_2:
     RenderedDescription|contains|cased: ' 0x26 '
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1202,7 +1202,7 @@ detection:
   selection_2:
     RenderedDescription|contains|cased: ' 0x31 '
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1245,7 +1245,7 @@ detection:
       - 4720
       - 624
   selection_2:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1274,7 +1274,7 @@ detection:
   filter_2:
     RenderedDescription|contains|cased: $
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1298,7 +1298,7 @@ correlation:
     - c52c2356-f863-5b8c-a1ef-9112b363915c
     - ffb88d04-9820-52ff-9951-bff33c112072
   group-by:
-    - hostname
+    - syslog_hostname
   timespan: 30s
 level: high
 ---
@@ -1317,7 +1317,7 @@ detection:
   selection_2:
     RenderedDescription|contains: administrator
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1343,7 +1343,7 @@ detection:
       - 4726
       - 630
   selection_2:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1372,7 +1372,7 @@ detection:
   selection_3:
     RenderedDescription|contains|cased: ' 0x18 '
   selection_4:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1417,7 +1417,7 @@ detection:
   selection_3:
     RenderedDescription|contains|cased: ' 0x18 '
   selection_4:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1468,7 +1468,7 @@ detection:
   selection_6:
     EventID: 4776
   selection_7:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_6 and selection_7 and not (filter_3 or filter_4
     or filter_5)
 falsepositives:
@@ -1555,7 +1555,7 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '"Directory-Services-SAM"'
+    syslog_appname|cased: '"Directory-Services-SAM"'
   selection_2:
     EventID: 12294
   condition: selection_1 and selection_2
@@ -1582,7 +1582,7 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   selection_2:
     EventID: 4624
   selection_3:
@@ -1615,7 +1615,7 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   selection_2:
     EventID: 4624
   selection_3:
@@ -1670,7 +1670,7 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   selection_2:
     EventID: 4648
   filter_3:
@@ -1708,7 +1708,7 @@ detection:
   selection_2:
     RenderedDescription|contains|cased: 'Group: Security ID: S-1-5-32-544 '
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1752,7 +1752,7 @@ detection:
       - 'Account Name: ec2-user '
       - 'Account Name: azureuser '
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

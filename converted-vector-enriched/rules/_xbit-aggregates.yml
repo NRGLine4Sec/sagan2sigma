@@ -10,7 +10,7 @@ logsource:
   product: syslog
 detection:
   s1_selection_1:
-    appname|cased: AzureActiveDirectory
+    syslog_appname|cased: AzureActiveDirectory
   s1_selection_2:
     Operation|cased: UserLoggedIn
   s1_selection_3:
@@ -46,7 +46,7 @@ detection:
       - UserAuthenticationMethod","Value":"16"
       - UserAuthenticationMethod\\",\\"Value\\":\\"16\\"
   s2_selection_1:
-    appname|cased: AzureActiveDirectory
+    syslog_appname|cased: AzureActiveDirectory
   s2_selection_2:
     Operation|cased: UserLoggedIn
   s2_selection_3:
@@ -104,7 +104,7 @@ logsource:
   product: syslog
 detection:
   s1_selection_1:
-    appname|cased: AzureActiveDirectory
+    syslog_appname|cased: AzureActiveDirectory
   s1_selection_2:
     Operation|cased: UserLoginFailed
   s1_selection_3:
@@ -136,7 +136,7 @@ detection:
       - 'IsCompliantAndManaged", "Value": "False"'
       - IsCompliantAndManaged","Value":"False""
   s2_selection_1:
-    appname|cased: AzureActiveDirectory
+    syslog_appname|cased: AzureActiveDirectory
   s2_selection_2:
     Operation|cased: UserLoginFailed
   s2_selection_3:
@@ -168,7 +168,7 @@ detection:
       - 'IsCompliantAndManaged", "Value": "False"'
       - IsCompliantAndManaged","Value":"False""
   s3_selection_1:
-    appname|cased: AzureActiveDirectory
+    syslog_appname|cased: AzureActiveDirectory
   s3_selection_2:
     Operation|cased: UserLoginFailed
   s3_selection_3:
@@ -500,7 +500,7 @@ logsource:
   product: syslog
 detection:
   s1_selection_1:
-    appname|cased: signin.amazonaws.com
+    syslog_appname|cased: signin.amazonaws.com
   s1_selection_2:
     eventName|cased: ConsoleLogin
   s1_selection_3:
@@ -514,33 +514,33 @@ detection:
   s2_selection_3:
     message|contains|cased: ',vsys'
   s3_selection_1:
-    appname|cased: azureEventHub
+    syslog_appname|cased: azureEventHub
   s3_selection_2:
     category|cased: SQLSecurityAuditEvents
   s3_selection_3:
     properties.action_name|cased: DATABASE AUTHENTICATION FAILED
   s4_selection_1:
-    appname|cased: box-api_data
+    syslog_appname|cased: box-api_data
   s4_selection_2:
     event_type|cased: FAILED_LOGIN
   s5_selection_1:
-    appname|cased: box-api_data
+    syslog_appname|cased: box-api_data
   s5_selection_2:
     event_type|cased: FAILED_LOGIN
   s6_selection_1:
-    appname|cased: netskope-api_data
+    syslog_appname|cased: netskope-api_data
   s6_selection_2:
     record_type: audit
   s6_selection_3:
     audit_log_event|cased: Login Failed
   s7_selection_1:
-    appname|cased: netskope-api_data
+    syslog_appname|cased: netskope-api_data
   s7_selection_2:
     record_type: audit
   s7_selection_3:
     audit_log_event: SSO Login Failed
   s8_selection_1:
-    appname|cased: Exchange
+    syslog_appname|cased: Exchange
   s8_selection_2:
     Operation|cased: MailboxLogin
   s8_selection_3:
@@ -871,7 +871,7 @@ detection:
   s41_filter_4:
     sagan_raw|contains|cased: 'Client Address: ::1 Client Port: 0'
   s41_selection_5:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   s42_selection_1:
     EventID:
       - 4768
@@ -1155,11 +1155,11 @@ detection:
   s95_selection_1:
     event_type_id: 6
   s95_selection_2:
-    appname|cased: onelogin
+    syslog_appname|cased: onelogin
   s96_selection_1:
     event_type_id: 1002
   s96_selection_2:
-    appname|cased: onelogin
+    syslog_appname|cased: onelogin
   s97_selection_1:
     message|contains|cased: failed to authenticate in
   s97_selection_2:
@@ -1191,7 +1191,7 @@ detection:
   s102_selection_1:
     EventID: 529
   s102_selection_2:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   s103_selection_1:
     RenderedDescription|contains: C0000064
   s103_filter_2:
@@ -1205,7 +1205,7 @@ detection:
   s103_selection_5:
     RenderedDescription|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
   s103_selection_6:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   s104_filter_1:
     RenderedDescription|contains|cased: '$ Source Workstation:'
   s104_selection_2:
@@ -1221,7 +1221,7 @@ detection:
   s104_selection_6:
     RenderedDescription|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
   s104_selection_7:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   s105_selection_1:
     RenderedDescription|contains: C0000234
   s105_selection_2:
@@ -1231,7 +1231,7 @@ detection:
   s105_selection_3:
     RenderedDescription|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
   s105_selection_4:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   s106_selection_1:
     RenderedDescription|contains: C0000072
   s106_selection_2:
@@ -1241,7 +1241,7 @@ detection:
   s106_selection_3:
     RenderedDescription|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
   s106_selection_4:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   s107_selection_1:
     RenderedDescription|contains: C000006F
   s107_selection_2:
@@ -1249,7 +1249,7 @@ detection:
       - 4625
       - 4776
   s107_selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   s108_selection_1:
     EventID:
       - 4768
@@ -1260,7 +1260,7 @@ detection:
   s108_selection_2:
     RenderedDescription|contains|cased: ' 0x6 Client '
   s108_selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   s109_selection_1:
     EventID:
       - 4768
@@ -1271,7 +1271,7 @@ detection:
   s109_selection_2:
     RenderedDescription|contains|cased: ' 0xC '
   s109_selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   s110_selection_1:
     EventID:
       - 4768
@@ -1284,7 +1284,7 @@ detection:
   s110_selection_3:
     RenderedDescription|contains|cased: ' 0x18 '
   s110_selection_4:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   s111_selection_1:
     EventID:
       - 4768
@@ -1295,7 +1295,7 @@ detection:
   s111_selection_2:
     RenderedDescription|contains|cased: ' 0x22 '
   s111_selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   s112_selection_1:
     EventID:
       - 4768
@@ -1306,7 +1306,7 @@ detection:
   s112_selection_2:
     RenderedDescription|contains|cased: ' 0x24 '
   s112_selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   s113_selection_1:
     EventID:
       - 4768
@@ -1317,7 +1317,7 @@ detection:
   s113_selection_2:
     RenderedDescription|contains|cased: ' 0x26 '
   s113_selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   s114_selection_1:
     EventID:
       - 4768
@@ -1328,7 +1328,7 @@ detection:
   s114_selection_2:
     RenderedDescription|contains|cased: ' 0x31 '
   s114_selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   s115_selection_1:
     EventID: 4771
   s115_selection_2:
@@ -1336,7 +1336,7 @@ detection:
   s115_selection_3:
     RenderedDescription|contains|cased: ' 0x18 '
   s115_selection_4:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   s116_selection_1:
     EventID: 4768
   s116_selection_2:
@@ -1344,7 +1344,7 @@ detection:
   s116_selection_3:
     RenderedDescription|contains|cased: ' 0x18 '
   s116_selection_4:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   s117_selection_1:
     RenderedDescription|contains|cased: '$ Source Workstation:'
   s117_selection_2:
@@ -1358,7 +1358,7 @@ detection:
   s117_selection_6:
     EventID: 4776
   s117_selection_7:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   s118_selection_1:
     EventID:
       - 4740
@@ -1382,7 +1382,7 @@ detection:
       - 'Account Name: ec2-user '
       - 'Account Name: azureuser '
   s118_selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   s119_selection_1:
     EventID: 18456
   s119_filter_2:
@@ -1392,17 +1392,17 @@ detection:
   s119_filter_4:
     RenderedDescription|contains|cased: Failed to open the explicitly specified database
   s119_selection_5:
-    appname|cased:
+    syslog_appname|cased:
       - MSSQL*
       - Application
   s120_selection_1:
     EventID: 18452
   s120_selection_2:
-    appname|cased:
+    syslog_appname|cased:
       - MSSQL*
       - Application
   s121_selection_1:
-    appname|cased: salesforce_streaming_api_data
+    syslog_appname|cased: salesforce_streaming_api_data
   s121_selection_2:
     channel|cased: /event/LoginEventStream
   s121_selection_3:
@@ -1414,7 +1414,7 @@ detection:
   s122_selection_2:
     message|contains|cased: Authentication failed
   s123_selection_1:
-    appname|cased: azureEventHub
+    syslog_appname|cased: azureEventHub
   s123_selection_2:
     sagan_raw|contains|cased:
       - 'resultType": "50126'
@@ -1466,7 +1466,7 @@ detection:
   s131_selection_4:
     message|contains|cased: '- - - -'
   s132_selection_1:
-    appname|cased: gcp
+    syslog_appname|cased: gcp
   s132_selection_2:
     protoPayload.methodName|cased: google.login.LoginService.loginFailure
   condition: (s1_selection_1 and s1_selection_2) or (s2_selection_1 and s2_selection_2 and s2_selection_3)
@@ -1595,7 +1595,7 @@ detection:
       - 4720
       - 624
   s2_selection_2:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: (s1_selection_1 and s1_selection_2) or (s2_selection_1 and s2_selection_2)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1626,7 +1626,7 @@ detection:
   s2_selection_2:
     RenderedDescription|re|i: 'ImageLoad: (.*)(wdigest\.dll|kerberos\.dll|tspkg\.dll|sspicli\.dll|samsrv\.dll|secur32\.dll|samlib\.dll|wlanapi\.dll|vaultcli\.dll|cypt32\.dll|cryptdll\.dll|netapi\.dll|netlogon\.dll|msv1_0\.dll)(.*)'
   s2_selection_3:
-    appname|cased: '*Sysmon*'
+    syslog_appname|cased: '*Sysmon*'
   condition: (s1_selection_1 and s1_selection_2 and s1_selection_3) or (s2_selection_1 and s2_selection_2
     and s2_selection_3)
 falsepositives:
@@ -1648,7 +1648,7 @@ logsource:
   product: syslog
 detection:
   s1_selection_1:
-    appname|cased: azureEventHub
+    syslog_appname|cased: azureEventHub
   s1_selection_2:
     category|cased: NonInteractiveUserSignInLogs
   s1_selection_3:
@@ -3167,7 +3167,7 @@ logsource:
   product: syslog
 detection:
   s1_selection_1:
-    appname|cased: Security
+    syslog_appname|cased: Security
   s1_selection_2:
     EventID: 4625
   s1_selection_3:
@@ -3244,7 +3244,7 @@ logsource:
   product: syslog
 detection:
   s1_selection_1:
-    appname|cased: Exchange
+    syslog_appname|cased: Exchange
   s1_selection_2:
     Operation|cased: MailboxLogin
   s1_selection_3:

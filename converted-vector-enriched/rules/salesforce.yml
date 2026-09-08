@@ -9,7 +9,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: salesforce_streaming_api_data
+    syslog_appname|cased: salesforce_streaming_api_data
   selection_2:
     channel|cased: /event/ApiAnomalyEvent
   condition: selection_1 and selection_2
@@ -34,7 +34,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: salesforce_streaming_api_data
+    syslog_appname|cased: salesforce_streaming_api_data
   selection_2:
     channel|cased: /event/CredentialStuffingEvent
   condition: selection_1 and selection_2
@@ -59,7 +59,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: salesforce_streaming_api_data
+    syslog_appname|cased: salesforce_streaming_api_data
   selection_2:
     channel|cased: /event/FileEvent
   selection_3:
@@ -86,7 +86,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: salesforce_streaming_api_data
+    syslog_appname|cased: salesforce_streaming_api_data
   selection_2:
     channel|cased: /event/FileEvent
   selection_3:
@@ -113,7 +113,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: salesforce_streaming_api_data
+    syslog_appname|cased: salesforce_streaming_api_data
   selection_2:
     channel|cased: /event/IdentityVerificationEvent
   selection_3:
@@ -146,7 +146,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: salesforce_streaming_api_data
+    syslog_appname|cased: salesforce_streaming_api_data
   selection_2:
     channel|cased: /event/LoginAsEventStream
   selection_3:
@@ -174,7 +174,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: salesforce_streaming_api_data
+    syslog_appname|cased: salesforce_streaming_api_data
   selection_2:
     channel|cased: /event/LoginEventStream
   selection_3:
@@ -220,7 +220,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: salesforce_streaming_api_data
+    syslog_appname|cased: salesforce_streaming_api_data
   selection_2:
     channel|cased: /event/LoginEventStream
   selection_3:
@@ -247,7 +247,7 @@ correlation:
     - d096d8bc-eae7-5535-9ff1-02c0aeca8e2c
     - 6dcff786-2dab-5159-b35b-b6fd426f884d
   group-by:
-    - hostname
+    - syslog_hostname
   timespan: 1d
 level: medium
 ---
@@ -262,7 +262,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: salesforce_streaming_api_data
+    syslog_appname|cased: salesforce_streaming_api_data
   selection_2:
     channel|cased: /event/PermissionSetEvent
   selection_3:
@@ -291,7 +291,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: salesforce_streaming_api_data
+    syslog_appname|cased: salesforce_streaming_api_data
   selection_2:
     channel|cased: /event/ReportAnomalyEvent
   condition: selection_1 and selection_2
@@ -316,7 +316,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: salesforce_streaming_api_data
+    syslog_appname|cased: salesforce_streaming_api_data
   selection_2:
     channel|cased: /event/SessionHijackingEvent
   condition: selection_1 and selection_2

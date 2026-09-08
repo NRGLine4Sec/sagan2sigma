@@ -43,7 +43,12 @@
 # position are converted against .sagan_ip_N directly, so the aliases are a
 # convenience and never a source of imprecision.
 
-body = string(.message) ?? ""
+# The raw body, which is what Sagan itself scans. `.sagan_raw` is set by
+# sagan-json.vrl and is the original message whether or not the body was JSON;
+# `.message` is the fallback for a pipeline that does not run that transform.
+# Reading `.message` alone was wrong: on a JSON body sagan-json.vrl removes it,
+# so this transform saw nothing and produced no field at all.
+body = string(.sagan_raw) ?? string(.message) ?? ""
 
 # Sagan's delimiter rewrite, ip.c:120.
 normalised = replace(body, r'["()\[\]<>{},/@=\-!|+_&%$~^\x27]', " ")

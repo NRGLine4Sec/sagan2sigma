@@ -578,7 +578,7 @@ detection:
   selection_5:
     sagan_raw|re: 'Account Name:\s[a-zA-Z0-9\-\_\$]+\s.*Account Name:\s[^$]+\sAccount Domain:'
   selection_6:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_4 and selection_5 and selection_6 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -814,7 +814,7 @@ detection:
   filter_4:
     sagan_raw|contains|cased: 'Client Address: ::1 Client Port: 0'
   selection_5:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_3 and selection_5 and not (filter_2 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

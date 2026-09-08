@@ -281,7 +281,7 @@ detection:
   filter_2:
     sagan_raw|contains|cased: 'Status code: 0x0 Value'
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -338,7 +338,7 @@ detection:
       - 'Service Start Type: 2 '
       - 'Service Start Type: 3 '
   selection_7:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_5 and selection_6 and selection_7 and not (filter_2 or filter_3
     or filter_4)
 falsepositives:
@@ -1020,7 +1020,7 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*Firewall*'
+    syslog_appname|cased: '*Firewall*'
   selection_2:
     EventID: 2004
   selection_3:
@@ -1048,7 +1048,7 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*Terminal*'
+    syslog_appname|cased: '*Terminal*'
   selection_2:
     EventID: 1149
   selection_3:
@@ -1076,7 +1076,7 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*System*'
+    syslog_appname|cased: '*System*'
   selection_2:
     EventID: 104
   selection_3:
@@ -1104,7 +1104,7 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*System*'
+    syslog_appname|cased: '*System*'
   selection_2:
     EventID: 104
   selection_3:
@@ -1132,7 +1132,7 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*System*'
+    syslog_appname|cased: '*System*'
   selection_2:
     EventID: 104
   selection_3:
@@ -1184,7 +1184,7 @@ detection:
   selection_4:
     Message|contains|cased: 'Service Type: user mode'
   selection_5:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_3 and selection_4 and selection_5 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1236,7 +1236,7 @@ detection:
       - logmein
       - ultravnc
   selection_4:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_3 and selection_4 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1707,7 +1707,7 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*Microsoft-Windows-NTLM*'
+    syslog_appname|cased: '*Microsoft-Windows-NTLM*'
   selection_2:
     EventID: 4023
   selection_3:
@@ -1740,7 +1740,7 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*Microsoft-Windows-NTLM*'
+    syslog_appname|cased: '*Microsoft-Windows-NTLM*'
   selection_2:
     EventID: 4023
   selection_3:

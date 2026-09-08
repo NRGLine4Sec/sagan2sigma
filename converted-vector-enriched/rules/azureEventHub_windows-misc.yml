@@ -309,7 +309,7 @@ detection:
   filter_2:
     RenderedDescription|contains|cased: :\\\\Program Files\\\\VMware\\\\VMware Tools\\\\vmtoolsd.exe
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -337,7 +337,7 @@ detection:
   selection_2:
     RenderedDescription|contains|cased: audit log was cleared
   selection_3:
-    appname|cased:
+    syslog_appname|cased:
       - '*Security*'
       - Eventlog
   condition: selection_1 and selection_2 and selection_3
@@ -368,7 +368,7 @@ detection:
       - 6008
       - 1076
   selection_2:
-    appname|cased:
+    syslog_appname|cased:
       - '*System*'
       - '*USER32*'
   condition: selection_1 and selection_2
@@ -392,7 +392,7 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*Microsoft_Antimalware*'
+    syslog_appname|cased: '*Microsoft_Antimalware*'
   selection_2:
     EventID: 2001
   condition: selection_1 and selection_2
@@ -419,7 +419,7 @@ detection:
   selection_1:
     EventID: 521
   selection_2:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -448,7 +448,7 @@ detection:
       - 4697
       - 601
   selection_2:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -472,7 +472,7 @@ detection:
   selection_1:
     EventID: 8225
   selection_2:
-    appname|cased: '*Application*'
+    syslog_appname|cased: '*Application*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -498,7 +498,7 @@ detection:
   selection_2:
     RenderedDescription|contains|cased: cleared
   selection_3:
-    appname|cased: '*Eventlog*'
+    syslog_appname|cased: '*Eventlog*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -528,7 +528,7 @@ detection:
       - 4697
       - 601
   selection_3:
-    appname|cased: '*Security*'
+    syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

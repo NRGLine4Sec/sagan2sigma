@@ -75,6 +75,7 @@ reproduced. They are worth reviewing before the ruleset goes live.
 | `D_ZEEK_INTEL_ENRICHMENT` | 29 | zeek-intel matches the address against a Zeek Intelligence Framework feed the bundled Vector enrichment carries, not the log itself. The rule only fires if that enrichment, built from a feed such as CriticalPathSecurity's Zeek-Intelligence-Feeds, runs in the ingestion pipeline. Only the address indicators the rule keyword uses are reproduced, not the domain, hash or URL indicators the feed may also carry. | `5010226`, `5010227`, `5010228`, `5010229`, `5010230` |
 | `D_DROP_ACTION` | 20 | The rule used the drop action. Sigma has no action concept; it was converted as a normal detection rule. | `5000102`, `5000103`, `5000113`, `5000193`, `5001592` |
 | `D_JSON_KEY_RESTORED` | 18 | The rule names a JSON key that upstream clipped to 31 characters so that Sagan, which stores key paths clipped and compares them with an exact strcmp, would match it at all. The full path is recorded in a comment above the rule and is what the log carries, so the converted rule uses that instead: Sigma has no such limit, and emitting the clipped name would match nothing outside Sagan. | `5015096`, `5004773`, `5017933`, `5017933`, `5005921` |
+| `D_GROUPBY_SHAPE_SPLIT` | 8 | A rebuilt state correlation groups on the syslog sender, whose field name differs between JSON-bodied and plain events in RSigma. The bit is set by rules of both shapes, so the correlation pairs with the setters matching the tester and misses the others. Degraded rather than refused: most of these keep the majority of their setters. | `5008539`, `5009793`, `5013956`, `5014047`, `5003332` |
 | `D_JSON_PCRE_ABSENT_KEY` | 7 | Sagan treats a key the event does not carry as a match for json_pcre: JSON_Pcre() tests only keys that exist and returns false only on a failed match, so an absent key falls through to true. Sigma has the opposite convention, so the converted rule stays silent on events lacking the key. json_content and json_meta_content do not share this behaviour. Measured against a locally built engine. | `5014487`, `5014487`, `5017941`, `5017944`, `5017945` |
 | `D_AFTER_BY_STRING_INERT` | 5 | after tracked by_string, which that parser never recognises: it tests an option token strtok_r has already truncated to 'track', so the branch is dead. Sagan groups on the remaining keys only, and rejects the rule outright when by_string is the only key. Confirmed against a locally built engine. threshold is unaffected: its parser tests the intact token, so there by_string really is a synonym for by_username. | `5015138`, `5015139`, `5015148`, `5015149`, `5014547` |
 | `D_DENYLIST_USERNAME_INERT` | 4 | The blacklist keyword tracked by_username, which the engine's denylist processor ignores: it matches IP addresses only (src/processors/blacklist.c), and the rule parser sets no flag for by_username (src/rules.c), so the option is inert. It is dropped and the rest of the rule is converted, exactly as the engine evaluates it. | `5008573`, `5008574`, `5008575`, `5008578` |
@@ -91,13 +92,14 @@ conversion error and is the opposite of one.
 
 | Code | Rules | What it means |
 | --- | --- | --- |
-| `U_CANNOT_MATCH` | 758 | the rule loads and can never fire |
-| `U_INVERTED_CONDITION` | 1 |  |
-| `U_WILL_NOT_LOAD` | 1 | Sagan refuses the ruleset; the engine does not start |
-| `U_WRONG_GROUPING` | 4 | the rule fires, but groups on fewer keys than it names |
+| `U_CANNOT_MATCH` | 764 | the rule loads and can never fire |
+| `U_INERT_CONDITION` | 1 | the rule fires, but a condition never bites, so it fires more widely than it reads |
+| `U_INVERTED_CONDITION` | 1 | the rule fires, but a condition means its opposite |
+| `U_WILL_NOT_LOAD` | 2 | Sagan refuses the ruleset; the engine does not start |
+| `U_WRONG_GROUPING` | 5 | the rule fires, but groups on fewer keys than it names |
 
 <details>
-<summary><code>U_CANNOT_MATCH</code> (758 rules)</summary>
+<summary><code>U_CANNOT_MATCH</code> (764 rules)</summary>
 
 | SID | File | Detail |
 | --- | --- | --- |
@@ -120,6 +122,11 @@ conversion error and is the opposite of one.
 | `5004758` | `crowdstrike.rules` | content: the hex sequence opened in '\|7c\|DetectionSummaryEvent\|2' is never closed, so the parser converts '2' and appends a control byte no message carries |
 | `5004759` | `crowdstrike.rules` | content: the hex sequence opened in '\|7c\|DetectionSummaryEvent\|3' is never closed, so the parser converts '3' and appends a control byte no message carries |
 | `5005776` | `cloudgenix.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"sshd\|2d\|all\|3a\|Invalid user\\"\|2d\|all\|3a\|Invalid user"' |
+| `5005923` | `confluent.rules` | the key path 'data.authenticationInfo.metadata.mechanism' is clipped to 'data.authenticationInfo.metada' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
+| `5005924` | `confluent.rules` | the key path 'data.authenticationInfo.metadata.mechanism' is clipped to 'data.authenticationInfo.metada' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
+| `5005926` | `confluent.rules` | the key path 'data.authenticationInfo.metadata.mechanism' is clipped to 'data.authenticationInfo.metada' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
+| `5005927` | `confluent.rules` | the key path 'data.authenticationInfo.metadata.mechanism' is clipped to 'data.authenticationInfo.metada' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
+| `5005944` | `confluent.rules` | the key path 'data.authorizationInfo.aclAuthorization.permissionType' is clipped to 'data.authorizationInfo.aclAuth' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
 | `5007737` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
 | `5007738` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
 | `5007739` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
@@ -296,13 +303,17 @@ conversion error and is the opposite of one.
 | `5007937` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
 | `5007938` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
 | `5007939` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007941` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007942` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007943` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007944` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007945` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
 
-...and 558 more.
+...and 564 more.
+
+</details>
+
+<details>
+<summary><code>U_INERT_CONDITION</code> (1 rules)</summary>
+
+| SID | File | Detail |
+| --- | --- | --- |
+| `5014486` | `fortinet-json.rules` | the negated json_meta_content values are wrapped in quotes ("analytics"); the list is compared verbatim, so the exclusion matches nothing and never excludes anything |
 
 </details>
 
@@ -316,19 +327,21 @@ conversion error and is the opposite of one.
 </details>
 
 <details>
-<summary><code>U_WILL_NOT_LOAD</code> (1 rules)</summary>
+<summary><code>U_WILL_NOT_LOAD</code> (2 rules)</summary>
 
 | SID | File | Detail |
 | --- | --- | --- |
 | `5008760` | `azureEventHub_windows-malware.rules` | after tracks by_tag, which the parser does not recognise; the engine refuses the whole ruleset |
+| `5008760` | `azureEventHub_windows-malware.rules` | threshold tracks 'by_tag', which the parser does not recognise; the engine refuses the whole ruleset |
 
 </details>
 
 <details>
-<summary><code>U_WRONG_GROUPING</code> (4 rules)</summary>
+<summary><code>U_WRONG_GROUPING</code> (5 rules)</summary>
 
 | SID | File | Detail |
 | --- | --- | --- |
+| `5014022` | `aws-iam.rules` | threshold tracks byusername, which the parser never finds in the option value; the suppression groups on by_src only |
 | `5017890` | `msapi-exchange.rules` | after tracks by_user, which the parser ignores; the correlation groups on the remaining keys only |
 | `5017891` | `msapi-exchange.rules` | after tracks by_user, which the parser ignores; the correlation groups on the remaining keys only |
 | `5017892` | `msapi-exchange.rules` | after tracks by_user, which the parser ignores; the correlation groups on the remaining keys only |
