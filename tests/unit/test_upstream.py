@@ -267,6 +267,51 @@ class TestInvertedCondition:
         assert codes(raw) == set()
 
 
+class TestQuotedListItems:
+    """A value list is compared verbatim, quotes included.
+
+    Measured on the engine, both keywords: `json_meta_content:".k","v"` matches
+    an event whose value is the quoted `"v"` and not the bare `v`, while the
+    same option without the quotes does the reverse. `json_content`, which
+    takes one quoted argument rather than a list, is unaffected: its quotes
+    delimit the value.
+    """
+
+    def test_every_item_quoted_cannot_match(self) -> None:
+        raw = 'msg:"t"; json_meta_content:".eventtype","analytics"; sid:1;'
+        assert DefectCode.CANNOT_MATCH in codes(raw)
+
+    def test_negated_list_never_excludes(self) -> None:
+        """The reduced form of sid 5014486, fortinet-json.rules.
+
+        The rule fires, which is why this is not CANNOT_MATCH: an exclusion
+        that matches nothing excludes nothing, so the rule alerts on the very
+        events it names as exceptions.
+        """
+        raw = (
+            'msg:"t"; json_content:".type","utm"; '
+            'json_meta_content:!".eventtype","analytics"; sid:1;'
+        )
+        assert DefectCode.INERT_CONDITION in codes(raw)
+
+    def test_meta_content_too(self) -> None:
+        raw = 'msg:"t"; meta_content:"USER=%sagan%","root"; sid:1;'
+        assert DefectCode.CANNOT_MATCH in codes(raw)
+
+    def test_one_bare_item_keeps_the_list_alive(self) -> None:
+        """The list is an OR, so a single unquoted item can still match."""
+        raw = 'msg:"t"; json_meta_content:".eventtype",analytics,"utm"; sid:1;'
+        assert codes(raw) == set()
+
+    def test_a_bare_list_is_clean(self) -> None:
+        raw = 'msg:"t"; json_meta_content:".eventtype",analytics,utm; sid:1;'
+        assert codes(raw) == set()
+
+    def test_json_content_quotes_are_the_delimiters(self) -> None:
+        raw = 'msg:"t"; json_content:".eventtype","analytics"; sid:1;'
+        assert codes(raw) == set()
+
+
 class TestWrongGrouping:
     """Rules that fire but count the wrong thing."""
 

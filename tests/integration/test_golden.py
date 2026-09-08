@@ -25,15 +25,26 @@ CASES = {
     "rsigma-faithful": ("rsigma-syslog", CasePolicy.FAITHFUL),
     "rsigma-relaxed": ("rsigma-syslog", CasePolicy.RELAXED),
     "vector-faithful": ("vector-json", CasePolicy.FAITHFUL),
+    # The enriched profile is the only one whose JSON-bodied rules name a
+    # different envelope from its plain ones, which is a rename nobody would
+    # notice in review without the bytes in front of them.
+    "vector-enriched-faithful": ("vector-enriched", CasePolicy.FAITHFUL),
 }
 
 
 @pytest.mark.parametrize("case", sorted(CASES))
 def test_output_matches_golden(
-    case: str, context: Context, vector_context: Context, request
+    case: str,
+    context: Context,
+    vector_context: Context,
+    enriched_context: Context,
+    request,
 ) -> None:
     profile_name, policy = CASES[case]
-    active = vector_context if profile_name == "vector-json" else context
+    active = {
+        "vector-json": vector_context,
+        "vector-enriched": enriched_context,
+    }.get(profile_name, context)
     result = Converter(context=active, case_policy=policy).convert_paths([RULES])
     rendered = dump_collection(result.documents)
 

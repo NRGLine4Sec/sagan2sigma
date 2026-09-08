@@ -139,14 +139,43 @@ def _contains(haystack: str, needle: str, nocase: bool) -> bool:
     return needle in haystack
 
 
+#: The longest JSON key path the engine keeps. ``JSON_MAX_KEY_SIZE`` is 32 in
+#: ``src/sagan-defs.h`` and the path is terminated early, so the parser stores
+#: each of an event's keys clipped to this many characters, the leading dot
+#: excluded. Measured against the engine: 30 characters match, 31 do not.
+MAX_JSON_KEY = 30
+
+
+def _flatten(body: dict[str, Any], prefix: str = "") -> dict[str, Any]:
+    """Every dotted path in the document, clipped as the engine stores it."""
+    flat: dict[str, Any] = {}
+    for name, value in body.items():
+        path = f"{prefix}.{name}" if prefix else str(name)
+        flat[path[:MAX_JSON_KEY]] = value
+        if isinstance(value, dict):
+            flat.update(_flatten(value, path))
+    return flat
+
+
 def _json_lookup(body: dict[str, Any], key: str) -> Any:
-    """Resolve a dotted JSON key, tolerating the ``[]`` array marker."""
-    current: Any = body
-    for part in key.replace("[]", "").split("."):
-        if not isinstance(current, dict) or part not in current:
-            return None
-        current = current[part]
-    return current
+    """Resolve a dotted JSON key the way the engine's key table does.
+
+    Not a walk down the document, because the engine does not walk one: it
+    stores a flat table of paths, each clipped to :data:`MAX_JSON_KEY`, and
+    compares the rule's key against that. The difference is visible in the
+    corpus. Upstream now rewrites a rule whose path is too long to the clipped
+    form and records the original in a comment above it, so
+    ``.properties.riskLevelDuringSign`` is the rule and
+    ``properties.riskLevelDuringSignIn`` is what a producer emits. The engine
+    matches the two; a walk finds no such key and reports a rule that does not
+    fire, which is a disagreement belonging to this evaluator.
+
+    The rule's own key is looked up as written, never clipped. Only what the
+    event carries is stored short, so a rule naming a path longer than the
+    limit compares against a name that was never stored and matches nothing,
+    which is exactly the defect `upstream.py` reports as `U_CANNOT_MATCH`.
+    """
+    return _flatten(body).get(key.replace("[]", ""))
 
 
 def json_map(rule: SaganRule) -> dict[str, str]:

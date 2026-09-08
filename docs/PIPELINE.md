@@ -156,10 +156,19 @@ families then resolve, `json_content` against the lifted key and the raw search
 against `sagan_raw`, so the 386 rules that combine the two are no longer refused
 with `E_RAW_TEXT_ON_JSON_EVENT`. 255 of them convert outright and the rest
 surface a different pre-existing blocker (a positional field, an unresolved
-variable), which is why the enriched rate rises by 255, not 386. The syslog envelope and
-`sagan_raw` win any name clash with a body key, so `appname` and `hostname` are
-never clobbered from inside the payload. A non-JSON body is left untouched with
-`sagan_raw` set to the message, so the transform is harmless on plain events.
+variable), which is why the enriched rate rises by 255, not 386.
+
+Lifting the body's keys puts them in the same namespace as the syslog envelope,
+so one of the two has to move. It is the envelope: a producer's field names are
+not ours to choose. Before the body is merged in, the transform renames the
+envelope to `syslog_appname`, `syslog_hostname`, `syslog_facility` and
+`syslog_severity`, the names RSigma's own syslog input uses for a JSON body, and
+drops `.message`, whose content `sagan_raw` already holds byte for byte. The
+earlier version let the envelope win instead, and a Netskope event carrying its
+own `"severity": "Low"` reached the rules holding the syslog severity: 131
+corpus rules match on that key and none of them could fire. A non-JSON body is
+left untouched, envelope included, with `sagan_raw` set to the message, so the
+transform is harmless on plain events.
 Because the raw body is preserved byte for byte, the match is faithful to the
 exact serialization Sagan saw; the converted rule carries `D_RAW_TEXT_MATCH` to
 say the match is format-bound and not portable to a re-serialized event.

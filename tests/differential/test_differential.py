@@ -45,8 +45,16 @@ from sagan2sigma.mapping.context import Context, load_catalog, load_profile
 from sagan2sigma.sagan.config import SaganConfig
 from sagan2sigma.sagan.model import SaganRule
 from sagan2sigma.sagan.parser import iter_rule_files, parse_file, parse_rule
+from sagan2sigma.upstream import DefectCode
+from sagan2sigma.upstream import inspect as inspect_upstream
 
-from .events import probes, to_rsigma_event
+from .events import (
+    negative_literals,
+    positive_literals,
+    probes,
+    to_rsigma_event,
+    unplaceable,
+)
 from .sagan_reference import SaganEvaluator, is_supported
 
 RSIGMA = shutil.which("rsigma")
@@ -80,10 +88,10 @@ class Disagreement:
         )
 
 
-def context() -> Context:
+def context(profile: str = "rsigma-syslog") -> Context:
     """Conversion context used by the harness."""
     return Context(
-        profile=load_profile("rsigma-syslog"),
+        profile=load_profile(profile),
         config=SaganConfig(
             classtypes={"attempted-admin": 1, "user-activity": 3},
             references={},
@@ -118,9 +126,11 @@ def rsigma_matches(rules_file: Path, event: dict) -> bool:
     )
 
 
-def compare(rule: SaganRule, tmp_path: Path) -> list[Disagreement]:
+def compare(
+    rule: SaganRule, tmp_path: Path, profile: str = "rsigma-syslog"
+) -> list[Disagreement]:
     """Run every probe for one rule through both evaluators."""
-    converter = Converter(context=context())
+    converter = Converter(context=context(profile))
     try:
         draft = converter.convert_rule(rule)
     except Refusal:
@@ -142,10 +152,12 @@ def compare(rule: SaganRule, tmp_path: Path) -> list[Disagreement]:
 
     variables = converter.context.config.variables
     evaluator = SaganEvaluator(rule, variables)
+    shape = converter.context.profile
     found: list[Disagreement] = []
     for probe in probes(rule, variables):
         expected = evaluator.matches(probe.event)
-        actual = rsigma_matches(rules_file, to_rsigma_event(probe.event, rule))
+        event = to_rsigma_event(probe.event, rule, shape)
+        actual = rsigma_matches(rules_file, event)
         if expected != actual:
             found.append(
                 Disagreement(
@@ -153,7 +165,7 @@ def compare(rule: SaganRule, tmp_path: Path) -> list[Disagreement]:
                     probe=probe.name,
                     sagan=expected,
                     sigma=actual,
-                    event=to_rsigma_event(probe.event, rule),
+                    event=event,
                     rule=rule.raw,
                 )
             )
@@ -233,6 +245,71 @@ class TestHandWrittenRules:
         assert rsigma_matches(broken, to_rsigma_event(flipped.event, rule)) is True
 
 
+#: Rules whose text search runs against a JSON body, which only converts under
+#: a profile whose pipeline keeps the raw document (`json_raw`). Plain syslog
+#: refuses them, so nothing here can be exercised under the default profile.
+#:
+#: The shapes are the ones the corpus actually uses, and they differ in how the
+#: literal has to reach the document. A literal without quotes survives inside
+#: a string value; one carrying quotes does not, because serialising escapes
+#: them, and it has to be rebuilt as structure instead. Getting that wrong does
+#: not produce a failure, it produces two silent evaluators agreeing about
+#: nothing, which is why these cases are pinned rather than trusted.
+RAW_TEXT_ON_JSON = [
+    # Plain text, which lands in a string value unchanged.
+    'msg:"aa"; program: cloudtrail; json_content:".eventName","AssumeRole";'
+    ' content:"AWSServiceRole"; sid:30;',
+    # A whole JSON member, which has to be spliced back as structure.
+    'msg:"bb"; program: cloudtrail; json_content:".eventName","ConsoleLogin";'
+    ' content:!"|22|mfaAuthenticated|22 3a 20 22|true|22|"; sid:31;',
+    # A member missing its outer quotes, the other half of the same problem.
+    'msg:"cc"; program: cloudtrail; json_content:".awsRegion","us-east-1";'
+    ' content:"eventName|22 3a 20 22|CreateFunction"; sid:32;',
+    # Case sensitivity still has to survive the trip through the document.
+    'msg:"dd"; program: cloudtrail; json_content:".eventName","AssumeRole";'
+    ' content:"AWSServiceRole"; nocase; sid:33;',
+]
+
+
+class TestRawTextOnJsonBody:
+    """The family that exists only under an enriched pipeline.
+
+    Measured on the engine first: with a JSON body, `content`, `pcre` and
+    `meta_content` search the serialised document and nothing else, key names,
+    braces and quotes included. `content:"|7b 22|Msg"` matches `{"Msg":...}`.
+    The converted rule searches the profile's `json_raw` field, which carries
+    that same string, so the two sides are comparable.
+    """
+
+    @pytest.mark.parametrize(
+        "options", RAW_TEXT_ON_JSON, ids=lambda o: o.split(";")[-2].strip()
+    )
+    def test_semantics_agree(self, options: str, tmp_path: Path) -> None:
+        line = f"alert any any any -> any any ({options})"
+        rule = parse_rule(line, "handwritten.rules", 1)
+        assert is_supported(rule), "fixture uses a construct the reference cannot judge"
+        disagreements = compare(rule, tmp_path, profile="vector-enriched")
+        assert not disagreements, "\n".join(str(d) for d in disagreements)
+
+    def test_the_literals_reach_the_document(self) -> None:
+        """Every probe literal has to be findable in the text the engine sees.
+
+        Without this the suite above passes on silence: a literal escaped out of
+        recognition leaves Sagan and RSigma both matching nothing, which reads
+        as agreement and decides nothing.
+        """
+        for options in RAW_TEXT_ON_JSON:
+            rule = parse_rule(
+                f"alert any any any -> any any ({options})", "handwritten.rules", 1
+            )
+            literals = positive_literals(rule) + negative_literals(rule)
+            assert literals, f"sid {rule.sid} carries no raw literal to place"
+            assert not unplaceable(rule, literals), (
+                f"sid {rule.sid}: {unplaceable(rule, literals)} never reaches the "
+                "serialised document, so no probe can decide the rule"
+            )
+
+
 class TestSyntheticCorpus:
     def test_every_supported_fixture_rule_agrees(self, tmp_path: Path) -> None:
         path = Path(__file__).parents[1] / "fixtures" / "rules" / "synthetic.rules"
@@ -249,6 +326,34 @@ class TestSyntheticCorpus:
 
 CORPUS = os.environ.get("SAGAN_RULES_DIR")
 
+#: Defects that make a rule behave in the engine in a way the converter
+#: deliberately does not reproduce: a rule that will not load, one that loads
+#: and can never match, one the engine reads as the opposite of what it says,
+#: and one whose condition the engine can never satisfy. The two sides then
+#: disagree by design, so judging such a rule measures that policy rather than
+#: the conversion. `differential/engine_differential.py` excludes the same four
+#: codes, and for the same reason.
+#:
+#: This became visible when the reference evaluator learned to clip JSON keys
+#: the way the engine's key table does. Before that it walked the document and
+#: found `.properties.riskLevelDuringSignIn`, so a rule naming a path the
+#: engine never stores looked alive and agreed with a converted rule that
+#: matches. Modelling the limit made the rule dead, which is correct, and made
+#: the disagreement appear, which is the exclusion's job to answer.
+DEAD_UPSTREAM = frozenset(
+    {
+        DefectCode.WILL_NOT_LOAD,
+        DefectCode.CANNOT_MATCH,
+        DefectCode.INVERTED_CONDITION,
+        DefectCode.INERT_CONDITION,
+    }
+)
+
+
+def dead_upstream(rule: SaganRule) -> bool:
+    """Whether the engine cannot run this rule as written."""
+    return any(defect.code in DEAD_UPSTREAM for defect in inspect_upstream(rule))
+
 
 @pytest.mark.skipif(
     not CORPUS or not Path(CORPUS).is_dir(),
@@ -260,7 +365,7 @@ class TestUpstreamCorpus:
         candidates: list[SaganRule] = []
         for path in iter_rule_files(Path(CORPUS)):
             for rule in parse_file(path).rules:
-                if is_supported(rule):
+                if is_supported(rule) and not dead_upstream(rule):
                     candidates.append(rule)
         assert candidates, "no corpus rule was in scope for the reference evaluator"
 

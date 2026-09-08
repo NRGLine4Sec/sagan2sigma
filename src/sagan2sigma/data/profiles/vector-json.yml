@@ -14,7 +14,16 @@ fields:
   facility: facility
   level: severity
 # Vector emits one flat JSON object either way, so the envelope keeps the same
-# names whether or not the body was itself JSON. No prefixed variant is needed.
+# names whether or not the body was itself JSON.
+#
+# That holds only as long as your pipeline does not lift a JSON body's keys to
+# the top level. If it does, the body and the envelope share one namespace and
+# one of them loses: measured with Vector 0.39, a body carrying its own
+# `severity` is overwritten by the syslog severity, and 131 rules of the
+# upstream corpus match on exactly that key. A pipeline that flattens the body
+# should rename the envelope to syslog_appname / syslog_hostname /
+# syslog_facility / syslog_severity, as data/vrl/sagan-json.vrl does for the
+# vector-enriched profile, and use that profile instead of this one.
 json_envelope: {}
 
 notes:

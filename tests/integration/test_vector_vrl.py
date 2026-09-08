@@ -179,23 +179,51 @@ class TestJsonBodyHandling:
         assert event["eventName"] == "CreateEventDataStore"
         assert event["mfaAuthenticated"] == "false"
 
-    def test_envelope_wins_over_a_same_named_body_key(self, tmp_path: Path) -> None:
-        """The syslog envelope and sagan_raw must survive a name clash, so a.
+    def test_the_envelope_moves_aside_for_the_body(self, tmp_path: Path) -> None:
+        """Neither side of a name clash may be lost.
 
-        body key called appname can never clobber the real program field.
+        The body's names belong to a producer and cannot be chosen, so the
+        envelope is the one that moves, under the prefixed names RSigma's own
+        syslog input uses for a JSON body. The earlier version of this
+        transform let the envelope win, and a Netskope event carrying its own
+        `severity` came out holding the syslog severity instead: 131 corpus
+        rules matching that value could never fire, and nothing said so.
         """
         event = run_vrl(
             JSON,
             [
                 {
-                    "message": '{"appname": "spoofed", "eventName": "X"}',
-                    "appname": "real",
+                    "message": '{"appname": "from-body", "severity": "Low",'
+                    ' "eventName": "X"}',
+                    "appname": "netskope-api_data",
+                    "hostname": "sensor01",
+                    "facility": "daemon",
+                    "severity": "info",
                 }
             ],
             tmp_path,
         )[0]
-        assert event["appname"] == "real"
+        assert event["appname"] == "from-body"
+        assert event["severity"] == "Low"
         assert event["eventName"] == "X"
+        assert event["syslog_appname"] == "netskope-api_data"
+        assert event["syslog_hostname"] == "sensor01"
+        assert event["syslog_facility"] == "daemon"
+        assert event["syslog_severity"] == "info"
+
+    def test_the_raw_message_field_is_dropped_from_a_json_event(
+        self, tmp_path: Path
+    ) -> None:
+        """`message` would shadow a body key of that name, and many do.
+
+        The body is not lost: `sagan_raw` carries the same string, and that is
+        the field the enriched profile searches on a JSON event.
+        """
+        event = run_vrl(
+            JSON, [{"message": '{"message": "inner", "eventName": "X"}'}], tmp_path
+        )[0]
+        assert event["message"] == "inner"
+        assert event["sagan_raw"] == '{"message": "inner", "eventName": "X"}'
 
     def test_plain_body_is_left_as_is_with_sagan_raw_set(self, tmp_path: Path) -> None:
         """A non-JSON event is harmless: sagan_raw holds the message, nothing.

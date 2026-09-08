@@ -301,6 +301,11 @@ def _upstream_defects(result: ConversionResult) -> list[str]:
         "U_WILL_NOT_LOAD": "Sagan refuses the ruleset; the engine does not start",
         "U_CANNOT_MATCH": "the rule loads and can never fire",
         "U_WRONG_GROUPING": "the rule fires, but groups on fewer keys than it names",
+        "U_INVERTED_CONDITION": "the rule fires, but a condition means its opposite",
+        "U_INERT_CONDITION": (
+            "the rule fires, but a condition never bites, so it fires more "
+            "widely than it reads"
+        ),
     }
     for code in sorted(by_code):
         lines.append(f"| `{code}` | {len(by_code[code])} | {meaning.get(code, '')} |")

@@ -139,9 +139,17 @@ values, the `brute_force` / `brute-force` name collision, and the envelope
 field naming that silently broke a quarter of the corpus. The fixtures only
 cover constructs already understood; these layers cover the ones that were not.
 
-`tests/differential/` deliberately does not import `sagan2sigma.mapping`. Its
-reference evaluator is written from the engine C source so that a shared
-misunderstanding cannot make both sides agree for the wrong reason.
+`tests/differential/sagan_reference.py` decides the Sagan side from the engine
+C source rather than from the mapping layer, so that a shared misunderstanding
+cannot make both sides agree for the wrong reason. What it borrows from the
+converter is limited to lexing helpers that read a rule; nothing that decides
+whether a rule matches.
+
+The probe generator beside it does read the active `Profile`, because the event
+shape a pipeline produces is exactly what the profile describes, and a second
+copy of those field names would drift from the first without anyone noticing.
+The two concerns are separate: the profile says what an event *looks like*, the
+reference evaluator says what a rule *does* with one.
 
 A golden test asserts that faithful and relaxed output differ **only** by the
 `|cased` modifier, which pins the case-policy contract to something mechanical.

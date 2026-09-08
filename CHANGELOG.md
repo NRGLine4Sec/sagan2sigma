@@ -6,6 +6,45 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+- The `vector-enriched` pipeline no longer lets the syslog envelope overwrite a
+  JSON body's own fields. `data/vrl/sagan-json.vrl` lifts a JSON body's keys to
+  the top level, where the envelope already sat, and the envelope won every
+  collision: measured with Vector 0.39, a Netskope event carrying
+  `"severity": "Low"` came out of the transform holding the syslog severity
+  instead. 131 corpus rules match on a shadowed `severity` and one on
+  `hostname`, so they could never fire, and nothing said so because both the
+  converted rule and the pipeline were valid. The transform now renames the
+  envelope to `syslog_appname` / `syslog_hostname` / `syslog_facility` /
+  `syslog_severity` before merging the body in, and drops `.message`, whose
+  content `sagan_raw` holds byte for byte. The profile's `json_envelope` names
+  the same fields, which also makes a JSON-bodied rule select the same envelope
+  under `vector-enriched` as under `rsigma-syslog`.
+
+  A pipeline built from an earlier version of the VRL must be updated together
+  with the rules, `sagan2sigma --emit-vector-config` writing both.
+- The reference evaluator now clips JSON keys as the engine's key table does,
+  30 characters, instead of walking the document. Upstream has started
+  rewriting rules whose key path exceeds the limit and recording the original
+  above them, and against such a corpus the evaluator reported a rule as dead
+  that the engine matches. The corpus differential also excludes rules that are
+  dead upstream, the same three defect codes the engine differential excludes,
+  which is where a rule naming a path the engine never stores now belongs.
+
+### Added
+- A golden file for `vector-enriched`, the only profile whose JSON-bodied rules
+  name a different envelope from its plain ones.
+- `U_INERT_CONDITION`, an upstream defect for a rule that loads, fires, and
+  carries a condition the engine can never satisfy, so it fires more widely
+  than it reads. The first case is a value list whose items are wrapped in
+  quotes: `meta_content` and `json_meta_content` compare each item verbatim,
+  quotes included, unlike `content` and `json_content` whose quotes delimit the
+  argument. Measured both ways on the engine. One corpus rule is affected, sid
+  5014486 of `fortinet-json.rules`, whose negated `"analytics"` excludes a
+  value no producer emits, so the exclusion never fires. A list whose items are
+  all quoted and *not* negated is reported as `U_CANNOT_MATCH` instead, the
+  condition then being required rather than excluded.
+
 ## [0.4.0] - 2026-09-07
 
 ### Added

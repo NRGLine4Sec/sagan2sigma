@@ -938,8 +938,37 @@ converter picks between them from the rule itself: any of `json_content`,
 `json_meta_content`, `json_pcre` or `json_map` means the rule targets JSON
 events. The fix corrected 1,673 predicates.
 
-Vector-based profiles declare an empty `json_envelope`, because Vector emits
-one flat object either way and the names do not change.
+### The envelope moves aside for a JSON body, in the enriched pipeline too
+
+`vector-enriched` first declared an empty `json_envelope`, on the reasoning
+that Vector emits one flat object either way so the names do not change. They
+do not change, and that is the problem: once `data/vrl/sagan-json.vrl` lifts a
+JSON body's keys to the top level, the body and the syslog envelope share one
+namespace, and the transform let the envelope win every collision.
+
+Measured with Vector 0.39, a Netskope event whose body carries
+`"severity": "Low"` comes out of the transform holding `severity: info`, the
+syslog severity. The 131 corpus rules matching the body's own `severity`, across
+`microsoft-defender-endpoint.rules`, `netskope.rules` and `fortinet-json.rules`,
+could never fire; one more rule collides on `hostname`. Nothing reported it,
+because a converted rule that matches a shadowed field is valid Sigma and the
+pipeline is valid VRL. The engine differential found it by running both:
+Sagan fired on 90 of those rules and RSigma did not.
+
+The envelope is what moves, because the body's names belong to a producer and
+cannot be chosen, while the envelope's can. `sagan-json.vrl` therefore renames
+it to `syslog_appname`, `syslog_hostname`, `syslog_facility` and
+`syslog_severity` before merging the body in, and drops `.message`, whose
+content `sagan_raw` already holds byte for byte. The profile's `json_envelope`
+names the same four fields, so the converter follows.
+
+That makes the enriched profile agree with `rsigma-syslog` on the point above
+rather than contradict it: a JSON-bodied rule selects the prefixed envelope
+under both, and only the plain-event names differ (`message` against `_raw`).
+
+`vector-json` keeps an empty `json_envelope`, since this repository ships no
+pipeline for it and cannot make that promise for one the reader builds. Its
+notes now say what a pipeline has to do to avoid the same shadowing.
 
 ### A raw-text search on a JSON event is refused, not emitted
 

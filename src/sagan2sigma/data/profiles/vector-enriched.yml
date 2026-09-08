@@ -45,9 +45,23 @@ positional:
   bluedot_proxy: sagan_bluedot_proxy_{position}
   bluedot_malicious: sagan_bluedot_malicious_{position}
   bluedot_honeypot: sagan_bluedot_honeypot_{position}
-# Vector emits one flat JSON object either way, so the envelope keeps the same
-# names whether or not the body was itself JSON. No prefixed variant is needed.
-json_envelope: {}
+# Field names when the syslog body is a JSON document.
+#
+# Vector emits one flat object either way, so the envelope and the body's keys
+# would share the top level, and one has to give way. data/vrl/sagan-json.vrl
+# renames the envelope, because the body's names belong to a producer and
+# cannot be chosen: measured with Vector 0.39, an unprefixed envelope silently
+# overwrote the `severity` a Netskope event carries with the syslog severity,
+# and the 131 corpus rules matching on that value could never fire.
+#
+# The names are RSigma's own, which is what its syslog input produces for a
+# JSON body, so a rule converted for this profile and one converted for plain
+# RSigma name the same fields.
+json_envelope:
+  program: syslog_appname
+  syslog_host: syslog_hostname
+  facility: syslog_facility
+  level: syslog_severity
 # The pipeline keeps the original body in sagan_raw even when it is JSON (see
 # data/vrl/sagan-json.vrl), so a content/pcre/meta_content search on a JSON
 # event converts against sagan_raw instead of being refused. A distinct name,

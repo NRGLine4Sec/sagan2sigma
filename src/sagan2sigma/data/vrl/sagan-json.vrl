@@ -19,17 +19,43 @@
 # A non-JSON body is left as-is, with .sagan_raw set to the message, so the
 # transform is harmless for plain events.
 #
+# Why the envelope moves out of the way
+# -------------------------------------
+# The body owns the top level once its keys are lifted there, so the syslog
+# envelope is renamed with a syslog_ prefix first. Otherwise the two collide on
+# any name a producer also uses, and the envelope silently wins: measured with
+# Vector 0.39, a Netskope body carrying `"severity": "Low"` comes out of the
+# transform as `severity: info`, the syslog severity, and every rule matching
+# the body's own value can never fire. 132 rules of the upstream corpus name a
+# shadowed key, 131 of them `severity`, across three products.
+#
+# Prefixing is also what RSigma's own syslog input does with a JSON body
+# (inject_syslog_headers), so a rule converted for the enriched pipeline and one
+# converted for plain RSigma now name the same fields.
+#
 # Output
 # ------
-#   .sagan_raw        the original message string, always
-#   .<json keys>      when the body is JSON, its keys lifted to the top level
+#   .sagan_raw          the original message string, always
+#   .<json keys>        when the body is JSON, its keys lifted to the top level
+#   .syslog_appname     the envelope, renamed when the body is JSON
+#   .syslog_hostname
+#   .syslog_facility
+#   .syslog_severity
 
 .sagan_raw = .message
 
 parsed, err = parse_json(.message)
 if err == null && is_object(parsed) {
-    # Lift the JSON keys to the top level, but let the syslog envelope and
-    # .sagan_raw win on any name clash, so appname / hostname / .sagan_raw are
-    # never clobbered by a same-named key inside the body.
-    . = merge(object!(parsed), .)
+    # Move the envelope aside before the body arrives, so nothing the producer
+    # emits can be overwritten by it and nothing it emits can overwrite the
+    # envelope either.
+    .syslog_appname = del(.appname)
+    .syslog_hostname = del(.hostname)
+    .syslog_facility = del(.facility)
+    .syslog_severity = del(.severity)
+    # .message held the raw body, which .sagan_raw now carries, so it is
+    # dropped rather than left to shadow a body key of the same name.
+    del(.message)
+
+    . = merge(., object!(parsed))
 }

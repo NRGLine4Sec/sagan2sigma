@@ -9,7 +9,8 @@ below, and a migration that converts them faithfully inherits rules that never
 fired. Someone comparing the converted output against a running Sagan would find
 them agreeing perfectly, both silent, and conclude the conversion was sound.
 Five more load and fire while grouping on fewer keys than they name, two stop
-the engine from starting, and one asserts what it means to forbid.
+the engine from starting, one asserts what it means to forbid, and one carries
+an exclusion that can never exclude anything.
 
 Each detector below corresponds to an engine behaviour established by running a
 locally built Sagan, not by reading it. The comments name what was measured, so
@@ -48,6 +49,9 @@ class DefectCode(str, Enum):
     WRONG_GROUPING = "U_WRONG_GROUPING"
     #: The rule loads and matches, but the condition means its opposite.
     INVERTED_CONDITION = "U_INVERTED_CONDITION"
+    #: The rule loads and matches, but one condition can never bite, so the
+    #: rule is broader than it reads.
+    INERT_CONDITION = "U_INERT_CONDITION"
 
 
 @dataclass(frozen=True, slots=True)
@@ -116,6 +120,60 @@ _PORT_SLOT = re.compile(r"^(?:\d+|\$[A-Za-z0-9_]*PORTS?)$", re.I)
 def _enforced_port(slot: str) -> bool:
     """Whether this header port slot is one the engine will hold an event to."""
     return bool(_PORT_SLOT.match(slot.strip()))
+
+
+#: The two keywords taking a comma-separated list of values rather than one
+#: quoted argument. Their items are read verbatim, quotes included.
+_VALUE_LISTS = ("meta_content", "json_meta_content")
+
+
+@dataclass(frozen=True, slots=True)
+class _ValueList:
+    """One `meta_content` or `json_meta_content` option's value list."""
+
+    keyword: str
+    negated: bool
+    quoted: tuple[str, ...]
+    total: int
+
+
+def _quoted_items(rule: SaganRule) -> list[_ValueList]:
+    """List items a rule wrapped in quotes, with their keyword and negation.
+
+    `content` and `json_content` take a quoted argument and the quotes delimit
+    it. The two list keywords do not: the value list is split on commas and each
+    item is compared as it stands, so quotes around an item are part of the
+    text being searched for.
+
+    Measured on the engine, `meta_content` and `json_meta_content` alike:
+    `json_meta_content:".eventtype","analytics"` matches an event whose value is
+    the six-character `"analytics"` with its quotes, and does not match
+    `analytics`; the same rule without the quotes matches `analytics` and not
+    the quoted form. A quoted item in a list therefore searches for something a
+    JSON or syslog producer does not emit.
+    """
+    found: list[_ValueList] = []
+    for keyword in _VALUE_LISTS:
+        for option in rule.iter_options(keyword):
+            if not option.value:
+                continue
+            text = option.value.lstrip()
+            negated = text.startswith("!")
+            # Both keywords put their key or template first, quoted for
+            # meta_content and usually quoted for json_meta_content, so the
+            # list starts after the first comma.
+            _, comma, rest = text.partition(",")
+            if not comma:
+                continue
+            items = [part.strip() for part in rest.split(",") if part.strip()]
+            quoted = tuple(
+                item
+                for item in items
+                if len(item) >= 2 and item[0] == '"' and item[-1] == '"'
+            )
+            if quoted:
+                found.append(_ValueList(keyword, negated, quoted, len(items)))
+    return found
 
 
 def _piped_values(rule: SaganRule) -> list[tuple[str, str]]:
@@ -309,6 +367,24 @@ def inspect(rule: SaganRule) -> list[UpstreamDefect]:
             )
             break
 
+    for values in _quoted_items(rule):
+        if values.negated or len(values.quoted) < values.total:
+            continue
+        # Every item of the list is quoted, and the list is an OR, so nothing
+        # in it can match a value a producer emits. The condition is required,
+        # Sagan ANDing its conditions, so the rule is dead.
+        found.append(
+            UpstreamDefect(
+                rule.sid,
+                rule.source_file,
+                DefectCode.CANNOT_MATCH,
+                f"every {values.keyword} value is wrapped in quotes "
+                f"({', '.join(values.quoted)}); the list is compared verbatim, "
+                f"so the condition searches for the quotes themselves",
+            )
+        )
+        break
+
     for match in _JSON_KEY.finditer(rule.raw):
         key = match.group(1)
         if len(key) > MAX_JSON_KEY:
@@ -458,6 +534,27 @@ def inspect(rule: SaganRule) -> list[UpstreamDefect]:
                 )
             )
             break
+
+    # --- the rule loads, matches, and one condition never bites --------------
+    for values in _quoted_items(rule):
+        if not values.negated or len(values.quoted) < values.total:
+            continue
+        # The mirror image of the case above. An exclusion that can match
+        # nothing excludes nothing, so the rule alerts on the very events it
+        # names as exceptions, and does so silently: it fires more, not less.
+        # sid 5014486 excludes `"analytics"` with its quotes and therefore
+        # never excludes an eventtype of analytics.
+        found.append(
+            UpstreamDefect(
+                rule.sid,
+                rule.source_file,
+                DefectCode.INERT_CONDITION,
+                f"the negated {values.keyword} values are wrapped in quotes "
+                f"({', '.join(values.quoted)}); the list is compared verbatim, "
+                f"so the exclusion matches nothing and never excludes anything",
+            )
+        )
+        break
 
     # --- the rule loads, matches, and groups on the wrong thing --------------
     for keys in _after_keys(rule):
