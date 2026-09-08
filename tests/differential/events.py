@@ -43,6 +43,7 @@ from __future__ import annotations
 
 import json
 import re
+from collections.abc import Sequence
 from dataclasses import dataclass, replace
 from typing import Any
 
@@ -458,30 +459,45 @@ def build_base(
 
 
 def probes(
-    rule: SaganRule, variables: dict[str, list[str]] | None = None
+    rule: SaganRule,
+    variables: dict[str, list[str]] | None = None,
+    context: Sequence[str] = (),
 ) -> list[Probe]:
-    """Battery of events probing one rule's boundaries."""
+    """Battery of events probing one rule's boundaries.
+
+    ``context`` is text every probe carries, ahead of the rule's own literals,
+    for a condition the rule depends on without naming it. A rule reading a
+    denylist flag is the case: nothing in its text says which address has to be
+    on the list, and an event carrying none leaves both evaluators silent, so
+    the probe is given addresses the feed lists. It is placed first so the
+    positional parse sees it before anything the rule's own literals contain.
+    """
     positives = positive_literals(rule, variables)
-    out = [Probe("base", build_event(rule, positives))]
+    given = list(context)
+
+    def event(literals: list[str]) -> SaganEvent:
+        return build_event(rule, [*given, *literals])
+
+    out = [Probe("base", event(positives))]
 
     flipped = [literal.swapcase() for literal in positives]
     if flipped != positives:
-        out.append(Probe("case_flipped", build_event(rule, flipped)))
+        out.append(Probe("case_flipped", event(flipped)))
 
     for index, _literal in enumerate(positives):
         remaining = [
             item for position, item in enumerate(positives) if position != index
         ]
-        out.append(Probe(f"missing_{index}", build_event(rule, remaining)))
+        out.append(Probe(f"missing_{index}", event(remaining)))
 
     for index, literal in enumerate(negative_literals(rule)):
-        out.append(Probe(f"negation_{index}", build_event(rule, [*positives, literal])))
+        out.append(Probe(f"negation_{index}", event([*positives, literal])))
 
     if rule.has("program") or rule.has("event_type"):
         out.append(
             Probe(
                 "wrong_program",
-                replace(build_event(rule, positives), program="zzz-unrelated"),
+                replace(event(positives), program="zzz-unrelated"),
             )
         )
 
@@ -489,11 +505,11 @@ def probes(
         out.append(
             Probe(
                 f"json_negation_{index}",
-                build_event(rule, positives, overrides={key: value}),
+                build_event(rule, [*given, *positives], overrides={key: value}),
             )
         )
 
-    out.append(Probe("wildcard_probe", build_event(rule, [*positives, "literal*star"])))
+    out.append(Probe("wildcard_probe", event([*positives, "literal*star"])))
     return out
 
 

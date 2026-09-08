@@ -89,6 +89,59 @@ def ips(event: dict) -> list[str]:
     return [event[f"sagan_ip_{n}"] for n in range(1, 6) if f"sagan_ip_{n}" in event]
 
 
+def run_chain(programs: list[Path], events: list[dict], tmp_path: Path) -> list[dict]:
+    """Run several transforms in pipeline order, as the emitted config does.
+
+    Concatenating them is exactly what a chain of remap transforms does to the
+    event, and it is the only way to test what one transform leaves for the
+    next. Testing them separately hid a real defect for a day: sagan-json.vrl
+    removes `.message` on a JSON body, and the transforms downstream were
+    reading that field, so every JSON event lost its parsed addresses.
+    """
+    combined = tmp_path / "chain.vrl"
+    combined.write_text(
+        "\n".join(program.read_text(encoding="utf-8") for program in programs),
+        encoding="utf-8",
+    )
+    return run_vrl(combined, events, tmp_path)
+
+
+class TestTransformsChainTogether:
+    """What one transform leaves behind has to be what the next one reads."""
+
+    BODY = (
+        '{"EventID": 4624, "RenderedDescription": "logon for user admin from 10.0.0.5"}'
+    )
+
+    def test_a_json_body_still_yields_its_addresses(self, tmp_path: Path) -> None:
+        event = run_chain([JSON, PARSE_IP], [{"message": self.BODY}], tmp_path)[0]
+        assert ips(event) == ["10.0.0.5"]
+        assert event["src_ip"] == "10.0.0.5"
+
+    def test_a_json_body_still_yields_its_username(self, tmp_path: Path) -> None:
+        event = run_chain([JSON, USERNAME], [{"message": self.BODY}], tmp_path)[0]
+        assert event["sagan_username"] == "admin"
+
+    def test_a_plain_body_is_unaffected(self, tmp_path: Path) -> None:
+        message = "Failed password for admin from 192.168.1.50 port 22"
+        event = run_chain([JSON, PARSE_IP, USERNAME], [{"message": message}], tmp_path)[
+            0
+        ]
+        assert ips(event) == ["192.168.1.50"]
+        assert event["sagan_username"] == "admin"
+        assert event["message"] == message
+
+    def test_the_addresses_come_from_the_whole_document(self, tmp_path: Path) -> None:
+        """Sagan scans the raw text, so a key's name is scanned too.
+
+        The transform reads `sagan_raw`, the body as received, rather than any
+        one field of the parsed object, which is what the engine does.
+        """
+        body = '{"src": "10.0.0.5", "dst": "10.0.0.6"}'
+        event = run_chain([JSON, PARSE_IP], [{"message": body}], tmp_path)[0]
+        assert ips(event) == ["10.0.0.5", "10.0.0.6"]
+
+
 class TestParseIpMatchesSaganSemantics:
     """Each case mirrors a branch of Parse_IP() in src/parsers/ip.c."""
 

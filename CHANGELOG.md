@@ -7,6 +7,16 @@ All notable changes to this project are documented here. The format follows
 ## [Unreleased]
 
 ### Fixed
+- `sagan-parse-ip.vrl` and `username-extraction.vrl` read the raw body from
+  `sagan_raw` rather than `message`, so a JSON-bodied event keeps its parsed
+  addresses and username. Dropping `.message` from a JSON event, which the
+  envelope fix below does, left both transforms reading a field that was no
+  longer there: they produced nothing at all, and 37 corpus rules that match on
+  or group by a derived field could not fire under `vector-enriched`. Found by
+  the corpus differential once the denylist and Zeek intel feeds were enabled,
+  12 rules disagreeing on the same shape. The chain is now tested as a chain:
+  testing each transform alone is what let one transform's output stop being
+  the next one's input.
 - The `vector-enriched` pipeline no longer lets the syslog envelope overwrite a
   JSON body's own fields. `data/vrl/sagan-json.vrl` lifts a JSON body's keys to
   the top level, where the envelope already sat, and the envelope won every

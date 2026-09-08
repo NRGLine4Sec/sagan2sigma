@@ -169,6 +169,15 @@ own `"severity": "Low"` reached the rules holding the syslog severity: 131
 corpus rules match on that key and none of them could fire. A non-JSON body is
 left untouched, envelope included, with `sagan_raw` set to the message, so the
 transform is harmless on plain events.
+
+Everything downstream that scans the raw text therefore reads `sagan_raw`, not
+`message`: `sagan-parse-ip.vrl` and `username-extraction.vrl` both do, falling
+back to `message` for a pipeline that does not run this transform at all. That
+is not a stylistic preference. When they read `message` alone, a JSON event
+reached them with the field already removed and they produced nothing, so 37
+corpus rules that match on or group by a derived field could not fire. Each
+transform passed its own tests throughout; only running them as a chain, which
+is how they run, showed it.
 Because the raw body is preserved byte for byte, the match is faithful to the
 exact serialization Sagan saw; the converted rule carries `D_RAW_TEXT_MATCH` to
 say the match is format-bound and not portable to a re-serialized event.

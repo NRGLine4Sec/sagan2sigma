@@ -20,7 +20,12 @@
 # and the loose fallbacks last, so a FortiGate `user="bob"` is never mistaken
 # for the generic `user bob` pattern.
 
-body = string(.message) ?? ""
+# The raw body, which is what Sagan itself scans. `.sagan_raw` is set by
+# sagan-json.vrl and is the original message whether or not the body was JSON;
+# `.message` is the fallback for a pipeline that does not run that transform.
+# Reading `.message` alone was wrong: on a JSON body sagan-json.vrl removes it,
+# so this transform saw nothing and produced no field at all.
+body = string(.sagan_raw) ?? string(.message) ?? ""
 
 # Structured key=value formats: FortiGate, Sophos, Palo Alto, many appliances.
 matched, error = parse_regex(body, r'\buser(?:name)?="(?P<name>[^"]+)"')
