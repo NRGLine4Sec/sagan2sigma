@@ -42,6 +42,19 @@ All notable changes to this project are documented here. The format follows
   which is where a rule naming a path the engine never stores now belongs.
 
 ### Added
+- `U_PARTIAL_MATCH`, an upstream defect for a rule that loads, fires, and lists
+  a value that can never match, so it detects less than it names.
+- A detector for a comma inside a quoted `meta_content` template. `rules.c`
+  cuts the option with `strtok_r(arg, ",")` and only then unquotes the first
+  piece, so the template ends at that comma and everything after it, closing
+  quote included, is pushed into the value list. Measured in all three of its
+  consequences: the template silently loses its tail; the first listed value
+  inherits the stray quote and can never match, which costs
+  `windows-sysmon.rules` its `\powershell` alternative in two rules while
+  `\pwsh.exe` still fires; and with a `$variable` among the values nothing
+  matches at all, which kills two more. Found by the corpus differential once
+  the engine's own `sagan.yaml` was loaded, sid 5009779 firing on the converted
+  side and never on Sagan's.
 - A golden file for `vector-enriched`, the only profile whose JSON-bodied rules
   name a different envelope from its plain ones.
 - `U_INERT_CONDITION`, an upstream defect for a rule that loads, fires, and

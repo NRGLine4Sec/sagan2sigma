@@ -9,8 +9,9 @@ below, and a migration that converts them faithfully inherits rules that never
 fired. Someone comparing the converted output against a running Sagan would find
 them agreeing perfectly, both silent, and conclude the conversion was sound.
 Five more load and fire while grouping on fewer keys than they name, two stop
-the engine from starting, one asserts what it means to forbid, and one carries
-an exclusion that can never exclude anything.
+the engine from starting, one asserts what it means to forbid, one carries an
+exclusion that can never exclude anything, and two fire while missing the first
+of the values they list.
 
 Each detector below corresponds to an engine behaviour established by running a
 locally built Sagan, not by reading it. The comments name what was measured, so
@@ -52,6 +53,9 @@ class DefectCode(str, Enum):
     #: The rule loads and matches, but one condition can never bite, so the
     #: rule is broader than it reads.
     INERT_CONDITION = "U_INERT_CONDITION"
+    #: The rule loads and fires, but one of the values it lists can never
+    #: match, so it detects less than it names.
+    PARTIAL_MATCH = "U_PARTIAL_MATCH"
 
 
 @dataclass(frozen=True, slots=True)
@@ -125,6 +129,24 @@ def _enforced_port(slot: str) -> bool:
 #: The two keywords taking a comma-separated list of values rather than one
 #: quoted argument. Their items are read verbatim, quotes included.
 _VALUE_LISTS = ("meta_content", "json_meta_content")
+
+#: A `meta_content` whose quoted template holds a comma.
+#:
+#: `src/rules.c` line 1933 cuts the option with `strtok_r(arg, ",")` and only
+#: then calls `Between_Quotes` on the first piece, so a comma inside the
+#: quotes ends the template. Everything after it, closing quote included, is
+#: pushed into the value list. Measured, all three consequences:
+#:
+#:   * the template loses its tail, so `"MD5=%sagan%,"` searches for
+#:     `MD5=<value>` and matches a message without the comma;
+#:   * the first listed value inherits the stray quote and can never match:
+#:     `"%sagan%,"|5c|powershell,|5c|pwsh.exe` fires on `\pwsh.exe` and never
+#:     on `\powershell`, while an event carrying the literal `"\powershell`
+#:     does fire;
+#:   * with a `$variable` among the values, nothing matches at all. Neither the
+#:     expanded values nor the variable's own name appear in anything the rule
+#:     will fire on, so the rule is dead.
+_META_TEMPLATE = re.compile(r'^\s*!?\s*"(?P<template>[^"]*)"')
 
 
 @dataclass(frozen=True, slots=True)
@@ -367,6 +389,26 @@ def inspect(rule: SaganRule) -> list[UpstreamDefect]:
             )
             break
 
+    for option in rule.iter_options("meta_content"):
+        if not option.value:
+            continue
+        template = _META_TEMPLATE.match(option.value)
+        if template is None or "," not in template.group("template"):
+            continue
+        if "$" in option.value[template.end() :]:
+            found.append(
+                UpstreamDefect(
+                    rule.sid,
+                    rule.source_file,
+                    DefectCode.CANNOT_MATCH,
+                    f"the meta_content template {template.group('template')!r} "
+                    f"holds a comma, which ends it before the closing quote; "
+                    f"with a variable in the values the rule then matches "
+                    f"nothing at all",
+                )
+            )
+        break
+
     for values in _quoted_items(rule):
         if values.negated or len(values.quoted) < values.total:
             continue
@@ -554,6 +596,33 @@ def inspect(rule: SaganRule) -> list[UpstreamDefect]:
                 f"so the exclusion matches nothing and never excludes anything",
             )
         )
+        break
+
+    # --- the rule loads, fires, and detects less than it names ---------------
+    for option in rule.iter_options("meta_content"):
+        if not option.value:
+            continue
+        template = _META_TEMPLATE.match(option.value)
+        if template is None or "," not in template.group("template"):
+            continue
+        rest = option.value[template.end() :]
+        if "$" in rest:
+            continue  # dead outright, reported above
+        # The closing quote is pushed onto the first value, which no message
+        # carries. Measured on sid 5013804: `\pwsh.exe` fires, `\powershell`
+        # never does, and an event holding the literal `"\powershell` does.
+        first = rest.lstrip(",").split(",")[0].strip()
+        if first:
+            found.append(
+                UpstreamDefect(
+                    rule.sid,
+                    rule.source_file,
+                    DefectCode.PARTIAL_MATCH,
+                    f"the meta_content template holds a comma, so its closing "
+                    f"quote lands on the first value: the rule looks for "
+                    f"'\"{first}' and never for {first!r}",
+                )
+            )
         break
 
     # --- the rule loads, matches, and groups on the wrong thing --------------

@@ -346,6 +346,7 @@ DEAD_UPSTREAM = frozenset(
         DefectCode.CANNOT_MATCH,
         DefectCode.INVERTED_CONDITION,
         DefectCode.INERT_CONDITION,
+        DefectCode.PARTIAL_MATCH,
     }
 )
 

@@ -312,6 +312,43 @@ class TestQuotedListItems:
         assert codes(raw) == set()
 
 
+class TestCommaInsideTheMetaTemplate:
+    """`rules.c` cuts the option on the first comma, then unquotes the piece.
+
+    So a comma inside the quoted template ends it, and everything after it,
+    closing quote included, is pushed into the value list. Measured on the
+    engine in all three of its consequences.
+    """
+
+    def test_a_variable_in_the_values_makes_it_dead(self) -> None:
+        raw = 'msg:"t"; meta_content:"MD5=%sagan%,",$PSEXEC_MD5; sid:1;'
+        assert DefectCode.CANNOT_MATCH in codes(raw)
+
+    def test_literal_values_lose_the_first_alternative(self) -> None:
+        """The stray quote lands on it, and no message carries that."""
+        raw = 'msg:"t"; meta_content:"%sagan%,"|5c|powershell,|5c|pwsh.exe; sid:1;'
+        assert DefectCode.PARTIAL_MATCH in codes(raw)
+
+    def test_a_template_without_a_comma_is_clean(self) -> None:
+        raw = 'msg:"t"; meta_content:"MD5=%sagan% ",$PSEXEC_MD5; sid:1;'
+        assert codes(raw) == set()
+
+    def test_an_unclosed_template_is_not_this_defect(self) -> None:
+        """The whole option is quoted here, template and values together.
+
+        The engine still cuts at the first comma and Between_Quotes takes the
+        text after the lone quote, so the template is what the author meant and
+        only the last value carries the closing quote, which is the character a
+        CloudTrail document has there anyway.
+        """
+        raw = (
+            'msg:"t"; meta_content:"eventName|22 3a 20 22|%sagan%,'
+            'AttachRolePolicy,PutBucketPolicy"; sid:1;'
+        )
+        assert DefectCode.CANNOT_MATCH not in codes(raw)
+        assert DefectCode.PARTIAL_MATCH not in codes(raw)
+
+
 class TestWrongGrouping:
     """Rules that fire but count the wrong thing."""
 

@@ -306,6 +306,10 @@ def _upstream_defects(result: ConversionResult) -> list[str]:
             "the rule fires, but a condition never bites, so it fires more "
             "widely than it reads"
         ),
+        "U_PARTIAL_MATCH": (
+            "the rule fires, but one of the values it lists never can, so it "
+            "detects less than it names"
+        ),
     }
     for code in sorted(by_code):
         lines.append(f"| `{code}` | {len(by_code[code])} | {meaning.get(code, '')} |")
