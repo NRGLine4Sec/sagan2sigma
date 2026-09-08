@@ -257,6 +257,51 @@ def negated_json_conditions(rule: SaganRule) -> list[tuple[str, str]]:
     return found
 
 
+#: `event_id: 4663,567` and friends.
+_EVENT_ID = re.compile(r"event_id\s*:\s*([0-9,\s]+)", re.I)
+
+
+def unbound_event_id(rule: SaganRule) -> str | None:
+    """The first id an `event_id` option lists, when nothing binds the key.
+
+    With a `json_map` binding, `Event_ID()` compares the decoded value and this
+    returns None. Without one, 1,959 corpus rules, it searches `" <id>: "` in
+    the first nine characters of the message, and the converter does not
+    reproduce that: it assumes a structured `EventID` field and says so with
+    `D_EVENT_ID_HEURISTIC`.
+
+    The probe therefore carries both, the prefix for the engine and the field
+    for the converted rule, deliberately and for the same reason the clocks are
+    aligned for `alert_time`: the divergence is declared and already measured,
+    so what is left to compare is everything else in the rule. Without it those
+    rules cannot fire on the Sagan side at all, and a run counts them as judged
+    while deciding nothing about them.
+    """
+    if "event_id" in json_map(rule):
+        return None
+    match = _EVENT_ID.search(rule.raw)
+    if match is None:
+        return None
+    ids = [part.strip() for part in match.group(1).split(",") if part.strip()]
+    return ids[0] if ids else None
+
+
+def event_id_field(rule: SaganRule) -> tuple[str, Any] | None:
+    """The structured field a converted rule reads, when it assumes one.
+
+    `EventID` is what `mapping/selectors.py` falls back to with no `json_map`
+    binding. A pipeline does not produce it, so a differential taking its
+    events from one has to add it after the fact, exactly as this does for a
+    rendered event: the converted rule assumes a producer that emits it, and
+    that assumption is what the probe grants so the rest of the rule can be
+    compared.
+    """
+    identifier = unbound_event_id(rule)
+    if identifier is None or rule.keywords & JSON_KEYWORDS:
+        return None
+    return "EventID", int(identifier) if identifier.isdigit() else identifier
+
+
 def text_key(rule: SaganRule) -> str | None:
     """Body key the rule's raw-text search reaches, ``None`` on a plain event.
 
@@ -405,10 +450,14 @@ def build_event(
     text = FILLER.join(literals) or "no conditions"
     key = text_key(rule)
 
+    identifier = unbound_event_id(rule)
+
     if key is None:
         # A plain event carries the literals as its message; a JSON-bodied rule
         # with no raw-text option has nowhere to put them and needs none.
-        return _event(rule, json.dumps(body) if body else text, body)
+        if body:
+            return _event(rule, json.dumps(body), body)
+        return _event(rule, _with_event_id(text, identifier), body)
 
     if key != PROBE_TEXT_KEY:
         # `json_map: "message"` redirects the search to a key, and the engine
@@ -440,6 +489,17 @@ def unplaceable(rule: SaganRule, literals: list[str]) -> list[str]:
     """
     event = build_event(rule, literals)
     return [literal for literal in literals if literal not in wire_body(event)]
+
+
+def _with_event_id(message: str, identifier: str | None) -> str:
+    """The message, carrying the id where the engine's nine-byte window sees it.
+
+    A JSON-bodied probe gets nothing: the message there is the serialised
+    document, and a prefix would stop it being JSON. Such a rule cannot satisfy
+    the fallback on a real event either, the first characters of a document
+    never being `" <id>: "`.
+    """
+    return f" {identifier}: {message}" if identifier else message
 
 
 def _event(rule: SaganRule, message: str, body: dict[str, Any]) -> SaganEvent:
@@ -553,6 +613,9 @@ def to_rsigma_event(
     json_event = bool(rule.keywords & JSON_KEYWORDS)
 
     payload: dict[str, Any] = dict(event.json_body) if json_event else {}
+    structured = event_id_field(rule)
+    if structured is not None:
+        payload[structured[0]] = structured[1]
     payload[profile.envelope_field("program", json_event)] = event.program
     payload[profile.envelope_field("syslog_host", json_event)] = "sensor01"
     payload[profile.envelope_field("facility", json_event)] = event.facility

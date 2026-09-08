@@ -25,7 +25,9 @@ What it implements, and where the behaviour comes from:
     value comparison on a JSON key, exact unless ``json_contains``, and
     case-sensitive unless ``json_nocase``.
 ``event_id``
-    numeric comparison against the key bound by ``json_map``.
+    an exact comparison against the key bound by ``json_map``, or, with no
+    such binding, the engine's fallback: `" <id>: "` searched in the first
+    nine characters of the message.
 ``syslog_facility`` / ``syslog_level``
     case-insensitive alternatives.
 
@@ -178,6 +180,30 @@ def _json_lookup(body: dict[str, Any], key: str) -> Any:
     return _flatten(body).get(key.replace("[]", ""))
 
 
+#: How much of the message `Event_ID()` copies before searching it.
+#:
+#: `src/event-id.c` does `strlcpy(alter_message, syslog_message, 10)`, and
+#: strlcpy's third argument counts the NUL, so nine characters are kept. It
+#: then searches for `" <id>: "`, spaces included, which is why an ID at
+#: offset 0 never matches however plausible that shape looks. Measured in the
+#: engine lab, `checks/check_event_id.py`, including the boundary: with a
+#: four-digit ID two characters of padding still fit and three do not.
+EVENT_ID_WINDOW = 9
+
+
+def _event_id_in_window(message: str, identifier: str) -> bool:
+    """Whether the fallback search finds this ID, as the engine runs it.
+
+    This is the branch taken when no `json_map` binds `event_id`, which is the
+    case for 1,959 corpus rules. The converter does not reproduce it: it
+    assumes a structured `EventID` field and says so with
+    `D_EVENT_ID_HEURISTIC`. Modelling it here is what lets a probe satisfy each
+    side on its own terms, so that everything else in such a rule becomes
+    comparable instead of the rule sitting silent on the Sagan side.
+    """
+    return f" {identifier}: " in message[:EVENT_ID_WINDOW]
+
+
 def json_map(rule: SaganRule) -> dict[str, str]:
     """``json_map`` bindings, read straight from the rule."""
     mapping: dict[str, str] = {}
@@ -304,7 +330,12 @@ class SaganEvaluator:
                 continue
             wanted = {v.strip() for v in option.value.split(",") if v.strip()}
             if key is None:
-                return False
+                if not any(
+                    _event_id_in_window(event.message, wanted_id)
+                    for wanted_id in wanted
+                ):
+                    return False
+                continue
             actual = _json_lookup(event.json_body, key)
             if actual is None or str(actual) not in wanted:
                 return False

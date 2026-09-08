@@ -199,6 +199,11 @@ HAND_WRITTEN = [
     'msg:"q"; program: cloudtrail; json_content:!".userIdentity.type","Root"; json_content:".eventName","X"; sid:17;',
     # Numeric JSON values, which must not carry a case modifier.
     'msg:"r"; program: azure; json_content:".resultType","0"; sid:18;',
+    # event_id with no json_map binding: the engine searches ' <id>: ' in the
+    # first nine characters and the converted rule reads a structured EventID,
+    # a divergence the conversion declares. The probe carries both.
+    'msg:"v"; program: *Security*; event_id: 4624,540; content:"Logon Type"; sid:22;',
+    'msg:"w"; program: *Security*; event_id: 4624; content:!"anonymous"; sid:23;',
     # json_map redirecting the text search into a JSON key.
     'msg:"s"; program: eventlog; json_map:"message",".Description"; content:"service installed"; sid:19;',
     # Envelope selectors.
