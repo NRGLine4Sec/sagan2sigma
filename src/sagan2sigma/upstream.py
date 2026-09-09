@@ -4,14 +4,18 @@ Every other part of this tool asks whether the *conversion* is faithful. This
 one asks something the conversion cannot: whether the rule it started from
 works at all in the engine it was written for.
 
-The question is not academic. 764 corpus rules fall into the silent category
-below, and a migration that converts them faithfully inherits rules that never
-fired. Someone comparing the converted output against a running Sagan would find
-them agreeing perfectly, both silent, and conclude the conversion was sound.
-Five more load and fire while grouping on fewer keys than they name, two stop
-the engine from starting, one asserts what it means to forbid, one carries an
-exclusion that can never exclude anything, and two fire while missing the first
-of the values they list.
+The question is not academic. A migration that converts a dead rule faithfully
+inherits a rule that never fired, and someone comparing the converted output
+against a running Sagan would find the two agreeing perfectly, both silent, and
+conclude the conversion was sound.
+
+Counted against `quadrantsec/sagan-rules` at `deb40a8`, where six of the fixes
+this module found have been merged: 28 rules fall into the silent category
+below, one asserts what it means to forbid, one carries an exclusion that can
+never exclude anything, and two fire while missing the first of the values they
+list. Against `c6fddfd`, the tree this project measured before those merges,
+the silent category held 779, which is what a ruleset looks like when nobody
+has been running it through the engine it was written for.
 
 Each detector below corresponds to an engine behaviour established by running a
 locally built Sagan, not by reading it. The comments name what was measured, so
@@ -97,6 +101,11 @@ _TRACK = re.compile(r"track\s+([a-z_&]+)", re.I)
 _JSON_KEY = re.compile(r'json_(?:meta_)?content\s*:\s*!?\s*"\.([A-Za-z0-9_.\[\]@-]+)"')
 _JSON_PCRE_KEY = re.compile(r'json_pcre\s*:\s*!?\s*"\.([A-Za-z0-9_.\[\]@-]+)"')
 _QUOTED = re.compile(r'"([^"]*)"')
+
+#: `pcre: "/pattern/flags"`, quoted or not, negated or not. The pattern is
+#: everything between the outer slashes, quote characters included, which is
+#: what makes the defect above visible.
+_PCRE_PATTERN = re.compile(r'^!?\s*"?/(?P<body>.*)/(?P<flags>[a-zA-Z]*)"?$', re.S)
 
 
 #: Options whose argument is a single quoted string. Anything after the closing
@@ -369,6 +378,28 @@ def inspect(rule: SaganRule) -> list[UpstreamDefect]:
             )
 
     # --- the rule loads and can never match ----------------------------------
+    for option in rule.iter_options("pcre"):
+        match = _PCRE_PATTERN.match((option.value or "").strip())
+        if match is None or '"' not in match.group("body"):
+            continue
+        # `Between_Quotes` ends the argument at the quote, whatever precedes
+        # it, so the pattern the engine keeps is not the one that was written.
+        # Measured: `pcre:"/id=\"[0-9]{3}/"` matches neither `id="123`, the
+        # text as written, nor `id=`, the head the truncation would leave,
+        # while the same pattern with an apostrophe instead of a quote matches
+        # normally. So the rule loads and can never fire.
+        found.append(
+            UpstreamDefect(
+                rule.sid,
+                rule.source_file,
+                DefectCode.CANNOT_MATCH,
+                f"the pcre pattern holds a double quote, which ends the "
+                f"argument before the pattern does: "
+                f"{match.group('body')[:60]!r}",
+            )
+        )
+        break
+
     for option in rule.iter_options("meta_content"):
         if option.value is None or ":" not in option.value:
             continue

@@ -312,6 +312,29 @@ class TestQuotedListItems:
         assert codes(raw) == set()
 
 
+class TestQuoteInsideAPcrePattern:
+    r"""`Between_Quotes` ends the argument at the quote, wherever it sits.
+
+    Measured on the engine: `pcre:"/id=\"[0-9]{3}/"` matches neither
+    `id="123`, the text as written, nor `id=`, the head a truncation would
+    leave, while the same pattern with an apostrophe matches normally. Twelve
+    corpus rules carry one, mostly Windows registry paths and PowerShell
+    argument matchers.
+    """
+
+    def test_a_quote_kills_the_pattern(self) -> None:
+        raw = 'msg:"t"; content:"x"; pcre:"/id=\\"[0-9]{3}/"; sid:1;'
+        assert DefectCode.CANNOT_MATCH in codes(raw)
+
+    def test_an_apostrophe_is_fine(self) -> None:
+        raw = 'msg:"t"; content:"x"; pcre:"/id=\'[0-9]{3}/"; sid:1;'
+        assert codes(raw) == set()
+
+    def test_a_pattern_without_quotes_is_fine(self) -> None:
+        raw = 'msg:"t"; content:"x"; pcre:"/id=[0-9]{3}/"; sid:1;'
+        assert codes(raw) == set()
+
+
 class TestNegatedContentInsideAPositiveOne:
     """`content` ANDs, and its negation is a plain substring test.
 

@@ -42,6 +42,13 @@ All notable changes to this project are documented here. The format follows
   which is where a rule naming a path the engine never stores now belongs.
 
 ### Added
+- A detector for a `pcre` pattern holding a double quote. `Between_Quotes` ends
+  the argument at that character, so the pattern the engine keeps is not the one
+  written. Measured: `pcre:"/id=\"[0-9]{3}/"` matches neither `id="123`, the
+  text as written, nor `id=`, the head a truncation would leave, while the same
+  pattern with an apostrophe matches normally, so the rule loads and can never
+  fire. Twelve corpus rules carry one, mostly Windows registry paths and
+  PowerShell argument matchers. Reported as `U_CANNOT_MATCH`.
 - The differential's probe generator now satisfies a rule's `pcre` patterns.
   `tests/differential/pcre_sample.py` produces one string a pattern accepts and
   verifies it against the pattern before returning it, refusing lookaround and
