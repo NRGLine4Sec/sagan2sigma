@@ -487,6 +487,31 @@ class TestDeterminismAndProfiles:
         assert not any(key.startswith("_raw") for key in keys)
 
 
+class TestBitGroupByIsAlwaysResolved:
+    """Every `isset` names a group-by key, so the converter never guesses one.
+
+    `converter.py` carries a fallback for an empty one, and it is unreachable:
+    the corpus has no rule of that shape under either profile, because
+    `_bit_group_by` always returns at least one key. This asserts the invariant
+    the fallback stands behind, which is the thing worth protecting: were it to
+    break, a rebuilt correlation would group on the syslog sender without
+    anyone asking for it.
+    """
+
+    def test_every_tested_bit_carries_a_group_by(
+        self, result: ConversionResult
+    ) -> None:
+        seen = 0
+        for converted in result.converted:
+            for document in converted.documents:
+                correlation = document.get("correlation") or {}
+                if correlation.get("type") != "temporal_ordered":
+                    continue
+                seen += 1
+                assert correlation.get("group-by"), converted.sid
+        assert seen, "no rebuilt state correlation in the fixture corpus"
+
+
 class TestGroupByShapeSplit:
     """A bit set by rules reading a different event shape loses those setters.
 

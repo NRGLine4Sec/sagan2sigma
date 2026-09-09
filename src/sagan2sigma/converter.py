@@ -472,7 +472,21 @@ class Converter:
                     ),
                 )
             )
-            group_by = draft.bit_group_by or (self.context.syslog_host_field,)
+            # The fallback names the envelope for *this rule's* shape, not
+            # the plain field. RSigma exposes the syslog sender as `hostname`
+            # on a plain event and `syslog_hostname` once the body is JSON, so
+            # the plain one on a JSON-bodied rule gives a key no event carries
+            # and the correlation can never pair anything, which is the defect
+            # `_flag_mixed_shapes` below reports when the two shapes meet.
+            #
+            # Measured on the corpus under both profiles: no rule reaches it.
+            # Every `isset` sets `bit_group_by`, and `_bit_group_by` always
+            # returns at least one key. It is kept because that invariant lives
+            # in another module, and corrected because a fallback that reads
+            # like a decision should not contradict the one made there.
+            group_by = draft.bit_group_by or (
+                self.context.profile.envelope_field("syslog_host", json_bodied),
+            )
             self._flag_mixed_shapes(draft, bit, group_by, shapes, json_bodied)
             specs.append(
                 CorrelationSpec(
