@@ -86,14 +86,15 @@ conversion error and is the opposite of one.
 
 | Code | Rules | What it means |
 | --- | --- | --- |
-| `U_CANNOT_MATCH` | 764 | the rule loads and can never fire |
+| `U_CANNOT_MATCH` | 766 | the rule loads and can never fire |
 | `U_INERT_CONDITION` | 1 | the rule fires, but a condition never bites, so it fires more widely than it reads |
 | `U_INVERTED_CONDITION` | 1 | the rule fires, but a condition means its opposite |
+| `U_PARTIAL_MATCH` | 2 | the rule fires, but one of the values it lists never can, so it detects less than it names |
 | `U_WILL_NOT_LOAD` | 2 | Sagan refuses the ruleset; the engine does not start |
 | `U_WRONG_GROUPING` | 5 | the rule fires, but groups on fewer keys than it names |
 
 <details>
-<summary><code>U_CANNOT_MATCH</code> (764 rules)</summary>
+<summary><code>U_CANNOT_MATCH</code> (766 rules)</summary>
 
 | SID | File | Detail |
 | --- | --- | --- |
@@ -111,6 +112,7 @@ conversion error and is the opposite of one.
 | `5002746` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"/db.php" default_proto:tcp' |
 | `5002747` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"/inc/mysql.php" default_proto:tcp' |
 | `5002748` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"/iisamples" default_proto:tcp' |
+| `5002799` | `windows-sysmon.rules` | the meta_content template 'MD5=%sagan%,' holds a comma, which ends it before the closing quote; with a variable in the values the rule then matches nothing at all |
 | `5004756` | `crowdstrike.rules` | content: the hex sequence opened in '\|7c\|DetectionSummaryEvent\|4' is never closed, so the parser converts '4' and appends a control byte no message carries |
 | `5004757` | `crowdstrike.rules` | content: the hex sequence opened in '\|7c\|DetectionSummaryEvent\|5' is never closed, so the parser converts '5' and appends a control byte no message carries |
 | `5004758` | `crowdstrike.rules` | content: the hex sequence opened in '\|7c\|DetectionSummaryEvent\|2' is never closed, so the parser converts '2' and appends a control byte no message carries |
@@ -296,9 +298,8 @@ conversion error and is the opposite of one.
 | `5007936` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
 | `5007937` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
 | `5007938` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007939` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
 
-...and 564 more.
+...and 566 more.
 
 </details>
 
@@ -317,6 +318,16 @@ conversion error and is the opposite of one.
 | SID | File | Detail |
 | --- | --- | --- |
 | `5007143` | `windows-powershell.rules` | a negated pcre is read as a positive one: Sagan has no negation for pcre, so the rule requires what it means to exclude |
+
+</details>
+
+<details>
+<summary><code>U_PARTIAL_MATCH</code> (2 rules)</summary>
+
+| SID | File | Detail |
+| --- | --- | --- |
+| `5013804` | `windows-sysmon.rules` | the meta_content template holds a comma, so its closing quote lands on the first value: the rule looks for '"\|5c\|powershell' and never for '\|5c\|powershell' |
+| `5013805` | `windows-sysmon.rules` | the meta_content template holds a comma, so its closing quote lands on the first value: the rule looks for '"\|5c\|powershell' and never for '\|5c\|powershell' |
 
 </details>
 
