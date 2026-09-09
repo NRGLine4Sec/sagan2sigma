@@ -89,6 +89,11 @@ RAW_TEXT_KEYWORDS = frozenset({"content", "meta_content", "pcre"})
 #: fail on both sides at once, which would agree and measure nothing.
 PROBE_TEXT_KEY = "sagan_probe_text"
 
+#: Username a probe carries when a rule binds one through `json_map`. Any
+#: constant does: what a correlation needs is that every event of its sequence
+#: agrees on it.
+PROBE_USERNAME = "sagan-probe-user"
+
 #: Value given to a key a rule negates, so the key exists and the negation
 #: holds. It has to fail a substring test as well as an equality one, since
 #: `json_contains` turns the comparison into a search, hence a value no rule
@@ -190,6 +195,14 @@ def json_body(rule: SaganRule) -> dict[str, Any]:
         cursor[parts[-1]] = value
 
     mapping = json_map(rule)
+    if "username" in mapping:
+        # Same reasoning as the program below. A correlation tracking
+        # `by_username` groups on the value of this key, and 420 corpus rules
+        # bind it, so a probe leaving it out gives the engine nothing to group
+        # on. The constant matters only in that every event of a sequence
+        # carries the same one.
+        assign(mapping["username"], PROBE_USERNAME)
+
     if "program" in mapping:
         # `json_map: "program", ".Workload"` makes the engine read the program
         # from that key instead of the syslog envelope, so a rule combining it
