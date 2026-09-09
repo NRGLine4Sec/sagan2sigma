@@ -66,7 +66,13 @@ def _address_can_resolve(rule: SaganRule, internal: str) -> bool:
 
 #: ``country_code: track by_src, isnot US,CA;``. The codes run to the end,
 #: variables included, and are resolved separately.
-_COUNTRY_CODE = re.compile(
+#: `country_code: track by_src, isnot $HOME_COUNTRY`, split into its parts.
+#:
+#: Public, like `pipeline_transforms`, because the engine lab reads it: a probe
+#: for such a rule has to carry an address the test database places in a
+#: country the rule's own test accepts, and a second copy of this grammar in
+#: the lab would drift from this one without anyone noticing.
+COUNTRY_CODE = re.compile(
     r"\s*track\s+(?P<direction>by_src|by_dst)\s*,\s*"
     r"(?P<test>is|isnot)\s+(?P<codes>.+?)\s*$"
 )
@@ -78,7 +84,7 @@ _DIRECTION = {
 }
 
 
-def _resolve_codes(raw: str, context: Context) -> tuple[str, ...]:
+def resolve_country_codes(raw: str, context: Context) -> tuple[str, ...]:
     """Resolve the country-code list, expanding a ``$VARIABLE`` if present.
 
     Codes are kept verbatim, not upper-cased: Sagan compares the MaxMind
@@ -124,7 +130,7 @@ def handle_country_code(
     for option in rule.iter_options("country_code"):
         if option.value is None:
             continue
-        match = _COUNTRY_CODE.match(option.value)
+        match = COUNTRY_CODE.match(option.value)
         if match is None:
             raise Refusal(
                 code=RefusalCode.PARSE,
@@ -170,7 +176,7 @@ def handle_country_code(
                 keywords=("country_code",),
             )
 
-        codes = _resolve_codes(match.group("codes"), context)
+        codes = resolve_country_codes(match.group("codes"), context)
 
         if match.group("test") == "is":
             # Fires when the country is in the list, which requires it present.
@@ -205,6 +211,26 @@ def handle_country_code(
                     values=codes,
                     negated=True,
                     origin="country_code",
+                )
+            )
+
+        if resolver.mapping.get(internal):
+            # `json_map: "src_ip", ".sourceIPAddress"` makes the engine read the
+            # country of that value and nothing else. Measured: with the key
+            # absent the rule does not fire even when the message carries an
+            # address, and with the key set the rule follows it against a
+            # different address in the text. The pipeline has no country for a
+            # bound field, only for the addresses it parses, so the converted
+            # rule tests a different address whenever the two are not the same.
+            draft.degrade(
+                Degradation(
+                    code=DegradationCode.GEOIP_ADDRESS_NOT_THE_BOUND_ONE,
+                    detail=(
+                        f"{internal} is bound to "
+                        f"{resolver.mapping[internal]!r} by json_map and Sagan "
+                        f"looks the country up for that value; "
+                        f"{country_field} describes the parsed address instead"
+                    ),
                 )
             )
 

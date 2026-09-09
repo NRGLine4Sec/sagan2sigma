@@ -50,6 +50,7 @@ class DegradationCode(str, Enum):
     NORMALIZE_PRECEDENCE = "D_NORMALIZE_PRECEDENCE"
     POSITIONAL_IP_FIELD = "D_POSITIONAL_IP_FIELD"
     GEOIP_COUNTRY_ENRICHMENT = "D_GEOIP_COUNTRY_ENRICHMENT"
+    GEOIP_ADDRESS_NOT_THE_BOUND_ONE = "D_GEOIP_ADDRESS_NOT_THE_BOUND_ONE"
     ALERT_TIME_EVENT_CLOCK = "D_ALERT_TIME_EVENT_CLOCK"
     DENYLIST_USERNAME_INERT = "D_DENYLIST_USERNAME_INERT"
     DENYLIST_ENRICHMENT = "D_DENYLIST_ENRICHMENT"
@@ -213,6 +214,15 @@ DEGRADATION_HELP: dict[DegradationCode, str] = {
         "The group-by key comes from the bundled VRL transform rather than "
         "from the log itself. The correlation only works if that transform "
         "runs in the ingestion pipeline."
+    ),
+    DegradationCode.GEOIP_ADDRESS_NOT_THE_BOUND_ONE: (
+        "the rule binds its address through json_map, and Sagan looks the "
+        "country up for that value; the pipeline produces a country only for "
+        "the addresses it parses out of the message, so the converted rule "
+        "tests the country of the parsed address instead. The two are the same "
+        "whenever the bound field holds the address the message carries first, "
+        "which is the usual shape of a JSON event, and differ when the document "
+        "holds several"
     ),
     DegradationCode.GEOIP_COUNTRY_ENRICHMENT: (
         "country_code is resolved against a GeoIP country field produced by the "

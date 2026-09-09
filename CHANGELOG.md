@@ -42,6 +42,17 @@ All notable changes to this project are documented here. The format follows
   which is where a rule naming a path the engine never stores now belongs.
 
 ### Added
+- `D_GEOIP_ADDRESS_NOT_THE_BOUND_ONE`, for a rule that binds its address
+  through `json_map` and tests `country_code`. Measured in both directions:
+  with `json_map: "src_ip", ".sourceIPAddress"` the engine looks the country up
+  for that value and nothing else, so the rule does not fire when the key is
+  absent even though the message carries an address, and it follows the key
+  when the two disagree. The pipeline produces a country only for the addresses
+  it parses out of the message, so the converted rule tests the country of the
+  parsed address. The two are the same whenever the bound field holds the
+  address the document carries first, which is the usual shape, and part when
+  it carries several. Three corpus rules convert and carry it; 140 more have
+  the shape and are refused today for an unrelated enrichment.
 - `U_PARTIAL_MATCH`, an upstream defect for a rule that loads, fires, and lists
   a value that can never match, so it detects less than it names.
 - A detector for a comma inside a quoted `meta_content` template. `rules.c`
