@@ -54,6 +54,7 @@ from sagan2sigma.mapping.json_ops import truncate_like_sagan
 from sagan2sigma.sagan.hexdec import decode_hex
 from sagan2sigma.sagan.model import SaganRule
 
+from .pcre_sample import sample_for
 from .sagan_reference import SaganEvent, expand_values, json_map
 
 _JSON_ARGS = re.compile(
@@ -150,6 +151,36 @@ def positive_literals(
         if values:
             literals.append(decode_hex(pattern).replace("%sagan%", values[0]))
     return literals
+
+
+#: `pcre: "/pattern/flags"`, quoted or not, negated or not.
+_PCRE = re.compile(
+    r'^\s*(?P<neg>!?)\s*"?/(?P<body>.*)/(?P<flags>[a-zA-Z]*)"?\s*$', re.S
+)
+
+
+def pcre_literals(rule: SaganRule) -> list[str]:
+    """Text satisfying each positive `pcre`, where a sample can be produced.
+
+    Placed ahead of the rule's own literals by `probes`, so a pattern anchored
+    at the start of the message has somewhere to match. A pattern the sampler
+    refuses contributes nothing, and the rule then stays silent under a reason
+    the run names rather than being reported as a disagreement.
+    """
+    out: list[str] = []
+    for option in rule.iter_options("pcre"):
+        if option.value is None:
+            continue
+        match = _PCRE.match(option.value.strip())
+        # A negated pcre is read by the engine as a positive one, which is
+        # `U_INVERTED_CONDITION` and excluded well before a probe is built, so
+        # only the positive form is sampled here.
+        if match is None or match.group("neg") == "!":
+            continue
+        text = sample_for(match.group("body"), match.group("flags"))
+        if text:
+            out.append(text)
+    return out
 
 
 def negative_literals(rule: SaganRule) -> list[str]:
@@ -585,7 +616,9 @@ def probes(
     positional parse sees it before anything the rule's own literals contain.
     """
     positives = positive_literals(rule, variables)
-    given = list(context)
+    # A pcre sample is context rather than a positive literal: dropping it in a
+    # `missing_n` probe would test the sampler, not the rule.
+    given = [*context, *pcre_literals(rule)]
 
     def event(literals: list[str]) -> SaganEvent:
         return build_event(rule, [*given, *literals])

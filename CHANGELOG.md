@@ -42,6 +42,16 @@ All notable changes to this project are documented here. The format follows
   which is where a rule naming a path the engine never stores now belongs.
 
 ### Added
+- The differential's probe generator now satisfies a rule's `pcre` patterns.
+  `tests/differential/pcre_sample.py` produces one string a pattern accepts and
+  verifies it against the pattern before returning it, refusing lookaround and
+  backreferences rather than guessing at them: 285 of the 344 `pcre` options in
+  the corpus, covering 274 of the 328 rules that carry one. A rule whose
+  discriminating condition is a `pcre` used to leave both evaluators silent, so
+  the run counted it as judged while deciding nothing about it, the largest
+  silence bucket by far. Measured on `sagan-rules` at `deb40a8`, rules where
+  both sides fire on the base probe: 7773 to 7992 of 8039 under
+  `vector-enriched`, 7379 to 7588 of 7603 under `rsigma-syslog`.
 - A detector for a negated `content` that is part of a required one. `content`
   conditions are ANDed and the negation is a plain substring test, so a message
   holding `DENY_ACL_MATCHED` holds `DENY` with it and the rule cannot fire on
