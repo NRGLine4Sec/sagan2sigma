@@ -453,11 +453,19 @@ def build_event(
     identifier = unbound_event_id(rule)
 
     if key is None:
-        # A plain event carries the literals as its message; a JSON-bodied rule
-        # with no raw-text option has nowhere to put them and needs none.
-        if body:
-            return _event(rule, json.dumps(body), body)
-        return _event(rule, _with_event_id(text, identifier), body)
+        if not body:
+            # A plain event carries the literals as its message.
+            return _event(rule, _with_event_id(text, identifier), body)
+        # A JSON-bodied rule with no raw-text option asks for no literal of its
+        # own, so `probes` hands it none and the document is the whole event.
+        # A caller that supplies one anyway means it: the correlation
+        # differential plants addresses for a rule grouping on `parse_src_ip`,
+        # and Sagan scans the serialised document for them like any other text.
+        # Dropping them silently made the engine fall back to the syslog sender
+        # and the case looked like a liblognorm resolution it never was.
+        if literals:
+            _write(body, PROBE_TEXT_KEY, text)
+        return _event(rule, json.dumps(body), body)
 
     if key != PROBE_TEXT_KEY:
         # `json_map: "message"` redirects the search to a key, and the engine
