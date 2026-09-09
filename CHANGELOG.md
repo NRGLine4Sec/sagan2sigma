@@ -42,6 +42,12 @@ All notable changes to this project are documented here. The format follows
   which is where a rule naming a path the engine never stores now belongs.
 
 ### Added
+- A detector for a negated `content` that is part of a required one. `content`
+  conditions are ANDed and the negation is a plain substring test, so a message
+  holding `DENY_ACL_MATCHED` holds `DENY` with it and the rule cannot fire on
+  the very event it describes. Measured on sid 5015819 of
+  `barracuda-waf.rules`, the only rule of that shape in the corpus: an event
+  carrying its own literal does not alert. Reported as `U_CANNOT_MATCH`.
 - `D_GEOIP_ADDRESS_NOT_THE_BOUND_ONE`, for a rule that binds its address
   through `json_map` and tests `country_code`. Measured in both directions:
   with `json_map: "src_ip", ".sourceIPAddress"` the engine looks the country up

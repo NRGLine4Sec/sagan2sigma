@@ -312,6 +312,29 @@ class TestQuotedListItems:
         assert codes(raw) == set()
 
 
+class TestNegatedContentInsideAPositiveOne:
+    """`content` ANDs, and its negation is a plain substring test.
+
+    So a message holding the required text holds the excluded text with it,
+    and the rule cannot fire on the very event it describes. Measured on sid
+    5015819 of barracuda-waf.rules: an event carrying `DENY_ACL_MATCHED`, its
+    own literal, does not alert.
+    """
+
+    def test_the_negation_swallows_its_own_rule(self) -> None:
+        raw = 'msg:"t"; content:"DENY_ACL_MATCHED"; content:!"DENY"; sid:1;'
+        assert DefectCode.CANNOT_MATCH in codes(raw)
+
+    def test_an_unrelated_negation_is_clean(self) -> None:
+        raw = 'msg:"t"; content:"DENY_ACL_MATCHED"; content:!"ALLOW"; sid:1;'
+        assert codes(raw) == set()
+
+    def test_the_hex_form_is_decoded_first(self) -> None:
+        """`|20|` is a space, so the containment has to be judged after it."""
+        raw = 'msg:"t"; content:"user|20|denied"; content:!"user denied"; sid:1;'
+        assert DefectCode.CANNOT_MATCH in codes(raw)
+
+
 class TestCommaInsideTheMetaTemplate:
     """`rules.c` cuts the option on the first comma, then unquotes the piece.
 

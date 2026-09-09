@@ -36,6 +36,7 @@ import re
 from dataclasses import dataclass
 from enum import Enum
 
+from .sagan.hexdec import decode_hex
 from .sagan.model import SaganRule
 
 
@@ -426,6 +427,37 @@ def inspect(rule: SaganRule) -> list[UpstreamDefect]:
             )
         )
         break
+
+    positives: list[str] = []
+    negatives: list[str] = []
+    for option in rule.iter_options("content"):
+        if option.value is None:
+            continue
+        text = option.value.strip()
+        negated = text.startswith("!")
+        if negated:
+            text = text[1:].strip()
+        if len(text) >= 2 and text[0] == '"' and text[-1] == '"':
+            text = text[1:-1]
+        (negatives if negated else positives).append(decode_hex(text))
+    for negative in negatives:
+        carrier = next((p for p in positives if negative and negative in p), None)
+        if carrier is not None:
+            # Sagan ANDs its conditions and `content:!` is a plain substring
+            # test, so a message holding the positive holds the negated text
+            # too and the rule cannot fire on the very event it describes.
+            # Measured on sid 5015819: an event carrying `DENY_ACL_MATCHED`,
+            # its own literal, does not alert.
+            found.append(
+                UpstreamDefect(
+                    rule.sid,
+                    rule.source_file,
+                    DefectCode.CANNOT_MATCH,
+                    f"the negated content {negative!r} is part of the required "
+                    f"{carrier!r}, so no message can satisfy both",
+                )
+            )
+            break
 
     for match in _JSON_KEY.finditer(rule.raw):
         key = match.group(1)
