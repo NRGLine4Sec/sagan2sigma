@@ -188,6 +188,21 @@ def json_body(rule: SaganRule) -> dict[str, Any]:
             cursor = cursor.setdefault(part, {})
         cursor[parts[-1]] = value
 
+    mapping = json_map(rule)
+    if "program" in mapping:
+        # `json_map: "program", ".Workload"` makes the engine read the program
+        # from that key instead of the syslog envelope, so a rule combining it
+        # with a `program:` selector cannot match unless the document carries
+        # the value. 306 corpus rules bind it.
+        #
+        # Written before the conditions and not after: the same key is often a
+        # `json_content` key too, `.Workload` being both what SharePoint calls
+        # its product and what the rule matches on, and the condition has to
+        # win. Writing it afterwards replaced "SharePoint" with the program and
+        # silenced the rule, which the silence breakdown reported within the
+        # hour.
+        assign(mapping["program"], program_value(rule))
+
     # Negated keys first, so a key carrying both a positive and a negative
     # condition ends up holding the value the positive one asks for.
     for negated in (True, False):
