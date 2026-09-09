@@ -50,6 +50,7 @@ from typing import Any
 from sagan2sigma.errors import Refusal
 from sagan2sigma.mapping.content import split_meta_content
 from sagan2sigma.mapping.context import Profile, load_profile
+from sagan2sigma.mapping.json_ops import truncate_like_sagan
 from sagan2sigma.sagan.hexdec import decode_hex
 from sagan2sigma.sagan.model import SaganRule
 
@@ -221,7 +222,13 @@ def json_body(rule: SaganRule) -> dict[str, Any]:
                     ),
                     "",
                 )
-                value = decode_hex(first)
+                # Truncated as the engine truncates it, and before the hex
+                # is decoded, which is the order the converter uses too: Sagan
+                # cuts a JSON option value at its first colon or comma, so
+                # `contentclass:STS_Site` is searched for as `contentclass`.
+                # Writing the untruncated value made the rule match nothing on
+                # either side, since the comparison is exact.
+                value = decode_hex(truncate_like_sagan(first)[0])
                 if negated:
                     # A negated JSON condition still requires the key to be
                     # there: measured, `json_content` on a key the event does
