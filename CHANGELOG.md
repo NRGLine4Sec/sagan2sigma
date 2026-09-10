@@ -63,6 +63,21 @@ All notable changes to this project are documented here. The format follows
   share an implementation cannot report them disagreeing.
 
 ### Added
+- `tools/reference-vars.yaml`, the variables the converted snapshots in this
+  repository are built with, and the `--sagan-yaml` flag now passed by
+  `tools/refresh_converted_rules.py` and by the CI conversion gates. The rules
+  reference variables that live in the operator's `sagan.yaml` rather than in
+  the rule set, and 30 of them were refused for want of a value nobody disagrees
+  about: RFC 1918 space, the card issuer prefixes, Microsoft's PSExec hashes,
+  and the engine's own default working week. Under `vector-enriched` the
+  published snapshot goes from 9434 to 9464 rules, 94.1% to 94.4%.
+  `$HOME_COUNTRY` is deliberately left out, which is the point of the file: the
+  engine ships `US,CA` as its sample and 135 rules use it to decide what counts
+  as abroad, so publishing a rule set built with it would state one site's
+  answer as everyone's. Those rules stay refused, and the file's header carries
+  the command that resolves them from a real install.
+- The conversion report names the variables the run was given, so two reports of
+  the same corpus with different rates can be told apart.
 - A detector for a JSON key carrying an array marker, `[]`. `src/parsers/json.c`
   builds each stored path with `snprintf("%s.%s")` and compares it with
   `strcmp`, so the brackets are part of the key name: measured, `.data.items[]`

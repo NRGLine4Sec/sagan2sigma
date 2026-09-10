@@ -52,7 +52,12 @@ def _pct(part: int, total: int) -> str:
     return f"{100.0 * part / total:.1f}%" if total else "n/a"
 
 
-def _summary(result: ConversionResult, profile: str, case_policy: str) -> list[str]:
+def _summary(
+    result: ConversionResult,
+    profile: str,
+    case_policy: str,
+    variables: str = "none",
+) -> list[str]:
     total = result.total_rules
     lines = [
         "# Conversion report",
@@ -74,6 +79,10 @@ def _summary(result: ConversionResult, profile: str, case_policy: str) -> list[s
         f"| pySigma validation issues | {len(result.validation_issues)} |",
         f"| Output profile | `{profile}` |",
         f"| Case policy | `{case_policy}` |",
+        # Which sagan.yaml the run was given, because a rule referencing a
+        # variable is refused without one and converted with it: a reader
+        # comparing two reports has to be able to see that difference.
+        f"| Sagan variables | {variables} |",
         "",
     ]
     return lines
@@ -331,10 +340,15 @@ def _upstream_defects(result: ConversionResult) -> list[str]:
     return lines
 
 
-def render(result: ConversionResult, profile: str = "?", case_policy: str = "?") -> str:
+def render(
+    result: ConversionResult,
+    profile: str = "?",
+    case_policy: str = "?",
+    variables: str = "none",
+) -> str:
     """Render the full Markdown report."""
     sections: list[str] = []
-    sections += _summary(result, profile, case_policy)
+    sections += _summary(result, profile, case_policy, variables)
     sections += _by_category(result)
     if result.refused:
         sections += _by_refusal_code(result)

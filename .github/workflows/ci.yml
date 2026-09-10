@@ -209,6 +209,7 @@ jobs:
         run: |
           sagan2sigma /tmp/sagan-rules \
             --output /tmp/converted \
+            --sagan-yaml tools/reference-vars.yaml \
             --min-rate 78 \
             --fail-on-validation
       - name: The enriched profile must recover the positional correlations
@@ -216,6 +217,7 @@ jobs:
           sagan2sigma /tmp/sagan-rules \
             --output /tmp/converted-enriched \
             --profile vector-enriched \
+            --sagan-yaml tools/reference-vars.yaml \
             --min-rate 81 \
             --fail-on-validation
       - uses: actions/upload-artifact@v4

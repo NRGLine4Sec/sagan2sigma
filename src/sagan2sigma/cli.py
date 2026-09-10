@@ -195,10 +195,19 @@ def main(argv: list[str] | None = None) -> int:
 
     result = converter.convert_paths(list(args.rules))
 
+    # Named in the report so that two runs of the same corpus with different
+    # conversion rates can be told apart at a glance: a rule referencing a
+    # variable is refused without a sagan.yaml and converted with one.
+    supplied = (
+        f"{len(config.variables)} from `{args.sagan_yaml}`"
+        if config.variables
+        else "none supplied"
+    )
+
     args.output.mkdir(parents=True, exist_ok=True)
     files_written = _write_rules(result, args.output, args.split)
     (args.output / "CONVERSION-REPORT.md").write_text(
-        markdown.render(result, context.profile.name, args.case_policy),
+        markdown.render(result, context.profile.name, args.case_policy, supplied),
         encoding="utf-8",
     )
     (args.output / "conversion-report.json").write_text(

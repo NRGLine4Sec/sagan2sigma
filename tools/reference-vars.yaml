@@ -1,0 +1,58 @@
+%YAML 1.1
+---
+# Variables used to build the converted snapshots in this repository.
+#
+# The rules in `quadrantsec/sagan-rules` reference variables that live in the
+# operator's `sagan.yaml`, not in the rule set. Without them a rule such as
+# `meta_content:"%sagan%",$RFC1918` cannot be converted: the values it searches
+# for are not in the file being read, and guessing them would emit a rule that
+# detects something nobody asked for.
+#
+# What is here, and what is deliberately not
+# ------------------------------------------
+# Only variables whose value is a property of the world rather than a property
+# of a site, copied verbatim from `etc/sagan.yaml` in `quadrantsec/sagan@3b9b0fa`.
+# RFC1918 is what RFC 1918 says. The card prefixes are the issuers'. The PSExec
+# hashes are Microsoft's.
+#
+# `SAGAN_HOURS` and `SAGAN_DAYS` are the exception and are included knowingly:
+# they are the engine's own defaults for a working week, 07:00 to 18:00 Monday
+# to Friday, and 26 rules use them to decide what counts as out of hours. A site
+# that works other hours has to pass its own configuration. The window is
+# visible in each converted rule rather than hidden, so a reader can see which
+# one was assumed.
+#
+# `$HOME_COUNTRY` is **not** here, and that is the point of the file. The engine
+# ships `"US,CA"` as its sample value, and 135 rules use it to decide whether a
+# sign-in came from outside the organisation. Baking a country into a published
+# rule set would make those rules wrong everywhere except one continent, so they
+# stay refused and the conversion report says how to resolve them:
+#
+#     sagan2sigma <rules> --output <dir> --profile vector-enriched \
+#         --sagan-yaml /usr/local/etc/sagan.yaml
+#
+# pointing at the configuration of the Sagan the rules are running under. That
+# resolves every variable at once, this file included, and is what an operator
+# should do rather than reuse this one.
+#
+# `$WINDOWS_DOMAINS` is left out for the same reason: the sample value names
+# example domains, and no corpus rule refused today depends on it.
+
+vars:
+
+  aetas-groups:
+
+    SAGAN_HOURS: "0700-1800"
+    SAGAN_DAYS: "12345"
+
+  misc-groups:
+
+    CREDIT_CARD_PREFIXES: "4,34,37,300,301,302,303,304,305,2014,2149,309,36,38,39,54,55,6011,6221,6222, 6223,6224,6225,6226,\
+                           6227,6228,6229,644,645,646,647,648,649,65,636,637,638,639,22,23,24,25,26,27,51,52,53,53,55"
+
+    RFC1918: "10.,192.168.,172.16.,172.17.,172.18.,172.19.,172.20.,172.21.,172.22.,172.23.,172.24.,172.25.,172.26.,172.27.,\
+               172.28.,172.29.,172.30.,172.31."
+
+    PSEXEC_MD5: "CD23B7C9E0EDEF184930BC8E0CA2264F0608BCB3, 9A46E577206D306D9D2B2AB2F72689E4F5F38FB1,\
+                 2EDEEFB431663F20A36A63C853108E083F4DA895,B5C62D79EDA4F7E4B60A9CAA5736A3FDC2F1B27E,\
+                 A7F7A0F74C8B48F1699858B3B6C11EDA"

@@ -31,6 +31,9 @@ import subprocess
 from datetime import date
 from pathlib import Path
 
+#: Variables the converted snapshots are built with, next to this script.
+REFERENCE_VARS = Path(__file__).resolve().parent / "reference-vars.yaml"
+
 #: Sentinel a bootstrap row carries until the tooling fills in the real commits.
 PENDING = "pending"
 
@@ -88,6 +91,12 @@ def convert(
     command = ["sagan2sigma", str(sagan_rules), "-o", str(output)]
     if profile is not None:
         command += ["--profile", profile]
+    # The rules reference variables that live in the operator's sagan.yaml, not
+    # in the rule set. Without one, 30 rules are refused for a value nobody
+    # disagrees about, RFC 1918 space among them. reference-vars.yaml carries
+    # those and deliberately leaves $HOME_COUNTRY out: see its header.
+    if REFERENCE_VARS.is_file():
+        command += ["--sagan-yaml", str(REFERENCE_VARS)]
     subprocess.run(command, check=True, capture_output=True, text=True)
     report = json.loads((output / "conversion-report.json").read_text("utf-8"))
     summary = report["summary"]
