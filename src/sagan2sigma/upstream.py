@@ -10,13 +10,13 @@ against a running Sagan would find the two agreeing perfectly, both silent, and
 conclude the conversion was sound.
 
 Counted against `quadrantsec/sagan-rules` at `cab835c`, where ten of the fixes
-this module found have been merged: 24 rules fall into the silent category
-below, one asserts what it means to forbid, and two fire while missing the
-first of the values they list. The exclusion that could never exclude anything
-was the tenth merge and is gone. Against `c6fddfd`, the tree this project
-measured before any of them landed, the silent category held 779, which is what
-a ruleset looks like when nobody has been running it through the engine it was
-written for.
+this module found have been merged: 12 rules fall into the silent category
+below, 12 run a pattern that is not the one written, one asserts what it means
+to forbid, and two fire while missing the first of the values they list. The
+exclusion that could never exclude anything was the tenth merge and is gone.
+Against `c6fddfd`, the tree this project measured before any of them landed,
+the silent category held 768, which is what a ruleset looks like when nobody
+has been running it through the engine it was written for.
 
 Each detector below corresponds to an engine behaviour established by running a
 locally built Sagan, not by reading it. The comments name what was measured, so
@@ -43,6 +43,7 @@ from enum import Enum
 
 from .sagan.hexdec import decode_hex
 from .sagan.model import SaganRule
+from .sagan.pcre import engine_pattern, written_pattern
 
 
 class DefectCode(str, Enum):
@@ -62,6 +63,11 @@ class DefectCode(str, Enum):
     #: The rule loads and fires, but one of the values it lists can never
     #: match, so it detects less than it names.
     PARTIAL_MATCH = "U_PARTIAL_MATCH"
+    #: The rule loads, and the pattern the engine compiles is not the pattern
+    #: written. Whether that leaves the rule broader, narrower or silent
+    #: depends on the pattern, so this says what the engine runs and stops
+    #: there.
+    ALTERED_PATTERN = "U_ALTERED_PATTERN"
 
 
 @dataclass(frozen=True, slots=True)
@@ -102,11 +108,6 @@ _TRACK = re.compile(r"track\s+([a-z_&]+)", re.I)
 _JSON_KEY = re.compile(r'json_(?:meta_)?content\s*:\s*!?\s*"\.([A-Za-z0-9_.\[\]@-]+)"')
 _JSON_PCRE_KEY = re.compile(r'json_pcre\s*:\s*!?\s*"\.([A-Za-z0-9_.\[\]@-]+)"')
 _QUOTED = re.compile(r'"([^"]*)"')
-
-#: `pcre: "/pattern/flags"`, quoted or not, negated or not. The pattern is
-#: everything between the outer slashes, quote characters included, which is
-#: what makes the defect above visible.
-_PCRE_PATTERN = re.compile(r'^!?\s*"?/(?P<body>.*)/(?P<flags>[a-zA-Z]*)"?$', re.S)
 
 #: The key a JSON option names, negation included, before its value list.
 _JSON_ARGUMENT_KEY = re.compile(
@@ -383,25 +384,47 @@ def inspect(rule: SaganRule) -> list[UpstreamDefect]:
                 )
             )
 
-    # --- the rule loads and can never match ----------------------------------
+    # --- the engine compiles a different pattern ------------------------------
     for option in rule.iter_options("pcre"):
-        match = _PCRE_PATTERN.match((option.value or "").strip())
-        if match is None or '"' not in match.group("body"):
+        as_written = written_pattern(option.value or "")
+        if as_written is None:
             continue
-        # `Between_Quotes` ends the argument at the quote, whatever precedes
-        # it, so the pattern the engine keeps is not the one that was written.
-        # Measured: `pcre:"/id=\"[0-9]{3}/"` matches neither `id="123`, the
-        # text as written, nor `id=`, the head the truncation would leave,
-        # while the same pattern with an apostrophe instead of a quote matches
-        # normally. So the rule loads and can never fire.
+        compiled = engine_pattern(option.value or "")
+        if compiled is None:
+            # Removing the quotes left the closing delimiter escaped, so the
+            # engine reports `Missing last '/' in pcre` and refuses the file.
+            found.append(
+                UpstreamDefect(
+                    rule.sid,
+                    rule.source_file,
+                    DefectCode.WILL_NOT_LOAD,
+                    f"the pcre pattern loses its closing delimiter once the "
+                    f"engine removes the quote characters: {as_written[0][:60]!r}",
+                )
+            )
+            break
+        if compiled == as_written:
+            continue
+        # `Between_Quotes` copies the value without its quote characters and
+        # from the first one onward, so the pattern the engine compiles is not
+        # the one on the line. What that costs depends on the pattern and is
+        # not decided here: measured on these very rules, six still fire on
+        # the text they target and six do not.
+        removed = (option.value or "").count('"') - 2
+        lost_head = not (option.value or "").strip().startswith(('"', "!"))
         found.append(
             UpstreamDefect(
                 rule.sid,
                 rule.source_file,
-                DefectCode.CANNOT_MATCH,
-                f"the pcre pattern holds a double quote, which ends the "
-                f"argument before the pattern does: "
-                f"{match.group('body')[:60]!r}",
+                DefectCode.ALTERED_PATTERN,
+                f"the engine removes the {removed} quote character(s) inside "
+                f"the pcre option and compiles /{compiled[0]}/{compiled[1]}"
+                + (
+                    "; the option does not open with a quote either, so the "
+                    "pattern loses its own first character as well"
+                    if lost_head
+                    else ""
+                ),
             )
         )
         break

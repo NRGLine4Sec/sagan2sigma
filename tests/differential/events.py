@@ -53,6 +53,7 @@ from sagan2sigma.mapping.context import Profile, load_profile
 from sagan2sigma.mapping.json_ops import truncate_like_sagan
 from sagan2sigma.sagan.hexdec import decode_hex
 from sagan2sigma.sagan.model import SaganRule
+from sagan2sigma.sagan.pcre import engine_pattern
 
 from .pcre_sample import sample_for
 from .sagan_reference import SaganEvent, expand_values, json_map
@@ -153,14 +154,14 @@ def positive_literals(
     return literals
 
 
-#: `pcre: "/pattern/flags"`, quoted or not, negated or not.
-_PCRE = re.compile(
-    r'^\s*(?P<neg>!?)\s*"?/(?P<body>.*)/(?P<flags>[a-zA-Z]*)"?\s*$', re.S
-)
-
-
 def pcre_literals(rule: SaganRule) -> list[str]:
     """Text satisfying each positive `pcre`, where a sample can be produced.
+
+    The pattern sampled is the one `sagan/pcre.py` says the engine compiles,
+    not the one on the line. For twelve corpus rules the two differ, the engine
+    removing the quote characters, and sampling the written pattern built text
+    for a condition nobody evaluates: probes carrying a double quote for a
+    pattern that no longer holds one.
 
     Placed ahead of the rule's own literals by `probes`, so a pattern anchored
     at the start of the message has somewhere to match. A pattern the sampler
@@ -171,13 +172,15 @@ def pcre_literals(rule: SaganRule) -> list[str]:
     for option in rule.iter_options("pcre"):
         if option.value is None:
             continue
-        match = _PCRE.match(option.value.strip())
         # A negated pcre is read by the engine as a positive one, which is
         # `U_INVERTED_CONDITION` and excluded well before a probe is built, so
         # only the positive form is sampled here.
-        if match is None or match.group("neg") == "!":
+        if option.value.strip().startswith("!"):
             continue
-        text = sample_for(match.group("body"), match.group("flags"))
+        compiled = engine_pattern(option.value)
+        if compiled is None:
+            continue
+        text = sample_for(*compiled)
         if text:
             out.append(text)
     return out

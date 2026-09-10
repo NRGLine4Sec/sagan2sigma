@@ -60,6 +60,7 @@ class DegradationCode(str, Enum):
     TRACK_KEY_INERT = "D_TRACK_KEY_INERT"
     JSON_PCRE_ABSENT_KEY = "D_JSON_PCRE_ABSENT_KEY"
     VALUE_TRUNCATED = "D_VALUE_TRUNCATED"
+    PCRE_QUOTE_REMOVED = "D_PCRE_QUOTE_REMOVED"
     JSON_KEY_RESTORED = "D_JSON_KEY_RESTORED"
     GROUPBY_SHAPE_SPLIT = "D_GROUPBY_SHAPE_SPLIT"
 
@@ -306,6 +307,21 @@ DEGRADATION_HELP: dict[DegradationCode, str] = {
         "broader than the rule reads. Measured against a locally built engine: "
         'json_content:".K","c:\\temp" matches an event whose key holds '
         "exactly 'c' and not one holding 'c:\\temp'."
+    ),
+    DegradationCode.PCRE_QUOTE_REMOVED: (
+        "Sagan removes every quote character from a pcre option before it "
+        "compiles the pattern. Between_Quotes copies the value from its first "
+        "quote onward and skips each quote it meets, rather than stopping at "
+        "the second one, so a quote inside the pattern is simply deleted and "
+        "any backslash before it is left attached to the next character. The "
+        "converted rule reproduces the pattern the engine compiles, not the "
+        "one on the line, which is the only way the two can agree. Measured "
+        "against a locally built engine, an option whose pattern reads "
+        "id=<quote>[0-9]{3} compiles as id=\\[0-9]{3} and fires on the literal "
+        "text id=[0-9]]], while the same pattern written with \\x22 in place of "
+        "the quote survives both steps and matches what it says. A value that "
+        "does not open with a quote loses its own first character as well, "
+        "procdump(64)*\\.exe compiling as rocdump(64)*\\.exe."
     ),
     DegradationCode.JSON_PCRE_ABSENT_KEY: (
         "Sagan treats a key the event does not carry as a match for json_pcre: "

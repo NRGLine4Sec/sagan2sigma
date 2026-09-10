@@ -14,8 +14,9 @@ from __future__ import annotations
 
 import re
 
-from ..errors import Refusal, RefusalCode
+from ..errors import Degradation, DegradationCode, Refusal, RefusalCode
 from ..sagan.model import SaganRule
+from ..sagan.pcre import engine_pattern, written_pattern
 from .context import Context
 from .fields import FieldResolver
 from .ir import Predicate, RuleDraft
@@ -409,6 +410,33 @@ def pcre_modifiers(flags: str, keyword: str) -> tuple[str, ...]:
     return tuple(modifiers)
 
 
+def _as_the_engine_reads_it(value: str, draft: RuleDraft) -> str:
+    """The option value rewritten around the pattern Sagan actually compiles.
+
+    Converting the pattern on the line would emit a rule that tests something
+    the engine never tests. `sagan/pcre.py` says what the two steps of the
+    engine leave, and where that differs from the written pattern the loss is
+    declared rather than applied in silence.
+    """
+    run = engine_pattern(value)
+    written = written_pattern(value)
+    if run is None or written is None or run == written:
+        return value
+    negated = value.strip().startswith("!")
+    draft.degrade(
+        Degradation(
+            code=DegradationCode.PCRE_QUOTE_REMOVED,
+            detail=(
+                f"Sagan compiles /{run[0]}/{run[1]} for this option, not the "
+                f"/{written[0]}/{written[1]} on the line: it removes the quote "
+                f"characters and keeps whatever backslash preceded them. The "
+                f"converted rule uses the pattern the engine runs"
+            ),
+        )
+    )
+    return f'{"!" if negated else ""}"/{run[0]}/{run[1]}"'
+
+
 @handler("pcre")
 def handle_pcre(
     rule: SaganRule,
@@ -432,7 +460,8 @@ def handle_pcre(
     for option in rule.iter_options("pcre"):
         if option.value is None:
             continue
-        negated, body, modifiers = parse_pcre(option.value)
+        value = _as_the_engine_reads_it(option.value, draft)
+        negated, body, modifiers = parse_pcre(value)
         draft.add(
             Predicate(
                 field=resolver.message,

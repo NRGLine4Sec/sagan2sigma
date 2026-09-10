@@ -342,18 +342,29 @@ class TestQuotedListItems:
 
 
 class TestQuoteInsideAPcrePattern:
-    r"""`Between_Quotes` ends the argument at the quote, wherever it sits.
+    r"""The engine compiles a different pattern, which is not the same as none.
 
-    Measured on the engine: `pcre:"/id=\"[0-9]{3}/"` matches neither
-    `id="123`, the text as written, nor `id=`, the head a truncation would
-    leave, while the same pattern with an apostrophe matches normally. Twelve
-    corpus rules carry one, mostly Windows registry paths and PowerShell
-    argument matchers.
+    An earlier version of this detector called such a rule dead. Six of the
+    twelve corpus rules that carry a quote fire on the text they target, which
+    the engine said when it was asked one rule at a time, so what is reported
+    now is the alteration and not a consequence. `tests/unit/test_pcre_option`
+    holds the measured rows for the pattern itself.
     """
 
-    def test_a_quote_kills_the_pattern(self) -> None:
+    def test_a_quote_alters_the_pattern(self) -> None:
         raw = 'msg:"t"; content:"x"; pcre:"/id=\\"[0-9]{3}/"; sid:1;'
-        assert DefectCode.CANNOT_MATCH in codes(raw)
+        assert DefectCode.ALTERED_PATTERN in codes(raw)
+
+    def test_the_detail_names_the_pattern_the_engine_runs(self) -> None:
+        raw = 'msg:"t"; content:"x"; pcre:"/id=\\"[0-9]{3}/"; sid:1;'
+        defect = next(
+            d for d in inspect(make_rule(raw)) if d.code is DefectCode.ALTERED_PATTERN
+        )
+        assert r"/id=\[0-9]{3}/" in defect.detail
+
+    def test_an_escaped_closing_delimiter_stops_the_load(self) -> None:
+        raw = 'msg:"t"; content:"x"; pcre:"/a\\"/i"; sid:1;'
+        assert DefectCode.WILL_NOT_LOAD in codes(raw)
 
     def test_an_apostrophe_is_fine(self) -> None:
         raw = 'msg:"t"; content:"x"; pcre:"/id=\'[0-9]{3}/"; sid:1;'
@@ -361,6 +372,11 @@ class TestQuoteInsideAPcrePattern:
 
     def test_a_pattern_without_quotes_is_fine(self) -> None:
         raw = 'msg:"t"; content:"x"; pcre:"/id=[0-9]{3}/"; sid:1;'
+        assert codes(raw) == set()
+
+    def test_the_x22_spelling_is_not_flagged(self) -> None:
+        """The fix proposed upstream must not be reported as a defect."""
+        raw = 'msg:"t"; content:"x"; pcre:"/id=\\x22[0-9]{3}/"; sid:1;'
         assert codes(raw) == set()
 
 

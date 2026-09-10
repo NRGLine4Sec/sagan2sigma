@@ -7,6 +7,16 @@ All notable changes to this project are documented here. The format follows
 ## [Unreleased]
 
 ### Fixed
+- **Correction.** The `pcre` detector added earlier in this cycle reported all
+  twelve rules as `U_CANNOT_MATCH`, on the strength of one synthetic rule that
+  did not fire. Asked about the twelve real rules one at a time, the engine
+  fired six of them on the text they target, so the claim was wrong for half
+  the set and the rules were being excluded from the engine differential as
+  dead. What the engine does is now modelled in `sagan/pcre.py` from the two
+  functions that decide it, checked against the engine row by row, and reported
+  as an alteration rather than a death. The converter emits the pattern the
+  engine compiles, so the twelve rules are judged by the differential again
+  instead of being set aside.
 - `sagan-parse-ip.vrl` and `username-extraction.vrl` read the raw body from
   `sagan_raw` rather than `message`, so a JSON-bodied event keeps its parsed
   addresses and username. Dropping `.message` from a JSON event, which the
@@ -40,8 +50,6 @@ All notable changes to this project are documented here. The format follows
   that the engine matches. The corpus differential also excludes rules that are
   dead upstream, the same three defect codes the engine differential excludes,
   which is where a rule naming a path the engine never stores now belongs.
-
-### Fixed
 - The differential's reference evaluator now cuts a JSON option value at its
   first `:` or `,`, as the engine does and as the converter already did, and
   looks a JSON key up exactly as the rule spells it, brackets included. Both
@@ -65,23 +73,22 @@ All notable changes to this project are documented here. The format follows
   negated and so needs the key present to fire at all. Reported as
   `U_CANNOT_MATCH`; upstream can fix it by dropping the two characters, the rule
   already carrying the `json_contains` that matches the array.
-- A detector for a `pcre` pattern holding a double quote. `Between_Quotes` ends
-  the argument at that character, so the pattern the engine keeps is not the one
-  written. Measured: `pcre:"/id=\"[0-9]{3}/"` matches neither `id="123`, the
-  text as written, nor `id=`, the head a truncation would leave, while the same
-  pattern with an apostrophe matches normally, so the rule loads and can never
-  fire. Twelve corpus rules carry one, mostly Windows registry paths and
-  PowerShell argument matchers. Reported as `U_CANNOT_MATCH`.
-- The differential's probe generator now satisfies a rule's `pcre` patterns.
-  `tests/differential/pcre_sample.py` produces one string a pattern accepts and
-  verifies it against the pattern before returning it, refusing lookaround and
-  backreferences rather than guessing at them: 285 of the 344 `pcre` options in
-  the corpus, covering 274 of the 328 rules that carry one. A rule whose
-  discriminating condition is a `pcre` used to leave both evaluators silent, so
-  the run counted it as judged while deciding nothing about it, the largest
-  silence bucket by far. Measured on `sagan-rules` at `deb40a8`, rules where
-  both sides fire on the base probe: 7773 to 7992 of 8039 under
-  `vector-enriched`, 7379 to 7588 of 7603 under `rsigma-syslog`.
+- `D_PCRE_QUOTE_REMOVED`, for a converted rule carrying the pattern the engine
+  compiles rather than the pattern the line reads. Same reasoning as
+  `D_VALUE_TRUNCATED`: reproducing what the engine does is what lets the two
+  agree, and the loss is declared instead of being applied in silence.
+- A detector for a `pcre` option whose pattern the engine alters, reported as
+  the new `U_ALTERED_PATTERN`. `Between_Quotes` in `src/util.c` copies the
+  option value from its first quote onward and skips each quote it meets rather
+  than stopping at the second, so every quote inside the pattern is deleted and
+  any backslash before it attaches to the next character; `rules.c` then reads
+  the pattern from index 1, so a value that does not open with a quote loses its
+  own first character too. Twelve corpus rules are affected and the twelve
+  patterns the engine compiles are not the ones on the lines. Measured one rule
+  and one event at a time: `[\"']?0[\"']?` compiles as `[\']?0[\']?` and fires
+  on `-Value 0`, sid 5014601's `"procdump(64)*\.exe"` compiles as
+  `rocdump(64)*\.exe` and fires on `procdump.exe`, and `\x22` in place of the
+  quote survives both steps, which is the fix to propose upstream.
 - A detector for a negated `content` that is part of a required one. `content`
   conditions are ANDed and the negation is a plain substring test, so a message
   holding `DENY_ACL_MATCHED` holds `DENY` with it and the rule cannot fire on
