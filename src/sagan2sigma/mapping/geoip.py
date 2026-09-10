@@ -77,6 +77,22 @@ COUNTRY_CODE = re.compile(
     r"(?P<test>is|isnot)\s+(?P<codes>.+?)\s*$"
 )
 
+#: How a bound address key names the field carrying its country.
+#:
+#: `json_map: "src_ip", ".ClientIP"` makes the engine resolve the country of
+#: that key's value, so the converted rule has to test the country of that key
+#: and not of whatever address the pipeline found first in the text. The name is
+#: derived rather than configured so that the emitted Vector configuration and
+#: the emitted rules cannot disagree about it: `emit.vector.country_lookups`
+#: builds the lookup from the same function.
+COUNTRY_SUFFIX = "_country"
+
+
+def country_field_for(key: str) -> str:
+    """The field holding the country of the address in ``key``."""
+    return f"{key}{COUNTRY_SUFFIX}"
+
+
 #: Tracking direction onto the internal address value and its country field.
 _DIRECTION = {
     "by_src": ("src_ip", "src_country"),
@@ -155,13 +171,36 @@ def handle_country_code(
                 keywords=("country_code",),
             )
 
+        # `json_map` wins over the text, so it decides which address the
+        # country is read from. Measured: with the key absent the rule does not
+        # fire even when the message carries an address, and with the key set it
+        # follows the key against a different address in the text.
+        bound = resolver.mapping.get(internal)
         position = resolver.positions.get(internal)
-        country_field = (
-            context.profile.positional_field(country_internal, position)
-            if position is not None
-            else None
-        )
-        ip_field = resolver.positional(internal)
+        country_field: str | None = None
+        ip_field: str | None = None
+
+        if bound and context.profile.positional:
+            if "[]" in bound:
+                raise Refusal(
+                    code=RefusalCode.EXTERNAL_ENRICHMENT,
+                    detail=(
+                        f"country_code reads {internal} from {bound!r}, whose "
+                        f"array marker the engine stores as part of the key "
+                        f"name, so no document carries it and no country can be "
+                        f"resolved for it"
+                    ),
+                    keywords=("country_code",),
+                )
+            country_field = country_field_for(bound)
+            ip_field = bound
+            # The pipeline resolves a country for the addresses it parses out
+            # of the text. This key is not one of them, so the emitted
+            # configuration has to look it up as well.
+            draft.geoip_keys.add(bound)
+        elif position is not None:
+            country_field = context.profile.positional_field(country_internal, position)
+            ip_field = resolver.positional(internal)
 
         if country_field is None or ip_field is None:
             raise Refusal(
@@ -171,7 +210,7 @@ def handle_country_code(
                     "vector-enriched profile supplies. Convert with --profile "
                     "vector-enriched and deploy the bundled GeoIP transform; the "
                     f"tracked address must be extracted ({internal} via "
-                    "parse_src_ip / parse_dst_ip)"
+                    "parse_src_ip / parse_dst_ip or a json_map binding)"
                 ),
                 keywords=("country_code",),
             )
@@ -211,26 +250,6 @@ def handle_country_code(
                     values=codes,
                     negated=True,
                     origin="country_code",
-                )
-            )
-
-        if resolver.mapping.get(internal):
-            # `json_map: "src_ip", ".sourceIPAddress"` makes the engine read the
-            # country of that value and nothing else. Measured: with the key
-            # absent the rule does not fire even when the message carries an
-            # address, and with the key set the rule follows it against a
-            # different address in the text. The pipeline has no country for a
-            # bound field, only for the addresses it parses, so the converted
-            # rule tests a different address whenever the two are not the same.
-            draft.degrade(
-                Degradation(
-                    code=DegradationCode.GEOIP_ADDRESS_NOT_THE_BOUND_ONE,
-                    detail=(
-                        f"{internal} is bound to "
-                        f"{resolver.mapping[internal]!r} by json_map and Sagan "
-                        f"looks the country up for that value; "
-                        f"{country_field} describes the parsed address instead"
-                    ),
                 )
             )
 

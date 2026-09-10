@@ -115,22 +115,22 @@ class TestRefusals:
             run(handle_country_code, rule, draft, context)
         assert excinfo.value.code is RefusalCode.EXTERNAL_ENRICHMENT
 
-    def test_json_map_address_is_alive_but_needs_a_position(
+    def test_a_json_map_address_needs_no_position(
         self, draft: RuleDraft, enriched_context: Context
     ) -> None:
-        """json_map binds src_ip, so the address can resolve on JSON input.
+        """json_map binds the address, and that is the one the engine reads.
 
-        The rule is not dead, but with no parse_src_ip there is still no
-        positional country field to match, so it is refused for the enrichment,
-        not as a rule that never fires.
+        This used to be refused for want of a positional country field. The
+        converted rule now tests the country of the bound key, which is what
+        the engine resolves, and the emitted pipeline carries the lookup.
         """
         rule = make_rule(
             'msg:"t"; json_map:"src_ip",".ClientIP"; content:"x"; '
             "country_code: track by_src, isnot US; sid:1;"
         )
-        with pytest.raises(Refusal) as excinfo:
-            run(handle_country_code, rule, draft, enriched_context)
-        assert excinfo.value.code is RefusalCode.EXTERNAL_ENRICHMENT
+        run(handle_country_code, rule, draft, enriched_context)
+        assert {p.field for p in draft.predicates} == {"ClientIP_country"}
+        assert draft.geoip_keys == {"ClientIP"}
 
     def test_normalize_address_is_alive_but_needs_a_position(
         self, draft: RuleDraft, enriched_context: Context

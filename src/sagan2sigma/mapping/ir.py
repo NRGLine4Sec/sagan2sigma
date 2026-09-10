@@ -102,6 +102,10 @@ class RuleDraft:
     tests_bits: set[str] = field(default_factory=set)
     #: Group-by key required by a bit test.
     bit_group_by: tuple[str, ...] = ()
+    #: JSON keys whose country a `country_code` test reads. The pipeline has to
+    #: look each one up, so the emitted configuration is built from them: see
+    #: `emit.vector.country_lookups`.
+    geoip_keys: set[str] = field(default_factory=set)
     level: str = "medium"
     #: Set by ``priority``, which overrides ``classtype`` regardless of order.
     level_locked: bool = False

@@ -616,8 +616,14 @@ def probes(
     rule: SaganRule,
     variables: dict[str, list[str]] | None = None,
     context: Sequence[str] = (),
+    bindings: dict[str, str] | None = None,
 ) -> list[Probe]:
     """Battery of events probing one rule's boundaries.
+
+    ``bindings`` sets JSON keys on every probe, for a condition that depends on
+    the value of a key the rule names rather than on text: a rule reading the
+    country of the address in ``.ClientIP`` needs that key to hold an address
+    the database can place, and text elsewhere in the document will not do.
 
     ``context`` is text every probe carries, ahead of the rule's own literals,
     for a condition the rule depends on without naming it. A rule reading a
@@ -632,7 +638,7 @@ def probes(
     given = [*context, *pcre_literals(rule)]
 
     def event(literals: list[str]) -> SaganEvent:
-        return build_event(rule, [*given, *literals])
+        return build_event(rule, [*given, *literals], overrides=bindings)
 
     out = [Probe("base", event(positives))]
 
@@ -661,7 +667,11 @@ def probes(
         out.append(
             Probe(
                 f"json_negation_{index}",
-                build_event(rule, [*given, *positives], overrides={key: value}),
+                build_event(
+                    rule,
+                    [*given, *positives],
+                    overrides={**(bindings or {}), key: value},
+                ),
             )
         )
 

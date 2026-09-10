@@ -7,6 +7,22 @@ All notable changes to this project are documented here. The format follows
 ## [Unreleased]
 
 ### Fixed
+- A `country_code` rule whose address is bound by `json_map` now tests the
+  country of that key instead of being refused. The engine reads the bound key
+  and looks up that value alone, measured in both directions, while the pipeline
+  resolves the addresses it parses out of the message text: on an Entra sign-in
+  document carrying an earlier address the parsed one was `5.5.5.5` and the
+  bound one `203.0.113.9`, two different countries, so a rule converted against
+  the parsed address would have answered about the wrong machine. The emitted
+  Vector configuration now carries a generated lookup, built from the keys the
+  converted corpus actually binds, ten of them today, and the converted rule
+  tests `<key>_country`. Both names come from one function so they cannot drift.
+  Against `sagan-rules` at `cab835c` with a `sagan.yaml` supplied, the enriched
+  profile goes from 9599 to 9738 rules, 95.8% to 97.1%; without one those rules
+  still need `$HOME_COUNTRY` and stay refused. `D_GEOIP_ADDRESS_NOT_THE_BOUND_ONE`
+  is gone with the divergence it declared, and a key carrying `[]` is refused
+  with its own reason: the engine stores the brackets as part of the key name,
+  so no document carries it.
 - **Correction.** The `pcre` detector added earlier in this cycle reported all
   twelve rules as `U_CANNOT_MATCH`, on the strength of one synthetic rule that
   did not fire. Asked about the twelve real rules one at a time, the engine

@@ -76,6 +76,9 @@ class ConvertedRule:
     #: emitted output but not corpus rules, so they must not inflate the
     #: conversion rate.
     is_synthetic: bool = False
+    #: JSON keys whose country this rule reads, so the emitted pipeline can
+    #: look them up. Empty for every rule that names no bound address.
+    geoip_keys: frozenset[str] = frozenset()
 
 
 @dataclass(slots=True)
@@ -90,6 +93,11 @@ class ConversionResult:
     files_processed: int = 0
     unknown_keywords: dict[str, int] = field(default_factory=dict)
     upstream_defects: list[UpstreamDefect] = field(default_factory=list)
+
+    @property
+    def geoip_keys(self) -> set[str]:
+        """Every JSON key a converted rule reads a country for."""
+        return {key for rule in self.converted for key in rule.geoip_keys}
 
     @property
     def documents(self) -> list[dict[str, Any]]:
@@ -395,6 +403,7 @@ class Converter:
                     category=entry.category,
                     documents=documents,
                     degradations=list(draft.degradations),
+                    geoip_keys=frozenset(draft.geoip_keys),
                 )
             )
 

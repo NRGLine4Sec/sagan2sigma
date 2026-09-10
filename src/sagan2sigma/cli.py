@@ -232,6 +232,11 @@ def main(argv: list[str] | None = None) -> int:
             denylist=DegradationCode.DENYLIST_ENRICHMENT in codes,
             zeek=DegradationCode.ZEEK_INTEL_ENRICHMENT in codes,
             bluedot=DegradationCode.BLUEDOT_SUBSTITUTION in codes,
+            # A rule reading the country of a key it binds needs that key looked
+            # up, which the shipped transforms do not do: they resolve the
+            # addresses parsed out of the text. The lookup is generated from the
+            # keys this corpus actually binds.
+            geoip_keys=result.geoip_keys,
         )
 
     print(
