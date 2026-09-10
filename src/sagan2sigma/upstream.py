@@ -9,13 +9,14 @@ inherits a rule that never fired, and someone comparing the converted output
 against a running Sagan would find the two agreeing perfectly, both silent, and
 conclude the conversion was sound.
 
-Counted against `quadrantsec/sagan-rules` at `deb40a8`, where six of the fixes
-this module found have been merged: 28 rules fall into the silent category
-below, one asserts what it means to forbid, one carries an exclusion that can
-never exclude anything, and two fire while missing the first of the values they
-list. Against `c6fddfd`, the tree this project measured before those merges,
-the silent category held 779, which is what a ruleset looks like when nobody
-has been running it through the engine it was written for.
+Counted against `quadrantsec/sagan-rules` at `cab835c`, where ten of the fixes
+this module found have been merged: 24 rules fall into the silent category
+below, one asserts what it means to forbid, and two fire while missing the
+first of the values they list. The exclusion that could never exclude anything
+was the tenth merge and is gone. Against `c6fddfd`, the tree this project
+measured before any of them landed, the silent category held 779, which is what
+a ruleset looks like when nobody has been running it through the engine it was
+written for.
 
 Each detector below corresponds to an engine behaviour established by running a
 locally built Sagan, not by reading it. The comments name what was measured, so
@@ -106,6 +107,11 @@ _QUOTED = re.compile(r'"([^"]*)"')
 #: everything between the outer slashes, quote characters included, which is
 #: what makes the defect above visible.
 _PCRE_PATTERN = re.compile(r'^!?\s*"?/(?P<body>.*)/(?P<flags>[a-zA-Z]*)"?$', re.S)
+
+#: The key a JSON option names, negation included, before its value list.
+_JSON_ARGUMENT_KEY = re.compile(
+    r'^\s*(?P<neg>!?)\s*"?\.?(?P<key>[A-Za-z0-9_.\[\]@-]+)"?\s*,', re.S
+)
 
 
 #: Options whose argument is a single quoted string. Anything after the closing
@@ -399,6 +405,41 @@ def inspect(rule: SaganRule) -> list[UpstreamDefect]:
             )
         )
         break
+
+    for keyword in ("json_content", "json_meta_content", "json_pcre"):
+        for option in rule.iter_options(keyword):
+            match = _JSON_ARGUMENT_KEY.match(option.value or "")
+            if match is None or "[]" not in match.group("key"):
+                continue
+            # `src/parsers/json.c` builds each stored path with
+            # `snprintf("%s.%s")` and compares it with strcmp, so the brackets
+            # are two characters of the key name and nothing more. Measured one
+            # condition at a time: `.data.items[]` fires only on a document
+            # whose key is literally `items[]`, never on `items` holding an
+            # array, with or without json_contains, while `.data.items` fires
+            # on the scalar and, under json_contains, on the serialised array.
+            # A producer emits the second shape, so the rule is dead either
+            # way: positive, the key is never found; negated, the engine still
+            # needs the key present to satisfy the condition.
+            negated = match.group("neg") == "!"
+            found.append(
+                UpstreamDefect(
+                    rule.sid,
+                    rule.source_file,
+                    DefectCode.CANNOT_MATCH,
+                    f"{keyword} names {'.' + match.group('key')!r}, and the "
+                    f"engine stores keys as written: the brackets are part of "
+                    f"the name, so no document a producer emits carries that "
+                    f"key and the "
+                    + (
+                        "negated condition, which needs the key present, is "
+                        "never satisfied"
+                        if negated
+                        else "condition is never satisfied"
+                    ),
+                )
+            )
+            break
 
     for option in rule.iter_options("meta_content"):
         if option.value is None or ":" not in option.value:

@@ -41,7 +41,30 @@ All notable changes to this project are documented here. The format follows
   dead upstream, the same three defect codes the engine differential excludes,
   which is where a rule naming a path the engine never stores now belongs.
 
+### Fixed
+- The differential's reference evaluator now cuts a JSON option value at its
+  first `:` or `,`, as the engine does and as the converter already did, and
+  looks a JSON key up exactly as the rule spells it, brackets included. Both
+  gaps were found by the corpus differential on the full corpus, which CI runs
+  and a local sample does not: sid 5017909 was reported as not firing while the
+  converted rule fired, and sid 5004770 the other way round. Measured on the
+  engine for each: an event carrying `contentclass` fires the first rule and one
+  carrying `contentclass:STS_Site` does not, and `.data.items[]` matches only a
+  document whose key is literally `items[]`. The cut is duplicated here rather
+  than imported from `mapping/json_ops.py`, since a differential whose two sides
+  share an implementation cannot report them disagreeing.
+
 ### Added
+- A detector for a JSON key carrying an array marker, `[]`. `src/parsers/json.c`
+  builds each stored path with `snprintf("%s.%s")` and compares it with
+  `strcmp`, so the brackets are part of the key name: measured, `.data.items[]`
+  fires only on a document whose key is literally `items[]`, never on `items`
+  holding an array, with or without `json_contains`, while `.data.items` fires
+  on the scalar and, under `json_contains`, on the serialised array. One corpus
+  rule is affected, sid 5004770 of `azure-eventhub-ad.rules`, whose condition is
+  negated and so needs the key present to fire at all. Reported as
+  `U_CANNOT_MATCH`; upstream can fix it by dropping the two characters, the rule
+  already carrying the `json_contains` that matches the array.
 - A detector for a `pcre` pattern holding a double quote. `Between_Quotes` ends
   the argument at that character, so the pattern the engine keeps is not the one
   written. Measured: `pcre:"/id=\"[0-9]{3}/"` matches neither `id="123`, the

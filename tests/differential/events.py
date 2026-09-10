@@ -219,6 +219,14 @@ def json_body(rule: SaganRule) -> dict[str, Any]:
         # probe from the rule text produced a document no producer emits and
         # made 11 rules disagree for a property of the probe.
         key = rule.key_restorations.get(key, key)
+        # The `[]` an array-typed key carries is dropped here and only here.
+        # The engine keeps it, `json.c` comparing the stored path with strcmp,
+        # so a rule naming `.properties.riskEventTypes[]` matches a document
+        # whose key is literally spelled that way and nothing else. Writing the
+        # bracketed key into the probe would make both sides fire on a document
+        # no producer emits; writing the plain one leaves them both silent,
+        # which is what the rule does against real events. `upstream.py`
+        # reports it rather than the probe hiding it.
         parts = key.replace("[]", "").split(".")
         cursor = body
         for part in parts[:-1]:

@@ -55,7 +55,7 @@ from .events import (
     to_rsigma_event,
     unplaceable,
 )
-from .sagan_reference import SaganEvaluator, is_supported
+from .sagan_reference import SaganEvaluator, SaganEvent, is_supported
 
 RSIGMA = shutil.which("rsigma")
 
@@ -197,6 +197,12 @@ HAND_WRITTEN = [
     'msg:"o"; program: cloudtrail; json_content:".eventName","createtrail"; json_nocase; sid:15;',
     'msg:"p"; program: cloudtrail; json_meta_content:".awsRegion",us-east-1,eu-west-1; sid:16;',
     'msg:"q"; program: cloudtrail; json_content:!".userIdentity.type","Root"; json_content:".eventName","X"; sid:17;',
+    # JSON values the engine cuts at their first colon, which both sides have
+    # to cut the same way. sid 5017909's shape: measured on the engine, an
+    # event carrying `contentclass` fires and one carrying
+    # `contentclass:STS_Site` does not.
+    'msg:"x"; program: sharepoint; json_meta_content:".SearchQueryText",contentclass:STS_Site,contentclass:STS_Web; sid:24;',
+    'msg:"y"; program: sharepoint; json_content:".Path","c:\\\\temp"; sid:25;',
     # Numeric JSON values, which must not carry a case modifier.
     'msg:"r"; program: azure; json_content:".resultType","0"; sid:18;',
     # event_id with no json_map binding: the engine searches ' <id>: ' in the
@@ -313,6 +319,32 @@ class TestRawTextOnJsonBody:
                 f"sid {rule.sid}: {unplaceable(rule, literals)} never reaches the "
                 "serialised document, so no probe can decide the rule"
             )
+
+
+class TestArrayMarkedJsonKey:
+    """`[]` in a JSON key is part of the name, not a marker.
+
+    Asserted here rather than as a differential fixture because both sides stay
+    silent on such a rule, and two silences agree without deciding anything.
+    What the engine does was measured one condition at a time: `.data.items[]`
+    fires only on a document whose key is literally `items[]`, never on `items`
+    holding an array, with or without json_contains.
+    """
+
+    RULE = 'alert any any any -> any any (msg:"z"; json_content:".data.items[]","alpha"; sid:26;)'
+
+    def evaluate(self, body: dict[str, object]) -> bool:
+        rule = parse_rule(self.RULE, "handwritten.rules", 1)
+        return SaganEvaluator(rule).matches(SaganEvent(json_body=body))
+
+    def test_a_key_spelled_with_brackets_matches(self) -> None:
+        assert self.evaluate({"data": {"items[]": "alpha"}})
+
+    def test_the_plain_key_does_not(self) -> None:
+        assert not self.evaluate({"data": {"items": "alpha"}})
+
+    def test_nor_does_an_array_under_the_plain_key(self) -> None:
+        assert not self.evaluate({"data": {"items": ["alpha"]}})
 
 
 class TestSyntheticCorpus:

@@ -159,6 +159,30 @@ def _flatten(body: dict[str, Any], prefix: str = "") -> dict[str, Any]:
     return flat
 
 
+#: Where a JSON option's value ends inside the engine, which is not where the
+#: rule's author put its closing quote.
+#:
+#: Sagan takes these values with `strtok` and never puts them back together, so
+#: only the text before the first `:` or `,` is searched for. Measured one
+#: condition at a time against a locally built engine, most recently with sid
+#: 5017909's own option: `json_meta_content:".SearchQueryText",contentclass:
+#: STS_Site,contentclass:STS_Web` fires on an event carrying `contentclass` and
+#: not on one carrying `contentclass:STS_Site`.
+#:
+#: `mapping/json_ops.py` cuts the value the same way and this deliberately does
+#: not call it. The differential's two sides are meant to be arrived at
+#: independently, and a shared helper would make them agree about a truncation
+#: neither had checked. What pins the behaviour is the engine lab, not either
+#: copy of the rule.
+_VALUE_END = re.compile(r"[:,]")
+
+
+def _searched_for(value: str) -> str:
+    """The part of a JSON option value the engine actually looks for."""
+    match = _VALUE_END.search(value)
+    return value if match is None else value[: match.start()]
+
+
 def _json_lookup(body: dict[str, Any], key: str) -> Any:
     """Resolve a dotted JSON key the way the engine's key table does.
 
@@ -172,12 +196,25 @@ def _json_lookup(body: dict[str, Any], key: str) -> Any:
     matches the two; a walk finds no such key and reports a rule that does not
     fire, which is a disagreement belonging to this evaluator.
 
-    The rule's own key is looked up as written, never clipped. Only what the
-    event carries is stored short, so a rule naming a path longer than the
-    limit compares against a name that was never stored and matches nothing,
-    which is exactly the defect `upstream.py` reports as `U_CANNOT_MATCH`.
+    The rule's own key is looked up as written, never clipped, and never
+    otherwise edited. This model used to strip a trailing ``[]`` from the key,
+    reading it as an array marker, and the engine does no such thing:
+    ``src/parsers/json.c`` builds each path with ``snprintf("%s.%s")`` and
+    compares it with ``strcmp``, so the brackets are two characters of the name
+    like any other. Measured, one condition at a time: ``.data.items[]`` fires
+    only on a document whose key is literally ``items[]``, and never on
+    ``items`` holding an array, with or without ``json_contains``, while
+    ``.data.items`` fires on both the scalar and, under ``json_contains``, on
+    the serialised array. Stripping the brackets here made this evaluator
+    resolve a key the engine never finds, and sid 5004770 was reported as
+    firing while the converted rule stayed silent.
+
+    Only what the event carries is stored short, so a rule naming a path longer
+    than the limit compares against a name that was never stored and matches
+    nothing, which is exactly the defect `upstream.py` reports as
+    `U_CANNOT_MATCH`.
     """
-    return _flatten(body).get(key.replace("[]", ""))
+    return _flatten(body).get(key)
 
 
 #: How much of the message `Event_ID()` copies before searching it.
@@ -396,7 +433,7 @@ class SaganEvaluator:
                 return False
             flags = self.rule.modifiers_after(option.index, modifiers)
             actual = _json_lookup(event.json_body, parsed.group("key"))
-            wanted = decode_hex(parsed.group("rest").strip().strip('"'))
+            wanted = decode_hex(_searched_for(parsed.group("rest").strip().strip('"')))
             present = self._compare(
                 actual,
                 [wanted],
@@ -427,8 +464,15 @@ class SaganEvaluator:
                 return False
             flags = self.rule.modifiers_after(option.index, modifiers)
             actual = _json_lookup(event.json_body, parsed.group("key"))
+            # Each item is cut at its first colon, the comma having already
+            # ended it. Measured on the engine with sid 5017909's own option,
+            # `json_meta_content:".SearchQueryText",contentclass:STS_Site,...`:
+            # an event carrying `contentclass` fires and one carrying
+            # `contentclass:STS_Site` does not. The converter reproduces the
+            # cut and this evaluator did not, so the two disagreed about the
+            # rule while both were reading the same corpus.
             wanted = [
-                decode_hex(v.strip().strip('"'))
+                decode_hex(_searched_for(v.strip().strip('"')))
                 for v in parsed.group("rest").split(",")
                 if v.strip()
             ]

@@ -123,6 +123,35 @@ class TestCannotMatch:
         assert (DefectCode.CANNOT_MATCH in codes(raw)) is flagged
 
 
+class TestArrayMarkedJsonKey:
+    """A `[]` in a JSON key is two characters of the name, not a marker.
+
+    Measured one condition at a time on the engine: `.data.items[]` fires only
+    on a document whose key is literally `items[]`, never on `items` holding an
+    array, with or without json_contains, while `.data.items` fires on the
+    scalar and, under json_contains, on the serialised array. `json.c` builds
+    each stored path with `snprintf("%s.%s")` and compares it with strcmp, so
+    there is nowhere for a marker to be understood. sid 5004770 is the only
+    corpus rule of this shape and its condition is negated, which cannot save
+    it: the engine needs the key present to satisfy a negation.
+    """
+
+    @pytest.mark.parametrize(
+        "keyword", ["json_content", "json_meta_content", "json_pcre"]
+    )
+    def test_the_marker_kills_the_rule(self, keyword: str) -> None:
+        raw = f'msg:"t"; {keyword}:".data.items[]","alpha"; sid:1;'
+        assert DefectCode.CANNOT_MATCH in codes(raw)
+
+    def test_the_negated_form_too(self) -> None:
+        raw = 'msg:"t"; json_meta_content:!".data.items[]",alpha; sid:1;'
+        assert DefectCode.CANNOT_MATCH in codes(raw)
+
+    def test_the_plain_key_is_fine(self) -> None:
+        raw = 'msg:"t"; json_content:".data.items","alpha"; sid:1;'
+        assert codes(raw) == set()
+
+
 class TestUnterminatedHex:
     """A `|` that opens a hex sequence and never closes it.
 
