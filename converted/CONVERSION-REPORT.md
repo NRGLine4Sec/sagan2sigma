@@ -5,13 +5,13 @@
 | Metric | Value |
 | --- | --- |
 | Rule files processed | 343 |
-| Active rules parsed | 10026 |
-| Commented-out rules skipped | 9442 |
+| Active rules parsed | 10025 |
+| Commented-out rules skipped | 9443 |
 | Rules converted | 8679 (86.6%) |
-| Rules refused | 1347 (13.4%) |
+| Rules refused | 1346 (13.4%) |
 | Lines that failed to parse | 0 |
 | Synthetic rules added | 10 |
-| Sigma documents emitted | 9488 |
+| Sigma documents emitted | 9489 |
 | pySigma validation issues | 0 |
 | Output profile | `rsigma-syslog` |
 | Case policy | `faithful` |
@@ -25,7 +25,7 @@ logsource catalog. It answers which kinds of device caused trouble.
 | --- | ---: | ---: | ---: | ---: |
 | AWS | 534 | 101 | 84.1% | 534 |
 | Applications and web | 180 | 72 | 71.4% | 171 |
-| Azure and Microsoft 365 | 1343 | 411 | 76.6% | 549 |
+| Azure and Microsoft 365 | 1343 | 411 | 76.6% | 550 |
 | Endpoint and EDR | 982 | 58 | 94.4% | 975 |
 | Google Cloud | 66 | 10 | 86.8% | 60 |
 | Infrastructure | 189 | 25 | 88.3% | 189 |
@@ -33,24 +33,23 @@ logsource catalog. It answers which kinds of device caused trouble.
 | Network detection | 241 | 20 | 92.3% | 241 |
 | SaaS and identity | 308 | 36 | 89.5% | 152 |
 | State correlations | 10 | 0 | 100.0% | 0 |
-| Unclassified | 1548 | 116 | 93.0% | 1548 |
+| Unclassified | 1548 | 115 | 93.1% | 1548 |
 | Unix and Linux | 177 | 39 | 81.9% | 173 |
-| Windows | 1983 | 119 | 94.3% | 1948 |
+| Windows | 1983 | 119 | 94.3% | 1951 |
 
 ## Refusals by code
 
 | Code | Rules | Share | Meaning |
 | --- | ---: | ---: | --- |
-| `E_RAW_TEXT_ON_JSON_EVENT` | 540 | 40.1% | The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text. |
-| `E_EXTERNAL_ENRICHMENT` | 382 | 28.4% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
-| `E_GROUPBY_UNRESOLVED` | 304 | 22.6% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
+| `E_RAW_TEXT_ON_JSON_EVENT` | 541 | 40.2% | The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text. |
+| `E_EXTERNAL_ENRICHMENT` | 381 | 28.3% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
+| `E_GROUPBY_UNRESOLVED` | 305 | 22.7% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
 | `E_POSITIONAL` | 40 | 3.0% | The rule constrains where a pattern sits in the log line with a non-zero offset, depth or distance. Sigma string modifiers cannot express a byte position, so no faithful translation exists. A zero-valued positional is a no-op in the Sagan engine and is converted. |
-| `E_PCRE_UNSUPPORTED` | 40 | 3.0% | The regular expression uses a PCRE construct the Rust engine cannot express and the converter cannot safely rewrite (recursion, look-around, back-references, control verbs). Recoverable constructs (numbered subroutines, literal braces, the whole-string negation idiom, inert flags) are rewritten instead of refused. |
+| `E_PCRE_UNSUPPORTED` | 39 | 2.9% | The regular expression uses a PCRE construct the Rust engine cannot express and the converter cannot safely rewrite (recursion, look-around, back-references, control verbs). Recoverable constructs (numbered subroutines, literal braces, the whole-string negation idiom, inert flags) are rewritten instead of refused. |
 | `E_TIME_WINDOW` | 29 | 2.2% | The rule only fires on given weekdays or hour ranges (alert_time). Sigma has no recurring-time operator, so this is refused unless --profile vector-enriched is used, whose bundled time transform supplies the weekday and hour-of-day fields the window matches on. |
 | `E_STATE_ABSENCE` | 5 | 0.4% | The rule requires that an earlier event did NOT happen (xbits or flexbits isnotset). Sigma cannot express a negative correlation. |
 | `E_VAR_UNRESOLVED` | 4 | 0.3% | The rule references a sagan.yaml variable that was not supplied. Re-run with --sagan-yaml to resolve it. |
 | `E_NO_DETECTION` | 2 | 0.1% | The rule can never produce an alert: nothing is left to match on after conversion (it carried only side effects or metadata), or it carries a mandatory condition the engine can never satisfy, so it never fires in Sagan either. |
-| `E_PARSE` | 1 | 0.1% | The rule could not be parsed, or it uses a construct that Sagan itself would reject at load time. |
 
 ## Converted with semantic loss
 
@@ -61,10 +60,10 @@ reproduced. They are worth reviewing before the ruleset goes live.
 | --- | ---: | --- | --- |
 | `D_RAW_TEXT_MATCH` | 5770 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
 | `D_LOGSOURCE_FALLBACK` | 1865 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
-| `D_EVENT_ID_HEURISTIC` | 1855 | Without a json_map for event_id, Sagan looks for ' <id>: ', with the surrounding spaces, in the first nine characters of the message, so an ID at the very start never matches. The converted rule assumes a proper EventID field instead, which fires on events the heuristic would have missed. Measured against a locally built engine. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
+| `D_EVENT_ID_HEURISTIC` | 1854 | Without a json_map for event_id, Sagan looks for ' <id>: ', with the surrounding spaces, in the first nine characters of the message, so an ID at the very start never matches. The converted rule assumes a proper EventID field instead, which fires on events the heuristic would have missed. Measured against a locally built engine. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
 | `D_THRESHOLD_SUPPRESS` | 1107 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
 | `D_PASS_SHORT_CIRCUIT` | 513 | The rule used the pass action. In Sagan a matching pass rule still emits an alert (Send_Alert runs before the pass check) and then stops evaluating the remaining signatures for that event. The detection is converted faithfully; only the short-circuit, the suppression of other rules on the same event, is not reproduced, since Sigma evaluates every rule independently. | `5016065`, `5016066`, `5016067`, `5016068`, `5016069` |
-| `D_GROUPBY_SYSLOG_HOST` | 386 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
+| `D_GROUPBY_SYSLOG_HOST` | 387 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
 | `D_SIDE_EFFECT_DROPPED` | 233 | Engine-specific side effect (external, email, dynamic_load, unset) with no Sigma equivalent. | `5008539`, `5003022`, `5003023`, `5002959`, `5002960` |
 | `D_THRESHOLD_LIMIT` | 145 | threshold type limit caps alert volume, not detection. Sigma has no equivalent, so the constraint is dropped. | `5017933`, `5008570`, `5009316`, `5009317`, `5009318` |
 | `D_APPEND_PROGRAM` | 74 | append_program makes Sagan append the program field to the message before matching. The converted rule searches the message alone. | `5000419`, `5000470`, `5000489`, `5000519`, `5000521` |
@@ -72,6 +71,7 @@ reproduced. They are worth reviewing before the ruleset goes live.
 | `D_XBIT_ISSET_SYNTHETIC` | 20 | The state correlation was rebuilt through a synthetic aggregate rule gathering every rule that sets the bit. | `9870107`, `5014091`, `5008539`, `5009793`, `5015226` |
 | `D_JSON_KEY_RESTORED` | 15 | The rule names a JSON key that upstream clipped to 31 characters so that Sagan, which stores key paths clipped and compares them with an exact strcmp, would match it at all. The full path is recorded in a comment above the rule and is what the log carries, so the converted rule uses that instead: Sigma has no such limit, and emitting the clipped name would match nothing outside Sagan. | `5004773`, `5017933`, `5017933`, `5005921`, `5005923` |
 | `D_DROP_ACTION` | 13 | The rule used the drop action. Sigma has no action concept; it was converted as a normal detection rule. | `5000102`, `5000103`, `5000193`, `5000018`, `5000071` |
+| `D_PCRE_QUOTE_REMOVED` | 12 | Sagan removes every quote character from a pcre option before it compiles the pattern. Between_Quotes copies the value from its first quote onward and skips each quote it meets, rather than stopping at the second one, so a quote inside the pattern is simply deleted and any backslash before it is left attached to the next character. The converted rule reproduces the pattern the engine compiles, not the one on the line, which is the only way the two can agree. Measured against a locally built engine, an option whose pattern reads id=<quote>[0-9]{3} compiles as id=\[0-9]{3} and fires on the literal text id=[0-9]]], while the same pattern written with \x22 in place of the quote survives both steps and matches what it says. A value that does not open with a quote loses its own first character as well, procdump(64)*\.exe compiling as rocdump(64)*\.exe. | `5009357`, `5100137`, `5015124`, `5015125`, `5007144` |
 | `D_GROUPBY_SHAPE_SPLIT` | 7 | A rebuilt state correlation groups on the syslog sender, whose field name differs between JSON-bodied and plain events in RSigma. The bit is set by rules of both shapes, so the correlation pairs with the setters matching the tester and misses the others. Degraded rather than refused: most of these keep the majority of their setters. | `5008539`, `5009793`, `5014047`, `5003332`, `5003336` |
 | `D_JSON_PCRE_ABSENT_KEY` | 5 | Sagan treats a key the event does not carry as a match for json_pcre: JSON_Pcre() tests only keys that exist and returns false only on a failed match, so an absent key falls through to true. Sigma has the opposite convention, so the converted rule stays silent on events lacking the key. json_content and json_meta_content do not share this behaviour. Measured against a locally built engine. | `5017941`, `5017944`, `5017945`, `5017946`, `5017947` |
 | `D_DENYLIST_USERNAME_INERT` | 4 | The blacklist keyword tracked by_username, which the engine's denylist processor ignores: it matches IP addresses only (src/processors/blacklist.c), and the rule parser sets no flag for by_username (src/rules.c), so the option is inert. It is dropped and the rest of the rule is converted, exactly as the engine evaluates it. | `5008573`, `5008574`, `5008575`, `5008578` |
@@ -86,229 +86,48 @@ conversion error and is the opposite of one.
 
 | Code | Rules | What it means |
 | --- | --- | --- |
-| `U_CANNOT_MATCH` | 766 | the rule loads and can never fire |
-| `U_INERT_CONDITION` | 1 | the rule fires, but a condition never bites, so it fires more widely than it reads |
+| `U_ALTERED_PATTERN` | 12 |  |
+| `U_CANNOT_MATCH` | 12 | the rule loads and can never fire |
 | `U_INVERTED_CONDITION` | 1 | the rule fires, but a condition means its opposite |
 | `U_PARTIAL_MATCH` | 2 | the rule fires, but one of the values it lists never can, so it detects less than it names |
-| `U_WILL_NOT_LOAD` | 2 | Sagan refuses the ruleset; the engine does not start |
-| `U_WRONG_GROUPING` | 5 | the rule fires, but groups on fewer keys than it names |
 
 <details>
-<summary><code>U_CANNOT_MATCH</code> (766 rules)</summary>
+<summary><code>U_ALTERED_PATTERN</code> (12 rules)</summary>
 
 | SID | File | Detail |
 | --- | --- | --- |
-| `5001439` | `digitalpersona.rules` | the program 'DigitalPersona* after: track by_src, count 5, seconds 300' contains a space; no event can satisfy it |
-| `5001568` | `huawei.rules` | the header asks for destination port '$FTP_PORT' and no default_dst_port supplies one, so the rule never matches |
-| `5002737` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"index.php?system=" default_proto:tcp' |
-| `5002738` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"/wp-login.php" default_proto:tcp' |
-| `5002739` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"/wp-login.php" default_proto:tcp' |
-| `5002740` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"/include/config.php" default_proto:tcp' |
-| `5002741` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"/changelog.php" default_proto:tcp' |
-| `5002742` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"robots.txt" default_proto:tcp' |
-| `5002743` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"\|3b\|--" default_proto:tcp' |
-| `5002744` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"/sites/default/settings.php" default_proto:tcp' |
-| `5002745` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"/configuration.php" default_proto:tcp' |
-| `5002746` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"/db.php" default_proto:tcp' |
-| `5002747` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"/inc/mysql.php" default_proto:tcp' |
-| `5002748` | `web-attack.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"/iisamples" default_proto:tcp' |
+| `5007144` | `windows-powershell.rules` | the engine removes the 1 quote character(s) inside the pcre option and compiles /{\d}{\d}{\d}\\*\s*-f/ |
+| `5009357` | `azureEventHub_windows-powershell.rules` | the engine removes the 1 quote character(s) inside the pcre option and compiles /{\\d}{\\d}{\\d}\\*\s*-f/ |
+| `5014601` | `windows-sysmon.rules` | the engine removes the 1 quote character(s) inside the pcre option and compiles /rocdump(64)*\.exe/i; the option does not open with a quote either, so the pattern loses its own first character as well |
+| `5015124` | `screenconnect.rules` | the engine removes the 1 quote character(s) inside the pcre option and compiles /\Data\x22\:\x22[a-zA-Z0-9\-\.]+\.(?:exe\|bat\|dll\|ps1)\x22/ |
+| `5015125` | `screenconnect.rules` | the engine removes the 1 quote character(s) inside the pcre option and compiles /Data\x22\:\s\x22(?:[^\:,]+:){20}.*?\}/ |
+| `5015511` | `windows-security.rules` | the engine removes the 1 quote character(s) inside the pcre option and compiles /[\\'][0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{3}/ |
+| `5017383` | `windows-security.rules` | the engine removes the 2 quote character(s) inside the pcre option and compiles /reg(?:\.exe)?\s+add\s+.*HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa.*\/v\s+DisableRestrictedAdmin.*\/d\s+[\']?0[\']?/i |
+| `5017384` | `windows-powershell.rules` | the engine removes the 6 quote character(s) inside the pcre option and compiles /New-ItemProperty\s+.*-Path\s+[\']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\']?\s+.*-Name\s+[\']?DisableRestrictedAdmin[\']?\s+.*-Value\s+[\']?0[\']?/i |
+| `5017387` | `windows-security.rules` | the engine removes the 2 quote character(s) inside the pcre option and compiles /reg(?:\.exe)?\s+add\s+.*HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa.*\/v\s+DisableRestrictedAdminOutboundCreds.*\/d\s+[\']?0[\']?/i |
+| `5017389` | `windows-powershell.rules` | the engine removes the 6 quote character(s) inside the pcre option and compiles /New-ItemProperty\s+.*-Path\s+[\']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\']?\s+.*-Name\s+[\']?DisableRestrictedAdminOutboundCreds[\']?\s+.*-Value\s+[\']?0[\']?/i |
+| `5017390` | `windows-powershell.rules` | the engine removes the 6 quote character(s) inside the pcre option and compiles /Set-ItemProperty\s+.*-Path\s+[\']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\']?\s+.*-Name\s+[\']?DisableRestrictedAdminOutboundCreds[\']?\s+.*-Value\s+[\']?0[\']?/i |
+| `5100137` | `fingerprint.rules` | the engine removes the 2 quote character(s) inside the pcre option and compiles /log_*id=*[0-9]{10}\*/ |
+
+</details>
+
+<details>
+<summary><code>U_CANNOT_MATCH</code> (12 rules)</summary>
+
+| SID | File | Detail |
+| --- | --- | --- |
 | `5002799` | `windows-sysmon.rules` | the meta_content template 'MD5=%sagan%,' holds a comma, which ends it before the closing quote; with a variable in the values the rule then matches nothing at all |
-| `5004756` | `crowdstrike.rules` | content: the hex sequence opened in '\|7c\|DetectionSummaryEvent\|4' is never closed, so the parser converts '4' and appends a control byte no message carries |
-| `5004757` | `crowdstrike.rules` | content: the hex sequence opened in '\|7c\|DetectionSummaryEvent\|5' is never closed, so the parser converts '5' and appends a control byte no message carries |
-| `5004758` | `crowdstrike.rules` | content: the hex sequence opened in '\|7c\|DetectionSummaryEvent\|2' is never closed, so the parser converts '2' and appends a control byte no message carries |
-| `5004759` | `crowdstrike.rules` | content: the hex sequence opened in '\|7c\|DetectionSummaryEvent\|3' is never closed, so the parser converts '3' and appends a control byte no message carries |
+| `5004770` | `azure-eventhub-ad.rules` | json_meta_content names '.properties.riskEventTypes[]', and the engine stores keys as written: the brackets are part of the name, so no document a producer emits carries that key and the negated condition, which needs the key present, is never satisfied |
 | `5005776` | `cloudgenix.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"sshd\|2d\|all\|3a\|Invalid user\\"\|2d\|all\|3a\|Invalid user"' |
 | `5005923` | `confluent.rules` | the key path 'data.authenticationInfo.metadata.mechanism' is clipped to 'data.authenticationInfo.metada' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
 | `5005924` | `confluent.rules` | the key path 'data.authenticationInfo.metadata.mechanism' is clipped to 'data.authenticationInfo.metada' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
 | `5005926` | `confluent.rules` | the key path 'data.authenticationInfo.metadata.mechanism' is clipped to 'data.authenticationInfo.metada' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
 | `5005927` | `confluent.rules` | the key path 'data.authenticationInfo.metadata.mechanism' is clipped to 'data.authenticationInfo.metada' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
 | `5005944` | `confluent.rules` | the key path 'data.authorizationInfo.aclAuthorization.permissionType' is clipped to 'data.authorizationInfo.aclAuth' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
-| `5007737` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007738` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007739` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007740` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007741` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007742` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007743` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007744` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007746` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007749` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007750` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007751` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007752` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007753` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007754` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007755` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007757` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007758` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007759` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007760` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007761` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007762` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007763` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007764` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007765` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007766` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007767` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007768` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007769` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007770` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007774` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007775` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007776` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007777` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007778` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007779` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007780` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007781` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007782` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007783` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007784` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007785` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007787` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007789` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007790` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007791` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007792` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007793` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007794` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007795` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007796` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007797` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007798` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007799` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007800` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007801` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007802` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007803` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007804` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007805` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007806` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007807` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007808` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007809` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007810` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007811` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007812` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007813` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007815` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007816` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007817` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007818` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007819` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007820` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007821` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007822` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007823` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007824` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007825` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007826` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007827` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007828` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007829` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007830` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007831` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007832` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007834` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007835` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007836` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007837` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007838` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007839` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007840` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007841` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007842` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007843` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007844` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007845` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007846` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007847` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007848` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007849` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007850` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007851` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007852` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007853` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007855` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007856` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007857` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007858` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007860` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007861` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007862` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007863` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007864` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007865` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007866` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007867` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007868` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007869` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007870` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007871` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007872` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007873` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007875` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007876` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007877` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007878` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007879` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007882` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007883` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007884` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007885` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007886` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007888` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007889` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007890` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007891` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007892` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007893` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007894` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007895` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007896` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007897` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007898` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007899` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007900` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007902` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007903` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007904` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007905` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007906` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007909` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007911` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007912` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007913` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007914` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007915` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007916` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007918` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007919` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007920` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007922` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007924` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007927` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007928` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007929` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007930` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007931` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007933` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007934` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007935` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007936` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007937` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-| `5007938` | `windows-sysmon.rules` | a negated meta_content value is cut at its first colon, so the search is the text before it and the negation is almost never satisfied |
-
-...and 566 more.
-
-</details>
-
-<details>
-<summary><code>U_INERT_CONDITION</code> (1 rules)</summary>
-
-| SID | File | Detail |
-| --- | --- | --- |
-| `5014486` | `fortinet-json.rules` | the negated json_meta_content values are wrapped in quotes ("analytics"); the list is compared verbatim, so the exclusion matches nothing and never excludes anything |
+| `5009779` | `azureEventHub_windows-sysmon.rules` | the meta_content template 'MD5=%sagan%,' holds a comma, which ends it before the closing quote; with a variable in the values the rule then matches nothing at all |
+| `5014569` | `pfsense.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '",3389,"0,S' |
+| `5015096` | `aws-cloudtrail.rules` | the key path 'userIdentity.sessionContext.sessionIssuer.userName' is clipped to 'userIdentity.sessionContext.se' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
+| `5015819` | `barracuda-waf.rules` | the negated content 'DENY' is part of the required 'DENY_ACL_MATCHED', so no message can satisfy both |
 
 </details>
 
@@ -331,29 +150,6 @@ conversion error and is the opposite of one.
 
 </details>
 
-<details>
-<summary><code>U_WILL_NOT_LOAD</code> (2 rules)</summary>
-
-| SID | File | Detail |
-| --- | --- | --- |
-| `5008760` | `azureEventHub_windows-malware.rules` | after tracks by_tag, which the parser does not recognise; the engine refuses the whole ruleset |
-| `5008760` | `azureEventHub_windows-malware.rules` | threshold tracks 'by_tag', which the parser does not recognise; the engine refuses the whole ruleset |
-
-</details>
-
-<details>
-<summary><code>U_WRONG_GROUPING</code> (5 rules)</summary>
-
-| SID | File | Detail |
-| --- | --- | --- |
-| `5014022` | `aws-iam.rules` | threshold tracks byusername, which the parser never finds in the option value; the suppression groups on by_src only |
-| `5017890` | `msapi-exchange.rules` | after tracks by_user, which the parser ignores; the correlation groups on the remaining keys only |
-| `5017891` | `msapi-exchange.rules` | after tracks by_user, which the parser ignores; the correlation groups on the remaining keys only |
-| `5017892` | `msapi-exchange.rules` | after tracks by_user, which the parser ignores; the correlation groups on the remaining keys only |
-| `5017897` | `msapi-onedrive.rules` | after tracks by_user, which the parser ignores; the correlation groups on the remaining keys only |
-
-</details>
-
 ## pySigma validation
 
 Every emitted document was accepted by pySigma, and every
@@ -361,12 +157,12 @@ correlation resolved the rules it references.
 
 ## Refused rules
 
-### `E_RAW_TEXT_ON_JSON_EVENT` (540 rules)
+### `E_RAW_TEXT_ON_JSON_EVENT` (541 rules)
 
 The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text.
 
 <details>
-<summary>Show 400 of the 540 refused rules</summary>
+<summary>Show 400 of the 541 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -770,16 +566,16 @@ The rule searches the raw message body while also using JSON operators. When the
 | `5005025` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] DeleteReport from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5005026` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] DownloadReport from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5005027` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] EditDataset from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| ... | ... | ... | *140 more rows omitted, see the JSON report* | | |
+| ... | ... | ... | *141 more rows omitted, see the JSON report* | | |
 
 </details>
 
-### `E_EXTERNAL_ENRICHMENT` (382 rules)
+### `E_EXTERNAL_ENRICHMENT` (381 rules)
 
 The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed.
 
 <details>
-<summary>Show the 382 refused rules</summary>
+<summary>Show the 381 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -931,7 +727,6 @@ The rule queries an external source. Bluedot threat intelligence is out of scope
 | `5002396` | `courier-geoip.rules` | Applications and web | [COURIER-GEOIP] User login from outside HOME_COUNTRY | `country_code` | country_code needs a GeoIP country field, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled GeoIP transform; the tracke |
 | `5002397` | `courier-geoip.rules` | Applications and web | [COURIER-GEOIP] Timeout from outside HOME_COUNTRY | `country_code` | country_code needs a GeoIP country field, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled GeoIP transform; the tracke |
 | `5017061` | `ddr.rules` | Unclassified | [AWS] S3 GetObject GeoIP Outside of HOME_COUNTRY | `country_code` | country_code needs a GeoIP country field, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled GeoIP transform; the tracke |
-| `5017062` | `ddr.rules` | Unclassified | [AWS] S3 GetObject Bluedot Suspicious IP Detected | `bluedot` | bluedot substitution needs the vector-enriched profile, which supplies the per-category address flags |
 | `991006` | `ddr.rules` | Unclassified | [AWS] S3 GetObject Bluedot Suspicious IP Detected | `bluedot` | bluedot substitution needs the vector-enriched profile, which supplies the per-category address flags |
 | `5014652` | `duo.rules` | SaaS and identity | [DUO] Successful MFA Authentication from Outside HOME_COUNTRY | `country_code` | country_code needs a GeoIP country field, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled GeoIP transform; the tracke |
 | `5014653` | `duo.rules` | SaaS and identity | [DUO] MFA Authentication Attempt from Outside HOME_COUNTRY | `country_code` | country_code needs a GeoIP country field, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled GeoIP transform; the tracke |
@@ -1168,12 +963,12 @@ The rule queries an external source. Bluedot threat intelligence is out of scope
 
 </details>
 
-### `E_GROUPBY_UNRESOLVED` (304 rules)
+### `E_GROUPBY_UNRESOLVED` (305 rules)
 
 The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline.
 
 <details>
-<summary>Show the 304 refused rules</summary>
+<summary>Show the 305 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -1193,6 +988,7 @@ The group-by key required by after does not exist as a field in any event: Sagan
 | `5008655` | `azureEventHub_windows-correlated.rules` | Azure and Microsoft 365 | [WINDOWS-CORRELATED] Successful RDP login after recon activity | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5008656` | `azureEventHub_windows-correlated.rules` | Azure and Microsoft 365 | [WINDOWS-CORRELATED] Successful RDP login after exploit attempt | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5008657` | `azureEventHub_windows-correlated.rules` | Azure and Microsoft 365 | [WINDOWS-CORRELATED] Successful RDP login after honeypot activity | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
+| `5008760` | `azureEventHub_windows-malware.rules` | Azure and Microsoft 365 | [WINDOWS-MALWARE] Suspicious RDPV.exe detected | `after` | group-by key 'username' cannot be resolved to a field |
 | `5014805` | `bomgar.rules` | Infrastructure | [BOMGAR] Beyond Trust Login Failure - Brute Force [3/1] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5014806` | `bomgar.rules` | Infrastructure | [BOMGAR] Beyond Trust Login After Brute Force | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5015220` | `box.rules` | SaaS and identity | [BOX] Multiple Failed Login Attempts By IP (10/300sec) | `after` | group-by key 'username' cannot be resolved to a field |
@@ -1536,12 +1332,12 @@ The rule constrains where a pattern sits in the log line with a non-zero offset,
 
 </details>
 
-### `E_PCRE_UNSUPPORTED` (40 rules)
+### `E_PCRE_UNSUPPORTED` (39 rules)
 
 The regular expression uses a PCRE construct the Rust engine cannot express and the converter cannot safely rewrite (recursion, look-around, back-references, control verbs). Recoverable constructs (numbered subroutines, literal braces, the whole-string negation idiom, inert flags) are rewritten instead of refused.
 
 <details>
-<summary>Show the 40 refused rules</summary>
+<summary>Show the 39 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -1581,7 +1377,6 @@ The regular expression uses a PCRE construct the Rust engine cannot express and 
 | `5007133` | `windows-powershell.rules` | Windows | [WINDOWS-POWERSHELL] Possible Memory Allocation and Shellcode v2 | `pcre` | pcre has no recognisable delimiters: '"//Byte\\[.*?=\\s*(?:0x[0-9a-f]{1,2},){200}"' |
 | `5017394` | `windows-security.rules` | Windows | [WINDOWS-SECURITY] Suspicious svchost.exe Binary Running from Non-Standard Directory - Cri | `pcre` | non-portable PCRE construct: lookahead, unsupported by the Rust regex engine |
 | `5017398` | `windows-security.rules` | Windows | [WINDOWS-SECURITY] Firewall Allow Rule Created For Illegitimate SVCHOST.EXE Binary | `pcre` | non-portable PCRE construct: lookahead, unsupported by the Rust regex engine |
-| `5014601` | `windows-sysmon.rules` | Windows | [WINDOWS-SYSMON] Use Of ProcDump To Dump LSASS Detected - Credential Harvesting | `pcre` | pcre has no recognisable delimiters: '/"procdump(64)*\\.exe"/i"' |
 | `5017045` | `windows-sysmon.rules` | Windows | [WINDOWS_SYSMON] w3wp.exe Network Connection To Outside HOME_COUNTRY | `pcre` | non-portable PCRE construct: lookahead, unsupported by the Rust regex engine |
 | `5017046` | `windows-sysmon.rules` | Windows | [WINDOWS_SYSMON] w3wp.exe Network Connection to Suspicious IP | `pcre` | non-portable PCRE construct: lookahead, unsupported by the Rust regex engine |
 | `5017392` | `windows-sysmon.rules` | Windows | [WINDOWS-SYSMON] Suspicious svchost.exe Binary Running from Non-Standard Directory - Criti | `pcre` | non-portable PCRE construct: lookahead, unsupported by the Rust regex engine |
@@ -1673,18 +1468,5 @@ The rule can never produce an alert: nothing is left to match on after conversio
 | --- | --- | --- | --- | --- | --- |
 | `5002387` | `vsftpd-geoip.rules` | Applications and web | [VSFTPD-GEOIP] Authentication successful from outside HOME_COUNTRY | `country_code` | country_code tracks by_src but the rule gives src_ip no source the engine accepts (no parse_src_ip / parse_dst_ip, no json_map binding, no normalize), so ip_src_is_valid is never s |
 | `5002388` | `vsftpd-geoip.rules` | Applications and web | [VSFTPD-GEOIP] File uploaded from outside HOME_COUNTRY | `country_code` | country_code tracks by_src but the rule gives src_ip no source the engine accepts (no parse_src_ip / parse_dst_ip, no json_map binding, no normalize), so ip_src_is_valid is never s |
-
-</details>
-
-### `E_PARSE` (1 rules)
-
-The rule could not be parsed, or it uses a construct that Sagan itself would reject at load time.
-
-<details>
-<summary>Show the 1 refused rules</summary>
-
-| SID | Source file | Family | Title | Keywords | Detail |
-| --- | --- | --- | --- | --- | --- |
-| `5008760` | `azureEventHub_windows-malware.rules` | Azure and Microsoft 365 | [WINDOWS-MALWARE] Suspicious RDPV.exe detected | `after` | after declares no tracking key the engine recognises ('by_tag'); Sagan rejects the rule at load time |
 
 </details>

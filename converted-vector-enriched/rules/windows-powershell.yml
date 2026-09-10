@@ -1990,7 +1990,7 @@ detection:
   selection_4:
     message|contains: -f
   selection_5:
-    message|re: \{\d}\{\d}\{\d}\\*"\s*-f
+    message|re: \{\d}\{\d}\{\d}\\*\s*-f
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2411,7 +2411,7 @@ custom_attributes:
 title: '[WINDOWS-POWERSHELL] Cmdlet Scheduled Task Created'
 id: a67fadc7-d53d-5856-9b8e-647d2d6ed866
 status: experimental
-description: Converted from Sagan rule SID 5007155 (rev 2), file windows-powershell.rules.
+description: Converted from Sagan rule SID 5007155 (rev 3), file windows-powershell.rules.
 references:
   - https://github.com/SigmaHQ/sigma/blob/master/rules/windows/powershell/powershell_script/posh_ps_cmdlet_scheduled_task.yml
 author: sagan2sigma
@@ -2419,7 +2419,7 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*PowerShell*'
+    syslog_appname|cased: '*PowerShell*'
   selection_2:
     EventID:
       - 400
@@ -2427,17 +2427,19 @@ detection:
       - 4103
       - 4104
   selection_3:
-    message|contains: New-ScheduledTask
+    sagan_raw|contains: New-ScheduledTask
   selection_4:
-    message|contains: Register-ScheduledTask
-  selection_5:
-    message|contains:
+    sagan_raw|contains: Register-ScheduledTask
+  filter_5:
+    sagan_raw|contains|cased: 'Path: C:\\Packages\\Plugins\\Microsoft.AdminCenter.AdminCenter\\'
+  selection_6:
+    sagan_raw|contains:
       - Invoke-CimMethod
       - -ClassName
       - PS_ScheduledTask
       - -NameSpace
       - Root\\Microsoft\\Windows\\TaskScheduler
-  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_6 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: high
@@ -2446,9 +2448,10 @@ tags:
   - sagan.classtype.suspicious-command
 custom_attributes:
   sagan.sid: '5007155'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: windows-powershell.rules
-  sagan.metadata: updated_at=2023_10_10,mitre_tactic_id=T1053
+  rsigma.suppress: 1h
+  sagan.metadata: updated_at=2026_09_09,mitre_tactic_id=T1053
 ---
 title: '[WINDOWS-POWERSHELL] Dnscat Exfil Tool Execution'
 id: e72f09fa-618b-505a-ba11-fb3bc227cb17
@@ -3711,7 +3714,7 @@ detection:
       - '*Sysmon*'
       - '*Security*'
   selection_2:
-    message|re|i: New-ItemProperty\s+.*-Path\s+[\"']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\"']?\s+.*-Name\s+[\"']?DisableRestrictedAdmin[\"']?\s+.*-Value\s+[\"']?0[\"']?
+    message|re|i: New-ItemProperty\s+.*-Path\s+[\']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\']?\s+.*-Name\s+[\']?DisableRestrictedAdmin[\']?\s+.*-Value\s+[\']?0[\']?
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3738,7 +3741,7 @@ detection:
       - '*Sysmon*'
       - '*Security*'
   selection_2:
-    message|re|i: New-ItemProperty\s+.*-Path\s+[\"']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\"']?\s+.*-Name\s+[\"']?DisableRestrictedAdminOutboundCreds[\"']?\s+.*-Value\s+[\"']?0[\"']?
+    message|re|i: New-ItemProperty\s+.*-Path\s+[\']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\']?\s+.*-Name\s+[\']?DisableRestrictedAdminOutboundCreds[\']?\s+.*-Value\s+[\']?0[\']?
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3764,7 +3767,7 @@ detection:
       - '*Powershell*'
       - '*Sysmon*'
   selection_2:
-    message|re|i: Set-ItemProperty\s+.*-Path\s+[\"']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\"']?\s+.*-Name\s+[\"']?DisableRestrictedAdminOutboundCreds[\"']?\s+.*-Value\s+[\"']?0[\"']?
+    message|re|i: Set-ItemProperty\s+.*-Path\s+[\']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\']?\s+.*-Name\s+[\']?DisableRestrictedAdminOutboundCreds[\']?\s+.*-Value\s+[\']?0[\']?
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

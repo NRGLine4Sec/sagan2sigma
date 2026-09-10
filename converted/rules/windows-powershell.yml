@@ -1949,7 +1949,7 @@ detection:
   selection_4:
     _raw|contains: -f
   selection_5:
-    _raw|re: \{\d}\{\d}\{\d}\\*"\s*-f
+    _raw|re: \{\d}\{\d}\{\d}\\*\s*-f
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2366,48 +2366,6 @@ custom_attributes:
   sagan.rev: '4'
   sagan.source_file: windows-powershell.rules
   sagan.metadata: updated_at=2026_06_09
----
-title: '[WINDOWS-POWERSHELL] Cmdlet Scheduled Task Created'
-id: a67fadc7-d53d-5856-9b8e-647d2d6ed866
-status: experimental
-description: Converted from Sagan rule SID 5007155 (rev 2), file windows-powershell.rules.
-references:
-  - https://github.com/SigmaHQ/sigma/blob/master/rules/windows/powershell/powershell_script/posh_ps_cmdlet_scheduled_task.yml
-author: sagan2sigma
-logsource:
-  product: windows
-detection:
-  selection_1:
-    appname|cased: '*PowerShell*'
-  selection_2:
-    EventID:
-      - 400
-      - 800
-      - 4103
-      - 4104
-  selection_3:
-    _raw|contains: New-ScheduledTask
-  selection_4:
-    _raw|contains: Register-ScheduledTask
-  selection_5:
-    _raw|contains:
-      - Invoke-CimMethod
-      - -ClassName
-      - PS_ScheduledTask
-      - -NameSpace
-      - Root\\Microsoft\\Windows\\TaskScheduler
-  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
-falsepositives:
-  - 'Unassessed: automatically converted, not yet tuned'
-level: high
-tags:
-  - attack.t1053.005
-  - sagan.classtype.suspicious-command
-custom_attributes:
-  sagan.sid: '5007155'
-  sagan.rev: '2'
-  sagan.source_file: windows-powershell.rules
-  sagan.metadata: updated_at=2023_10_10,mitre_tactic_id=T1053
 ---
 title: '[WINDOWS-POWERSHELL] Dnscat Exfil Tool Execution'
 id: e72f09fa-618b-505a-ba11-fb3bc227cb17
@@ -3670,7 +3628,7 @@ detection:
       - '*Sysmon*'
       - '*Security*'
   selection_2:
-    _raw|re|i: New-ItemProperty\s+.*-Path\s+[\"']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\"']?\s+.*-Name\s+[\"']?DisableRestrictedAdmin[\"']?\s+.*-Value\s+[\"']?0[\"']?
+    _raw|re|i: New-ItemProperty\s+.*-Path\s+[\']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\']?\s+.*-Name\s+[\']?DisableRestrictedAdmin[\']?\s+.*-Value\s+[\']?0[\']?
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3697,7 +3655,7 @@ detection:
       - '*Sysmon*'
       - '*Security*'
   selection_2:
-    _raw|re|i: New-ItemProperty\s+.*-Path\s+[\"']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\"']?\s+.*-Name\s+[\"']?DisableRestrictedAdminOutboundCreds[\"']?\s+.*-Value\s+[\"']?0[\"']?
+    _raw|re|i: New-ItemProperty\s+.*-Path\s+[\']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\']?\s+.*-Name\s+[\']?DisableRestrictedAdminOutboundCreds[\']?\s+.*-Value\s+[\']?0[\']?
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3723,7 +3681,7 @@ detection:
       - '*Powershell*'
       - '*Sysmon*'
   selection_2:
-    _raw|re|i: Set-ItemProperty\s+.*-Path\s+[\"']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\"']?\s+.*-Name\s+[\"']?DisableRestrictedAdminOutboundCreds[\"']?\s+.*-Value\s+[\"']?0[\"']?
+    _raw|re|i: Set-ItemProperty\s+.*-Path\s+[\']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\']?\s+.*-Name\s+[\']?DisableRestrictedAdminOutboundCreds[\']?\s+.*-Value\s+[\']?0[\']?
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

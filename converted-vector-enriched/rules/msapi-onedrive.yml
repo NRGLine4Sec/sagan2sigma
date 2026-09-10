@@ -116,7 +116,7 @@ title: '[MSAPI-ONEDRIVE] Possible File Enumeration - 200+ FileAccessed Events Fo
 id: 60439424-b3bd-5854-9bde-8608dfcd865c
 name: sagan_5017897
 status: experimental
-description: Converted from Sagan rule SID 5017897 (rev 3), file msapi-onedrive.rules.
+description: Converted from Sagan rule SID 5017897 (rev 4), file msapi-onedrive.rules.
 author: sagan2sigma
 logsource:
   product: m365
@@ -146,7 +146,7 @@ tags:
   - sagan.classtype.collection
 custom_attributes:
   sagan.sid: '5017897'
-  sagan.rev: '3'
+  sagan.rev: '4'
   sagan.source_file: msapi-onedrive.rules
   rsigma.suppress: 2h
   sagan.metadata: createdOn=2026_05_05,updatedOn=2026_05_07,mitreTacticID=TA0009,mitreTacticName=Collection,mitreTechniqueID=T1119,mitreTechniqueName=AutomatedCollection
@@ -161,6 +161,7 @@ correlation:
   rules:
     - sagan_5017897
   group-by:
+    - UserId
     - ClientIP
   timespan: 1m
   condition:

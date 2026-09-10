@@ -1497,7 +1497,7 @@ custom_attributes:
 title: '[WEB-ATTACKS] Possible LFI Attempt'
 id: b83f3b7b-7c73-520f-8cc9-24a0ed3bcce5
 status: experimental
-description: Converted from Sagan rule SID 5002737 (rev 2), file web-attack.rules.
+description: Converted from Sagan rule SID 5002737 (rev 3), file web-attack.rules.
 references:
   - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
 author: sagan2sigma
@@ -1505,7 +1505,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: '"index.php\?system=" default_proto:tcp'
+    message|contains|cased: index.php\?system=
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1514,13 +1514,13 @@ tags:
   - sagan.classtype.web-application-attack
 custom_attributes:
   sagan.sid: '5002737'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: web-attack.rules
 ---
 title: '[WEB-ATTACKS] Attempt to Access Default WordPress Login Page'
 id: af49c125-2052-5ae5-b74b-61932537c621
 status: experimental
-description: Converted from Sagan rule SID 5002738 (rev 2), file web-attack.rules.
+description: Converted from Sagan rule SID 5002738 (rev 3), file web-attack.rules.
 references:
   - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
 author: sagan2sigma
@@ -1528,7 +1528,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: '"/wp-login.php" default_proto:tcp'
+    message|contains|cased: /wp-login.php
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1537,13 +1537,13 @@ tags:
   - sagan.classtype.web-application-attack
 custom_attributes:
   sagan.sid: '5002738'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: web-attack.rules
 ---
 title: '[WEB-ATTACKS] Attempt to Access a Webshell via WordPress'
 id: c2d3557b-2879-55ec-89e7-35b57cb75636
 status: experimental
-description: Converted from Sagan rule SID 5002739 (rev 2), file web-attack.rules.
+description: Converted from Sagan rule SID 5002739 (rev 3), file web-attack.rules.
 references:
   - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
 author: sagan2sigma
@@ -1551,7 +1551,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: '"/wp-login.php" default_proto:tcp'
+    message|contains|cased: /wp-login.php
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1560,13 +1560,13 @@ tags:
   - sagan.classtype.web-application-attack
 custom_attributes:
   sagan.sid: '5002739'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: web-attack.rules
 ---
 title: '[WEB-ATTACKS] Attempt to Access Default Cacti Login Page'
 id: bd02e4db-cdde-5715-a087-7de268e3f484
 status: experimental
-description: Converted from Sagan rule SID 5002740 (rev 2), file web-attack.rules.
+description: Converted from Sagan rule SID 5002740 (rev 3), file web-attack.rules.
 references:
   - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
 author: sagan2sigma
@@ -1574,7 +1574,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: '"/include/config.php" default_proto:tcp'
+    message|contains|cased: /include/config.php
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1583,13 +1583,13 @@ tags:
   - sagan.classtype.web-application-attack
 custom_attributes:
   sagan.sid: '5002740'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: web-attack.rules
 ---
 title: '[WEB-ATTACKS] Attempt to Access PHPMyAdmin Changelog Page'
 id: db281135-bbee-5350-9244-16d56626d571
 status: experimental
-description: Converted from Sagan rule SID 5002741 (rev 2), file web-attack.rules.
+description: Converted from Sagan rule SID 5002741 (rev 3), file web-attack.rules.
 references:
   - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
 author: sagan2sigma
@@ -1597,7 +1597,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: '"/changelog.php" default_proto:tcp'
+    message|contains|cased: /changelog.php
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1606,13 +1606,13 @@ tags:
   - sagan.classtype.web-application-attack
 custom_attributes:
   sagan.sid: '5002741'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: web-attack.rules
 ---
 title: '[WEB-ATTACKS] Attempt to Access robots.txt File'
 id: 0a9ba10a-17cc-554e-ba31-83b1f8945ce2
 status: experimental
-description: Converted from Sagan rule SID 5002742 (rev 2), file web-attack.rules.
+description: Converted from Sagan rule SID 5002742 (rev 3), file web-attack.rules.
 references:
   - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
 author: sagan2sigma
@@ -1620,7 +1620,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: '"robots.txt" default_proto:tcp'
+    message|contains|cased: robots.txt
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1629,13 +1629,13 @@ tags:
   - sagan.classtype.web-application-attack
 custom_attributes:
   sagan.sid: '5002742'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: web-attack.rules
 ---
 title: '[WEB-ATTACKS] Possible SQL Injection'
 id: 86fbf825-40fb-5bb8-b5ac-df6a4f092d86
 status: experimental
-description: Converted from Sagan rule SID 5002743 (rev 2), file web-attack.rules.
+description: Converted from Sagan rule SID 5002743 (rev 3), file web-attack.rules.
 references:
   - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
 author: sagan2sigma
@@ -1643,7 +1643,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: '";--" default_proto:tcp'
+    message|contains|cased: ;--
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1652,13 +1652,13 @@ tags:
   - sagan.classtype.web-application-attack
 custom_attributes:
   sagan.sid: '5002743'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: web-attack.rules
 ---
 title: '[WEB-ATTACKS] Attempt to Access Default Drupal DB Config File'
 id: d913ea98-a818-5051-9188-cd75303bab64
 status: experimental
-description: Converted from Sagan rule SID 5002744 (rev 2), file web-attack.rules.
+description: Converted from Sagan rule SID 5002744 (rev 3), file web-attack.rules.
 references:
   - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
 author: sagan2sigma
@@ -1666,7 +1666,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: '"/sites/default/settings.php" default_proto:tcp'
+    message|contains|cased: /sites/default/settings.php
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1675,13 +1675,13 @@ tags:
   - sagan.classtype.web-application-attack
 custom_attributes:
   sagan.sid: '5002744'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: web-attack.rules
 ---
 title: '[WEB-ATTACKS] Attempt to Access Default Joomla Page'
 id: f9fc7f0a-0802-5b8b-b96a-5d68a3415e8c
 status: experimental
-description: Converted from Sagan rule SID 5002745 (rev 2), file web-attack.rules.
+description: Converted from Sagan rule SID 5002745 (rev 3), file web-attack.rules.
 references:
   - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
 author: sagan2sigma
@@ -1689,7 +1689,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: '"/configuration.php" default_proto:tcp'
+    message|contains|cased: /configuration.php
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1698,13 +1698,13 @@ tags:
   - sagan.classtype.web-application-attack
 custom_attributes:
   sagan.sid: '5002745'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: web-attack.rules
 ---
 title: '[WEB-ATTACKS] Attempt to Access PHP Timeclock Page'
 id: 1fb11aff-d810-5b50-b20c-aece8f62d765
 status: experimental
-description: Converted from Sagan rule SID 5002746 (rev 2), file web-attack.rules.
+description: Converted from Sagan rule SID 5002746 (rev 3), file web-attack.rules.
 references:
   - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
 author: sagan2sigma
@@ -1712,7 +1712,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: '"/db.php" default_proto:tcp'
+    message|contains|cased: /db.php
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1721,13 +1721,13 @@ tags:
   - sagan.classtype.web-application-attack
 custom_attributes:
   sagan.sid: '5002746'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: web-attack.rules
 ---
 title: '[WEB-ATTACKS] Attempt to Access default DeV!L`s ClanPortal Page'
 id: c2013d3b-1342-5b0d-ba22-02bbac8eb752
 status: experimental
-description: Converted from Sagan rule SID 5002747 (rev 2), file web-attack.rules.
+description: Converted from Sagan rule SID 5002747 (rev 3), file web-attack.rules.
 references:
   - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
 author: sagan2sigma
@@ -1735,7 +1735,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: '"/inc/mysql.php" default_proto:tcp'
+    message|contains|cased: /inc/mysql.php
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1744,13 +1744,13 @@ tags:
   - sagan.classtype.web-application-attack
 custom_attributes:
   sagan.sid: '5002747'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: web-attack.rules
 ---
 title: '[WEB-ATTACKS] Attempt to Access IISamples Page'
 id: c53bbd27-7055-541d-885e-82d3c200fb2c
 status: experimental
-description: Converted from Sagan rule SID 5002748 (rev 2), file web-attack.rules.
+description: Converted from Sagan rule SID 5002748 (rev 3), file web-attack.rules.
 references:
   - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
 author: sagan2sigma
@@ -1758,7 +1758,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: '"/iisamples" default_proto:tcp'
+    message|contains|cased: /iisamples
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1767,7 +1767,7 @@ tags:
   - sagan.classtype.web-application-attack
 custom_attributes:
   sagan.sid: '5002748'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: web-attack.rules
 ---
 title: '[WEB-ATTACKS] Log4j exploit attempt - CVE-2021-44228'

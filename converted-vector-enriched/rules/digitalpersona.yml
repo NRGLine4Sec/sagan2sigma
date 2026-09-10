@@ -23,8 +23,9 @@ custom_attributes:
 ---
 title: '[DIGITALPERSONA] One-to-one fingerprint match failed [5/5]'
 id: cb7fc1b7-cd68-528c-8059-859df756b215
+name: sagan_5001439
 status: experimental
-description: Converted from Sagan rule SID 5001439 (rev 4), file digitalpersona.rules.
+description: Converted from Sagan rule SID 5001439 (rev 5), file digitalpersona.rules.
 author: sagan2sigma
 logsource:
   product: syslog
@@ -32,7 +33,7 @@ detection:
   selection_1:
     message|contains|cased: ' 2049: '
   selection_2:
-    appname|cased: 'DigitalPersona* after: track by_src, count 5, seconds 300'
+    appname|cased: DigitalPersona*
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -41,9 +42,24 @@ tags:
   - sagan.classtype.unsuccessful-user
 custom_attributes:
   sagan.sid: '5001439'
-  sagan.rev: '4'
+  sagan.rev: '5'
   sagan.source_file: digitalpersona.rules
   rsigma.suppress: 5m
+---
+title: '[DIGITALPERSONA] One-to-one fingerprint match failed [5/5] (threshold 5 in 5m)'
+id: cc192445-376a-56c8-aae4-aba9a12a676f
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5001439
+  group-by:
+    - hostname
+  timespan: 5m
+  condition:
+    gte: 6
+level: high
 ---
 title: '[DIGITALPERSONA] Registered PIN'
 id: 3965e25c-d377-5f80-9bb9-e0171db982e3

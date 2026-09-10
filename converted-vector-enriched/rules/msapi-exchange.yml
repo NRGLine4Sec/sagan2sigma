@@ -704,7 +704,7 @@ title: '[MSAPI-EXCHANGE] Mass Email Send Event by User [15/5 Mins]'
 id: f35fcd6b-c04e-55df-bb4d-e83466da67bc
 name: sagan_5017890
 status: experimental
-description: Converted from Sagan rule SID 5017890 (rev 2), file msapi-exchange.rules.
+description: Converted from Sagan rule SID 5017890 (rev 3), file msapi-exchange.rules.
 references:
   - https://learn.microsoft.com/en-us/purview/audit-mailboxes
 author: sagan2sigma
@@ -730,7 +730,7 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017890'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: msapi-exchange.rules
   rsigma.suppress: 1h
   sagan.metadata: createdOn=2026_04_16. updatedOn 2026_04_20,Mitre_TacticID=TA0008,Mitre_TacticName=Lateral_Movement,Mitre_TechniqueID=T1534,Mitre_TechniqueName=SpearPhishing
@@ -745,6 +745,7 @@ correlation:
     - sagan_5017890
   group-by:
     - ClientIPAddress
+    - UserId
   timespan: 5m
   condition:
     gte: 16
@@ -754,7 +755,7 @@ title: '[MSAPI-EXCHANGE] Mass Email Deletion From Sent Folder [100/10 Mins]'
 id: 7cc10d6e-bd73-51a9-aed4-5f073cbeaa49
 name: sagan_5017891
 status: experimental
-description: Converted from Sagan rule SID 5017891 (rev 1), file msapi-exchange.rules.
+description: Converted from Sagan rule SID 5017891 (rev 2), file msapi-exchange.rules.
 references:
   - https://learn.microsoft.com/en-us/purview/audit-mailboxes
 author: sagan2sigma
@@ -785,7 +786,7 @@ tags:
   - sagan.classtype.evasion
 custom_attributes:
   sagan.sid: '5017891'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: msapi-exchange.rules
   rsigma.suppress: 1h
   sagan.metadata: createdOn=2026_04_16. updatedOn 2026_04_16,Mitre_TacticID=TA0005,Mitre_TacticName=Defense_Evasion,Mitre_TechniqueID=T1070.008,Mitre_TechniqueName=IndicatorRemoval
@@ -800,6 +801,7 @@ correlation:
     - sagan_5017891
   group-by:
     - ClientIPAddress
+    - UserId
   timespan: 10m
   condition:
     gte: 101
@@ -809,7 +811,7 @@ title: '[MSAPI-EXCHANGE] Excessive Volume of Mail Items Accessed'
 id: a63209ac-c988-5e2d-a9b5-9fcb4fa5ccfc
 name: sagan_5017892
 status: experimental
-description: Converted from Sagan rule SID 5017892 (rev 1), file msapi-exchange.rules.
+description: Converted from Sagan rule SID 5017892 (rev 2), file msapi-exchange.rules.
 references:
   - https://learn.microsoft.com/en-us/purview/audit-mailboxes
 author: sagan2sigma
@@ -873,7 +875,7 @@ tags:
   - sagan.classtype.collection
 custom_attributes:
   sagan.sid: '5017892'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: msapi-exchange.rules
   rsigma.suppress: 1h
   sagan.metadata: createdOn=2026_04_16. updatedOn 2026_04_16,Mitre_TacticID=TA0009,Mitre_TacticName=Collection,Mitre_TechniqueID=T1114.002,Mitre_TechniqueName=EmailCollection
@@ -888,6 +890,7 @@ correlation:
     - sagan_5017892
   group-by:
     - ClientIPAddress
+    - UserId
   timespan: 1m
   condition:
     gte: 151

@@ -27,7 +27,9 @@ custom_attributes:
 title: '[LINUX-SECURITY] Suspicious Command (/proc/<PID>/cmdline)'
 id: 6447250b-fc51-5775-bd1a-85dae9ab6026
 status: experimental
-description: Converted from Sagan rule SID 5014633 (rev 1), file linux-security.rules.
+description: Converted from Sagan rule SID 5014633 (rev 2), file linux-security.rules.
+references:
+  - https://blog.apnic.net/2019/10/14/how-to-basic-linux-malware-process-forensics-for-incident-responders/
 author: sagan2sigma
 logsource:
   product: linux
@@ -35,7 +37,7 @@ detection:
   selection_1:
     message|contains|cased: /proc/
   selection_2:
-    message|contains|cased: '"/cmdline" reference:url,https://blog.apnic.net/2019/10/14/how-to-basic-linux-malware-process-forensics-for-incident-responders/'
+    message|contains|cased: /cmdline
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -46,7 +48,7 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5014633'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: linux-security.rules
   sagan.metadata: deployment=Server,created_at=2024_01_25,updated_at=2024_01_25
 ---

@@ -2288,7 +2288,7 @@ custom_attributes:
 title: '[WINDOWS-SECURITY] Password Protected Zip File Opened'
 id: 5370cd5c-96be-51dc-8f84-813b75aabc22
 status: experimental
-description: Converted from Sagan rule SID 5010484 (rev 1), file windows-security.rules.
+description: Converted from Sagan rule SID 5010484 (rev 2), file windows-security.rules.
 references:
   - https://www.socinvestigation.com/windows-event-id-5379-to-detect-malicious-password-protected-file-unlock/
 author: sagan2sigma
@@ -2309,7 +2309,7 @@ tags:
   - sagan.classtype.suspicious-command
 custom_attributes:
   sagan.sid: '5010484'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: windows-security.rules
 ---
 title: '[WINDOWS-SECURITY] Comsrvc MiniDump Command'
@@ -6299,7 +6299,7 @@ detection:
   selection_4:
     message|contains|cased: reg add "HKLM
   selection_5:
-    message|re: '[\"\''][0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{3}'
+    message|re: '[\\''][0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{3}'
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6540,7 +6540,7 @@ detection:
       - 4688
       - 1
   selection_3:
-    message|re|i: reg(?:\.exe)?\s+add\s+.*HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa.*\/v\s+DisableRestrictedAdmin.*\/d\s+[\"']?0[\"']?
+    message|re|i: reg(?:\.exe)?\s+add\s+.*HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa.*\/v\s+DisableRestrictedAdmin.*\/d\s+[\']?0[\']?
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6596,7 +6596,7 @@ detection:
       - 4688
       - 1
   selection_3:
-    message|re|i: reg(?:\.exe)?\s+add\s+.*HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa.*\/v\s+DisableRestrictedAdminOutboundCreds.*\/d\s+[\"']?0[\"']?
+    message|re|i: reg(?:\.exe)?\s+add\s+.*HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa.*\/v\s+DisableRestrictedAdminOutboundCreds.*\/d\s+[\']?0[\']?
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

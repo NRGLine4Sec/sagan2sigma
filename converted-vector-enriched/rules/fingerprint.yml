@@ -1041,13 +1041,13 @@ custom_attributes:
 title: slapd ldap daemon
 id: b387aa02-b32b-5826-b691-ebab740f43b7
 status: experimental
-description: Converted from Sagan rule SID 5100048 (rev 1), file fingerprint.rules.
+description: Converted from Sagan rule SID 5100048 (rev 2), file fingerprint.rules.
 author: sagan2sigma
 logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: slapd ldap daemon
+    appname|cased: slapd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1056,7 +1056,7 @@ tags:
   - sagan.classtype.fingerprint
 custom_attributes:
   sagan.sid: '5100048'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: fingerprint.rules
   sagan.metadata: fingerprint_source=logs,fingerprint_os=linux,fingerprint_type=server,fingerprint_expire=86400
 ---
@@ -3015,7 +3015,7 @@ detection:
   selection_1:
     message|contains|cased: devname=
   selection_2:
-    message|re: log_*id="*[0-9]{10}\"*
+    message|re: log_*id=*[0-9]{10}\*
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
