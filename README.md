@@ -9,13 +9,14 @@ Sagan engine itself has seen little movement in years. This tool moves the
 rules to a format other engines can run, notably
 [RSigma](https://github.com/timescale/rsigma).
 
-On the upstream corpus (10,018 active rules across 342 files) it converts
-**86.6%** into 9,483 Sigma documents, with zero parse failures, zero documents
+On the upstream corpus (10,025 active rules across 343 files) it converts
+**86.6%** into 9,493 Sigma documents, with zero parse failures, zero documents
 rejected by pySigma, and zero rules the RSigma engine refuses to load. With
 `--profile vector-enriched`, which ships the transforms needed to recreate the
-fields Sagan derived from raw text, the rate rises to **94.1%**, and to **95.7%**
-once its GeoIP transform and a `$HOME_COUNTRY` value let the `country_code` rules
-convert.
+fields Sagan derived from raw text, the rate rises to **94.4%**, and to **97.1%**
+once `--sagan-yaml` supplies the site's own variables, `$HOME_COUNTRY` among
+them, and its GeoIP transform resolves the country of the address each
+`country_code` rule names.
 
 Everything it does not convert is reported with a stable code and the reasoning
 behind it, so the gap in your coverage is explicit rather than silent.

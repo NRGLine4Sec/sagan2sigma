@@ -5,6 +5,13 @@ evidence behind them. Every entry here was either a bug that shipped and got
 caught, or a bug that was avoided because someone read the engine source
 instead of the documentation.
 
+The figures in each entry are the ones measured **when the decision was taken**,
+against the corpus of that day, and they are deliberately not refreshed: an
+entry saying the rate fell from 81.8% to 79.4% is recording what the fix cost,
+and rewriting it to today's numbers would turn a record into a claim. For where
+the conversion stands now, read `README.md` or the conversion report, both of
+which are regenerated from the corpus.
+
 ## The three traps
 
 These are the mistakes a straightforward Sagan-to-Sigma converter makes. All

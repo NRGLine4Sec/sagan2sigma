@@ -6,6 +6,8 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-09-11
+
 ### Fixed
 - A `country_code` rule whose address is bound by `json_map` now tests the
   country of that key instead of being refused. The engine reads the bound key

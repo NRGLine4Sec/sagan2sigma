@@ -34,11 +34,12 @@ appliances ──syslog──► vector ──JSON──► rsigma ──► ale
 sagan2sigma sagan-rules -o converted --profile vector-enriched
 ```
 
-This is the profile to use if you want the correlations. It converts **89.4%**
-of the corpus against 86.6% for the plain profiles, because the 313 rules
-refused with `E_GROUPBY_UNRESOLVED` drop to 14. With a `$HOME_COUNTRY` value and
-the GeoIP database in place, the `country_code` rules convert too and the rate
-reaches **90.8%**.
+This is the profile to use if you want the correlations. It converts **94.4%**
+of the corpus against 86.6% for the plain profiles, because the 305 rules
+refused with `E_GROUPBY_UNRESOLVED` drop to 8. With the site's own `sagan.yaml`
+passed to `--sagan-yaml`, so that `$HOME_COUNTRY` resolves, and the GeoIP
+database in place, the `country_code` rules convert too and the rate reaches
+**97.1%**.
 
 It also writes `converted/vector/`, a runnable pipeline carrying the transforms
 those rules depend on. Two placeholders in `vector.yaml` need your values, the
