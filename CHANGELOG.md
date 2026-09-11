@@ -6,6 +6,19 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+- The differential's pcre sampler handles four constructs it used to refuse, so
+  the fifteen corpus rules whose pattern it could not sample are decided rather
+  than left silent on both sides. A `{` opens a quantifier only when it reads
+  like one, `{\d}{\d}{\d}` being literal braces; `\xHH` becomes the character
+  it names, not its four characters; a character class ends at its first
+  unescaped `]` and its `|` is a member rather than a branch. Subroutine calls
+  are written out, `(?2)` becoming the second group's own pattern, and verified
+  against that form since Python's `re` has no such syntax; a group calling
+  itself is refused instead, one pass being unable to settle a recursion.
+  Corpus coverage goes from 285 to 301 of the 348 pcre options, and the engine
+  differential from 8141 to 8152 rules exercised of 8183, with no disagreement.
+
 ## [0.5.0] - 2026-09-11
 
 ### Fixed

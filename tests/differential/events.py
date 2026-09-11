@@ -72,6 +72,27 @@ JSON_KEYWORDS = frozenset(
     {"json_content", "json_meta_content", "json_pcre", "json_map"}
 )
 
+#: Keywords that make the event a JSON document rather than merely allow one.
+#:
+#: Kept as a name because the distinction is real and was measured, but NOT used
+#: to shape the probe. A rule binding `src_ip` to `.xff` does work on a plain
+#: event in the engine, and building one made fourteen `event_id` rules
+#: exercisable. It also made nineteen rules disagree: the converter treats any
+#: `json_map` rule as JSON-bodied and emits the profile's JSON envelope names,
+#: `syslog_facility` rather than `facility`, so a plain probe carries fields the
+#: converted rule does not read. The generator has to mirror the converter, and
+#: this is the converter's criterion. 41 corpus rules sit in the gap.
+REQUIRES_JSON = frozenset({"json_content", "json_meta_content", "json_pcre"})
+
+
+def needs_json_body(rule: SaganRule) -> bool:
+    """Whether this rule can only be satisfied by a JSON document.
+
+    Not what decides the probe's shape: see :data:`REQUIRES_JSON`.
+    """
+    return bool(rule.keywords & REQUIRES_JSON) or "message" in json_map(rule)
+
+
 #: Keywords whose search runs against the raw body rather than a JSON key.
 RAW_TEXT_KEYWORDS = frozenset({"content", "meta_content", "pcre"})
 
