@@ -1,0 +1,33 @@
+title: '[SSH-TECTIA-SERVER-AETAS] Authentication success at suspicious time'
+id: 9883b72c-9c3c-56a3-8ba4-77abfac5a34c
+status: experimental
+description: Converted from Sagan rule SID 5002054 (rev 3), file ssh-tectia-server-aetas.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Login_success
+  selection_2:
+    appname|cased: SSH_Tectia_Server
+  at_days:
+    sagan_event_weekday:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+  at_from:
+    sagan_event_hhmm|gte: 700
+  at_to:
+    sagan_event_hhmm|lte: 1800
+  condition: selection_1 and selection_2 and (at_days and at_from and at_to)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002054'
+  sagan.rev: '3'
+  sagan.source_file: ssh-tectia-server-aetas.rules

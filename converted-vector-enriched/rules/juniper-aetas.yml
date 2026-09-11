@@ -1,3 +1,71 @@
+title: '[JUNIPER-AETAS] VPN Login at suspicious time'
+id: cc96be24-c65e-54f1-be0a-9e1f924664dd
+status: experimental
+description: Converted from Sagan rule SID 5002047 (rev 3), file juniper-aetas.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    appname|cased: Juniper
+  selection_2:
+    message|re|i: Authentication successful|Login succeeded
+  at_days:
+    sagan_event_weekday:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+  at_from:
+    sagan_event_hhmm|gte: 700
+  at_to:
+    sagan_event_hhmm|lte: 1800
+  condition: selection_1 and selection_2 and (at_days and at_from and at_to)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002047'
+  sagan.rev: '3'
+  sagan.source_file: juniper-aetas.rules
+---
+title: '[JUNIPER-AETAS] VPN Logout at suspicious time'
+id: 31d55ffa-072f-5f48-90b4-14abdd955bd1
+status: experimental
+description: Converted from Sagan rule SID 5002048 (rev 3), file juniper-aetas.rules.
+author: sagan2sigma
+logsource:
+  product: juniper
+detection:
+  selection_1:
+    appname|cased: Juniper
+  selection_2:
+    message|contains|cased: Logout from
+  at_days:
+    sagan_event_weekday:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+  at_from:
+    sagan_event_hhmm|gte: 700
+  at_to:
+    sagan_event_hhmm|lte: 1800
+  condition: selection_1 and selection_2 and (at_days and at_from and at_to)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002048'
+  sagan.rev: '3'
+  sagan.source_file: juniper-aetas.rules
+---
 title: '[JUNIPER] Suspicious - Unknown Application Activity Outside Business Hours'
 id: 5bce5d59-ddbc-59a3-95c8-e3d5d7c9ce2f
 status: experimental

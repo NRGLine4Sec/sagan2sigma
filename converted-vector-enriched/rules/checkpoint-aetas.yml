@@ -1,0 +1,63 @@
+title: '[CHECKPOINT-AETAS] Log In at suspicious time'
+id: 3cb7b447-7172-5dec-be02-5d60dc906550
+status: experimental
+description: Converted from Sagan rule SID 5005733 (rev 1), file checkpoint-aetas.rules.
+author: sagan2sigma
+logsource:
+  product: checkpoint
+detection:
+  selection_1:
+    message|contains|cased: '[action:"Log In";'
+  at_days:
+    sagan_event_weekday:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+  at_from:
+    sagan_event_hhmm|gte: 700
+  at_to:
+    sagan_event_hhmm|lte: 1800
+  condition: selection_1 and (at_days and at_from and at_to)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005733'
+  sagan.rev: '1'
+  sagan.source_file: checkpoint-aetas.rules
+---
+title: '[CHECKPOINT-AETAS] Log Out at suspicious time'
+id: 55c7e86b-29e7-5c15-9d1b-aa1bdfa0ee64
+status: experimental
+description: Converted from Sagan rule SID 5005734 (rev 1), file checkpoint-aetas.rules.
+author: sagan2sigma
+logsource:
+  product: checkpoint
+detection:
+  selection_1:
+    message|contains|cased: '[action:"Log Out";'
+  at_days:
+    sagan_event_weekday:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+  at_from:
+    sagan_event_hhmm|gte: 700
+  at_to:
+    sagan_event_hhmm|lte: 1800
+  condition: selection_1 and (at_days and at_from and at_to)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5005734'
+  sagan.rev: '1'
+  sagan.source_file: checkpoint-aetas.rules

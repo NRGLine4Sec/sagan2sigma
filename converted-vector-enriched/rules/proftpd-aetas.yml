@@ -1,0 +1,33 @@
+title: '[PROFTPD-AETAS] Authentication success at suspicious time'
+id: 01e9353e-f272-5c89-be4e-d037c0bf7c86
+status: experimental
+description: Converted from Sagan rule SID 5002052 (rev 4), file proftpd-aetas.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    message|contains|cased: Login successful
+  selection_2:
+    appname|cased: proftpd
+  at_days:
+    sagan_event_weekday:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+  at_from:
+    sagan_event_hhmm|gte: 700
+  at_to:
+    sagan_event_hhmm|lte: 1800
+  condition: selection_1 and selection_2 and (at_days and at_from and at_to)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002052'
+  sagan.rev: '4'
+  sagan.source_file: proftpd-aetas.rules

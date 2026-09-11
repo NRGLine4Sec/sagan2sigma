@@ -1,3 +1,79 @@
+title: '[FIPAYPIN] Invalid credit card detected'
+id: e2a0c55d-485d-5ecf-9d94-4e8be26fb8d1
+status: experimental
+description: Converted from Sagan rule SID 5002766 (rev 4), file fipaypin.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: S-300000
+  selection_2:
+    _raw|contains|cased: 'Swpe: Response'
+  filter_3:
+    _raw|contains|cased:
+      - track2=4
+      - track2=34
+      - track2=37
+      - track2=300
+      - track2=301
+      - track2=302
+      - track2=303
+      - track2=304
+      - track2=305
+      - track2=2014
+      - track2=2149
+      - track2=309
+      - track2=36
+      - track2=38
+      - track2=39
+      - track2=54
+      - track2=55
+      - track2=6011
+      - track2=6221
+      - track2=6222
+      - track2=6223
+      - track2=6224
+      - track2=6225
+      - track2=6226
+      - track2=6227
+      - track2=6228
+      - track2=6229
+      - track2=644
+      - track2=645
+      - track2=646
+      - track2=647
+      - track2=648
+      - track2=649
+      - track2=65
+      - track2=636
+      - track2=637
+      - track2=638
+      - track2=639
+      - track2=22
+      - track2=23
+      - track2=24
+      - track2=25
+      - track2=26
+      - track2=27
+      - track2=51
+      - track2=52
+      - track2=53
+      - track2=53
+      - track2=55
+  selection_4:
+    appname|cased: '*FIPAYPIN*'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.misc-activity
+custom_attributes:
+  sagan.sid: '5002766'
+  sagan.rev: '4'
+  sagan.source_file: fipaypin.rules
+---
 title: '[FIPAYPIN] Bad/No Pin Block and KSN returned'
 id: 0209b58a-58da-58c6-a3e9-e2b6afc476e8
 status: experimental
@@ -45,5 +121,50 @@ tags:
   - sagan.classtype.misc-activity
 custom_attributes:
   sagan.sid: '5002768'
+  sagan.rev: '3'
+  sagan.source_file: fipaypin.rules
+---
+title: '[FIPAYPIN] Replace macro from outside RFC1918'
+id: 0e7a16fe-d1a2-5fd5-9a14-f777fcb53fb4
+status: experimental
+description: Converted from Sagan rule SID 5002770 (rev 3), file fipaypin.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    _raw|contains|cased: S-300000
+  selection_2:
+    _raw|contains|cased: RTS1_IP
+  filter_3:
+    _raw|contains|cased:
+      - value ''10.
+      - value ''192.168.
+      - value ''172.16.
+      - value ''172.17.
+      - value ''172.18.
+      - value ''172.19.
+      - value ''172.20.
+      - value ''172.21.
+      - value ''172.22.
+      - value ''172.23.
+      - value ''172.24.
+      - value ''172.25.
+      - value ''172.26.
+      - value ''172.27.
+      - value ''172.28.
+      - value ''172.29.
+      - value ''172.30.
+      - value ''172.31.
+  selection_4:
+    appname|cased: '*FIPAYPIN*'
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.misc-activity
+custom_attributes:
+  sagan.sid: '5002770'
   sagan.rev: '3'
   sagan.source_file: fipaypin.rules

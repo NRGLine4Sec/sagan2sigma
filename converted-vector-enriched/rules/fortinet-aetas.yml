@@ -1,3 +1,141 @@
+title: '[FORTINET-AETAS] Login accepted at suspicious time'
+id: e0391644-84a4-5d73-bdfb-ed2a6c078064
+status: experimental
+description: Converted from Sagan rule SID 5002043 (rev 4), file fortinet-aetas.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: 32006 type=
+  selection_2:
+    message|contains|cased: login
+  selection_3:
+    message|contains|cased:
+      - accepted
+      - successfully
+  at_days:
+    sagan_event_weekday:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+  at_from:
+    sagan_event_hhmm|gte: 700
+  at_to:
+    sagan_event_hhmm|lte: 1800
+  condition: selection_1 and selection_2 and selection_3 and (at_days and at_from and at_to)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5002043'
+  sagan.rev: '4'
+  sagan.source_file: fortinet-aetas.rules
+---
+title: '[FORTINET-AETAS] Administrator Login at suspicious time'
+id: 64436e81-d4d0-57c5-9d0c-e467f9ea114b
+status: experimental
+description: Converted from Sagan rule SID 5002044 (rev 3), file fortinet-aetas.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: 32001 type=
+  selection_2:
+    message|contains|cased: logged in
+  at_days:
+    sagan_event_weekday:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+  at_from:
+    sagan_event_hhmm|gte: 700
+  at_to:
+    sagan_event_hhmm|lte: 1800
+  condition: selection_1 and selection_2 and (at_days and at_from and at_to)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5002044'
+  sagan.rev: '3'
+  sagan.source_file: fortinet-aetas.rules
+---
+title: '[FORTINET-AETAS] Admin authentication access at suspicious time'
+id: 1d9a8c41-7f28-579c-8ea7-571f14dd034d
+status: experimental
+description: Converted from Sagan rule SID 5002045 (rev 3), file fortinet-aetas.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: 38001 type=
+  selection_2:
+    message|contains|cased: succeeded in authentication
+  at_days:
+    sagan_event_weekday:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+  at_from:
+    sagan_event_hhmm|gte: 700
+  at_to:
+    sagan_event_hhmm|lte: 1800
+  condition: selection_1 and selection_2 and (at_days and at_from and at_to)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5002045'
+  sagan.rev: '3'
+  sagan.source_file: fortinet-aetas.rules
+---
+title: '[FORTINET-AETAS] SSH traffic detected at suspicious time'
+id: d1c67128-ea9e-582a-bfe6-55e76b0ec877
+status: experimental
+description: Converted from Sagan rule SID 5002046 (rev 4), file fortinet-aetas.rules.
+author: sagan2sigma
+logsource:
+  product: fortinet
+detection:
+  selection_1:
+    message|contains|cased: ' service=SSH '
+  at_days:
+    sagan_event_weekday:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+  at_from:
+    sagan_event_hhmm|gte: 700
+  at_to:
+    sagan_event_hhmm|lte: 1800
+  condition: selection_1 and (at_days and at_from and at_to)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5002046'
+  sagan.rev: '4'
+  sagan.source_file: fortinet-aetas.rules
+---
 title: '[FORTIGATE] Suspicious - Unknown Application Activity Outside Business Hours'
 id: 3c1d9197-72c5-5ad7-9600-101bb940128f
 status: experimental

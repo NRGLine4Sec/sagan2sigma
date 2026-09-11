@@ -1,0 +1,121 @@
+title: '[WINDOWS-AETAS] Windows Logon at suspicious time'
+id: c3f12e17-0a40-5f07-b262-94a17f26c298
+status: experimental
+description: Converted from Sagan rule SID 5008407 (rev 9), file azureEventHub_windows-aetas.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4624
+      - 540
+      - 528
+  selection_2:
+    syslog_appname|cased: '*Security*'
+  at_days:
+    sagan_event_weekday:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+  at_from:
+    sagan_event_hhmm|gte: 700
+  at_to:
+    sagan_event_hhmm|lte: 1800
+  condition: selection_1 and selection_2 and (at_days and at_from and at_to)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5008407'
+  sagan.rev: '9'
+  sagan.source_file: azureEventHub_windows-aetas.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5002055
+---
+title: '[WINDOWS-AETAS] RDP / Logon type 10 at suspicious time'
+id: 08bbbb21-c2ad-5e2c-81d1-6579e0a3652a
+status: experimental
+description: Converted from Sagan rule SID 5008408 (rev 8), file azureEventHub_windows-aetas.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4624
+      - 540
+      - 528
+  selection_2:
+    RenderedDescription|contains|cased: 'Logon Type: 10 '
+  selection_3:
+    syslog_appname|cased: '*Security*'
+  at_days:
+    sagan_event_weekday:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+  at_from:
+    sagan_event_hhmm|gte: 700
+  at_to:
+    sagan_event_hhmm|lte: 1800
+  condition: selection_1 and selection_2 and selection_3 and (at_days and at_from and at_to)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5008408'
+  sagan.rev: '8'
+  sagan.source_file: azureEventHub_windows-aetas.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5002056
+---
+title: '[WINDOWS-AETAS] Logon attempt using explicit credentials at suspicious time'
+id: 186b03ac-9b15-5c1c-8e03-c947a1b7a43a
+status: experimental
+description: Converted from Sagan rule SID 5008409 (rev 7), file azureEventHub_windows-aetas.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4648
+      - 552
+  filter_2:
+    RenderedDescription|contains|cased: 'Network Address: - '
+  filter_3:
+    RenderedDescription|contains|cased: 'Port: - '
+  filter_4:
+    RenderedDescription|contains|cased: 'Target Server Name: localhost'
+  selection_5:
+    syslog_appname|cased: '*Security*'
+  at_days:
+    sagan_event_weekday:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+  at_from:
+    sagan_event_hhmm|gte: 700
+  at_to:
+    sagan_event_hhmm|lte: 1800
+  condition: selection_1 and selection_5 and not (filter_2 or filter_3 or filter_4) and (at_days and at_from
+    and at_to)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5008409'
+  sagan.rev: '7'
+  sagan.source_file: azureEventHub_windows-aetas.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5002057

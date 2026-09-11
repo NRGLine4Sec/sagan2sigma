@@ -1,0 +1,118 @@
+title: '[WINDOWS-AETAS] Windows Logon at suspicious time'
+id: dba24b7d-0cda-5685-a657-0ca1ec1faf69
+status: experimental
+description: Converted from Sagan rule SID 5002055 (rev 9), file windows-aetas.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4624
+      - 540
+      - 528
+  selection_2:
+    appname|cased: '*Security*'
+  at_days:
+    sagan_event_weekday:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+  at_from:
+    sagan_event_hhmm|gte: 700
+  at_to:
+    sagan_event_hhmm|lte: 1800
+  condition: selection_1 and selection_2 and (at_days and at_from and at_to)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002055'
+  sagan.rev: '9'
+  sagan.source_file: windows-aetas.rules
+---
+title: '[WINDOWS-AETAS] RDP / Logon type 10 at suspicious time'
+id: 1400da69-835d-5dd6-b309-8003c2dff217
+status: experimental
+description: Converted from Sagan rule SID 5002056 (rev 8), file windows-aetas.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4624
+      - 540
+      - 528
+  selection_2:
+    message|contains|cased: 'Logon Type: 10 '
+  selection_3:
+    appname|cased: '*Security*'
+  at_days:
+    sagan_event_weekday:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+  at_from:
+    sagan_event_hhmm|gte: 700
+  at_to:
+    sagan_event_hhmm|lte: 1800
+  condition: selection_1 and selection_2 and selection_3 and (at_days and at_from and at_to)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002056'
+  sagan.rev: '8'
+  sagan.source_file: windows-aetas.rules
+---
+title: '[WINDOWS-AETAS] Logon attempt using explicit credentials at suspicious time'
+id: 16edc199-e3e2-5ba7-ad58-ec1577a97e97
+status: experimental
+description: Converted from Sagan rule SID 5002057 (rev 7), file windows-aetas.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    EventID:
+      - 4648
+      - 552
+  filter_2:
+    message|contains|cased: 'Network Address: - '
+  filter_3:
+    message|contains|cased: 'Port: - '
+  filter_4:
+    message|contains|cased: 'Target Server Name: localhost'
+  selection_5:
+    appname|cased: '*Security*'
+  at_days:
+    sagan_event_weekday:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+  at_from:
+    sagan_event_hhmm|gte: 700
+  at_to:
+    sagan_event_hhmm|lte: 1800
+  condition: selection_1 and selection_5 and not (filter_2 or filter_3 or filter_4) and (at_days and at_from
+    and at_to)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5002057'
+  sagan.rev: '7'
+  sagan.source_file: windows-aetas.rules

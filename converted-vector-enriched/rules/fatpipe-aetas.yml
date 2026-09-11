@@ -1,0 +1,69 @@
+title: '[FATPIPE-AETAS] Login Success at suspicious time'
+id: 240ce09f-e4bb-55b1-8e9f-36693db2747c
+status: experimental
+description: Converted from Sagan rule SID 5002041 (rev 2), file fatpipe-aetas.rules.
+author: sagan2sigma
+logsource:
+  product: fatpipe
+detection:
+  selection_1:
+    message|contains|cased: 'Login: Success'
+  selection_2:
+    appname|cased: xtremed
+  at_days:
+    sagan_event_weekday:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+  at_from:
+    sagan_event_hhmm|gte: 700
+  at_to:
+    sagan_event_hhmm|lte: 1800
+  condition: selection_1 and selection_2 and (at_days and at_from and at_to)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5002041'
+  sagan.rev: '2'
+  sagan.source_file: fatpipe-aetas.rules
+---
+title: '[FATPIPE-AETAS] Login Success - ADMINISTRATOR - at supicious time'
+id: 98353b46-f71f-5f8a-a9e9-6453679d7b53
+status: experimental
+description: Converted from Sagan rule SID 5002042 (rev 2), file fatpipe-aetas.rules.
+author: sagan2sigma
+logsource:
+  product: fatpipe
+detection:
+  selection_1:
+    message|contains|cased: 'Login: Success'
+  selection_2:
+    message|contains|cased: ADMINISTRATOR
+  selection_3:
+    appname|cased: xtremed
+  at_days:
+    sagan_event_weekday:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+  at_from:
+    sagan_event_hhmm|gte: 700
+  at_to:
+    sagan_event_hhmm|lte: 1800
+  condition: selection_1 and selection_2 and selection_3 and (at_days and at_from and at_to)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-admin
+custom_attributes:
+  sagan.sid: '5002042'
+  sagan.rev: '2'
+  sagan.source_file: fatpipe-aetas.rules
