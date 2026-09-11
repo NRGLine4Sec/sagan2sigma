@@ -454,6 +454,13 @@ _MEMBER_TEMPLATES = (
     '{"sagan_probe_key"%s}',
     '{"sagan_probe_key": %s}',
     '{"sagan_probe_key": "%s}',
+    # A literal can stop in the middle of a value, which is what a rule looking
+    # for a prefix does: `"Name": "Name", "Value": ".` is the start of a member
+    # whose value the rule only constrains by its first character. Closing the
+    # string, and then the object, is what turns it back into structure.
+    '{%s"}',
+    '{%s""}',
+    '{"%s"}}',
 )
 
 #: Serialisation styles tried for a JSON-bodied probe, spaced first. A rule's

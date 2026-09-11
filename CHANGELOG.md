@@ -7,6 +7,16 @@ All notable changes to this project are documented here. The format follows
 ## [Unreleased]
 
 ### Fixed
+- Three more templates for putting a raw literal back into a JSON document as
+  structure. A literal can stop in the middle of a value, which is what a rule
+  matching a prefix writes: `"Name": "Name", "Value": ".` is a member whose value
+  the rule only constrains by its first character, and closing the string and
+  the object turns it back into something a document can carry. Five corpus
+  rules move from undecided to exercised, 8152 to 8157 of 8183, no disagreement.
+  The eight that remain are each blocked by something the templates cannot
+  reach, and `tests/unit/test_probe_placement.py` records two of them: quotes
+  inside a sentence, which no JSON string holds unescaped, and a pair of
+  fragments asking for two different serialisations of one document.
 - The differential's pcre sampler handles four constructs it used to refuse, so
   the fifteen corpus rules whose pattern it could not sample are decided rather
   than left silent on both sides. A `{` opens a quantifier only when it reads
