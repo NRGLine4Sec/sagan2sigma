@@ -93,8 +93,16 @@ def needs_json_body(rule: SaganRule) -> bool:
 
 
 def matches_either_shape(rule: SaganRule) -> bool:
-    """Whether the rule matches a plain event as well as a JSON-bodied one."""
-    return bool(rule.keywords & JSON_KEYWORDS) and not needs_json_body(rule)
+    """Whether the engine matches the rule on a plain line and on a document.
+
+    True of everything except a rule reading a key out of a parsed document.
+    Measured: `program: sshd; content:"needle"`, naming no JSON at all, fires on
+    a document whose serialised text holds the literal, and a rule searching
+    `"Msg":"` fires on the document alone, which is what says the search runs
+    over the serialisation rather than over a value. Sagan has no notion of a
+    log source to narrow this with, only a `program`.
+    """
+    return not needs_json_body(rule)
 
 
 #: Keywords whose search runs against the raw body rather than a JSON key.
@@ -565,14 +573,17 @@ def build_event(
     rule: SaganRule,
     literals: list[str],
     overrides: dict[str, str] | None = None,
-    plain: bool = False,
+    shape: str = "auto",
 ) -> SaganEvent:
     """One event carrying exactly the raw-text literals it is given.
 
-    ``plain`` builds the plain-text half of a rule that matches both shapes:
-    no document at all, the literals in the message, and therefore none of the
-    keys a ``json_map`` names. ``overrides`` write keys into a document and are
-    ignored here, so a caller that needs them should not ask for a plain event.
+    ``shape`` picks which half of a rule matching both to build. ``auto``, the
+    default, takes the one the rule reads: a document when it names JSON at
+    all, a plain line otherwise. ``plain`` forces a line with no document and
+    therefore none of the keys a ``json_map`` names; ``overrides`` write keys
+    into a document and are ignored there, so a caller needing them should not
+    ask for one. ``document`` forces the literals into a document even for a
+    rule that names no JSON, which the engine matches all the same.
 
     Composing by literal rather than by editing a finished message is what lets
     the JSON path work at all: on a JSON-bodied event the engine searches the
@@ -583,12 +594,18 @@ def build_event(
     ``overrides`` replaces JSON keys after the body is built, which is how a
     probe puts back the value a rule negates.
     """
+    plain = shape == "plain"
     body = {} if plain else json_body(rule)
     if not plain:
         for name, value in (overrides or {}).items():
             _write(body, name, value)
     text = FILLER.join(literals) or "no conditions"
     key = None if plain else text_key(rule)
+    if shape == "document" and key is None:
+        # A rule naming no JSON has no region of its own inside a document, so
+        # the probe gives it one, exactly as it does for a rule combining raw
+        # text with JSON conditions.
+        key = PROBE_TEXT_KEY
 
     identifier = unbound_event_id(rule)
 
@@ -707,12 +724,10 @@ def probes(
     given = [*context, *pcre_literals(rule)]
 
     either = matches_either_shape(rule)
-    plain_only = either and not json_arm
+    shape = "plain" if either and not json_arm else "auto"
 
     def event(literals: list[str]) -> SaganEvent:
-        return build_event(
-            rule, [*given, *literals], overrides=bindings, plain=plain_only
-        )
+        return build_event(rule, [*given, *literals], overrides=bindings, shape=shape)
 
     out = [Probe("base", event(positives))]
 
@@ -751,22 +766,28 @@ def probes(
 
     out.append(Probe("wildcard_probe", event([*positives, "literal*star"])))
 
-    # The plain-text half of a rule that matches both shapes. Without it such a
-    # rule is only ever probed as a document, and a conversion naming the JSON
-    # envelope alone would agree with the engine on every probe while missing
-    # every plain event the original matches. Skipped when the caller planted
-    # key values, which have no place in a plain event: the probe would then be
-    # measuring something the rule cannot see either way.
-    if either and json_arm and not bindings:
-        plain_positives = build_event(rule, [*given, *positives], plain=True)
-        out.append(Probe("plain_body", plain_positives))
+    # The other half of a rule that matches both shapes, which is the half the
+    # probes above do not carry: a plain line for a rule naming JSON, a document
+    # for a rule naming none. Without it such a rule is only ever probed in one
+    # shape, and a conversion naming that shape's envelope alone agrees with the
+    # engine on every probe while missing every event of the other. Restricted
+    # to rules searching the body as text, the only ones whose second half a
+    # probe can satisfy: an `event_id` a document cannot carry, or an envelope
+    # selector on its own, leaves both sides silent and decides nothing.
+    #
+    # Skipped when the caller planted key values, which belong to a document:
+    # the twin would then be measuring something neither side can see.
+    if either and json_arm and not bindings and rule.keywords & RAW_TEXT_KEYWORDS:
+        twin_shape = "plain" if rule.keywords & JSON_KEYWORDS else "document"
+        twin = build_event(rule, [*given, *positives], shape=twin_shape)
+        out.append(Probe(f"{twin_shape}_body", twin))
         if rule.has("program") or rule.has("event_type"):
-            # Proves the converted rule *reads* the plain envelope name rather
-            # than having dropped the selector: this one must not fire.
+            # Proves the converted rule *reads* that shape's envelope name
+            # rather than having dropped the selector: this one must not fire.
             out.append(
                 Probe(
-                    "plain_wrong_program",
-                    replace(plain_positives, program="zzz-unrelated"),
+                    f"{twin_shape}_wrong_program",
+                    replace(twin, program="zzz-unrelated"),
                 )
             )
     return out

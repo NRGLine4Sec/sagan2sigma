@@ -88,10 +88,34 @@ class TestTheEnvelopeAcceptsEitherName:
             "syslog_appname|cased": "sshd"
         }
 
-    @pytest.mark.parametrize("profile", ["rsigma-syslog", "vector-enriched"])
-    def test_a_rule_naming_no_json_at_all_is_untouched(self, profile: str) -> None:
+    def test_a_rule_naming_no_json_gets_both_names_too(self) -> None:
+        """It matches a document in the engine, so it has to here as well.
+
+        The plain name comes first, being the shape the rule was written for.
+        """
         raw = 'msg:"t"; program: sshd; content:"needle"; sid:1;'
-        assert block_for(raw, profile, "sshd") == {"appname|cased": "sshd"}
+        assert block_for(raw, "vector-enriched", "sshd") == [
+            {"appname|cased": "sshd"},
+            {"syslog_appname|cased": "sshd"},
+        ]
+
+    def test_but_not_where_the_document_half_is_unreachable(self) -> None:
+        """An alternative nothing can satisfy is not worth emitting.
+
+        Under a profile keeping no raw body, a text search cannot run on a
+        document at all, so naming the document's envelope adds a branch no
+        event can take.
+        """
+        raw = 'msg:"t"; program: sshd; content:"needle"; sid:1;'
+        assert block_for(raw, "rsigma-syslog", "sshd") == {"appname|cased": "sshd"}
+
+    def test_a_rule_with_no_text_search_names_both_on_either_profile(self) -> None:
+        """Nothing there depends on a raw body, so both shapes stay reachable."""
+        raw = 'msg:"t"; program: sshd; event_id: 4624; sid:1;'
+        assert block_for(raw, "rsigma-syslog", "sshd") == [
+            {"appname|cased": "sshd"},
+            {"syslog_appname|cased": "sshd"},
+        ]
 
 
 class TestOnAProfileThatKeepsNoRawBody:

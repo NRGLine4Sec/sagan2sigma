@@ -179,6 +179,14 @@ reached them with the field already removed and they produced nothing, so 37
 corpus rules that match on or group by a derived field could not fire. Each
 transform passed its own tests throughout; only running them as a chain, which
 is how they run, showed it.
+
+The converted rules read it for the same reason, and this was the last place
+still reading `message`. Sagan matches a raw-text rule against a JSON body by
+searching the serialised document, measured on a rule naming no JSON at all, so
+a converted rule searching `message` saw only the plain half of the events its
+original matches. Every raw-text search on this profile now names `sagan_raw`,
+6,220 rules, and their envelope selector accepts the plain and the prefixed name
+both, since the pipeline renames the envelope with the shape.
 Because the raw body is preserved byte for byte, the match is faithful to the
 exact serialization Sagan saw; the converted rule carries `D_RAW_TEXT_MATCH` to
 say the match is format-bound and not portable to a re-serialized event.

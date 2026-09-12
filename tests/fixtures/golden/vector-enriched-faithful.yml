@@ -9,13 +9,16 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - sshd
-      - openssh
+    - appname|cased:
+        - sshd
+        - openssh
+    - syslog_appname|cased:
+        - sshd
+        - openssh
   selection_2:
-    message|contains: authentication failure
+    sagan_raw|contains: authentication failure
   filter_3:
-    message|contains|cased: frank
+    sagan_raw|contains|cased: frank
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -36,11 +39,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: '*apache*'
+    - appname|cased: '*apache*'
+    - syslog_appname|cased: '*apache*'
   selection_2:
-    message|contains|cased: 'User Agent: scanner'
+    sagan_raw|contains|cased: 'User Agent: scanner'
   selection_3:
-    message|contains|cased: 100\*
+    sagan_raw|contains|cased: 100\*
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -61,9 +65,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: sudo
+    - appname|cased: sudo
+    - syslog_appname|cased: sudo
   selection_2:
-    message|contains:
+    sagan_raw|contains:
       - USER=root
       - USER=admin
   condition: selection_1 and selection_2
@@ -86,7 +91,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|re|i: file system full|No space left on device
+    sagan_raw|re|i: file system full|No space left on device
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -228,9 +233,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: asterisk
+    - appname|cased: asterisk
+    - syslog_appname|cased: asterisk
   selection_2:
-    message|contains|cased: Registration from
+    sagan_raw|contains|cased: Registration from
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -329,9 +335,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: test
+    - appname|cased: test
+    - syslog_appname|cased: test
   selection_2:
-    message|contains|cased: x
+    sagan_raw|contains|cased: x
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -352,9 +359,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: test
+    - appname|cased: test
+    - syslog_appname|cased: test
   selection_2:
-    message|contains|cased: y
+    sagan_raw|contains|cased: y
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -400,9 +408,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: test
+    - appname|cased: test
+    - syslog_appname|cased: test
   selection_2:
-    message|re: count \{\d}
+    sagan_raw|re: count \{\d}
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -423,9 +432,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: test
+    - appname|cased: test
+    - syslog_appname|cased: test
   selection_2:
-    message|re: ip=(10|172)(?:10|172)
+    sagan_raw|re: ip=(10|172)(?:10|172)
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -446,9 +456,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: test
+    - appname|cased: test
+    - syslog_appname|cased: test
   filter_2:
-    message|re: denied
+    sagan_raw|re: denied
   condition: selection_1 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -469,9 +480,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: test
+    - appname|cased: test
+    - syslog_appname|cased: test
   selection_2:
-    message|re|i: failed
+    sagan_raw|re|i: failed
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -493,9 +505,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: test
+    - appname|cased: test
+    - syslog_appname|cased: test
   selection_2:
-    message|contains|cased: x
+    sagan_raw|contains|cased: x
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -531,9 +544,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: test
+    - appname|cased: test
+    - syslog_appname|cased: test
   selection_2:
-    message|contains|cased: x
+    sagan_raw|contains|cased: x
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -558,9 +572,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: test
+    - appname|cased: test
+    - syslog_appname|cased: test
   selection_2:
-    message|contains|cased: x
+    sagan_raw|contains|cased: x
   selection_3:
     sagan_geoip_country_1|exists: true
   filter_4:
@@ -585,9 +600,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: test
+    - appname|cased: test
+    - syslog_appname|cased: test
   selection_2:
-    message|contains|cased: x
+    sagan_raw|contains|cased: x
   at_days:
     sagan_event_weekday:
       - 0
@@ -622,9 +638,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: test
+    - appname|cased: test
+    - syslog_appname|cased: test
   selection_2:
-    message|contains|cased: x
+    sagan_raw|contains|cased: x
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -660,9 +677,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: test
+    - appname|cased: test
+    - syslog_appname|cased: test
   selection_2:
-    message|contains|cased: ignore me
+    sagan_raw|contains|cased: ignore me
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -683,9 +701,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: test
+    - appname|cased: test
+    - syslog_appname|cased: test
   selection_2:
-    message|contains|cased: shape split seen
+    sagan_raw|contains|cased: shape split seen
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -771,9 +790,10 @@ logsource:
   product: syslog
 detection:
   s1_selection_1:
-    appname|cased: test
+    - appname|cased: test
+    - syslog_appname|cased: test
   s1_selection_2:
-    message|contains|cased: shape split seen
+    sagan_raw|contains|cased: shape split seen
   condition: (s1_selection_1 and s1_selection_2)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

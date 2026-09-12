@@ -112,11 +112,24 @@ class TestRawSearchOnJsonEvent:
         assert resolver.message == "M"
         assert not resolver.raw_search_is_unreachable
 
-    def test_plain_event_unaffected_under_enriched(
+    def test_a_rule_naming_no_json_searches_the_raw_field_too(
         self, enriched_context: Context
     ) -> None:
-        """A non-JSON event still resolves message to the envelope field."""
+        """The raw field is the one carrying the body whatever its shape.
+
+        Measured on the engine: a rule naming no JSON matches a document whose
+        serialised text holds its literal. The pipeline drops `message` for such
+        an event and keeps `sagan_raw`, so searching `message` would see half
+        the events the rule matches.
+        """
         rule = make_rule('msg:"t"; content:"y"; sid:1;')
         resolver = FieldResolver.for_rule(rule, enriched_context)
         assert not resolver.json_event
-        assert resolver.message == "message"
+        assert resolver.message == "sagan_raw"
+
+    def test_a_profile_with_no_raw_field_keeps_the_message_field(
+        self, context: Context
+    ) -> None:
+        """There the message field is the whole body and nothing else exists."""
+        rule = make_rule('msg:"t"; content:"y"; sid:1;')
+        assert FieldResolver.for_rule(rule, context).message == "_raw"

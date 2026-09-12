@@ -28,9 +28,11 @@ because dropping a keyword usually widens a rule rather than narrowing it.
 | `meta_nocase` | drops `\|cased` | |
 | `pcre:"/x/i"` | `<message>\|re\|i: x` | flags `i`, `m`, `s` map across; `g`, `x` and friends are no-ops |
 
-`<message>` is `_raw` under the `rsigma-syslog` profile and `message` under
-`vector-json`, **unless** the rule carries `json_map: "message", ".key"`, in
-which case it is that key. See `docs/DESIGN-DECISIONS.md`.
+`<message>` is `_raw` under the `rsigma-syslog` profile, `message` under
+`vector-json` and `sagan_raw` under `vector-enriched`, whose pipeline keeps the
+body there whatever its shape, **unless** the rule carries
+`json_map: "message", ".key"`, in which case it is that key. See
+`docs/DESIGN-DECISIONS.md`.
 
 ### JSON
 
@@ -51,9 +53,11 @@ therefore a field. Everything matching the raw body carries
 
 ### Envelope
 
-The field names below are the plain-text ones. When the rule uses any JSON
-operator, RSigma exposes the `syslog_` prefixed variants instead, and the
-converter follows. See `docs/DESIGN-DECISIONS.md`.
+The field names below are the plain-text ones. RSigma exposes the `syslog_`
+prefixed variants once the body is a document, and the engine matches almost
+every rule on either shape, so the emitted block usually lists both names as a
+disjunction, the shape the rule reads first. Only a rule a plain line could
+never satisfy names one. See `docs/DESIGN-DECISIONS.md`.
 
 | Sagan | Sigma | Notes |
 | --- | --- | --- |

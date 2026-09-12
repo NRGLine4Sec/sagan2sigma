@@ -78,7 +78,10 @@ def fires(rules: Path, event: dict[str, object]) -> bool:
             "--rules",
             str(rules),
             "--event",
-            json.dumps({"appname": "sshd", "message": "x", **event}),
+            # `sagan_raw` beside `message`: sagan-json.vrl sets it on every
+            # event, and a raw-text search converts against it, that being
+            # the field carrying the body whatever its shape.
+            json.dumps({"appname": "sshd", "message": "x", "sagan_raw": "x", **event}),
             "--output-format",
             "ndjson",
             "--no-stats",

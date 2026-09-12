@@ -7,6 +7,26 @@ All notable changes to this project are documented here. The format follows
 ## [Unreleased]
 
 ### Fixed
+- A raw-text search converts against the field that carries the body whatever
+  its shape, which under `vector-enriched` is `sagan_raw` and not `message`.
+  Measured on the engine: a rule naming no JSON at all matches a JSON-bodied
+  event by searching the serialised document, `content:"|22|Msg|22 3a 22|"`
+  firing on the document and on nothing else, which is what says the search runs
+  over the serialisation rather than over a value. The pipeline drops `message`
+  once the body is a document, so 6,220 converted rules could see only the plain
+  half of the events their originals match. Their envelope selector accepts the
+  plain and the prefixed name both, for the same reason and by the same
+  mechanism as the `json_map` rules below. The pipeline's own transforms had
+  already settled this question the same way, `sagan-parse-ip.vrl` and
+  `username-extraction.vrl` reading `sagan_raw` with `message` as a fallback;
+  the converted rules were the last place still reading `message`. An
+  alternative nothing can satisfy is not emitted, so on a profile keeping no raw
+  body, where a text search cannot run on a document at all, the envelope names
+  one shape as before. There the 456 rules with no text search do gain the
+  second name, 367 of them constraining nothing but the program, which is what
+  their originals do; the other 89 carry an unbound `event_id` and already
+  declare `D_EVENT_ID_HEURISTIC`, whose divergence this widens to documents
+  rather than creating.
 - A `json_map` binding no longer makes the converter treat a rule as
   JSON-bodied. Measured on the engine, three rules differing only in their
   binding: `program: sshd; content:"needle"` fires on a plain line and on a

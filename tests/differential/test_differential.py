@@ -337,17 +337,21 @@ EITHER_SHAPE = [
     ' content:"needle"; sid:35;',
     # The binding alone, with no envelope selector to disambiguate the shape.
     'msg:"gg"; json_map:"dest_ip",".dst"; content:"needle"; sid:36;',
+    # No JSON keyword at all, which the engine matches against a document too.
+    'msg:"hh"; program: sshd; content:"needle"; sid:37;',
+    'msg:"ii"; program: sshd; syslog_facility: auth; content:"needle";'
+    ' content:!"exempt"; sid:38;',
 ]
 
 
 class TestARuleThatMatchesEitherShape:
-    """Measured on the engine: the binding changes nothing about what matches.
+    """Measured on the engine: nearly every rule matches a line and a document.
 
-    `program: sshd; json_map: "src_ip", ".ip"; content:"needle"` fires on a
-    plain syslog line exactly as the same rule without the binding does, and on
-    a JSON document as well. Converting it for one shape cost 41 corpus rules
-    the other, and nothing caught it because the probe generator took its shape
-    from the rule too.
+    `program: sshd; content:"needle"` fires on a plain syslog line and on a JSON
+    document whose serialised text holds the literal; adding
+    `json_map: "src_ip", ".ip"` changes neither. Converting a rule for one shape
+    cost 41 rules the plain half and 6,220 the document half, and nothing caught
+    it because the probe generator took its shape from the rule too.
     """
 
     @pytest.mark.parametrize(
@@ -360,9 +364,12 @@ class TestARuleThatMatchesEitherShape:
         disagreements = compare(rule, tmp_path, profile="vector-enriched")
         assert not disagreements, "\n".join(str(d) for d in disagreements)
 
-    def test_both_arms_are_probed(self) -> None:
-        """Otherwise the suite above would pass on the document arm alone."""
-        line = f"alert any any any -> any any ({EITHER_SHAPE[0]})"
+    @pytest.mark.parametrize(
+        "options", EITHER_SHAPE, ids=lambda o: o.split(";")[-2].strip()
+    )
+    def test_both_arms_are_probed(self, options: str) -> None:
+        """Otherwise the suite above would pass on one arm and measure half."""
+        line = f"alert any any any -> any any ({options})"
         rule = parse_rule(line, "handwritten.rules", 1)
         shapes = {bool(probe.event.json_body) for probe in probes(rule)}
         assert shapes == {True, False}
