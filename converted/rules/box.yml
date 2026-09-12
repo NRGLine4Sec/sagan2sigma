@@ -385,6 +385,48 @@ correlation:
     gte: 11
 level: low
 ---
+title: '[BOX] Multiple Failed Login Attempts By IP (10/300sec)'
+id: 81209aab-443b-515d-83d3-0d552a007faf
+name: sagan_5015220
+status: experimental
+description: Converted from Sagan rule SID 5015220 (rev 2), file box.rules.
+references:
+  - https://developer.box.com/guides/events/enterprise-events/for-enterprise/
+author: sagan2sigma
+logsource:
+  product: box
+detection:
+  selection_1:
+    syslog_appname|cased: box-api_data
+  selection_2:
+    event_type|cased: FAILED_LOGIN
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '5015220'
+  sagan.rev: '2'
+  sagan.source_file: box.rules
+  sagan.metadata: created_at=2025_01_14,updated_at=2025_01_14
+---
+title: '[BOX] Multiple Failed Login Attempts By IP (10/300sec) (threshold 10 in 5m)'
+id: 356b86e6-c6f1-5231-893e-8a930bc70904
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5015220
+  group-by:
+    - ip_address
+  timespan: 5m
+  condition:
+    gte: 11
+level: low
+---
 title: '[BOX] File marked as malicious'
 id: 4249fb4e-0f0f-5d3e-a9f0-470f02fd6afe
 status: experimental

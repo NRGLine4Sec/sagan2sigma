@@ -255,7 +255,7 @@ custom_attributes:
 title: '[AZURE-EVENTHUB-AD] atRisk Event Detected'
 id: 16402555-7abe-5276-a8ef-5c37aa4baa94
 status: experimental
-description: Converted from Sagan rule SID 5004770 (rev 7), file azure-eventhub-ad.rules.
+description: Converted from Sagan rule SID 5004770 (rev 8), file azure-eventhub-ad.rules.
 references:
   - https://docs.microsoft.com/en-us/azure/active-directory/reports-monitoring/reference-azure-monitor-sign-ins-log-schema
 author: sagan2sigma
@@ -267,9 +267,9 @@ detection:
   selection_2:
     properties.riskState|cased: atRisk
   selection_3:
-    properties.riskEventTypes[]|exists: true
+    properties.riskEventTypes|exists: true
   filter_4:
-    properties.riskEventTypes[]|cased: unfamiliarFeatures
+    properties.riskEventTypes|contains|cased: unfamiliarFeatures
   condition: selection_1 and selection_2 and selection_3 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -278,7 +278,7 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5004770'
-  sagan.rev: '7'
+  sagan.rev: '8'
   sagan.source_file: azure-eventhub-ad.rules
 ---
 title: '[AZURE-EVENTHUB-AD] confirmedCompromised Event Detected'
@@ -393,7 +393,8 @@ logsource:
   product: azure
 detection:
   selection_1:
-    syslog_appname|cased: azureEventHub
+    - syslog_appname|cased: azureEventHub
+    - appname|cased: azureEventHub
   selection_2:
     sagan_raw|contains|cased:
       - 'resultType": "50126'

@@ -3007,7 +3007,7 @@ custom_attributes:
 title: Fortigate device detected
 id: b6b3fc17-754e-5efe-9eb5-1ff19b4e5bc0
 status: experimental
-description: Converted from Sagan rule SID 5100137 (rev 1), file fingerprint.rules.
+description: Converted from Sagan rule SID 5100137 (rev 2), file fingerprint.rules.
 author: sagan2sigma
 logsource:
   product: syslog
@@ -3015,7 +3015,7 @@ detection:
   selection_1:
     _raw|contains|cased: devname=
   selection_2:
-    _raw|re: log_*id=*[0-9]{10}\*
+    _raw|re: log_*id=\x22*[0-9]{10}\x22*
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3024,7 +3024,7 @@ tags:
   - sagan.classtype.fingerprint
 custom_attributes:
   sagan.sid: '5100137'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: fingerprint.rules
   sagan.metadata: fingerprint_source=logs,fingerprint_os=forti-os,fingerprint_expire=86400
   rsigma.suppress: 12h

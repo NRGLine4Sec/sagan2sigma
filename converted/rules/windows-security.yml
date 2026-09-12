@@ -1920,6 +1920,51 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: windows-security.rules
 ---
+title: '[WINDOWS-SECURITY] Disable Windows Security'
+id: ceef3567-1e94-546b-8faf-bbb1e299bf54
+status: experimental
+description: Converted from Sagan rule SID 995008347 (rev 3), file windows-security.rules.
+references:
+  - https://thedfirreport.com/2024/08/12/threat-actors-toolkit-leveraging-sliver-poshc2-batch-scripts/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    - syslog_appname|cased:
+        - '*Sysmon*'
+        - Security
+    - appname|cased:
+        - '*Sysmon*'
+        - Security
+  selection_2:
+    EventID:
+      - 1
+      - 4688
+  selection_3:
+    _raw|contains:
+      - DisableAntiVirus
+      - DisableBehaviorMonitoring
+      - DisableIOAVProtection
+      - DisableScanOnRealtimeEnable
+      - DisableRealtimeMonitoring
+      - DisableAntiSpyware
+      - Uninstall-WindowsFeature -Name Windows-Defender
+  filter_4:
+    _raw|contains|cased: \\AzureWindowsBaseline\\
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '995008347'
+  sagan.rev: '3'
+  sagan.source_file: windows-security.rules
+  rsigma.suppress: 1h
+  sagan.metadata: updatedOn=2026_07_02
+---
 title: '[WINDOWS-SECURITY] Copied rundll32 command executing non-standard dll'
 id: 7629fdac-9458-503e-927c-0c5233885d80
 status: experimental
@@ -4176,6 +4221,50 @@ custom_attributes:
   sagan.source_file: windows-security.rules
   sagan.metadata: deployment=Endpoint,created_at=2023_02_21,updated_at=2023_02_21
 ---
+title: '[WINDOWS-SECURITY] WMIC local drive info request (Possible Local Disk Enumeration)'
+id: a2376f6f-5a39-5112-acb5-efb6cd8382a3
+status: experimental
+description: Converted from Sagan rule SID 5013902 (rev 2), file windows-security.rules.
+references:
+  - https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-144a
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    - syslog_appname|cased:
+        - '*Sysmon*'
+        - '*Security*'
+    - appname|cased:
+        - '*Sysmon*'
+        - '*Security*'
+  selection_2:
+    EventID:
+      - 1
+      - 4688
+  selection_3:
+    _raw|contains|cased: cmd.exe
+  selection_4:
+    _raw|contains|cased: wmic
+  selection_5:
+    _raw|contains: win32_logicaldisk
+  filter_6:
+    _raw|contains: \\Virima
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and not filter_6
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1082
+  - attack.ta0007
+  - sagan.classtype.discovery
+custom_attributes:
+  sagan.sid: '5013902'
+  sagan.rev: '2'
+  sagan.source_file: windows-security.rules
+  rsigma.suppress: 1h
+  sagan.metadata: deployment=Endpoint,created_at=2023_06_12,updated_at=2026_06_10
+---
 title: '[WINDOWS-SECURITY] Possible Enumeration reg query hklm/software'
 id: f5b967ea-1907-5f41-ac17-ba8308fc2dca
 status: experimental
@@ -4961,6 +5050,78 @@ custom_attributes:
   sagan.source_file: windows-security.rules
   sagan.metadata: deployment=Server,created_at=2024_02_28,updated_at=2024_02_28
 ---
+title: '[WINDOWS-SECURITY] Multiple Suspicious Tasklist Commands Detected'
+id: 3e8cc7b5-1a95-5852-847c-41d8bcadf47d
+name: sagan_5014332
+status: experimental
+description: Converted from Sagan rule SID 5014332 (rev 2), file windows-security.rules.
+references:
+  - https://attack.mitre.org/techniques/T1057/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    - syslog_appname|cased:
+        - '*Security*'
+        - '*Sysmon*'
+    - appname|cased:
+        - '*Security*'
+        - '*Sysmon*'
+  selection_2:
+    EventID:
+      - 1
+      - 4688
+  selection_3:
+    _raw|contains: tasklist
+  selection_4:
+    _raw|contains: ' /FI '
+  selection_5:
+    _raw|contains: 'IMAGENAME eq '
+  filter_6:
+    _raw|contains|cased:
+      - java.exe
+      - sppagent.exe
+      - AliyunWrapExe.exe
+      - AWSLiteAgent.exe
+      - MicrosoftAzureGuestAgent.exe
+      - WindowsAzureGuestAgent.exe
+      - MsMpEng.exe
+      - avgnt.exe
+      - bdagent.exe
+      - plugin-container.exe
+      - Teams.exe
+      - osppsvc.exe
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and not filter_6
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1057
+  - attack.ta0007
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5014332'
+  sagan.rev: '2'
+  sagan.source_file: windows-security.rules
+  rsigma.suppress: 1h
+  sagan.metadata: deployment=Server,created_at=2024_02_28,updated_at=2026_06_23
+---
+title: '[WINDOWS-SECURITY] Multiple Suspicious Tasklist Commands Detected (threshold 3 in 1m)'
+id: a7027bed-b6b1-5b00-8d83-fd42571912fb
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5014332
+  group-by:
+    - xff
+  timespan: 1m
+  condition:
+    gte: 4
+level: medium
+---
 title: '[WINDOWS-SECURITY] Quser Command Detected'
 id: 9e993a80-2498-5022-b734-afeb78440271
 status: experimental
@@ -5742,6 +5903,36 @@ custom_attributes:
   sagan.source_file: windows-security.rules
   sagan.metadata: deployment=Endpoint,created_at=2024_08_20,updated_at=2024_08_20
 ---
+title: '[WINDOWS-SECURITY] CRITICAL - Microsoft Quick Assist Executed'
+id: 456075df-c50b-597b-932e-05b0188b5df5
+status: experimental
+description: Converted from Sagan rule SID 5015506 (rev 3), file windows-security.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    - syslog_appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+  selection_2:
+    EventID: 4688
+  selection_3:
+    _raw|contains|cased: QuickAssist.exe
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1219
+  - attack.ta0011
+  - sagan.classtype.command-and-control
+custom_attributes:
+  sagan.sid: '5015506'
+  sagan.rev: '3'
+  sagan.source_file: windows-security.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_at=2025_03_06,updated_at=2025_09_01
+---
 title: '[WINDOWS-SECURITY] SyncroSetup RMM Installed'
 id: 99fcfb18-fa86-51b0-b0d9-88485f8825dc
 status: experimental
@@ -5873,7 +6064,7 @@ custom_attributes:
 title: '[WINDOWS-SECURITY] Obfuscated IP address Added to Registry'
 id: 12df484a-1f61-5f64-b879-d294cf2dd789
 status: experimental
-description: Converted from Sagan rule SID 5015511 (rev 1), file windows-security.rules.
+description: Converted from Sagan rule SID 5015511 (rev 2), file windows-security.rules.
 author: sagan2sigma
 logsource:
   product: windows
@@ -5891,7 +6082,7 @@ detection:
   selection_4:
     _raw|contains|cased: reg add "HKLM
   selection_5:
-    _raw|re: '[\\''][0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{3}'
+    _raw|re: '[\x22\''][0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{3}'
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5902,7 +6093,7 @@ tags:
   - sagan.classtype.discovery
 custom_attributes:
   sagan.sid: '5015511'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: windows-security.rules
   sagan.metadata: created_at=2025_03_06,updated_at=2025_03_06
 ---
@@ -6118,7 +6309,7 @@ custom_attributes:
 title: '[WINDOWS-SECURITY] Windows Registry - Restricted Admin Mode Enabled via reg.exe - Critical'
 id: 84ed7276-de88-51df-a434-28ab177cade4
 status: experimental
-description: Converted from Sagan rule SID 5017383 (rev 1), file windows-security.rules.
+description: Converted from Sagan rule SID 5017383 (rev 2), file windows-security.rules.
 author: sagan2sigma
 logsource:
   product: windows
@@ -6132,7 +6323,7 @@ detection:
       - 4688
       - 1
   selection_3:
-    _raw|re|i: reg(?:\.exe)?\s+add\s+.*HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa.*\/v\s+DisableRestrictedAdmin.*\/d\s+[\']?0[\']?
+    _raw|re|i: reg(?:\.exe)?\s+add\s+.*HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa.*\/v\s+DisableRestrictedAdmin.*\/d\s+[\x22']?0[\x22']?
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6141,7 +6332,7 @@ tags:
   - sagan.classtype.suspicious-command
 custom_attributes:
   sagan.sid: '5017383'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: windows-security.rules
 ---
 title: '[WINDOWS-SECURITY] Windows Registry - Restricted Admin Mode Enabled (Windows Security Audit) -
@@ -6174,7 +6365,7 @@ title: '[WINDOWS-SECURITY] Windows Registry - Restricted Admin Outbound Credenti
   - Critical'
 id: ee1ff51b-c760-5345-a00a-a56eade82fe0
 status: experimental
-description: Converted from Sagan rule SID 5017387 (rev 1), file windows-security.rules.
+description: Converted from Sagan rule SID 5017387 (rev 2), file windows-security.rules.
 author: sagan2sigma
 logsource:
   product: windows
@@ -6188,7 +6379,7 @@ detection:
       - 4688
       - 1
   selection_3:
-    _raw|re|i: reg(?:\.exe)?\s+add\s+.*HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa.*\/v\s+DisableRestrictedAdminOutboundCreds.*\/d\s+[\']?0[\']?
+    _raw|re|i: reg(?:\.exe)?\s+add\s+.*HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa.*\/v\s+DisableRestrictedAdminOutboundCreds.*\/d\s+[\x22']?0[\x22']?
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6197,7 +6388,7 @@ tags:
   - sagan.classtype.suspicious-command
 custom_attributes:
   sagan.sid: '5017387'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: windows-security.rules
 ---
 title: '[WINDOWS-SECURITY] Windows Registry - Restricted Admin Outbound Credentials Enabled (Windows Security
@@ -6253,6 +6444,35 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: windows-security.rules
 ---
+title: '[WINDOWS-SECURITY] Hidden Scheduled Task Created - Critical'
+id: c491011f-1269-5b23-8d78-be99d1b7d7db
+status: experimental
+description: Converted from Sagan rule SID 5017396 (rev 3), file windows-security.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    - syslog_appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+  selection_2:
+    EventID: 4698
+  selection_3:
+    _raw|contains|cased: <Hidden>true</Hidden>
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1053
+  - sagan.classtype.evasion
+custom_attributes:
+  sagan.sid: '5017396'
+  sagan.rev: '3'
+  sagan.source_file: windows-security.rules
+  rsigma.suppress: 1h
+  sagan.metadata: mitre_tactic_name1=Persistance,mitre_tactic_name2=DefenseEvasion,mitre_tactic_id2=TA0005,mitre_technique_name=ScheduledTaskJob
+---
 title: '[WINDOWS-SECURITY] Use Of LOLBIN Detected - wlrmdr.exe'
 id: 98a69f2c-2d73-5b32-aac2-ef7ed98c5a67
 status: experimental
@@ -6284,6 +6504,72 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: windows-security.rules
   sagan.metadata: mitre_tactic_name=DefenseEvasion,mitre_technique_name=SystemBinaryProxyExecution
+---
+title: '[EXPERIMENTAL][WINDOWS-SECURITY] Authentication - Anonymous NTLM V1 Logon via NtLmSsp'
+id: d859d46a-2154-576b-a8f4-dce0cda6b4ef
+status: experimental
+description: Converted from Sagan rule SID 9870000 (rev 5), file windows-security.rules.
+references:
+  - https://attack.mitre.org/techniques/T1187/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    - syslog_appname|cased: Security
+    - appname|cased: Security
+  selection_2:
+    EventID: 4624
+  selection_3:
+    _raw|contains|cased: ANONYMOUS LOGON
+  selection_4:
+    _raw|contains|cased: NTLM V1
+  selection_5:
+    _raw|contains|cased: NtLmSsp
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.credential-access
+custom_attributes:
+  sagan.sid: '9870000'
+  sagan.rev: '5'
+  sagan.source_file: windows-security.rules
+  rsigma.suppress: 1d
+  sagan.metadata: createdOn=2026_06_11,updatedOn=2026_09_01
+---
+title: '[WINDOWS-SECURITY] SMB - Anonymous Access to IPC$ Share'
+id: dcf09015-ebe7-560e-8c15-f01abcab9285
+status: experimental
+description: Converted from Sagan rule SID 5017964 (rev 2), file windows-security.rules.
+references:
+  - https://attack.mitre.org/techniques/T1135/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    - syslog_appname|cased: Security
+    - appname|cased: Security
+  selection_2:
+    EventID: 5140
+  selection_3:
+    _raw|contains|cased: ANONYMOUS LOGON
+  selection_4:
+    _raw|contains|cased: IPC$
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.discovery
+custom_attributes:
+  sagan.sid: '5017964'
+  sagan.rev: '2'
+  sagan.source_file: windows-security.rules
+  rsigma.suppress: 6h
+  sagan.metadata: createdOn=2026_06_11,updatedOn=2026_06_30
 ---
 title: '[EXPERIMENTAL][WINDOWS-SECURITY] SMB - Anonymous Access Denied to ADMIN$ Share'
 id: df91e795-ffb8-5f2b-96f6-15cb23267ec0
@@ -6375,3 +6661,53 @@ custom_attributes:
   sagan.source_file: windows-security.rules
   rsigma.suppress: 1h
   sagan.metadata: createdOn=2026_06_11,updatedOn=2026_06_16
+---
+title: '[WINDOWS-SECURITY] Kerberos - SPN Enumeration via setspn.exe'
+id: 6af04033-5044-5064-be90-40f6c7c145e4
+name: sagan_5017968
+status: experimental
+description: Converted from Sagan rule SID 5017968 (rev 2), file windows-security.rules.
+references:
+  - https://attack.mitre.org/techniques/T1558/003/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    - syslog_appname|cased: Security
+    - appname|cased: Security
+  selection_2:
+    EventID: 4688
+  selection_3:
+    _raw|contains|cased: setspn.exe
+  selection_4:
+    _raw|contains|cased:
+      - -q
+      - /q
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.discovery
+custom_attributes:
+  sagan.sid: '5017968'
+  sagan.rev: '2'
+  sagan.source_file: windows-security.rules
+  rsigma.suppress: 1h
+  sagan.metadata: createdOn=2026_06_11,updatedOn=2026_06_16
+---
+title: '[WINDOWS-SECURITY] Kerberos - SPN Enumeration via setspn.exe (threshold 3 in 5m)'
+id: ea5884ad-8e49-5f7a-b9c3-ac0685d987d5
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5017968
+  group-by:
+    - xff
+  timespan: 5m
+  condition:
+    gte: 4
+level: medium

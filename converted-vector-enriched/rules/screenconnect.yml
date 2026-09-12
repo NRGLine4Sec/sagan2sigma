@@ -122,7 +122,7 @@ custom_attributes:
 title: '[SCREENCONNECT] Suspicious File Transferred to Client'
 id: f1c5b816-d4fe-54eb-a5eb-d3a5aa13ab1a
 status: experimental
-description: Converted from Sagan rule SID 5015124 (rev 1), file screenconnect.rules.
+description: Converted from Sagan rule SID 5015124 (rev 2), file screenconnect.rules.
 author: sagan2sigma
 logsource:
   product: syslog
@@ -141,7 +141,7 @@ detection:
       - .dll"},
       - .ps1"},
   selection_4:
-    message|re: \Data\x22\:\x22[a-zA-Z0-9\-\.]+\.(?:exe|bat|dll|ps1)\x22
+    message|re: \x22Data\x22\:\x22[a-zA-Z0-9\-\.]+\.(?:exe|bat|dll|ps1)\x22
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -150,14 +150,14 @@ tags:
   - sagan.classtype.suspicious-command
 custom_attributes:
   sagan.sid: '5015124'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: screenconnect.rules
   sagan.metadata: created_at=2024_09_03,updated_at=2024_10_10
 ---
 title: '[SCREENCONNECT] Multiple Files Transferred - Possible Exfil'
 id: df1d1bc4-99f3-5f81-a9c9-a1425b737f37
 status: experimental
-description: Converted from Sagan rule SID 5015125 (rev 1), file screenconnect.rules.
+description: Converted from Sagan rule SID 5015125 (rev 2), file screenconnect.rules.
 author: sagan2sigma
 logsource:
   product: syslog
@@ -170,7 +170,7 @@ detection:
       - '"EventType":84'
       - '"EventType":86'
   selection_3:
-    message|re: Data\x22\:\s\x22(?:[^\:,]+:){20}.*?\}
+    message|re: Data\x22\:\s\x22(?:[^\:,]+:){20}.*?\x22}
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -179,6 +179,6 @@ tags:
   - sagan.classtype.suspicious-command
 custom_attributes:
   sagan.sid: '5015125'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: screenconnect.rules
   sagan.metadata: created_at=2024_09_03,updated_at=2024_10_10

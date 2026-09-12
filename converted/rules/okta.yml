@@ -46,6 +46,30 @@ custom_attributes:
   sagan.source_file: okta.rules
   rsigma.suppress: 4h
 ---
+title: '[OKTA] USER HAS REPORTED SUSPICIOUS ACTIVITY'
+id: 42237b60-7c5c-50e9-8216-5e8c2da5d70d
+status: experimental
+description: Converted from Sagan rule SID 5006602 (rev 2), file okta.rules.
+references:
+  - https://help.okta.com/en/prod/Content/Topics/Security/suspicious-activity-reporting.htm
+author: sagan2sigma
+logsource:
+  product: okta
+detection:
+  selection_1:
+    _raw|contains|cased: User report suspicious activity
+  condition: selection_1
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.network-event
+custom_attributes:
+  sagan.sid: '5006602'
+  sagan.rev: '2'
+  sagan.source_file: okta.rules
+  rsigma.suppress: 1h
+---
 title: '[OKTA] INVALID SELF SERVICE RECOVERY TOKEN USED BY USER'
 id: 14b2daef-7b47-5a96-a3ac-0ba3bee9a44f
 status: experimental

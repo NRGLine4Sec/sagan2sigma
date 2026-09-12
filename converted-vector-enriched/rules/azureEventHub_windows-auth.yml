@@ -1502,7 +1502,7 @@ title: '[SYSLOG] Possible Windows Broken Domain Trust [25/1]'
 id: be7c1880-77a0-5be0-8c31-4f4ec7db47d8
 name: sagan_5008553
 status: experimental
-description: Converted from Sagan rule SID 5008553 (rev 4), file azureEventHub_windows-auth.rules.
+description: Converted from Sagan rule SID 5008553 (rev 5), file azureEventHub_windows-auth.rules.
 author: sagan2sigma
 logsource:
   product: windows
@@ -1524,7 +1524,7 @@ tags:
   - sagan.classtype.unsuccessful-user
 custom_attributes:
   sagan.sid: '5008553'
-  sagan.rev: '4'
+  sagan.rev: '5'
   sagan.source_file: azureEventHub_windows-auth.rules
   rsigma.suppress: 1d
   sagan.metadata: created_on=2022_11_22,old_sid=5003107
@@ -1538,7 +1538,7 @@ correlation:
   rules:
     - sagan_5008553
   group-by:
-    - sagan_username
+    - sagan_ip_1
   timespan: 5m
   condition:
     gte: 26

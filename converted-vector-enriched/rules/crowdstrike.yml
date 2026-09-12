@@ -2426,7 +2426,8 @@ logsource:
   product: crowdstrike
 detection:
   selection_1:
-    syslog_appname|cased: CrowdStrike
+    - syslog_appname|cased: CrowdStrike
+    - appname|cased: CrowdStrike
   selection_2:
     sagan_raw|contains|cased: Network Access In An Epp Detection Summary Event
   filter_3:

@@ -1,7 +1,7 @@
 title: '[WINDOWS-SYSMON] PSExec execution detected'
 id: c2544229-23b2-598c-ae68-64e3621ca722
 status: experimental
-description: Converted from Sagan rule SID 5002799 (rev 5), file windows-sysmon.rules.
+description: Converted from Sagan rule SID 5002799 (rev 6), file windows-sysmon.rules.
 author: sagan2sigma
 logsource:
   product: windows
@@ -10,12 +10,11 @@ detection:
     EventID: 1
   selection_2:
     message|contains|cased:
-      - MD5="
-      - MD5=CD23B7C9E0EDEF184930BC8E0CA2264F0608BCB3
-      - MD5=9A46E577206D306D9D2B2AB2F72689E4F5F38FB1
-      - MD5=2EDEEFB431663F20A36A63C853108E083F4DA895
-      - MD5=B5C62D79EDA4F7E4B60A9CAA5736A3FDC2F1B27E
-      - MD5=A7F7A0F74C8B48F1699858B3B6C11EDA
+      - MD5=CD23B7C9E0EDEF184930BC8E0CA2264F0608BCB3,
+      - MD5=9A46E577206D306D9D2B2AB2F72689E4F5F38FB1,
+      - MD5=2EDEEFB431663F20A36A63C853108E083F4DA895,
+      - MD5=B5C62D79EDA4F7E4B60A9CAA5736A3FDC2F1B27E,
+      - MD5=A7F7A0F74C8B48F1699858B3B6C11EDA,
   selection_3:
     appname|cased: '*Sysmon*'
   condition: selection_1 and selection_2 and selection_3
@@ -26,7 +25,7 @@ tags:
   - sagan.classtype.suspicious-command
 custom_attributes:
   sagan.sid: '5002799'
-  sagan.rev: '5'
+  sagan.rev: '6'
   sagan.source_file: windows-sysmon.rules
 ---
 title: '[WINDOWS-SYSMON] Locky/CrypoMix ransomware instructions detected!'
@@ -253,7 +252,8 @@ detection:
       - 'ParentImage: C:\\Program Files\\Veeam'
       - 'ParentImage: C:\\Program Files\\Dell\\SupportAssistAgent'
   selection_5:
-    syslog_appname|cased: '*Sysmon*'
+    - syslog_appname|cased: '*Sysmon*'
+    - appname|cased: '*Sysmon*'
   condition: selection_1 and selection_2 and selection_3 and selection_5 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -15029,7 +15029,7 @@ custom_attributes:
 title: '[WINDOWS-SYSMON] Accessing WinAPI in PowerShell. Code Injection'
 id: 6e6abf24-8124-56f4-8cbf-025f1cc71d81
 status: experimental
-description: Converted from Sagan rule SID 5013804 (rev 1), file windows-sysmon.rules.
+description: Converted from Sagan rule SID 5013804 (rev 2), file windows-sysmon.rules.
 references:
   - https://github.com/SigmaHQ/sigma/blob/master/rules/windows/create_remote_thread/create_remote_thread_win_powershell_code_injection.yml
 author: sagan2sigma
@@ -15042,7 +15042,7 @@ detection:
     EventID: 8
   selection_3:
     message|contains:
-      - '"\\powershell'
+      - \\powershell
       - \\pwsh.exe
   selection_4:
     message|contains: 'Image: C:\\Windows\\System32\\CompatTelRunner.exe'
@@ -15056,14 +15056,14 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5013804'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: windows-sysmon.rules
   sagan.metadata: deployment=Endpoint,created_at=2023_03_09,updated_at=2023_03_09
 ---
 title: '[WINDOWS-SYSMON] PowerShell Rundll32 Remote Thread Creation'
 id: c160150d-e637-5223-a871-8a4f8991d48c
 status: experimental
-description: Converted from Sagan rule SID 5013805 (rev 1), file windows-sysmon.rules.
+description: Converted from Sagan rule SID 5013805 (rev 2), file windows-sysmon.rules.
 references:
   - https://github.com/SigmaHQ/sigma/blob/master/rules/windows/create_remote_thread/create_remote_thread_win_susp_powershell_rundll32.yml
 author: sagan2sigma
@@ -15076,7 +15076,7 @@ detection:
     EventID: 8
   selection_3:
     message|contains:
-      - '"\\powershell'
+      - \\powershell
       - \\pwsh.exe
   selection_4:
     message|contains: \\rundll32.exe
@@ -15090,7 +15090,7 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5013805'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: windows-sysmon.rules
   sagan.metadata: deployment=Endpoint,created_at=2023_03_09,updated_at=2023_03_09
 ---
@@ -15169,7 +15169,8 @@ logsource:
   product: windows
 detection:
   selection_1:
-    syslog_appname|cased: '*Sysmon*'
+    - syslog_appname|cased: '*Sysmon*'
+    - appname|cased: '*Sysmon*'
   selection_2:
     EventID: 1
   selection_3:
@@ -15929,7 +15930,8 @@ logsource:
   product: windows
 detection:
   selection_1:
-    syslog_appname|cased: '*Windows*Defender*'
+    - syslog_appname|cased: '*Windows*Defender*'
+    - appname|cased: '*Windows*Defender*'
   selection_2:
     EventID: 1116
   selection_3:
@@ -16204,9 +16206,12 @@ logsource:
   product: windows
 detection:
   selection_1:
-    syslog_appname|cased:
-      - Sysmon
-      - Security
+    - syslog_appname|cased:
+        - Sysmon
+        - Security
+    - appname|cased:
+        - Sysmon
+        - Security
   selection_2:
     EventID:
       - 1
@@ -16921,7 +16926,7 @@ custom_attributes:
 title: '[WINDOWS-SYSMON] Use Of ProcDump To Dump LSASS Detected - Credential Harvesting'
 id: 0b945dda-3c2f-5303-82ed-4ec0baaac911
 status: experimental
-description: Converted from Sagan rule SID 5014601 (rev 2), file windows-sysmon.rules.
+description: Converted from Sagan rule SID 5014601 (rev 3), file windows-sysmon.rules.
 references:
   - https://www.whiteoaksecurity.com/blog/attacks-defenses-dumping-lsass-no-mimikatz/
 author: sagan2sigma
@@ -16939,7 +16944,7 @@ detection:
   selection_5:
     message|contains: .dmp
   selection_6:
-    message|re|i: rocdump(64)*\.exe
+    message|re|i: \x22procdump(64)*\.exe\x22
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -16948,7 +16953,7 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5014601'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: windows-sysmon.rules
   sagan.metadata: created_on=2024_04_18,updated_on=2024_05_07,severity=critical
 ---

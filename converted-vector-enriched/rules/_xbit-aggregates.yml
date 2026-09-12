@@ -871,7 +871,8 @@ detection:
   s41_filter_4:
     sagan_raw|contains|cased: 'Client Address: ::1 Client Port: 0'
   s41_selection_5:
-    syslog_appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
+    - appname|cased: '*Security*'
   s42_selection_1:
     EventID:
       - 4768
@@ -1414,7 +1415,8 @@ detection:
   s122_selection_2:
     message|contains|cased: Authentication failed
   s123_selection_1:
-    syslog_appname|cased: azureEventHub
+    - syslog_appname|cased: azureEventHub
+    - appname|cased: azureEventHub
   s123_selection_2:
     sagan_raw|contains|cased:
       - 'resultType": "50126'
@@ -3167,7 +3169,8 @@ logsource:
   product: syslog
 detection:
   s1_selection_1:
-    syslog_appname|cased: Security
+    - syslog_appname|cased: Security
+    - appname|cased: Security
   s1_selection_2:
     EventID: 4625
   s1_selection_3:

@@ -2,7 +2,7 @@ title: Aggregate of rules setting Sagan bit brute-force
 id: 0963d753-5563-54a1-848d-c4d0d89d0221
 name: sagan_xbit_brute-force
 status: experimental
-description: Synthetic rule. Sagan set the 'brute-force' bit from 5 rule(s); since Sigma cannot express
+description: Synthetic rule. Sagan set the 'brute-force' bit from 6 rule(s); since Sigma cannot express
   an OR between correlated rules, their detections are gathered here. This rule is not meant to alert
   on its own.
 author: sagan2sigma
@@ -20,32 +20,36 @@ detection:
   s2_selection_2:
     event_type|cased: FAILED_LOGIN
   s3_selection_1:
-    syslog_appname|cased: netskope-api_data
+    syslog_appname|cased: box-api_data
   s3_selection_2:
-    record_type: audit
-  s3_selection_3:
-    audit_log_event|cased: Login Failed
+    event_type|cased: FAILED_LOGIN
   s4_selection_1:
     syslog_appname|cased: netskope-api_data
   s4_selection_2:
     record_type: audit
   s4_selection_3:
-    audit_log_event: SSO Login Failed
+    audit_log_event|cased: Login Failed
   s5_selection_1:
-    syslog_appname|cased: Exchange
+    syslog_appname|cased: netskope-api_data
   s5_selection_2:
-    Operation|cased: MailboxLogin
+    record_type: audit
   s5_selection_3:
+    audit_log_event: SSO Login Failed
+  s6_selection_1:
+    syslog_appname|cased: Exchange
+  s6_selection_2:
+    Operation|cased: MailboxLogin
+  s6_selection_3:
     ResultStatus|cased: Successful
   condition: (s1_selection_1 and s1_selection_2 and s1_selection_3) or (s2_selection_1 and s2_selection_2)
-    or (s3_selection_1 and s3_selection_2 and s3_selection_3) or (s4_selection_1 and s4_selection_2 and
-    s4_selection_3) or (s5_selection_1 and s5_selection_2 and s5_selection_3)
+    or (s3_selection_1 and s3_selection_2) or (s4_selection_1 and s4_selection_2 and s4_selection_3) or
+    (s5_selection_1 and s5_selection_2 and s5_selection_3) or (s6_selection_1 and s6_selection_2 and s6_selection_3)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: informational
 custom_attributes:
   sagan.xbit: brute-force
-  sagan.xbit_setters: '5'
+  sagan.xbit_setters: '6'
 ---
 title: Aggregate of rules setting Sagan bit brute_force
 id: d096d8bc-eae7-5535-9ff1-02c0aeca8e2c

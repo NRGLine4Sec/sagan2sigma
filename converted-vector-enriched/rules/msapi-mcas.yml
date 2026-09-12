@@ -153,7 +153,7 @@ custom_attributes:
 title: '[MCAS] Possible Unknown MCAS Alert'
 id: ac9d539e-9e35-5bdb-b62f-7dce1b6543a1
 status: experimental
-description: Converted from Sagan rule SID 5007209 (rev 4), file msapi-mcas.rules.
+description: Converted from Sagan rule SID 5007209 (rev 5), file msapi-mcas.rules.
 author: sagan2sigma
 logsource:
   product: m365
@@ -172,7 +172,9 @@ detection:
       - MCAS_ALERT_ANUBIS_DETECTION_INBOX_HIDING
       - MCAS_ALERT_ANUBIS_DETECTION_REPEATED_ACTIVITY_DOWNLOAD
       - MCAS_ALERT_ANUBIS_DETECTION_REPEATED_ACTIVITY_ADMIN_ACTIVITY
-  condition: selection_1 and selection_2 and not filter_3
+  selection_4:
+    Operation|contains|cased: MCAS_ALERT
+  condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -180,7 +182,7 @@ tags:
   - sagan.classtype.bad-unknown
 custom_attributes:
   sagan.sid: '5007209'
-  sagan.rev: '4'
+  sagan.rev: '5'
   sagan.source_file: msapi-mcas.rules
   sagan.metadata: mitre_technique_id=T????
 ---

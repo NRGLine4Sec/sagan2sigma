@@ -26,7 +26,7 @@ logsource catalog. It answers which kinds of device caused trouble.
 | --- | ---: | ---: | ---: | ---: |
 | AWS | 634 | 1 | 99.8% | 634 |
 | Applications and web | 236 | 16 | 93.7% | 227 |
-| Azure and Microsoft 365 | 1458 | 296 | 83.1% | 664 |
+| Azure and Microsoft 365 | 1458 | 296 | 83.1% | 663 |
 | Endpoint and EDR | 1024 | 16 | 98.5% | 1017 |
 | Google Cloud | 76 | 0 | 100.0% | 70 |
 | Infrastructure | 210 | 4 | 98.1% | 210 |
@@ -36,7 +36,7 @@ logsource catalog. It answers which kinds of device caused trouble.
 | State correlations | 19 | 0 | 100.0% | 0 |
 | Unclassified | 1589 | 74 | 95.6% | 1589 |
 | Unix and Linux | 204 | 12 | 94.4% | 200 |
-| Windows | 2074 | 28 | 98.7% | 2042 |
+| Windows | 2074 | 28 | 98.7% | 2039 |
 
 ## Refusals by code
 
@@ -64,7 +64,7 @@ reproduced. They are worth reviewing before the ruleset goes live.
 | `D_THRESHOLD_SUPPRESS` | 1488 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
 | `D_PASS_SHORT_CIRCUIT` | 515 | The rule used the pass action. In Sagan a matching pass rule still emits an alert (Send_Alert runs before the pass check) and then stops evaluating the remaining signatures for that event. The detection is converted faithfully; only the short-circuit, the suppression of other rules on the same event, is not reproduced, since Sigma evaluates every rule independently. | `5016065`, `5016066`, `5016067`, `5016068`, `5016069` |
 | `D_GROUPBY_SYSLOG_HOST` | 388 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
-| `D_POSITIONAL_IP_FIELD` | 286 | The group-by key comes from the bundled VRL transform rather than from the log itself. The correlation only works if that transform runs in the ingestion pipeline. | `5002942`, `5015097`, `5014021`, `5014177`, `5008654` |
+| `D_POSITIONAL_IP_FIELD` | 288 | The group-by key comes from the bundled VRL transform rather than from the log itself. The correlation only works if that transform runs in the ingestion pipeline. | `5002942`, `5015097`, `5014021`, `5014177`, `5008553` |
 | `D_SIDE_EFFECT_DROPPED` | 233 | Engine-specific side effect (external, email, dynamic_load, unset) with no Sigma equivalent. | `5008539`, `5003022`, `5003023`, `5002959`, `5002960` |
 | `D_THRESHOLD_LIMIT` | 170 | threshold type limit caps alert volume, not detection. Sigma has no equivalent, so the constraint is dropped. | `5017933`, `5008570`, `5008760`, `5009316`, `5009317` |
 | `D_XBIT_ISSET_SYNTHETIC` | 155 | The state correlation was rebuilt through a synthetic aggregate rule gathering every rule that sets the bit. | `5014084`, `9870107`, `5014091`, `5008539`, `5008654` |
@@ -77,7 +77,6 @@ reproduced. They are worth reviewing before the ruleset goes live.
 | `D_ZEEK_INTEL_ENRICHMENT` | 29 | zeek-intel matches the address against a Zeek Intelligence Framework feed the bundled Vector enrichment carries, not the log itself. The rule only fires if that enrichment, built from a feed such as CriticalPathSecurity's Zeek-Intelligence-Feeds, runs in the ingestion pipeline. Only the address indicators the rule keyword uses are reproduced, not the domain, hash or URL indicators the feed may also carry. | `5010226`, `5010227`, `5010228`, `5010229`, `5010230` |
 | `D_DROP_ACTION` | 20 | The rule used the drop action. Sigma has no action concept; it was converted as a normal detection rule. | `5000102`, `5000103`, `5000113`, `5000193`, `5001592` |
 | `D_JSON_KEY_RESTORED` | 18 | The rule names a JSON key that upstream clipped to 31 characters so that Sagan, which stores key paths clipped and compares them with an exact strcmp, would match it at all. The full path is recorded in a comment above the rule and is what the log carries, so the converted rule uses that instead: Sigma has no such limit, and emitting the clipped name would match nothing outside Sagan. | `5015096`, `5004773`, `5017933`, `5017933`, `5005921` |
-| `D_PCRE_QUOTE_REMOVED` | 12 | Sagan removes every quote character from a pcre option before it compiles the pattern. Between_Quotes copies the value from its first quote onward and skips each quote it meets, rather than stopping at the second one, so a quote inside the pattern is simply deleted and any backslash before it is left attached to the next character. The converted rule reproduces the pattern the engine compiles, not the one on the line, which is the only way the two can agree. Measured against a locally built engine, an option whose pattern reads id=<quote>[0-9]{3} compiles as id=\[0-9]{3} and fires on the literal text id=[0-9]]], while the same pattern written with \x22 in place of the quote survives both steps and matches what it says. A value that does not open with a quote loses its own first character as well, procdump(64)*\.exe compiling as rocdump(64)*\.exe. | `5009357`, `5100137`, `5015124`, `5015125`, `5007144` |
 | `D_GROUPBY_SHAPE_SPLIT` | 8 | A rebuilt state correlation groups on the syslog sender, whose field name differs between JSON-bodied and plain events in RSigma. The bit is set by rules of both shapes, so the correlation pairs with the setters matching the tester and misses the others. Degraded rather than refused: most of these keep the majority of their setters. | `5008539`, `5009793`, `5013956`, `5014047`, `5003332` |
 | `D_JSON_PCRE_ABSENT_KEY` | 7 | Sagan treats a key the event does not carry as a match for json_pcre: JSON_Pcre() tests only keys that exist and returns false only on a failed match, so an absent key falls through to true. Sigma has the opposite convention, so the converted rule stays silent on events lacking the key. json_content and json_meta_content do not share this behaviour. Measured against a locally built engine. | `5014487`, `5014487`, `5017941`, `5017944`, `5017945` |
 | `D_AFTER_BY_STRING_INERT` | 5 | after tracked by_string, which that parser never recognises: it tests an option token strtok_r has already truncated to 'track', so the branch is dead. Sagan groups on the remaining keys only, and rejects the rule outright when by_string is the only key. Confirmed against a locally built engine. threshold is unaffected: its parser tests the intact token, so there by_string really is a synonym for by_username. | `5015138`, `5015139`, `5015148`, `5015149`, `5014547` |
@@ -93,45 +92,20 @@ conversion error and is the opposite of one.
 
 | Code | Rules | What it means |
 | --- | --- | --- |
-| `U_ALTERED_PATTERN` | 12 |  |
-| `U_CANNOT_MATCH` | 12 | the rule loads and can never fire |
+| `U_CANNOT_MATCH` | 9 | the rule loads and can never fire |
 | `U_INVERTED_CONDITION` | 1 | the rule fires, but a condition means its opposite |
-| `U_PARTIAL_MATCH` | 2 | the rule fires, but one of the values it lists never can, so it detects less than it names |
 
 <details>
-<summary><code>U_ALTERED_PATTERN</code> (12 rules)</summary>
+<summary><code>U_CANNOT_MATCH</code> (9 rules)</summary>
 
 | SID | File | Detail |
 | --- | --- | --- |
-| `5007144` | `windows-powershell.rules` | the engine removes the 1 quote character(s) inside the pcre option and compiles /{\d}{\d}{\d}\\*\s*-f/ |
-| `5009357` | `azureEventHub_windows-powershell.rules` | the engine removes the 1 quote character(s) inside the pcre option and compiles /{\\d}{\\d}{\\d}\\*\s*-f/ |
-| `5014601` | `windows-sysmon.rules` | the engine removes the 1 quote character(s) inside the pcre option and compiles /rocdump(64)*\.exe/i; the option does not open with a quote either, so the pattern loses its own first character as well |
-| `5015124` | `screenconnect.rules` | the engine removes the 1 quote character(s) inside the pcre option and compiles /\Data\x22\:\x22[a-zA-Z0-9\-\.]+\.(?:exe\|bat\|dll\|ps1)\x22/ |
-| `5015125` | `screenconnect.rules` | the engine removes the 1 quote character(s) inside the pcre option and compiles /Data\x22\:\s\x22(?:[^\:,]+:){20}.*?\}/ |
-| `5015511` | `windows-security.rules` | the engine removes the 1 quote character(s) inside the pcre option and compiles /[\\'][0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{3}/ |
-| `5017383` | `windows-security.rules` | the engine removes the 2 quote character(s) inside the pcre option and compiles /reg(?:\.exe)?\s+add\s+.*HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa.*\/v\s+DisableRestrictedAdmin.*\/d\s+[\']?0[\']?/i |
-| `5017384` | `windows-powershell.rules` | the engine removes the 6 quote character(s) inside the pcre option and compiles /New-ItemProperty\s+.*-Path\s+[\']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\']?\s+.*-Name\s+[\']?DisableRestrictedAdmin[\']?\s+.*-Value\s+[\']?0[\']?/i |
-| `5017387` | `windows-security.rules` | the engine removes the 2 quote character(s) inside the pcre option and compiles /reg(?:\.exe)?\s+add\s+.*HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa.*\/v\s+DisableRestrictedAdminOutboundCreds.*\/d\s+[\']?0[\']?/i |
-| `5017389` | `windows-powershell.rules` | the engine removes the 6 quote character(s) inside the pcre option and compiles /New-ItemProperty\s+.*-Path\s+[\']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\']?\s+.*-Name\s+[\']?DisableRestrictedAdminOutboundCreds[\']?\s+.*-Value\s+[\']?0[\']?/i |
-| `5017390` | `windows-powershell.rules` | the engine removes the 6 quote character(s) inside the pcre option and compiles /Set-ItemProperty\s+.*-Path\s+[\']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\']?\s+.*-Name\s+[\']?DisableRestrictedAdminOutboundCreds[\']?\s+.*-Value\s+[\']?0[\']?/i |
-| `5100137` | `fingerprint.rules` | the engine removes the 2 quote character(s) inside the pcre option and compiles /log_*id=*[0-9]{10}\*/ |
-
-</details>
-
-<details>
-<summary><code>U_CANNOT_MATCH</code> (12 rules)</summary>
-
-| SID | File | Detail |
-| --- | --- | --- |
-| `5002799` | `windows-sysmon.rules` | the meta_content template 'MD5=%sagan%,' holds a comma, which ends it before the closing quote; with a variable in the values the rule then matches nothing at all |
-| `5004770` | `azure-eventhub-ad.rules` | json_meta_content names '.properties.riskEventTypes[]', and the engine stores keys as written: the brackets are part of the name, so no document a producer emits carries that key and the negated condition, which needs the key present, is never satisfied |
 | `5005776` | `cloudgenix.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '"sshd\|2d\|all\|3a\|Invalid user\\"\|2d\|all\|3a\|Invalid user"' |
 | `5005923` | `confluent.rules` | the key path 'data.authenticationInfo.metadata.mechanism' is clipped to 'data.authenticationInfo.metada' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
 | `5005924` | `confluent.rules` | the key path 'data.authenticationInfo.metadata.mechanism' is clipped to 'data.authenticationInfo.metada' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
 | `5005926` | `confluent.rules` | the key path 'data.authenticationInfo.metadata.mechanism' is clipped to 'data.authenticationInfo.metada' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
 | `5005927` | `confluent.rules` | the key path 'data.authenticationInfo.metadata.mechanism' is clipped to 'data.authenticationInfo.metada' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
 | `5005944` | `confluent.rules` | the key path 'data.authorizationInfo.aclAuthorization.permissionType' is clipped to 'data.authorizationInfo.aclAuth' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
-| `5009779` | `azureEventHub_windows-sysmon.rules` | the meta_content template 'MD5=%sagan%,' holds a comma, which ends it before the closing quote; with a variable in the values the rule then matches nothing at all |
 | `5014569` | `pfsense.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '",3389,"0,S' |
 | `5015096` | `aws-cloudtrail.rules` | the key path 'userIdentity.sessionContext.sessionIssuer.userName' is clipped to 'userIdentity.sessionContext.se' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
 | `5015819` | `barracuda-waf.rules` | the negated content 'DENY' is part of the required 'DENY_ACL_MATCHED', so no message can satisfy both |
@@ -144,16 +118,6 @@ conversion error and is the opposite of one.
 | SID | File | Detail |
 | --- | --- | --- |
 | `5007143` | `windows-powershell.rules` | a negated pcre is read as a positive one: Sagan has no negation for pcre, so the rule requires what it means to exclude |
-
-</details>
-
-<details>
-<summary><code>U_PARTIAL_MATCH</code> (2 rules)</summary>
-
-| SID | File | Detail |
-| --- | --- | --- |
-| `5013804` | `windows-sysmon.rules` | the meta_content template holds a comma, so its closing quote lands on the first value: the rule looks for '"\|5c\|powershell' and never for '\|5c\|powershell' |
-| `5013805` | `windows-sysmon.rules` | the meta_content template holds a comma, so its closing quote lands on the first value: the rule looks for '"\|5c\|powershell' and never for '\|5c\|powershell' |
 
 </details>
 

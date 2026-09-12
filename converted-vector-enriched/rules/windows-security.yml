@@ -1931,9 +1931,12 @@ logsource:
   product: windows
 detection:
   selection_1:
-    syslog_appname|cased:
-      - '*Sysmon*'
-      - Security
+    - syslog_appname|cased:
+        - '*Sysmon*'
+        - Security
+    - appname|cased:
+        - '*Sysmon*'
+        - Security
   selection_2:
     EventID:
       - 1
@@ -4229,9 +4232,12 @@ logsource:
   product: windows
 detection:
   selection_1:
-    syslog_appname|cased:
-      - '*Sysmon*'
-      - '*Security*'
+    - syslog_appname|cased:
+        - '*Sysmon*'
+        - '*Security*'
+    - appname|cased:
+        - '*Sysmon*'
+        - '*Security*'
   selection_2:
     EventID:
       - 1
@@ -5056,9 +5062,12 @@ logsource:
   product: windows
 detection:
   selection_1:
-    syslog_appname|cased:
-      - '*Security*'
-      - '*Sysmon*'
+    - syslog_appname|cased:
+        - '*Security*'
+        - '*Sysmon*'
+    - appname|cased:
+        - '*Security*'
+        - '*Sysmon*'
   selection_2:
     EventID:
       - 1
@@ -5561,7 +5570,8 @@ logsource:
   product: windows
 detection:
   selection_1:
-    syslog_appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
+    - appname|cased: '*Security*'
   selection_2:
     EventID: 4662
   filter_3:
@@ -6130,7 +6140,8 @@ logsource:
   product: windows
 detection:
   selection_1:
-    syslog_appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
+    - appname|cased: '*Security*'
   selection_2:
     EventID: 4688
   selection_3:
@@ -6281,7 +6292,7 @@ custom_attributes:
 title: '[WINDOWS-SECURITY] Obfuscated IP address Added to Registry'
 id: 12df484a-1f61-5f64-b879-d294cf2dd789
 status: experimental
-description: Converted from Sagan rule SID 5015511 (rev 1), file windows-security.rules.
+description: Converted from Sagan rule SID 5015511 (rev 2), file windows-security.rules.
 author: sagan2sigma
 logsource:
   product: windows
@@ -6299,7 +6310,7 @@ detection:
   selection_4:
     message|contains|cased: reg add "HKLM
   selection_5:
-    message|re: '[\\''][0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{3}'
+    message|re: '[\x22\''][0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{1,3}[a-zA-Z]{1}[0-9]{3}'
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6310,7 +6321,7 @@ tags:
   - sagan.classtype.discovery
 custom_attributes:
   sagan.sid: '5015511'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: windows-security.rules
   sagan.metadata: created_at=2025_03_06,updated_at=2025_03_06
 ---
@@ -6526,7 +6537,7 @@ custom_attributes:
 title: '[WINDOWS-SECURITY] Windows Registry - Restricted Admin Mode Enabled via reg.exe - Critical'
 id: 84ed7276-de88-51df-a434-28ab177cade4
 status: experimental
-description: Converted from Sagan rule SID 5017383 (rev 1), file windows-security.rules.
+description: Converted from Sagan rule SID 5017383 (rev 2), file windows-security.rules.
 author: sagan2sigma
 logsource:
   product: windows
@@ -6540,7 +6551,7 @@ detection:
       - 4688
       - 1
   selection_3:
-    message|re|i: reg(?:\.exe)?\s+add\s+.*HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa.*\/v\s+DisableRestrictedAdmin.*\/d\s+[\']?0[\']?
+    message|re|i: reg(?:\.exe)?\s+add\s+.*HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa.*\/v\s+DisableRestrictedAdmin.*\/d\s+[\x22']?0[\x22']?
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6549,7 +6560,7 @@ tags:
   - sagan.classtype.suspicious-command
 custom_attributes:
   sagan.sid: '5017383'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: windows-security.rules
 ---
 title: '[WINDOWS-SECURITY] Windows Registry - Restricted Admin Mode Enabled (Windows Security Audit) -
@@ -6582,7 +6593,7 @@ title: '[WINDOWS-SECURITY] Windows Registry - Restricted Admin Outbound Credenti
   - Critical'
 id: ee1ff51b-c760-5345-a00a-a56eade82fe0
 status: experimental
-description: Converted from Sagan rule SID 5017387 (rev 1), file windows-security.rules.
+description: Converted from Sagan rule SID 5017387 (rev 2), file windows-security.rules.
 author: sagan2sigma
 logsource:
   product: windows
@@ -6596,7 +6607,7 @@ detection:
       - 4688
       - 1
   selection_3:
-    message|re|i: reg(?:\.exe)?\s+add\s+.*HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa.*\/v\s+DisableRestrictedAdminOutboundCreds.*\/d\s+[\']?0[\']?
+    message|re|i: reg(?:\.exe)?\s+add\s+.*HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa.*\/v\s+DisableRestrictedAdminOutboundCreds.*\/d\s+[\x22']?0[\x22']?
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6605,7 +6616,7 @@ tags:
   - sagan.classtype.suspicious-command
 custom_attributes:
   sagan.sid: '5017387'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: windows-security.rules
 ---
 title: '[WINDOWS-SECURITY] Windows Registry - Restricted Admin Outbound Credentials Enabled (Windows Security
@@ -6670,7 +6681,8 @@ logsource:
   product: windows
 detection:
   selection_1:
-    syslog_appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
+    - appname|cased: '*Security*'
   selection_2:
     EventID: 4698
   selection_3:
@@ -6732,7 +6744,8 @@ logsource:
   product: windows
 detection:
   selection_1:
-    syslog_appname|cased: Security
+    - syslog_appname|cased: Security
+    - appname|cased: Security
   selection_2:
     EventID: 4624
   selection_3:
@@ -6766,7 +6779,8 @@ logsource:
   product: windows
 detection:
   selection_1:
-    syslog_appname|cased: Security
+    - syslog_appname|cased: Security
+    - appname|cased: Security
   selection_2:
     EventID: 4624
   selection_3:
@@ -6816,7 +6830,8 @@ logsource:
   product: windows
 detection:
   selection_1:
-    syslog_appname|cased: Security
+    - syslog_appname|cased: Security
+    - appname|cased: Security
   selection_2:
     EventID: 4625
   selection_3:
@@ -6863,7 +6878,8 @@ logsource:
   product: windows
 detection:
   selection_1:
-    syslog_appname|cased: Security
+    - syslog_appname|cased: Security
+    - appname|cased: Security
   selection_2:
     EventID: 5140
   selection_3:
@@ -7224,7 +7240,8 @@ logsource:
   product: windows
 detection:
   selection_1:
-    syslog_appname|cased: Security
+    - syslog_appname|cased: Security
+    - appname|cased: Security
   selection_2:
     EventID: 4688
   selection_3:

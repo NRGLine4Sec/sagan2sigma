@@ -1791,6 +1791,48 @@ custom_attributes:
   sagan.source_file: windows-powershell.rules
   sagan.metadata: updated_at=2023_10_10
 ---
+title: '[WINDOWS-POWERSHELL] Path to ProgramData PS1 Script'
+id: ee66bf60-e7d9-553e-aae4-45e78e3d0753
+status: experimental
+description: Converted from Sagan rule SID 5007140 (rev 2), file windows-powershell.rules.
+references:
+  - https://bazaar.abuse.ch/download/aa87d136aacebb0496371be929657834d541209ef53695e45dc0acc8b65663a7/
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    - syslog_appname|cased: '*PowerShell*'
+    - appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    _raw|contains: -Path
+  selection_4:
+    _raw|contains: c:\\ProgramData
+  filter_5:
+    _raw|contains|cased: \\AzureWindowsBaseline\\
+  selection_6:
+    _raw|re|i: C\:\\ProgramData\\(?:[\-\w]+\\)+\w+.ps1
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_6 and not filter_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1059.001
+  - attack.ta0002
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5007140'
+  sagan.rev: '2'
+  sagan.source_file: windows-powershell.rules
+  rsigma.suppress: 1h
+  sagan.metadata: updated_at=2026_08_26
+---
 title: '[WINDOWS-POWERSHELL] Suspicious XOR Command'
 id: b2c83198-1612-5b25-9f6b-3ef871dcb438
 status: experimental
@@ -1931,7 +1973,7 @@ custom_attributes:
 title: '[WINDOWS-POWERSHELL] String Format Detected - Possible Obfuscation'
 id: 32313574-95ce-5c14-b29a-b6f6fde2732e
 status: experimental
-description: Converted from Sagan rule SID 5007144 (rev 1), file windows-powershell.rules.
+description: Converted from Sagan rule SID 5007144 (rev 2), file windows-powershell.rules.
 author: sagan2sigma
 logsource:
   product: windows
@@ -1949,7 +1991,7 @@ detection:
   selection_4:
     _raw|contains: -f
   selection_5:
-    _raw|re: \{\d}\{\d}\{\d}\\*\s*-f
+    _raw|re: \{\d}\{\d}\{\d}\\*\x22\s*-f
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1960,7 +2002,7 @@ tags:
   - sagan.classtype.suspicious-command
 custom_attributes:
   sagan.sid: '5007144'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: windows-powershell.rules
   sagan.metadata: updated_at=2023_10_10
 ---
@@ -2366,6 +2408,52 @@ custom_attributes:
   sagan.rev: '4'
   sagan.source_file: windows-powershell.rules
   sagan.metadata: updated_at=2026_06_09
+---
+title: '[WINDOWS-POWERSHELL] Cmdlet Scheduled Task Created'
+id: a67fadc7-d53d-5856-9b8e-647d2d6ed866
+status: experimental
+description: Converted from Sagan rule SID 5007155 (rev 3), file windows-powershell.rules.
+references:
+  - https://github.com/SigmaHQ/sigma/blob/master/rules/windows/powershell/powershell_script/posh_ps_cmdlet_scheduled_task.yml
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    - syslog_appname|cased: '*PowerShell*'
+    - appname|cased: '*PowerShell*'
+  selection_2:
+    EventID:
+      - 400
+      - 800
+      - 4103
+      - 4104
+  selection_3:
+    _raw|contains: New-ScheduledTask
+  selection_4:
+    _raw|contains: Register-ScheduledTask
+  filter_5:
+    _raw|contains|cased: 'Path: C:\\Packages\\Plugins\\Microsoft.AdminCenter.AdminCenter\\'
+  selection_6:
+    _raw|contains:
+      - Invoke-CimMethod
+      - -ClassName
+      - PS_ScheduledTask
+      - -NameSpace
+      - Root\\Microsoft\\Windows\\TaskScheduler
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_6 and not filter_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1053.005
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5007155'
+  sagan.rev: '3'
+  sagan.source_file: windows-powershell.rules
+  rsigma.suppress: 1h
+  sagan.metadata: updated_at=2026_09_09,mitre_tactic_id=T1053
 ---
 title: '[WINDOWS-POWERSHELL] Dnscat Exfil Tool Execution'
 id: e72f09fa-618b-505a-ba11-fb3bc227cb17
@@ -3617,7 +3705,7 @@ custom_attributes:
 title: '[WINDOWS-POWERSHELL] Windows Registry - Restricted Admin Mode Enabled via PowerShell - Critical'
 id: 360e5af0-3576-5bbd-b967-8a5147ea7d84
 status: experimental
-description: Converted from Sagan rule SID 5017384 (rev 1), file windows-powershell.rules.
+description: Converted from Sagan rule SID 5017384 (rev 2), file windows-powershell.rules.
 author: sagan2sigma
 logsource:
   product: windows
@@ -3628,7 +3716,7 @@ detection:
       - '*Sysmon*'
       - '*Security*'
   selection_2:
-    _raw|re|i: New-ItemProperty\s+.*-Path\s+[\']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\']?\s+.*-Name\s+[\']?DisableRestrictedAdmin[\']?\s+.*-Value\s+[\']?0[\']?
+    _raw|re|i: New-ItemProperty\s+.*-Path\s+[\x22']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\x22']?\s+.*-Name\s+[\x22']?DisableRestrictedAdmin[\x22']?\s+.*-Value\s+[\x22']?0[\x22']?
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3637,14 +3725,14 @@ tags:
   - sagan.classtype.suspicious-command
 custom_attributes:
   sagan.sid: '5017384'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: windows-powershell.rules
 ---
 title: '[WINDOWS-POWERSHELL] Windows Registry - Restricted Admin Outbound Credentials Enabled via PowerShell
   New-ItemProperty - Critical'
 id: 5bc363a8-4735-5005-ae26-4a47333d915c
 status: experimental
-description: Converted from Sagan rule SID 5017389 (rev 1), file windows-powershell.rules.
+description: Converted from Sagan rule SID 5017389 (rev 2), file windows-powershell.rules.
 author: sagan2sigma
 logsource:
   product: windows
@@ -3655,7 +3743,7 @@ detection:
       - '*Sysmon*'
       - '*Security*'
   selection_2:
-    _raw|re|i: New-ItemProperty\s+.*-Path\s+[\']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\']?\s+.*-Name\s+[\']?DisableRestrictedAdminOutboundCreds[\']?\s+.*-Value\s+[\']?0[\']?
+    _raw|re|i: New-ItemProperty\s+.*-Path\s+[\x22']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\x22']?\s+.*-Name\s+[\x22']?DisableRestrictedAdminOutboundCreds[\x22']?\s+.*-Value\s+[\x22']?0[\x22']?
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3664,14 +3752,14 @@ tags:
   - sagan.classtype.suspicious-command
 custom_attributes:
   sagan.sid: '5017389'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: windows-powershell.rules
 ---
 title: '[WINDOWS-POWERSHELL] Windows Registry - Restricted Admin Outbound Credentials Enabled via PowerShell
   Set-ItemProperty - Critical'
 id: 247d3cab-1491-54e0-aaf9-72f6de0bca15
 status: experimental
-description: Converted from Sagan rule SID 5017390 (rev 1), file windows-powershell.rules.
+description: Converted from Sagan rule SID 5017390 (rev 2), file windows-powershell.rules.
 author: sagan2sigma
 logsource:
   product: windows
@@ -3681,7 +3769,7 @@ detection:
       - '*Powershell*'
       - '*Sysmon*'
   selection_2:
-    _raw|re|i: Set-ItemProperty\s+.*-Path\s+[\']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\']?\s+.*-Name\s+[\']?DisableRestrictedAdminOutboundCreds[\']?\s+.*-Value\s+[\']?0[\']?
+    _raw|re|i: Set-ItemProperty\s+.*-Path\s+[\x22']?HKLM:\\System\\CurrentControlSet\\Control\\Lsa[\x22']?\s+.*-Name\s+[\x22']?DisableRestrictedAdminOutboundCreds[\x22']?\s+.*-Value\s+[\x22']?0[\x22']?
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3690,5 +3778,5 @@ tags:
   - sagan.classtype.suspicious-command
 custom_attributes:
   sagan.sid: '5017390'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: windows-powershell.rules

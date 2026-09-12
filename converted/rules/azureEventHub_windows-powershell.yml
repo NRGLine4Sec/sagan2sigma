@@ -1871,7 +1871,7 @@ custom_attributes:
 title: '[WINDOWS-POWERSHELL] String Format Detected - Posible Obfuscation'
 id: b1cbb485-3ceb-5879-b0b4-468af06bb560
 status: experimental
-description: Converted from Sagan rule SID 5009357 (rev 1), file azureEventHub_windows-powershell.rules.
+description: Converted from Sagan rule SID 5009357 (rev 2), file azureEventHub_windows-powershell.rules.
 author: sagan2sigma
 logsource:
   product: windows
@@ -1889,7 +1889,7 @@ detection:
   selection_4:
     RenderedDescription|contains: -f
   selection_5:
-    RenderedDescription|re: \{\\d}\{\\d}\{\\d}\\*\s*-f
+    RenderedDescription|re: \{\\d}\{\\d}\{\\d}\\*\x22\s*-f
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1898,7 +1898,7 @@ tags:
   - sagan.classtype.suspicious-command
 custom_attributes:
   sagan.sid: '5009357'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: azureEventHub_windows-powershell.rules
   sagan.metadata: created_on=2022_11_22,old_sid=5007144
 ---

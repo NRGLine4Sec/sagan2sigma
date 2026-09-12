@@ -1,7 +1,7 @@
 title: '[WINDOWS-SYSMON] PSExec execution detected'
 id: f39185f8-4015-58c1-81e3-abf322a1eae8
 status: experimental
-description: Converted from Sagan rule SID 5009779 (rev 5), file azureEventHub_windows-sysmon.rules.
+description: Converted from Sagan rule SID 5009779 (rev 6), file azureEventHub_windows-sysmon.rules.
 author: sagan2sigma
 logsource:
   product: windows
@@ -10,12 +10,11 @@ detection:
     EventID: 1
   selection_2:
     RenderedDescription|contains|cased:
-      - MD5="
-      - MD5=CD23B7C9E0EDEF184930BC8E0CA2264F0608BCB3
-      - MD5=9A46E577206D306D9D2B2AB2F72689E4F5F38FB1
-      - MD5=2EDEEFB431663F20A36A63C853108E083F4DA895
-      - MD5=B5C62D79EDA4F7E4B60A9CAA5736A3FDC2F1B27E
-      - MD5=A7F7A0F74C8B48F1699858B3B6C11EDA
+      - MD5=CD23B7C9E0EDEF184930BC8E0CA2264F0608BCB3,
+      - MD5=9A46E577206D306D9D2B2AB2F72689E4F5F38FB1,
+      - MD5=2EDEEFB431663F20A36A63C853108E083F4DA895,
+      - MD5=B5C62D79EDA4F7E4B60A9CAA5736A3FDC2F1B27E,
+      - MD5=A7F7A0F74C8B48F1699858B3B6C11EDA,
   selection_3:
     syslog_appname|cased: '*Sysmon*'
   condition: selection_1 and selection_2 and selection_3
@@ -26,7 +25,7 @@ tags:
   - sagan.classtype.suspicious-command
 custom_attributes:
   sagan.sid: '5009779'
-  sagan.rev: '5'
+  sagan.rev: '6'
   sagan.source_file: azureEventHub_windows-sysmon.rules
   sagan.metadata: created_on=2022_11_22,old_sid=5002799
 ---
