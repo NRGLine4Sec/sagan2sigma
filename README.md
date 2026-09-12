@@ -10,7 +10,7 @@ rules to a format other engines can run, notably
 [RSigma](https://github.com/timescale/rsigma).
 
 On the upstream corpus (10,025 active rules across 343 files) it converts
-**86.9%** into 9,526 Sigma documents, with zero parse failures, zero documents
+**86.9%** into 9,528 Sigma documents, with zero parse failures, zero documents
 rejected by pySigma, and zero rules the RSigma engine refuses to load. With
 `--profile vector-enriched`, which ships the transforms needed to recreate the
 fields Sagan derived from raw text, the rate rises to **94.4%**, and to **97.1%**

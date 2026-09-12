@@ -6,6 +6,18 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Changed
+- The upstream defect counts are re-measured against `sagan-rules` at `8d65d8a`,
+  which carries six more of this project's fixes. They fall from 27 to 10: the
+  twelve rules whose `pcre` the engine compiled differently from what was
+  written are gone, so are the two that missed the first value they listed, and
+  the silent category drops from 12 to 9. What remains cannot be fixed the same
+  way: six name a JSON key path the engine clips, two carry a malformed
+  `content` whose intended value only the log format can settle, one is the
+  negated `pcre` the engine reads as positive, and one excludes a string that is
+  part of the string it requires. The published document count follows the same
+  tree, 9,528 for the plain profile.
+
 ### Fixed
 - A raw-text search converts against the field that carries the body whatever
   its shape, which under `vector-enriched` is `sagan_raw` and not `message`.

@@ -9,14 +9,19 @@ inherits a rule that never fired, and someone comparing the converted output
 against a running Sagan would find the two agreeing perfectly, both silent, and
 conclude the conversion was sound.
 
-Counted against `quadrantsec/sagan-rules` at `cab835c`, where ten of the fixes
-this module found have been merged: 12 rules fall into the silent category
-below, 12 run a pattern that is not the one written, one asserts what it means
-to forbid, and two fire while missing the first of the values they list. The
-exclusion that could never exclude anything was the tenth merge and is gone.
-Against `c6fddfd`, the tree this project measured before any of them landed,
-the silent category held 768, which is what a ruleset looks like when nobody
-has been running it through the engine it was written for.
+Counted against `quadrantsec/sagan-rules` at `8d65d8a`, where sixteen of the
+fixes this module found have been merged: 9 rules fall into the silent category
+below and one asserts what it means to forbid. Nothing is left in the two
+categories that held 12 and 2 at `cab835c`, the twelve patterns that were not
+the one written and the two rules missing the first value they list having been
+fixed upstream. Against `c6fddfd`, the tree this project measured before any of
+them landed, the silent category held 768, which is what a ruleset looks like
+when nobody has been running it through the engine it was written for.
+
+Of the ten that remain, six name a JSON key path the engine clips and cannot be
+fixed in the rules at all, two carry a malformed `content` whose intended value
+only the log format can settle, one is the negated `pcre` the engine reads as
+positive, and one excludes a string that is part of the string it requires.
 
 Each detector below corresponds to an engine behaviour established by running a
 locally built Sagan, not by reading it. The comments name what was measured, so
