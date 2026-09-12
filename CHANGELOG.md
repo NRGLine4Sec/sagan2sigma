@@ -6,6 +6,28 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+- `lab/`, the engine lab, with `docs/LAB.md` for what each part measures and
+  what a run costs. It builds Sagan from source and puts rules and events
+  through it, which is how every claim in this repository about the engine's
+  behaviour was established, including the dozen converter defects that reading
+  the C had missed and the sixteen rule defects now fixed upstream. It was kept
+  outside the repository until now, on the grounds that it needs a compiled
+  engine and could not run in CI. Neither reason survives contact with the
+  question a contributor faces: a claim nobody else can re-measure is a claim on
+  trust, and the lab imports the converter and the probe generator from this
+  same checkout, so keeping the two apart is what makes them drift.
+
+  CI does not run it and `pytest` does not collect it. Its paths are resolved
+  from the checkout rather than hardcoded, its GeoIP fixture is built by a
+  script instead of committed as a binary, and its engine binaries are build
+  output. Two patches to the engine stay out: they fix defects that are not
+  public, the maintainers have been told privately, and publishing the patches
+  would disclose them. Five check files and the three differentials need those
+  builds and skip themselves with an explanation; the other eleven check files
+  run on a plain upstream build. A skip is printed, counted and named, never
+  reported as a pass.
+
 ### Changed
 - The upstream defect counts are re-measured against `sagan-rules` at `8d65d8a`,
   which carries six more of this project's fixes. They fall from 27 to 10: the

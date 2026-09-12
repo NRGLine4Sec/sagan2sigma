@@ -1,0 +1,32 @@
+# A minimal liblognorm rulebase for the normalize checks.
+#
+# Why not the bundled normalization.rulebase: every one of its rules is written
+# as "rule=: <pattern>", and the space after the colon is part of the pattern.
+# liblognorm therefore requires the message to begin with a space, which the
+# harness's messages do not, so that rulebase normalizes nothing at all here.
+# Verified by running the engine with -d normalize: its own documented sample
+# message comes back as "unparsed-data". The patterns below start immediately
+# after the colon, so they match.
+#
+# What matters for the checks is the position of the normalized addresses
+# relative to the order Parse_IP would use, so that the two mechanisms
+# disagree and precedence becomes observable:
+#
+#   ACCESS x SRC 5.5.5.5 DEST 8.8.8.8 tail
+#     normalized  -> src 5.5.5.5, dst 8.8.8.8
+#     positional  -> 1st = 5.5.5.5, 2nd = 8.8.8.8
+#   so parse_src_ip:2 (8.8.8.8) contradicts the normalized src (5.5.5.5),
+#   and parse_dst_ip:1 (5.5.5.5) contradicts the normalized dst (8.8.8.8).
+
+version=2
+
+rule=:ACCESS %-:word% SRC %src-ip:ipv4% DEST %dst-ip:ipv4%%-:rest%
+
+# Resolves a source and deliberately no destination, to exercise the branch
+# where liblognorm succeeds for one address and positional parsing has to fill
+# in the other.
+rule=:SRCONLY %src-ip:ipv4% and %-:rest%
+
+# Populates the username, which is the only way to observe whether an `after`
+# tracking key actually groups on the user. Used by check_track_keys.py.
+rule=:LOGIN %username:word% from %src-ip:ipv4%%-:rest%

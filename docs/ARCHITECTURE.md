@@ -129,6 +129,7 @@ Adding an ingestion chain means adding a YAML file, not writing code.
 | `tests/integration/test_vector_vrl.py` | the bundled VRL executed by a real Vector binary |
 | `tests/integration/test_corpus.py` | invariants against the real 10,000-rule corpus |
 | `tests/differential/` | does a converted rule *behave* like the original, judged by a reference evaluator and the real rsigma engine |
+| `lab/` | the same question, with Sagan itself on the other side instead of a model of it. Not a test layer: CI never runs it, it needs a compiled engine and the better part of an hour. See `docs/LAB.md` |
 
 The corpus and differential layers are opt-in, via `SAGAN_RULES_DIR` and the
 presence of an `rsigma` binary, and each runs as its own CI job. Between them

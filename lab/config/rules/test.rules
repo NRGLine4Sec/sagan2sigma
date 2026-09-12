@@ -1,0 +1,1 @@
+alert any any any -> any any (msg:"[T] outside home country"; program: sshd; content:"probe"; parse_src_ip: 1; country_code: track by_src, isnot $HOME_COUNTRY; classtype: suspicious-login; sid:9100001; rev:1;)

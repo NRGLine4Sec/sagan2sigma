@@ -29,7 +29,10 @@ right and matches the wrong thing is not.
 
 - **Match the engine, not the documentation.** Where the two disagree, the C
   source in `quadrantsec/sagan` wins, and the divergence goes in a comment.
-  `docs/DESIGN-DECISIONS.md` lists the cases found so far.
+  `docs/DESIGN-DECISIONS.md` lists the cases found so far. Better than reading
+  the source: measure it. `lab/` builds the engine and runs rules through it,
+  and a dozen behaviours in that list were wrong until someone did
+  (`docs/LAB.md`).
 - **Never silently drop a keyword.** Anything the converter does not handle
   must surface as a refusal or a degradation in the report.
 - **Every semantic loss gets a `DegradationCode`.** If the converted rule does
@@ -44,10 +47,15 @@ pip install -e ".[dev]"
 
 pytest                      # unit, property, golden and integration tests
 pytest --update-golden      # refresh golden files after an intended change
-ruff check src tests
-ruff format src tests
+ruff check src tests tools lab
+ruff format src tests tools lab
 mypy
 ```
+
+`pytest` never runs the engine lab: `lab/` needs a compiled Sagan and takes the
+better part of an hour, so it is run deliberately rather than on every change.
+Reach for it when a change turns on what the engine does, and see `docs/LAB.md`
+for what it can measure from a fresh clone.
 
 The corpus invariant tests need a checkout of the upstream rules:
 

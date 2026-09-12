@@ -1,0 +1,17 @@
+# Denylist feed for the corpus differential, distinct from lab-blacklist.txt.
+#
+# A network first, then a host outside it, so both lookup shapes are exercised:
+# the probe plants addresses inside 203.0.113.0/24 and the engine's blacklist
+# and the pipeline's mmdb table both resolve them by prefix.
+#
+# The network comes FIRST on purpose, for the reason lab-blacklist.txt records:
+# Sagan does not reset its mask buffer between lines, so a shorter prefix
+# following a longer one is silently narrowed to the longer one.
+#
+# The same file is read by both sides. Sagan reads it as its blacklist feed;
+# the Vector side builds an mmdb from it with tools/build_denylist_mmdb.py, the
+# script the documentation tells an operator to use, so the differential
+# exercises the lookup the shipped configuration declares rather than a
+# stand-in for it.
+203.0.113.0/24
+198.51.100.7

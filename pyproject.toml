@@ -144,6 +144,15 @@ ignore = [
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["D100", "D101", "D102", "D103", "D104"]
+# The lab drives a compiled engine from scripts rather than exporting a library.
+# Its imports deliberately follow a sys.path insert, which is what the noqa
+# markers say; its check functions are named for the belief they test and read
+# better without a docstring restating the name; and its output is aligned
+# tables that a wrapped line would break.
+"lab/**" = [
+    "D100", "D101", "D102", "D103", "D104", "D105", "D107",
+    "E402", "E501", "I001", "RUF100",
+]
 # The differential fixtures are Sagan rule lines. Wrapping them would make them
 # unreadable and would no longer resemble what a real .rules file contains.
 "tests/differential/test_differential.py" = ["E501"]

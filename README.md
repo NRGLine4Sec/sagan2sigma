@@ -190,10 +190,13 @@ old `gte: N` reinstated, the correlation check flags every rule.
 That exercise corrected a dozen behaviours the source reading had missed, most
 of them making the converted rules noisier than the originals. It also found
 limits in the engine that no converter can reproduce, which are recorded in
-`docs/DESIGN-DECISIONS.md` rather than imitated. The verified behaviours live in
-this repository as converter code, tests and design notes; the engine lab itself
-is kept outside it, since it needs a compiled binary and a hand-made GeoIP
-database that CI could only skip.
+`docs/DESIGN-DECISIONS.md` rather than imitated, and defects in the upstream
+rules themselves, sixteen of which are now fixed upstream.
+
+The instrument that produced all of it is in [`lab/`](lab), documented in
+[`docs/LAB.md`](docs/LAB.md). CI never runs it: it needs a compiled Sagan and
+the better part of an hour. It is here so that the claims it produced can be
+re-measured by someone else rather than taken on trust.
 
 The bundled VRL transforms are executed against a real Vector binary in CI, and
 their address extraction is checked case by case against the branches of
@@ -240,6 +243,8 @@ it; the detection engineering is theirs.
 - [`docs/DESIGN-DECISIONS.md`](docs/DESIGN-DECISIONS.md) for the traps this
   converter avoids, and why
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) to work on the code
+- [`docs/LAB.md`](docs/LAB.md) to measure the engine yourself, which is how
+  every claim about Sagan's behaviour in this repository was established
 - [`CONTRIBUTING.md`](CONTRIBUTING.md) to add a keyword handler
 
 ## Licence

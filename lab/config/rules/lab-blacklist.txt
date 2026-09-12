@@ -1,0 +1,11 @@
+# A tiny fixed denylist for the enrichment checks.
+#
+# One address or CIDR per line; lines opening with #, ; or a space are
+# comments (src/processors/blacklist.c). Fixed content means the expected
+# results are known without depending on a live feed.
+#
+# The /24 comes FIRST on purpose. Sagan never resets its mask buffer between
+# lines, so a shorter prefix following a longer one is silently narrowed to
+# the longer one. See the last section of checks/check_enrichment_feeds.py.
+198.51.100.0/24
+203.0.113.7
