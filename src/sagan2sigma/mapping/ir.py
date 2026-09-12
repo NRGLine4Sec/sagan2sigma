@@ -38,6 +38,14 @@ class Predicate:
     values: tuple[Scalar, ...]
     negated: bool = False
     origin: str = ""
+    #: Further field names carrying the same value, any of which satisfies the
+    #: predicate. Set when the ingestion chain names one thing differently
+    #: depending on the shape of the event and the rule matches both shapes: a
+    #: syslog envelope is exposed as ``appname`` on a plain event and
+    #: ``syslog_appname`` once the body is a JSON document, and a rule carrying
+    #: only ``json_map`` matches either. The alternatives are an OR, which Sigma
+    #: writes as a list of maps under one block.
+    alternate_fields: tuple[str, ...] = ()
 
     @property
     def key(self) -> str:
@@ -50,6 +58,22 @@ class Predicate:
         if len(self.values) == 1:
             return self.values[0]
         return list(self.values)
+
+    @property
+    def rendered_block(self) -> dict[str, Any] | list[dict[str, Any]]:
+        """Detection block for this predicate.
+
+        A map for the usual single-field case, a list of maps when the same
+        value may arrive under more than one field name: Sigma reads a list of
+        maps as a disjunction, and RSigma was verified to do so.
+        """
+        value = self.rendered_value
+        if not self.alternate_fields:
+            return {self.key: value}
+        return [
+            {"|".join((name, *self.modifiers)): value}
+            for name in (self.field, *self.alternate_fields)
+        ]
 
 
 @dataclass(frozen=True, slots=True)

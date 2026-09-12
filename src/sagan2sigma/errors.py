@@ -62,6 +62,7 @@ class DegradationCode(str, Enum):
     PCRE_QUOTE_REMOVED = "D_PCRE_QUOTE_REMOVED"
     JSON_KEY_RESTORED = "D_JSON_KEY_RESTORED"
     GROUPBY_SHAPE_SPLIT = "D_GROUPBY_SHAPE_SPLIT"
+    JSON_BODY_ARM_LOST = "D_JSON_BODY_ARM_LOST"
 
 
 REFUSAL_HELP: dict[RefusalCode, str] = {
@@ -280,6 +281,15 @@ DEGRADATION_HELP: dict[DegradationCode, str] = {
         "is set by rules of both shapes, so the correlation pairs with the "
         "setters matching the tester and misses the others. Degraded rather "
         "than refused: most of these keep the majority of their setters."
+    ),
+    DegradationCode.JSON_BODY_ARM_LOST: (
+        "The rule carries a json_map binding but no condition a plain-text "
+        "event cannot satisfy, so Sagan matches it on both a plain line and a "
+        "JSON document. This profile exposes no raw body for a JSON-bodied "
+        "event, so the text search has nothing to run against there and the "
+        "converted rule covers the plain-text half only. Convert under "
+        "--profile vector-enriched, whose pipeline keeps the raw body, to "
+        "cover both."
     ),
     DegradationCode.JSON_KEY_RESTORED: (
         "The rule names a JSON key that upstream clipped to 31 characters so "

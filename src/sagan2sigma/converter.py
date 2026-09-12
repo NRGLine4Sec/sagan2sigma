@@ -26,7 +26,7 @@ from .emit.sigma import (
 from .errors import Degradation, DegradationCode, Refusal, RefusalCode
 from .mapping.context import Context
 from .mapping.correlation import format_timespan
-from .mapping.fields import JSON_KEYWORDS, FieldResolver
+from .mapping.fields import JSON_KEYWORDS, RAW_TEXT_KEYWORDS, FieldResolver
 from .mapping.ir import CorrelationSpec, RuleDraft
 from .mapping.positional import POSITIONAL_KEYWORDS, effective_positional
 from .mapping.registry import BLOCKING, IGNORED, MODIFIERS, get_handler
@@ -209,6 +209,19 @@ class Converter:
                 continue
             handled.add(option.name)
             keyword_handler(rule, draft, self.context, resolver, self.case_policy)
+
+        if resolver.json_body_arm_lost and rule.keywords & RAW_TEXT_KEYWORDS:
+            draft.degrade(
+                Degradation(
+                    code=DegradationCode.JSON_BODY_ARM_LOST,
+                    detail=(
+                        "the rule's json_map binds a key without making a JSON "
+                        "body necessary, so Sagan matches both a plain line and "
+                        "a document; this profile keeps no raw body for a "
+                        "document, so only the plain-text half is converted"
+                    ),
+                )
+            )
 
         if not draft.has_detection:
             raise Refusal(

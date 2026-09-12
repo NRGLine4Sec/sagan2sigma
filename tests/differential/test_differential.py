@@ -49,6 +49,7 @@ from sagan2sigma.upstream import DefectCode
 from sagan2sigma.upstream import inspect as inspect_upstream
 
 from .events import (
+    json_arm_reachable,
     negative_literals,
     positive_literals,
     probes,
@@ -154,7 +155,7 @@ def compare(
     evaluator = SaganEvaluator(rule, variables)
     shape = converter.context.profile
     found: list[Disagreement] = []
-    for probe in probes(rule, variables):
+    for probe in probes(rule, variables, json_arm=json_arm_reachable(rule, shape)):
         expected = evaluator.matches(probe.event)
         event = to_rsigma_event(probe.event, rule, shape)
         actual = rsigma_matches(rules_file, event)
@@ -210,6 +211,11 @@ HAND_WRITTEN = [
     # a divergence the conversion declares. The probe carries both.
     'msg:"v"; program: *Security*; event_id: 4624,540; content:"Logon Type"; sid:22;',
     'msg:"w"; program: *Security*; event_id: 4624; content:!"anonymous"; sid:23;',
+    # A binding and nothing else, which the engine matches on a plain line as
+    # well as on a document. Under this profile the document arm is out of
+    # reach, so the probes are plain and the converted rule has to read the
+    # unprefixed envelope.
+    'msg:"z"; program: sshd; json_map:"src_ip",".ip"; content:"needle"; sid:27;',
     # json_map redirecting the text search into a JSON key.
     'msg:"s"; program: eventlog; json_map:"message",".Description"; content:"service installed"; sid:19;',
     # Envelope selectors.
@@ -319,6 +325,47 @@ class TestRawTextOnJsonBody:
                 f"sid {rule.sid}: {unplaceable(rule, literals)} never reaches the "
                 "serialised document, so no probe can decide the rule"
             )
+
+
+#: Rules the engine matches on a plain line and on a document alike, which is
+#: what a `json_map` binding and no other JSON keyword produces. Both arms are
+#: probed under the enriched profile, the pipeline keeping a raw body either
+#: way, so a conversion naming one shape's envelope fails here.
+EITHER_SHAPE = [
+    'msg:"ee"; program: sshd; json_map:"src_ip",".ip"; content:"needle"; sid:34;',
+    'msg:"ff"; program: sshd; json_map:"username",".user"; syslog_facility: auth;'
+    ' content:"needle"; sid:35;',
+    # The binding alone, with no envelope selector to disambiguate the shape.
+    'msg:"gg"; json_map:"dest_ip",".dst"; content:"needle"; sid:36;',
+]
+
+
+class TestARuleThatMatchesEitherShape:
+    """Measured on the engine: the binding changes nothing about what matches.
+
+    `program: sshd; json_map: "src_ip", ".ip"; content:"needle"` fires on a
+    plain syslog line exactly as the same rule without the binding does, and on
+    a JSON document as well. Converting it for one shape cost 41 corpus rules
+    the other, and nothing caught it because the probe generator took its shape
+    from the rule too.
+    """
+
+    @pytest.mark.parametrize(
+        "options", EITHER_SHAPE, ids=lambda o: o.split(";")[-2].strip()
+    )
+    def test_semantics_agree(self, options: str, tmp_path: Path) -> None:
+        line = f"alert any any any -> any any ({options})"
+        rule = parse_rule(line, "handwritten.rules", 1)
+        assert is_supported(rule), "fixture uses a construct the reference cannot judge"
+        disagreements = compare(rule, tmp_path, profile="vector-enriched")
+        assert not disagreements, "\n".join(str(d) for d in disagreements)
+
+    def test_both_arms_are_probed(self) -> None:
+        """Otherwise the suite above would pass on the document arm alone."""
+        line = f"alert any any any -> any any ({EITHER_SHAPE[0]})"
+        rule = parse_rule(line, "handwritten.rules", 1)
+        shapes = {bool(probe.event.json_body) for probe in probes(rule)}
+        assert shapes == {True, False}
 
 
 class TestArrayMarkedJsonKey:

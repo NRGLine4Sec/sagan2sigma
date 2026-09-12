@@ -7,6 +7,43 @@ All notable changes to this project are documented here. The format follows
 ## [Unreleased]
 
 ### Fixed
+- A `json_map` binding no longer makes the converter treat a rule as
+  JSON-bodied. Measured on the engine, three rules differing only in their
+  binding: `program: sshd; content:"needle"` fires on a plain line and on a
+  JSON document, adding `json_map: "src_ip", ".ip"` changes neither, and adding
+  `json_content` silences the plain line. The binding names where a value would
+  be read if the body were a document and constrains nothing otherwise, so only
+  `json_content`, `json_meta_content`, `json_pcre` and a `json_map` binding
+  `message` make a document necessary. 41 corpus rules carry a binding and
+  nothing else, and were emitted against the prefixed envelope names alone,
+  which no plain line carries: `openssh.rules` sid 5000411 could not match the
+  ordinary sshd line it exists for. Their envelope selector now accepts either
+  name, as a list of maps under one block, which RSigma reads as a disjunction;
+  no cross-shape match can come of it, an event carrying one envelope or the
+  other. 30 rules under `vector-enriched`, where the text search already runs on
+  `sagan_raw` and needs nothing. Under a profile whose pipeline keeps no raw
+  body the document half is out of reach, as it is for every raw-text rule
+  there, so those rules convert for their plain half and declare
+  `D_JSON_BODY_ARM_LOST` instead of being refused: 30 more rules, 86.6% to
+  86.9%.
+- The differential rendered a probe's shape from the *rule* rather than from
+  the event, so a plain-text probe for one of those 41 was handed to RSigma
+  under the JSON envelope names, and the narrowed conversion agreed with a
+  fiction no pipeline produces. The shape now comes from the event. Two further
+  infidelities went with it: `sagan_raw` was omitted from plain events although
+  `sagan-json.vrl` sets it on every event, and the `EventID` a converted rule
+  assumes was withheld on the strength of the rule's keywords rather than the
+  probe's shape. Each of the 41 is now probed twice, once as a document and once
+  as a plain line, with a `plain_wrong_program` probe to prove the plain
+  envelope name is read rather than dropped. Measured against the engine over
+  the corpus, same instant and same pipeline as the previous run: under
+  `vector-enriched` 8183 rules judged and no disagreement, with 8171 exercised
+  against 8157 before, the 14 that move being rules whose document arm can carry
+  neither an unbound `event_id` prefix nor a quoted literal and whose plain arm
+  carries both; under `rsigma-syslog` 7634 judged, no disagreement, 7633
+  exercised and one rule left undecided. The same run without the probe-shape
+  fix reports 25 disagreements over 12 rules, each of them the document arm the
+  plain profile cannot serve, which is what says the harness now measures this.
 - Three more templates for putting a raw literal back into a JSON document as
   structure. A literal can stop in the middle of a value, which is what a rule
   matching a prefix writes: `"Name": "Name", "Value": ".` is a member whose value

@@ -94,7 +94,7 @@ def build_detection(
     for index, predicate in enumerate(predicates, start=1):
         bucket = "filter" if predicate.negated else "selection"
         name = f"{prefix}{bucket}_{index}"
-        blocks[name] = {predicate.key: predicate.rendered_value}
+        blocks[name] = predicate.rendered_block
         (negative if predicate.negated else positive).append(name)
 
     if not positive:

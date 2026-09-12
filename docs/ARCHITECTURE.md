@@ -49,8 +49,8 @@ Handlers never emit YAML. They emit `Predicate` objects:
 
 ```python
 Predicate(
-    field="_raw",                      # already profile- and json_map-resolved
-    modifiers=("contains", "cased"),   # renders as _raw|contains|cased
+    field="_raw",  # already profile- and json_map-resolved
+    modifiers=("contains", "cased"),  # renders as _raw|contains|cased
     values=("authentication failure",),
     negated=False,
 )
@@ -70,8 +70,7 @@ references, correlation specs, custom attributes and the list of degradations.
 
 ```python
 @handler("content")
-def handle_content(rule, draft, context, resolver, policy):
-    ...
+def handle_content(rule, draft, context, resolver, policy): ...
 ```
 
 Adding keyword support is one module plus one test file. Nothing else changes.

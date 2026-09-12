@@ -41,6 +41,7 @@ def handle_program(
 
     ``event_type`` is documented as an alias of ``program``.
     """
+    field, *alternates = resolver.program_names
     for option in rule.options:
         if option.name not in ("program", "event_type") or option.value is None:
             continue
@@ -49,10 +50,11 @@ def handle_program(
             continue
         draft.add(
             Predicate(
-                field=resolver.program,
+                field=field,
                 modifiers=case_modifiers(nocase=False, policy=policy),
                 values=tuple(values),
                 origin=option.name,
+                alternate_fields=tuple(alternates),
             )
         )
 
@@ -116,10 +118,15 @@ def _envelope_selector(
     rule: SaganRule,
     draft: RuleDraft,
     keyword: str,
-    field: str,
+    names: tuple[str, ...],
     policy: CasePolicy,
 ) -> None:
-    """Emit a case-insensitive predicate on an envelope field."""
+    """Emit a case-insensitive predicate on an envelope field.
+
+    ``names`` holds every field the value may arrive under, which is more than
+    one for a rule matching both a plain and a JSON-bodied event.
+    """
+    field, *alternates = names
     for option in rule.iter_options(keyword):
         if option.value is None:
             continue
@@ -132,6 +139,7 @@ def _envelope_selector(
                 modifiers=case_modifiers(nocase=True, policy=policy),
                 values=tuple(values),
                 origin=keyword,
+                alternate_fields=tuple(alternates),
             )
         )
 
@@ -153,7 +161,7 @@ def handle_facility(
     ``E_UNKNOWN_KEYWORD`` like any other invalid option.
     """
     _envelope_selector(
-        rule, draft, "syslog_facility", resolver.envelope("facility"), policy
+        rule, draft, "syslog_facility", resolver.envelope_names("facility"), policy
     )
 
 
@@ -169,7 +177,9 @@ def handle_level(
 
     As with ``syslog_facility``, the bare ``level:`` form is not a keyword.
     """
-    _envelope_selector(rule, draft, "syslog_level", resolver.envelope("level"), policy)
+    _envelope_selector(
+        rule, draft, "syslog_level", resolver.envelope_names("level"), policy
+    )
 
 
 @handler("syslog_priority")
@@ -226,7 +236,7 @@ def handle_tag(
     """
     if not rule.has("syslog_tag"):
         return
-    _envelope_selector(rule, draft, "syslog_tag", "syslog_tag", policy)
+    _envelope_selector(rule, draft, "syslog_tag", ("syslog_tag",), policy)
     draft.degrade(
         Degradation(
             code=DegradationCode.SIDE_EFFECT_DROPPED,

@@ -35,7 +35,7 @@ sagan2sigma sagan-rules -o converted --profile vector-enriched
 ```
 
 This is the profile to use if you want the correlations. It converts **94.4%**
-of the corpus against 86.6% for the plain profiles, because the 305 rules
+of the corpus against 86.9% for the plain profiles, because the 305 rules
 refused with `E_GROUPBY_UNRESOLVED` drop to 8. With the site's own `sagan.yaml`
 passed to `--sagan-yaml`, so that `$HOME_COUNTRY` resolves, and the GeoIP
 database in place, the `country_code` rules convert too and the rate reaches

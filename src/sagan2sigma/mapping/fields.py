@@ -45,6 +45,23 @@ JSON_KEYWORDS = frozenset(
     {"json_content", "json_meta_content", "json_pcre", "json_map"}
 )
 
+#: Keywords no plain-text event can satisfy, because each reads a key out of a
+#: parsed document.
+#:
+#: ``json_map`` is deliberately absent, and that absence was measured on the
+#: engine rather than argued: a rule carrying ``json_map: "src_ip", ".ip"``
+#: alongside ``program`` and ``content`` fires on a plain syslog line exactly as
+#: the same rule without the binding does. The binding is not a condition. It
+#: names where a value would be read *if* the body were a document, and stays
+#: empty otherwise. 41 corpus rules are in that state, and treating their
+#: ``json_map`` as a JSON requirement converted them for one shape when Sagan
+#: matches both.
+HARD_JSON_KEYWORDS = frozenset({"json_content", "json_meta_content", "json_pcre"})
+
+#: Keywords whose search runs against the body as text rather than against a
+#: parsed key.
+RAW_TEXT_KEYWORDS = frozenset({"content", "meta_content", "pcre"})
+
 #: Internal Sagan values that ``json_map`` can rebind.
 #:
 #: Taken from the engine (``src/rules.c``, the ``strcmp(json_map_type, ...)``
@@ -130,22 +147,61 @@ class FieldResolver:
     context: Context
     mapping: dict[str, str]
     positions: dict[str, int]
-    #: Whether the rule targets JSON-bodied events.
+    #: Whether the rule reads JSON-bodied events at all.
     json_event: bool = False
+    #: Whether a plain-text event could never satisfy it. See
+    #: :data:`HARD_JSON_KEYWORDS`.
+    json_required: bool = False
 
     @classmethod
     def for_rule(cls, rule: SaganRule, context: Context) -> FieldResolver:
         """Build a resolver for one rule."""
+        mapping = json_map(rule)
         return cls(
             context=context,
-            mapping=json_map(rule),
+            mapping=mapping,
             positions=parse_positions(rule),
             json_event=bool(rule.keywords & JSON_KEYWORDS),
+            # A `json_map` binding `message` redirects the raw search into a key
+            # of the document, so that rule does need one.
+            json_required=(
+                bool(rule.keywords & HARD_JSON_KEYWORDS) or "message" in mapping
+            ),
         )
 
+    @property
+    def shape_agnostic(self) -> bool:
+        """Whether the rule matches a plain event as well as a JSON-bodied one.
+
+        True for a rule that names JSON without requiring it, which in the
+        corpus means ``json_map`` and nothing else. Such a rule has to be
+        converted for both shapes: the ingestion chain renames the syslog
+        envelope once the body is a document, so naming one shape's fields
+        would leave the other unmatched.
+        """
+        return self.json_event and not self.json_required
+
     def envelope(self, internal: str) -> str:
-        """Envelope field name matching the event shape this rule targets."""
+        """Envelope field name matching the event shape this rule targets.
+
+        A shape-agnostic rule gets the JSON-bodied name here, because the
+        callers that need a single name are the correlations, whose group-by
+        key has to be the one the rules setting the same bit use. Detection
+        predicates call :meth:`envelope_names` instead and accept both.
+        """
         return self.context.profile.envelope_field(internal, self.json_event)
+
+    def envelope_names(self, internal: str) -> tuple[str, ...]:
+        """Every envelope name a matching event could carry this value under.
+
+        One name for a rule that reads one shape of event, two for a
+        shape-agnostic one on a profile that renames the envelope.
+        """
+        shaped = self.envelope(internal)
+        if not self.shape_agnostic:
+            return (shaped,)
+        plain = self.context.profile.envelope_field(internal, False)
+        return (shaped,) if plain == shaped else (shaped, plain)
 
     def positional(self, internal: str) -> str | None:
         """Enriched field holding the position this rule asked for.
@@ -195,12 +251,29 @@ class FieldResolver:
         binding has nothing to run against, and emitting it would produce a rule
         that validates and never fires. Unless the profile's pipeline preserves
         the raw body (``json_raw``), in which case the search runs against that.
+
+        Only a rule that *requires* a document is unreachable. A shape-agnostic
+        one still matches the plain-text events it was always able to match, and
+        loses the JSON-bodied half instead; that is a degradation, not a
+        refusal. See :attr:`json_body_arm_lost`.
         """
         return (
-            self.json_event
+            self.json_required
             and not self.targets_json
             and self.context.profile.json_raw is None
         )
+
+    @property
+    def json_body_arm_lost(self) -> bool:
+        """Whether a raw search costs a shape-agnostic rule its JSON half.
+
+        The profile preserves no raw body, so on a JSON-bodied event there is
+        nothing for a ``content`` search to run against, and the converted rule
+        covers the plain-text half of the original only. A rule redirected into
+        a key by ``json_map: "message"`` is not shape-agnostic in the first
+        place, so it is not concerned.
+        """
+        return self.shape_agnostic and self.context.profile.json_raw is None
 
     @property
     def program(self) -> str:
@@ -208,6 +281,13 @@ class FieldResolver:
         if "program" in self.mapping:
             return self.mapping["program"]
         return self.envelope("program")
+
+    @property
+    def program_names(self) -> tuple[str, ...]:
+        """Every field name a ``program`` selector has to accept."""
+        if "program" in self.mapping:
+            return (self.mapping["program"],)
+        return self.envelope_names("program")
 
     @property
     def targets_json(self) -> bool:

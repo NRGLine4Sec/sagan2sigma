@@ -1018,6 +1018,64 @@ and not otherwise. That format dependence is real, so the converted rule still
 carries the `D_RAW_TEXT_MATCH` portability degradation: faithful to this source's
 serialization, not portable to a re-serialized copy of the same event.
 
+### A `json_map` binding is not a JSON requirement
+
+The rule above needs a companion, because the two questions look alike and have
+different answers. "Does this rule read JSON?" is what decides which envelope
+field names the converted rule uses. "Can a plain syslog line satisfy it?" is a
+different question, and for 41 corpus rules the answer to the second is yes
+while the answer to the first is also yes.
+
+Those rules carry `json_map` and no other JSON keyword. Measured on the engine,
+three rules differing only in their binding, against one plain line and one
+document:
+
+| rule | plain line | JSON document |
+| --- | --- | --- |
+| `program: sshd; content:"needle"` | fires | fires |
+| the same plus `json_map: "src_ip", ".ip"` | fires | fires |
+| the same plus `json_content:".user","bob"` | silent | fires |
+
+`json_map` names where a value would be read *if* the body were a document. It
+leaves the internal value empty otherwise and constrains nothing, so it cannot
+narrow the events a rule matches. Only a keyword reading a key out of a parsed
+document can, which is `json_content`, `json_meta_content`, `json_pcre`, and a
+`json_map` binding `message`, since that one redirects the text search into a
+key.
+
+Reading any `json_map` as "JSON-bodied" cost those 41 rules their plain-text
+half. The envelope moves under prefixed names once the body is a document, so a
+rule emitted against `syslog_appname` alone matches no plain line at all, and
+`openssh.rules` sid 5000411 is the case that makes the loss concrete: a binding
+added for a JSON variant of the source, on a rule whose ordinary event is a
+plain sshd line.
+
+The converted rule now accepts either name, which Sigma writes as a list of
+maps under one block and RSigma reads as a disjunction:
+
+```yaml
+  selection_4:
+    - syslog_appname|cased: sshd
+    - appname|cased: sshd
+```
+
+No cross-shape match can come of it: an event carries one envelope or the
+other, never both. The text search needs nothing, `sagan_raw` being set on
+every event the pipeline handles, document or not.
+
+On a profile whose pipeline keeps no raw body the document half is out of
+reach, as it is for every raw-text rule there. Such a rule is converted for its
+plain-text half and says so with `D_JSON_BODY_ARM_LOST`, rather than being
+refused as it used to be: the plain profile's own events are plain lines, and a
+rule that covers them is worth more than a refusal. That is 30 rules, and the
+plain rate goes from 86.6% to 86.9%.
+
+The differential probes such a rule twice, once as a document and once as a
+plain line, and a `plain_wrong_program` probe checks that the plain envelope
+name is read rather than dropped. Under a profile that cannot see the document
+half, it is probed as a plain line only, since measuring it against a document
+would measure the profile's blind spot instead of the conversion.
+
 ## Determinism
 
 Two runs over the same corpus produce byte-identical output. This is not

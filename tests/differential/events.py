@@ -74,27 +74,48 @@ JSON_KEYWORDS = frozenset(
 
 #: Keywords that make the event a JSON document rather than merely allow one.
 #:
-#: Kept as a name because the distinction is real and was measured, but NOT used
-#: to shape the probe. A rule binding `src_ip` to `.xff` does work on a plain
-#: event in the engine, and building one made fourteen `event_id` rules
-#: exercisable. It also made nineteen rules disagree: the converter treats any
-#: `json_map` rule as JSON-bodied and emits the profile's JSON envelope names,
-#: `syslog_facility` rather than `facility`, so a plain probe carries fields the
-#: converted rule does not read. The generator has to mirror the converter, and
-#: this is the converter's criterion. 41 corpus rules sit in the gap.
+#: `json_map` is not among them, which was measured on the engine: a rule
+#: carrying `json_map: "src_ip", ".ip"` beside `program` and `content` fires on
+#: a plain syslog line exactly as the same rule without the binding does. 41
+#: corpus rules are in that state and each is probed twice, once as a document
+#: and once as plain text, because Sagan matches both.
+#:
+#: The list is kept here rather than imported from the converter, which has the
+#: same one. The shape of a probe is what this differential measures, so reading
+#: it off the thing under test would make a converter that starts requiring
+#: JSON again silently stop being checked.
 REQUIRES_JSON = frozenset({"json_content", "json_meta_content", "json_pcre"})
 
 
 def needs_json_body(rule: SaganRule) -> bool:
-    """Whether this rule can only be satisfied by a JSON document.
-
-    Not what decides the probe's shape: see :data:`REQUIRES_JSON`.
-    """
+    """Whether this rule can only be satisfied by a JSON document."""
     return bool(rule.keywords & REQUIRES_JSON) or "message" in json_map(rule)
+
+
+def matches_either_shape(rule: SaganRule) -> bool:
+    """Whether the rule matches a plain event as well as a JSON-bodied one."""
+    return bool(rule.keywords & JSON_KEYWORDS) and not needs_json_body(rule)
 
 
 #: Keywords whose search runs against the raw body rather than a JSON key.
 RAW_TEXT_KEYWORDS = frozenset({"content", "meta_content", "pcre"})
+
+
+def json_arm_reachable(rule: SaganRule, profile: Profile) -> bool:
+    """Whether this profile can match the rule's text search on a document.
+
+    A profile whose pipeline keeps no raw body exposes a JSON-bodied event as
+    the parsed object alone, so a `content` search has nothing to run against
+    and no conversion of it can fire. That is a property of the profile, not of
+    the conversion: it holds for every raw-text rule under `rsigma-syslog`,
+    which is why the rules that *require* a document are refused there
+    outright. A rule that merely allows one is converted for its plain-text
+    half and says so (`D_JSON_BODY_ARM_LOST`), and is probed as plain text,
+    because measuring it against a document would measure the profile's own
+    blind spot rather than the conversion.
+    """
+    return profile.json_raw is not None or not (rule.keywords & RAW_TEXT_KEYWORDS)
+
 
 #: Body key carrying the raw-text region of a JSON-bodied probe.
 #:
@@ -384,7 +405,7 @@ def unbound_event_id(rule: SaganRule) -> str | None:
     return ids[0] if ids else None
 
 
-def event_id_field(rule: SaganRule) -> tuple[str, Any] | None:
+def event_id_field(rule: SaganRule, json_event: bool = False) -> tuple[str, Any] | None:
     """The structured field a converted rule reads, when it assumes one.
 
     `EventID` is what `mapping/selectors.py` falls back to with no `json_map`
@@ -393,9 +414,16 @@ def event_id_field(rule: SaganRule) -> tuple[str, Any] | None:
     rendered event: the converted rule assumes a producer that emits it, and
     that assumption is what the probe grants so the rest of the rule can be
     compared.
+
+    Nothing is granted on a JSON-bodied event. The engine's fallback searches
+    `" <id>: "` in the first nine characters of the message, which on such an
+    event is the start of a serialised document, so Sagan cannot resolve an id
+    there at all; handing RSigma the field would make it fire alone. The
+    condition is the shape of the event rather than the keywords of the rule,
+    because a rule carrying only `json_map` is probed with both.
     """
     identifier = unbound_event_id(rule)
-    if identifier is None or rule.keywords & JSON_KEYWORDS:
+    if identifier is None or json_event:
         return None
     return "EventID", int(identifier) if identifier.isdigit() else identifier
 
@@ -537,8 +565,14 @@ def build_event(
     rule: SaganRule,
     literals: list[str],
     overrides: dict[str, str] | None = None,
+    plain: bool = False,
 ) -> SaganEvent:
     """One event carrying exactly the raw-text literals it is given.
+
+    ``plain`` builds the plain-text half of a rule that matches both shapes:
+    no document at all, the literals in the message, and therefore none of the
+    keys a ``json_map`` names. ``overrides`` write keys into a document and are
+    ignored here, so a caller that needs them should not ask for a plain event.
 
     Composing by literal rather than by editing a finished message is what lets
     the JSON path work at all: on a JSON-bodied event the engine searches the
@@ -549,11 +583,12 @@ def build_event(
     ``overrides`` replaces JSON keys after the body is built, which is how a
     probe puts back the value a rule negates.
     """
-    body = json_body(rule)
-    for name, value in (overrides or {}).items():
-        _write(body, name, value)
+    body = {} if plain else json_body(rule)
+    if not plain:
+        for name, value in (overrides or {}).items():
+            _write(body, name, value)
     text = FILLER.join(literals) or "no conditions"
-    key = text_key(rule)
+    key = None if plain else text_key(rule)
 
     identifier = unbound_event_id(rule)
 
@@ -645,8 +680,14 @@ def probes(
     variables: dict[str, list[str]] | None = None,
     context: Sequence[str] = (),
     bindings: dict[str, str] | None = None,
+    json_arm: bool = True,
 ) -> list[Probe]:
     """Battery of events probing one rule's boundaries.
+
+    ``json_arm`` is false when the profile under test cannot see the document
+    half of a rule that matches both shapes, which :func:`json_arm_reachable`
+    decides. Every probe is then built as plain text, because that is the half
+    the conversion covers and claims to cover.
 
     ``bindings`` sets JSON keys on every probe, for a condition that depends on
     the value of a key the rule names rather than on text: a rule reading the
@@ -665,8 +706,13 @@ def probes(
     # `missing_n` probe would test the sampler, not the rule.
     given = [*context, *pcre_literals(rule)]
 
+    either = matches_either_shape(rule)
+    plain_only = either and not json_arm
+
     def event(literals: list[str]) -> SaganEvent:
-        return build_event(rule, [*given, *literals], overrides=bindings)
+        return build_event(
+            rule, [*given, *literals], overrides=bindings, plain=plain_only
+        )
 
     out = [Probe("base", event(positives))]
 
@@ -704,6 +750,25 @@ def probes(
         )
 
     out.append(Probe("wildcard_probe", event([*positives, "literal*star"])))
+
+    # The plain-text half of a rule that matches both shapes. Without it such a
+    # rule is only ever probed as a document, and a conversion naming the JSON
+    # envelope alone would agree with the engine on every probe while missing
+    # every plain event the original matches. Skipped when the caller planted
+    # key values, which have no place in a plain event: the probe would then be
+    # measuring something the rule cannot see either way.
+    if either and json_arm and not bindings:
+        plain_positives = build_event(rule, [*given, *positives], plain=True)
+        out.append(Probe("plain_body", plain_positives))
+        if rule.has("program") or rule.has("event_type"):
+            # Proves the converted rule *reads* the plain envelope name rather
+            # than having dropped the selector: this one must not fire.
+            out.append(
+                Probe(
+                    "plain_wrong_program",
+                    replace(plain_positives, program="zzz-unrelated"),
+                )
+            )
     return out
 
 
@@ -735,10 +800,15 @@ def to_rsigma_event(
     syslog envelope in the upstream corpus.
     """
     profile = profile or load_profile("rsigma-syslog")
-    json_event = bool(rule.keywords & JSON_KEYWORDS)
+    # The shape comes from the event, not from the rule. A rule carrying only
+    # `json_map` matches both shapes and is probed with both, so asking the rule
+    # would render a plain-text probe under the prefixed names and measure
+    # nothing. Reading the event is also the only answer that stays right when a
+    # `json_map` binds nothing the engine knows and the probe has no document.
+    json_event = bool(event.json_body)
 
     payload: dict[str, Any] = dict(event.json_body) if json_event else {}
-    structured = event_id_field(rule)
+    structured = event_id_field(rule, json_event)
     if structured is not None:
         payload[structured[0]] = structured[1]
     payload[profile.envelope_field("program", json_event)] = event.program
@@ -748,6 +818,12 @@ def to_rsigma_event(
 
     if not json_event:
         payload[profile.field("message")] = event.message
+        if profile.json_raw is not None:
+            # `sagan-json.vrl` assigns `.sagan_raw = .message` before it looks at
+            # the body, so a plain event carries it too and a rule converted for
+            # both shapes searches one field either way. Omitting it here made a
+            # correct conversion look broken on every plain probe.
+            payload[profile.json_raw] = wire_body(event)
     elif profile.json_raw is not None:
         # The raw body the pipeline preserves is the same string the engine was
         # handed, so both sides search identical text. The field the plain
