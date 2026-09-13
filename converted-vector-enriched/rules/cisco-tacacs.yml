@@ -8,9 +8,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: '*TACACS*'
+    - appname|cased: '*TACACS*'
+    - syslog_appname|cased: '*TACACS*'
   selection_2:
-    message|contains|cased: Authentication failed
+    sagan_raw|contains|cased: Authentication failed
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

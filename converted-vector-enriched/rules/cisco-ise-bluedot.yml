@@ -7,9 +7,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: CISE_Passed_Authentications
+    - appname|cased: CISE_Passed_Authentications
+    - syslog_appname|cased: CISE_Passed_Authentications
   selection_2:
-    message|contains|cased: Device IP Address
+    sagan_raw|contains|cased: Device IP Address
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:

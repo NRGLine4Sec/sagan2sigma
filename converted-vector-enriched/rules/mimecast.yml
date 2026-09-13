@@ -9,9 +9,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: MIMECAST
+    - appname|cased: MIMECAST
+    - syslog_appname|cased: MIMECAST
   selection_2:
-    message|contains|cased: RejType=Virus Signature Detection
+    sagan_raw|contains|cased: RejType=Virus Signature Detection
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -34,18 +35,19 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: MIMECAST
+    - appname|cased: MIMECAST
+    - syslog_appname|cased: MIMECAST
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - urlCategory=Dangerous file extension
       - urlCategory=Malware
       - urlCategory=Phishing & Fraud
       - urlCategory=Unknown
       - urlCategory=Compromised
   filter_3:
-    message|contains|cased: action=Block
+    sagan_raw|contains|cased: action=Block
   filter_4:
-    message|contains|cased: Route=Internal
+    sagan_raw|contains|cased: Route=Internal
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -68,9 +70,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: MIMECAST
+    - appname|cased: MIMECAST
+    - syslog_appname|cased: MIMECAST
   selection_2:
-    message|contains: Definition=Default Impersonation Definition
+    sagan_raw|contains: Definition=Default Impersonation Definition
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -93,11 +96,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: MIMECAST
+    - appname|cased: MIMECAST
+    - syslog_appname|cased: MIMECAST
   selection_2:
-    message|contains|cased: reason=malicious
+    sagan_raw|contains|cased: reason=malicious
   selection_3:
-    message|contains|cased: url=
+    sagan_raw|contains|cased: url=
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -120,13 +124,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: MIMECAST
+    - appname|cased: MIMECAST
+    - syslog_appname|cased: MIMECAST
   selection_2:
-    message|contains|cased: Route=Inbound
+    sagan_raw|contains|cased: Route=Inbound
   selection_3:
-    message|contains|cased: md5=
+    sagan_raw|contains|cased: md5=
   filter_4:
-    message|contains|cased: Virus=
+    sagan_raw|contains|cased: Virus=
   condition: selection_1 and selection_2 and selection_3 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

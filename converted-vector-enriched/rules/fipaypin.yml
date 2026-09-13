@@ -7,11 +7,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: S-300000
+    sagan_raw|contains|cased: S-300000
   selection_2:
-    message|contains|cased: 'Swpe: Response'
+    sagan_raw|contains|cased: 'Swpe: Response'
   filter_3:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - track2=4
       - track2=34
       - track2=37
@@ -62,7 +62,8 @@ detection:
       - track2=53
       - track2=55
   selection_4:
-    appname|cased: '*FIPAYPIN*'
+    - appname|cased: '*FIPAYPIN*'
+    - syslog_appname|cased: '*FIPAYPIN*'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -83,11 +84,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: S-300000
+    sagan_raw|contains|cased: S-300000
   selection_2:
-    message|contains|cased: Bad/No Pin Block and KSN returned
+    sagan_raw|contains|cased: Bad/No Pin Block and KSN returned
   selection_3:
-    appname|cased: '*FIPAYPIN*'
+    - appname|cased: '*FIPAYPIN*'
+    - syslog_appname|cased: '*FIPAYPIN*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -108,11 +110,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: S-300000
+    sagan_raw|contains|cased: S-300000
   selection_2:
-    message|contains|cased: Blocked the response to POS
+    sagan_raw|contains|cased: Blocked the response to POS
   selection_3:
-    appname|cased: '*FIPAYPIN*'
+    - appname|cased: '*FIPAYPIN*'
+    - syslog_appname|cased: '*FIPAYPIN*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -133,11 +136,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: S-300000
+    sagan_raw|contains|cased: S-300000
   selection_2:
-    message|contains|cased: RTS1_IP
+    sagan_raw|contains|cased: RTS1_IP
   filter_3:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - value ''10.
       - value ''192.168.
       - value ''172.16.
@@ -157,7 +160,8 @@ detection:
       - value ''172.30.
       - value ''172.31.
   selection_4:
-    appname|cased: '*FIPAYPIN*'
+    - appname|cased: '*FIPAYPIN*'
+    - syslog_appname|cased: '*FIPAYPIN*'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

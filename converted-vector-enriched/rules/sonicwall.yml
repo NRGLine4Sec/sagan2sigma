@@ -7,9 +7,9 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Possible port scan detected
+    sagan_raw|contains|cased: Possible port scan detected
   selection_2:
-    message|contains|cased: TCP scanned port list
+    sagan_raw|contains|cased: TCP scanned port list
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -30,9 +30,9 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Possible port scan detected
+    sagan_raw|contains|cased: Possible port scan detected
   selection_2:
-    message|contains|cased: UDP scanned port list
+    sagan_raw|contains|cased: UDP scanned port list
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -55,9 +55,9 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Registration Update Needed
+    sagan_raw|contains|cased: Registration Update Needed
   selection_2:
-    message|contains|cased: Restore your existing security service subscRIPtions by clicking
+    sagan_raw|contains|cased: Restore your existing security service subscRIPtions by clicking
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -80,7 +80,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Access attempt from host out of compliance with GSC policy
+    sagan_raw|contains|cased: Access attempt from host out of compliance with GSC policy
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -103,7 +103,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Access attempt from host without Anti-Virus agent installed
+    sagan_raw|contains|cased: Access attempt from host without Anti-Virus agent installed
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -126,7 +126,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Access attempt from host without GSC installed
+    sagan_raw|contains|cased: Access attempt from host without GSC installed
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -149,7 +149,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Access rule added
+    sagan_raw|contains|cased: Access rule added
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -172,7 +172,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Access rule deleted
+    sagan_raw|contains|cased: Access rule deleted
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -195,7 +195,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Access rule modified
+    sagan_raw|contains|cased: Access rule modified
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -218,7 +218,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Access rules restored to defaults
+    sagan_raw|contains|cased: Access rules restored to defaults
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -241,7 +241,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Access to proxy server denied
+    sagan_raw|contains|cased: Access to proxy server denied
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -264,7 +264,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: ActiveX access denied
+    sagan_raw|contains|cased: ActiveX access denied
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -287,7 +287,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: ActiveX or Java archive access denied
+    sagan_raw|contains|cased: ActiveX or Java archive access denied
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -311,7 +311,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Administrator login denied due to bad credentials
+    sagan_raw|contains|cased: Administrator login denied due to bad credentials
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -349,9 +349,9 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Administrator login denied from
+    sagan_raw|contains|cased: Administrator login denied from
   selection_2:
-    message|contains|cased: logins disabled from this interface
+    sagan_raw|contains|cased: logins disabled from this interface
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -374,7 +374,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Administrator name changed
+    sagan_raw|contains|cased: Administrator name changed
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -397,7 +397,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Allowed LDAP server certificate with wrong host name
+    sagan_raw|contains|cased: Allowed LDAP server certificate with wrong host name
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -420,7 +420,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Anti-Spyware Detection Alert
+    sagan_raw|contains|cased: Anti-Spyware Detection Alert
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -443,7 +443,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Anti-Spyware Prevention Alert
+    sagan_raw|contains|cased: Anti-Spyware Prevention Alert
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -466,7 +466,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Application Filter Detection Alert
+    sagan_raw|contains|cased: Application Filter Detection Alert
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -489,7 +489,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Application Filters Block Alert
+    sagan_raw|contains|cased: Application Filters Block Alert
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -512,7 +512,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Association Flood from WLAN station
+    sagan_raw|contains|cased: Association Flood from WLAN station
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -535,7 +535,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Back Orifice attack dropped
+    sagan_raw|contains|cased: Back Orifice attack dropped
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -558,7 +558,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Backup active
+    sagan_raw|contains|cased: Backup active
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -581,7 +581,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Backup firewall has transitioned to Active
+    sagan_raw|contains|cased: Backup firewall has transitioned to Active
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -604,7 +604,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Backup firewall has transitioned to Idle
+    sagan_raw|contains|cased: Backup firewall has transitioned to Idle
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -627,8 +627,8 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Backup firewall rebooting itself as it transitioned from Active to Idle while
-      Preempt
+    sagan_raw|contains|cased: Backup firewall rebooting itself as it transitioned from Active to Idle
+      while Preempt
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -651,7 +651,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Backup WAN link down, Primary going Active
+    sagan_raw|contains|cased: Backup WAN link down, Primary going Active
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -674,7 +674,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Bad CRL format
+    sagan_raw|contains|cased: Bad CRL format
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -697,7 +697,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Certificate on Revoked list(CRL)
+    sagan_raw|contains|cased: Certificate on Revoked list(CRL)
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -720,7 +720,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: CLI administrator login allowed
+    sagan_raw|contains|cased: CLI administrator login allowed
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -743,7 +743,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: CLI administrator login denied due to bad credentials
+    sagan_raw|contains|cased: CLI administrator login denied due to bad credentials
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -767,7 +767,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: FIN Flood Blacklist on
+    sagan_raw|contains|cased: FIN Flood Blacklist on
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -790,7 +790,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: FIN-Flooding machine
+    sagan_raw|contains|cased: FIN-Flooding machine
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -813,7 +813,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Found Rogue Access Point
+    sagan_raw|contains|cased: Found Rogue Access Point
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -836,7 +836,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Fraudulent Microsoft certificate found
+    sagan_raw|contains|cased: Fraudulent Microsoft certificate found
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -859,7 +859,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: FTP client user logged in failed
+    sagan_raw|contains|cased: FTP client user logged in failed
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -882,7 +882,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Data connection from non default port dropped
+    sagan_raw|contains|cased: Data connection from non default port dropped
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -905,7 +905,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: PASV response bounce attack dropped
+    sagan_raw|contains|cased: PASV response bounce attack dropped
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -928,7 +928,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: PASV response spoof attack dropped
+    sagan_raw|contains|cased: PASV response spoof attack dropped
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -951,9 +951,9 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Guest account
+    sagan_raw|contains|cased: Guest account
   selection_2:
-    message|contains|cased: created
+    sagan_raw|contains|cased: created
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -976,9 +976,9 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Guest account
+    sagan_raw|contains|cased: Guest account
   selection_2:
-    message|contains|cased: deleted
+    sagan_raw|contains|cased: deleted
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1001,9 +1001,9 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Guest account
+    sagan_raw|contains|cased: Guest account
   selection_2:
-    message|contains|cased: disabled
+    sagan_raw|contains|cased: disabled
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1026,9 +1026,9 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Guest account
+    sagan_raw|contains|cased: Guest account
   selection_2:
-    message|contains|cased: pruned
+    sagan_raw|contains|cased: pruned
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1051,9 +1051,9 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Guest account
+    sagan_raw|contains|cased: Guest account
   selection_2:
-    message|contains|cased: re-enabled
+    sagan_raw|contains|cased: re-enabled
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1076,9 +1076,9 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Guest account
+    sagan_raw|contains|cased: Guest account
   selection_2:
-    message|contains|cased: re-generated
+    sagan_raw|contains|cased: re-generated
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1101,7 +1101,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Heartbeat received from incompatible source
+    sagan_raw|contains|cased: Heartbeat received from incompatible source
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1124,7 +1124,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: HTTP management port has changed
+    sagan_raw|contains|cased: HTTP management port has changed
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1147,7 +1147,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Internet Access restricted to authorized users
+    sagan_raw|contains|cased: Internet Access restricted to authorized users
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1170,7 +1170,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: IP spoof detected on packet to Central Gateway
+    sagan_raw|contains|cased: IP spoof detected on packet to Central Gateway
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1193,7 +1193,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: IP spoof dropped
+    sagan_raw|contains|cased: IP spoof dropped
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1216,7 +1216,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: IPS Prevention Alert
+    sagan_raw|contains|cased: IPS Prevention Alert
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1239,7 +1239,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Land attack dropped
+    sagan_raw|contains|cased: Land attack dropped
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1262,7 +1262,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: removed from FIN flood blacklist
+    sagan_raw|contains|cased: removed from FIN flood blacklist
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1285,7 +1285,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: removed from RST flood blacklist
+    sagan_raw|contains|cased: removed from RST flood blacklist
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1308,7 +1308,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: removed from SYN flood blacklist
+    sagan_raw|contains|cased: removed from SYN flood blacklist
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1331,7 +1331,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Maximum events per second threshold exceeded
+    sagan_raw|contains|cased: Maximum events per second threshold exceeded
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1354,7 +1354,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Maximum sequential failed dial attempts
+    sagan_raw|contains|cased: Maximum sequential failed dial attempts
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1377,7 +1377,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Maximum syslog data per second threshold exceeded
+    sagan_raw|contains|cased: Maximum syslog data per second threshold exceeded
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1400,7 +1400,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Multiple DHCP Servers are detected on network
+    sagan_raw|contains|cased: Multiple DHCP Servers are detected on network
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1423,7 +1423,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Net Spy attack dropped
+    sagan_raw|contains|cased: Net Spy attack dropped
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1446,7 +1446,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: NetBus attack dropped
+    sagan_raw|contains|cased: NetBus attack dropped
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1469,7 +1469,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: ' No firewall rule associated with VPN policy'
+    sagan_raw|contains|cased: ' No firewall rule associated with VPN policy'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1492,7 +1492,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Ping of death dropped
+    sagan_raw|contains|cased: Ping of death dropped
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1515,7 +1515,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Possible DNS rebind attack detected
+    sagan_raw|contains|cased: Possible DNS rebind attack detected
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1538,7 +1538,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Possible FIN Flood
+    sagan_raw|contains|cased: Possible FIN Flood
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1561,7 +1561,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Possible RST Flood
+    sagan_raw|contains|cased: Possible RST Flood
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1585,7 +1585,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Priority attack dropped
+    sagan_raw|contains|cased: Priority attack dropped
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1608,7 +1608,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Probable port scan detected
+    sagan_raw|contains|cased: Probable port scan detected
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1631,7 +1631,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Probable TCP FIN scan detected
+    sagan_raw|contains|cased: Probable TCP FIN scan detected
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1654,7 +1654,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Probable TCP NULL scan detected
+    sagan_raw|contains|cased: Probable TCP NULL scan detected
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1677,7 +1677,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Probable TCP XMAS scan detected
+    sagan_raw|contains|cased: Probable TCP XMAS scan detected
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1700,7 +1700,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Probing failure on
+    sagan_raw|contains|cased: Probing failure on
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1723,7 +1723,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Probing suceeded on
+    sagan_raw|contains|cased: Probing suceeded on
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1746,7 +1746,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Probing suceeded on
+    sagan_raw|contains|cased: Probing suceeded on
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1769,9 +1769,9 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: SonicWALL
+    sagan_raw|contains|cased: SonicWALL
   selection_2:
-    message|contains|cased: expired
+    sagan_raw|contains|cased: expired
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1794,7 +1794,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Restarting SonicWALL
+    sagan_raw|contains|cased: Restarting SonicWALL
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1817,7 +1817,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: RIPper attack dropped
+    sagan_raw|contains|cased: RIPper attack dropped
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1840,7 +1840,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: RST Flood Blacklist on IF
+    sagan_raw|contains|cased: RST Flood Blacklist on IF
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1863,9 +1863,9 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: RST
+    sagan_raw|contains|cased: RST
   selection_2:
-    message|contains|cased: Flooding machine
+    sagan_raw|contains|cased: Flooding machine
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1888,7 +1888,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Senna Spy attack dropped
+    sagan_raw|contains|cased: Senna Spy attack dropped
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1911,7 +1911,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: SonicWALL SSO agent returned domain name too long
+    sagan_raw|contains|cased: SonicWALL SSO agent returned domain name too long
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1934,7 +1934,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: SonicWALL SSO agent returned user name too long
+    sagan_raw|contains|cased: SonicWALL SSO agent returned user name too long
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1957,7 +1957,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Source routed IP packet dropped
+    sagan_raw|contains|cased: Source routed IP packet dropped
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1980,7 +1980,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Spank attack multicast packet dropped
+    sagan_raw|contains|cased: Spank attack multicast packet dropped
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2003,7 +2003,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Striker attack dropped
+    sagan_raw|contains|cased: Striker attack dropped
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2026,7 +2026,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Sub Seven attack dropped
+    sagan_raw|contains|cased: Sub Seven attack dropped
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2049,7 +2049,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: SYN Flood blacklisting enabled by user
+    sagan_raw|contains|cased: SYN Flood blacklisting enabled by user
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2072,7 +2072,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: SYN flood ceased or flooding machines blacklisted
+    sagan_raw|contains|cased: SYN flood ceased or flooding machines blacklisted
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2095,7 +2095,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: SYN Flood Mode changed by user to
+    sagan_raw|contains|cased: SYN Flood Mode changed by user to
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2118,7 +2118,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: TCP Xmas Tree dropped
+    sagan_raw|contains|cased: TCP Xmas Tree dropped
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2141,7 +2141,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: WLAN radio frequency threat detected
+    sagan_raw|contains|cased: WLAN radio frequency threat detected
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2162,7 +2162,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: IP Spoof Detected
+    sagan_raw|contains|cased: IP Spoof Detected
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2183,7 +2183,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Wrong Admin Password
+    sagan_raw|contains|cased: Wrong Admin Password
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2204,7 +2204,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Admin Login Disabled
+    sagan_raw|contains|cased: Admin Login Disabled
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2225,7 +2225,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Smurf Attack
+    sagan_raw|contains|cased: Smurf Attack
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2246,11 +2246,11 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: E-Mail Attachment
+    sagan_raw|contains|cased: E-Mail Attachment
   selection_2:
-    message|contains|cased: sn=
+    sagan_raw|contains|cased: sn=
   filter_3:
-    message|contains|cased: MCAS
+    sagan_raw|contains|cased: MCAS
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2271,7 +2271,7 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: Using LDAP Without TLS
+    sagan_raw|contains|cased: Using LDAP Without TLS
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2295,9 +2295,9 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: 'm=140 '
+    sagan_raw|contains|cased: 'm=140 '
   selection_2:
-    message|contains|cased: fw_action=
+    sagan_raw|contains|cased: fw_action=
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2337,9 +2337,10 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    appname|cased: sonicwall
+    - appname|cased: sonicwall
+    - syslog_appname|cased: sonicwall
   selection_2:
-    message|contains|cased: '"msgid": 140,'
+    sagan_raw|contains|cased: '"msgid": 140,'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2378,9 +2379,9 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: 'm=235 '
+    sagan_raw|contains|cased: 'm=235 '
   selection_2:
-    message|contains|cased: fw_action=
+    sagan_raw|contains|cased: fw_action=
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2403,9 +2404,10 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    appname|cased: sonicwall
+    - appname|cased: sonicwall
+    - syslog_appname|cased: sonicwall
   selection_2:
-    message|contains|cased: '"msgid": 235,'
+    sagan_raw|contains|cased: '"msgid": 235,'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2428,9 +2430,9 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: 'm=236 '
+    sagan_raw|contains|cased: 'm=236 '
   selection_2:
-    message|contains|cased: fw_action=
+    sagan_raw|contains|cased: fw_action=
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2453,9 +2455,10 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    appname|cased: sonicwall
+    - appname|cased: sonicwall
+    - syslog_appname|cased: sonicwall
   selection_2:
-    message|contains|cased: '"msgid": 236,'
+    sagan_raw|contains|cased: '"msgid": 236,'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2478,9 +2481,9 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: 'm=238 '
+    sagan_raw|contains|cased: 'm=238 '
   selection_2:
-    message|contains|cased: fw_action=
+    sagan_raw|contains|cased: fw_action=
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2503,9 +2506,10 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    appname|cased: sonicwall
+    - appname|cased: sonicwall
+    - syslog_appname|cased: sonicwall
   selection_2:
-    message|contains|cased: '"msgid": 238,'
+    sagan_raw|contains|cased: '"msgid": 238,'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2529,9 +2533,9 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: 'm=243 '
+    sagan_raw|contains|cased: 'm=243 '
   selection_2:
-    message|contains|cased: fw_action=
+    sagan_raw|contains|cased: fw_action=
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2571,9 +2575,10 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    appname|cased: sonicwall
+    - appname|cased: sonicwall
+    - syslog_appname|cased: sonicwall
   selection_2:
-    message|contains|cased: '"msgid": 243,'
+    sagan_raw|contains|cased: '"msgid": 243,'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2612,9 +2617,9 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: 'm=246 '
+    sagan_raw|contains|cased: 'm=246 '
   selection_2:
-    message|contains|cased: fw_action=
+    sagan_raw|contains|cased: fw_action=
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2637,9 +2642,10 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    appname|cased: sonicwall
+    - appname|cased: sonicwall
+    - syslog_appname|cased: sonicwall
   selection_2:
-    message|contains|cased: '"msgid": 246,'
+    sagan_raw|contains|cased: '"msgid": 246,'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2662,9 +2668,9 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: 'm=279 '
+    sagan_raw|contains|cased: 'm=279 '
   selection_2:
-    message|contains|cased: fw_action=
+    sagan_raw|contains|cased: fw_action=
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2687,9 +2693,10 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    appname|cased: sonicwall
+    - appname|cased: sonicwall
+    - syslog_appname|cased: sonicwall
   selection_2:
-    message|contains|cased: '"msgid": 279,'
+    sagan_raw|contains|cased: '"msgid": 279,'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2712,9 +2719,9 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: 'm=546 '
+    sagan_raw|contains|cased: 'm=546 '
   selection_2:
-    message|contains|cased: fw_action=
+    sagan_raw|contains|cased: fw_action=
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2737,9 +2744,10 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    appname|cased: sonicwall
+    - appname|cased: sonicwall
+    - syslog_appname|cased: sonicwall
   selection_2:
-    message|contains|cased: '"msgid": 546,'
+    sagan_raw|contains|cased: '"msgid": 546,'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2762,9 +2770,9 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: 'm=558 '
+    sagan_raw|contains|cased: 'm=558 '
   selection_2:
-    message|contains|cased: fw_action=
+    sagan_raw|contains|cased: fw_action=
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2787,9 +2795,10 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    appname|cased: sonicwall
+    - appname|cased: sonicwall
+    - syslog_appname|cased: sonicwall
   selection_2:
-    message|contains|cased: '"msgid": 558,'
+    sagan_raw|contains|cased: '"msgid": 558,'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2812,9 +2821,9 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: 'm=561 '
+    sagan_raw|contains|cased: 'm=561 '
   selection_2:
-    message|contains|cased: fw_action=
+    sagan_raw|contains|cased: fw_action=
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2837,9 +2846,10 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    appname|cased: sonicwall
+    - appname|cased: sonicwall
+    - syslog_appname|cased: sonicwall
   selection_2:
-    message|contains|cased: '"msgid": 561,'
+    sagan_raw|contains|cased: '"msgid": 561,'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2862,13 +2872,13 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: msg="Connection Closed"
+    sagan_raw|contains|cased: msg="Connection Closed"
   selection_2:
-    message|contains|cased: appName="Unknown"
+    sagan_raw|contains|cased: appName="Unknown"
   selection_3:
-    message|re: proto=tcp\/(80|443)[^\d]
+    sagan_raw|re: proto=tcp\/(80|443)[^\d]
   selection_4:
-    message|re: src=(10\.\d+\.\d+\.\d+|172\.(1[6-9]|2[0-9]|3[0-1])\.\d+\.\d+|192\.168\.\d+\.\d+)
+    sagan_raw|re: src=(10\.\d+\.\d+\.\d+|172\.(1[6-9]|2[0-9]|3[0-1])\.\d+\.\d+|192\.168\.\d+\.\d+)
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2894,13 +2904,13 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: msg="Connection Closed"
+    sagan_raw|contains|cased: msg="Connection Closed"
   selection_2:
-    message|contains|cased: appName="Unknown"
+    sagan_raw|contains|cased: appName="Unknown"
   selection_3:
-    message|re: proto=tcp\/(1[0-9]{4,}|[2-9]\d{4,})[^\d]
+    sagan_raw|re: proto=tcp\/(1[0-9]{4,}|[2-9]\d{4,})[^\d]
   selection_4:
-    message|re: src=(10\.\d+\.\d+\.\d+|172\.(1[6-9]|2[0-9]|3[0-1])\.\d+\.\d+|192\.168\.\d+\.\d+)
+    sagan_raw|re: src=(10\.\d+\.\d+\.\d+|172\.(1[6-9]|2[0-9]|3[0-1])\.\d+\.\d+|192\.168\.\d+\.\d+)
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2940,13 +2950,13 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: msg="Connection Closed"
+    sagan_raw|contains|cased: msg="Connection Closed"
   selection_2:
-    message|contains|cased: appName="Unknown"
+    sagan_raw|contains|cased: appName="Unknown"
   selection_3:
-    message|re: sent=([5-9]\d{6}|\d{7,})[^\d]
+    sagan_raw|re: sent=([5-9]\d{6}|\d{7,})[^\d]
   selection_4:
-    message|re: src=(10\.\d+\.\d+\.\d+|172\.(1[6-9]|2[0-9]|3[0-1])\.\d+\.\d+|192\.168\.\d+\.\d+)
+    sagan_raw|re: src=(10\.\d+\.\d+\.\d+|172\.(1[6-9]|2[0-9]|3[0-1])\.\d+\.\d+|192\.168\.\d+\.\d+)
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2971,11 +2981,11 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: msg="Connection Closed"
+    sagan_raw|contains|cased: msg="Connection Closed"
   selection_2:
-    message|contains|cased: appName="Unknown"
+    sagan_raw|contains|cased: appName="Unknown"
   selection_3:
-    message|re: src=(10\.\d+\.\d+\.\d+|172\.(1[6-9]|2[0-9]|3[0-1])\.\d+\.\d+|192\.168\.\d+\.\d+)
+    sagan_raw|re: src=(10\.\d+\.\d+\.\d+|172\.(1[6-9]|2[0-9]|3[0-1])\.\d+\.\d+|192\.168\.\d+\.\d+)
   at_days:
     sagan_event_weekday:
       - 1
@@ -3021,19 +3031,19 @@ logsource:
   product: sonicwall
 detection:
   selection_1:
-    message|contains|cased: msg="Connection Closed"
+    sagan_raw|contains|cased: msg="Connection Closed"
   selection_2:
-    message|contains|cased: proto=tcp/9000
+    sagan_raw|contains|cased: proto=tcp/9000
   selection_3:
-    message|contains|cased: sent=52
+    sagan_raw|contains|cased: sent=52
   selection_4:
-    message|contains|cased: rcvd=0
+    sagan_raw|contains|cased: rcvd=0
   selection_5:
-    message|contains|cased: spkt=1
+    sagan_raw|contains|cased: spkt=1
   selection_6:
-    message|contains|cased: rpkt=0
+    sagan_raw|contains|cased: rpkt=0
   selection_7:
-    message|re: src=(10\.\d+\.\d+\.\d+|172\.(1[6-9]|2[0-9]|3[0-1])\.\d+\.\d+|192\.168\.\d+\.\d+)
+    sagan_raw|re: src=(10\.\d+\.\d+\.\d+|172\.(1[6-9]|2[0-9]|3[0-1])\.\d+\.\d+|192\.168\.\d+\.\d+)
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
     and selection_7
 falsepositives:

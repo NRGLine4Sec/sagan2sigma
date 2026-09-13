@@ -9,9 +9,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Power supply
+    sagan_raw|contains|cased: Power supply
   selection_2:
-    message|contains|cased: has faulted
+    sagan_raw|contains|cased: has faulted
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -35,9 +35,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Power supply
+    sagan_raw|contains|cased: Power supply
   selection_2:
-    message|contains|cased: is operating normally
+    sagan_raw|contains|cased: is operating normally
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -61,9 +61,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: NOTICE
+    sagan_raw|contains|cased: NOTICE
   selection_2:
-    message|contains|cased: is now available for download
+    sagan_raw|contains|cased: is now available for download
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -87,9 +87,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: ERROR
+    sagan_raw|contains|cased: ERROR
   selection_2:
-    message|contains|cased: link is down
+    sagan_raw|contains|cased: link is down
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -112,9 +112,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: ERROR
+    sagan_raw|contains|cased: ERROR
   selection_2:
-    message|contains|cased: failed to add remote system
+    sagan_raw|contains|cased: failed to add remote system
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -137,11 +137,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: warning
+    sagan_raw|contains|cased: warning
   selection_2:
-    message|contains|cased: Storage Processor
+    sagan_raw|contains|cased: Storage Processor
   selection_3:
-    message|contains|cased: is restarting
+    sagan_raw|contains|cased: is restarting
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -165,11 +165,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: warning
+    sagan_raw|contains|cased: warning
   selection_2:
-    message|contains|cased: The write cache on Storage Processor
+    sagan_raw|contains|cased: The write cache on Storage Processor
   selection_3:
-    message|contains|cased: is disabled
+    sagan_raw|contains|cased: is disabled
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -193,7 +193,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: An SFP was removed from
+    sagan_raw|contains|cased: An SFP was removed from
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -217,7 +217,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: The DNS client is unable to connect to
+    sagan_raw|contains|cased: The DNS client is unable to connect to
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -241,11 +241,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: ERROR
+    sagan_raw|contains|cased: ERROR
   selection_2:
-    message|contains|cased: Communication with
+    sagan_raw|contains|cased: Communication with
   selection_3:
-    message|contains|cased: has been lost
+    sagan_raw|contains|cased: has been lost
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -269,11 +269,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: ERROR
+    sagan_raw|contains|cased: ERROR
   selection_2:
-    message|contains|cased: Replication session
+    sagan_raw|contains|cased: Replication session
   selection_3:
-    message|contains|cased: cannot communicate with its remote session
+    sagan_raw|contains|cased: cannot communicate with its remote session
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -298,9 +298,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: 'failed: Principal User'
+    sagan_raw|contains|cased: 'failed: Principal User'
   selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -340,9 +341,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: failed to authenticate in
+    sagan_raw|contains|cased: failed to authenticate in
   selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -382,11 +384,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: 'succeeded: Principal User'
+    sagan_raw|contains|cased: 'succeeded: Principal User'
   selection_2:
-    message|contains|cased: INFO
+    sagan_raw|contains|cased: INFO
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -426,11 +429,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: successfully authenticated
+    sagan_raw|contains|cased: successfully authenticated
   selection_2:
-    message|contains|cased: INFO
+    sagan_raw|contains|cased: INFO
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -470,11 +474,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Authentication successful
+    sagan_raw|contains|cased: Authentication successful
   selection_2:
-    message|contains|cased: INFO
+    sagan_raw|contains|cased: INFO
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

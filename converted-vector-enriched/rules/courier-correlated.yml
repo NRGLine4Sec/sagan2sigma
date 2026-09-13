@@ -8,14 +8,18 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - LOGOUT
       - DISCONNECTED
   selection_2:
-    appname|cased:
-      - imapd
-      - imapd-ssl
-      - courierlogger
+    - appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
+    - syslog_appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -53,14 +57,18 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - LOGOUT
       - DISCONNECTED
   selection_2:
-    appname|cased:
-      - imapd
-      - imapd-ssl
-      - courierlogger
+    - appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
+    - syslog_appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -98,14 +106,18 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - LOGOUT
       - DISCONNECTED
   selection_2:
-    appname|cased:
-      - imapd
-      - imapd-ssl
-      - courierlogger
+    - appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
+    - syslog_appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -143,14 +155,18 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - LOGOUT
       - DISCONNECTED
   selection_2:
-    appname|cased:
-      - imapd
-      - imapd-ssl
-      - courierlogger
+    - appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
+    - syslog_appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -188,12 +204,16 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: LOGIN,
+    sagan_raw|contains|cased: LOGIN,
   selection_2:
-    appname|cased:
-      - imapd
-      - imapd-ssl
-      - courierlogger
+    - appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
+    - syslog_appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -231,12 +251,16 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: LOGIN,
+    sagan_raw|contains|cased: LOGIN,
   selection_2:
-    appname|cased:
-      - imapd
-      - imapd-ssl
-      - courierlogger
+    - appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
+    - syslog_appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -274,12 +298,16 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: LOGIN,
+    sagan_raw|contains|cased: LOGIN,
   selection_2:
-    appname|cased:
-      - imapd
-      - imapd-ssl
-      - courierlogger
+    - appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
+    - syslog_appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -317,12 +345,16 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: LOGIN,
+    sagan_raw|contains|cased: LOGIN,
   selection_2:
-    appname|cased:
-      - imapd
-      - imapd-ssl
-      - courierlogger
+    - appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
+    - syslog_appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -360,12 +392,16 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: TIMEOUT
+    sagan_raw|contains|cased: TIMEOUT
   selection_2:
-    appname|cased:
-      - imapd
-      - imapd-ssl
-      - courierlogger
+    - appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
+    - syslog_appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -403,12 +439,16 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: TIMEOUT
+    sagan_raw|contains|cased: TIMEOUT
   selection_2:
-    appname|cased:
-      - imapd
-      - imapd-ssl
-      - courierlogger
+    - appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
+    - syslog_appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -446,12 +486,16 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: TIMEOUT
+    sagan_raw|contains|cased: TIMEOUT
   selection_2:
-    appname|cased:
-      - imapd
-      - imapd-ssl
-      - courierlogger
+    - appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
+    - syslog_appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -489,12 +533,16 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: TIMEOUT
+    sagan_raw|contains|cased: TIMEOUT
   selection_2:
-    appname|cased:
-      - imapd
-      - imapd-ssl
-      - courierlogger
+    - appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
+    - syslog_appname|cased:
+        - imapd
+        - imapd-ssl
+        - courierlogger
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

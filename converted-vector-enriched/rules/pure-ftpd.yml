@@ -7,9 +7,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: '[WARNING] Authentication failed for user'
+    sagan_raw|contains|cased: '[WARNING] Authentication failed for user'
   selection_2:
-    appname|cased: pure-ftpd
+    - appname|cased: pure-ftpd
+    - syslog_appname|cased: pure-ftpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -31,9 +32,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: '[INFO] Can''t change directory to'
+    sagan_raw|contains|cased: '[INFO] Can''t change directory to'
   selection_2:
-    appname|cased: pure-ftpd
+    - appname|cased: pure-ftpd
+    - syslog_appname|cased: pure-ftpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -54,9 +56,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|re: '[INFO] \S+ is now logged in'
+    sagan_raw|re: '[INFO] \S+ is now logged in'
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - apache
       - mysql
       - www
@@ -87,7 +89,8 @@ detection:
       - ossec
       - sagan
   selection_3:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -110,14 +113,15 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: ftpchk3
+    sagan_raw|contains|cased: ftpchk3
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - CHMOD
       - DELE
       - STOR
   selection_3:
-    appname|cased: pure-ftpd
+    - appname|cased: pure-ftpd
+    - syslog_appname|cased: pure-ftpd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

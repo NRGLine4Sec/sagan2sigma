@@ -226,23 +226,25 @@ logsource:
   product: syslog
 detection:
   s1_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s1_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s1_selection_3:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   s1_selection_4:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - log_subtype=Admin
       - log_subtype=System
   s2_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s2_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s2_selection_3:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   s2_selection_4:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - log_subtype=Admin
       - log_subtype=System
   condition: (s1_selection_1 and s1_selection_2 and s1_selection_3 and s1_selection_4) or (s2_selection_1
@@ -266,95 +268,106 @@ logsource:
   product: syslog
 detection:
   s1_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s1_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s1_selection_3:
-    message|contains|cased: log_component="Firewall Authentication"
+    sagan_raw|contains|cased: log_component="Firewall Authentication"
   s1_selection_4:
-    message|contains|cased: log_subtype="Authentication"
+    sagan_raw|contains|cased: log_subtype="Authentication"
   s1_selection_5:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   s2_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s2_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s2_selection_3:
-    message|contains|cased: log_component="My Account Authentication"
+    sagan_raw|contains|cased: log_component="My Account Authentication"
   s2_selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   s3_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s3_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s3_selection_3:
-    message|contains|cased: log_component="Dial-In Authentication"
+    sagan_raw|contains|cased: log_component="Dial-In Authentication"
   s3_selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   s4_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s4_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s4_selection_3:
-    message|contains|cased: log_component="VPN Authentication"
+    sagan_raw|contains|cased: log_component="VPN Authentication"
   s4_selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   s5_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s5_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s5_selection_3:
-    message|contains|cased: log_component="SSL VPN Authentication"
+    sagan_raw|contains|cased: log_component="SSL VPN Authentication"
   s5_selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   s6_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s6_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s6_selection_3:
-    message|contains|cased: log_component="GUI"
+    sagan_raw|contains|cased: log_component="GUI"
   s6_selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   s7_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s7_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s7_selection_3:
-    message|contains|cased: log_component="Web Application Firewall"
+    sagan_raw|contains|cased: log_component="Web Application Firewall"
   s7_selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   s8_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s8_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s8_selection_3:
-    message|contains|cased: log_component="CTA"
+    sagan_raw|contains|cased: log_component="CTA"
   s8_selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   s9_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s9_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s9_selection_3:
-    message|contains|cased: log_component="Appliance"
+    sagan_raw|contains|cased: log_component="Appliance"
   s9_selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   s10_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s10_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s10_selection_3:
-    message|contains|cased: log_component="External Authentication"
+    sagan_raw|contains|cased: log_component="External Authentication"
   s10_selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   s11_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s11_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s11_selection_3:
-    message|contains|cased: log_component="VPN Portal Authentication"
+    sagan_raw|contains|cased: log_component="VPN Portal Authentication"
   s11_selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: (s1_selection_1 and s1_selection_2 and s1_selection_3 and s1_selection_4 and s1_selection_5)
     or (s2_selection_1 and s2_selection_2 and s2_selection_3 and s2_selection_4) or (s3_selection_1 and
     s3_selection_2 and s3_selection_3 and s3_selection_4) or (s4_selection_1 and s4_selection_2 and s4_selection_3
@@ -383,95 +396,106 @@ logsource:
   product: syslog
 detection:
   s1_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s1_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s1_selection_3:
-    message|contains|cased: log_component="Firewall Authentication"
+    sagan_raw|contains|cased: log_component="Firewall Authentication"
   s1_selection_4:
-    message|contains|cased: log_subtype="Authentication"
+    sagan_raw|contains|cased: log_subtype="Authentication"
   s1_selection_5:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   s2_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s2_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s2_selection_3:
-    message|contains|cased: log_component="My Account Authentication"
+    sagan_raw|contains|cased: log_component="My Account Authentication"
   s2_selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   s3_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s3_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s3_selection_3:
-    message|contains|cased: log_component="Dial-In Authentication"
+    sagan_raw|contains|cased: log_component="Dial-In Authentication"
   s3_selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   s4_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s4_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s4_selection_3:
-    message|contains|cased: log_component="VPN Authentication"
+    sagan_raw|contains|cased: log_component="VPN Authentication"
   s4_selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   s5_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s5_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s5_selection_3:
-    message|contains|cased: log_component="SSL VPN Authentication"
+    sagan_raw|contains|cased: log_component="SSL VPN Authentication"
   s5_selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   s6_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s6_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s6_selection_3:
-    message|contains|cased: log_component="GUI"
+    sagan_raw|contains|cased: log_component="GUI"
   s6_selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   s7_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s7_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s7_selection_3:
-    message|contains|cased: log_component="Web Application Firewall"
+    sagan_raw|contains|cased: log_component="Web Application Firewall"
   s7_selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   s8_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s8_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s8_selection_3:
-    message|contains|cased: log_component="CTA"
+    sagan_raw|contains|cased: log_component="CTA"
   s8_selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   s9_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s9_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s9_selection_3:
-    message|contains|cased: log_component="Appliance"
+    sagan_raw|contains|cased: log_component="Appliance"
   s9_selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   s10_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s10_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s10_selection_3:
-    message|contains|cased: log_component="External Authentication"
+    sagan_raw|contains|cased: log_component="External Authentication"
   s10_selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   s11_selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   s11_selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   s11_selection_3:
-    message|contains|cased: log_component="VPN Portal Authentication"
+    sagan_raw|contains|cased: log_component="VPN Portal Authentication"
   s11_selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: (s1_selection_1 and s1_selection_2 and s1_selection_3 and s1_selection_4 and s1_selection_5)
     or (s2_selection_1 and s2_selection_2 and s2_selection_3 and s2_selection_4) or (s3_selection_1 and
     s3_selection_2 and s3_selection_3 and s3_selection_4) or (s4_selection_1 and s4_selection_2 and s4_selection_3
@@ -508,11 +532,11 @@ detection:
   s1_filter_4:
     sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   s2_selection_1:
-    message|contains|cased: ',SYSTEM,auth,'
+    sagan_raw|contains|cased: ',SYSTEM,auth,'
   s2_selection_2:
-    message|contains|cased: ',auth-fail,'
+    sagan_raw|contains|cased: ',auth-fail,'
   s2_selection_3:
-    message|contains|cased: ',vsys'
+    sagan_raw|contains|cased: ',vsys'
   s3_selection_1:
     syslog_appname|cased: azureEventHub
   s3_selection_2:
@@ -546,11 +570,12 @@ detection:
   s8_selection_3:
     ResultStatus|cased: Successful
   s9_selection_1:
-    appname|cased: purity.audit
+    - appname|cased: purity.audit
+    - syslog_appname|cased: purity.audit
   s9_selection_2:
-    message|contains|cased: (login
+    sagan_raw|contains|cased: (login
   s9_selection_3:
-    message|contains|cased: 'Result: Failed'
+    sagan_raw|contains|cased: 'Result: Failed'
   condition: (s1_selection_1 and s1_selection_2 and s1_selection_3 and not s1_filter_4) or (s2_selection_1
     and s2_selection_2 and s2_selection_3) or (s3_selection_1 and s3_selection_2 and s3_selection_3) or
     (s4_selection_1 and s4_selection_2) or (s5_selection_1 and s5_selection_2) or (s6_selection_1 and
@@ -575,106 +600,132 @@ logsource:
   product: syslog
 detection:
   s1_selection_1:
-    message|contains|cased: Authentication failure
+    sagan_raw|contains|cased: Authentication failure
   s1_selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   s2_selection_1:
-    message|contains|cased: authentication failure
+    sagan_raw|contains|cased: authentication failure
   s2_selection_2:
-    message|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}
+    sagan_raw|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}
   s2_selection_3:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   s3_selection_1:
-    message|contains|cased: Authentication failure for root
+    sagan_raw|contains|cased: Authentication failure for root
   s3_selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   s4_selection_1:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - for illegal user
       - for invalid user
   s4_filter_2:
-    message|contains|cased: input_userauth_request
+    sagan_raw|contains|cased: input_userauth_request
   s4_selection_3:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   s5_selection_1:
-    message|contains|cased: Login excessive login failures
+    sagan_raw|contains|cased: Login excessive login failures
   s5_selection_2:
-    appname|cased:
-      - ipop3d
-      - ipop3d-ssl
+    - appname|cased:
+        - ipop3d
+        - ipop3d-ssl
+    - syslog_appname|cased:
+        - ipop3d
+        - ipop3d-ssl
   s6_selection_1:
-    message|contains|cased: denied resource overstep
+    sagan_raw|contains|cased: denied resource overstep
   s6_selection_2:
-    appname|cased: grsec
+    - appname|cased: grsec
+    - syslog_appname|cased: grsec
   s7_selection_1:
-    message|contains|cased: SNMP-3-AUTHFAIL
+    sagan_raw|contains|cased: SNMP-3-AUTHFAIL
   s8_selection_1:
-    message|contains|cased: buffer_get_stringX bad string
+    sagan_raw|contains|cased: buffer_get_stringX bad string
   s8_selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   s9_selection_1:
-    message|contains: crc32 compensation attack
+    sagan_raw|contains: crc32 compensation attack
   s9_selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   s10_selection_1:
-    message|contains|cased: no such user
+    sagan_raw|contains|cased: no such user
   s10_selection_2:
-    appname|cased: proftpd
+    - appname|cased: proftpd
+    - syslog_appname|cased: proftpd
   s11_selection_1:
-    message|re|i: Incorrect password|Login failed
+    sagan_raw|re|i: Incorrect password|Login failed
   s11_selection_2:
-    appname|cased: proftpd
+    - appname|cased: proftpd
+    - syslog_appname|cased: proftpd
   s12_selection_1:
-    message|contains|cased: SEC_LOGIN-4-LOGIN_FAILED
+    sagan_raw|contains|cased: SEC_LOGIN-4-LOGIN_FAILED
   s13_filter_1:
-    message|contains: TACACS
+    sagan_raw|contains: TACACS
   s13_filter_2:
-    message|contains|cased: '$ Session ID:'
+    sagan_raw|contains|cased: '$ Session ID:'
   s13_filter_3:
-    message|contains|cased: access denied by ACL
+    sagan_raw|contains|cased: access denied by ACL
   s13_filter_4:
-    message|contains|cased: server certificate authentication failed
+    sagan_raw|contains|cased: server certificate authentication failed
   s13_filter_5:
-    message|contains|cased: Kerberos
+    sagan_raw|contains|cased: Kerberos
   s13_filter_6:
-    message|contains|cased: 'IPSEC: Received an ESP packet'
+    sagan_raw|contains|cased: 'IPSEC: Received an ESP packet'
   s13_filter_7:
-    message|contains|cased: reason="IEEE 802.1X authentication failed
+    sagan_raw|contains|cased: reason="IEEE 802.1X authentication failed
   s13_filter_8:
-    message|contains|cased: session.token.rotate
+    sagan_raw|contains|cased: session.token.rotate
   s13_selection_9:
-    message|re|i: failed to authorize|failed authentication|wrong password given|repeated login failures|authentication
+    sagan_raw|re|i: failed to authorize|failed authentication|wrong password given|repeated login failures|authentication
       failed|authentication failures|access denied|access not allowed|failed to authenticate
   s14_selection_1:
-    message|contains|cased: repeated login failures
+    sagan_raw|contains|cased: repeated login failures
   s14_selection_2:
-    appname|cased:
-      - ftpd
-      - ftp
-      - FTP
-      - FTPD
+    - appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
+    - syslog_appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
   s15_selection_1:
-    message|contains: failed authentication from
+    sagan_raw|contains: failed authentication from
   s15_selection_2:
-    appname|cased:
-      - ftpd
-      - ftp
-      - FTP
-      - FTPD
+    - appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
+    - syslog_appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
   s16_selection_1:
-    message|contains|cased: FAIL LOGIN
+    sagan_raw|contains|cased: FAIL LOGIN
   s16_selection_2:
-    appname|cased: vsftpd
+    - appname|cased: vsftpd
+    - syslog_appname|cased: vsftpd
   s17_selection_1:
-    message|contains|cased: Rejected password for
+    sagan_raw|contains|cased: Rejected password for
   s17_selection_2:
-    appname|cased:
-      - vmware-hostd
-      - vmware-authd
+    - appname|cased:
+        - vmware-hostd
+        - vmware-authd
+    - syslog_appname|cased:
+        - vmware-hostd
+        - vmware-authd
   s18_selection_1:
-    message|contains|cased: FTP LOGIN FROM
+    sagan_raw|contains|cased: FTP LOGIN FROM
   s18_selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - ' apache '
       - ' mysql '
       - ' www '
@@ -705,149 +756,171 @@ detection:
       - ' ossec '
       - ' sagan '
   s18_selection_3:
-    appname|cased:
-      - ftpd
-      - ftp
-      - FTP
-      - FTPD
+    - appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
+    - syslog_appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
   s19_selection_1:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '%ASA'
       - '%PIX'
       - '%FWSM'
   s19_selection_2:
-    message|re: '%ASA[-]+6-605004|%PIX[-]+6-605004|%FWSM[-]+6-605004'
+    sagan_raw|re: '%ASA[-]+6-605004|%PIX[-]+6-605004|%FWSM[-]+6-605004'
   s20_selection_1:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '%ASA'
       - '%PIX'
       - '%FWSM'
   s20_selection_2:
-    message|re: '%ASA[-]+7-713160|%PIX[-]+7-713160|%FWSM[-]+7-713160'
+    sagan_raw|re: '%ASA[-]+7-713160|%PIX[-]+7-713160|%FWSM[-]+7-713160'
   s21_selection_1:
-    message|contains|cased: 32002" type=
+    sagan_raw|contains|cased: 32002" type=
   s21_selection_2:
-    message|contains|cased: login failed
+    sagan_raw|contains|cased: login failed
   s21_filter_3:
-    message|contains|cased: '- - - -'
+    sagan_raw|contains|cased: '- - - -'
   s22_selection_1:
-    message|contains|cased: Login excessive login
+    sagan_raw|contains|cased: Login excessive login
   s22_selection_2:
-    appname|cased: imapd*
+    - appname|cased: imapd*
+    - syslog_appname|cased: imapd*
   s23_selection_1:
     EventID: 529
   s23_selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   s24_selection_1:
-    message|contains|cased: AAA LOGIN_FAILED
+    sagan_raw|contains|cased: AAA LOGIN_FAILED
   s25_selection_1:
-    message|contains|cased: 'SSH/4/LOGIN_FAIL '
+    sagan_raw|contains|cased: 'SSH/4/LOGIN_FAIL '
   s26_selection_1:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '%ASA'
       - '%PIX'
       - '%FWSM'
   s26_selection_2:
-    message|re: '%ASA[-]+6-113005|%PIX[-]+6-113005|%FWSM[-]+6-113005'
+    sagan_raw|re: '%ASA[-]+6-113005|%PIX[-]+6-113005|%FWSM[-]+6-113005'
   s27_selection_1:
     EventID: 18456
   s27_filter_2:
-    message|contains|cased: local machine
+    sagan_raw|contains|cased: local machine
   s27_filter_3:
-    message|contains|cased: named pipe
+    sagan_raw|contains|cased: named pipe
   s27_filter_4:
-    message|contains|cased: Failed to open the explicitly specified database
+    sagan_raw|contains|cased: Failed to open the explicitly specified database
   s27_selection_5:
-    appname|cased:
-      - MSSQL*
-      - Application
+    - appname|cased:
+        - MSSQL*
+        - Application
+    - syslog_appname|cased:
+        - MSSQL*
+        - Application
   s28_selection_1:
-    message|contains|cased: SSHD_LOGIN_ATTEMPTS_THRESHOLD
+    sagan_raw|contains|cased: SSHD_LOGIN_ATTEMPTS_THRESHOLD
   s28_selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   s29_selection_1:
-    message|contains|cased: SSHD_LOGIN_FAILED_LIMIT
+    sagan_raw|contains|cased: SSHD_LOGIN_FAILED_LIMIT
   s29_selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   s30_selection_1:
-    message|contains|cased: SSHD_LOGIN_FAILED
+    sagan_raw|contains|cased: SSHD_LOGIN_FAILED
   s30_selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   s31_selection_1:
-    message|contains|cased: Failed password
+    sagan_raw|contains|cased: Failed password
   s31_selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   s32_selection_1:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '%ASA'
       - '%PIX'
       - '%FWSM'
   s32_selection_2:
-    message|re: '%ASA[-]+6-611102|%PIX[-]+6-611102|%FWSM[-]+6-610102'
+    sagan_raw|re: '%ASA[-]+6-611102|%PIX[-]+6-611102|%FWSM[-]+6-610102'
   s33_selection_1:
-    appname|cased:
-      - CISE_Failed_Attempts
-      - CSCOacs_Failed_Attempts
+    - appname|cased:
+        - CISE_Failed_Attempts
+        - CSCOacs_Failed_Attempts
+    - syslog_appname|cased:
+        - CISE_Failed_Attempts
+        - CSCOacs_Failed_Attempts
   s33_selection_2:
-    message|contains|cased: UserName=
+    sagan_raw|contains|cased: UserName=
   s33_filter_3:
-    message|contains|cased: session timed out
+    sagan_raw|contains|cased: session timed out
   s33_filter_4:
-    message|contains|cased: Subject not found in the applicable identity store
+    sagan_raw|contains|cased: Subject not found in the applicable identity store
   s34_selection_1:
-    message|contains|cased: '%DAEMON-3-SYSTEM_MSG:'
+    sagan_raw|contains|cased: '%DAEMON-3-SYSTEM_MSG:'
   s34_selection_2:
-    message|contains|cased: Authentication failure for
+    sagan_raw|contains|cased: Authentication failure for
   s34_filter_3:
-    message|contains|cased: illegal
+    sagan_raw|contains|cased: illegal
   s34_selection_4:
-    message|contains|cased: sshd[
+    sagan_raw|contains|cased: sshd[
   s35_selection_1:
-    message|contains|cased: failed authentication for internal PGP Desktop
+    sagan_raw|contains|cased: failed authentication for internal PGP Desktop
   s35_filter_2:
-    message|contains|cased: 'null'
+    sagan_raw|contains|cased: 'null'
   s35_selection_3:
-    appname|cased: pgp/client
+    - appname|cased: pgp/client
+    - syslog_appname|cased: pgp/client
   s36_selection_1:
-    message|contains: C0000064
+    sagan_raw|contains: C0000064
   s36_filter_2:
-    message|contains|cased: $ Source
+    sagan_raw|contains|cased: $ Source
   s36_filter_3:
-    message|contains|cased: '$ Account Domain: '
+    sagan_raw|contains|cased: '$ Account Domain: '
   s36_selection_4:
     EventID:
       - 4625
       - 4776
   s36_selection_5:
-    message|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
+    sagan_raw|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
   s36_selection_6:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   s37_selection_1:
-    message|contains: C0000234
+    sagan_raw|contains: C0000234
   s37_selection_2:
     EventID: 4625
   s37_selection_3:
-    message|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
+    sagan_raw|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
   s37_selection_4:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   s38_selection_1:
-    message|contains: C0000072
+    sagan_raw|contains: C0000072
   s38_selection_2:
     EventID:
       - 4625
       - 4776
   s38_selection_3:
-    message|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
+    sagan_raw|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
   s38_selection_4:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   s39_selection_1:
-    message|contains: C000006F
+    sagan_raw|contains: C000006F
   s39_selection_2:
     EventID:
       - 4625
       - 4776
   s39_selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   s40_selection_1:
     EventID:
       - 4768
@@ -855,9 +928,10 @@ detection:
       - 676
       - 675
   s40_selection_2:
-    message|contains|cased: ' Code: 0xC '
+    sagan_raw|contains|cased: ' Code: 0xC '
   s40_selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   s41_selection_1:
     EventID:
       - 4768
@@ -880,9 +954,10 @@ detection:
       - 676
       - 675
   s42_selection_2:
-    message|contains|cased: ' Code: 0x22 '
+    sagan_raw|contains|cased: ' Code: 0x22 '
   s42_selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   s43_selection_1:
     EventID:
       - 4768
@@ -890,9 +965,10 @@ detection:
       - 676
       - 675
   s43_selection_2:
-    message|contains|cased: ' Code: 0x24 '
+    sagan_raw|contains|cased: ' Code: 0x24 '
   s43_selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   s44_selection_1:
     EventID:
       - 4768
@@ -900,9 +976,10 @@ detection:
       - 676
       - 675
   s44_selection_2:
-    message|contains|cased: ' Code: 0x26 '
+    sagan_raw|contains|cased: ' Code: 0x26 '
   s44_selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   s45_selection_1:
     EventID:
       - 4768
@@ -910,177 +987,210 @@ detection:
       - 676
       - 675
   s45_selection_2:
-    message|contains|cased: ' Code: 0x31 '
+    sagan_raw|contains|cased: ' Code: 0x31 '
   s45_selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   s46_selection_1:
-    message|contains|cased: Login_failure
+    sagan_raw|contains|cased: Login_failure
   s46_selection_2:
-    appname|cased: SSH_Tectia_Server
+    - appname|cased: SSH_Tectia_Server
+    - syslog_appname|cased: SSH_Tectia_Server
   s47_selection_1:
-    message|contains|cased: 'ssh: failed login attempt'
+    sagan_raw|contains|cased: 'ssh: failed login attempt'
   s47_selection_2:
-    appname|cased: syslog
+    - appname|cased: syslog
+    - syslog_appname|cased: syslog
   s48_selection_1:
-    message|contains|cased: 'Login: Attempt Failed'
+    sagan_raw|contains|cased: 'Login: Attempt Failed'
   s48_selection_2:
-    appname|cased: xtremed
+    - appname|cased: xtremed
+    - syslog_appname|cased: xtremed
   s49_selection_1:
-    appname|cased: Juniper
+    - appname|cased: Juniper
+    - syslog_appname|cased: Juniper
   s49_selection_2:
-    message|re|i: ' Login failed | authentication failed '
+    sagan_raw|re|i: ' Login failed | authentication failed '
   s50_selection_1:
-    message|contains|cased: password is not recognized
+    sagan_raw|contains|cased: password is not recognized
   s50_selection_2:
-    appname|cased: webasd
+    - appname|cased: webasd
+    - syslog_appname|cased: webasd
   s51_selection_1:
-    message|contains|cased: SSH::Password_Guessing
+    sagan_raw|contains|cased: SSH::Password_Guessing
   s51_selection_2:
-    appname|cased:
-      - bro
-      - zeek
+    - appname|cased:
+        - bro
+        - zeek
+    - syslog_appname|cased:
+        - bro
+        - zeek
   s52_selection_1:
-    message|contains|cased: SSH::Login_By_Password_Guesser
+    sagan_raw|contains|cased: SSH::Login_By_Password_Guesser
   s52_selection_2:
-    appname|cased:
-      - bro
-      - zeek
+    - appname|cased:
+        - bro
+        - zeek
+    - syslog_appname|cased:
+        - bro
+        - zeek
   s53_selection_1:
-    message|contains|cased: FTP brute forcing
+    sagan_raw|contains|cased: FTP brute forcing
   s53_selection_2:
-    appname|cased: Artillery
+    - appname|cased: Artillery
+    - syslog_appname|cased: Artillery
   s54_selection_1:
-    message|contains|cased: SSH brute forcing violations
+    sagan_raw|contains|cased: SSH brute forcing violations
   s54_selection_2:
-    appname|cased: Artillery
+    - appname|cased: Artillery
+    - syslog_appname|cased: Artillery
   s55_selection_1:
-    message|contains: /owa/auth/logon.aspx
+    sagan_raw|contains: /owa/auth/logon.aspx
   s55_selection_2:
-    message|contains|cased: reason=2&
+    sagan_raw|contains|cased: reason=2&
   s56_selection_1:
-    message|contains|cased: LOGIN FAILED,
+    sagan_raw|contains|cased: LOGIN FAILED,
   s56_selection_2:
-    appname|cased:
-      - imapd
-      - imapd-sslcourierlogger
+    - appname|cased:
+        - imapd
+        - imapd-sslcourierlogger
+    - syslog_appname|cased:
+        - imapd
+        - imapd-sslcourierlogger
   s57_selection_1:
     EventID: 18452
   s57_selection_2:
-    appname|cased:
-      - MSSQL*
-      - Application
+    - appname|cased:
+        - MSSQL*
+        - Application
+    - syslog_appname|cased:
+        - MSSQL*
+        - Application
   s58_selection_1:
-    message|contains|cased: 'Authorization failed for user '
+    sagan_raw|contains|cased: 'Authorization failed for user '
   s58_selection_2:
-    message|contains|cased: ',vsys'
+    sagan_raw|contains|cased: ',vsys'
   s59_selection_1:
-    message|contains|cased: Failed keyboard-interactive/pam for invalid user
+    sagan_raw|contains|cased: Failed keyboard-interactive/pam for invalid user
   s59_selection_2:
-    message|contains|cased: ',vsys'
+    sagan_raw|contains|cased: ',vsys'
   s60_selection_1:
-    message|contains|cased: NTLM authentication failed for user
+    sagan_raw|contains|cased: NTLM authentication failed for user
   s60_selection_2:
-    message|contains|cased: ',vsys'
+    sagan_raw|contains|cased: ',vsys'
   s61_selection_1:
-    message|contains|cased: User
+    sagan_raw|contains|cased: User
   s61_selection_2:
-    message|contains|cased: failed authentication
+    sagan_raw|contains|cased: failed authentication
   s61_selection_3:
-    message|contains|cased: ',vsys'
+    sagan_raw|contains|cased: ',vsys'
   s62_selection_1:
-    message|contains|cased: PPPoE session failed to connect
+    sagan_raw|contains|cased: PPPoE session failed to connect
   s62_selection_2:
-    message|contains|cased: ',vsys'
+    sagan_raw|contains|cased: ',vsys'
   s63_selection_1:
-    message|contains|cased: SSL VPN user authentication failed
+    sagan_raw|contains|cased: SSL VPN user authentication failed
   s63_selection_2:
-    message|contains|cased: ',vsys'
+    sagan_raw|contains|cased: ',vsys'
   s64_selection_1:
-    message|contains|cased: SSL VPN user login failed
+    sagan_raw|contains|cased: SSL VPN user login failed
   s64_selection_2:
-    message|contains|cased: ',vsys'
+    sagan_raw|contains|cased: ',vsys'
   s65_selection_1:
-    message|contains|cased: Wrong password
+    sagan_raw|contains|cased: Wrong password
   s65_selection_2:
-    appname|cased: asterisk
+    - appname|cased: asterisk
+    - syslog_appname|cased: asterisk
   s66_selection_1:
-    message|contains|cased: Username/auth name mismatch
+    sagan_raw|contains|cased: Username/auth name mismatch
   s66_selection_2:
-    appname|cased: asterisk
+    - appname|cased: asterisk
+    - syslog_appname|cased: asterisk
   s67_selection_1:
-    message|contains|cased: No matching peer found
+    sagan_raw|contains|cased: No matching peer found
   s67_selection_2:
-    appname|cased: asterisk
+    - appname|cased: asterisk
+    - syslog_appname|cased: asterisk
   s68_selection_1:
-    message|contains|cased: failed to login after
+    sagan_raw|contains|cased: failed to login after
   s68_selection_2:
-    message|contains|cased: sshd
+    sagan_raw|contains|cased: sshd
   s69_selection_1:
-    message|re|i: Login failed user=|AUTHENTICATE LOGIN failure
+    sagan_raw|re|i: Login failed user=|AUTHENTICATE LOGIN failure
   s69_selection_2:
-    appname|cased: imapd*
+    - appname|cased: imapd*
+    - syslog_appname|cased: imapd*
   s70_selection_1:
-    message|re|i: password mismatch, client|was not found in
+    sagan_raw|re|i: password mismatch, client|was not found in
   s70_selection_2:
-    appname|cased: nginx
+    - appname|cased: nginx
+    - syslog_appname|cased: nginx
   s71_selection_1:
-    message|contains|cased: RETURNCODE:[4] "1017"
+    sagan_raw|contains|cased: RETURNCODE:[4] "1017"
   s72_selection_1:
-    message|contains|cased: authentication failed
+    sagan_raw|contains|cased: authentication failed
   s72_selection_2:
-    appname|cased: zimbra
+    - appname|cased: zimbra
+    - syslog_appname|cased: zimbra
   s73_selection_1:
-    message|contains|cased: authentication failed
+    sagan_raw|contains|cased: authentication failed
   s73_selection_2:
-    message|contains|cased: account not found
+    sagan_raw|contains|cased: account not found
   s73_selection_3:
-    appname|cased: mailbox
+    - appname|cased: mailbox
+    - syslog_appname|cased: mailbox
   s74_selection_1:
-    message|contains|cased: authentication failed
+    sagan_raw|contains|cased: authentication failed
   s74_selection_2:
-    message|contains|cased: invalid password
+    sagan_raw|contains|cased: invalid password
   s74_selection_3:
-    appname|cased: mailbox
+    - appname|cased: mailbox
+    - syslog_appname|cased: mailbox
   s75_selection_1:
-    message|contains|cased: error=authentication failed
+    sagan_raw|contains|cased: error=authentication failed
   s75_selection_2:
-    message|contains|cased: invalid password
+    sagan_raw|contains|cased: invalid password
   s75_selection_3:
-    appname|cased: audit
+    - appname|cased: audit
+    - syslog_appname|cased: audit
   s76_selection_1:
-    message|contains|cased: Invalid username or password
+    sagan_raw|contains|cased: Invalid username or password
   s76_selection_2:
-    appname|cased: sync
+    - appname|cased: sync
+    - syslog_appname|cased: sync
   s77_selection_1:
-    message|contains|cased: User password mismatch
+    sagan_raw|contains|cased: User password mismatch
   s77_selection_2:
-    appname|cased: sync
+    - appname|cased: sync
+    - syslog_appname|cased: sync
   s78_selection_1:
-    message|contains|cased: msg_id="1100-0005"
+    sagan_raw|contains|cased: msg_id="1100-0005"
   s78_selection_2:
-    message|contains|cased: Authentication of
+    sagan_raw|contains|cased: Authentication of
   s78_selection_3:
-    message|contains|cased: rejected
+    sagan_raw|contains|cased: rejected
   s79_selection_1:
-    message|contains|cased: 'Passwordstate:'
+    sagan_raw|contains|cased: 'Passwordstate:'
   s79_selection_2:
-    message|contains|cased: Failed
+    sagan_raw|contains|cased: Failed
   s79_selection_3:
-    message|contains|cased: login attempt
+    sagan_raw|contains|cased: login attempt
   s80_selection_1:
-    message|contains|cased: centrifyEventID=24101
+    sagan_raw|contains|cased: centrifyEventID=24101
   s80_selection_2:
-    appname|cased: adclient
+    - appname|cased: adclient
+    - syslog_appname|cased: adclient
   s81_selection_1:
-    message|contains|cased: centrifyEventID=24501
+    sagan_raw|contains|cased: centrifyEventID=24501
   s81_selection_2:
-    appname|cased: adclient
+    - appname|cased: adclient
+    - syslog_appname|cased: adclient
   s82_selection_1:
     EventID:
       - 4740
       - 644
   s82_selection_2:
-    message|contains:
+    sagan_raw|contains:
       - 'Account Name: guest '
       - 'Account Name: sql '
       - 'Account Name: demo '
@@ -1098,29 +1208,34 @@ detection:
       - 'Account Name: ec2-user '
       - 'Account Name: azureuser '
   s82_selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   s83_selection_1:
-    message|contains: centrifyEventID=27101
+    sagan_raw|contains: centrifyEventID=27101
   s83_selection_2:
-    appname|cased: adclient
+    - appname|cased: adclient
+    - syslog_appname|cased: adclient
   s84_selection_1:
-    message|contains: centrifyEventID=27101
+    sagan_raw|contains: centrifyEventID=27101
   s84_selection_2:
-    message|contains: reason=AUTH_FAIL_PUBKEY
+    sagan_raw|contains: reason=AUTH_FAIL_PUBKEY
   s84_selection_3:
-    appname|cased: adclient
+    - appname|cased: adclient
+    - syslog_appname|cased: adclient
   s85_selection_1:
-    message|contains: centrifyEventID=27101
+    sagan_raw|contains: centrifyEventID=27101
   s85_selection_2:
-    message|contains: reason=INVALID_USER
+    sagan_raw|contains: reason=INVALID_USER
   s85_selection_3:
-    appname|cased: adclient
+    - appname|cased: adclient
+    - syslog_appname|cased: adclient
   s86_selection_1:
-    message|contains: reason=AUTH_FAIL_GSSAPI
+    sagan_raw|contains: reason=AUTH_FAIL_GSSAPI
   s86_selection_2:
-    message|contains: centrifyEventID=27101
+    sagan_raw|contains: centrifyEventID=27101
   s86_selection_3:
-    appname|cased: adclient
+    - appname|cased: adclient
+    - syslog_appname|cased: adclient
   s87_selection_1:
     Workload|cased: AzureActiveDirectory
   s87_selection_2:
@@ -1136,15 +1251,15 @@ detection:
   s87_filter_4:
     sagan_raw|contains|cased: SAS:ProcessAuth
   s88_selection_1:
-    message|contains|cased: '[action:"Failed Log In";'
+    sagan_raw|contains|cased: '[action:"Failed Log In";'
   s89_selection_1:
-    message|contains|cased: 'sshd-all:error: PAM: Authentication failure'
+    sagan_raw|contains|cased: 'sshd-all:error: PAM: Authentication failure'
   s90_selection_1:
-    message|contains|cased: 'sshd-all:error: PAM: Authentication failure for root'
+    sagan_raw|contains|cased: 'sshd-all:error: PAM: Authentication failure for root'
   s91_selection_1:
-    message|contains|cased: sshd-all:Invalid user\\"-all:Invalid user
+    sagan_raw|contains|cased: sshd-all:Invalid user\\"-all:Invalid user
   s92_selection_1:
-    message|contains|cased: sshd-all:Failed keyboard-interactive/pam
+    sagan_raw|contains|cased: sshd-all:Failed keyboard-interactive/pam
   s93_selection_1:
     data.methodName|cased: kafka.Authentication
   s93_selection_2:
@@ -1162,33 +1277,37 @@ detection:
   s96_selection_2:
     syslog_appname|cased: onelogin
   s97_selection_1:
-    message|contains|cased: failed to authenticate in
+    sagan_raw|contains|cased: failed to authenticate in
   s97_selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   s98_selection_1:
-    message|contains|cased: 'failed: Principal User'
+    sagan_raw|contains|cased: 'failed: Principal User'
   s98_selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   s99_selection_1:
-    message|contains|cased: 'Authentication failed: '
+    sagan_raw|contains|cased: 'Authentication failed: '
   s99_selection_2:
-    message|contains|cased: user.authentication.auth_via_AD_agent
+    sagan_raw|contains|cased: user.authentication.auth_via_AD_agent
   s99_selection_3:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   s100_selection_1:
-    message|contains|cased: FAILURE
+    sagan_raw|contains|cased: FAILURE
   s100_selection_2:
-    message|contains|cased: User login to Okta
+    sagan_raw|contains|cased: User login to Okta
   s100_selection_3:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   s101_selection_1:
-    message|contains|cased: logid="0101039426"
+    sagan_raw|contains|cased: logid="0101039426"
   s101_selection_2:
-    message|contains|cased: type=
+    sagan_raw|contains|cased: type=
   s101_selection_3:
-    message|contains|cased: subtype=
+    sagan_raw|contains|cased: subtype=
   s101_filter_4:
-    message|contains|cased: '- - - -'
+    sagan_raw|contains|cased: '- - - -'
   s102_selection_1:
     EventID: 529
   s102_selection_2:
@@ -1411,9 +1530,10 @@ detection:
   s121_filter_4:
     data.payload.Status: Success
   s122_selection_1:
-    appname|cased: '*TACACS*'
+    - appname|cased: '*TACACS*'
+    - syslog_appname|cased: '*TACACS*'
   s122_selection_2:
-    message|contains|cased: Authentication failed
+    sagan_raw|contains|cased: Authentication failed
   s123_selection_1:
     - syslog_appname|cased: azureEventHub
     - appname|cased: azureEventHub
@@ -1422,51 +1542,52 @@ detection:
       - 'resultType": "50126'
       - 'resultType": "50056'
   s124_selection_1:
-    message|contains|cased: 32002","type
+    sagan_raw|contains|cased: 32002","type
   s124_selection_2:
-    message|contains|cased: login failed
+    sagan_raw|contains|cased: login failed
   s125_selection_1:
     logid: 101039426
   s126_selection_1:
-    appname|cased: bomgar
+    - appname|cased: bomgar
+    - syslog_appname|cased: bomgar
   s126_selection_2:
-    message|contains|cased: event=login
+    sagan_raw|contains|cased: event=login
   s126_selection_3:
-    message|contains|cased: status=failure
+    sagan_raw|contains|cased: status=failure
   s126_filter_4:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - reason=password expired
       - reason=two factor authentication not configured
   s127_selection_1:
-    message|contains|cased: act=Drop
+    sagan_raw|contains|cased: act=Drop
   s127_selection_2:
-    message|contains|cased: product=VPN-1 & FireWall-1
+    sagan_raw|contains|cased: product=VPN-1 & FireWall-1
   s128_selection_1:
-    message|contains|cased: Identity Awareness
+    sagan_raw|contains|cased: Identity Awareness
   s128_selection_2:
-    message|contains|cased: auth_status=Failed Login
+    sagan_raw|contains|cased: auth_status=Failed Login
   s129_selection_1:
-    message|contains|cased: 32002" type=
+    sagan_raw|contains|cased: 32002" type=
   s129_selection_2:
-    message|contains|cased: login failed
+    sagan_raw|contains|cased: login failed
   s129_selection_3:
-    message|contains|cased: '- - - -'
+    sagan_raw|contains|cased: '- - - -'
   s130_selection_1:
-    message|contains|cased: logid="0101039426"
+    sagan_raw|contains|cased: logid="0101039426"
   s130_selection_2:
-    message|contains|cased: type=
+    sagan_raw|contains|cased: type=
   s130_selection_3:
-    message|contains|cased: subtype=
+    sagan_raw|contains|cased: subtype=
   s130_selection_4:
-    message|contains|cased: '- - - -'
+    sagan_raw|contains|cased: '- - - -'
   s131_selection_1:
-    message|contains|cased: logid="0101039426"
+    sagan_raw|contains|cased: logid="0101039426"
   s131_selection_2:
-    message|contains|cased: type=
+    sagan_raw|contains|cased: type=
   s131_selection_3:
-    message|contains|cased: subtype=
+    sagan_raw|contains|cased: subtype=
   s131_selection_4:
-    message|contains|cased: '- - - -'
+    sagan_raw|contains|cased: '- - - -'
   s132_selection_1:
     syslog_appname|cased: gcp
   s132_selection_2:
@@ -1560,13 +1681,14 @@ logsource:
   product: syslog
 detection:
   s1_selection_1:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   s1_selection_2:
     EventID: 4688
   s1_selection_3:
-    message|contains|cased: \\WMIC.exe Token
+    sagan_raw|contains|cased: \\WMIC.exe Token
   s1_filter_4:
-    message|contains|cased: '$ Account Domain:'
+    sagan_raw|contains|cased: '$ Account Domain:'
   condition: (s1_selection_1 and s1_selection_2 and s1_selection_3 and not s1_filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1591,7 +1713,8 @@ detection:
       - 4720
       - 624
   s1_selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   s2_selection_1:
     EventID:
       - 4720
@@ -1620,9 +1743,10 @@ detection:
   s1_selection_1:
     EventID: 1
   s1_selection_2:
-    message|re|i: 'ImageLoad: (.*)(wdigest\.dll|kerberos\.dll|tspkg\.dll|sspicli\.dll|samsrv\.dll|secur32\.dll|samlib\.dll|wlanapi\.dll|vaultcli\.dll|cypt32\.dll|cryptdll\.dll|netapi\.dll|netlogon\.dll|msv1_0\.dll)(.*)'
+    sagan_raw|re|i: 'ImageLoad: (.*)(wdigest\.dll|kerberos\.dll|tspkg\.dll|sspicli\.dll|samsrv\.dll|secur32\.dll|samlib\.dll|wlanapi\.dll|vaultcli\.dll|cypt32\.dll|cryptdll\.dll|netapi\.dll|netlogon\.dll|msv1_0\.dll)(.*)'
   s1_selection_3:
-    appname|cased: '*Sysmon*'
+    - appname|cased: '*Sysmon*'
+    - syslog_appname|cased: '*Sysmon*'
   s2_selection_1:
     EventID: 1
   s2_selection_2:
@@ -1684,813 +1808,989 @@ logsource:
   product: syslog
 detection:
   s1_selection_1:
-    message|contains|cased: () { :;}
+    sagan_raw|contains|cased: () { :;}
   s1_selection_2:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   s1_selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   s2_selection_1:
-    message|contains|cased: '() { '
+    sagan_raw|contains|cased: '() { '
   s2_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s3_selection_1:
-    message|contains|cased: '%28%29 { '
+    sagan_raw|contains|cased: '%28%29 { '
   s3_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s4_selection_1:
-    message|contains|cased: '%28%29 {%20'
+    sagan_raw|contains|cased: '%28%29 {%20'
   s4_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s5_selection_1:
-    message|contains|cased: '%28%29 %7b '
+    sagan_raw|contains|cased: '%28%29 %7b '
   s5_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s6_selection_1:
-    message|contains|cased: '%28%29 %7b%20'
+    sagan_raw|contains|cased: '%28%29 %7b%20'
   s6_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s7_selection_1:
-    message|contains|cased: '%28%29%20{ '
+    sagan_raw|contains|cased: '%28%29%20{ '
   s7_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s8_selection_1:
-    message|contains|cased: '%28%29%20{%20'
+    sagan_raw|contains|cased: '%28%29%20{%20'
   s8_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s9_selection_1:
-    message|contains|cased: '%28%29%20%7b '
+    sagan_raw|contains|cased: '%28%29%20%7b '
   s9_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s10_selection_1:
-    message|contains|cased: '%28%29%20%7b%20'
+    sagan_raw|contains|cased: '%28%29%20%7b%20'
   s10_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s11_selection_1:
-    message|contains|cased: '%28 { '
+    sagan_raw|contains|cased: '%28 { '
   s11_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s12_selection_1:
-    message|contains|cased: '%28 {%20'
+    sagan_raw|contains|cased: '%28 {%20'
   s12_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s13_selection_1:
-    message|contains|cased: '%28 %7b%20'
+    sagan_raw|contains|cased: '%28 %7b%20'
   s13_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s14_selection_1:
-    message|contains|cased: '%28%20{ '
+    sagan_raw|contains|cased: '%28%20{ '
   s14_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s15_selection_1:
-    message|contains|cased: '%28%20{%20'
+    sagan_raw|contains|cased: '%28%20{%20'
   s15_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s16_selection_1:
-    message|contains|cased: '%28%20%7b '
+    sagan_raw|contains|cased: '%28%20%7b '
   s16_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s17_selection_1:
-    message|contains|cased: '%28%20%7b%20'
+    sagan_raw|contains|cased: '%28%20%7b%20'
   s17_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s18_selection_1:
-    message|contains|cased: '(%29 { '
+    sagan_raw|contains|cased: '(%29 { '
   s18_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s19_selection_1:
-    message|contains|cased: (%29 {%20
+    sagan_raw|contains|cased: (%29 {%20
   s19_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s20_selection_1:
-    message|contains|cased: '(%29 %7b '
+    sagan_raw|contains|cased: '(%29 %7b '
   s20_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s21_selection_1:
-    message|contains|cased: (%29 %7b%20
+    sagan_raw|contains|cased: (%29 %7b%20
   s21_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s22_selection_1:
-    message|contains|cased: '(%29%20{ '
+    sagan_raw|contains|cased: '(%29%20{ '
   s22_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s23_selection_1:
-    message|contains|cased: (%29%20{%20
+    sagan_raw|contains|cased: (%29%20{%20
   s23_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s24_selection_1:
-    message|contains|cased: '(%29%20%7b '
+    sagan_raw|contains|cased: '(%29%20%7b '
   s24_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s25_selection_1:
-    message|contains|cased: (%29%20%7b%20
+    sagan_raw|contains|cased: (%29%20%7b%20
   s25_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s26_selection_1:
-    message|contains|cased: () {%20
+    sagan_raw|contains|cased: () {%20
   s26_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s27_selection_1:
-    message|contains|cased: '() %7b '
+    sagan_raw|contains|cased: '() %7b '
   s27_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s28_selection_1:
-    message|contains|cased: () %7b%20
+    sagan_raw|contains|cased: () %7b%20
   s28_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s29_selection_1:
-    message|contains|cased: '))%20{ '
+    sagan_raw|contains|cased: '))%20{ '
   s29_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s30_selection_1:
-    message|contains|cased: '()%20%7b '
+    sagan_raw|contains|cased: '()%20%7b '
   s30_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s31_selection_1:
-    message|contains|cased: ()%20%7b%20
+    sagan_raw|contains|cased: ()%20%7b%20
   s31_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s32_selection_1:
-    message|contains|cased: |-
+    sagan_raw|contains|cased: |-
       ()
        {
   s32_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s33_selection_1:
-    message|contains|cased: "()\r\n {"
+    sagan_raw|contains|cased: "()\r\n {"
   s33_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s34_selection_1:
-    message|contains|cased: '%28 %7b '
+    sagan_raw|contains|cased: '%28 %7b '
   s34_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s35_selection_1:
-    message|contains|cased: "requestClientApplication=MSIE 9.0\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=MSIE 9.0\r\n"
   s35_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s35_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s35_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s36_selection_1:
-    message|contains|cased: requestClientApplication=Mozilla/4.0 (compatible; MSIE 7.0; na; )
+    sagan_raw|contains|cased: requestClientApplication=Mozilla/4.0 (compatible; MSIE 7.0; na; )
   s36_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s36_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s36_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s37_selection_1:
-    message|contains|cased: "requestClientApplication=Downloader 1.8\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=Downloader 1.8\r\n"
   s37_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s37_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s37_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s38_selection_1:
-    message|contains|cased: requestClientApplication=HttpCall
+    sagan_raw|contains|cased: requestClientApplication=HttpCall
   s38_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s38_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s38_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s39_selection_1:
-    message|contains|cased: requestClientApplication=MyProgramm
+    sagan_raw|contains|cased: requestClientApplication=MyProgramm
   s39_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s39_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s39_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s40_selection_1:
-    message|contains|cased: requestClientApplication=Skypee
+    sagan_raw|contains|cased: requestClientApplication=Skypee
   s40_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s40_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s40_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s41_selection_1:
-    message|contains|cased: requestClientApplication=XAgent
+    sagan_raw|contains|cased: requestClientApplication=XAgent
   s41_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s41_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s41_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s42_selection_1:
-    message|contains|cased: requestClientApplication=crackim
+    sagan_raw|contains|cased: requestClientApplication=crackim
   s42_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s42_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s42_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s43_selection_1:
-    message|contains|cased: "requestClientApplication=Mozilla/4.0+(compatible;+MSIE+6.0;+Windows+NT+5.1;+SV1;+.NET+CLR+2.0.50727)\r\
+    sagan_raw|contains|cased: "requestClientApplication=Mozilla/4.0+(compatible;+MSIE+6.0;+Windows+NT+5.1;+SV1;+.NET+CLR+2.0.50727)\r\
       \n"
   s43_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s43_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s43_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s44_selection_1:
-    message|contains|cased: requestClientApplication=agent
+    sagan_raw|contains|cased: requestClientApplication=agent
   s44_filter_2:
-    message|contains|cased: .battle.net
+    sagan_raw|contains|cased: .battle.net
   s44_selection_3:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s44_selection_4:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s44_selection_5:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s45_selection_1:
-    message|contains|cased: requestClientApplication=DriveCleaner Updater
+    sagan_raw|contains|cased: requestClientApplication=DriveCleaner Updater
   s45_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s45_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s45_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s46_selection_1:
-    message|contains: requestClientApplication=WinFix Master
+    sagan_raw|contains: requestClientApplication=WinFix Master
   s46_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s46_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s46_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s47_selection_1:
-    message|contains|cased: requestClientApplication=Museon
+    sagan_raw|contains|cased: requestClientApplication=Museon
   s47_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s47_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s47_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s48_selection_1:
-    message|contains|cased: requestClientApplication=pcsafe
+    sagan_raw|contains|cased: requestClientApplication=pcsafe
   s48_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s48_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s48_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s49_selection_1:
-    message|contains|cased: requestClientApplication={
+    sagan_raw|contains|cased: requestClientApplication={
   s49_filter_2:
-    message|contains|cased: directory.gladinet.com
+    sagan_raw|contains|cased: directory.gladinet.com
   s49_filter_3:
-    message|contains|cased: "ff.avast.com\r\n"
+    sagan_raw|contains|cased: "ff.avast.com\r\n"
   s49_selection_4:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s49_selection_5:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s49_selection_6:
-    message|re|i: User-Agent\x3a \{[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\}
+    sagan_raw|re|i: User-Agent\x3a \{[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\}
   s49_selection_7:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s50_selection_1:
-    message|contains|cased: "requestClientApplication=_\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=_\r\n"
   s50_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s50_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s50_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s51_selection_1:
-    message|contains|cased: "requestClientApplication=Mozilla/5.0 (compatible, Viper 4.0)\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=Mozilla/5.0 (compatible, Viper 4.0)\r\n"
   s51_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s51_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s51_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s52_selection_1:
-    message|contains|cased: requestClientApplication=BlackSun
+    sagan_raw|contains|cased: requestClientApplication=BlackSun
   s52_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s52_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s52_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s53_selection_1:
-    message|contains|cased: requestClientApplication=Mozzila
+    sagan_raw|contains|cased: requestClientApplication=Mozzila
   s53_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s53_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s53_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s54_selection_1:
-    message|contains|cased: requestClientApplication=ScrapeBox
+    sagan_raw|contains|cased: requestClientApplication=ScrapeBox
   s54_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s54_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s54_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s55_selection_1:
-    message|contains|cased: "requestClientApplication=msndown\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=msndown\r\n"
   s55_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s55_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s55_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s56_selection_1:
-    message|contains|cased: requestClientApplication=iamx/
+    sagan_raw|contains|cased: requestClientApplication=iamx/
   s56_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s56_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s56_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s57_selection_1:
-    message|contains|cased: requestClientApplication=Win32
+    sagan_raw|contains|cased: requestClientApplication=Win32
   s57_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s57_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s57_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s58_selection_1:
-    message|contains|cased: ' Our_Agent'
+    sagan_raw|contains|cased: ' Our_Agent'
   s58_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s58_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s58_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s59_selection_1:
-    message|contains|cased: GET
+    sagan_raw|contains|cased: GET
   s59_selection_2:
-    message|contains|cased: requestClientApplication=REKOM
+    sagan_raw|contains|cased: requestClientApplication=REKOM
   s59_selection_3:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s59_selection_4:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s59_selection_5:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s60_selection_1:
-    message|contains|cased: requestClientApplication=Moxilla
+    sagan_raw|contains|cased: requestClientApplication=Moxilla
   s60_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s60_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s60_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s61_selection_1:
-    message|contains|cased: requestClientApplication=VCTestClient
+    sagan_raw|contains|cased: requestClientApplication=VCTestClient
   s61_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s61_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s61_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s62_selection_1:
-    message|contains|cased: requestClientApplication=PrivacyInfoUpdate
+    sagan_raw|contains|cased: requestClientApplication=PrivacyInfoUpdate
   s62_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s62_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s62_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s63_selection_1:
-    message|contains|cased: requestClientApplication=VMozilla
+    sagan_raw|contains|cased: requestClientApplication=VMozilla
   s63_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s63_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s63_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s64_selection_1:
-    message|contains|cased: requestClientApplication=sample
+    sagan_raw|contains|cased: requestClientApplication=sample
   s64_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s64_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s64_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s65_selection_1:
-    message|contains|cased: "requestClientApplication=Mozilla/3.0\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=Mozilla/3.0\r\n"
   s65_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s65_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s65_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s66_selection_1:
-    message|contains|cased: requestClientApplication=IE6 on Windows XP
+    sagan_raw|contains|cased: requestClientApplication=IE6 on Windows XP
   s66_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s66_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s66_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s67_selection_1:
-    message|contains|cased: requestClientApplication=Lotto
+    sagan_raw|contains|cased: requestClientApplication=Lotto
   s67_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s67_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s67_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s68_selection_1:
-    message|contains|cased: requestClientApplication=AskPartner
+    sagan_raw|contains|cased: requestClientApplication=AskPartner
   s68_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s68_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s68_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s69_selection_1:
-    message|contains|cased: requestClientApplication=VERTEXNET
+    sagan_raw|contains|cased: requestClientApplication=VERTEXNET
   s69_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s69_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s69_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s70_selection_1:
-    message|contains|cased: "requestClientApplication=changhuatong\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=changhuatong\r\n"
   s70_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s70_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s70_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s71_selection_1:
-    message|contains|cased: requestClientApplication=CholTBAgent
+    sagan_raw|contains|cased: requestClientApplication=CholTBAgent
   s71_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s71_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s71_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s72_selection_1:
-    message|contains|cased: GET
+    sagan_raw|contains|cased: GET
   s72_selection_2:
-    message|contains|cased: "requestClientApplication=mdms\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=mdms\r\n"
   s72_selection_3:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s72_selection_4:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s72_selection_5:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s73_selection_1:
-    message|contains|cased: GET
+    sagan_raw|contains|cased: GET
   s73_selection_2:
-    message|contains|cased: "requestClientApplication=asd\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=asd\r\n"
   s73_selection_3:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s73_selection_4:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s73_selection_5:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s74_selection_1:
-    message|contains|cased: 'requestClientApplication=SimpleClient '
+    sagan_raw|contains|cased: 'requestClientApplication=SimpleClient '
   s74_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s74_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s74_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s75_selection_1:
-    message|contains|cased: requestClientApplication=Cyberdog
+    sagan_raw|contains|cased: requestClientApplication=Cyberdog
   s75_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s75_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s75_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s76_selection_1:
-    message|contains|cased: requestClientApplication=EmailSiphon
+    sagan_raw|contains|cased: requestClientApplication=EmailSiphon
   s76_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s76_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s76_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s77_selection_1:
-    message|contains|cased: requestClientApplication=EmailSiphon
+    sagan_raw|contains|cased: requestClientApplication=EmailSiphon
   s77_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s77_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s77_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s78_selection_1:
-    message|contains|cased: requestClientApplication=Binget/
+    sagan_raw|contains|cased: requestClientApplication=Binget/
   s78_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s78_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s78_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s79_selection_1:
-    message|contains|cased: requestClientApplication=pxyscand/
+    sagan_raw|contains|cased: requestClientApplication=pxyscand/
   s79_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s79_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s79_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s80_selection_1:
-    message|contains|cased: requestClientApplication=PyCurl
+    sagan_raw|contains|cased: requestClientApplication=PyCurl
   s80_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s80_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s80_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s81_selection_1:
-    message|contains|cased: requestClientApplication=Atomic_Email_Hunter/
+    sagan_raw|contains|cased: requestClientApplication=Atomic_Email_Hunter/
   s81_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s81_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s81_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s82_selection_1:
-    message|contains|cased: requestClientApplication=Atomic_Email_Hunter/
+    sagan_raw|contains|cased: requestClientApplication=Atomic_Email_Hunter/
   s82_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s82_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s82_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s83_selection_1:
-    message|contains|cased: requestClientApplication=Revolution
+    sagan_raw|contains|cased: requestClientApplication=Revolution
   s83_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s83_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s83_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s84_selection_1:
-    message|contains|cased: requestClientApplication=BGroom
+    sagan_raw|contains|cased: requestClientApplication=BGroom
   s84_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s84_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s84_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s85_selection_1:
-    message|contains|cased: "requestClientApplication=tiny\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=tiny\r\n"
   s85_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s85_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s85_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s86_filter_1:
-    message|contains|cased: econtrolsystems
+    sagan_raw|contains|cased: econtrolsystems
   s86_selection_2:
-    message|contains|cased: requestClientApplication=adlib/
+    sagan_raw|contains|cased: requestClientApplication=adlib/
   s86_selection_3:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s86_selection_4:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s86_selection_5:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s87_selection_1:
-    message|contains|cased: requestClientApplication=Mozilla/5.0 (Windows NT 5.1 ; v.
+    sagan_raw|contains|cased: requestClientApplication=Mozilla/5.0 (Windows NT 5.1 ; v.
   s87_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s87_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s87_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s88_selection_1:
-    message|contains|cased: requestClientApplication=zeroup
+    sagan_raw|contains|cased: requestClientApplication=zeroup
   s88_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s88_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s88_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s89_selection_1:
-    message|contains: requestClientApplication=DownloadMR
+    sagan_raw|contains: requestClientApplication=DownloadMR
   s89_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s89_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s89_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s90_selection_1:
-    message|contains: requestClientApplication=ChilkatUpload
+    sagan_raw|contains: requestClientApplication=ChilkatUpload
   s90_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s90_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s90_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s91_selection_1:
-    message|contains: requestClientApplication=Google page
+    sagan_raw|contains: requestClientApplication=Google page
   s91_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s91_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s91_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s92_selection_1:
-    message|contains|cased: "requestClientApplication=FOCA\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=FOCA\r\n"
   s92_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s92_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s92_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s93_selection_1:
-    message|contains|cased: "requestClientApplication=Mozilla/4.0 (compatible; MSIE 6.1; Windows NT)\r\
+    sagan_raw|contains|cased: "requestClientApplication=Mozilla/4.0 (compatible; MSIE 6.1; Windows NT)\r\
       \n"
   s93_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s93_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s93_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s94_selection_1:
-    message|contains|cased: 'requestClientApplication=WT Games App '
+    sagan_raw|contains|cased: 'requestClientApplication=WT Games App '
   s94_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s94_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s94_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s95_selection_1:
-    message|contains|cased: requestClientApplication=Mozilla/5.0 (compatible; BLEXBot/
+    sagan_raw|contains|cased: requestClientApplication=Mozilla/5.0 (compatible; BLEXBot/
   s95_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s95_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s95_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s96_selection_1:
-    message|contains|cased: requestClientApplication=Windows NT 10.
+    sagan_raw|contains|cased: requestClientApplication=Windows NT 10.
   s96_selection_2:
-    message|contains|cased: Edge/12.
+    sagan_raw|contains|cased: Edge/12.
   s96_selection_3:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s96_selection_4:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s96_selection_5:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s97_selection_1:
-    message|contains|cased: "requestClientApplication=opera/8.11\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=opera/8.11\r\n"
   s97_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s97_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s97_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s98_selection_1:
-    message|contains|cased: requestClientApplication=Gator
+    sagan_raw|contains|cased: requestClientApplication=Gator
   s98_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s98_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s98_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s99_selection_1:
-    message|contains|cased: requestClientApplication=IST
+    sagan_raw|contains|cased: requestClientApplication=IST
   s99_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s99_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s99_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s100_selection_1:
-    message|contains|cased: requestClientApplication=Poller
+    sagan_raw|contains|cased: requestClientApplication=Poller
   s100_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s100_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s100_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s101_selection_1:
-    message|contains|cased: requestClientApplication=SideStep
+    sagan_raw|contains|cased: requestClientApplication=SideStep
   s101_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s101_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s101_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s102_selection_1:
-    message|contains|cased: requestClientApplication=SAIv
+    sagan_raw|contains|cased: requestClientApplication=SAIv
   s102_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s102_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s102_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s103_selection_1:
-    message|contains|cased: requestClientApplication=WORKED
+    sagan_raw|contains|cased: requestClientApplication=WORKED
   s103_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s103_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s103_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s104_filter_1:
-    message|contains|cased: cs4=Clean Transaction
+    sagan_raw|contains|cased: cs4=Clean Transaction
   s104_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s104_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s104_selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s105_filter_1:
-    message|contains|cased: cs5=None
+    sagan_raw|contains|cased: cs5=None
   s105_selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   s105_selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   s105_filter_4:
-    message|contains|cased: Mobile Device information leakage
+    sagan_raw|contains|cased: Mobile Device information leakage
   s105_filter_5:
-    message|contains|cased: Mobile PII Information Leakage
+    sagan_raw|contains|cased: Mobile PII Information Leakage
   s105_selection_6:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   s106_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s106_selection_2:
-    message|re: ^.+}$
+    sagan_raw|re: ^.+}$
   s106_filter_3:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - 'Anomalous Connection::'
       - 'Anomalous File::'
       - 'Anomalous Server Activity::'
@@ -2503,435 +2803,507 @@ detection:
       - 'Unusual Activity::'
       - 'User::'
   s106_filter_4:
-    message|contains|cased: config_alert_name
+    sagan_raw|contains|cased: config_alert_name
   s107_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s107_selection_2:
-    message|contains|cased: 'Anomalous Connection::'
+    sagan_raw|contains|cased: 'Anomalous Connection::'
   s108_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s108_selection_2:
-    message|contains|cased: 'Anomalous File::'
+    sagan_raw|contains|cased: 'Anomalous File::'
   s109_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s109_selection_2:
-    message|contains|cased: 'Anomalous Server Activity::'
+    sagan_raw|contains|cased: 'Anomalous Server Activity::'
   s110_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s110_selection_2:
-    message|contains|cased: 'Antigena::'
+    sagan_raw|contains|cased: 'Antigena::'
   s111_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s111_selection_2:
-    message|contains|cased: 'Compliance::'
+    sagan_raw|contains|cased: 'Compliance::'
   s112_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s112_selection_2:
-    message|contains|cased: 'Compromise::'
+    sagan_raw|contains|cased: 'Compromise::'
   s113_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s113_selection_2:
-    message|contains|cased: 'Device::'
+    sagan_raw|contains|cased: 'Device::'
   s114_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s114_selection_2:
-    message|contains|cased: 'Infrastructure::'
+    sagan_raw|contains|cased: 'Infrastructure::'
   s115_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s115_selection_2:
-    message|contains|cased: 'System::'
+    sagan_raw|contains|cased: 'System::'
   s116_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s116_selection_2:
-    message|contains|cased: 'Unusual Activity::'
+    sagan_raw|contains|cased: 'Unusual Activity::'
   s117_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s117_selection_2:
-    message|contains|cased: 'User::'
+    sagan_raw|contains|cased: 'User::'
   s118_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s118_selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   s118_selection_3:
-    message|contains|cased: Active Remote Desktop Tunnel
+    sagan_raw|contains|cased: Active Remote Desktop Tunnel
   s119_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s119_selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   s119_selection_3:
-    message|contains|cased: Application Protocol on Uncommon Port
+    sagan_raw|contains|cased: Application Protocol on Uncommon Port
   s120_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s120_selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   s120_selection_3:
-    message|contains|cased: Data Sent to Rare Domain
+    sagan_raw|contains|cased: Data Sent to Rare Domain
   s121_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s121_selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   s121_selection_3:
-    message|contains|cased: IPSec VPN to Rare IP
+    sagan_raw|contains|cased: IPSec VPN to Rare IP
   s122_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s122_selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   s122_selection_3:
-    message|contains|cased: Lots of New Connections
+    sagan_raw|contains|cased: Lots of New Connections
   s123_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s123_selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   s123_selection_3:
-    message|contains|cased: Low and Slow Exfiltration to IP
+    sagan_raw|contains|cased: Low and Slow Exfiltration to IP
   s124_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s124_selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   s124_selection_3:
-    message|contains|cased: Multiple Connections to New External UDP Port
+    sagan_raw|contains|cased: Multiple Connections to New External UDP Port
   s125_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s125_selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   s125_selection_3:
-    message|contains|cased: Multiple HTTP POSTs to Rare Hostname
+    sagan_raw|contains|cased: Multiple HTTP POSTs to Rare Hostname
   s126_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s126_selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   s126_selection_3:
-    message|contains|cased: New User Agent to IP Without Hostname
+    sagan_raw|contains|cased: New User Agent to IP Without Hostname
   s127_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s127_selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   s127_selection_3:
-    message|contains|cased: Possible IDN Homograph Attack
+    sagan_raw|contains|cased: Possible IDN Homograph Attack
   s128_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s128_selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   s128_selection_3:
-    message|contains|cased: Posting HTTP to IP Without Hostname
+    sagan_raw|contains|cased: Posting HTTP to IP Without Hostname
   s129_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s129_selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   s129_selection_3:
-    message|contains|cased: Rare External SSL Self-Signed
+    sagan_raw|contains|cased: Rare External SSL Self-Signed
   s130_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s130_selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   s130_selection_3:
-    message|contains|cased: Suspicious Expired SSL
+    sagan_raw|contains|cased: Suspicious Expired SSL
   s131_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s131_selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   s131_selection_3:
-    message|contains|cased: Suspicious Self-Signed SSL
+    sagan_raw|contains|cased: Suspicious Self-Signed SSL
   s132_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s132_selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   s132_selection_3:
-    message|contains|cased: Unusual Admin RDP Session
+    sagan_raw|contains|cased: Unusual Admin RDP Session
   s133_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s133_selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   s133_selection_3:
-    message|contains|cased: Unusual Incoming Data Volume
+    sagan_raw|contains|cased: Unusual Incoming Data Volume
   s134_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s134_selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   s134_selection_3:
-    message|contains|cased: Unusual Internal Remote Desktop
+    sagan_raw|contains|cased: Unusual Internal Remote Desktop
   s135_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s135_selection_2:
-    message|contains|cased: Anomalous File
+    sagan_raw|contains|cased: Anomalous File
   s135_selection_3:
-    message|contains|cased: Anomalous Octet Stream
+    sagan_raw|contains|cased: Anomalous Octet Stream
   s136_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s136_selection_2:
-    message|contains|cased: Anomalous File
+    sagan_raw|contains|cased: Anomalous File
   s136_selection_3:
-    message|contains|cased: Apple Application from Rare External Location
+    sagan_raw|contains|cased: Apple Application from Rare External Location
   s137_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s137_selection_2:
-    message|contains|cased: Anomalous File
+    sagan_raw|contains|cased: Anomalous File
   s137_selection_3:
-    message|contains|cased: FTP Executable from Rare External Location
+    sagan_raw|contains|cased: FTP Executable from Rare External Location
   s138_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s138_selection_2:
-    message|contains|cased: Anomalous File
+    sagan_raw|contains|cased: Anomalous File
   s138_selection_3:
-    message|contains|cased: Internal
+    sagan_raw|contains|cased: Internal
   s138_selection_4:
-    message|contains|cased: Unusual SMB Script Write
+    sagan_raw|contains|cased: Unusual SMB Script Write
   s139_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s139_selection_2:
-    message|contains|cased: Anomalous File
+    sagan_raw|contains|cased: Anomalous File
   s139_selection_3:
-    message|contains|cased: Zip or Gzip from Rare External Location
+    sagan_raw|contains|cased: Zip or Gzip from Rare External Location
   s140_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s140_selection_2:
-    message|contains|cased: Anomalous Server Activity
+    sagan_raw|contains|cased: Anomalous Server Activity
   s140_selection_3:
-    message|contains|cased: Outgoing from Server
+    sagan_raw|contains|cased: Outgoing from Server
   s141_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s141_selection_2:
-    message|contains|cased: Anomalous Server Activity
+    sagan_raw|contains|cased: Anomalous Server Activity
   s141_selection_3:
-    message|contains|cased: Server Activity on New Non-Standard Port
+    sagan_raw|contains|cased: Server Activity on New Non-Standard Port
   s142_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s142_selection_2:
-    message|contains|cased: Antigena
+    sagan_raw|contains|cased: Antigena
   s142_selection_3:
-    message|contains|cased: Network
+    sagan_raw|contains|cased: Network
   s142_selection_4:
-    message|contains|cased: Compliance
+    sagan_raw|contains|cased: Compliance
   s142_selection_5:
-    message|contains|cased: Antigena Tor Block
+    sagan_raw|contains|cased: Antigena Tor Block
   s143_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s143_selection_2:
-    message|contains|cased: Antigena
+    sagan_raw|contains|cased: Antigena
   s143_selection_3:
-    message|contains|cased: Network
+    sagan_raw|contains|cased: Network
   s143_selection_4:
-    message|contains|cased: Insider Threat
+    sagan_raw|contains|cased: Insider Threat
   s143_selection_5:
-    message|contains|cased: Antigena Internal Anomalous File Activity
+    sagan_raw|contains|cased: Antigena Internal Anomalous File Activity
   s144_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s144_selection_2:
-    message|contains|cased: Antigena
+    sagan_raw|contains|cased: Antigena
   s144_selection_3:
-    message|contains|cased: Network
+    sagan_raw|contains|cased: Network
   s144_selection_4:
-    message|contains|cased: Significant Anomaly
+    sagan_raw|contains|cased: Significant Anomaly
   s144_selection_5:
-    message|contains|cased: Antigena Breaches Over Time Block
+    sagan_raw|contains|cased: Antigena Breaches Over Time Block
   s145_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s145_selection_2:
-    message|contains|cased: Compliance
+    sagan_raw|contains|cased: Compliance
   s145_selection_3:
-    message|contains|cased: BitTorrent
+    sagan_raw|contains|cased: BitTorrent
   s146_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s146_selection_2:
-    message|contains|cased: Compliance
+    sagan_raw|contains|cased: Compliance
   s146_selection_3:
-    message|contains|cased: External Windows Communications
+    sagan_raw|contains|cased: External Windows Communications
   s147_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s147_selection_2:
-    message|contains|cased: Compliance
+    sagan_raw|contains|cased: Compliance
   s147_selection_3:
-    message|contains|cased: Incoming Remote Desktop
+    sagan_raw|contains|cased: Incoming Remote Desktop
   s148_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s148_selection_2:
-    message|contains|cased: Compliance
+    sagan_raw|contains|cased: Compliance
   s148_selection_3:
-    message|contains|cased: Multiple SIP Requests From Rare
+    sagan_raw|contains|cased: Multiple SIP Requests From Rare
   s149_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s149_selection_2:
-    message|contains|cased: Compliance
+    sagan_raw|contains|cased: Compliance
   s149_selection_3:
-    message|contains|cased: Possible DNS Over HTTPS/TLS
+    sagan_raw|contains|cased: Possible DNS Over HTTPS/TLS
   s150_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s150_selection_2:
-    message|contains|cased: Compliance
+    sagan_raw|contains|cased: Compliance
   s150_selection_3:
-    message|contains|cased: Possible Unencrypted Password File On Server
+    sagan_raw|contains|cased: Possible Unencrypted Password File On Server
   s151_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s151_selection_2:
-    message|contains|cased: Compliance
+    sagan_raw|contains|cased: Compliance
   s151_selection_3:
-    message|contains|cased: Sensitive Terms in New or Unusual SMB Connection
+    sagan_raw|contains|cased: Sensitive Terms in New or Unusual SMB Connection
   s152_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s152_selection_2:
-    message|contains|cased: Compliance
+    sagan_raw|contains|cased: Compliance
   s152_selection_3:
-    message|contains|cased: SSH to Rare External Destination
+    sagan_raw|contains|cased: SSH to Rare External Destination
   s153_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s153_selection_2:
-    message|contains|cased: Compromise
+    sagan_raw|contains|cased: Compromise
   s153_selection_3:
-    message|contains|cased: Agent Beacon
+    sagan_raw|contains|cased: Agent Beacon
   s154_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s154_selection_2:
-    message|contains|cased: Compromise
+    sagan_raw|contains|cased: Compromise
   s154_selection_3:
-    message|contains|cased: Beaconing Activity To External Rare
+    sagan_raw|contains|cased: Beaconing Activity To External Rare
   s155_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s155_selection_2:
-    message|contains|cased: Compromise
+    sagan_raw|contains|cased: Compromise
   s155_selection_3:
-    message|contains|cased: DGA Beacon
+    sagan_raw|contains|cased: DGA Beacon
   s156_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s156_selection_2:
-    message|contains|cased: Compromise
+    sagan_raw|contains|cased: Compromise
   s156_selection_3:
-    message|contains|cased: High Volume of Connections with Beacon Score
+    sagan_raw|contains|cased: High Volume of Connections with Beacon Score
   s157_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s157_selection_2:
-    message|contains|cased: Compromise
+    sagan_raw|contains|cased: Compromise
   s157_selection_3:
-    message|contains|cased: Repeating Connections Over 4 Days
+    sagan_raw|contains|cased: Repeating Connections Over 4 Days
   s158_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s158_selection_2:
-    message|contains|cased: Compromise
+    sagan_raw|contains|cased: Compromise
   s158_selection_3:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - Sustained SSL or HTTP Increase
       - SSL or HTTP Beacon
   s159_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s159_selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   s159_selection_3:
-    message|contains|cased: Anomalous NTLM Bruteforce
+    sagan_raw|contains|cased: Anomalous NTLM Bruteforce
   s160_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s160_selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   s160_selection_3:
-    message|contains|cased: Attack and Recon Tools
+    sagan_raw|contains|cased: Attack and Recon Tools
   s161_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s161_selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   s161_selection_3:
-    message|contains|cased: EXE Files Distributed to Multiple Devices
+    sagan_raw|contains|cased: EXE Files Distributed to Multiple Devices
   s162_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s162_selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   s162_selection_3:
-    message|contains|cased: Large Number of Connections to New Endpoints
+    sagan_raw|contains|cased: Large Number of Connections to New Endpoints
   s163_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s163_selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   s163_selection_3:
-    message|contains|cased: Long Agent Connection to New Endpoint
+    sagan_raw|contains|cased: Long Agent Connection to New Endpoint
   s164_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s164_selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   s164_selection_3:
-    message|contains|cased: Network Scan - Low Anomaly Score
+    sagan_raw|contains|cased: Network Scan - Low Anomaly Score
   s165_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s165_selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   s165_selection_3:
-    message|contains|cased: New User Agent and New IP
+    sagan_raw|contains|cased: New User Agent and New IP
   s166_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s166_selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   s166_selection_3:
-    message|contains|cased: Possible Active Directory Enumeration
+    sagan_raw|contains|cased: Possible Active Directory Enumeration
   s167_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s167_selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   s167_selection_3:
-    message|contains|cased: Reverse DNS Sweep
+    sagan_raw|contains|cased: Reverse DNS Sweep
   s168_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s168_selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   s168_selection_3:
-    message|contains|cased: Suspicious SMB Query
+    sagan_raw|contains|cased: Suspicious SMB Query
   s169_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s169_selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   s169_selection_3:
-    message|contains|cased: Unusual External DNS
+    sagan_raw|contains|cased: Unusual External DNS
   s170_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s170_selection_2:
-    message|contains|cased: Infrastructure
+    sagan_raw|contains|cased: Infrastructure
   s170_selection_3:
-    message|contains|cased: Proxy Server Change
+    sagan_raw|contains|cased: Proxy Server Change
   s171_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s171_selection_2:
-    message|contains|cased: System
+    sagan_raw|contains|cased: System
   s171_selection_3:
-    message|contains|cased: Internal Domain Name Change
+    sagan_raw|contains|cased: Internal Domain Name Change
   s172_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s172_selection_2:
-    message|contains|cased: Unusual Activity
+    sagan_raw|contains|cased: Unusual Activity
   s172_selection_3:
-    message|contains|cased: Anomalous SMB Delete Volume
+    sagan_raw|contains|cased: Anomalous SMB Delete Volume
   s173_selection_1:
-    message|contains|cased: Unusual Activity
+    sagan_raw|contains|cased: Unusual Activity
   s173_selection_2:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s173_selection_3:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - Enhanced Unusual External Data Transfer
       - Unusual File Storage Data Transfer
   s174_selection_1:
-    message|contains|cased: Unusual Activity
+    sagan_raw|contains|cased: Unusual Activity
   s174_selection_2:
-    message|contains|cased: Internal Data Transfer
+    sagan_raw|contains|cased: Internal Data Transfer
   s174_selection_3:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s175_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s175_selection_2:
-    message|contains|cased: Unusual Activity
+    sagan_raw|contains|cased: Unusual Activity
   s175_selection_3:
-    message|contains|cased: SMB Access Failures
+    sagan_raw|contains|cased: SMB Access Failures
   s176_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s176_selection_2:
-    message|contains|cased: Unusual Activity
+    sagan_raw|contains|cased: Unusual Activity
   s176_selection_3:
-    message|contains|cased: Unusual Activity from Re-Activated Device
+    sagan_raw|contains|cased: Unusual Activity from Re-Activated Device
   s177_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s177_selection_2:
-    message|contains|cased: User
+    sagan_raw|contains|cased: User
   s177_selection_3:
-    message|contains|cased: Kerberos Password Bruteforce
+    sagan_raw|contains|cased: Kerberos Password Bruteforce
   s178_selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   s178_selection_2:
-    message|contains|cased: User
+    sagan_raw|contains|cased: User
   s178_selection_3:
-    message|contains|cased: New Admin Credentials on Client
+    sagan_raw|contains|cased: New Admin Credentials on Client
   condition: (s1_selection_1 and s1_selection_2 and s1_selection_3) or (s2_selection_1 and s2_selection_2)
     or (s3_selection_1 and s3_selection_2) or (s4_selection_1 and s4_selection_2) or (s5_selection_1 and
     s5_selection_2) or (s6_selection_1 and s6_selection_2) or (s7_selection_1 and s7_selection_2) or (s8_selection_1
@@ -3067,57 +3439,68 @@ logsource:
   product: syslog
 detection:
   s1_selection_1:
-    message|contains|cased: tcp
+    sagan_raw|contains|cased: tcp
   s1_selection_2:
-    appname|cased: honeydconnect
+    - appname|cased: honeydconnect
+    - syslog_appname|cased: honeydconnect
   s2_selection_1:
-    message|contains|cased: 'Attempted '
+    sagan_raw|contains|cased: 'Attempted '
   s2_selection_2:
-    appname|cased: honeyd
+    - appname|cased: honeyd
+    - syslog_appname|cased: honeyd
   s3_selection_1:
-    message|contains|cased: 'Attempted '
+    sagan_raw|contains|cased: 'Attempted '
   s3_selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - ' root '
       - ' admin '
   s3_selection_3:
-    appname|cased: honeyd
+    - appname|cased: honeyd
+    - syslog_appname|cased: honeyd
   s4_selection_1:
-    message|re: ^a-z | ^0-9
+    sagan_raw|re: ^a-z | ^0-9
   s4_selection_2:
-    appname|cased: honeydftp
+    - appname|cased: honeydftp
+    - syslog_appname|cased: honeydftp
   s5_selection_1:
-    message|re: ^a-z | ^0-9
+    sagan_raw|re: ^a-z | ^0-9
   s5_selection_2:
-    appname|cased: honeydwebiis
+    - appname|cased: honeydwebiis
+    - syslog_appname|cased: honeydwebiis
   s6_selection_1:
-    message|re: ^a-z | ^0-9
+    sagan_raw|re: ^a-z | ^0-9
   s6_selection_2:
-    appname|cased: honeydwebapache
+    - appname|cased: honeydwebapache
+    - syslog_appname|cased: honeydwebapache
   s7_selection_1:
-    message|re: ^a-z | ^0-9
+    sagan_raw|re: ^a-z | ^0-9
   s7_selection_2:
-    appname|cased: honeydsmtp
+    - appname|cased: honeydsmtp
+    - syslog_appname|cased: honeydsmtp
   s8_selection_1:
-    message|contains|cased: FTP brute forcing
+    sagan_raw|contains|cased: FTP brute forcing
   s8_selection_2:
-    appname|cased: Artillery
+    - appname|cased: Artillery
+    - syslog_appname|cased: Artillery
   s9_selection_1:
-    message|contains|cased: honeypot restricted port
+    sagan_raw|contains|cased: honeypot restricted port
   s9_selection_2:
-    message|contains|cased: blocked
+    sagan_raw|contains|cased: blocked
   s9_selection_3:
-    appname|cased: Artillery
+    - appname|cased: Artillery
+    - syslog_appname|cased: Artillery
   s10_selection_1:
-    message|contains|cased: detected an attack
+    sagan_raw|contains|cased: detected an attack
   s10_selection_2:
-    message|contains|cased: honeypot
+    sagan_raw|contains|cased: honeypot
   s10_selection_3:
-    appname|cased: Artillery
+    - appname|cased: Artillery
+    - syslog_appname|cased: Artillery
   s11_selection_1:
-    message|contains|cased: SSH brute forcing violations
+    sagan_raw|contains|cased: SSH brute forcing violations
   s11_selection_2:
-    appname|cased: Artillery
+    - appname|cased: Artillery
+    - syslog_appname|cased: Artillery
   condition: (s1_selection_1 and s1_selection_2) or (s2_selection_1 and s2_selection_2) or (s3_selection_1
     and s3_selection_2 and s3_selection_3) or (s4_selection_1 and s4_selection_2) or (s5_selection_1 and
     s5_selection_2) or (s6_selection_1 and s6_selection_2) or (s7_selection_1 and s7_selection_2) or (s8_selection_1
@@ -3142,13 +3525,14 @@ logsource:
   product: syslog
 detection:
   s1_selection_1:
-    appname|cased: Security
+    - appname|cased: Security
+    - syslog_appname|cased: Security
   s1_selection_2:
     EventID: 4769
   s1_selection_3:
-    message|contains|cased: '0x17'
+    sagan_raw|contains|cased: '0x17'
   s1_filter_4:
-    message|contains|cased: krbtgt
+    sagan_raw|contains|cased: krbtgt
   condition: (s1_selection_1 and s1_selection_2 and s1_selection_3 and not s1_filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3197,36 +3581,64 @@ logsource:
   product: syslog
 detection:
   s1_selection_1:
-    message|re: ' [0-9][0-9][0-9][0-9]?: $'
+    sagan_raw|re: ' [0-9][0-9][0-9][0-9]?: $'
   s1_selection_2:
-    appname|cased:
-      - '*Security*'
-      - AppLocker
-      - Application
-      - Backup
-      - Bonjour
-      - CPQCISSE
-      - Citrix
-      - DAC
-      - DHCP-Server
-      - EMET
-      - Eventlog
-      - MSSQL*
-      - MsiInstaller
-      - NtFrs
-      - Ntfs
-      - RemoteAccess
-      - Service
-      - Service_Control_Manager
-      - Symantec
-      - Sysmon
-      - System
-      - USER32
-      - Tenable
-      - TermService
-      - The
-      - WinVNC4
-      - crypt32
+    - appname|cased:
+        - '*Security*'
+        - AppLocker
+        - Application
+        - Backup
+        - Bonjour
+        - CPQCISSE
+        - Citrix
+        - DAC
+        - DHCP-Server
+        - EMET
+        - Eventlog
+        - MSSQL*
+        - MsiInstaller
+        - NtFrs
+        - Ntfs
+        - RemoteAccess
+        - Service
+        - Service_Control_Manager
+        - Symantec
+        - Sysmon
+        - System
+        - USER32
+        - Tenable
+        - TermService
+        - The
+        - WinVNC4
+        - crypt32
+    - syslog_appname|cased:
+        - '*Security*'
+        - AppLocker
+        - Application
+        - Backup
+        - Bonjour
+        - CPQCISSE
+        - Citrix
+        - DAC
+        - DHCP-Server
+        - EMET
+        - Eventlog
+        - MSSQL*
+        - MsiInstaller
+        - NtFrs
+        - Ntfs
+        - RemoteAccess
+        - Service
+        - Service_Control_Manager
+        - Symantec
+        - Sysmon
+        - System
+        - USER32
+        - Tenable
+        - TermService
+        - The
+        - WinVNC4
+        - crypt32
   condition: (s1_selection_1 and s1_selection_2)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3272,370 +3684,426 @@ logsource:
   product: syslog
 detection:
   s1_selection_1:
-    message|contains: ' root'
+    sagan_raw|contains: ' root'
   s1_selection_2:
-    message|contains:
+    sagan_raw|contains:
       - vrfy
       - expn
   s1_selection_3:
-    appname|cased:
-      - sm-mta
-      - sendmail
+    - appname|cased:
+        - sm-mta
+        - sendmail
+    - syslog_appname|cased:
+        - sm-mta
+        - sendmail
   s2_selection_1:
-    message|contains: 'expn '
+    sagan_raw|contains: 'expn '
   s2_selection_2:
-    message|contains|cased: '[rejected]'
+    sagan_raw|contains|cased: '[rejected]'
   s2_selection_3:
-    appname|cased:
-      - sm-mta
-      - sendmail
+    - appname|cased:
+        - sm-mta
+        - sendmail
+    - syslog_appname|cased:
+        - sm-mta
+        - sendmail
   s3_selection_1:
-    message|contains: 'vrfy '
+    sagan_raw|contains: 'vrfy '
   s3_selection_2:
-    message|contains|cased: '[rejected]'
+    sagan_raw|contains|cased: '[rejected]'
   s3_selection_3:
-    appname|cased:
-      - sm-mta
-      - sendmail
+    - appname|cased:
+        - sm-mta
+        - sendmail
+    - syslog_appname|cased:
+        - sm-mta
+        - sendmail
   s4_selection_1:
-    message|contains|cased: SNMP-3-AUTHFAIL
+    sagan_raw|contains|cased: SNMP-3-AUTHFAIL
   s5_selection_1:
-    message|contains|cased: denied AXFR from
+    sagan_raw|contains|cased: denied AXFR from
   s5_selection_2:
-    appname|cased: named
+    - appname|cased: named
+    - syslog_appname|cased: named
   s6_selection_1:
-    message|re: denied update from|unapproved update from
+    sagan_raw|re: denied update from|unapproved update from
   s6_selection_2:
-    appname|cased: named
+    - appname|cased: named
+    - syslog_appname|cased: named
   s7_selection_1:
-    message|contains|cased: refused notify from non-master
+    sagan_raw|contains|cased: refused notify from non-master
   s7_selection_2:
-    appname|cased: named
+    - appname|cased: named
+    - syslog_appname|cased: named
   s8_selection_1:
-    message|contains|cased: denied by server configuration
+    sagan_raw|contains|cased: denied by server configuration
   s8_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s9_selection_1:
-    message|contains|cased: Directory index forbidden by rule [0/5]
+    sagan_raw|contains|cased: Directory index forbidden by rule [0/5]
   s9_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s10_selection_1:
-    message|re|i: user \S+ not found
+    sagan_raw|re|i: user \S+ not found
   s10_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s11_selection_1:
-    message|re|i: file does not exist|No such file or directory
+    sagan_raw|re|i: file does not exist|No such file or directory
   s11_filter_2:
-    message|contains|cased: favicon.ico
+    sagan_raw|contains|cased: favicon.ico
   s11_selection_3:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s12_selection_1:
-    message|contains|cased: 'expn '
+    sagan_raw|contains|cased: 'expn '
   s12_filter_2:
-    message|contains: rejected
+    sagan_raw|contains: rejected
   s12_selection_3:
-    appname|cased:
-      - sm-mta
-      - sendmail
+    - appname|cased:
+        - sm-mta
+        - sendmail
+    - syslog_appname|cased:
+        - sm-mta
+        - sendmail
   s13_selection_1:
-    message|contains|cased: 'vrfy '
+    sagan_raw|contains|cased: 'vrfy '
   s13_filter_2:
-    message|contains: rejected
+    sagan_raw|contains: rejected
   s13_selection_3:
-    appname|cased:
-      - sm-mta
-      - sendmail
+    - appname|cased:
+        - sm-mta
+        - sendmail
+    - syslog_appname|cased:
+        - sm-mta
+        - sendmail
   s14_selection_1:
-    message|contains|cased: \?C=S;O=A
+    sagan_raw|contains|cased: \?C=S;O=A
   s14_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s15_selection_1:
-    message|contains|cased: \?C=M;O=A
+    sagan_raw|contains|cased: \?C=M;O=A
   s15_selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s16_selection_1:
-    message|contains|cased: robots.txt
+    sagan_raw|contains|cased: robots.txt
   s16_filter_2:
-    message|contains|cased: ' 404 '
+    sagan_raw|contains|cased: ' 404 '
   s16_selection_3:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s17_selection_1:
-    message|contains|cased: phpinfo
+    sagan_raw|contains|cased: phpinfo
   s17_filter_2:
-    message|contains|cased: ' 404 '
+    sagan_raw|contains|cased: ' 404 '
   s17_selection_3:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   s18_selection_1:
-    message|contains: phpmyadmin
+    sagan_raw|contains: phpmyadmin
   s18_filter_2:
-    message|contains|cased: ' 404 '
+    sagan_raw|contains|cased: ' 404 '
   s18_selection_3:
-    appname|cased: apachehttpd
+    - appname|cased: apachehttpd
+    - syslog_appname|cased: apachehttpd
   s19_selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   s19_selection_2:
-    message|contains|cased: 'Classification: Attempted Information Leak'
+    sagan_raw|contains|cased: 'Classification: Attempted Information Leak'
   s20_selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   s20_selection_2:
-    message|contains|cased: 'Classification: Information Leak'
+    sagan_raw|contains|cased: 'Classification: Information Leak'
   s21_selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   s21_selection_2:
-    message|contains|cased: 'Classification: Large Scale Information Leak'
+    sagan_raw|contains|cased: 'Classification: Large Scale Information Leak'
   s22_selection_1:
-    appname|cased:
-      - sm-mta
-      - sendmail
+    - appname|cased:
+        - sm-mta
+        - sendmail
+    - syslog_appname|cased:
+        - sm-mta
+        - sendmail
   s22_selection_2:
-    message|contains|cased: 'probable open proxy:'
+    sagan_raw|contains|cased: 'probable open proxy:'
   s23_selection_1:
-    appname|cased: weblabyrinth
+    - appname|cased: weblabyrinth
+    - syslog_appname|cased: weblabyrinth
   s23_selection_2:
-    message|contains|cased: New host logged!
+    sagan_raw|contains|cased: New host logged!
   s24_selection_1:
-    appname|cased: weblabyrinth
+    - appname|cased: weblabyrinth
+    - syslog_appname|cased: weblabyrinth
   s24_selection_2:
-    message|contains|cased: Crawler Ensnared!
+    sagan_raw|contains|cased: Crawler Ensnared!
   s25_selection_1:
-    message|contains|cased: version.bind CH TXT
+    sagan_raw|contains|cased: version.bind CH TXT
   s25_selection_2:
-    appname|cased: named
+    - appname|cased: named
+    - syslog_appname|cased: named
   s26_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s26_selection_2:
-    message|contains|cased: Cisco-torch
+    sagan_raw|contains|cased: Cisco-torch
   s27_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s27_selection_2:
-    message|contains|cased: DAV.pm
+    sagan_raw|contains|cased: DAV.pm
   s28_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s28_selection_2:
-    message|contains|cased: pymills-spider
+    sagan_raw|contains|cased: pymills-spider
   s29_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s29_selection_2:
-    message|contains|cased: Grabber
+    sagan_raw|contains|cased: Grabber
   s30_selection_1:
-    message|contains: GET
+    sagan_raw|contains: GET
   s30_selection_2:
-    message|contains|cased: HTTP/1.0
+    sagan_raw|contains|cased: HTTP/1.0
   s30_selection_3:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s30_selection_4:
-    message|contains|cased: Mozilla
+    sagan_raw|contains|cased: Mozilla
   s30_selection_5:
-    message|contains|cased: 4.75 [en] (Windows NT 5.0
+    sagan_raw|contains|cased: 4.75 [en] (Windows NT 5.0
   s31_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s31_selection_2:
-    message|contains|cased: prog.CustomCrawler
+    sagan_raw|contains|cased: prog.CustomCrawler
   s32_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s32_selection_2:
-    message|contains|cased: Mysqloit
+    sagan_raw|contains|cased: Mysqloit
   s33_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s33_selection_2:
-    message|contains|cased: ' Netsparker'
+    sagan_raw|contains|cased: ' Netsparker'
   s34_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s34_selection_2:
-    message|contains|cased: Paros
+    sagan_raw|contains|cased: Paros
   s35_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s35_selection_2:
-    message|contains|cased: SQL Power Injector
+    sagan_raw|contains|cased: SQL Power Injector
   s35_selection_3:
-    message|contains|cased: Security tool (Make sure it is used with the administrator consent)
+    sagan_raw|contains|cased: Security tool (Make sure it is used with the administrator consent)
   s36_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s36_selection_2:
-    message|contains|cased: sqlmap
+    sagan_raw|contains|cased: sqlmap
   s37_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s37_selection_2:
-    message|contains|cased: Mozilla/5.0 SF
+    sagan_raw|contains|cased: Mozilla/5.0 SF
   s38_selection_1:
-    message|contains|cased: GET
+    sagan_raw|contains|cased: GET
   s38_selection_2:
-    message|contains|cased: .old
+    sagan_raw|contains|cased: .old
   s38_selection_3:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s38_selection_4:
-    message|contains|cased: Mozilla/5.0 SF/
+    sagan_raw|contains|cased: Mozilla/5.0 SF/
   s39_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s39_selection_2:
-    message|contains: Springenwerk
+    sagan_raw|contains: Springenwerk
   s40_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s40_selection_2:
-    message|contains|cased: Toata dragostea
+    sagan_raw|contains|cased: Toata dragostea
   s41_selection_1:
-    message|contains: GET
+    sagan_raw|contains: GET
   s41_selection_2:
-    message|contains: /manager/html
+    sagan_raw|contains: /manager/html
   s41_selection_3:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s41_selection_4:
-    message|contains|cased: Mozilla/3.0
+    sagan_raw|contains|cased: Mozilla/3.0
   s41_selection_5:
-    message|contains|cased: Indy Library)
+    sagan_raw|contains|cased: Indy Library)
   s41_selection_6:
-    message|contains|cased: Authorization
+    sagan_raw|contains|cased: Authorization
   s41_selection_7:
-    message|contains|cased: Basic
+    sagan_raw|contains|cased: Basic
   s42_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s42_selection_2:
-    message|contains: SQL
+    sagan_raw|contains: SQL
   s42_selection_3:
-    message|contains: Inject
+    sagan_raw|contains: Inject
   s43_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s43_selection_2:
-    message|contains|cased: w3af.sourceforge.net
+    sagan_raw|contains|cased: w3af.sourceforge.net
   s44_selection_1:
-    message|contains|cased: /ServiceDefinition
+    sagan_raw|contains|cased: /ServiceDefinition
   s44_selection_2:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s44_selection_3:
-    message|contains|cased: Python-urllib
+    sagan_raw|contains|cased: Python-urllib
   s45_selection_1:
-    message|contains|cased: GET
+    sagan_raw|contains|cased: GET
   s45_selection_2:
-    message|contains|cased: \?http
+    sagan_raw|contains|cased: \?http
   s45_selection_3:
-    message|contains: //www.google.
+    sagan_raw|contains: //www.google.
   s45_selection_4:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s45_selection_5:
-    message|contains|cased: Python-httplib2
+    sagan_raw|contains|cased: Python-httplib2
   s46_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s46_selection_2:
-    message|contains|cased: webshag
+    sagan_raw|contains|cased: webshag
   s47_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s47_selection_2:
-    message|contains|cased: WhatWeb
+    sagan_raw|contains|cased: WhatWeb
   s48_selection_1:
-    message|contains|cased: union+select
+    sagan_raw|contains|cased: union+select
   s48_selection_2:
-    message|contains|cased: select+user
+    sagan_raw|contains|cased: select+user
   s48_selection_3:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s48_selection_4:
-    message|contains|cased: Mozilla/4.0 (compatible
+    sagan_raw|contains|cased: Mozilla/4.0 (compatible
   s48_selection_5:
-    message|contains|cased: MSIE 6.0
+    sagan_raw|contains|cased: MSIE 6.0
   s48_selection_6:
-    message|contains|cased: Windows NT 5.0
+    sagan_raw|contains|cased: Windows NT 5.0
   s48_selection_7:
-    message|contains|cased: MyIE2
+    sagan_raw|contains|cased: MyIE2
   s49_selection_1:
-    message|contains|cased: Host
+    sagan_raw|contains|cased: Host
   s49_selection_2:
-    message|contains|cased: localhost
+    sagan_raw|contains|cased: localhost
   s49_selection_3:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s49_selection_4:
-    message|contains|cased: Mozilla/5.0 (Windows
+    sagan_raw|contains|cased: Mozilla/5.0 (Windows
   s49_selection_5:
-    message|contains|cased: Windows NT 5.1
+    sagan_raw|contains|cased: Windows NT 5.1
   s49_selection_6:
-    message|contains|cased: en-GB
+    sagan_raw|contains|cased: en-GB
   s49_selection_7:
-    message|contains|cased: Gecko/20061204 Firefox/2.0.0.1
+    sagan_raw|contains|cased: Gecko/20061204 Firefox/2.0.0.1
   s50_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s50_selection_2:
-    message|contains: Mozilla/4.0 (Hydra)
+    sagan_raw|contains: Mozilla/4.0 (Hydra)
   s51_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s51_selection_2:
-    message|contains|cased: inspath [path disclosure finder
+    sagan_raw|contains|cased: inspath [path disclosure finder
   s52_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s52_selection_2:
-    message|contains: Teh Forest Lobster
+    sagan_raw|contains: Teh Forest Lobster
   s53_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s53_selection_2:
-    message|contains: DotDotPwn
+    sagan_raw|contains: DotDotPwn
   s54_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s54_selection_2:
-    message|contains|cased: OpenVAS
+    sagan_raw|contains|cased: OpenVAS
   s55_filter_1:
-    message|contains|cased: Vegas
+    sagan_raw|contains|cased: Vegas
   s55_selection_2:
-    message|contains|cased: Vega
+    sagan_raw|contains|cased: Vega
   s55_selection_3:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s56_selection_1:
-    message|contains|cased: 'FHScan Core '
+    sagan_raw|contains|cased: 'FHScan Core '
   s57_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s57_selection_2:
-    message|contains|cased: w3af.sf.net
+    sagan_raw|contains|cased: w3af.sf.net
   s58_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s58_selection_2:
-    message|contains|cased: Mozilla/5.0
+    sagan_raw|contains|cased: Mozilla/5.0
   s58_selection_3:
-    message|contains: Grendel-Scan
+    sagan_raw|contains: Grendel-Scan
   s58_selection_4:
-    message|contains: http://www.grendel-scan.com
+    sagan_raw|contains: http://www.grendel-scan.com
   s59_selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   s59_selection_2:
-    message|contains|cased: Absinthe
+    sagan_raw|contains|cased: Absinthe
   s60_selection_1:
-    message|contains: User-Agent
+    sagan_raw|contains: User-Agent
   s60_selection_2:
-    message|contains: Nessus
+    sagan_raw|contains: Nessus
   s60_filter_3:
-    message|contains: inessus
+    sagan_raw|contains: inessus
   s60_filter_4:
-    message|contains: www.nessus.org
+    sagan_raw|contains: www.nessus.org
   s60_filter_5:
-    message|contains: Rule
+    sagan_raw|contains: Rule
   s60_filter_6:
-    message|contains|cased: drop
+    sagan_raw|contains|cased: drop
   s60_filter_7:
-    message|contains: tmm
+    sagan_raw|contains: tmm
   s61_selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   s61_selection_2:
-    message|contains|cased: =USER_AUTHENTICATION_FAILURE(
+    sagan_raw|contains|cased: =USER_AUTHENTICATION_FAILURE(
   s62_selection_1:
-    message|contains|cased: Scan::Port_Scan
+    sagan_raw|contains|cased: Scan::Port_Scan
   s62_selection_2:
-    message|re|s|m|i: ((192)\.(168)\.(\d+)\.(\d+)|(10)\.(\d+)\.(\d+)\.(\d+)|(172)\.(1[6,7,8,9])\.(\d+)\.(\d+)|(172)\.(2[0,1,2,3,4,5,6,7,8,9])\.(\d+)\.(\d+)|(172)\.(3[0,1])\.(\d+)\.(\d+))
+    sagan_raw|re|s|m|i: ((192)\.(168)\.(\d+)\.(\d+)|(10)\.(\d+)\.(\d+)\.(\d+)|(172)\.(1[6,7,8,9])\.(\d+)\.(\d+)|(172)\.(2[0,1,2,3,4,5,6,7,8,9])\.(\d+)\.(\d+)|(172)\.(3[0,1])\.(\d+)\.(\d+))
       scanned at least \d+ unique ports
   s62_selection_3:
-    appname|cased:
-      - bro
-      - zeek
+    - appname|cased:
+        - bro
+        - zeek
+    - syslog_appname|cased:
+        - bro
+        - zeek
   condition: (s1_selection_1 and s1_selection_2 and s1_selection_3) or (s2_selection_1 and s2_selection_2
     and s2_selection_3) or (s3_selection_1 and s3_selection_2 and s3_selection_3) or (s4_selection_1)
     or (s5_selection_1 and s5_selection_2) or (s6_selection_1 and s6_selection_2) or (s7_selection_1 and
@@ -3688,15 +4156,16 @@ logsource:
   product: syslog
 detection:
   s1_selection_1:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   s1_selection_2:
     EventID: 4624
   s1_selection_3:
-    message|contains|cased: 'Logon Type: 3'
+    sagan_raw|contains|cased: 'Logon Type: 3'
   s1_filter_4:
-    message|contains|cased: '$ Account Domain:'
+    sagan_raw|contains|cased: '$ Account Domain:'
   s1_filter_5:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - 'Source Network Address: -'
       - 'Source Network Address: 127.0.0.1'
       - 'Source Network Address: ::1'

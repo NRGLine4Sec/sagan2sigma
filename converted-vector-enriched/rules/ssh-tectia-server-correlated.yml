@@ -8,9 +8,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Login_success
+    sagan_raw|contains|cased: Login_success
   selection_2:
-    appname|cased: SSH_Tectia_Server
+    - appname|cased: SSH_Tectia_Server
+    - syslog_appname|cased: SSH_Tectia_Server
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -48,9 +49,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Login_success
+    sagan_raw|contains|cased: Login_success
   selection_2:
-    appname|cased: SSH_Tectia_Server
+    - appname|cased: SSH_Tectia_Server
+    - syslog_appname|cased: SSH_Tectia_Server
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -89,9 +91,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Login_success
+    sagan_raw|contains|cased: Login_success
   selection_2:
-    appname|cased: SSH_Tectia_Server
+    - appname|cased: SSH_Tectia_Server
+    - syslog_appname|cased: SSH_Tectia_Server
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -129,9 +132,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Login_success
+    sagan_raw|contains|cased: Login_success
   selection_2:
-    appname|cased: SSH_Tectia_Server
+    - appname|cased: SSH_Tectia_Server
+    - syslog_appname|cased: SSH_Tectia_Server
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

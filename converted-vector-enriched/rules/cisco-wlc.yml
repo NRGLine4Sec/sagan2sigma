@@ -7,9 +7,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: 14179.2.6.3.36
+    sagan_raw|contains|cased: 14179.2.6.3.36
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -33,9 +34,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: signatureName=Bcast deauth
+    sagan_raw|contains|cased: signatureName=Bcast deauth
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -58,9 +60,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: signatureName=NULL probe resp 1
+    sagan_raw|contains|cased: signatureName=NULL probe resp 1
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -83,9 +86,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: signatureName=NULL probe resp 2
+    sagan_raw|contains|cased: signatureName=NULL probe resp 2
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -108,9 +112,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: signatureName=Assoc flood
+    sagan_raw|contains|cased: signatureName=Assoc flood
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -133,9 +138,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: signatureName=Reassoc flood
+    sagan_raw|contains|cased: signatureName=Reassoc flood
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -158,9 +164,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: signatureName=Broadcast Probe flood
+    sagan_raw|contains|cased: signatureName=Broadcast Probe flood
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -183,9 +190,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: signatureName=Disassoc flood
+    sagan_raw|contains|cased: signatureName=Disassoc flood
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -208,9 +216,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: signatureName=Deauth flood
+    sagan_raw|contains|cased: signatureName=Deauth flood
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -233,9 +242,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: signatureName=Res mgmt 6 & 7
+    sagan_raw|contains|cased: signatureName=Res mgmt 6 & 7
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -258,9 +268,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: signatureName=Res mgmt D
+    sagan_raw|contains|cased: signatureName=Res mgmt D
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -283,9 +294,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: signatureName=Res mgmt E & F
+    sagan_raw|contains|cased: signatureName=Res mgmt E & F
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -308,9 +320,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: signatureName=EAPOL flood
+    sagan_raw|contains|cased: signatureName=EAPOL flood
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -333,9 +346,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: signatureName=NetStumbler 3.2.0
+    sagan_raw|contains|cased: signatureName=NetStumbler 3.2.0
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -358,9 +372,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: signatureName=NetStumbler 3.2.3
+    sagan_raw|contains|cased: signatureName=NetStumbler 3.2.3
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -383,9 +398,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: signatureName=NetStumbler 3.3.0
+    sagan_raw|contains|cased: signatureName=NetStumbler 3.3.0
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -408,9 +424,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: signatureName=NetStumbler generic
+    sagan_raw|contains|cased: signatureName=NetStumbler generic
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -433,9 +450,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: signatureName=Wellenreiter
+    sagan_raw|contains|cased: signatureName=Wellenreiter
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -458,9 +476,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: Big NAV Dos attack
+    sagan_raw|contains|cased: Big NAV Dos attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

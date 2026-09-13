@@ -8,36 +8,64 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|re: ' [0-9][0-9][0-9][0-9]?: $'
+    sagan_raw|re: ' [0-9][0-9][0-9][0-9]?: $'
   selection_2:
-    appname|cased:
-      - '*Security*'
-      - AppLocker
-      - Application
-      - Backup
-      - Bonjour
-      - CPQCISSE
-      - Citrix
-      - DAC
-      - DHCP-Server
-      - EMET
-      - Eventlog
-      - MSSQL*
-      - MsiInstaller
-      - NtFrs
-      - Ntfs
-      - RemoteAccess
-      - Service
-      - Service_Control_Manager
-      - Symantec
-      - Sysmon
-      - System
-      - USER32
-      - Tenable
-      - TermService
-      - The
-      - WinVNC4
-      - crypt32
+    - appname|cased:
+        - '*Security*'
+        - AppLocker
+        - Application
+        - Backup
+        - Bonjour
+        - CPQCISSE
+        - Citrix
+        - DAC
+        - DHCP-Server
+        - EMET
+        - Eventlog
+        - MSSQL*
+        - MsiInstaller
+        - NtFrs
+        - Ntfs
+        - RemoteAccess
+        - Service
+        - Service_Control_Manager
+        - Symantec
+        - Sysmon
+        - System
+        - USER32
+        - Tenable
+        - TermService
+        - The
+        - WinVNC4
+        - crypt32
+    - syslog_appname|cased:
+        - '*Security*'
+        - AppLocker
+        - Application
+        - Backup
+        - Bonjour
+        - CPQCISSE
+        - Citrix
+        - DAC
+        - DHCP-Server
+        - EMET
+        - Eventlog
+        - MSSQL*
+        - MsiInstaller
+        - NtFrs
+        - Ntfs
+        - RemoteAccess
+        - Service
+        - Service_Control_Manager
+        - Symantec
+        - Sysmon
+        - System
+        - USER32
+        - Tenable
+        - TermService
+        - The
+        - WinVNC4
+        - crypt32
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -75,9 +103,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: connecting to
+    sagan_raw|contains|cased: connecting to
   selection_2:
-    appname|cased: nxlog
+    - appname|cased: nxlog
+    - syslog_appname|cased: nxlog
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -113,7 +142,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: nxlog-fim-crit
+    - appname|cased: nxlog-fim-crit
+    - syslog_appname|cased: nxlog-fim-crit
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

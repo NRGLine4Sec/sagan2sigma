@@ -9,7 +9,7 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: type=ssid_spoofing_detected
+    sagan_raw|contains|cased: type=ssid_spoofing_detected
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -32,7 +32,7 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: malicious action=block
+    sagan_raw|contains|cased: malicious action=block
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -56,7 +56,7 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: malicious action=allow
+    sagan_raw|contains|cased: malicious action=allow
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -78,7 +78,7 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: type=8021x_eap_failure
+    sagan_raw|contains|cased: type=8021x_eap_failure
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -118,9 +118,9 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: type=device_packet_flood
+    sagan_raw|contains|cased: type=device_packet_flood
   selection_2:
-    message|contains|cased: packet='deauth'
+    sagan_raw|contains|cased: packet='deauth'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -141,7 +141,7 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: MR18 flows deny
+    sagan_raw|contains|cased: MR18 flows deny
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -162,7 +162,7 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: VRRP packet
+    sagan_raw|contains|cased: VRRP packet
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -183,7 +183,7 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: Blocked DHCP
+    sagan_raw|contains|cased: Blocked DHCP
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -206,7 +206,7 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: 'type": "ssid_spoofing_detected'
+    sagan_raw|contains|cased: 'type": "ssid_spoofing_detected'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -229,11 +229,12 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: meraki_dashboard_api_data
+    - appname|cased: meraki_dashboard_api_data
+    - syslog_appname|cased: meraki_dashboard_api_data
   selection_2:
-    message|contains|cased: 'eventType": "IDS Alert'
+    sagan_raw|contains|cased: 'eventType": "IDS Alert'
   filter_3:
-    message|contains|cased: '"blocked": true'
+    sagan_raw|contains|cased: '"blocked": true'
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -258,9 +259,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: meraki_dashboard_api_data
+    - appname|cased: meraki_dashboard_api_data
+    - syslog_appname|cased: meraki_dashboard_api_data
   selection_2:
-    message|contains|cased: 'type": "anyconnect_vpn_auth_failure'
+    sagan_raw|contains|cased: 'type": "anyconnect_vpn_auth_failure'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -299,9 +301,9 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: malicious
+    sagan_raw|contains|cased: malicious
   selection_2:
-    message|contains|cased: 'action": "block'
+    sagan_raw|contains|cased: 'action": "block'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -324,9 +326,9 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: malicious
+    sagan_raw|contains|cased: malicious
   selection_2:
-    message|contains|cased: 'action=": "allow'
+    sagan_raw|contains|cased: 'action=": "allow'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -348,7 +350,7 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: 'type": "8021x_eap_failure'
+    sagan_raw|contains|cased: 'type": "8021x_eap_failure'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -388,9 +390,9 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: 'type": "device_packet_flood'
+    sagan_raw|contains|cased: 'type": "device_packet_flood'
   selection_2:
-    message|contains|cased: 'packet": "deauth22'
+    sagan_raw|contains|cased: 'packet": "deauth22'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -413,7 +415,7 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: 'type": "mac_spoofing_attack'
+    sagan_raw|contains|cased: 'type": "mac_spoofing_attack'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -436,11 +438,11 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: 'type": "mac_spoofing_attack'
+    sagan_raw|contains|cased: 'type": "mac_spoofing_attack'
   selection_2:
-    message|contains|cased: '"Client":'
+    sagan_raw|contains|cased: '"Client":'
   filter_3:
-    message|contains|cased: 169.254.
+    sagan_raw|contains|cased: 169.254.
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -463,9 +465,9 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: airmarshal_events
+    sagan_raw|contains|cased: airmarshal_events
   selection_2:
-    message|contains|cased: rogue_ssid_detected
+    sagan_raw|contains|cased: rogue_ssid_detected
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -488,9 +490,9 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: airmarshal_events
+    sagan_raw|contains|cased: airmarshal_events
   selection_2:
-    message|contains|cased: ssid_spoofing_detected
+    sagan_raw|contains|cased: ssid_spoofing_detected
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -511,9 +513,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: meraki_dashboard_api_data
+    - appname|cased: meraki_dashboard_api_data
+    - syslog_appname|cased: meraki_dashboard_api_data
   selection_2:
-    message|contains: 'label": "security'
+    sagan_raw|contains: 'label": "security'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -534,9 +537,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: meraki_dashboard_api_data
+    - appname|cased: meraki_dashboard_api_data
+    - syslog_appname|cased: meraki_dashboard_api_data
   selection_2:
-    message|contains: 'label": "admin'
+    sagan_raw|contains: 'label": "admin'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -557,9 +561,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: meraki_dashboard_api_data
+    - appname|cased: meraki_dashboard_api_data
+    - syslog_appname|cased: meraki_dashboard_api_data
   selection_2:
-    message|contains: 'label": "organization'
+    sagan_raw|contains: 'label": "organization'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -580,9 +585,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: meraki_dashboard_api_data
+    - appname|cased: meraki_dashboard_api_data
+    - syslog_appname|cased: meraki_dashboard_api_data
   selection_2:
-    message|contains: 'label": "network'
+    sagan_raw|contains: 'label": "network'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -603,9 +609,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: meraki_dashboard_api_data
+    - appname|cased: meraki_dashboard_api_data
+    - syslog_appname|cased: meraki_dashboard_api_data
   selection_2:
-    message|contains: 'label": "device'
+    sagan_raw|contains: 'label": "device'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -626,9 +633,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: meraki_dashboard_api_data
+    - appname|cased: meraki_dashboard_api_data
+    - syslog_appname|cased: meraki_dashboard_api_data
   selection_2:
-    message|contains: 'label": "ssid'
+    sagan_raw|contains: 'label": "ssid'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -649,9 +657,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: meraki_dashboard_api_data
+    - appname|cased: meraki_dashboard_api_data
+    - syslog_appname|cased: meraki_dashboard_api_data
   selection_2:
-    message|contains: 'label": "firewall'
+    sagan_raw|contains: 'label": "firewall'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -672,9 +681,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: meraki_dashboard_api_data
+    - appname|cased: meraki_dashboard_api_data
+    - syslog_appname|cased: meraki_dashboard_api_data
   selection_2:
-    message|contains: 'label": "routing'
+    sagan_raw|contains: 'label": "routing'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -695,9 +705,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: meraki_dashboard_api_data
+    - appname|cased: meraki_dashboard_api_data
+    - syslog_appname|cased: meraki_dashboard_api_data
   selection_2:
-    message|contains: 'label": "vpn'
+    sagan_raw|contains: 'label": "vpn'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -718,9 +729,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: meraki_dashboard_api_data
+    - appname|cased: meraki_dashboard_api_data
+    - syslog_appname|cased: meraki_dashboard_api_data
   selection_2:
-    message|contains: 'label": "IDS ruleset'
+    sagan_raw|contains: 'label": "IDS ruleset'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -741,9 +753,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: meraki_dashboard_api_data
+    - appname|cased: meraki_dashboard_api_data
+    - syslog_appname|cased: meraki_dashboard_api_data
   selection_2:
-    message|contains: 'label": "Blocked Threat Categories'
+    sagan_raw|contains: 'label": "Blocked Threat Categories'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -764,9 +777,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: meraki_dashboard_api_data
+    - appname|cased: meraki_dashboard_api_data
+    - syslog_appname|cased: meraki_dashboard_api_data
   selection_2:
-    message|contains: 'label": "IDS mode select'
+    sagan_raw|contains: 'label": "IDS mode select'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -787,9 +801,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: meraki_dashboard_api_data
+    - appname|cased: meraki_dashboard_api_data
+    - syslog_appname|cased: meraki_dashboard_api_data
   selection_2:
-    message|contains: 'label": "Malware is blocked'
+    sagan_raw|contains: 'label": "Malware is blocked'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -810,9 +825,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: meraki_dashboard_api_data
+    - appname|cased: meraki_dashboard_api_data
+    - syslog_appname|cased: meraki_dashboard_api_data
   selection_2:
-    message|contains: 'label": "Malware scanning'
+    sagan_raw|contains: 'label": "Malware scanning'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -833,9 +849,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: meraki_dashboard_api_data
+    - appname|cased: meraki_dashboard_api_data
+    - syslog_appname|cased: meraki_dashboard_api_data
   selection_2:
-    message|contains: decision=allowed action=allow message
+    sagan_raw|contains: decision=allowed action=allow message
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

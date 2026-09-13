@@ -8,9 +8,10 @@ logsource:
   service: access
 detection:
   selection_1:
-    message|contains|cased: no user/password was provided for basic authentication
+    sagan_raw|contains|cased: no user/password was provided for basic authentication
   selection_2:
-    appname|cased: nginx
+    - appname|cased: nginx
+    - syslog_appname|cased: nginx
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -32,9 +33,10 @@ logsource:
   service: access
 detection:
   selection_1:
-    message|re|i: password mismatch, client|was not found in
+    sagan_raw|re|i: password mismatch, client|was not found in
   selection_2:
-    appname|cased: nginx
+    - appname|cased: nginx
+    - syslog_appname|cased: nginx
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -56,9 +58,10 @@ logsource:
   service: access
 detection:
   selection_1:
-    message|contains|cased: File name too long
+    sagan_raw|contains|cased: File name too long
   selection_2:
-    appname|cased: nginx
+    - appname|cased: nginx
+    - syslog_appname|cased: nginx
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -81,9 +84,10 @@ logsource:
   service: access
 detection:
   selection_1:
-    message|re|i: password mismatch, client|was not found in
+    sagan_raw|re|i: password mismatch, client|was not found in
   selection_2:
-    appname|cased: nginx
+    - appname|cased: nginx
+    - syslog_appname|cased: nginx
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

@@ -7,7 +7,7 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: SNMP-3-AUTHFAIL
+    sagan_raw|contains|cased: SNMP-3-AUTHFAIL
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -29,7 +29,7 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: RCMD-4-RSHPORTATTEMPT
+    sagan_raw|contains|cased: RCMD-4-RSHPORTATTEMPT
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -115,7 +115,7 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: SEC_LOGIN-4-LOGIN_FAILED
+    sagan_raw|contains|cased: SEC_LOGIN-4-LOGIN_FAILED
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -154,7 +154,7 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: 'EARL_L3_ASIC-SP-4-INTR_THROTTLE: Throttling'
+    sagan_raw|contains|cased: 'EARL_L3_ASIC-SP-4-INTR_THROTTLE: Throttling'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -177,7 +177,7 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: EARL_L3_ASIC-SP-3-INTR_WARN
+    sagan_raw|contains|cased: EARL_L3_ASIC-SP-3-INTR_WARN
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -200,7 +200,7 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: MLS_STAT-SP-4-IP_LEN_ERR
+    sagan_raw|contains|cased: MLS_STAT-SP-4-IP_LEN_ERR
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -223,7 +223,7 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: MLS_STAT-SP-4-IP_CSUM_ERR
+    sagan_raw|contains|cased: MLS_STAT-SP-4-IP_CSUM_ERR
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -246,7 +246,7 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: MCAST-SP-6-ADDRESS_ALIASING_FALLBACK
+    sagan_raw|contains|cased: MCAST-SP-6-ADDRESS_ALIASING_FALLBACK
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -269,7 +269,7 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: MLS_STAT-4-IP_TOO_SHRT
+    sagan_raw|contains|cased: MLS_STAT-4-IP_TOO_SHRT
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -292,7 +292,7 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: SYS-3-PORT_RX_BADCODE
+    sagan_raw|contains|cased: SYS-3-PORT_RX_BADCODE
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -313,7 +313,7 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: HIGH CPU DETECTED
+    sagan_raw|contains|cased: HIGH CPU DETECTED
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -336,13 +336,13 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: '%DAEMON-3-SYSTEM_MSG:'
+    sagan_raw|contains|cased: '%DAEMON-3-SYSTEM_MSG:'
   selection_2:
-    message|contains|cased: Authentication failure for
+    sagan_raw|contains|cased: Authentication failure for
   filter_3:
-    message|contains|cased: illegal
+    sagan_raw|contains|cased: illegal
   selection_4:
-    message|contains|cased: sshd[
+    sagan_raw|contains|cased: sshd[
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -379,11 +379,11 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: '%DAEMON-3-SYSTEM_MSG:'
+    sagan_raw|contains|cased: '%DAEMON-3-SYSTEM_MSG:'
   selection_2:
-    message|contains|cased: Authentication failure for illegal user
+    sagan_raw|contains|cased: Authentication failure for illegal user
   selection_3:
-    message|contains|cased: sshd[
+    sagan_raw|contains|cased: sshd[
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -404,11 +404,11 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: '%USER-3-SYSTEM_MSG:'
+    sagan_raw|contains|cased: '%USER-3-SYSTEM_MSG:'
   selection_2:
-    message|contains|cased: 'FATAL: bad tty'
+    sagan_raw|contains|cased: 'FATAL: bad tty'
   selection_3:
-    message|contains|cased: no program
+    sagan_raw|contains|cased: no program
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -429,7 +429,7 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: '%SYS-5-PRIV_AUTH_FAIL'
+    sagan_raw|contains|cased: '%SYS-5-PRIV_AUTH_FAIL'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -450,7 +450,7 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: '%SW_DAI-4-INVALID_ARP'
+    sagan_raw|contains|cased: '%SW_DAI-4-INVALID_ARP'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -475,11 +475,11 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: '%SYS-5-CONFIG_P:'
+    sagan_raw|contains|cased: '%SYS-5-CONFIG_P:'
   selection_2:
-    message|contains|cased: process SEP_webui_wsma_http
+    sagan_raw|contains|cased: process SEP_webui_wsma_http
   selection_3:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - from console as cisco_tac_admin
       - from console as cisco_support
   condition: selection_1 and selection_2 and selection_3
@@ -509,9 +509,9 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: '%SYS-5-CONFIG_P:'
+    sagan_raw|contains|cased: '%SYS-5-CONFIG_P:'
   selection_2:
-    message|contains|cased: process SEP_webui_wsma_http
+    sagan_raw|contains|cased: process SEP_webui_wsma_http
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -539,9 +539,9 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    message|contains|cased: '%WEBUI-6-INSTALL_OPERATION_INFO:'
+    sagan_raw|contains|cased: '%WEBUI-6-INSTALL_OPERATION_INFO:'
   selection_2:
-    message|contains|cased: 'Install Operation: ADD'
+    sagan_raw|contains|cased: 'Install Operation: ADD'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

@@ -9,7 +9,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: ARP/4/ARP_DUPLICATE_IPADDR
+    sagan_raw|contains|cased: ARP/4/ARP_DUPLICATE_IPADDR
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -32,7 +32,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: DHCPC/4/DHCPC_LOG_NAK
+    sagan_raw|contains|cased: DHCPC/4/DHCPC_LOG_NAK
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -55,9 +55,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: DHCPC/4/DHCPC_LOG_REQIP_SUCCESS
+    sagan_raw|contains|cased: DHCPC/4/DHCPC_LOG_REQIP_SUCCESS
   selection_2:
-    message|contains|cased: has acquired ip address successfully
+    sagan_raw|contains|cased: has acquired ip address successfully
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -80,11 +80,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: DHCPC/4/DHCPC_LOG_REQIP_SUCCESS
+    sagan_raw|contains|cased: DHCPC/4/DHCPC_LOG_REQIP_SUCCESS
   selection_2:
-    message|contains|cased: vlan
+    sagan_raw|contains|cased: vlan
   selection_3:
-    message|contains|cased: has acquired ip address successfully
+    sagan_raw|contains|cased: has acquired ip address successfully
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -107,9 +107,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: FTPS/4/USERIN
+    sagan_raw|contains|cased: FTPS/4/USERIN
   selection_2:
-    message|contains|cased: login failed
+    sagan_raw|contains|cased: login failed
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -132,7 +132,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: HTTPD/4/FAIL
+    sagan_raw|contains|cased: HTTPD/4/FAIL
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -155,7 +155,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: HTTPD/4/OUT
+    sagan_raw|contains|cased: HTTPD/4/OUT
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -178,7 +178,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: HTTPD/4/PASS
+    sagan_raw|contains|cased: HTTPD/4/PASS
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -201,9 +201,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: IP spoof attack
+    sagan_raw|contains|cased: IP spoof attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -226,9 +226,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: fraggle attack
+    sagan_raw|contains|cased: fraggle attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -251,9 +251,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: Smurf attack
+    sagan_raw|contains|cased: Smurf attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -276,9 +276,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: land attack
+    sagan_raw|contains|cased: land attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -301,9 +301,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: Time stamp attack
+    sagan_raw|contains|cased: Time stamp attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -326,9 +326,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: Ip options attack
+    sagan_raw|contains|cased: Ip options attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -351,9 +351,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: Ip option source route attack
+    sagan_raw|contains|cased: Ip option source route attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -376,9 +376,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: ICMP flood attack
+    sagan_raw|contains|cased: ICMP flood attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -401,9 +401,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: Redirect attack
+    sagan_raw|contains|cased: Redirect attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -426,9 +426,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: TCP flood attack
+    sagan_raw|contains|cased: TCP flood attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -451,9 +451,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: Winnuke attack
+    sagan_raw|contains|cased: Winnuke attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -476,9 +476,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: Ping of death attack
+    sagan_raw|contains|cased: Ping of death attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -501,9 +501,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: Tear drop attack
+    sagan_raw|contains|cased: Tear drop attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -526,9 +526,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: Trace route attack
+    sagan_raw|contains|cased: Trace route attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -551,9 +551,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: Ip options route record attack
+    sagan_raw|contains|cased: Ip options route record attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -576,9 +576,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: Port scan attack
+    sagan_raw|contains|cased: Port scan attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -601,9 +601,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: Unreachable attack
+    sagan_raw|contains|cased: Unreachable attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -626,9 +626,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: Udp flood attack
+    sagan_raw|contains|cased: Udp flood attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -651,9 +651,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: Syn flood attack
+    sagan_raw|contains|cased: Syn flood attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -676,9 +676,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: other-protocol attack
+    sagan_raw|contains|cased: other-protocol attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -701,9 +701,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: Large ICMP attack
+    sagan_raw|contains|cased: Large ICMP attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -726,9 +726,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: IP Fragment attack
+    sagan_raw|contains|cased: IP Fragment attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -751,9 +751,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: Ftp Bounce attack
+    sagan_raw|contains|cased: Ftp Bounce attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -776,9 +776,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: Too much Half Con of SYN Flood
+    sagan_raw|contains|cased: Too much Half Con of SYN Flood
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -801,9 +801,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/ATCKDF
+    sagan_raw|contains|cased: SEC/4/ATCKDF
   selection_2:
-    message|contains|cased: Tcp flag attack
+    sagan_raw|contains|cased: Tcp flag attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -826,9 +826,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/BLACKLIST
+    sagan_raw|contains|cased: SEC/4/BLACKLIST
   selection_2:
-    message|contains|cased: is added to blacklist
+    sagan_raw|contains|cased: is added to blacklist
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -851,9 +851,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/BLACKLIST
+    sagan_raw|contains|cased: SEC/4/BLACKLIST
   selection_2:
-    message|contains|cased: is removed from blacklist
+    sagan_raw|contains|cased: is removed from blacklist
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -876,9 +876,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SEC/4/BLACKLIST
+    sagan_raw|contains|cased: SEC/4/BLACKLIST
   selection_2:
-    message|contains|cased: Clear All blacklist
+    sagan_raw|contains|cased: Clear All blacklist
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -901,7 +901,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SHELL/4/LOGIN_FAIL
+    sagan_raw|contains|cased: SHELL/4/LOGIN_FAIL
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -924,7 +924,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SHELL/4/CMD
+    sagan_raw|contains|cased: SHELL/4/CMD
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -947,7 +947,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SSH/4/add_success
+    sagan_raw|contains|cased: SSH/4/add_success
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -971,7 +971,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: 'SSH/4/LOGIN_FAIL '
+    sagan_raw|contains|cased: 'SSH/4/LOGIN_FAIL '
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1010,7 +1010,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SSH/4/LOGIN_FAIL_CHALLENGE_ERR
+    sagan_raw|contains|cased: SSH/4/LOGIN_FAIL_CHALLENGE_ERR
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1033,7 +1033,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SSH/4/LOGIN_FAIL_COOKIE_ERR
+    sagan_raw|contains|cased: SSH/4/LOGIN_FAIL_COOKIE_ERR
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1056,7 +1056,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SSH/4/LOGIN_FAIL_DISSCONNECT
+    sagan_raw|contains|cased: SSH/4/LOGIN_FAIL_DISSCONNECT
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1079,7 +1079,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SSH/4/LOGIN_FAIL_PWD_ERR
+    sagan_raw|contains|cased: SSH/4/LOGIN_FAIL_PWD_ERR
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1102,7 +1102,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SSH/4/LOGIN_FAIL_RETRY_OUT
+    sagan_raw|contains|cased: SSH/4/LOGIN_FAIL_RETRY_OUT
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1125,7 +1125,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SSH/4/LOGIN_FAIL_RSA_ERR
+    sagan_raw|contains|cased: SSH/4/LOGIN_FAIL_RSA_ERR
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1148,7 +1148,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: VRRP/3/LogAuthFailed
+    sagan_raw|contains|cased: VRRP/3/LogAuthFailed
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1171,7 +1171,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SSH/4/LOGIN_FAIL_USER_NOT_EXIST
+    sagan_raw|contains|cased: SSH/4/LOGIN_FAIL_USER_NOT_EXIST
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

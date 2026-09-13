@@ -8,15 +8,18 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased:
-      - CISE_Failed_Attempts
-      - CSCOacs_Failed_Attempts
+    - appname|cased:
+        - CISE_Failed_Attempts
+        - CSCOacs_Failed_Attempts
+    - syslog_appname|cased:
+        - CISE_Failed_Attempts
+        - CSCOacs_Failed_Attempts
   selection_2:
-    message|contains|cased: UserName=
+    sagan_raw|contains|cased: UserName=
   filter_3:
-    message|contains|cased: session timed out
+    sagan_raw|contains|cased: session timed out
   filter_4:
-    message|contains|cased: Subject not found in the applicable identity store
+    sagan_raw|contains|cased: Subject not found in the applicable identity store
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

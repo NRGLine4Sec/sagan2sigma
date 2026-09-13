@@ -2235,15 +2235,16 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'eventName": "ListUsers'
+    sagan_raw|contains|cased: 'eventName": "ListUsers'
   filter_3:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   filter_4:
-    message|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
   filter_5:
-    message|contains|cased: AWSServiceRole
+    sagan_raw|contains|cased: AWSServiceRole
   condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2268,23 +2269,24 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: '*.amazonaws.com'
+    - appname|cased: '*.amazonaws.com'
+    - syslog_appname|cased: '*.amazonaws.com'
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - 'eventName": "AttachRolePolicy'
       - 'eventName": "PutBucketPolicy"'
   selection_3:
-    message|contains|cased: '"Effect":"Allow"'
+    sagan_raw|contains|cased: '"Effect":"Allow"'
   selection_4:
-    message|contains|cased: '"Action":"\*"'
+    sagan_raw|contains|cased: '"Action":"\*"'
   selection_5:
-    message|contains|cased: '"Resource":"\*"'
+    sagan_raw|contains|cased: '"Resource":"\*"'
   filter_6:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   filter_7:
-    message|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
   filter_8:
-    message|contains|cased: AWSSrviceRole
+    sagan_raw|contains|cased: AWSSrviceRole
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and not (filter_6
     or filter_7 or filter_8)
 falsepositives:

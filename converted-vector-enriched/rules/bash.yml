@@ -8,15 +8,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: ./a.out
+    sagan_raw|contains|cased: ./a.out
   selection_2:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -38,15 +43,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: 'gcc '
+    sagan_raw|contains|cased: 'gcc '
   selection_2:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -68,15 +78,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: 'telnet '
+    sagan_raw|contains|cased: 'telnet '
   selection_2:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -98,15 +113,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: 'nmap '
+    sagan_raw|contains|cased: 'nmap '
   selection_2:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -128,15 +148,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: /etc/passwd
+    sagan_raw|contains|cased: /etc/passwd
   selection_2:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -158,15 +183,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: /etc/shadow
+    sagan_raw|contains|cased: /etc/shadow
   selection_2:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -188,15 +218,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: make
+    sagan_raw|contains|cased: make
   selection_2:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -218,15 +253,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: 'make '
+    sagan_raw|contains|cased: 'make '
   selection_2:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -248,15 +288,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: /bin/sh
+    sagan_raw|contains|cased: /bin/sh
   selection_2:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -278,15 +323,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: /bin/bash
+    sagan_raw|contains|cased: /bin/bash
   selection_2:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -308,13 +358,18 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY=/dev/null
+    sagan_raw|contains|cased: HISTORY=/dev/null
   selection_2:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -336,15 +391,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: .bash_history
+    sagan_raw|contains|cased: .bash_history
   selection_2:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -366,15 +426,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: /tmp/sh
+    sagan_raw|contains|cased: /tmp/sh
   selection_2:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -396,15 +461,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: suidperl
+    sagan_raw|contains|cased: suidperl
   selection_2:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -426,15 +496,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: histfile=/dev/null
+    sagan_raw|contains|cased: histfile=/dev/null
   selection_2:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -456,15 +531,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: iptables
+    sagan_raw|contains|cased: iptables
   selection_2:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -488,15 +568,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: () { :;}
+    sagan_raw|contains|cased: () { :;}
   selection_2:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -518,18 +603,23 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - ' HISTFILE'
       - ' HISTFILESIZE'
       - ' HISTSIZE'
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -551,15 +641,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|re: \s+history\s+(-\w+\s+)*-\w*(c|d|w)
+    sagan_raw|re: \s+history\s+(-\w+\s+)*-\w*(c|d|w)
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -581,15 +676,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased: .mysql_history
+    sagan_raw|contains|cased: .mysql_history
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -611,18 +711,23 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - ' nc '
       - ' ncat '
       - ' netcat '
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -644,17 +749,22 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased: python
+    sagan_raw|contains|cased: python
   selection_3:
-    message|contains|cased: socket
+    sagan_raw|contains|cased: socket
   selection_4:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -676,17 +786,22 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased: python
+    sagan_raw|contains|cased: python
   selection_3:
-    message|contains|cased: subproces
+    sagan_raw|contains|cased: subproces
   selection_4:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -708,17 +823,22 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased: php
+    sagan_raw|contains|cased: php
   selection_3:
-    message|contains|cased: sock
+    sagan_raw|contains|cased: sock
   selection_4:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -740,17 +860,22 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased: php
+    sagan_raw|contains|cased: php
   selection_3:
-    message|contains|cased: exec
+    sagan_raw|contains|cased: exec
   selection_4:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -772,17 +897,22 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased: perl
+    sagan_raw|contains|cased: perl
   selection_3:
-    message|contains|cased: ocket
+    sagan_raw|contains|cased: ocket
   selection_4:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -804,17 +934,22 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased: perl
+    sagan_raw|contains|cased: perl
   selection_3:
-    message|contains|cased: fork
+    sagan_raw|contains|cased: fork
   selection_4:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -836,17 +971,22 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased: ruby
+    sagan_raw|contains|cased: ruby
   selection_3:
-    message|contains|cased: ocket
+    sagan_raw|contains|cased: ocket
   selection_4:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -868,17 +1008,22 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased: ruby
+    sagan_raw|contains|cased: ruby
   selection_3:
-    message|contains|cased: exec
+    sagan_raw|contains|cased: exec
   selection_4:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -900,15 +1045,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased: /dev/tcp
+    sagan_raw|contains|cased: /dev/tcp
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -930,15 +1080,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased: /dev/udp
+    sagan_raw|contains|cased: /dev/udp
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -960,15 +1115,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|re: \s+((\/usr)?\/s?bin\/)?csh
+    sagan_raw|re: \s+((\/usr)?\/s?bin\/)?csh
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -990,15 +1150,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|re: \s+((\/usr)?\/s?bin\/)?ksh
+    sagan_raw|re: \s+((\/usr)?\/s?bin\/)?ksh
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1020,15 +1185,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|re: \s+((\/usr)?\/s?bin\/)?tcsh
+    sagan_raw|re: \s+((\/usr)?\/s?bin\/)?tcsh
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1050,15 +1220,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|re: \s+((\/usr)?\/s?bin\/)?zsh
+    sagan_raw|re: \s+((\/usr)?\/s?bin\/)?zsh
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1080,15 +1255,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased: stunnel
+    sagan_raw|contains|cased: stunnel
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1110,17 +1290,22 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased: ssh
+    sagan_raw|contains|cased: ssh
   selection_3:
-    message|contains|cased: '-A '
+    sagan_raw|contains|cased: '-A '
   selection_4:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1142,17 +1327,22 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased: ssh
+    sagan_raw|contains|cased: ssh
   selection_3:
-    message|contains|cased: '-D '
+    sagan_raw|contains|cased: '-D '
   selection_4:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1174,17 +1364,22 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased: ssh
+    sagan_raw|contains|cased: ssh
   selection_3:
-    message|contains|cased: '-K '
+    sagan_raw|contains|cased: '-K '
   selection_4:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1206,17 +1401,22 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased: ssh
+    sagan_raw|contains|cased: ssh
   selection_3:
-    message|contains|cased: '-L '
+    sagan_raw|contains|cased: '-L '
   selection_4:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1238,17 +1438,22 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased: ssh
+    sagan_raw|contains|cased: ssh
   selection_3:
-    message|contains|cased: '-R '
+    sagan_raw|contains|cased: '-R '
   selection_4:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1270,17 +1475,22 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased: ssh
+    sagan_raw|contains|cased: ssh
   selection_3:
-    message|contains|cased: '-W '
+    sagan_raw|contains|cased: '-W '
   selection_4:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1302,17 +1512,22 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased: ssh
+    sagan_raw|contains|cased: ssh
   selection_3:
-    message|contains|cased: '-w '
+    sagan_raw|contains|cased: '-w '
   selection_4:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1334,17 +1549,22 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased: ssh
+    sagan_raw|contains|cased: ssh
   selection_3:
-    message|contains|cased: '-X '
+    sagan_raw|contains|cased: '-X '
   selection_4:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1366,17 +1586,22 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased: ssh
+    sagan_raw|contains|cased: ssh
   selection_3:
-    message|contains|cased: '-Y '
+    sagan_raw|contains|cased: '-Y '
   selection_4:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1398,15 +1623,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased: LD_PRELOAD
+    sagan_raw|contains|cased: LD_PRELOAD
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1428,15 +1658,20 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_2:
-    message|contains|cased: LD_LIBRARY_PATH
+    sagan_raw|contains|cased: LD_LIBRARY_PATH
   selection_3:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1458,17 +1693,22 @@ logsource:
   service: bash
 detection:
   selection_1:
-    message|contains|cased: passwd
+    sagan_raw|contains|cased: passwd
   selection_2:
-    message|contains|cased: root
+    sagan_raw|contains|cased: root
   selection_3:
-    message|contains|cased: HISTORY
+    sagan_raw|contains|cased: HISTORY
   selection_4:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

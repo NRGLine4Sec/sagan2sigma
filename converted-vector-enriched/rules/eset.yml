@@ -9,11 +9,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"Threat_Event
+    sagan_raw|contains|cased: event_type":"Threat_Event
   selection_3:
-    message|contains|cased: '"severity":"Notice"'
+    sagan_raw|contains|cased: '"severity":"Notice"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -37,11 +38,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"Threat_Event
+    sagan_raw|contains|cased: event_type":"Threat_Event
   selection_3:
-    message|contains|cased: '"severity":"Warning"'
+    sagan_raw|contains|cased: '"severity":"Warning"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -65,11 +67,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"Threat_Event
+    sagan_raw|contains|cased: event_type":"Threat_Event
   selection_3:
-    message|contains|cased: '"severity":"Error"'
+    sagan_raw|contains|cased: '"severity":"Error"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -93,11 +96,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"Threat_Event
+    sagan_raw|contains|cased: event_type":"Threat_Event
   selection_3:
-    message|contains|cased: '"severity":"Critical"'
+    sagan_raw|contains|cased: '"severity":"Critical"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -121,11 +125,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"Threat_Event
+    sagan_raw|contains|cased: event_type":"Threat_Event
   selection_3:
-    message|contains|cased: '"severity":"Fatal"'
+    sagan_raw|contains|cased: '"severity":"Fatal"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -149,11 +154,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"FirewallAggregated_Event
+    sagan_raw|contains|cased: event_type":"FirewallAggregated_Event
   selection_3:
-    message|contains|cased: '"severity":"Notice"'
+    sagan_raw|contains|cased: '"severity":"Notice"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -177,11 +183,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"FirewallAggregated_Event
+    sagan_raw|contains|cased: event_type":"FirewallAggregated_Event
   selection_3:
-    message|contains|cased: '"severity":"Warning"'
+    sagan_raw|contains|cased: '"severity":"Warning"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -205,11 +212,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"FirewallAggregated_Event
+    sagan_raw|contains|cased: event_type":"FirewallAggregated_Event
   selection_3:
-    message|contains|cased: '"severity":"Error"'
+    sagan_raw|contains|cased: '"severity":"Error"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -233,11 +241,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"FirewallAggregated_Event
+    sagan_raw|contains|cased: event_type":"FirewallAggregated_Event
   selection_3:
-    message|contains|cased: '"severity":"Critical"'
+    sagan_raw|contains|cased: '"severity":"Critical"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -261,11 +270,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"FirewallAggregated_Event
+    sagan_raw|contains|cased: event_type":"FirewallAggregated_Event
   selection_3:
-    message|contains|cased: '"severity":"Fatal"'
+    sagan_raw|contains|cased: '"severity":"Fatal"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -289,11 +299,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"HipsAggregated_Event
+    sagan_raw|contains|cased: event_type":"HipsAggregated_Event
   selection_3:
-    message|contains|cased: '"severity":"Notice"'
+    sagan_raw|contains|cased: '"severity":"Notice"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -317,11 +328,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"HipsAggregated_Event
+    sagan_raw|contains|cased: event_type":"HipsAggregated_Event
   selection_3:
-    message|contains|cased: '"severity":"Warning"'
+    sagan_raw|contains|cased: '"severity":"Warning"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -345,11 +357,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"HipsAggregated_Event
+    sagan_raw|contains|cased: event_type":"HipsAggregated_Event
   selection_3:
-    message|contains|cased: '"severity":"Error"'
+    sagan_raw|contains|cased: '"severity":"Error"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -373,11 +386,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"HipsAggregated_Event
+    sagan_raw|contains|cased: event_type":"HipsAggregated_Event
   selection_3:
-    message|contains|cased: '"severity":"Critical"'
+    sagan_raw|contains|cased: '"severity":"Critical"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -401,11 +415,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"HipsAggregated_Event
+    sagan_raw|contains|cased: event_type":"HipsAggregated_Event
   selection_3:
-    message|contains|cased: '"severity":"Fatal"'
+    sagan_raw|contains|cased: '"severity":"Fatal"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -429,11 +444,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"Audit_Event
+    sagan_raw|contains|cased: event_type":"Audit_Event
   selection_3:
-    message|contains|cased: '"severity":"Notice"'
+    sagan_raw|contains|cased: '"severity":"Notice"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -457,11 +473,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"Audit_Event
+    sagan_raw|contains|cased: event_type":"Audit_Event
   selection_3:
-    message|contains|cased: '"severity":"Warning"'
+    sagan_raw|contains|cased: '"severity":"Warning"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -485,11 +502,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"Audit_Event
+    sagan_raw|contains|cased: event_type":"Audit_Event
   selection_3:
-    message|contains|cased: '"severity":"Error"'
+    sagan_raw|contains|cased: '"severity":"Error"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -513,11 +531,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"Audit_Event
+    sagan_raw|contains|cased: event_type":"Audit_Event
   selection_3:
-    message|contains|cased: '"severity":"Critical"'
+    sagan_raw|contains|cased: '"severity":"Critical"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -541,11 +560,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"Audit_Event
+    sagan_raw|contains|cased: event_type":"Audit_Event
   selection_3:
-    message|contains|cased: '"severity":"Fatal"'
+    sagan_raw|contains|cased: '"severity":"Fatal"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -569,11 +589,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"FilteredWebsites_Event
+    sagan_raw|contains|cased: event_type":"FilteredWebsites_Event
   selection_3:
-    message|contains|cased: '"severity":"Notice"'
+    sagan_raw|contains|cased: '"severity":"Notice"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -597,11 +618,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"FilteredWebsites_Event
+    sagan_raw|contains|cased: event_type":"FilteredWebsites_Event
   selection_3:
-    message|contains|cased: '"severity":"Warning"'
+    sagan_raw|contains|cased: '"severity":"Warning"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -625,11 +647,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"FilteredWebsites_Event
+    sagan_raw|contains|cased: event_type":"FilteredWebsites_Event
   selection_3:
-    message|contains|cased: '"severity":"Error"'
+    sagan_raw|contains|cased: '"severity":"Error"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -653,11 +676,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"FilteredWebsites_Event
+    sagan_raw|contains|cased: event_type":"FilteredWebsites_Event
   selection_3:
-    message|contains|cased: '"severity":"Critical"'
+    sagan_raw|contains|cased: '"severity":"Critical"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -681,11 +705,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"FilteredWebsites_Event
+    sagan_raw|contains|cased: event_type":"FilteredWebsites_Event
   selection_3:
-    message|contains|cased: '"severity":"Fatal"'
+    sagan_raw|contains|cased: '"severity":"Fatal"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -709,11 +734,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"EnterpriseInspectorAlert_Event
+    sagan_raw|contains|cased: event_type":"EnterpriseInspectorAlert_Event
   selection_3:
-    message|contains|cased: '"severity":"Notice"'
+    sagan_raw|contains|cased: '"severity":"Notice"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -737,11 +763,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"EnterpriseInspectorAlert_Event
+    sagan_raw|contains|cased: event_type":"EnterpriseInspectorAlert_Event
   selection_3:
-    message|contains|cased: '"severity":"Warning"'
+    sagan_raw|contains|cased: '"severity":"Warning"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -765,11 +792,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"EnterpriseInspectorAlert_Event
+    sagan_raw|contains|cased: event_type":"EnterpriseInspectorAlert_Event
   selection_3:
-    message|contains|cased: '"severity":"Error"'
+    sagan_raw|contains|cased: '"severity":"Error"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -793,11 +821,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"EnterpriseInspectorAlert_Event
+    sagan_raw|contains|cased: event_type":"EnterpriseInspectorAlert_Event
   selection_3:
-    message|contains|cased: '"severity":"Critical"'
+    sagan_raw|contains|cased: '"severity":"Critical"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -821,11 +850,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"EnterpriseInspectorAlert_Event
+    sagan_raw|contains|cased: event_type":"EnterpriseInspectorAlert_Event
   selection_3:
-    message|contains|cased: '"severity":"Fatal"'
+    sagan_raw|contains|cased: '"severity":"Fatal"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -849,11 +879,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"BlockedFiles_Event
+    sagan_raw|contains|cased: event_type":"BlockedFiles_Event
   selection_3:
-    message|contains|cased: '"severity":"Notice"'
+    sagan_raw|contains|cased: '"severity":"Notice"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -877,11 +908,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"BlockedFiles_Event
+    sagan_raw|contains|cased: event_type":"BlockedFiles_Event
   selection_3:
-    message|contains|cased: '"severity":"Warning"'
+    sagan_raw|contains|cased: '"severity":"Warning"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -905,11 +937,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"BlockedFiles_Event
+    sagan_raw|contains|cased: event_type":"BlockedFiles_Event
   selection_3:
-    message|contains|cased: '"severity":"Error"'
+    sagan_raw|contains|cased: '"severity":"Error"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -933,11 +966,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"BlockedFiles_Event
+    sagan_raw|contains|cased: event_type":"BlockedFiles_Event
   selection_3:
-    message|contains|cased: '"severity":"Critical"'
+    sagan_raw|contains|cased: '"severity":"Critical"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -961,11 +995,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"BlockedFiles_Event
+    sagan_raw|contains|cased: event_type":"BlockedFiles_Event
   selection_3:
-    message|contains|cased: '"severity":"Fatal"'
+    sagan_raw|contains|cased: '"severity":"Fatal"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -989,11 +1024,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"Incidents
+    sagan_raw|contains|cased: event_type":"Incidents
   selection_3:
-    message|contains|cased: '"severity":"Notice"'
+    sagan_raw|contains|cased: '"severity":"Notice"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1017,11 +1053,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"Incidents
+    sagan_raw|contains|cased: event_type":"Incidents
   selection_3:
-    message|contains|cased: '"severity":"Warning"'
+    sagan_raw|contains|cased: '"severity":"Warning"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1045,11 +1082,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"Incidents
+    sagan_raw|contains|cased: event_type":"Incidents
   selection_3:
-    message|contains|cased: '"severity":"Error"'
+    sagan_raw|contains|cased: '"severity":"Error"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1073,11 +1111,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"Incidents
+    sagan_raw|contains|cased: event_type":"Incidents
   selection_3:
-    message|contains|cased: '"severity":"Critical"'
+    sagan_raw|contains|cased: '"severity":"Critical"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1101,11 +1140,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event_type":"Incidents
+    sagan_raw|contains|cased: event_type":"Incidents
   selection_3:
-    message|contains|cased: '"severity":"Fatal"'
+    sagan_raw|contains|cased: '"severity":"Fatal"'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1127,9 +1167,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: rule_id":"Blocked by Anti-Phishing blacklist
+    sagan_raw|contains|cased: rule_id":"Blocked by Anti-Phishing blacklist
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1152,9 +1193,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: rule_id":"Blocked by internal IP blacklist
+    sagan_raw|contains|cased: rule_id":"Blocked by internal IP blacklist
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1177,9 +1219,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: rule_id":"Blocked by PUA blacklist
+    sagan_raw|contains|cased: rule_id":"Blocked by PUA blacklist
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1202,11 +1245,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event":"Security vulnerability exploitation attempt
+    sagan_raw|contains|cased: event":"Security vulnerability exploitation attempt
   filter_3:
-    message|contains|cased: Blocked
+    sagan_raw|contains|cased: Blocked
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1229,11 +1273,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   selection_2:
-    message|contains|cased: event":"TCP Port Scanning attack
+    sagan_raw|contains|cased: event":"TCP Port Scanning attack
   filter_3:
-    message|contains|cased: Blocked
+    sagan_raw|contains|cased: Blocked
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

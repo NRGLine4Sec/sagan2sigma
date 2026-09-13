@@ -7,9 +7,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains: deactivating service
+    sagan_raw|contains: deactivating service
   selection_2:
-    appname|cased: xinetd
+    - appname|cased: xinetd
+    - syslog_appname|cased: xinetd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -31,11 +32,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: START
+    sagan_raw|contains|cased: START
   selection_2:
-    message|contains|cased: telnet
+    sagan_raw|contains|cased: telnet
   selection_3:
-    appname|cased: xinetd
+    - appname|cased: xinetd
+    - syslog_appname|cased: xinetd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -57,11 +59,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: EXIT
+    sagan_raw|contains|cased: EXIT
   selection_2:
-    message|contains|cased: telnet
+    sagan_raw|contains|cased: telnet
   selection_3:
-    appname|cased: xinetd
+    - appname|cased: xinetd
+    - syslog_appname|cased: xinetd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -83,11 +86,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: START
+    sagan_raw|contains|cased: START
   selection_2:
-    message|contains|cased: pop-3
+    sagan_raw|contains|cased: pop-3
   selection_3:
-    appname|cased: xinetd
+    - appname|cased: xinetd
+    - syslog_appname|cased: xinetd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -110,11 +114,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: EXIT
+    sagan_raw|contains|cased: EXIT
   selection_2:
-    message|contains|cased: pop-3
+    sagan_raw|contains|cased: pop-3
   selection_3:
-    appname|cased: xinetd
+    - appname|cased: xinetd
+    - syslog_appname|cased: xinetd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -137,11 +142,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: START
+    sagan_raw|contains|cased: START
   selection_2:
-    message|contains|cased: imap2
+    sagan_raw|contains|cased: imap2
   selection_3:
-    appname|cased: xinetd
+    - appname|cased: xinetd
+    - syslog_appname|cased: xinetd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -163,11 +169,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: EXIT
+    sagan_raw|contains|cased: EXIT
   selection_2:
-    message|contains|cased: imap2
+    sagan_raw|contains|cased: imap2
   selection_3:
-    appname|cased: xinetd
+    - appname|cased: xinetd
+    - syslog_appname|cased: xinetd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -189,11 +196,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: START
+    sagan_raw|contains|cased: START
   selection_2:
-    message|contains|cased: pop3s
+    sagan_raw|contains|cased: pop3s
   selection_3:
-    appname|cased: xinetd
+    - appname|cased: xinetd
+    - syslog_appname|cased: xinetd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -215,11 +223,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: EXIT
+    sagan_raw|contains|cased: EXIT
   selection_2:
-    message|contains|cased: pop3s
+    sagan_raw|contains|cased: pop3s
   selection_3:
-    appname|cased: xinetd
+    - appname|cased: xinetd
+    - syslog_appname|cased: xinetd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -241,11 +250,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: USERID
+    sagan_raw|contains|cased: USERID
   selection_2:
-    message|contains|cased: pop3s
+    sagan_raw|contains|cased: pop3s
   selection_3:
-    appname|cased: xinetd
+    - appname|cased: xinetd
+    - syslog_appname|cased: xinetd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -267,11 +277,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: old password
+    sagan_raw|contains|cased: old password
   selection_2:
-    appname|cased:
-      - courierpassd
-      - poppassd
+    - appname|cased:
+        - courierpassd
+        - poppassd
+    - syslog_appname|cased:
+        - courierpassd
+        - poppassd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -293,11 +306,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: changed POP3
+    sagan_raw|contains|cased: changed POP3
   selection_2:
-    appname|cased:
-      - courierpassd
-      - poppassd
+    - appname|cased:
+        - courierpassd
+        - poppassd
+    - syslog_appname|cased:
+        - courierpassd
+        - poppassd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

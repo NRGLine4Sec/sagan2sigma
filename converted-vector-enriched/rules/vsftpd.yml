@@ -9,9 +9,10 @@ logsource:
   service: vsftpd
 detection:
   selection_1:
-    message|contains|cased: FAIL LOGIN
+    sagan_raw|contains|cased: FAIL LOGIN
   selection_2:
-    appname|cased: vsftpd
+    - appname|cased: vsftpd
+    - syslog_appname|cased: vsftpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -49,9 +50,9 @@ logsource:
   service: vsftpd
 detection:
   selection_1:
-    message|contains|cased: OK LOGIN
+    sagan_raw|contains|cased: OK LOGIN
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - ' apache '
       - ' mysql '
       - ' www '
@@ -82,7 +83,8 @@ detection:
       - ' ossec '
       - ' sagan '
   selection_3:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -106,14 +108,15 @@ logsource:
   service: vsftpd
 detection:
   selection_1:
-    message|contains|cased: ftpchk3
+    sagan_raw|contains|cased: ftpchk3
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - CHMOD
       - DELE
       - STOR
   selection_3:
-    appname|cased: vsftpd
+    - appname|cased: vsftpd
+    - syslog_appname|cased: vsftpd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

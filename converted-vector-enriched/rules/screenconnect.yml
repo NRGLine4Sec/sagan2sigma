@@ -7,13 +7,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: screenconnect-restful-api_data
+    - appname|cased: screenconnect-restful-api_data
+    - syslog_appname|cased: screenconnect-restful-api_data
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"EventType":44'
       - '"EventType":70'
   selection_3:
-    message|contains|cased: ipconfig
+    sagan_raw|contains|cased: ipconfig
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -35,13 +36,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: screenconnect-restful-api_data
+    - appname|cased: screenconnect-restful-api_data
+    - syslog_appname|cased: screenconnect-restful-api_data
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"EventType":44'
       - '"EventType":70'
   selection_3:
-    message|contains:
+    sagan_raw|contains:
       - net view
       - net config
       - net group
@@ -68,13 +70,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: screenconnect-restful-api_data
+    - appname|cased: screenconnect-restful-api_data
+    - syslog_appname|cased: screenconnect-restful-api_data
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"EventType":44'
       - '"EventType":70'
   selection_3:
-    message|contains:
+    sagan_raw|contains:
       - nltest /domain_trusts
       - nltest /all_trusts
   condition: selection_1 and selection_2 and selection_3
@@ -98,15 +101,16 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: screenconnect-restful-api_data
+    - appname|cased: screenconnect-restful-api_data
+    - syslog_appname|cased: screenconnect-restful-api_data
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"EventType":44'
       - '"EventType":70'
   selection_3:
-    message|contains: cmd.exe /c
+    sagan_raw|contains: cmd.exe /c
   selection_4:
-    message|contains|cased: .bat
+    sagan_raw|contains|cased: .bat
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -128,20 +132,21 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: screenconnect-restful-api_data
+    - appname|cased: screenconnect-restful-api_data
+    - syslog_appname|cased: screenconnect-restful-api_data
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"EventType":83'
       - '"EventType":84'
       - '"EventType":86'
   selection_3:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - .exe"},
       - .bat"},
       - .dll"},
       - .ps1"},
   selection_4:
-    message|re: \x22Data\x22\:\x22[a-zA-Z0-9\-\.]+\.(?:exe|bat|dll|ps1)\x22
+    sagan_raw|re: \x22Data\x22\:\x22[a-zA-Z0-9\-\.]+\.(?:exe|bat|dll|ps1)\x22
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -163,14 +168,15 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: screenconnect-restful-api_data
+    - appname|cased: screenconnect-restful-api_data
+    - syslog_appname|cased: screenconnect-restful-api_data
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"EventType":83'
       - '"EventType":84'
       - '"EventType":86'
   selection_3:
-    message|re: Data\x22\:\s\x22(?:[^\:,]+:){20}.*?\x22}
+    sagan_raw|re: Data\x22\:\s\x22(?:[^\:,]+:){20}.*?\x22}
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

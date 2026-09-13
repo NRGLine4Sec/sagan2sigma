@@ -10,9 +10,10 @@ logsource:
   product: centrify
 detection:
   selection_1:
-    message|contains|cased: centrifyEventID=24101
+    sagan_raw|contains|cased: centrifyEventID=24101
   selection_2:
-    appname|cased: adclient
+    - appname|cased: adclient
+    - syslog_appname|cased: adclient
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -52,9 +53,10 @@ logsource:
   product: centrify
 detection:
   selection_1:
-    message|contains|cased: centrifyEventID=24501
+    sagan_raw|contains|cased: centrifyEventID=24501
   selection_2:
-    appname|cased: adclient
+    - appname|cased: adclient
+    - syslog_appname|cased: adclient
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -92,9 +94,10 @@ logsource:
   product: centrify
 detection:
   selection_1:
-    message|contains: centrifyEventID=27101
+    sagan_raw|contains: centrifyEventID=27101
   selection_2:
-    appname|cased: adclient
+    - appname|cased: adclient
+    - syslog_appname|cased: adclient
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -132,11 +135,12 @@ logsource:
   product: centrify
 detection:
   selection_1:
-    message|contains: centrifyEventID=27101
+    sagan_raw|contains: centrifyEventID=27101
   selection_2:
-    message|contains: reason=AUTH_FAIL_PUBKEY
+    sagan_raw|contains: reason=AUTH_FAIL_PUBKEY
   selection_3:
-    appname|cased: adclient
+    - appname|cased: adclient
+    - syslog_appname|cased: adclient
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -174,11 +178,12 @@ logsource:
   product: centrify
 detection:
   selection_1:
-    message|contains: centrifyEventID=27101
+    sagan_raw|contains: centrifyEventID=27101
   selection_2:
-    message|contains: reason=INVALID_USER
+    sagan_raw|contains: reason=INVALID_USER
   selection_3:
-    appname|cased: adclient
+    - appname|cased: adclient
+    - syslog_appname|cased: adclient
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -216,11 +221,12 @@ logsource:
   product: centrify
 detection:
   selection_1:
-    message|contains: reason=AUTH_FAIL_GSSAPI
+    sagan_raw|contains: reason=AUTH_FAIL_GSSAPI
   selection_2:
-    message|contains: centrifyEventID=27101
+    sagan_raw|contains: centrifyEventID=27101
   selection_3:
-    appname|cased: adclient
+    - appname|cased: adclient
+    - syslog_appname|cased: adclient
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

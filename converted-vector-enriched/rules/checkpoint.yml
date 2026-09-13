@@ -7,7 +7,7 @@ logsource:
   product: checkpoint
 detection:
   selection_1:
-    message|contains|cased: '[action:"Detect";'
+    sagan_raw|contains|cased: '[action:"Detect";'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -28,7 +28,7 @@ logsource:
   product: checkpoint
 detection:
   selection_1:
-    message|contains|cased: '[action:"Failed Log In";'
+    sagan_raw|contains|cased: '[action:"Failed Log In";'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -49,7 +49,7 @@ logsource:
   product: checkpoint
 detection:
   selection_1:
-    message|contains|cased: '[action:"Quarantine";'
+    sagan_raw|contains|cased: '[action:"Quarantine";'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -70,7 +70,7 @@ logsource:
   product: checkpoint
 detection:
   selection_1:
-    message|contains|cased: '[action:"Replace Malicious Code";'
+    sagan_raw|contains|cased: '[action:"Replace Malicious Code";'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -91,7 +91,7 @@ logsource:
   product: checkpoint
 detection:
   selection_1:
-    message|contains|cased: '[action:"UC Block";'
+    sagan_raw|contains|cased: '[action:"UC Block";'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -112,7 +112,7 @@ logsource:
   product: checkpoint
 detection:
   selection_1:
-    message|contains|cased: '[action:"Remote Wipe";'
+    sagan_raw|contains|cased: '[action:"Remote Wipe";'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -133,7 +133,7 @@ logsource:
   product: checkpoint
 detection:
   selection_1:
-    message|contains|cased: '[action:"Reset Passcode";'
+    sagan_raw|contains|cased: '[action:"Reset Passcode";'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -154,7 +154,7 @@ logsource:
   product: checkpoint
 detection:
   selection_1:
-    message|contains|cased: '[action:"Forgot Passcode";'
+    sagan_raw|contains|cased: '[action:"Forgot Passcode";'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -175,7 +175,7 @@ logsource:
   product: checkpoint
 detection:
   selection_1:
-    message|contains|cased: '[action:"Open Shell";'
+    sagan_raw|contains|cased: '[action:"Open Shell";'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -196,7 +196,7 @@ logsource:
   product: checkpoint
 detection:
   selection_1:
-    message|contains|cased: '[action:"Run Script";'
+    sagan_raw|contains|cased: '[action:"Run Script";'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -218,9 +218,9 @@ logsource:
   product: checkpoint
 detection:
   selection_1:
-    message|contains|cased: act=Drop
+    sagan_raw|contains|cased: act=Drop
   selection_2:
-    message|contains|cased: product=VPN-1 & FireWall-1
+    sagan_raw|contains|cased: product=VPN-1 & FireWall-1
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -260,9 +260,9 @@ logsource:
   product: checkpoint
 detection:
   selection_1:
-    message|contains|cased: Identity Awareness
+    sagan_raw|contains|cased: Identity Awareness
   selection_2:
-    message|contains|cased: auth_status=Failed Login
+    sagan_raw|contains|cased: auth_status=Failed Login
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -301,9 +301,9 @@ logsource:
   product: checkpoint
 detection:
   selection_1:
-    message|contains|cased: Identity Awareness
+    sagan_raw|contains|cased: Identity Awareness
   selection_2:
-    message|contains|cased: Successful Login
+    sagan_raw|contains|cased: Successful Login
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

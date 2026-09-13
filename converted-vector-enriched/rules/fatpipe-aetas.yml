@@ -7,9 +7,10 @@ logsource:
   product: fatpipe
 detection:
   selection_1:
-    message|contains|cased: 'Login: Success'
+    sagan_raw|contains|cased: 'Login: Success'
   selection_2:
-    appname|cased: xtremed
+    - appname|cased: xtremed
+    - syslog_appname|cased: xtremed
   at_days:
     sagan_event_weekday:
       - 1
@@ -41,11 +42,12 @@ logsource:
   product: fatpipe
 detection:
   selection_1:
-    message|contains|cased: 'Login: Success'
+    sagan_raw|contains|cased: 'Login: Success'
   selection_2:
-    message|contains|cased: ADMINISTRATOR
+    sagan_raw|contains|cased: ADMINISTRATOR
   selection_3:
-    appname|cased: xtremed
+    - appname|cased: xtremed
+    - syslog_appname|cased: xtremed
   at_days:
     sagan_event_weekday:
       - 1

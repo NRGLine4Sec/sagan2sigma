@@ -9,13 +9,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Incapsula
+    - appname|cased: Incapsula
+    - syslog_appname|cased: Incapsula
   selection_2:
-    message|contains|cased: '|SQL Injection|'
+    sagan_raw|contains|cased: '|SQL Injection|'
   selection_3:
-    message|contains|cased: act=REQ_PASSED
+    sagan_raw|contains|cased: act=REQ_PASSED
   filter_4:
-    message|contains|cased: LINK Tag Injection
+    sagan_raw|contains|cased: LINK Tag Injection
   condition: selection_1 and selection_2 and selection_3 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -42,15 +43,16 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Incapsula
+    - appname|cased: Incapsula
+    - syslog_appname|cased: Incapsula
   selection_2:
-    message|contains|cased: '|Cross Site Scripting|'
+    sagan_raw|contains|cased: '|Cross Site Scripting|'
   selection_3:
-    message|contains|cased: act=REQ_PASSED
+    sagan_raw|contains|cased: act=REQ_PASSED
   filter_4:
-    message|contains|cased: LINK Tag Injection
+    sagan_raw|contains|cased: LINK Tag Injection
   filter_5:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - cn1=40
       - cn1=50
   condition: selection_1 and selection_2 and selection_3 and not (filter_4 or filter_5)
@@ -79,11 +81,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Incapsula
+    - appname|cased: Incapsula
+    - syslog_appname|cased: Incapsula
   selection_2:
-    message|contains|cased: '|Illegal Resource Access|'
+    sagan_raw|contains|cased: '|Illegal Resource Access|'
   selection_3:
-    message|contains|cased: act=REQ_PASSED
+    sagan_raw|contains|cased: act=REQ_PASSED
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -109,11 +112,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Incapsula
+    - appname|cased: Incapsula
+    - syslog_appname|cased: Incapsula
   selection_2:
-    message|contains|cased: '|Bot Access Control|'
+    sagan_raw|contains|cased: '|Bot Access Control|'
   selection_3:
-    message|contains|cased: act=REQ_PASSED
+    sagan_raw|contains|cased: act=REQ_PASSED
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -139,11 +143,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Incapsula
+    - appname|cased: Incapsula
+    - syslog_appname|cased: Incapsula
   selection_2:
-    message|contains|cased: '|Backdoor Protect|'
+    sagan_raw|contains|cased: '|Backdoor Protect|'
   selection_3:
-    message|contains|cased: act=REQ_PASSED
+    sagan_raw|contains|cased: act=REQ_PASSED
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -169,11 +174,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Incapsula
+    - appname|cased: Incapsula
+    - syslog_appname|cased: Incapsula
   selection_2:
-    message|contains|cased: '|Remote File Inclusion|'
+    sagan_raw|contains|cased: '|Remote File Inclusion|'
   selection_3:
-    message|contains|cased: act=REQ_PASSED
+    sagan_raw|contains|cased: act=REQ_PASSED
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -199,11 +205,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Incapsula
+    - appname|cased: Incapsula
+    - syslog_appname|cased: Incapsula
   selection_2:
-    message|contains|cased: '|12| fileId'
+    sagan_raw|contains|cased: '|12| fileId'
   selection_3:
-    message|contains|cased: act=REQ_PASSED
+    sagan_raw|contains|cased: act=REQ_PASSED
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -229,11 +236,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Incapsula
+    - appname|cased: Incapsula
+    - syslog_appname|cased: Incapsula
   selection_2:
-    message|contains|cased: '|Account Takeover Protection|'
+    sagan_raw|contains|cased: '|Account Takeover Protection|'
   selection_3:
-    message|contains|cased: act=REQ_PASSED
+    sagan_raw|contains|cased: act=REQ_PASSED
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -259,11 +267,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Incapsula
+    - appname|cased: Incapsula
+    - syslog_appname|cased: Incapsula
   selection_2:
-    message|contains|cased: '|Bad Bot|'
+    sagan_raw|contains|cased: '|Bad Bot|'
   selection_3:
-    message|contains|cased: act=REQ_PASSED
+    sagan_raw|contains|cased: act=REQ_PASSED
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -287,11 +296,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - Incapsula*
-      - incapsula*
+    - appname|cased:
+        - Incapsula*
+        - incapsula*
+    - syslog_appname|cased:
+        - Incapsula*
+        - incapsula*
   selection_2:
-    message|contains|cased: '|Visitors from blacklisted IPs|'
+    sagan_raw|contains|cased: '|Visitors from blacklisted IPs|'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -312,11 +324,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - Incapsula*
-      - incapsula*
+    - appname|cased:
+        - Incapsula*
+        - incapsula*
+    - syslog_appname|cased:
+        - Incapsula*
+        - incapsula*
   selection_2:
-    message|contains|cased: '|Visitors from blacklisted Countries|'
+    sagan_raw|contains|cased: '|Visitors from blacklisted Countries|'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -337,11 +352,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - Incapsula*
-      - incapsula*
+    - appname|cased:
+        - Incapsula*
+        - incapsula*
+    - syslog_appname|cased:
+        - Incapsula*
+        - incapsula*
   selection_2:
-    message|contains|cased: '|Visitors from blacklisted URLs|'
+    sagan_raw|contains|cased: '|Visitors from blacklisted URLs|'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -362,11 +380,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - Incapsula*
-      - incapsula*
+    - appname|cased:
+        - Incapsula*
+        - incapsula*
+    - syslog_appname|cased:
+        - Incapsula*
+        - incapsula*
   selection_2:
-    message|contains|cased: '|DDoS|'
+    sagan_raw|contains|cased: '|DDoS|'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

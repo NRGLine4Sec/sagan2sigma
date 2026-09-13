@@ -7,9 +7,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Juniper
+    - appname|cased: Juniper
+    - syslog_appname|cased: Juniper
   selection_2:
-    message|re|i: Authentication successful|Login succeeded
+    sagan_raw|re|i: Authentication successful|Login succeeded
   at_days:
     sagan_event_weekday:
       - 1
@@ -41,9 +42,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Juniper
+    - appname|cased: Juniper
+    - syslog_appname|cased: Juniper
   selection_2:
-    message|contains|cased: Logout from
+    sagan_raw|contains|cased: Logout from
   at_days:
     sagan_event_weekday:
       - 1
@@ -77,13 +79,13 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: APPTRACK_SESSION_CREATE
+    sagan_raw|contains|cased: APPTRACK_SESSION_CREATE
   selection_2:
-    message|contains|cased: application="UNKNOWN"
+    sagan_raw|contains|cased: application="UNKNOWN"
   selection_3:
-    message|contains|cased: destination-zone-name="untrust"
+    sagan_raw|contains|cased: destination-zone-name="untrust"
   selection_4:
-    message|contains|cased: source-zone-name="trust"
+    sagan_raw|contains|cased: source-zone-name="trust"
   at_days:
     sagan_event_weekday:
       - 1

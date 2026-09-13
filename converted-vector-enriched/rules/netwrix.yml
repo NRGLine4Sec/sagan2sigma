@@ -8,13 +8,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Netwrix_Auditor_Integration
+    - appname|cased: Netwrix_Auditor_Integration
+    - syslog_appname|cased: Netwrix_Auditor_Integration
   selection_2:
-    message|contains|cased: 'DataSource : Logon Activity'
+    sagan_raw|contains|cased: 'DataSource : Logon Activity'
   selection_3:
-    message|contains|cased: 'Action : Failed'
+    sagan_raw|contains|cased: 'Action : Failed'
   selection_4:
-    message|contains|cased: 'Message: Failed Logon'
+    sagan_raw|contains|cased: 'Message: Failed Logon'
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -51,15 +52,16 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Netwrix_Auditor_Integration
+    - appname|cased: Netwrix_Auditor_Integration
+    - syslog_appname|cased: Netwrix_Auditor_Integration
   selection_2:
-    message|contains|cased: 'DataSource : User Activity (Video)'
+    sagan_raw|contains|cased: 'DataSource : User Activity (Video)'
   selection_3:
-    message|contains|cased: 'Action : Activated'
+    sagan_raw|contains|cased: 'Action : Activated'
   selection_4:
-    message|contains|cased: 'Message: Activated Window'
+    sagan_raw|contains|cased: 'Message: Activated Window'
   selection_5:
-    message|contains|cased: 'What : Windows PowerShell'
+    sagan_raw|contains|cased: 'What : Windows PowerShell'
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -80,15 +82,16 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Netwrix_Auditor_Integration
+    - appname|cased: Netwrix_Auditor_Integration
+    - syslog_appname|cased: Netwrix_Auditor_Integration
   selection_2:
-    message|contains|cased: 'DataSource : User Activity (Video)'
+    sagan_raw|contains|cased: 'DataSource : User Activity (Video)'
   selection_3:
-    message|contains|cased: 'Action : Activated'
+    sagan_raw|contains|cased: 'Action : Activated'
   selection_4:
-    message|contains|cased: 'Message: Activated Window'
+    sagan_raw|contains|cased: 'Message: Activated Window'
   selection_5:
-    message|contains|cased: 'What : COM Surrogate'
+    sagan_raw|contains|cased: 'What : COM Surrogate'
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -109,13 +112,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Netwrix_Auditor_Integration
+    - appname|cased: Netwrix_Auditor_Integration
+    - syslog_appname|cased: Netwrix_Auditor_Integration
   selection_2:
-    message|contains|cased: 'DataSource : User Activity (Video)'
+    sagan_raw|contains|cased: 'DataSource : User Activity (Video)'
   selection_3:
-    message|contains|cased: 'Action : Activated'
+    sagan_raw|contains|cased: 'Action : Activated'
   selection_4:
-    message|contains|cased: 'Message: Activated Elevated Window'
+    sagan_raw|contains|cased: 'Message: Activated Elevated Window'
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -136,11 +140,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Netwrix_Auditor_Integration
+    - appname|cased: Netwrix_Auditor_Integration
+    - syslog_appname|cased: Netwrix_Auditor_Integration
   selection_2:
-    message|contains|cased: 'DataSource : Windows Server'
+    sagan_raw|contains|cased: 'DataSource : Windows Server'
   selection_3:
-    message|contains|cased: 'Message: Added Scheduled Task'
+    sagan_raw|contains|cased: 'Message: Added Scheduled Task'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -161,15 +166,16 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Netwrix_Auditor_Integration
+    - appname|cased: Netwrix_Auditor_Integration
+    - syslog_appname|cased: Netwrix_Auditor_Integration
   selection_2:
-    message|contains|cased: 'DataSource : Windows Server'
+    sagan_raw|contains|cased: 'DataSource : Windows Server'
   selection_3:
-    message|contains|cased: 'Message: Added System Service'
+    sagan_raw|contains|cased: 'Message: Added System Service'
   selection_4:
-    message|contains|cased: Path to executable
+    sagan_raw|contains|cased: Path to executable
   filter_5:
-    message|contains|cased: '"C:\\Program Files'
+    sagan_raw|contains|cased: '"C:\\Program Files'
   condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -190,13 +196,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Netwrix_Auditor_Integration
+    - appname|cased: Netwrix_Auditor_Integration
+    - syslog_appname|cased: Netwrix_Auditor_Integration
   selection_2:
-    message|contains|cased: 'DataSource : Windows Server'
+    sagan_raw|contains|cased: 'DataSource : Windows Server'
   selection_3:
-    message|contains|cased: 'Message: Modified Local User'
+    sagan_raw|contains|cased: 'Message: Modified Local User'
   selection_4:
-    message|contains|cased: Unlocked changed from "Yes" to "No"
+    sagan_raw|contains|cased: Unlocked changed from "Yes" to "No"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -217,13 +224,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Netwrix_Auditor_Integration
+    - appname|cased: Netwrix_Auditor_Integration
+    - syslog_appname|cased: Netwrix_Auditor_Integration
   selection_2:
-    message|contains|cased: 'DataSource : Windows Server'
+    sagan_raw|contains|cased: 'DataSource : Windows Server'
   selection_3:
-    message|contains|cased: 'Message: Modified Local User'
+    sagan_raw|contains|cased: 'Message: Modified Local User'
   selection_4:
-    message|contains|cased: Unlocked changed from "No" to "Yes"
+    sagan_raw|contains|cased: Unlocked changed from "No" to "Yes"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -244,11 +252,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Netwrix_Auditor_Integration
+    - appname|cased: Netwrix_Auditor_Integration
+    - syslog_appname|cased: Netwrix_Auditor_Integration
   selection_2:
-    message|contains|cased: 'DataSource : Windows Server'
+    sagan_raw|contains|cased: 'DataSource : Windows Server'
   selection_3:
-    message|contains|cased: 'Message: Added Local User'
+    sagan_raw|contains|cased: 'Message: Added Local User'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

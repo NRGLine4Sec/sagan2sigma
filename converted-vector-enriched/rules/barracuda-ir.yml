@@ -9,9 +9,10 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    appname|cased: Forensics
+    - appname|cased: Forensics
+    - syslog_appname|cased: Forensics
   selection_2:
-    message|contains|cased: '"category":"Continuous Remediation Enabled"'
+    sagan_raw|contains|cased: '"category":"Continuous Remediation Enabled"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -34,9 +35,10 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    appname|cased: Forensics
+    - appname|cased: Forensics
+    - syslog_appname|cased: Forensics
   selection_2:
-    message|contains|cased: '"category":"Deleted Email"'
+    sagan_raw|contains|cased: '"category":"Deleted Email"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -59,9 +61,10 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    appname|cased: Forensics
+    - appname|cased: Forensics
+    - syslog_appname|cased: Forensics
   selection_2:
-    message|contains|cased: '"category":"Incident Manual"'
+    sagan_raw|contains|cased: '"category":"Incident Manual"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -84,9 +87,10 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    appname|cased: Forensics
+    - appname|cased: Forensics
+    - syslog_appname|cased: Forensics
   selection_2:
-    message|contains|cased: '"category":"Potential Incident: Post-Delivery Threat"'
+    sagan_raw|contains|cased: '"category":"Potential Incident: Post-Delivery Threat"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -109,9 +113,10 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    appname|cased: Forensics
+    - appname|cased: Forensics
+    - syslog_appname|cased: Forensics
   selection_2:
-    message|contains|cased: '"category":"Potential Incident: Related Threats"'
+    sagan_raw|contains|cased: '"category":"Potential Incident: Related Threats"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -134,9 +139,10 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    appname|cased: Forensics
+    - appname|cased: Forensics
+    - syslog_appname|cased: Forensics
   selection_2:
-    message|contains|cased: '"category":"User-Reported Email"'
+    sagan_raw|contains|cased: '"category":"User-Reported Email"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

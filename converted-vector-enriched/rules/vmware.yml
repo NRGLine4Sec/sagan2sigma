@@ -8,11 +8,14 @@ logsource:
   product: vmware
 detection:
   selection_1:
-    message|contains|cased: Rejected password for
+    sagan_raw|contains|cased: Rejected password for
   selection_2:
-    appname|cased:
-      - vmware-hostd
-      - vmware-authd
+    - appname|cased:
+        - vmware-hostd
+        - vmware-authd
+    - syslog_appname|cased:
+        - vmware-hostd
+        - vmware-authd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -51,16 +54,20 @@ logsource:
   product: vmware
 detection:
   selection_1:
-    appname|cased:
-      - '*hostd*'
-      - '*authd*'
-      - '*shell*'
+    - appname|cased:
+        - '*hostd*'
+        - '*authd*'
+        - '*shell*'
+    - syslog_appname|cased:
+        - '*hostd*'
+        - '*authd*'
+        - '*shell*'
   selection_2:
-    message|contains: ssh
+    sagan_raw|contains: ssh
   selection_3:
-    message|contains|cased: -R
+    sagan_raw|contains|cased: -R
   selection_4:
-    message|contains|cased: '127.0.0.1:'
+    sagan_raw|contains|cased: '127.0.0.1:'
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -84,9 +91,10 @@ logsource:
   product: vmware
 detection:
   selection_1:
-    appname|cased: '*hostd*'
+    - appname|cased: '*hostd*'
+    - syslog_appname|cased: '*hostd*'
   selection_2:
-    message|contains: esx.audit.ssh.enabled
+    sagan_raw|contains: esx.audit.ssh.enabled
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -110,9 +118,10 @@ logsource:
   product: vmware
 detection:
   selection_1:
-    appname|cased: '*authd*'
+    - appname|cased: '*authd*'
+    - syslog_appname|cased: '*authd*'
   selection_2:
-    message|contains: SSH login enabled
+    sagan_raw|contains: SSH login enabled
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

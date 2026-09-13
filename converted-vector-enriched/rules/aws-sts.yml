@@ -9,13 +9,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: sts.amazonaws.com
+    - appname|cased: sts.amazonaws.com
+    - syslog_appname|cased: sts.amazonaws.com
   selection_2:
-    message|contains|cased: 'eventName": "AssumeRoleWithSAML'
+    sagan_raw|contains|cased: 'eventName": "AssumeRoleWithSAML'
   filter_3:
-    message|contains|cased: AWSReservedSSO_
+    sagan_raw|contains|cased: AWSReservedSSO_
   filter_4:
-    message|contains|cased: AWSServiceRole
+    sagan_raw|contains|cased: AWSServiceRole
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -38,13 +39,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: sts.amazonaws.com
+    - appname|cased: sts.amazonaws.com
+    - syslog_appname|cased: sts.amazonaws.com
   selection_2:
-    message|contains|cased: 'eventName": "AssumeRoleWithWebIdentity'
+    sagan_raw|contains|cased: 'eventName": "AssumeRoleWithWebIdentity'
   filter_3:
-    message|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
   filter_4:
-    message|contains|cased: AWSServiceRole
+    sagan_raw|contains|cased: AWSServiceRole
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -67,13 +69,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: sts.amazonaws.com
+    - appname|cased: sts.amazonaws.com
+    - syslog_appname|cased: sts.amazonaws.com
   selection_2:
-    message|contains|cased: 'eventName": "DecodeAuthorizationMessage'
+    sagan_raw|contains|cased: 'eventName": "DecodeAuthorizationMessage'
   filter_3:
-    message|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
   filter_4:
-    message|contains|cased: AWSServiceRole
+    sagan_raw|contains|cased: AWSServiceRole
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -96,13 +99,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: sts.amazonaws.com
+    - appname|cased: sts.amazonaws.com
+    - syslog_appname|cased: sts.amazonaws.com
   selection_2:
-    message|contains|cased: 'eventName": "GetAccessKeyInfo'
+    sagan_raw|contains|cased: 'eventName": "GetAccessKeyInfo'
   filter_3:
-    message|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
   filter_4:
-    message|contains|cased: AWSServiceRole
+    sagan_raw|contains|cased: AWSServiceRole
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -125,13 +129,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: sts.amazonaws.com
+    - appname|cased: sts.amazonaws.com
+    - syslog_appname|cased: sts.amazonaws.com
   selection_2:
-    message|contains|cased: 'eventName": "GetFederationToken'
+    sagan_raw|contains|cased: 'eventName": "GetFederationToken'
   filter_3:
-    message|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
   filter_4:
-    message|contains|cased: AWSServiceRole
+    sagan_raw|contains|cased: AWSServiceRole
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -154,13 +159,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: sts.amazonaws.com
+    - appname|cased: sts.amazonaws.com
+    - syslog_appname|cased: sts.amazonaws.com
   selection_2:
-    message|contains|cased: 'eventName": "GetSessionToken'
+    sagan_raw|contains|cased: 'eventName": "GetSessionToken'
   filter_3:
-    message|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
   filter_4:
-    message|contains|cased: AWSServiceRole
+    sagan_raw|contains|cased: AWSServiceRole
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -184,15 +190,16 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: sts.amazonaws.com
+    - appname|cased: sts.amazonaws.com
+    - syslog_appname|cased: sts.amazonaws.com
   selection_2:
-    message|contains|cased: 'eventName": "GetCallerIdentity"'
+    sagan_raw|contains|cased: 'eventName": "GetCallerIdentity"'
   filter_3:
-    message|contains|cased: AWSReservedSSO_AWSAdministratorAccess
+    sagan_raw|contains|cased: AWSReservedSSO_AWSAdministratorAccess
   filter_4:
-    message|contains|cased: AWSServiceRole
+    sagan_raw|contains|cased: AWSServiceRole
   filter_5:
-    message|contains|cased: terraform
+    sagan_raw|contains|cased: terraform
   condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

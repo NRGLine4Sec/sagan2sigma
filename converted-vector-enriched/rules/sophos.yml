@@ -7,7 +7,7 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    message|contains|cased: '::Threat::'
+    sagan_raw|contains|cased: '::Threat::'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -30,9 +30,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::NotProtected
+    sagan_raw|contains|cased: Event::Endpoint::NotProtected
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -55,9 +56,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Protected
+    sagan_raw|contains|cased: Event::Endpoint::Protected
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -80,9 +82,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::SavDisabled
+    sagan_raw|contains|cased: Event::Endpoint::SavDisabled
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -105,9 +108,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::SavEnabled
+    sagan_raw|contains|cased: Event::Endpoint::SavEnabled
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -130,9 +134,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Isolation::Isolated::ADMIN_UNKNOWN
+    sagan_raw|contains|cased: Event::Endpoint::Isolation::Isolated::ADMIN_UNKNOWN
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -155,9 +160,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::WebFilteringBlocked
+    sagan_raw|contains|cased: Event::Endpoint::WebFilteringBlocked
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -180,9 +186,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::WebControlViolation::BLOCKED
+    sagan_raw|contains|cased: Event::Endpoint::WebControlViolation::BLOCKED
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -205,9 +212,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::WebControlViolation::UNKNOWN
+    sagan_raw|contains|cased: Event::Endpoint::WebControlViolation::UNKNOWN
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -230,9 +238,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::WindowsFirewall::Blocked
+    sagan_raw|contains|cased: Event::Endpoint::WindowsFirewall::Blocked
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -256,9 +265,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::UnsupportedOperatingSystem
+    sagan_raw|contains|cased: Event::Endpoint::UnsupportedOperatingSystem
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -281,9 +291,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Task::SecurityIssue
+    sagan_raw|contains|cased: Event::Task::SecurityIssue
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -306,9 +317,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::Dismissed
+    sagan_raw|contains|cased: Event::Endpoint::Threat::Dismissed
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -331,9 +343,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::CleanedUp
+    sagan_raw|contains|cased: Event::Endpoint::Threat::CleanedUp
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -356,9 +369,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::CommandAndControlDetected::1
+    sagan_raw|contains|cased: Event::Endpoint::Threat::CommandAndControlDetected::1
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -381,9 +395,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::CommandAndControlDetected::2
+    sagan_raw|contains|cased: Event::Endpoint::Threat::CommandAndControlDetected::2
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -406,9 +421,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::CommandAndControlDetected::3
+    sagan_raw|contains|cased: Event::Endpoint::Threat::CommandAndControlDetected::3
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -431,9 +447,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::CommandAndControlDismissed
+    sagan_raw|contains|cased: Event::Endpoint::Threat::CommandAndControlDismissed
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -456,9 +473,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::IpsInboundDetection
+    sagan_raw|contains|cased: Event::Endpoint::Threat::IpsInboundDetection
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -481,9 +499,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::IpsInboundDetection::1
+    sagan_raw|contains|cased: Event::Endpoint::Threat::IpsInboundDetection::1
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -506,9 +525,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::IpsInboundDetection::2
+    sagan_raw|contains|cased: Event::Endpoint::Threat::IpsInboundDetection::2
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -531,9 +551,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::CoreIpsClean
+    sagan_raw|contains|cased: Event::Endpoint::CoreIpsClean
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -556,9 +577,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::CoreIpsCleanFailed
+    sagan_raw|contains|cased: Event::Endpoint::CoreIpsCleanFailed
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -581,9 +603,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::HIPSCleanedUp
+    sagan_raw|contains|cased: Event::Endpoint::Threat::HIPSCleanedUp
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -606,9 +629,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::HIPSDetected
+    sagan_raw|contains|cased: Event::Endpoint::Threat::HIPSDetected
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -631,9 +655,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::HIPSDismissed
+    sagan_raw|contains|cased: Event::Endpoint::Threat::HIPSDismissed
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -656,9 +681,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::Detected
+    sagan_raw|contains|cased: Event::Endpoint::Threat::Detected
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -681,9 +707,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::PuaDismissed
+    sagan_raw|contains|cased: Event::Endpoint::Threat::PuaDismissed
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -706,9 +733,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::PuaCleanedUp
+    sagan_raw|contains|cased: Event::Endpoint::Threat::PuaCleanedUp
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -731,9 +759,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::PuaDetected
+    sagan_raw|contains|cased: Event::Endpoint::Threat::PuaDetected
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -756,9 +785,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::HomePuaRemnantsDeleted
+    sagan_raw|contains|cased: Event::Endpoint::HomePuaRemnantsDeleted
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -781,9 +811,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::HomePuaRemnantsDetected
+    sagan_raw|contains|cased: Event::Endpoint::HomePuaRemnantsDetected
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -806,9 +837,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::HomeThreatRemnantsDeleted
+    sagan_raw|contains|cased: Event::Endpoint::HomeThreatRemnantsDeleted
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -831,9 +863,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::HomeThreatRemnantsDetected
+    sagan_raw|contains|cased: Event::Endpoint::HomeThreatRemnantsDetected
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -856,9 +889,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::HmpaBehaviourPrevented
+    sagan_raw|contains|cased: Event::Endpoint::HmpaBehaviourPrevented
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -881,9 +915,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::HmpaCredGuard
+    sagan_raw|contains|cased: Event::Endpoint::HmpaCredGuard
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -906,9 +941,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::HmpaCredGuardResolved
+    sagan_raw|contains|cased: Event::Endpoint::HmpaCredGuardResolved
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -931,9 +967,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::HmpaCryptoGuard
+    sagan_raw|contains|cased: Event::Endpoint::HmpaCryptoGuard
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -956,9 +993,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::HmpaCryptoGuardResolved
+    sagan_raw|contains|cased: Event::Endpoint::HmpaCryptoGuardResolved
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -981,9 +1019,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::HmpaCryptoGuardSMB
+    sagan_raw|contains|cased: Event::Endpoint::HmpaCryptoGuardSMB
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1006,9 +1045,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::HmpaCryptoGuardSMBOrigin
+    sagan_raw|contains|cased: Event::Endpoint::HmpaCryptoGuardSMBOrigin
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1031,9 +1071,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::HmpaCryptoGuardSMBResolved
+    sagan_raw|contains|cased: Event::Endpoint::HmpaCryptoGuardSMBResolved
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1056,9 +1097,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::HmpaExploitPrevented
+    sagan_raw|contains|cased: Event::Endpoint::HmpaExploitPrevented
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1081,9 +1123,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::HmpaMalwareDetected
+    sagan_raw|contains|cased: Event::Endpoint::HmpaMalwareDetected
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1106,9 +1149,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::HmpaMalwareCleanup
+    sagan_raw|contains|cased: Event::Endpoint::HmpaMalwareCleanup
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1131,9 +1175,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::HmpaPrivGuard
+    sagan_raw|contains|cased: Event::Endpoint::HmpaPrivGuard
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1156,9 +1201,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::HmpaPrivGuardResolved
+    sagan_raw|contains|cased: Event::Endpoint::HmpaPrivGuardResolved
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1181,9 +1227,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::HmpaPuaDetected
+    sagan_raw|contains|cased: Event::Endpoint::HmpaPuaDetected
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1206,9 +1253,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::HmpaPuaCleanup
+    sagan_raw|contains|cased: Event::Endpoint::HmpaPuaCleanup
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1231,9 +1279,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::HmpaSafeBrowsing
+    sagan_raw|contains|cased: Event::Endpoint::HmpaSafeBrowsing
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1256,9 +1305,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::HmpaThreat
+    sagan_raw|contains|cased: Event::Endpoint::HmpaThreat
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1281,9 +1331,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::CoreAmsiBlocked::1
+    sagan_raw|contains|cased: Event::Endpoint::CoreAmsiBlocked::1
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1306,9 +1357,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::CoreAmsiBlocked::2
+    sagan_raw|contains|cased: Event::Endpoint::CoreAmsiBlocked::2
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1331,9 +1383,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event.Endpoint.CoreAmsiClean
+    sagan_raw|contains|cased: Event.Endpoint.CoreAmsiClean
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1356,9 +1409,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event.Endpoint.CoreAmsiCleanFailed
+    sagan_raw|contains|cased: Event.Endpoint.CoreAmsiCleanFailed
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1381,9 +1435,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::CoreDetection
+    sagan_raw|contains|cased: Event::Endpoint::CoreDetection
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1406,9 +1461,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::CoreRemoteDetection
+    sagan_raw|contains|cased: Event::Endpoint::CoreRemoteDetection
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1431,9 +1487,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::CorePuaDetection
+    sagan_raw|contains|cased: Event::Endpoint::CorePuaDetection
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1456,9 +1513,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::CorePuaRemoteDetection
+    sagan_raw|contains|cased: Event::Endpoint::CorePuaRemoteDetection
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1481,9 +1539,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::CoreClean|
+    sagan_raw|contains|cased: Event::Endpoint::CoreClean|
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1506,9 +1565,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::CoreCleanFailed
+    sagan_raw|contains|cased: Event::Endpoint::CoreCleanFailed
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1531,9 +1591,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::CoreHmpaClean
+    sagan_raw|contains|cased: Event::Endpoint::CoreHmpaClean
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1556,9 +1617,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::CoreHmpaCleanFailed
+    sagan_raw|contains|cased: Event::Endpoint::CoreHmpaCleanFailed
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1581,11 +1643,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::CorePuaClean
+    sagan_raw|contains|cased: Event::Endpoint::CorePuaClean
   filter_3:
-    message|contains|cased: Event::Endpoint::CorePuaCleanFailed
+    sagan_raw|contains|cased: Event::Endpoint::CorePuaCleanFailed
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1609,9 +1672,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased:  "
+    sagan_raw|contains|cased:  "
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1634,9 +1698,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::CoreBlocklistClean
+    sagan_raw|contains|cased: Event::Endpoint::CoreBlocklistClean
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1659,9 +1724,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::CoreBlocklistCleanFailed
+    sagan_raw|contains|cased: Event::Endpoint::CoreBlocklistCleanFailed
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1684,9 +1750,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::CoreSystemCleanFailed
+    sagan_raw|contains|cased: Event::Endpoint::CoreSystemCleanFailed
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1709,9 +1776,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::CoreOutbreak
+    sagan_raw|contains|cased: Event::Endpoint::CoreOutbreak
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1734,9 +1802,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::CoreDismissed
+    sagan_raw|contains|cased: Event::Endpoint::CoreDismissed
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1759,9 +1828,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::CoreOutbreakDismissed
+    sagan_raw|contains|cased: Event::Endpoint::CoreOutbreakDismissed
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1784,9 +1854,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Firewall::FirewallAdvancedThreatProtection
+    sagan_raw|contains|cased: Event::Firewall::FirewallAdvancedThreatProtection
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1809,9 +1880,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Firewall::FirewallGatewayDown
+    sagan_raw|contains|cased: Event::Firewall::FirewallGatewayDown
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1834,9 +1906,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Firewall::FirewallGatewayUp
+    sagan_raw|contains|cased: Event::Firewall::FirewallGatewayUp
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1859,9 +1932,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Iaas::IaasError::INVALID_ACCOUNT_CREDENTIALS
+    sagan_raw|contains|cased: Event::Iaas::IaasError::INVALID_ACCOUNT_CREDENTIALS
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1884,9 +1958,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::IaasAzure::AzureError::INVALID_CREDENTIALS
+    sagan_raw|contains|cased: Event::IaasAzure::AzureError::INVALID_CREDENTIALS
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1909,9 +1984,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Smc::MitmAttackEvent::0
+    sagan_raw|contains|cased: Event::Smc::MitmAttackEvent::0
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1934,9 +2010,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Smc::MitmAttackEvent::1
+    sagan_raw|contains|cased: Event::Smc::MitmAttackEvent::1
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1959,9 +2036,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Smc::MitmAttackEvent::2
+    sagan_raw|contains|cased: Event::Smc::MitmAttackEvent::2
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1984,9 +2062,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Smc::MitmAttackEvent::3
+    sagan_raw|contains|cased: Event::Smc::MitmAttackEvent::3
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2009,9 +2088,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Smc::MitmAttackEvent::4
+    sagan_raw|contains|cased: Event::Smc::MitmAttackEvent::4
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2034,9 +2114,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Smc::MitmAttackEvent::5
+    sagan_raw|contains|cased: Event::Smc::MitmAttackEvent::5
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2059,9 +2140,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Smc::MitmAttackEvent::6
+    sagan_raw|contains|cased: Event::Smc::MitmAttackEvent::6
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2084,9 +2166,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Smc::WebFiltering::BLOCKED
+    sagan_raw|contains|cased: Event::Endpoint::Smc::WebFiltering::BLOCKED
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2110,9 +2193,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Xgemail::DlpRuleDisableEvent
+    sagan_raw|contains|cased: Event::Xgemail::DlpRuleDisableEvent
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2135,9 +2219,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::OutboundMalwareProtection::BlockedSender
+    sagan_raw|contains|cased: Event::OutboundMalwareProtection::BlockedSender
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2160,9 +2245,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::HIPSCleanupFailed::CLEANUPABLE
+    sagan_raw|contains|cased: Event::Endpoint::Threat::HIPSCleanupFailed::CLEANUPABLE
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2185,9 +2271,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::HIPSCleanupFailed::CLEANUP_IN_PROGRESS
+    sagan_raw|contains|cased: Event::Endpoint::Threat::HIPSCleanupFailed::CLEANUP_IN_PROGRESS
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2210,9 +2297,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::HIPSCleanupFailed::NONE
+    sagan_raw|contains|cased: Event::Endpoint::Threat::HIPSCleanupFailed::NONE
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2235,9 +2323,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::CleanupFailed::CLEANUPABLE
+    sagan_raw|contains|cased: Event::Endpoint::Threat::CleanupFailed::CLEANUPABLE
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2260,9 +2349,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::CleanupFailed::CLEANUP_IN_PROGRESS
+    sagan_raw|contains|cased: Event::Endpoint::Threat::CleanupFailed::CLEANUP_IN_PROGRESS
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2285,9 +2375,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::CleanupFailed::NONE
+    sagan_raw|contains|cased: Event::Endpoint::Threat::CleanupFailed::NONE
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2310,9 +2401,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::PuaCleanupFailed::CLEANUPABLE
+    sagan_raw|contains|cased: Event::Endpoint::Threat::PuaCleanupFailed::CLEANUPABLE
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2335,9 +2427,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::PuaCleanupFailed::CLEANUP_IN_PROGRESS
+    sagan_raw|contains|cased: Event::Endpoint::Threat::PuaCleanupFailed::CLEANUP_IN_PROGRESS
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2360,9 +2453,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::Endpoint::Threat::PuaCleanupFailed::NONE
+    sagan_raw|contains|cased: Event::Endpoint::Threat::PuaCleanupFailed::NONE
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2385,9 +2479,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::UAV::PotentiallyCompromisedDevice
+    sagan_raw|contains|cased: Event::UAV::PotentiallyCompromisedDevice
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2410,9 +2505,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: Event::ZTNA::ZTNAAuthenticationFailure
+    sagan_raw|contains|cased: Event::ZTNA::ZTNAAuthenticationFailure
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

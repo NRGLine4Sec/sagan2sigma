@@ -7,11 +7,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: 'Event Name: DeviceEdit'
+    sagan_raw|contains|cased: 'Event Name: DeviceEdit'
   selection_2:
-    message|contains|cased: AuditLog
+    sagan_raw|contains|cased: AuditLog
   selection_3:
-    message|contains|cased: CylancePROTECT
+    sagan_raw|contains|cased: CylancePROTECT
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -33,11 +33,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: 'Event Name: LoginSuccess'
+    sagan_raw|contains|cased: 'Event Name: LoginSuccess'
   selection_2:
-    message|contains|cased: '"AuditLog'
+    sagan_raw|contains|cased: '"AuditLog'
   selection_3:
-    message|contains|cased: CylancePROTECT
+    sagan_raw|contains|cased: CylancePROTECT
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -59,11 +59,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: 'Event Name: SyslogSettingsSave'
+    sagan_raw|contains|cased: 'Event Name: SyslogSettingsSave'
   selection_2:
-    message|contains|cased: '"AuditLog'
+    sagan_raw|contains|cased: '"AuditLog'
   selection_3:
-    message|contains|cased: CylancePROTECT
+    sagan_raw|contains|cased: CylancePROTECT
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -85,11 +85,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: 'Event Name: ZoneAddDevice'
+    sagan_raw|contains|cased: 'Event Name: ZoneAddDevice'
   selection_2:
-    message|contains|cased: '"AuditLog'
+    sagan_raw|contains|cased: '"AuditLog'
   selection_3:
-    message|contains|cased: CylancePROTECT
+    sagan_raw|contains|cased: CylancePROTECT
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -111,11 +111,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: 'Event Name: Device'
+    sagan_raw|contains|cased: 'Event Name: Device'
   selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   selection_3:
-    message|contains|cased: CylancePROTECT
+    sagan_raw|contains|cased: CylancePROTECT
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -137,11 +137,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: 'Event Name: Registration'
+    sagan_raw|contains|cased: 'Event Name: Registration'
   selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   selection_3:
-    message|contains|cased: CylancePROTECT
+    sagan_raw|contains|cased: CylancePROTECT
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -163,11 +163,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: 'Event Name: blocked'
+    sagan_raw|contains|cased: 'Event Name: blocked'
   selection_2:
-    message|contains|cased: ExploitAttempt
+    sagan_raw|contains|cased: ExploitAttempt
   selection_3:
-    message|contains|cased: CylancePROTECT
+    sagan_raw|contains|cased: CylancePROTECT
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -189,11 +189,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: 'Event Name: none'
+    sagan_raw|contains|cased: 'Event Name: none'
   selection_2:
-    message|contains|cased: ExploitAttempt
+    sagan_raw|contains|cased: ExploitAttempt
   selection_3:
-    message|contains|cased: CylancePROTECT
+    sagan_raw|contains|cased: CylancePROTECT
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -215,11 +215,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: threat_changed
+    sagan_raw|contains|cased: threat_changed
   selection_2:
-    message|contains|cased: Threat
+    sagan_raw|contains|cased: Threat
   selection_3:
-    message|contains|cased: CylancePROTECT
+    sagan_raw|contains|cased: CylancePROTECT
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -241,11 +241,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: threat_found
+    sagan_raw|contains|cased: threat_found
   selection_2:
-    message|contains|cased: Threat
+    sagan_raw|contains|cased: Threat
   selection_3:
-    message|contains|cased: CylancePROTECT
+    sagan_raw|contains|cased: CylancePROTECT
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -267,11 +267,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: threat_quarantined
+    sagan_raw|contains|cased: threat_quarantined
   selection_2:
-    message|contains|cased: Threat
+    sagan_raw|contains|cased: Threat
   selection_3:
-    message|contains|cased: CylancePROTECT
+    sagan_raw|contains|cased: CylancePROTECT
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -293,11 +293,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: threat_removed
+    sagan_raw|contains|cased: threat_removed
   selection_2:
-    message|contains|cased: Threat
+    sagan_raw|contains|cased: Threat
   selection_3:
-    message|contains|cased: CylancePROTECT
+    sagan_raw|contains|cased: CylancePROTECT
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

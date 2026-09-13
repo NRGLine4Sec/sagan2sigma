@@ -7,11 +7,12 @@ logsource:
   product: adtran
 detection:
   selection_1:
-    message|contains|cased: Access Policy
+    sagan_raw|contains|cased: Access Policy
   selection_2:
-    message|contains|cased: tcp
+    sagan_raw|contains|cased: tcp
   selection_3:
-    appname|cased: FIREWALL
+    - appname|cased: FIREWALL
+    - syslog_appname|cased: FIREWALL
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -32,11 +33,12 @@ logsource:
   product: adtran
 detection:
   selection_1:
-    message|contains|cased: Access Policy
+    sagan_raw|contains|cased: Access Policy
   selection_2:
-    message|contains|cased: udp
+    sagan_raw|contains|cased: udp
   selection_3:
-    appname|cased: FIREWALL
+    - appname|cased: FIREWALL
+    - syslog_appname|cased: FIREWALL
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

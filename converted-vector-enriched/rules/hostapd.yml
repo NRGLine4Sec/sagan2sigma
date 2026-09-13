@@ -7,9 +7,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: hostapd
+    - appname|cased: hostapd
+    - syslog_appname|cased: hostapd
   selection_2:
-    message|contains|cased: downgrade attack
+    sagan_raw|contains|cased: downgrade attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -30,11 +31,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: hostapd
+    - appname|cased: hostapd
+    - syslog_appname|cased: hostapd
   selection_2:
-    message|contains|cased: TLSv1
+    sagan_raw|contains|cased: TLSv1
   selection_3:
-    message|contains|cased: Failed to decrypt
+    sagan_raw|contains|cased: Failed to decrypt
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -55,11 +57,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: hostapd
+    - appname|cased: hostapd
+    - syslog_appname|cased: hostapd
   selection_2:
-    message|contains|cased: UPnP
+    sagan_raw|contains|cased: UPnP
   selection_3:
-    message|contains|cased: Ignoring excessive addresses
+    sagan_raw|contains|cased: Ignoring excessive addresses
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

@@ -7,11 +7,14 @@ logsource:
   product: vmware
 detection:
   selection_1:
-    message|re|i: Accepted password for|login from
+    sagan_raw|re|i: Accepted password for|login from
   selection_2:
-    appname|cased:
-      - vmware-hostd
-      - vmware-authd
+    - appname|cased:
+        - vmware-hostd
+        - vmware-authd
+    - syslog_appname|cased:
+        - vmware-hostd
+        - vmware-authd
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -40,9 +43,10 @@ logsource:
   product: vmware
 detection:
   selection_1:
-    message|contains|cased: ' logged in '
+    sagan_raw|contains|cased: ' logged in '
   selection_2:
-    appname|cased: Hostd
+    - appname|cased: Hostd
+    - syslog_appname|cased: Hostd
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -71,9 +75,10 @@ logsource:
   product: vmware
 detection:
   selection_1:
-    message|contains|cased: Accepted password
+    sagan_raw|contains|cased: Accepted password
   selection_2:
-    appname|cased: Hostd
+    - appname|cased: Hostd
+    - syslog_appname|cased: Hostd
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:

@@ -9,9 +9,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Forescout
+    - appname|cased: Forescout
+    - syslog_appname|cased: Forescout
   selection_2:
-    message|contains|cased: Bite events
+    sagan_raw|contains|cased: Bite events
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -35,9 +36,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Forescout
+    - appname|cased: Forescout
+    - syslog_appname|cased: Forescout
   selection_2:
-    message|contains|cased: Scan events
+    sagan_raw|contains|cased: Scan events
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -61,9 +63,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Forescout
+    - appname|cased: Forescout
+    - syslog_appname|cased: Forescout
   selection_2:
-    message|contains|cased: Lockdown events
+    sagan_raw|contains|cased: Lockdown events
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -87,9 +90,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Forescout
+    - appname|cased: Forescout
+    - syslog_appname|cased: Forescout
   selection_2:
-    message|contains|cased: Block events
+    sagan_raw|contains|cased: Block events
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -113,9 +117,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Forescout
+    - appname|cased: Forescout
+    - syslog_appname|cased: Forescout
   selection_2:
-    message|contains|cased: Email worm events
+    sagan_raw|contains|cased: Email worm events
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -139,9 +144,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Forescout
+    - appname|cased: Forescout
+    - syslog_appname|cased: Forescout
   selection_2:
-    message|contains|cased: 'Log: Action Threshold crossed'
+    sagan_raw|contains|cased: 'Log: Action Threshold crossed'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -165,9 +171,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Forescout
+    - appname|cased: Forescout
+    - syslog_appname|cased: Forescout
   selection_2:
-    message|contains|cased: 'Log: Rogue Device Detected'
+    sagan_raw|contains|cased: 'Log: Rogue Device Detected'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -191,11 +198,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: CounterACT
+    - appname|cased: CounterACT
+    - syslog_appname|cased: CounterACT
   selection_2:
-    message|contains|cased: Wireless endpoint as unknown
+    sagan_raw|contains|cased: Wireless endpoint as unknown
   filter_3:
-    message|contains|cased: denied access
+    sagan_raw|contains|cased: denied access
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -219,9 +227,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: CounterACT
+    - appname|cased: CounterACT
+    - syslog_appname|cased: CounterACT
   selection_2:
-    message|contains|cased: CrowdStrike has detected a low severity threat
+    sagan_raw|contains|cased: CrowdStrike has detected a low severity threat
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -245,9 +254,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: CounterACT
+    - appname|cased: CounterACT
+    - syslog_appname|cased: CounterACT
   selection_2:
-    message|contains|cased: CrowdStrike has detected a medium severity threat
+    sagan_raw|contains|cased: CrowdStrike has detected a medium severity threat
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -271,9 +281,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: CounterACT
+    - appname|cased: CounterACT
+    - syslog_appname|cased: CounterACT
   selection_2:
-    message|contains|cased: CrowdStrike has detected a high severity threat
+    sagan_raw|contains|cased: CrowdStrike has detected a high severity threat
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -297,9 +308,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: CounterACT
+    - appname|cased: CounterACT
+    - syslog_appname|cased: CounterACT
   selection_2:
-    message|contains|cased: CrowdStrike has detected a critical severity threat
+    sagan_raw|contains|cased: CrowdStrike has detected a critical severity threat
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

@@ -9,13 +9,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AddCustomAttributes'
+    sagan_raw|contains|cased: 'eventName": "AddCustomAttributes'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -38,13 +39,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminAddUserToGroup'
+    sagan_raw|contains|cased: 'eventName": "AdminAddUserToGroup'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -67,13 +69,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminConfirmSignUp'
+    sagan_raw|contains|cased: 'eventName": "AdminConfirmSignUp'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -96,13 +99,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminCreateUser'
+    sagan_raw|contains|cased: 'eventName": "AdminCreateUser'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -125,13 +129,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminDeleteUser'
+    sagan_raw|contains|cased: 'eventName": "AdminDeleteUser'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -154,13 +159,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminDeleteUserAttributes'
+    sagan_raw|contains|cased: 'eventName": "AdminDeleteUserAttributes'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -183,13 +189,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminDisableProviderForUser'
+    sagan_raw|contains|cased: 'eventName": "AdminDisableProviderForUser'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -212,13 +219,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminDisableUser'
+    sagan_raw|contains|cased: 'eventName": "AdminDisableUser'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -241,13 +249,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminEnableUser'
+    sagan_raw|contains|cased: 'eventName": "AdminEnableUser'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -270,13 +279,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminForgetDevice'
+    sagan_raw|contains|cased: 'eventName": "AdminForgetDevice'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -299,13 +309,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminGetDevice'
+    sagan_raw|contains|cased: 'eventName": "AdminGetDevice'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -328,13 +339,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminGetUser'
+    sagan_raw|contains|cased: 'eventName": "AdminGetUser'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -357,13 +369,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminInitiateAuth'
+    sagan_raw|contains|cased: 'eventName": "AdminInitiateAuth'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -386,13 +399,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminLinkProviderForUser'
+    sagan_raw|contains|cased: 'eventName": "AdminLinkProviderForUser'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -415,13 +429,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminListDevices'
+    sagan_raw|contains|cased: 'eventName": "AdminListDevices'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -444,13 +459,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminListGroupsForUser'
+    sagan_raw|contains|cased: 'eventName": "AdminListGroupsForUser'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -473,13 +489,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminListUserAuthEvents'
+    sagan_raw|contains|cased: 'eventName": "AdminListUserAuthEvents'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -502,13 +519,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminRemoveUserFromGroup'
+    sagan_raw|contains|cased: 'eventName": "AdminRemoveUserFromGroup'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -531,13 +549,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminResetUserPassword'
+    sagan_raw|contains|cased: 'eventName": "AdminResetUserPassword'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -560,13 +579,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminRespondToAuthChallenge'
+    sagan_raw|contains|cased: 'eventName": "AdminRespondToAuthChallenge'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -589,13 +609,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminSetUserMFAPreference'
+    sagan_raw|contains|cased: 'eventName": "AdminSetUserMFAPreference'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -618,13 +639,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminSetUserPassword'
+    sagan_raw|contains|cased: 'eventName": "AdminSetUserPassword'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -647,13 +669,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminSetUserSettings'
+    sagan_raw|contains|cased: 'eventName": "AdminSetUserSettings'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -676,13 +699,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminUpdateAuthEventFeedback'
+    sagan_raw|contains|cased: 'eventName": "AdminUpdateAuthEventFeedback'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -705,13 +729,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminUpdateDeviceStatus'
+    sagan_raw|contains|cased: 'eventName": "AdminUpdateDeviceStatus'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -734,13 +759,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminUpdateUserAttributes'
+    sagan_raw|contains|cased: 'eventName": "AdminUpdateUserAttributes'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -763,13 +789,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AdminUserGlobalSignOut'
+    sagan_raw|contains|cased: 'eventName": "AdminUserGlobalSignOut'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -792,13 +819,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "AssociateSoftwareToken'
+    sagan_raw|contains|cased: 'eventName": "AssociateSoftwareToken'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -821,13 +849,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "ChangePassword'
+    sagan_raw|contains|cased: 'eventName": "ChangePassword'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -850,13 +879,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "ConfirmDevice'
+    sagan_raw|contains|cased: 'eventName": "ConfirmDevice'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -879,13 +909,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "ConfirmForgotPassword'
+    sagan_raw|contains|cased: 'eventName": "ConfirmForgotPassword'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -908,13 +939,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "ConfirmSignUp'
+    sagan_raw|contains|cased: 'eventName": "ConfirmSignUp'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -937,13 +969,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "CreateGroup'
+    sagan_raw|contains|cased: 'eventName": "CreateGroup'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -966,13 +999,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "CreateIdentityProvider'
+    sagan_raw|contains|cased: 'eventName": "CreateIdentityProvider'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -995,13 +1029,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "CreateResourceServer'
+    sagan_raw|contains|cased: 'eventName": "CreateResourceServer'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1024,13 +1059,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "CreateUserImportJob'
+    sagan_raw|contains|cased: 'eventName": "CreateUserImportJob'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1053,13 +1089,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "CreateUserPool'
+    sagan_raw|contains|cased: 'eventName": "CreateUserPool'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1082,13 +1119,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "CreateUserPoolClient'
+    sagan_raw|contains|cased: 'eventName": "CreateUserPoolClient'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1111,13 +1149,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "CreateUserPoolDomain'
+    sagan_raw|contains|cased: 'eventName": "CreateUserPoolDomain'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1140,13 +1179,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "DeleteGroup'
+    sagan_raw|contains|cased: 'eventName": "DeleteGroup'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1169,13 +1209,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "DeleteIdentityProvider'
+    sagan_raw|contains|cased: 'eventName": "DeleteIdentityProvider'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1198,13 +1239,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "DeleteResourceServer'
+    sagan_raw|contains|cased: 'eventName": "DeleteResourceServer'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1227,13 +1269,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "DeleteUser'
+    sagan_raw|contains|cased: 'eventName": "DeleteUser'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1256,13 +1299,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "DeleteUserAttributes'
+    sagan_raw|contains|cased: 'eventName": "DeleteUserAttributes'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1285,13 +1329,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "DeleteUserPool'
+    sagan_raw|contains|cased: 'eventName": "DeleteUserPool'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1314,13 +1359,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "DeleteUserPoolClient'
+    sagan_raw|contains|cased: 'eventName": "DeleteUserPoolClient'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1343,13 +1389,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "DeleteUserPoolDomain'
+    sagan_raw|contains|cased: 'eventName": "DeleteUserPoolDomain'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1372,13 +1419,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "ForgetDevice'
+    sagan_raw|contains|cased: 'eventName": "ForgetDevice'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1401,13 +1449,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "ForgotPassword'
+    sagan_raw|contains|cased: 'eventName": "ForgotPassword'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1430,13 +1479,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "GetCSVHeader'
+    sagan_raw|contains|cased: 'eventName": "GetCSVHeader'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1459,13 +1509,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "GetDevice'
+    sagan_raw|contains|cased: 'eventName": "GetDevice'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1488,13 +1539,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "GetGroup'
+    sagan_raw|contains|cased: 'eventName": "GetGroup'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1517,13 +1569,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "GetIdentityProviderByIdentifier'
+    sagan_raw|contains|cased: 'eventName": "GetIdentityProviderByIdentifier'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1546,13 +1599,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "GetSigningCertificate'
+    sagan_raw|contains|cased: 'eventName": "GetSigningCertificate'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1575,13 +1629,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "GetUICustomization'
+    sagan_raw|contains|cased: 'eventName": "GetUICustomization'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1604,13 +1659,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "GetUser'
+    sagan_raw|contains|cased: 'eventName": "GetUser'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1633,13 +1689,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "GetUserAttributeVerificationCode'
+    sagan_raw|contains|cased: 'eventName": "GetUserAttributeVerificationCode'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1662,13 +1719,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "GetUserPoolMfaConfig'
+    sagan_raw|contains|cased: 'eventName": "GetUserPoolMfaConfig'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1691,13 +1749,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "GlobalSignOut'
+    sagan_raw|contains|cased: 'eventName": "GlobalSignOut'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1720,13 +1779,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "InitiateAuth'
+    sagan_raw|contains|cased: 'eventName": "InitiateAuth'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1749,13 +1809,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "ResendConfirmationCode'
+    sagan_raw|contains|cased: 'eventName": "ResendConfirmationCode'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1778,13 +1839,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "RespondToAuthChallenge'
+    sagan_raw|contains|cased: 'eventName": "RespondToAuthChallenge'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1807,13 +1869,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "RevokeToken'
+    sagan_raw|contains|cased: 'eventName": "RevokeToken'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1836,13 +1899,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "SetRiskConfiguration'
+    sagan_raw|contains|cased: 'eventName": "SetRiskConfiguration'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1865,13 +1929,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "SetUICustomization'
+    sagan_raw|contains|cased: 'eventName": "SetUICustomization'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1894,13 +1959,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "SetUserMFAPreference'
+    sagan_raw|contains|cased: 'eventName": "SetUserMFAPreference'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1923,13 +1989,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "SetUserPoolMfaConfig'
+    sagan_raw|contains|cased: 'eventName": "SetUserPoolMfaConfig'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1952,13 +2019,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "SetUserSettings'
+    sagan_raw|contains|cased: 'eventName": "SetUserSettings'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1981,13 +2049,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "SignUp'
+    sagan_raw|contains|cased: 'eventName": "SignUp'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2010,13 +2079,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "StartUserImportJob'
+    sagan_raw|contains|cased: 'eventName": "StartUserImportJob'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2039,13 +2109,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "StopUserImportJob'
+    sagan_raw|contains|cased: 'eventName": "StopUserImportJob'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2068,13 +2139,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "TagResource'
+    sagan_raw|contains|cased: 'eventName": "TagResource'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2097,13 +2169,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "UntagResource'
+    sagan_raw|contains|cased: 'eventName": "UntagResource'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2126,13 +2199,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "UpdateAuthEventFeedback'
+    sagan_raw|contains|cased: 'eventName": "UpdateAuthEventFeedback'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2155,13 +2229,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "UpdateDeviceStatus'
+    sagan_raw|contains|cased: 'eventName": "UpdateDeviceStatus'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2184,13 +2259,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "UpdateGroup'
+    sagan_raw|contains|cased: 'eventName": "UpdateGroup'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2213,13 +2289,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "UpdateIdentityProvider'
+    sagan_raw|contains|cased: 'eventName": "UpdateIdentityProvider'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2242,13 +2319,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "UpdateResourceServer'
+    sagan_raw|contains|cased: 'eventName": "UpdateResourceServer'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2271,13 +2349,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "UpdateUserAttributes'
+    sagan_raw|contains|cased: 'eventName": "UpdateUserAttributes'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2300,13 +2379,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "UpdateUserPool'
+    sagan_raw|contains|cased: 'eventName": "UpdateUserPool'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2329,13 +2409,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "UpdateUserPoolClient'
+    sagan_raw|contains|cased: 'eventName": "UpdateUserPoolClient'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2358,13 +2439,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "UpdateUserPoolDomain'
+    sagan_raw|contains|cased: 'eventName": "UpdateUserPoolDomain'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2387,13 +2469,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "VerifySoftwareToken'
+    sagan_raw|contains|cased: 'eventName": "VerifySoftwareToken'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2416,13 +2499,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: cognito*
+    - appname|cased: cognito*
+    - syslog_appname|cased: cognito*
   selection_2:
-    message|contains|cased: 'eventName": "VerifyUserAttribute'
+    sagan_raw|contains|cased: 'eventName": "VerifyUserAttribute'
   filter_3:
-    message|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
+    sagan_raw|contains|cased: '"sourceIPAddress": "config.amazonaws.com"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

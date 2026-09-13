@@ -438,9 +438,10 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: '*.amazonaws.com'
+    - appname|cased: '*.amazonaws.com'
+    - syslog_appname|cased: '*.amazonaws.com'
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - eventName":"BucketSizeBytes"
       - eventName":"GetRequests"
       - eventName":"PutRequests"
@@ -448,7 +449,7 @@ detection:
       - eventName":"ListRequests"
       - eventName":"BytesDownloaded"
   filter_3:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -474,15 +475,16 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: ses.amazonaws.com
+    - appname|cased: ses.amazonaws.com
+    - syslog_appname|cased: ses.amazonaws.com
   selection_2:
-    message|contains|cased: 'eventName": "GetSendQuota'
+    sagan_raw|contains|cased: 'eventName": "GetSendQuota'
   selection_3:
-    message|contains|cased: :role/aws-service-role/
+    sagan_raw|contains|cased: :role/aws-service-role/
   filter_4:
-    message|contains|cased: '"userName": "DatadogIntegrationRole"'
+    sagan_raw|contains|cased: '"userName": "DatadogIntegrationRole"'
   filter_5:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and selection_3 and not (filter_4 or filter_5)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -506,11 +508,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: ses.amazonaws.com
+    - appname|cased: ses.amazonaws.com
+    - syslog_appname|cased: ses.amazonaws.com
   selection_2:
-    message|contains|cased: 'eventName": "ListVerifiedEmailAddresses'
+    sagan_raw|contains|cased: 'eventName": "ListVerifiedEmailAddresses'
   filter_3:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -534,11 +537,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: ses.amazonaws.com
+    - appname|cased: ses.amazonaws.com
+    - syslog_appname|cased: ses.amazonaws.com
   selection_2:
-    message|contains|cased: 'eventName": "GetAccountSendingEnabled'
+    sagan_raw|contains|cased: 'eventName": "GetAccountSendingEnabled'
   filter_3:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -562,11 +566,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: ses.amazonaws.com
+    - appname|cased: ses.amazonaws.com
+    - syslog_appname|cased: ses.amazonaws.com
   selection_2:
-    message|contains|cased: 'eventName": "GetAccount'
+    sagan_raw|contains|cased: 'eventName": "GetAccount'
   filter_3:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -590,13 +595,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: ses.amazonaws.com
+    - appname|cased: ses.amazonaws.com
+    - syslog_appname|cased: ses.amazonaws.com
   selection_2:
-    message|contains|cased: 'eventName": "ListIdentities'
+    sagan_raw|contains|cased: 'eventName": "ListIdentities'
   filter_3:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   filter_4:
-    message|contains: Datadog
+    sagan_raw|contains: Datadog
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -620,11 +626,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'eventName": "CreateSecurityGroup'
+    sagan_raw|contains|cased: 'eventName": "CreateSecurityGroup'
   filter_3:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -649,13 +656,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'eventName": "AuthorizeSecurityGroupIngress'
+    sagan_raw|contains|cased: 'eventName": "AuthorizeSecurityGroupIngress'
   selection_3:
-    message|contains|cased: '"cidrIp": "0.0.0.0/0"'
+    sagan_raw|contains|cased: '"cidrIp": "0.0.0.0/0"'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and selection_3 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -712,13 +720,14 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: s3.amazonaws.com
+    - appname|cased: s3.amazonaws.com
+    - syslog_appname|cased: s3.amazonaws.com
   selection_2:
-    message|contains|cased: 'eventName": "GetObject'
+    sagan_raw|contains|cased: 'eventName": "GetObject'
   filter_3:
-    message|contains|cased: '"bytesTransferredOut": 0'
+    sagan_raw|contains|cased: '"bytesTransferredOut": 0'
   filter_4:
-    message|contains|cased: '"mfaAuthenticated": "true"'
+    sagan_raw|contains|cased: '"mfaAuthenticated": "true"'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

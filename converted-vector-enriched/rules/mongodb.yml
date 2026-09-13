@@ -9,13 +9,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: auth
+    sagan_raw|contains|cased: auth
   selection_2:
-    message|contains|cased: couldn't
+    sagan_raw|contains|cased: couldn't
   selection_3:
-    message|contains|cased: user
+    sagan_raw|contains|cased: user
   selection_4:
-    appname|cased: mongod
+    - appname|cased: mongod
+    - syslog_appname|cased: mongod
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -38,13 +39,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: admin
+    sagan_raw|contains|cased: admin
   selection_2:
-    message|contains|cased: received
+    sagan_raw|contains|cased: received
   selection_3:
-    message|contains|cased: client
+    sagan_raw|contains|cased: client
   selection_4:
-    appname|cased: mongod
+    - appname|cased: mongod
+    - syslog_appname|cased: mongod
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -67,11 +69,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: requires admin
+    sagan_raw|contains|cased: requires admin
   selection_2:
-    message|contains|cased: failing
+    sagan_raw|contains|cased: failing
   selection_3:
-    appname|cased: mongod
+    - appname|cased: mongod
+    - syslog_appname|cased: mongod
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -94,11 +97,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: can't authenticate
+    sagan_raw|contains|cased: can't authenticate
   selection_2:
-    message|contains|cased: master server
+    sagan_raw|contains|cased: master server
   selection_3:
-    appname|cased: mongod
+    - appname|cased: mongod
+    - syslog_appname|cased: mongod
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

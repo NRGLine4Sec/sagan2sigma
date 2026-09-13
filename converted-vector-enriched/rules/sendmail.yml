@@ -12,15 +12,18 @@ logsource:
   service: smtp
 detection:
   selection_1:
-    message|contains: ' root'
+    sagan_raw|contains: ' root'
   selection_2:
-    message|contains:
+    sagan_raw|contains:
       - vrfy
       - expn
   selection_3:
-    appname|cased:
-      - sm-mta
-      - sendmail
+    - appname|cased:
+        - sm-mta
+        - sendmail
+    - syslog_appname|cased:
+        - sm-mta
+        - sendmail
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -46,13 +49,16 @@ logsource:
   service: smtp
 detection:
   selection_1:
-    message|contains: 'expn '
+    sagan_raw|contains: 'expn '
   selection_2:
-    message|contains|cased: '[rejected]'
+    sagan_raw|contains|cased: '[rejected]'
   selection_3:
-    appname|cased:
-      - sm-mta
-      - sendmail
+    - appname|cased:
+        - sm-mta
+        - sendmail
+    - syslog_appname|cased:
+        - sm-mta
+        - sendmail
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -78,13 +84,16 @@ logsource:
   service: smtp
 detection:
   selection_1:
-    message|contains: 'vrfy '
+    sagan_raw|contains: 'vrfy '
   selection_2:
-    message|contains|cased: '[rejected]'
+    sagan_raw|contains|cased: '[rejected]'
   selection_3:
-    appname|cased:
-      - sm-mta
-      - sendmail
+    - appname|cased:
+        - sm-mta
+        - sendmail
+    - syslog_appname|cased:
+        - sm-mta
+        - sendmail
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -110,13 +119,16 @@ logsource:
   service: smtp
 detection:
   selection_1:
-    message|contains|cased: 'expn '
+    sagan_raw|contains|cased: 'expn '
   filter_2:
-    message|contains: rejected
+    sagan_raw|contains: rejected
   selection_3:
-    appname|cased:
-      - sm-mta
-      - sendmail
+    - appname|cased:
+        - sm-mta
+        - sendmail
+    - syslog_appname|cased:
+        - sm-mta
+        - sendmail
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -142,13 +154,16 @@ logsource:
   service: smtp
 detection:
   selection_1:
-    message|contains|cased: 'vrfy '
+    sagan_raw|contains|cased: 'vrfy '
   filter_2:
-    message|contains: rejected
+    sagan_raw|contains: rejected
   selection_3:
-    appname|cased:
-      - sm-mta
-      - sendmail
+    - appname|cased:
+        - sm-mta
+        - sendmail
+    - syslog_appname|cased:
+        - sm-mta
+        - sendmail
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -170,13 +185,16 @@ logsource:
   service: smtp
 detection:
   selection_1:
-    message|contains|cased: reject=
+    sagan_raw|contains|cased: reject=
   selection_2:
-    message|re: reject=550 5.0.0|reject=553 5.3.0
+    sagan_raw|re: reject=550 5.0.0|reject=553 5.3.0
   selection_3:
-    appname|cased:
-      - sm-mta
-      - sendmail
+    - appname|cased:
+        - sm-mta
+        - sendmail
+    - syslog_appname|cased:
+        - sm-mta
+        - sendmail
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -198,11 +216,14 @@ logsource:
   service: smtp
 detection:
   selection_1:
-    message|contains|cased: 'reject=553 5.5.4 '
+    sagan_raw|contains|cased: 'reject=553 5.5.4 '
   selection_2:
-    appname|cased:
-      - sm-mta
-      - sendmail
+    - appname|cased:
+        - sm-mta
+        - sendmail
+    - syslog_appname|cased:
+        - sm-mta
+        - sendmail
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -226,15 +247,18 @@ logsource:
   service: smtp
 detection:
   selection_1:
-    message|contains|cased: to=<
+    sagan_raw|contains|cased: to=<
   selection_2:
-    message|contains|cased: '|'
+    sagan_raw|contains|cased: '|'
   selection_3:
-    message|re: to=<[A-Za-z0-9|&'*+-.=?^_{}~]+@\x2f
+    sagan_raw|re: to=<[A-Za-z0-9|&'*+-.=?^_{}~]+@\x2f
   selection_4:
-    appname|cased:
-      - sm-mta
-      - sendmail
+    - appname|cased:
+        - sm-mta
+        - sendmail
+    - syslog_appname|cased:
+        - sm-mta
+        - sendmail
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -258,17 +282,20 @@ logsource:
   service: smtp
 detection:
   selection_1:
-    appname|cased:
-      - sm-mta
-      - sendmail
+    - appname|cased:
+        - sm-mta
+        - sendmail
+    - syslog_appname|cased:
+        - sm-mta
+        - sendmail
   selection_2:
-    message|contains|cased: /bin/
+    sagan_raw|contains|cased: /bin/
   selection_3:
-    message|contains|cased: 'sh '
+    sagan_raw|contains|cased: 'sh '
   selection_4:
-    message|contains|cased: '|'
+    sagan_raw|contains|cased: '|'
   selection_5:
-    message|contains|cased: +
+    sagan_raw|contains|cased: +
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -290,11 +317,14 @@ logsource:
   service: smtp
 detection:
   selection_1:
-    appname|cased:
-      - sm-mta
-      - sendmail
+    - appname|cased:
+        - sm-mta
+        - sendmail
+    - syslog_appname|cased:
+        - sm-mta
+        - sendmail
   selection_2:
-    message|contains|cased: 'probable open proxy:'
+    sagan_raw|contains|cased: 'probable open proxy:'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

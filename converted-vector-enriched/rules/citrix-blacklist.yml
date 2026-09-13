@@ -9,7 +9,7 @@ logsource:
   product: citrix
 detection:
   selection_1:
-    message|contains|cased: SSLVPN LOGIN
+    sagan_raw|contains|cased: SSLVPN LOGIN
   selection_2:
     sagan_denylist_1: true
   condition: selection_1 and selection_2
@@ -34,7 +34,7 @@ logsource:
   product: citrix
 detection:
   selection_1:
-    message|contains|cased: SSLVPN HTTPREQUEST
+    sagan_raw|contains|cased: SSLVPN HTTPREQUEST
   selection_2:
     sagan_denylist_1: true
   condition: selection_1 and selection_2

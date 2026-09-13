@@ -7,11 +7,11 @@ logsource:
   product: fortinet
 detection:
   selection_1:
-    message|contains|cased: 32006 type=
+    sagan_raw|contains|cased: 32006 type=
   selection_2:
-    message|contains|cased: login
+    sagan_raw|contains|cased: login
   selection_3:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - accepted
       - successfully
   at_days:
@@ -45,9 +45,9 @@ logsource:
   product: fortinet
 detection:
   selection_1:
-    message|contains|cased: 32001 type=
+    sagan_raw|contains|cased: 32001 type=
   selection_2:
-    message|contains|cased: logged in
+    sagan_raw|contains|cased: logged in
   at_days:
     sagan_event_weekday:
       - 1
@@ -79,9 +79,9 @@ logsource:
   product: fortinet
 detection:
   selection_1:
-    message|contains|cased: 38001 type=
+    sagan_raw|contains|cased: 38001 type=
   selection_2:
-    message|contains|cased: succeeded in authentication
+    sagan_raw|contains|cased: succeeded in authentication
   at_days:
     sagan_event_weekday:
       - 1
@@ -113,7 +113,7 @@ logsource:
   product: fortinet
 detection:
   selection_1:
-    message|contains|cased: ' service=SSH '
+    sagan_raw|contains|cased: ' service=SSH '
   at_days:
     sagan_event_weekday:
       - 1
@@ -147,13 +147,13 @@ logsource:
   product: fortinet
 detection:
   selection_1:
-    message|contains|cased: type="traffic"
+    sagan_raw|contains|cased: type="traffic"
   selection_2:
-    message|contains|cased: subtype="forward"
+    sagan_raw|contains|cased: subtype="forward"
   selection_3:
-    message|contains|cased: app="UNKNOWN"
+    sagan_raw|contains|cased: app="UNKNOWN"
   selection_4:
-    message|re: srcip=(10\.\d+\.\d+\.\d+|172\.(1[6-9]|2[0-9]|3[0-1])\.\d+\.\d+|192\.168\.\d+\.\d+)
+    sagan_raw|re: srcip=(10\.\d+\.\d+\.\d+|172\.(1[6-9]|2[0-9]|3[0-1])\.\d+\.\d+|192\.168\.\d+\.\d+)
   at_days:
     sagan_event_weekday:
       - 1

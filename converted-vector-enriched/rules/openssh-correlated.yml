@@ -8,9 +8,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Accepted password
+    sagan_raw|contains|cased: Accepted password
   selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

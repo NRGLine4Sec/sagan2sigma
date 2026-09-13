@@ -8,9 +8,10 @@ logsource:
   service: smbd
 detection:
   selection_1:
-    message|re|i: denied connection from|connection denied from
+    sagan_raw|re|i: denied connection from|connection denied from
   selection_2:
-    appname|cased: smbd
+    - appname|cased: smbd
+    - syslog_appname|cased: smbd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -32,9 +33,10 @@ logsource:
   service: smbd
 detection:
   selection_1:
-    message|contains|cased: Permission denied
+    sagan_raw|contains|cased: Permission denied
   selection_2:
-    appname|cased: smbd
+    - appname|cased: smbd
+    - syslog_appname|cased: smbd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

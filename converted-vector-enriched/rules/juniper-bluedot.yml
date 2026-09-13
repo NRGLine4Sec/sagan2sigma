@@ -10,9 +10,9 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: has logged on via
+    sagan_raw|contains|cased: has logged on via
   selection_2:
-    message|contains|cased: '00515'
+    sagan_raw|contains|cased: '00515'
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -37,9 +37,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Juniper
+    - appname|cased: Juniper
+    - syslog_appname|cased: Juniper
   selection_2:
-    message|re|i: Authentication successful|Login succeeded
+    sagan_raw|re|i: Authentication successful|Login succeeded
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -64,9 +65,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Juniper
+    - appname|cased: Juniper
+    - syslog_appname|cased: Juniper
   selection_2:
-    message|contains|cased: Logout from
+    sagan_raw|contains|cased: Logout from
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -93,9 +95,9 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: Admin user
+    sagan_raw|contains|cased: Admin user
   selection_2:
-    message|contains|cased: has logged on via
+    sagan_raw|contains|cased: has logged on via
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:

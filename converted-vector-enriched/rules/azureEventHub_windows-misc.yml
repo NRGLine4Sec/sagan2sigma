@@ -7,9 +7,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    message|contains|cased: ' 17150: '
+    sagan_raw|contains|cased: ' 17150: '
   selection_2:
-    appname|cased: DAC
+    - appname|cased: DAC
+    - syslog_appname|cased: DAC
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -31,9 +32,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    message|contains|cased: was corrupted
+    sagan_raw|contains|cased: was corrupted
   selection_2:
-    appname|cased: Eventlog
+    - appname|cased: Eventlog
+    - syslog_appname|cased: Eventlog
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -55,9 +57,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    message|contains|cased: Service Stopped
+    sagan_raw|contains|cased: Service Stopped
   selection_2:
-    appname|cased: Eventlog
+    - appname|cased: Eventlog
+    - syslog_appname|cased: Eventlog
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -79,9 +82,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    message|contains|cased: returned error
+    sagan_raw|contains|cased: returned error
   selection_2:
-    appname|cased: Eventlog
+    - appname|cased: Eventlog
+    - syslog_appname|cased: Eventlog
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -103,11 +107,12 @@ logsource:
   product: windows
 detection:
   selection_1:
-    message|contains|cased: RegWork
+    sagan_raw|contains|cased: RegWork
   selection_2:
-    message|contains|cased: Product
+    sagan_raw|contains|cased: Product
   selection_3:
-    appname|cased: MsiInstaller
+    - appname|cased: MsiInstaller
+    - syslog_appname|cased: MsiInstaller
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -129,9 +134,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    message|contains|cased: Tenable Nessus
+    sagan_raw|contains|cased: Tenable Nessus
   selection_2:
-    appname|cased: Service
+    - appname|cased: Service
+    - syslog_appname|cased: Service
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -153,9 +159,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    message|contains|cased: started successfully
+    sagan_raw|contains|cased: started successfully
   selection_2:
-    appname|cased: Tenable
+    - appname|cased: Tenable
+    - syslog_appname|cased: Tenable
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -177,11 +184,12 @@ logsource:
   product: windows
 detection:
   selection_1:
-    message|contains|cased: blacklisted
+    sagan_raw|contains|cased: blacklisted
   selection_2:
-    message|contains|cased: Connections
+    sagan_raw|contains|cased: Connections
   selection_3:
-    appname|cased: WinVNC4
+    - appname|cased: WinVNC4
+    - syslog_appname|cased: WinVNC4
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -203,9 +211,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    message|contains|cased: Authentication failure
+    sagan_raw|contains|cased: Authentication failure
   selection_2:
-    appname|cased: WinVNC4
+    - appname|cased: WinVNC4
+    - syslog_appname|cased: WinVNC4
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -227,11 +236,12 @@ logsource:
   product: windows
 detection:
   selection_1:
-    message|contains|cased: reading version failed
+    sagan_raw|contains|cased: reading version failed
   selection_2:
-    message|contains|cased: closed
+    sagan_raw|contains|cased: closed
   selection_3:
-    appname|cased: WinVNC4
+    - appname|cased: WinVNC4
+    - syslog_appname|cased: WinVNC4
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -253,9 +263,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    message|contains|cased: ' 823: '
+    sagan_raw|contains|cased: ' 823: '
   selection_2:
-    appname|cased: Ntfs
+    - appname|cased: Ntfs
+    - syslog_appname|cased: Ntfs
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -277,11 +288,14 @@ logsource:
   product: windows
 detection:
   selection_1:
-    message|contains|cased: ' 13570: '
+    sagan_raw|contains|cased: ' 13570: '
   selection_2:
-    appname|cased:
-      - NtFrs
-      - Ntfs
+    - appname|cased:
+        - NtFrs
+        - Ntfs
+    - syslog_appname|cased:
+        - NtFrs
+        - Ntfs
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -552,19 +566,22 @@ logsource:
   product: windows
 detection:
   selection_1:
-    message|contains: PSEXEC
+    sagan_raw|contains: PSEXEC
   selection_2:
-    message|contains|cased: ' 7045: '
+    sagan_raw|contains|cased: ' 7045: '
   filter_3:
-    message|contains: ForeScout
+    sagan_raw|contains: ForeScout
   filter_4:
-    message|contains: nxlog
+    sagan_raw|contains: nxlog
   filter_5:
-    message|contains: ccmsetup
+    sagan_raw|contains: ccmsetup
   selection_6:
-    appname|cased:
-      - System
-      - Service_Control_Manager
+    - appname|cased:
+        - System
+        - Service_Control_Manager
+    - syslog_appname|cased:
+        - System
+        - Service_Control_Manager
   condition: selection_1 and selection_2 and selection_6 and not (filter_3 or filter_4 or filter_5)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

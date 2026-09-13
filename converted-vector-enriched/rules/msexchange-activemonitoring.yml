@@ -7,9 +7,10 @@ logsource:
   product: exchange
 detection:
   selection_1:
-    appname|cased: Microsoft-Exchange-ActiveMonitoring?ProbeResult
+    - appname|cased: Microsoft-Exchange-ActiveMonitoring?ProbeResult
+    - syslog_appname|cased: Microsoft-Exchange-ActiveMonitoring?ProbeResult
   selection_2:
-    message|contains|cased: /ecp/RulesEditor/InboxRules.svc/GetList
+    sagan_raw|contains|cased: /ecp/RulesEditor/InboxRules.svc/GetList
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -33,9 +34,10 @@ logsource:
   product: exchange
 detection:
   selection_1:
-    appname|cased: Microsoft-Exchange-ActiveMonitoring?ProbeResult
+    - appname|cased: Microsoft-Exchange-ActiveMonitoring?ProbeResult
+    - syslog_appname|cased: Microsoft-Exchange-ActiveMonitoring?ProbeResult
   selection_2:
-    message|contains|cased: /ecp/RulesEditor/ViewInboxRuleDetails.aspx
+    sagan_raw|contains|cased: /ecp/RulesEditor/ViewInboxRuleDetails.aspx
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -59,9 +61,10 @@ logsource:
   product: exchange
 detection:
   selection_1:
-    appname|cased: Microsoft-Exchange-ActiveMonitoring?ProbeResult
+    - appname|cased: Microsoft-Exchange-ActiveMonitoring?ProbeResult
+    - syslog_appname|cased: Microsoft-Exchange-ActiveMonitoring?ProbeResult
   selection_2:
-    message|contains|cased: /ecp/RulesEditor/EditInboxRule.aspx
+    sagan_raw|contains|cased: /ecp/RulesEditor/EditInboxRule.aspx
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -85,9 +88,10 @@ logsource:
   product: exchange
 detection:
   selection_1:
-    appname|cased: Microsoft-Exchange-ActiveMonitoring?ProbeResult
+    - appname|cased: Microsoft-Exchange-ActiveMonitoring?ProbeResult
+    - syslog_appname|cased: Microsoft-Exchange-ActiveMonitoring?ProbeResult
   selection_2:
-    message|contains|cased: /ecp/RulesEditor/InboxRules.svc/SetObject
+    sagan_raw|contains|cased: /ecp/RulesEditor/InboxRules.svc/SetObject
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -111,9 +115,10 @@ logsource:
   product: exchange
 detection:
   selection_1:
-    appname|cased: Microsoft-Exchange-ActiveMonitoring?ProbeResult
+    - appname|cased: Microsoft-Exchange-ActiveMonitoring?ProbeResult
+    - syslog_appname|cased: Microsoft-Exchange-ActiveMonitoring?ProbeResult
   selection_2:
-    message|contains|cased: /ecp/RulesEditor/InboxRules.svc/RemoveObjects
+    sagan_raw|contains|cased: /ecp/RulesEditor/InboxRules.svc/RemoveObjects
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

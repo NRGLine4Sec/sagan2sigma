@@ -9,7 +9,7 @@ logsource:
   product: citrix
 detection:
   selection_1:
-    message|contains|cased: SSLVPN LOGIN
+    sagan_raw|contains|cased: SSLVPN LOGIN
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -40,9 +40,9 @@ logsource:
   product: citrix
 detection:
   selection_1:
-    message|contains|cased: SSLVPN HTTPREQUEST
+    sagan_raw|contains|cased: SSLVPN HTTPREQUEST
   filter_2:
-    message|contains|cased: Context anonymous
+    sagan_raw|contains|cased: Context anonymous
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:

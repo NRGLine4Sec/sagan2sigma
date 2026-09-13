@@ -7,9 +7,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: auth
+    - appname|cased: auth
+    - syslog_appname|cased: auth
   selection_2:
-    message|contains|cased: Invalid user name/password
+    sagan_raw|contains|cased: Invalid user name/password
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -30,9 +31,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: FFI
+    - appname|cased: FFI
+    - syslog_appname|cased: FFI
   selection_2:
-    message|contains: Security Violation
+    sagan_raw|contains: Security Violation
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -54,7 +56,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: 00419
+    - appname|cased: 00419
+    - syslog_appname|cased: 00419
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

@@ -9,9 +9,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =AP_BIG_NAV_DOS_ATTACK(
+    sagan_raw|contains|cased: =AP_BIG_NAV_DOS_ATTACK(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -34,9 +35,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =AP_CONTAINED_AS_ROGUE(
+    sagan_raw|contains|cased: =AP_CONTAINED_AS_ROGUE(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -59,9 +61,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =AP_MAX_ROGUE_COUNT_EXCEEDED(
+    sagan_raw|contains|cased: =AP_MAX_ROGUE_COUNT_EXCEEDED(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -84,9 +87,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =AUTHENTICATION_FAILURE(
+    sagan_raw|contains|cased: =AUTHENTICATION_FAILURE(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -109,9 +113,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =BSN_AUTHENTICATION_FAILURE(
+    sagan_raw|contains|cased: =BSN_AUTHENTICATION_FAILURE(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -134,9 +139,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =ROGUE_AP_DETECTED(
+    sagan_raw|contains|cased: =ROGUE_AP_DETECTED(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -159,9 +165,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =ROGUE_AP_ON_NETWORK(
+    sagan_raw|contains|cased: =ROGUE_AP_ON_NETWORK(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -184,9 +191,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =ROGUE_AP_REMOVED(
+    sagan_raw|contains|cased: =ROGUE_AP_REMOVED(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -209,9 +217,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =STATION_AUTHENTICATION_FAIL(
+    sagan_raw|contains|cased: =STATION_AUTHENTICATION_FAIL(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -234,9 +243,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =STATION_ASSOCIATE_FAIL(
+    sagan_raw|contains|cased: =STATION_ASSOCIATE_FAIL(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -259,9 +269,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =STATION_BLACKLISTED(
+    sagan_raw|contains|cased: =STATION_BLACKLISTED(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -284,9 +295,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =SWITCH_DETECTED_DUPLICATE_IP(
+    sagan_raw|contains|cased: =SWITCH_DETECTED_DUPLICATE_IP(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -309,9 +321,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =TOO_MANY_USER_UNSUCCESSFUL_LOGINS(
+    sagan_raw|contains|cased: =TOO_MANY_USER_UNSUCCESSFUL_LOGINS(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -334,9 +347,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =ADHOC_ROGUE_AUTO_CONTAINED(
+    sagan_raw|contains|cased: =ADHOC_ROGUE_AUTO_CONTAINED(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -359,9 +373,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =ROGUE_AP_AUTO_CONTAINED(
+    sagan_raw|contains|cased: =ROGUE_AP_AUTO_CONTAINED(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -384,9 +399,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =TRUSTED_AP_INVALID_ENCRYPTION(
+    sagan_raw|contains|cased: =TRUSTED_AP_INVALID_ENCRYPTION(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -409,9 +425,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =TRUSTED_AP_INVALID_RADIO_POLICY(
+    sagan_raw|contains|cased: =TRUSTED_AP_INVALID_RADIO_POLICY(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -434,9 +451,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =TRUSTED_AP_INVALID_SSID(
+    sagan_raw|contains|cased: =TRUSTED_AP_INVALID_SSID(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -459,9 +477,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =TRUSTED_AP_MISSING(
+    sagan_raw|contains|cased: =TRUSTED_AP_MISSING(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -484,9 +503,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =AP_IMPERSONATION_DETECTED(
+    sagan_raw|contains|cased: =AP_IMPERSONATION_DETECTED(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -509,9 +529,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =SIGNATURE_ATTACK_DETECTED(
+    sagan_raw|contains|cased: =SIGNATURE_ATTACK_DETECTED(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -534,9 +555,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =SIGNATURE_ATTACK_DETECTED(
+    sagan_raw|contains|cased: =SIGNATURE_ATTACK_DETECTED(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -559,9 +581,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =CISCO_LWAPP_MESH_CONSOLE_LOGIN(
+    sagan_raw|contains|cased: =CISCO_LWAPP_MESH_CONSOLE_LOGIN(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -584,9 +607,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =CISCO_LWAPP_MESH_AUTHORIZATION_FAILURE(
+    sagan_raw|contains|cased: =CISCO_LWAPP_MESH_AUTHORIZATION_FAILURE(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -609,9 +633,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =IDS_SHUN_CLIENT_TRAP(
+    sagan_raw|contains|cased: =IDS_SHUN_CLIENT_TRAP(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -634,9 +659,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =MFP_ANOMALY_DETECTED_TRAP(
+    sagan_raw|contains|cased: =MFP_ANOMALY_DETECTED_TRAP(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -659,9 +685,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =MFP_ANOMALY_DETECTED_TRAP(
+    sagan_raw|contains|cased: =MFP_ANOMALY_DETECTED_TRAP(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -684,9 +711,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =GUEST_USER_ADDED(
+    sagan_raw|contains|cased: =GUEST_USER_ADDED(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -709,9 +737,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =GUEST_USER_AUTHENTICATED(
+    sagan_raw|contains|cased: =GUEST_USER_AUTHENTICATED(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -734,9 +763,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =GUEST_USER_LOGOFF(
+    sagan_raw|contains|cased: =GUEST_USER_LOGOFF(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -759,9 +789,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =SI_SECURITY_TRAPS(
+    sagan_raw|contains|cased: =SI_SECURITY_TRAPS(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -784,9 +815,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =FRIENDLY_ROGUE_AP_DETECTED_ON_NETWORK(
+    sagan_raw|contains|cased: =FRIENDLY_ROGUE_AP_DETECTED_ON_NETWORK(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -809,9 +841,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =FRIENDLY_ROGUE_AP_DETECTED(
+    sagan_raw|contains|cased: =FRIENDLY_ROGUE_AP_DETECTED(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -834,9 +867,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =UNCLASSIFIED_ROGUE_AP_DETECTED_ON_NETWORK(
+    sagan_raw|contains|cased: =UNCLASSIFIED_ROGUE_AP_DETECTED_ON_NETWORK(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -859,9 +893,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =UNCLASSIFIED_ROGUE_AP_DETECTED_ON_NETWORK_AND_CONTAINED(
+    sagan_raw|contains|cased: =UNCLASSIFIED_ROGUE_AP_DETECTED_ON_NETWORK_AND_CONTAINED(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -884,9 +919,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =UNCLASSIFIED_ROGUE_AP_DETECTED_CONTAINED(
+    sagan_raw|contains|cased: =UNCLASSIFIED_ROGUE_AP_DETECTED_CONTAINED(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -909,9 +945,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =UNCLASSIFIED_ROGUE_AP_DETECTED(
+    sagan_raw|contains|cased: =UNCLASSIFIED_ROGUE_AP_DETECTED(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -934,9 +971,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =MALICIOUS_ROGUE_AP_DETECTED_ON_NETWORK(
+    sagan_raw|contains|cased: =MALICIOUS_ROGUE_AP_DETECTED_ON_NETWORK(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -959,9 +997,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =MALICIOUS_ROGUE_AP_DETECTED_ON_NETWORK_AND_CONTAINED(
+    sagan_raw|contains|cased: =MALICIOUS_ROGUE_AP_DETECTED_ON_NETWORK_AND_CONTAINED(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -984,9 +1023,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =MALICIOUS_ROGUE_AP_DETECTED_CONTAINED(
+    sagan_raw|contains|cased: =MALICIOUS_ROGUE_AP_DETECTED_CONTAINED(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1009,9 +1049,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =MALICIOUS_ROGUE_AP_DETECTED(
+    sagan_raw|contains|cased: =MALICIOUS_ROGUE_AP_DETECTED(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1034,9 +1075,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =ROGUE_ADHOC_DETECTED_ON_NETWORK(
+    sagan_raw|contains|cased: =ROGUE_ADHOC_DETECTED_ON_NETWORK(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1059,9 +1101,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =ROGUE_ADHOC_DETECTED_ON_NETWORK(
+    sagan_raw|contains|cased: =ROGUE_ADHOC_DETECTED_ON_NETWORK(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1084,9 +1127,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =ROGUE_AP_STATE_CHANGE(
+    sagan_raw|contains|cased: =ROGUE_AP_STATE_CHANGE(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1109,9 +1153,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =ROGUE_DETECTED(
+    sagan_raw|contains|cased: =ROGUE_DETECTED(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1134,9 +1179,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =ROGUE_DETECTED_CONTAINED(
+    sagan_raw|contains|cased: =ROGUE_DETECTED_CONTAINED(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1159,9 +1205,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =ROGUE_DETECTED_ON_NETWORK(
+    sagan_raw|contains|cased: =ROGUE_DETECTED_ON_NETWORK(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1184,9 +1231,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =ROGUE_AUTO_CONTAINED(
+    sagan_raw|contains|cased: =ROGUE_AUTO_CONTAINED(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1209,9 +1257,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =USER_AUTHENTICATION_FAILURE(
+    sagan_raw|contains|cased: =USER_AUTHENTICATION_FAILURE(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1234,9 +1283,10 @@ logsource:
   product: cisco
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   selection_2:
-    message|contains|cased: =WIPS_TRAPS(
+    sagan_raw|contains|cased: =WIPS_TRAPS(
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

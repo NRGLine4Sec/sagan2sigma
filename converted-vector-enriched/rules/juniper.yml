@@ -7,9 +7,9 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: no group for
+    sagan_raw|contains|cased: no group for
   selection_2:
-    message|contains|cased: from AS
+    sagan_raw|contains|cased: from AS
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -30,7 +30,7 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: KERN_ARP_DUPLICATE_ADDR
+    sagan_raw|contains|cased: KERN_ARP_DUPLICATE_ADDR
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -51,7 +51,7 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: missing MD5 digest
+    sagan_raw|contains|cased: missing MD5 digest
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -72,7 +72,7 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: KERN_ARP_ADDR_CHANGE
+    sagan_raw|contains|cased: KERN_ARP_ADDR_CHANGE
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -93,9 +93,9 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: bgp_connect_start
+    sagan_raw|contains|cased: bgp_connect_start
   selection_2:
-    message|contains|cased: No route to host
+    sagan_raw|contains|cased: No route to host
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -116,9 +116,9 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: LOGIN_PAM_AUTHENTICATION_ERROR
+    sagan_raw|contains|cased: LOGIN_PAM_AUTHENTICATION_ERROR
   selection_2:
-    message|contains|cased: PAM authentication error for user
+    sagan_raw|contains|cased: PAM authentication error for user
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -140,9 +140,9 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: LOGIN_INVALID_LOCAL_USER
+    sagan_raw|contains|cased: LOGIN_INVALID_LOCAL_USER
   selection_2:
-    message|contains|cased: No entry in local password
+    sagan_raw|contains|cased: No entry in local password
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -164,9 +164,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: SSHD_LOGIN_ATTEMPTS_THRESHOLD
+    sagan_raw|contains|cased: SSHD_LOGIN_ATTEMPTS_THRESHOLD
   selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -188,9 +189,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: SSHD_LOGIN_FAILED_LIMIT
+    sagan_raw|contains|cased: SSHD_LOGIN_FAILED_LIMIT
   selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -213,9 +215,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: SSHD_LOGIN_FAILED
+    sagan_raw|contains|cased: SSHD_LOGIN_FAILED
   selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -252,9 +255,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Netscreen
+    - appname|cased: Netscreen
+    - syslog_appname|cased: Netscreen
   selection_2:
-    message|contains|cased: Fragmented traffic
+    sagan_raw|contains|cased: Fragmented traffic
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -275,9 +279,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Netscreen
+    - appname|cased: Netscreen
+    - syslog_appname|cased: Netscreen
   selection_2:
-    message|contains|cased: FIN but no ACK bit
+    sagan_raw|contains|cased: FIN but no ACK bit
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -298,9 +303,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Netscreen
+    - appname|cased: Netscreen
+    - syslog_appname|cased: Netscreen
   selection_2:
-    message|contains|cased: Port scan
+    sagan_raw|contains|cased: Port scan
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -321,9 +327,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Netscreen
+    - appname|cased: Netscreen
+    - syslog_appname|cased: Netscreen
   selection_2:
-    message|contains|cased: ICMP fragment
+    sagan_raw|contains|cased: ICMP fragment
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -344,9 +351,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Netscreen
+    - appname|cased: Netscreen
+    - syslog_appname|cased: Netscreen
   selection_2:
-    message|contains|cased: Malicious URL
+    sagan_raw|contains|cased: Malicious URL
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -367,9 +375,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Netscreen
+    - appname|cased: Netscreen
+    - syslog_appname|cased: Netscreen
   selection_2:
-    message|contains|cased: Large ICMP packet
+    sagan_raw|contains|cased: Large ICMP packet
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -390,9 +399,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Netscreen
+    - appname|cased: Netscreen
+    - syslog_appname|cased: Netscreen
   selection_2:
-    message|contains|cased: No tcp flag has been detected
+    sagan_raw|contains|cased: No tcp flag has been detected
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -413,7 +423,7 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: IDP_ATTACK_LOG_EVENT
+    sagan_raw|contains|cased: IDP_ATTACK_LOG_EVENT
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -434,7 +444,7 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: IDP_ATTACK_LOG_EVENT_LS
+    sagan_raw|contains|cased: IDP_ATTACK_LOG_EVENT_LS
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -455,7 +465,7 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: IDP_COMMIT_COMPLETED
+    sagan_raw|contains|cased: IDP_COMMIT_COMPLETED
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -476,7 +486,7 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: IDP_IGNORED_IPV6_ADDRESSES
+    sagan_raw|contains|cased: IDP_IGNORED_IPV6_ADDRESSES
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -497,7 +507,7 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: IDP_POLICY_LOAD_SUCCEEDED
+    sagan_raw|contains|cased: IDP_POLICY_LOAD_SUCCEEDED
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -518,7 +528,7 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: DP_POLICY_UNLOAD_SUCCEEDED
+    sagan_raw|contains|cased: DP_POLICY_UNLOAD_SUCCEEDED
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -539,7 +549,7 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: IDP_SESSION_LOG_EVENT
+    sagan_raw|contains|cased: IDP_SESSION_LOG_EVENT
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -560,7 +570,7 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: IDP_SESSION_LOG_EVENT_LS
+    sagan_raw|contains|cased: IDP_SESSION_LOG_EVENT_LS
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -581,7 +591,7 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: IDP_APPDDOS_APP_STATE_EVENT
+    sagan_raw|contains|cased: IDP_APPDDOS_APP_STATE_EVENT
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -603,7 +613,7 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: IDP_APPDDOS_APP_STATE_EVENT_LS
+    sagan_raw|contains|cased: IDP_APPDDOS_APP_STATE_EVENT_LS
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -624,7 +634,7 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: IDP_APPDDOS_APP_ATTACK_EVENT_LS
+    sagan_raw|contains|cased: IDP_APPDDOS_APP_ATTACK_EVENT_LS
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -645,7 +655,7 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: IDP_APPDDOS_APP_ATTACK_EVENT
+    sagan_raw|contains|cased: IDP_APPDDOS_APP_ATTACK_EVENT
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -668,9 +678,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Netscreen
+    - appname|cased: Netscreen
+    - syslog_appname|cased: Netscreen
   selection_2:
-    message|contains|cased: SYN flood
+    sagan_raw|contains|cased: SYN flood
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -693,9 +704,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Netscreen
+    - appname|cased: Netscreen
+    - syslog_appname|cased: Netscreen
   selection_2:
-    message|contains|cased: Teardrop Attack
+    sagan_raw|contains|cased: Teardrop Attack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -718,9 +730,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Netscreen
+    - appname|cased: Netscreen
+    - syslog_appname|cased: Netscreen
   selection_2:
-    message|contains|cased: IP spoofing
+    sagan_raw|contains|cased: IP spoofing
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -743,9 +756,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Netscreen
+    - appname|cased: Netscreen
+    - syslog_appname|cased: Netscreen
   selection_2:
-    message|contains|cased: ICMP flood
+    sagan_raw|contains|cased: ICMP flood
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -768,9 +782,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Netscreen
+    - appname|cased: Netscreen
+    - syslog_appname|cased: Netscreen
   selection_2:
-    message|contains|cased: SYN fragment
+    sagan_raw|contains|cased: SYN fragment
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -793,9 +808,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Netscreen
+    - appname|cased: Netscreen
+    - syslog_appname|cased: Netscreen
   selection_2:
-    message|contains|cased: Unknown protocol
+    sagan_raw|contains|cased: Unknown protocol
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -818,9 +834,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Netscreen
+    - appname|cased: Netscreen
+    - syslog_appname|cased: Netscreen
   selection_2:
-    message|contains|cased: Bad IP option
+    sagan_raw|contains|cased: Bad IP option
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -843,9 +860,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Netscreen
+    - appname|cased: Netscreen
+    - syslog_appname|cased: Netscreen
   selection_2:
-    message|contains|cased: SYN-ACK-ACK
+    sagan_raw|contains|cased: SYN-ACK-ACK
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -867,9 +885,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Juniper
+    - appname|cased: Juniper
+    - syslog_appname|cased: Juniper
   selection_2:
-    message|re|i: ' Login failed | authentication failed '
+    sagan_raw|re|i: ' Login failed | authentication failed '
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -906,9 +925,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Juniper
+    - appname|cased: Juniper
+    - syslog_appname|cased: Juniper
   selection_2:
-    message|contains|cased: not authenticated yet
+    sagan_raw|contains|cased: not authenticated yet
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -930,9 +950,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Juniper
+    - appname|cased: Juniper
+    - syslog_appname|cased: Juniper
   selection_2:
-    message|contains|cased: Unable to download current virus
+    sagan_raw|contains|cased: Unable to download current virus
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -953,9 +974,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Juniper
+    - appname|cased: Juniper
+    - syslog_appname|cased: Juniper
   selection_2:
-    message|contains|cased: SSL negotiation failed
+    sagan_raw|contains|cased: SSL negotiation failed
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -977,9 +999,10 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    appname|cased: Juniper
+    - appname|cased: Juniper
+    - syslog_appname|cased: Juniper
   selection_2:
-    message|contains|cased: Host Checker policy
+    sagan_raw|contains|cased: Host Checker policy
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1003,9 +1026,9 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains: Admin user system has logged on via
+    sagan_raw|contains: Admin user system has logged on via
   selection_2:
-    message|contains|cased: '00515'
+    sagan_raw|contains|cased: '00515'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1029,13 +1052,13 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: Admin user
+    sagan_raw|contains|cased: Admin user
   selection_2:
-    message|contains|cased: username
+    sagan_raw|contains|cased: username
   selection_3:
-    message|contains|cased: has logged on via
+    sagan_raw|contains|cased: has logged on via
   selection_4:
-    message|contains|cased: '00515'
+    sagan_raw|contains|cased: '00515'
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1059,15 +1082,15 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: APPTRACK_SESSION_CREATE
+    sagan_raw|contains|cased: APPTRACK_SESSION_CREATE
   selection_2:
-    message|contains|cased: application="UNKNOWN"
+    sagan_raw|contains|cased: application="UNKNOWN"
   selection_3:
-    message|contains|cased: destination-zone-name="untrust"
+    sagan_raw|contains|cased: destination-zone-name="untrust"
   selection_4:
-    message|contains|cased: source-zone-name="trust"
+    sagan_raw|contains|cased: source-zone-name="trust"
   selection_5:
-    message|re: destination-port=(1[0-9]{4,}|[2-9]\d{4,})
+    sagan_raw|re: destination-port=(1[0-9]{4,}|[2-9]\d{4,})
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1107,15 +1130,15 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: APPTRACK_SESSION_VOL_UPDATE
+    sagan_raw|contains|cased: APPTRACK_SESSION_VOL_UPDATE
   selection_2:
-    message|contains|cased: application="UNKNOWN"
+    sagan_raw|contains|cased: application="UNKNOWN"
   selection_3:
-    message|contains|cased: destination-zone-name="untrust"
+    sagan_raw|contains|cased: destination-zone-name="untrust"
   selection_4:
-    message|contains|cased: source-zone-name="trust"
+    sagan_raw|contains|cased: source-zone-name="trust"
   selection_5:
-    message|re: bytes-from-client=([5-9]\d{6}|\d{7,})
+    sagan_raw|re: bytes-from-client=([5-9]\d{6}|\d{7,})
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1141,23 +1164,23 @@ logsource:
   product: juniper
 detection:
   selection_1:
-    message|contains|cased: APPTRACK_SESSION_VOL_UPDATE
+    sagan_raw|contains|cased: APPTRACK_SESSION_VOL_UPDATE
   selection_2:
-    message|contains|cased: destination-port="9000"
+    sagan_raw|contains|cased: destination-port="9000"
   selection_3:
-    message|contains|cased: source-zone-name="trust"
+    sagan_raw|contains|cased: source-zone-name="trust"
   selection_4:
-    message|contains|cased: destination-zone-name="untrust"
+    sagan_raw|contains|cased: destination-zone-name="untrust"
   selection_5:
-    message|contains|cased: application="UNKNOWN"
+    sagan_raw|contains|cased: application="UNKNOWN"
   selection_6:
-    message|contains|cased: bytes-from-client="52"
+    sagan_raw|contains|cased: bytes-from-client="52"
   selection_7:
-    message|contains|cased: bytes-from-server="0"
+    sagan_raw|contains|cased: bytes-from-server="0"
   selection_8:
-    message|contains|cased: packets-from-client="1"
+    sagan_raw|contains|cased: packets-from-client="1"
   selection_9:
-    message|contains|cased: packets-from-server="0"
+    sagan_raw|contains|cased: packets-from-server="0"
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
     and selection_7 and selection_8 and selection_9
 falsepositives:

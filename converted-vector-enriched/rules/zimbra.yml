@@ -8,9 +8,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: authentication failed
+    sagan_raw|contains|cased: authentication failed
   selection_2:
-    appname|cased: zimbra
+    - appname|cased: zimbra
+    - syslog_appname|cased: zimbra
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -50,11 +51,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: auth failure
+    sagan_raw|contains|cased: auth failure
   selection_2:
-    message|contains|cased: saslauthd
+    sagan_raw|contains|cased: saslauthd
   selection_3:
-    appname|cased: zimbra
+    - appname|cased: zimbra
+    - syslog_appname|cased: zimbra
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -94,11 +96,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: authentication failed
+    sagan_raw|contains|cased: authentication failed
   selection_2:
-    message|contains|cased: account not found
+    sagan_raw|contains|cased: account not found
   selection_3:
-    appname|cased: mailbox
+    - appname|cased: mailbox
+    - syslog_appname|cased: mailbox
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -138,11 +141,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: authentication failed
+    sagan_raw|contains|cased: authentication failed
   selection_2:
-    message|contains|cased: invalid password
+    sagan_raw|contains|cased: invalid password
   selection_3:
-    appname|cased: mailbox
+    - appname|cased: mailbox
+    - syslog_appname|cased: mailbox
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -182,11 +186,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: error=authentication failed
+    sagan_raw|contains|cased: error=authentication failed
   selection_2:
-    message|contains|cased: invalid password
+    sagan_raw|contains|cased: invalid password
   selection_3:
-    appname|cased: audit
+    - appname|cased: audit
+    - syslog_appname|cased: audit
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -225,9 +230,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: FOUND
+    sagan_raw|contains|cased: FOUND
   selection_2:
-    appname|cased: misc-activity
+    - appname|cased: misc-activity
+    - syslog_appname|cased: misc-activity
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -251,9 +257,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Invalid username or password
+    sagan_raw|contains|cased: Invalid username or password
   selection_2:
-    appname|cased: sync
+    - appname|cased: sync
+    - syslog_appname|cased: sync
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -293,9 +300,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User password mismatch
+    sagan_raw|contains|cased: User password mismatch
   selection_2:
-    appname|cased: sync
+    - appname|cased: sync
+    - syslog_appname|cased: sync
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

@@ -10,13 +10,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'classification": "phish'
+    sagan_raw|contains: 'classification": "phish'
   filter_3:
-    message|contains|cased: 'phishScore": 0'
+    sagan_raw|contains|cased: 'phishScore": 0'
   selection_4:
-    message|contains|cased: 'event_type": "messagesBlocked'
+    sagan_raw|contains|cased: 'event_type": "messagesBlocked'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -43,13 +44,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'classification": "phish'
+    sagan_raw|contains: 'classification": "phish'
   filter_3:
-    message|contains|cased: 'phishScore": 0'
+    sagan_raw|contains|cased: 'phishScore": 0'
   selection_4:
-    message|contains|cased: 'event_type": "messagesDelivered'
+    sagan_raw|contains|cased: 'event_type": "messagesDelivered'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -76,13 +78,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'classification": "phish'
+    sagan_raw|contains: 'classification": "phish'
   filter_3:
-    message|contains|cased: 'phishScore": 0'
+    sagan_raw|contains|cased: 'phishScore": 0'
   selection_4:
-    message|contains|cased: 'event_type": "clicksPermitted'
+    sagan_raw|contains|cased: 'event_type": "clicksPermitted'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -109,13 +112,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'classification": "phish'
+    sagan_raw|contains: 'classification": "phish'
   filter_3:
-    message|contains|cased: 'phishScore": 0'
+    sagan_raw|contains|cased: 'phishScore": 0'
   selection_4:
-    message|contains|cased: 'event_type": "clicksBlocked'
+    sagan_raw|contains|cased: 'event_type": "clicksBlocked'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -142,13 +146,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'classification": "malware'
+    sagan_raw|contains: 'classification": "malware'
   filter_3:
-    message|contains|cased: 'malwareScore": 0'
+    sagan_raw|contains|cased: 'malwareScore": 0'
   selection_4:
-    message|contains|cased: 'event_type": "messagesBlocked'
+    sagan_raw|contains|cased: 'event_type": "messagesBlocked'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -175,13 +180,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'classification": "malware'
+    sagan_raw|contains: 'classification": "malware'
   filter_3:
-    message|contains|cased: 'malwareScore": 0'
+    sagan_raw|contains|cased: 'malwareScore": 0'
   selection_4:
-    message|contains|cased: 'event_type": "messagesDelivered'
+    sagan_raw|contains|cased: 'event_type": "messagesDelivered'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -208,13 +214,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'classification": "malware'
+    sagan_raw|contains: 'classification": "malware'
   filter_3:
-    message|contains|cased: 'malwareScore": 0'
+    sagan_raw|contains|cased: 'malwareScore": 0'
   selection_4:
-    message|contains|cased: 'event_type": "clicksPermitted'
+    sagan_raw|contains|cased: 'event_type": "clicksPermitted'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -241,13 +248,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'classification": "malware'
+    sagan_raw|contains: 'classification": "malware'
   filter_3:
-    message|contains|cased: 'malwareScore": 0'
+    sagan_raw|contains|cased: 'malwareScore": 0'
   selection_4:
-    message|contains|cased: 'event_type": "clicksPermitted'
+    sagan_raw|contains|cased: 'event_type": "clicksPermitted'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -274,13 +282,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'classification": "spam'
+    sagan_raw|contains: 'classification": "spam'
   filter_3:
-    message|contains|cased: 'spamScore": 0'
+    sagan_raw|contains|cased: 'spamScore": 0'
   selection_4:
-    message|contains|cased: 'event_type": "messagesBlocked'
+    sagan_raw|contains|cased: 'event_type": "messagesBlocked'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -307,13 +316,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'classification": "spam'
+    sagan_raw|contains: 'classification": "spam'
   filter_3:
-    message|contains|cased: 'spamScore": 0'
+    sagan_raw|contains|cased: 'spamScore": 0'
   selection_4:
-    message|contains|cased: 'event_type": "messagesDelivered'
+    sagan_raw|contains|cased: 'event_type": "messagesDelivered'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -340,13 +350,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'classification": "spam'
+    sagan_raw|contains: 'classification": "spam'
   filter_3:
-    message|contains|cased: 'spamScore": 0'
+    sagan_raw|contains|cased: 'spamScore": 0'
   selection_4:
-    message|contains|cased: 'event_type": "clicksPermitted'
+    sagan_raw|contains|cased: 'event_type": "clicksPermitted'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -373,13 +384,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'classification": "spam'
+    sagan_raw|contains: 'classification": "spam'
   filter_3:
-    message|contains|cased: 'spamScore": 0'
+    sagan_raw|contains|cased: 'spamScore": 0'
   selection_4:
-    message|contains|cased: 'event_type": "clicksBlocked'
+    sagan_raw|contains|cased: 'event_type": "clicksBlocked'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -406,13 +418,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'classification": "impostor'
+    sagan_raw|contains: 'classification": "impostor'
   filter_3:
-    message|contains|cased: 'impostorScore": 0'
+    sagan_raw|contains|cased: 'impostorScore": 0'
   selection_4:
-    message|contains|cased: 'event_type": "messagesBlocked'
+    sagan_raw|contains|cased: 'event_type": "messagesBlocked'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -439,13 +452,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'classification": "impostor'
+    sagan_raw|contains: 'classification": "impostor'
   filter_3:
-    message|contains|cased: 'impostorScore": 0'
+    sagan_raw|contains|cased: 'impostorScore": 0'
   selection_4:
-    message|contains|cased: 'event_type": "messagesDelivered'
+    sagan_raw|contains|cased: 'event_type": "messagesDelivered'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -472,13 +486,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'classification": "impostor'
+    sagan_raw|contains: 'classification": "impostor'
   filter_3:
-    message|contains|cased: 'impostorScore": 0'
+    sagan_raw|contains|cased: 'impostorScore": 0'
   selection_4:
-    message|contains|cased: 'event_type": "clicksPermitted'
+    sagan_raw|contains|cased: 'event_type": "clicksPermitted'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -505,13 +520,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'classification": "impostor'
+    sagan_raw|contains: 'classification": "impostor'
   filter_3:
-    message|contains|cased: 'impostorScore": 0'
+    sagan_raw|contains|cased: 'impostorScore": 0'
   selection_4:
-    message|contains|cased: 'event_type": "clicksPermitted'
+    sagan_raw|contains|cased: 'event_type": "clicksPermitted'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -538,13 +554,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'classification": "toad'
+    sagan_raw|contains: 'classification": "toad'
   filter_3:
-    message|contains|cased: 'malwareScore": 0'
+    sagan_raw|contains|cased: 'malwareScore": 0'
   selection_4:
-    message|contains|cased: 'event_type": "messagesBlocked'
+    sagan_raw|contains|cased: 'event_type": "messagesBlocked'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -571,13 +588,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'classification": "toad'
+    sagan_raw|contains: 'classification": "toad'
   filter_3:
-    message|contains|cased: 'malwareScore": 0'
+    sagan_raw|contains|cased: 'malwareScore": 0'
   selection_4:
-    message|contains|cased: 'event_type": "messagesDelivered'
+    sagan_raw|contains|cased: 'event_type": "messagesDelivered'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -604,13 +622,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'classification": "toad'
+    sagan_raw|contains: 'classification": "toad'
   filter_3:
-    message|contains|cased: 'malwareScore": 0'
+    sagan_raw|contains|cased: 'malwareScore": 0'
   selection_4:
-    message|contains|cased: 'event_type": "clicksPermitted'
+    sagan_raw|contains|cased: 'event_type": "clicksPermitted'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -637,13 +656,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'classification": "toad'
+    sagan_raw|contains: 'classification": "toad'
   filter_3:
-    message|contains|cased: 'malwareScore": 0'
+    sagan_raw|contains|cased: 'malwareScore": 0'
   selection_4:
-    message|contains|cased: 'event_type": "clicksPermitted'
+    sagan_raw|contains|cased: 'event_type": "clicksPermitted'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -670,11 +690,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains|cased: 'event_type":'
+    sagan_raw|contains|cased: 'event_type":'
   filter_3:
-    message|contains:
+    sagan_raw|contains:
       - 'classification": "impostor'
       - 'classification": "malware'
       - 'classification": "phish'
@@ -706,9 +727,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'Classification","value": "Malware'
+    sagan_raw|contains: 'Classification","value": "Malware'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -735,9 +757,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'Classification","value": "Spam'
+    sagan_raw|contains: 'Classification","value": "Spam'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -764,9 +787,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'Classification","value": "Phish'
+    sagan_raw|contains: 'Classification","value": "Phish'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -793,9 +817,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'Classification","value": "Toad'
+    sagan_raw|contains: 'Classification","value": "Toad'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -822,9 +847,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains: 'Classification","value": "Impostor'
+    sagan_raw|contains: 'Classification","value": "Impostor'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -851,11 +877,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_siem_api_data
+    - appname|cased: proofpoint_siem_api_data
+    - syslog_appname|cased: proofpoint_siem_api_data
   selection_2:
-    message|contains|cased: 'Classification","value": "'
+    sagan_raw|contains|cased: 'Classification","value": "'
   filter_3:
-    message|contains:
+    sagan_raw|contains:
       - 'Classification","value": "Spam'
       - 'Classification","value": "Impostor'
       - 'Classification","value": "Malware'

@@ -7,9 +7,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: tcp
+    sagan_raw|contains|cased: tcp
   selection_2:
-    appname|cased: honeydconnect
+    - appname|cased: honeydconnect
+    - syslog_appname|cased: honeydconnect
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -30,9 +31,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: 'Attempted '
+    sagan_raw|contains|cased: 'Attempted '
   selection_2:
-    appname|cased: honeyd
+    - appname|cased: honeyd
+    - syslog_appname|cased: honeyd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -54,13 +56,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: 'Attempted '
+    sagan_raw|contains|cased: 'Attempted '
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - ' root '
       - ' admin '
   selection_3:
-    appname|cased: honeyd
+    - appname|cased: honeyd
+    - syslog_appname|cased: honeyd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -82,9 +85,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|re: ^a-z | ^0-9
+    sagan_raw|re: ^a-z | ^0-9
   selection_2:
-    appname|cased: honeydftp
+    - appname|cased: honeydftp
+    - syslog_appname|cased: honeydftp
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -106,9 +110,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|re: ^a-z | ^0-9
+    sagan_raw|re: ^a-z | ^0-9
   selection_2:
-    appname|cased: honeydwebiis
+    - appname|cased: honeydwebiis
+    - syslog_appname|cased: honeydwebiis
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -130,9 +135,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|re: ^a-z | ^0-9
+    sagan_raw|re: ^a-z | ^0-9
   selection_2:
-    appname|cased: honeydwebapache
+    - appname|cased: honeydwebapache
+    - syslog_appname|cased: honeydwebapache
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -154,9 +160,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|re: ^a-z | ^0-9
+    sagan_raw|re: ^a-z | ^0-9
   selection_2:
-    appname|cased: honeydsmtp
+    - appname|cased: honeydsmtp
+    - syslog_appname|cased: honeydsmtp
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

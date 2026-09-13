@@ -9,11 +9,12 @@ logsource:
   service: systemd
 detection:
   selection_1:
-    appname|cased: audit
+    - appname|cased: audit
+    - syslog_appname|cased: audit
   selection_2:
-    message|contains|cased: SERVICE_START
+    sagan_raw|contains|cased: SERVICE_START
   selection_3:
-    message|contains|cased: res=failed
+    sagan_raw|contains|cased: res=failed
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -52,9 +53,10 @@ logsource:
   service: systemd
 detection:
   selection_1:
-    appname|cased: systemd
+    - appname|cased: systemd
+    - syslog_appname|cased: systemd
   selection_2:
-    message|contains|cased: Failed to start
+    sagan_raw|contains|cased: Failed to start
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -93,9 +95,10 @@ logsource:
   service: systemd
 detection:
   selection_1:
-    appname|cased: systemd
+    - appname|cased: systemd
+    - syslog_appname|cased: systemd
   selection_2:
-    message|contains|cased: '.service: Failed'
+    sagan_raw|contains|cased: '.service: Failed'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -134,13 +137,14 @@ logsource:
   service: systemd
 detection:
   selection_1:
-    appname|cased: sagan
+    - appname|cased: sagan
+    - syslog_appname|cased: sagan
   selection_2:
-    message|contains|cased: '[E]'
+    sagan_raw|contains|cased: '[E]'
   selection_3:
-    message|contains|cased: The configuration file
+    sagan_raw|contains|cased: The configuration file
   selection_4:
-    message|contains|cased: cannot be found! Abort!
+    sagan_raw|contains|cased: cannot be found! Abort!
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

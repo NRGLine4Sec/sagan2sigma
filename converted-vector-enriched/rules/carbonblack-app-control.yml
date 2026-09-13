@@ -9,16 +9,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Computer Management"
+    sagan_raw|contains|cased: type="Computer Management"
   selection_3:
-    message|contains: subtype="Agent database error"
+    sagan_raw|contains: subtype="Agent database error"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -42,16 +48,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Computer Management"
+    sagan_raw|contains|cased: type="Computer Management"
   selection_3:
-    message|contains: subtype="Agent uninstalled"
+    sagan_raw|contains: subtype="Agent uninstalled"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -75,16 +87,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Computer Management"
+    sagan_raw|contains|cased: type="Computer Management"
   selection_3:
-    message|contains: subtype="CLI executed"
+    sagan_raw|contains: subtype="CLI executed"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -108,16 +126,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Computer Management"
+    sagan_raw|contains|cased: type="Computer Management"
   selection_3:
-    message|contains: subtype="File deletion failed"
+    sagan_raw|contains: subtype="File deletion failed"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -141,16 +165,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Computer Management"
+    sagan_raw|contains|cased: type="Computer Management"
   selection_3:
-    message|contains: subtype="Lockdown all computers"
+    sagan_raw|contains: subtype="Lockdown all computers"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -174,16 +204,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Computer Management"
+    sagan_raw|contains|cased: type="Computer Management"
   selection_3:
-    message|contains: subtype="Security Alert"
+    sagan_raw|contains: subtype="Security Alert"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -207,16 +243,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Computer Management"
+    sagan_raw|contains|cased: type="Computer Management"
   selection_3:
-    message|contains: subtype="Tamper Protection changed"
+    sagan_raw|contains: subtype="Tamper Protection changed"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -240,16 +282,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Computer Management"
+    sagan_raw|contains|cased: type="Computer Management"
   selection_3:
-    message|contains: subtype="Temporary Enforcement Level override"
+    sagan_raw|contains: subtype="Temporary Enforcement Level override"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -273,16 +321,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Computer Management"
+    sagan_raw|contains|cased: type="Computer Management"
   selection_3:
-    message|contains: subtype="Temporary Policy override generated"
+    sagan_raw|contains: subtype="Temporary Policy override generated"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -306,16 +360,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Computer Management"
+    sagan_raw|contains|cased: type="Computer Management"
   selection_3:
-    message|contains: subtype="Unauthorized computer registration"
+    sagan_raw|contains: subtype="Unauthorized computer registration"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -339,16 +399,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Discovery"
+    sagan_raw|contains|cased: type="Discovery"
   selection_3:
-    message|contains: subtype="Malicious file detected"
+    sagan_raw|contains: subtype="Malicious file detected"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -372,16 +438,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Discovery"
+    sagan_raw|contains|cased: type="Discovery"
   selection_3:
-    message|contains: subtype="New device found"
+    sagan_raw|contains: subtype="New device found"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -405,16 +477,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Discovery"
+    sagan_raw|contains|cased: type="Discovery"
   selection_3:
-    message|contains: subtype="Potential risk file detected"
+    sagan_raw|contains: subtype="Potential risk file detected"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -438,16 +516,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Discovery"
+    sagan_raw|contains|cased: type="Discovery"
   selection_3:
-    message|contains: subtype="Suspicious file found"
+    sagan_raw|contains: subtype="Suspicious file found"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -471,16 +555,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="General Management"
+    sagan_raw|contains|cased: type="General Management"
   selection_3:
-    message|contains: subtype="Alert triggered"
+    sagan_raw|contains: subtype="Alert triggered"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -504,16 +594,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Policy Enforcement"
+    sagan_raw|contains|cased: type="Policy Enforcement"
   selection_3:
-    message|contains: subtype="Banned process discovered"
+    sagan_raw|contains: subtype="Banned process discovered"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -537,16 +633,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Policy Enforcement"
+    sagan_raw|contains|cased: type="Policy Enforcement"
   selection_3:
-    message|contains: subtype="Execution block (banned file)"
+    sagan_raw|contains: subtype="Execution block (banned file)"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -570,16 +672,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Policy Enforcement"
+    sagan_raw|contains|cased: type="Policy Enforcement"
   selection_3:
-    message|contains: subtype="Execution block (Custom Rule)"
+    sagan_raw|contains: subtype="Execution block (Custom Rule)"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -603,16 +711,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Policy Enforcement"
+    sagan_raw|contains|cased: type="Policy Enforcement"
   selection_3:
-    message|contains: subtype="Execution block (removable media)"
+    sagan_raw|contains: subtype="Execution block (removable media)"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -636,16 +750,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Policy Enforcement"
+    sagan_raw|contains|cased: type="Policy Enforcement"
   selection_3:
-    message|contains: subtype="Execution prompt allowed (unapproved file)"
+    sagan_raw|contains: subtype="Execution prompt allowed (unapproved file)"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -669,16 +789,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Policy Enforcement"
+    sagan_raw|contains|cased: type="Policy Enforcement"
   selection_3:
-    message|contains: subtype="Execution prompt block (unapproved file)"
+    sagan_raw|contains: subtype="Execution prompt block (unapproved file)"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -702,16 +828,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Policy Enforcement"
+    sagan_raw|contains|cased: type="Policy Enforcement"
   selection_3:
-    message|contains: subtype="Unapproved process discovered"
+    sagan_raw|contains: subtype="Unapproved process discovered"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -735,16 +867,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Policy Enforcement"
+    sagan_raw|contains|cased: type="Policy Enforcement"
   selection_3:
-    message|contains: subtype="User Login denied"
+    sagan_raw|contains: subtype="User Login denied"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -768,16 +906,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Policy Management"
+    sagan_raw|contains|cased: type="Policy Management"
   selection_3:
-    message|contains: subtype="Custom Rule created"
+    sagan_raw|contains: subtype="Custom Rule created"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -801,16 +945,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Policy Management"
+    sagan_raw|contains|cased: type="Policy Management"
   selection_3:
-    message|contains: subtype="Custom Rule deleted"
+    sagan_raw|contains: subtype="Custom Rule deleted"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -834,16 +984,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Policy Management"
+    sagan_raw|contains|cased: type="Policy Management"
   selection_3:
-    message|contains: subtype="Device Rule created"
+    sagan_raw|contains: subtype="Device Rule created"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -867,16 +1023,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Policy Management"
+    sagan_raw|contains|cased: type="Policy Management"
   selection_3:
-    message|contains: subtype="Device Rule deleted"
+    sagan_raw|contains: subtype="Device Rule deleted"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -900,16 +1062,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Policy Management"
+    sagan_raw|contains|cased: type="Policy Management"
   selection_3:
-    message|contains: subtype="File approval created"
+    sagan_raw|contains: subtype="File approval created"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -933,16 +1101,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Policy Management"
+    sagan_raw|contains|cased: type="Policy Management"
   selection_3:
-    message|contains: subtype="File ban deleted"
+    sagan_raw|contains: subtype="File ban deleted"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -966,16 +1140,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Policy Management"
+    sagan_raw|contains|cased: type="Policy Management"
   selection_3:
-    message|contains: subtype="Publisher ban deleted"
+    sagan_raw|contains: subtype="Publisher ban deleted"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -999,16 +1179,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Policy Management"
+    sagan_raw|contains|cased: type="Policy Management"
   selection_3:
-    message|contains: subtype="Registry Rule created"
+    sagan_raw|contains: subtype="Registry Rule created"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1032,16 +1218,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Policy Management"
+    sagan_raw|contains|cased: type="Policy Management"
   selection_3:
-    message|contains: subtype="Registry Rule deleted"
+    sagan_raw|contains: subtype="Registry Rule deleted"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1065,16 +1257,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Policy Management"
+    sagan_raw|contains|cased: type="Policy Management"
   selection_3:
-    message|contains: subtype="Updater disabled"
+    sagan_raw|contains: subtype="Updater disabled"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1098,16 +1296,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Server Management"
+    sagan_raw|contains|cased: type="Server Management"
   selection_3:
-    message|contains: subtype="Communication error"
+    sagan_raw|contains: subtype="Communication error"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1131,16 +1335,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Server Management"
+    sagan_raw|contains|cased: type="Server Management"
   selection_3:
-    message|contains: subtype="Database error"
+    sagan_raw|contains: subtype="Database error"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1164,16 +1374,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Server Management"
+    sagan_raw|contains|cased: type="Server Management"
   selection_3:
-    message|contains: subtype="Database server reached specified limit"
+    sagan_raw|contains: subtype="Database server reached specified limit"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1197,16 +1413,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Server Management"
+    sagan_raw|contains|cased: type="Server Management"
   selection_3:
-    message|contains: subtype="Database verification error"
+    sagan_raw|contains: subtype="Database verification error"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1230,16 +1452,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Server Management"
+    sagan_raw|contains|cased: type="Server Management"
   selection_3:
-    message|contains: subtype="Install failed"
+    sagan_raw|contains: subtype="Install failed"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1263,16 +1491,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Server Management"
+    sagan_raw|contains|cased: type="Server Management"
   selection_3:
-    message|contains: subtype="Notifier install failed"
+    sagan_raw|contains: subtype="Notifier install failed"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1296,16 +1530,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Server Management"
+    sagan_raw|contains|cased: type="Server Management"
   selection_3:
-    message|contains: subtype="Server upgrade failed"
+    sagan_raw|contains: subtype="Server upgrade failed"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1329,16 +1569,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Server Management"
+    sagan_raw|contains|cased: type="Server Management"
   selection_3:
-    message|contains: subtype="SSL certificate CN mismatch"
+    sagan_raw|contains: subtype="SSL certificate CN mismatch"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1362,16 +1608,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Server Management"
+    sagan_raw|contains|cased: type="Server Management"
   selection_3:
-    message|contains: subtype="SSL certificate error"
+    sagan_raw|contains: subtype="SSL certificate error"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1395,16 +1647,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Server Management"
+    sagan_raw|contains|cased: type="Server Management"
   selection_3:
-    message|contains: subtype="SSL certificate expired"
+    sagan_raw|contains: subtype="SSL certificate expired"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1428,16 +1686,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Server Management"
+    sagan_raw|contains|cased: type="Server Management"
   selection_3:
-    message|contains: subtype="SSL certificate expiring"
+    sagan_raw|contains: subtype="SSL certificate expiring"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1461,16 +1725,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Server Management"
+    sagan_raw|contains|cased: type="Server Management"
   selection_3:
-    message|contains: subtype="Unified server error"
+    sagan_raw|contains: subtype="Unified server error"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1494,16 +1764,22 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
+        - '1'
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: type="Session Management"
+    sagan_raw|contains|cased: type="Session Management"
   selection_3:
-    message|contains: subtype="Multiple failed logins"
+    sagan_raw|contains: subtype="Multiple failed logins"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1525,14 +1801,18 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    message|contains|cased: Agent blocked an attempt to create
+    sagan_raw|contains|cased: Agent blocked an attempt to create
   selection_2:
-    message|contains|cased: because of tamper protection
+    sagan_raw|contains|cased: because of tamper protection
   selection_3:
-    appname|cased:
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1553,14 +1833,18 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    message|contains|cased: Agent blocked an attempt to delete
+    sagan_raw|contains|cased: Agent blocked an attempt to delete
   selection_2:
-    message|contains|cased: because of tamper protection
+    sagan_raw|contains|cased: because of tamper protection
   selection_3:
-    appname|cased:
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1581,16 +1865,20 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    message|contains|cased: Permission change on
+    sagan_raw|contains|cased: Permission change on
   selection_2:
-    message|contains|cased: was blocked
+    sagan_raw|contains|cased: was blocked
   selection_3:
-    message|contains|cased: event
+    sagan_raw|contains|cased: event
   selection_4:
-    appname|cased:
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1611,16 +1899,20 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    message|contains|cased: of registry
+    sagan_raw|contains|cased: of registry
   selection_2:
-    message|contains|cased: was blocked because of tamper protection
+    sagan_raw|contains|cased: was blocked because of tamper protection
   selection_3:
-    message|contains|cased: event
+    sagan_raw|contains|cased: event
   selection_4:
-    appname|cased:
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1641,12 +1933,16 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    message|contains|cased: Software Reputation Service as a potential risk
+    sagan_raw|contains|cased: Software Reputation Service as a potential risk
   selection_2:
-    appname|cased:
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1667,14 +1963,18 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    message|contains|cased: Server detected revocation of certificate
+    sagan_raw|contains|cased: Server detected revocation of certificate
   selection_2:
-    message|contains|cased: event
+    sagan_raw|contains|cased: event
   selection_3:
-    appname|cased:
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1695,16 +1995,20 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    message|contains|cased: Exclusive access to
+    sagan_raw|contains|cased: Exclusive access to
   selection_2:
-    message|contains|cased: was blocked because of tamper protection
+    sagan_raw|contains|cased: was blocked because of tamper protection
   selection_3:
-    message|contains|cased: event
+    sagan_raw|contains|cased: event
   selection_4:
-    appname|cased:
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1725,12 +2029,16 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    message|contains|cased: Carbon Black process watchlist 'Non-System Filemods to system32'
+    sagan_raw|contains|cased: Carbon Black process watchlist 'Non-System Filemods to system32'
   selection_2:
-    appname|cased:
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1751,16 +2059,20 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    message|contains|cased: File
+    sagan_raw|contains|cased: File
   selection_2:
-    message|contains|cased: was executed for the first time
+    sagan_raw|contains|cased: was executed for the first time
   selection_3:
-    message|contains|cased: event
+    sagan_raw|contains|cased: event
   selection_4:
-    appname|cased:
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1781,16 +2093,20 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    message|contains|cased: reported that signature on file
+    sagan_raw|contains|cased: reported that signature on file
   selection_2:
-    message|contains|cased: is invalid
+    sagan_raw|contains|cased: is invalid
   selection_3:
-    message|contains|cased: event
+    sagan_raw|contains|cased: event
   selection_4:
-    appname|cased:
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1811,14 +2127,18 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    message|contains|cased: Server discovered new certificate
+    sagan_raw|contains|cased: Server discovered new certificate
   selection_2:
-    message|contains|cased: event
+    sagan_raw|contains|cased: event
   selection_3:
-    appname|cased:
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1839,14 +2159,18 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    message|contains|cased: Disk configuration change detected
+    sagan_raw|contains|cased: Disk configuration change detected
   selection_2:
-    message|contains|cased: event
+    sagan_raw|contains|cased: event
   selection_3:
-    appname|cased:
-      - '1'
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - '1'
+        - bit9
+        - carbonblack
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1867,9 +2191,10 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    message|contains|cased: '"description": "Set BYPASS to on'
+    sagan_raw|contains|cased: '"description": "Set BYPASS to on'
   selection_2:
-    appname|cased: carbonblack
+    - appname|cased: carbonblack
+    - syslog_appname|cased: carbonblack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1890,9 +2215,10 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    message|contains|cased: '"description": "Set BYPASS to off'
+    sagan_raw|contains|cased: '"description": "Set BYPASS to off'
   selection_2:
-    appname|cased: carbonblack
+    - appname|cased: carbonblack
+    - syslog_appname|cased: carbonblack
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

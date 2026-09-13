@@ -7,9 +7,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains|cased: Get-ADGroupMember
+    sagan_raw|contains|cased: Get-ADGroupMember
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -30,9 +31,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains|cased: Get-ADUser
+    sagan_raw|contains|cased: Get-ADUser
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -53,11 +55,12 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains|cased: net stop
+    sagan_raw|contains|cased: net stop
   filter_3:
-    message|contains|cased: SnowInventoryClient
+    sagan_raw|contains|cased: SnowInventoryClient
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -78,9 +81,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains|cased: powershell -ExecutionPolicy Bypass
+    sagan_raw|contains|cased: powershell -ExecutionPolicy Bypass
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -101,11 +105,12 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains|cased: \\SOFTWARE\\Policies\\Microsoft\\Windows Defender
+    sagan_raw|contains|cased: \\SOFTWARE\\Policies\\Microsoft\\Windows Defender
   selection_3:
-    message|contains|cased: DisableAntiSpyware
+    sagan_raw|contains|cased: DisableAntiSpyware
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -126,9 +131,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains: Set-MpPreference -DisableRealtimeMonitoring
+    sagan_raw|contains: Set-MpPreference -DisableRealtimeMonitoring
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -149,9 +155,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains: Uninstall-WindowsFeature -Name Windows-Defender
+    sagan_raw|contains: Uninstall-WindowsFeature -Name Windows-Defender
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -172,9 +179,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains: remote-exec psexec
+    sagan_raw|contains: remote-exec psexec
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -195,11 +203,12 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains: powershell
+    sagan_raw|contains: powershell
   selection_3:
-    message|contains: -encodedcommand
+    sagan_raw|contains: -encodedcommand
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -220,9 +229,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains: rundll32.exe
+    sagan_raw|contains: rundll32.exe
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -243,11 +253,12 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains: rundll32.exe
+    sagan_raw|contains: rundll32.exe
   selection_3:
-    message|contains: DllRegisterServer
+    sagan_raw|contains: DllRegisterServer
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -268,9 +279,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains:
+    sagan_raw|contains:
       - net group
       - net user
   condition: selection_1 and selection_2
@@ -293,9 +305,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains:
+    sagan_raw|contains:
       - net group
       - net user
   condition: selection_1 and selection_2
@@ -318,9 +331,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains: query user
+    sagan_raw|contains: query user
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -341,9 +355,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains: rwinsta /server
+    sagan_raw|contains: rwinsta /server
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -364,9 +379,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains: nltest /dclist
+    sagan_raw|contains: nltest /dclist
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -387,9 +403,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains|cased: Active Connections
+    sagan_raw|contains|cased: Active Connections
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -410,11 +427,12 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains|cased: TCP
+    sagan_raw|contains|cased: TCP
   selection_3:
-    message|contains|cased: ESTABLISHED
+    sagan_raw|contains|cased: ESTABLISHED
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -435,13 +453,14 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains: copy \\\\
+    sagan_raw|contains: copy \\\\
   selection_3:
-    message|contains: \\C$\\
+    sagan_raw|contains: \\C$\\
   selection_4:
-    message|contains|cased: C:\\
+    sagan_raw|contains|cased: C:\\
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -462,9 +481,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains: bitsadmin /transfer
+    sagan_raw|contains: bitsadmin /transfer
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -485,9 +505,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains: 'proxychains '
+    sagan_raw|contains: 'proxychains '
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -508,13 +529,14 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains|cased: http
+    sagan_raw|contains|cased: http
   selection_3:
-    message|contains|cased: 'Firefox '
+    sagan_raw|contains|cased: 'Firefox '
   selection_4:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - Medium
       - Strong
       - Very
@@ -539,9 +561,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains: net localgroup administrators
+    sagan_raw|contains: net localgroup administrators
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -562,11 +585,12 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains: -f
+    sagan_raw|contains: -f
   selection_3:
-    message|contains: objectcategory=
+    sagan_raw|contains: objectcategory=
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -587,15 +611,16 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains: .exe
+    sagan_raw|contains: .exe
   selection_3:
-    message|contains|cased: .txt
+    sagan_raw|contains|cased: .txt
   selection_4:
-    message|contains|cased: firefox
+    sagan_raw|contains|cased: firefox
   selection_5:
-    message|re: \.exe\s+.*?\\\w+\.txt\s+.*?\\\w+\s+\d{1,3}
+    sagan_raw|re: \.exe\s+.*?\\\w+\.txt\s+.*?\\\w+\s+\d{1,3}
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -616,15 +641,16 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains: .exe
+    sagan_raw|contains: .exe
   selection_3:
-    message|contains|cased: .txt
+    sagan_raw|contains|cased: .txt
   selection_4:
-    message|contains|cased: chrome
+    sagan_raw|contains|cased: chrome
   selection_5:
-    message|re: \.exe\s+.*?\\\w+\.txt\s+.*?\\\w+\s+\d{1,3}
+    sagan_raw|re: \.exe\s+.*?\\\w+\.txt\s+.*?\\\w+\s+\d{1,3}
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

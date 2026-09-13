@@ -7,11 +7,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Integrity Check failed
+    sagan_raw|contains|cased: Integrity Check failed
   selection_2:
-    message|contains|cased: File could not
+    sagan_raw|contains|cased: File could not
   selection_3:
-    appname|cased: tripwire
+    - appname|cased: tripwire
+    - syslog_appname|cased: tripwire
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

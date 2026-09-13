@@ -7,9 +7,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: expects parameter 1 to be string, array given in
+    sagan_raw|contains|cased: expects parameter 1 to be string, array given in
   selection_2:
-    appname|cased: apache
+    - appname|cased: apache
+    - syslog_appname|cased: apache
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

@@ -8,11 +8,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: purity.audit
+    - appname|cased: purity.audit
+    - syslog_appname|cased: purity.audit
   selection_2:
-    message|contains|cased: (login
+    sagan_raw|contains|cased: (login
   selection_3:
-    message|contains|cased: 'Result: Failed'
+    sagan_raw|contains|cased: 'Result: Failed'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -49,11 +50,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: purity.audit
+    - appname|cased: purity.audit
+    - syslog_appname|cased: purity.audit
   selection_2:
-    message|contains|cased: (login
+    sagan_raw|contains|cased: (login
   selection_3:
-    message|contains|cased: 'Result: Success'
+    sagan_raw|contains|cased: 'Result: Success'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

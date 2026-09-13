@@ -9,9 +9,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: FTP brute forcing
+    sagan_raw|contains|cased: FTP brute forcing
   selection_2:
-    appname|cased: Artillery
+    - appname|cased: Artillery
+    - syslog_appname|cased: Artillery
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -34,11 +35,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: not set to root
+    sagan_raw|contains|cased: not set to root
   selection_2:
-    message|contains|cased: 'Issue identified:'
+    sagan_raw|contains|cased: 'Issue identified:'
   selection_3:
-    appname|cased: Artillery
+    - appname|cased: Artillery
+    - syslog_appname|cased: Artillery
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -61,11 +63,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: vsftpd.conf allows Anonymous login
+    sagan_raw|contains|cased: vsftpd.conf allows Anonymous login
   selection_2:
-    message|contains|cased: 'Issue identified:'
+    sagan_raw|contains|cased: 'Issue identified:'
   selection_3:
-    appname|cased: Artillery
+    - appname|cased: Artillery
+    - syslog_appname|cased: Artillery
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -88,11 +91,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: 'Issue identified:'
+    sagan_raw|contains|cased: 'Issue identified:'
   selection_2:
-    message|contains|cased: SSH is running on the default port 22
+    sagan_raw|contains|cased: SSH is running on the default port 22
   selection_3:
-    appname|cased: Artillery
+    - appname|cased: Artillery
+    - syslog_appname|cased: Artillery
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -115,11 +119,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: sshd_config allows RootLogin
+    sagan_raw|contains|cased: sshd_config allows RootLogin
   selection_2:
-    message|contains|cased: 'Issue identified:'
+    sagan_raw|contains|cased: 'Issue identified:'
   selection_3:
-    appname|cased: Artillery
+    - appname|cased: Artillery
+    - syslog_appname|cased: Artillery
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -142,11 +147,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: honeypot restricted port
+    sagan_raw|contains|cased: honeypot restricted port
   selection_2:
-    message|contains|cased: blocked
+    sagan_raw|contains|cased: blocked
   selection_3:
-    appname|cased: Artillery
+    - appname|cased: Artillery
+    - syslog_appname|cased: Artillery
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -169,11 +175,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: detected an attack
+    sagan_raw|contains|cased: detected an attack
   selection_2:
-    message|contains|cased: honeypot
+    sagan_raw|contains|cased: honeypot
   selection_3:
-    appname|cased: Artillery
+    - appname|cased: Artillery
+    - syslog_appname|cased: Artillery
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -196,9 +203,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: following changes were detect
+    sagan_raw|contains|cased: following changes were detect
   selection_2:
-    appname|cased: Artillery
+    - appname|cased: Artillery
+    - syslog_appname|cased: Artillery
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -221,9 +229,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SSH brute forcing violations
+    sagan_raw|contains|cased: SSH brute forcing violations
   selection_2:
-    appname|cased: Artillery
+    - appname|cased: Artillery
+    - syslog_appname|cased: Artillery
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

@@ -9,11 +9,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Backdoor:EC2/C&CActivity.B
+    sagan_raw|contains|cased: Backdoor:EC2/C&CActivity.B
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -39,11 +40,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Backdoor:EC2/C&CActivity.B!DNS
+    sagan_raw|contains|cased: Backdoor:EC2/C&CActivity.B!DNS
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -69,11 +71,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Backdoor:EC2/DenialOfService.Dns
+    sagan_raw|contains|cased: Backdoor:EC2/DenialOfService.Dns
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -99,11 +102,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Backdoor:EC2/DenialOfService.Tcp
+    sagan_raw|contains|cased: Backdoor:EC2/DenialOfService.Tcp
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -129,11 +133,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Backdoor:EC2/DenialOfService.Udp
+    sagan_raw|contains|cased: Backdoor:EC2/DenialOfService.Udp
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -158,11 +163,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Backdoor:EC2/DenialOfService.UdpOnTcpPorts
+    sagan_raw|contains|cased: Backdoor:EC2/DenialOfService.UdpOnTcpPorts
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -187,11 +193,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Backdoor:EC2/DenialOfService.UnusualProtocol
+    sagan_raw|contains|cased: Backdoor:EC2/DenialOfService.UnusualProtocol
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -216,11 +223,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Backdoor:EC2/Spambot
+    sagan_raw|contains|cased: Backdoor:EC2/Spambot
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -246,11 +254,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Behavior:EC2/NetworkPortUnusual
+    sagan_raw|contains|cased: Behavior:EC2/NetworkPortUnusual
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -276,11 +285,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Behavior:EC2/TrafficVolumeUnusual
+    sagan_raw|contains|cased: Behavior:EC2/TrafficVolumeUnusual
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -306,9 +316,10 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: CredentialAccess:IAMUser/AnomalousBehavior
+    sagan_raw|contains|cased: CredentialAccess:IAMUser/AnomalousBehavior
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -333,11 +344,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: CredentialAccess:Kubernetes/MaliciousIPCaller
+    sagan_raw|contains|cased: CredentialAccess:Kubernetes/MaliciousIPCaller
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -362,11 +374,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: CredentialAccess:Kubernetes/MaliciousIPCaller.Custom
+    sagan_raw|contains|cased: CredentialAccess:Kubernetes/MaliciousIPCaller.Custom
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -391,11 +404,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: CredentialAccess:Kubernetes/SuccessfulAnonymousAccess
+    sagan_raw|contains|cased: CredentialAccess:Kubernetes/SuccessfulAnonymousAccess
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -420,11 +434,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: CredentialAccess:Kubernetes/TorIPCaller
+    sagan_raw|contains|cased: CredentialAccess:Kubernetes/TorIPCaller
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -450,11 +465,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: CryptoCurrency:EC2/BitcoinTool.B
+    sagan_raw|contains|cased: CryptoCurrency:EC2/BitcoinTool.B
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -480,11 +496,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: CryptoCurrency:EC2/BitcoinTool.B!DNS
+    sagan_raw|contains|cased: CryptoCurrency:EC2/BitcoinTool.B!DNS
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -509,11 +526,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: DefenseEvasion:IAMUser/AnomalousBehavior
+    sagan_raw|contains|cased: DefenseEvasion:IAMUser/AnomalousBehavior
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -539,11 +557,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: DefenseEvasion:Kubernetes/MaliciousIPCaller
+    sagan_raw|contains|cased: DefenseEvasion:Kubernetes/MaliciousIPCaller
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -568,11 +587,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: DefenseEvasion:Kubernetes/MaliciousIPCaller.Custom
+    sagan_raw|contains|cased: DefenseEvasion:Kubernetes/MaliciousIPCaller.Custom
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -597,11 +617,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: DefenseEvasion:Kubernetes/SuccessfulAnonymousAccess
+    sagan_raw|contains|cased: DefenseEvasion:Kubernetes/SuccessfulAnonymousAccess
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -625,11 +646,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: DefenseEvasion:Kubernetes/TorIPCaller
+    sagan_raw|contains|cased: DefenseEvasion:Kubernetes/TorIPCaller
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -654,11 +676,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Discovery:IAMUser/AnomalousBehavior
+    sagan_raw|contains|cased: Discovery:IAMUser/AnomalousBehavior
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -683,11 +706,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Discovery:Kubernetes/MaliciousIPCaller
+    sagan_raw|contains|cased: Discovery:Kubernetes/MaliciousIPCaller
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -712,11 +736,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Discovery:Kubernetes/MaliciousIPCaller.Custom
+    sagan_raw|contains|cased: Discovery:Kubernetes/MaliciousIPCaller.Custom
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -741,11 +766,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Discovery:Kubernetes/SuccessfulAnonymousAccess
+    sagan_raw|contains|cased: Discovery:Kubernetes/SuccessfulAnonymousAccess
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -770,11 +796,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Discovery:Kubernetes/TorIPCaller
+    sagan_raw|contains|cased: Discovery:Kubernetes/TorIPCaller
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -799,11 +826,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Discovery:S3/AnomalousBehavior
+    sagan_raw|contains|cased: Discovery:S3/AnomalousBehavior
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -828,11 +856,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Discovery:S3/MaliciousIPCaller
+    sagan_raw|contains|cased: Discovery:S3/MaliciousIPCaller
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -857,11 +886,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Discovery:S3/MaliciousIPCaller.Custom
+    sagan_raw|contains|cased: Discovery:S3/MaliciousIPCaller.Custom
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -886,11 +916,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Discovery:S3/TorIPCaller
+    sagan_raw|contains|cased: Discovery:S3/TorIPCaller
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -916,11 +947,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Execution:Kubernetes/ExecInKubeSystemPod
+    sagan_raw|contains|cased: Execution:Kubernetes/ExecInKubeSystemPod
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -945,11 +977,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Exfiltration:IAMUser/AnomalousBehavior
+    sagan_raw|contains|cased: Exfiltration:IAMUser/AnomalousBehavior
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -974,11 +1007,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Exfiltration:S3/AnomalousBehavior
+    sagan_raw|contains|cased: Exfiltration:S3/AnomalousBehavior
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1003,11 +1037,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Exfiltration:S3/MaliciousIPCaller
+    sagan_raw|contains|cased: Exfiltration:S3/MaliciousIPCaller
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1032,11 +1067,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Impact:EC2/AbusedDomainRequest.Reputation
+    sagan_raw|contains|cased: Impact:EC2/AbusedDomainRequest.Reputation
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1060,11 +1096,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Impact:EC2/BitcoinDomainRequest.Reputation
+    sagan_raw|contains|cased: Impact:EC2/BitcoinDomainRequest.Reputation
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1089,11 +1126,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Impact:EC2/MaliciousDomainRequest.Reputation
+    sagan_raw|contains|cased: Impact:EC2/MaliciousDomainRequest.Reputation
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1118,11 +1156,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Impact:EC2/PortSweep
+    sagan_raw|contains|cased: Impact:EC2/PortSweep
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1147,11 +1186,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Impact:EC2/SuspiciousDomainRequest.Reputation
+    sagan_raw|contains|cased: Impact:EC2/SuspiciousDomainRequest.Reputation
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1176,11 +1216,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Impact:EC2/WinRMBruteForce
+    sagan_raw|contains|cased: Impact:EC2/WinRMBruteForce
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1205,11 +1246,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Impact:IAMUser/AnomalousBehavior
+    sagan_raw|contains|cased: Impact:IAMUser/AnomalousBehavior
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1234,11 +1276,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Impact:Kubernetes/MaliciousIPCaller
+    sagan_raw|contains|cased: Impact:Kubernetes/MaliciousIPCaller
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1263,11 +1306,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Impact:Kubernetes/MaliciousIPCaller.Custom
+    sagan_raw|contains|cased: Impact:Kubernetes/MaliciousIPCaller.Custom
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1292,11 +1336,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Impact:Kubernetes/SuccessfulAnonymousAccess
+    sagan_raw|contains|cased: Impact:Kubernetes/SuccessfulAnonymousAccess
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1321,11 +1366,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Impact:Kubernetes/TorIPCaller
+    sagan_raw|contains|cased: Impact:Kubernetes/TorIPCaller
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1349,11 +1395,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Impact:S3/AnomalousBehavior.Delete
+    sagan_raw|contains|cased: Impact:S3/AnomalousBehavior.Delete
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1377,11 +1424,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Impact:S3/AnomalousBehavior.Permission
+    sagan_raw|contains|cased: Impact:S3/AnomalousBehavior.Permission
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1405,9 +1453,10 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Impact:S3/AnomalousBehavior.Write
+    sagan_raw|contains|cased: Impact:S3/AnomalousBehavior.Write
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1433,11 +1482,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Impact:S3/MaliciousIPCaller
+    sagan_raw|contains|cased: Impact:S3/MaliciousIPCaller
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1462,9 +1512,10 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: InitialAccess:IAMUser/AnomalousBehavior
+    sagan_raw|contains|cased: InitialAccess:IAMUser/AnomalousBehavior
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1489,11 +1540,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: PenTest:IAMUser/KaliLinux
+    sagan_raw|contains|cased: PenTest:IAMUser/KaliLinux
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1517,11 +1569,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: PenTest:IAMUser/ParrotLinux
+    sagan_raw|contains|cased: PenTest:IAMUser/ParrotLinux
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1545,11 +1598,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: PenTest:IAMUser/PentooLinux
+    sagan_raw|contains|cased: PenTest:IAMUser/PentooLinux
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1573,11 +1627,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: PenTest:S3/KaliLinux
+    sagan_raw|contains|cased: PenTest:S3/KaliLinux
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1601,11 +1656,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: PenTest:S3/ParrotLinux
+    sagan_raw|contains|cased: PenTest:S3/ParrotLinux
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1629,11 +1685,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: PenTest:S3/PentooLinux
+    sagan_raw|contains|cased: PenTest:S3/PentooLinux
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1657,9 +1714,10 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Persistence:IAMUser/AnomalousBehavior
+    sagan_raw|contains|cased: Persistence:IAMUser/AnomalousBehavior
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1683,11 +1741,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Persistence:Kubernetes/ContainerWithSensitiveMount
+    sagan_raw|contains|cased: Persistence:Kubernetes/ContainerWithSensitiveMount
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1711,11 +1770,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Persistence:Kubernetes/MaliciousIPCaller
+    sagan_raw|contains|cased: Persistence:Kubernetes/MaliciousIPCaller
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1740,11 +1800,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Persistence:Kubernetes/MaliciousIPCaller.Custom
+    sagan_raw|contains|cased: Persistence:Kubernetes/MaliciousIPCaller.Custom
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1769,11 +1830,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Persistence:Kubernetes/SuccessfulAnonymousAccess
+    sagan_raw|contains|cased: Persistence:Kubernetes/SuccessfulAnonymousAccess
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1797,11 +1859,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Persistence:Kubernetes/TorIPCaller
+    sagan_raw|contains|cased: Persistence:Kubernetes/TorIPCaller
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1826,11 +1889,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Policy:IAMUser/RootCredentialUsage
+    sagan_raw|contains|cased: Policy:IAMUser/RootCredentialUsage
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1855,11 +1919,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Policy:Kubernetes/AdminAccessToDefaultServiceAccount
+    sagan_raw|contains|cased: Policy:Kubernetes/AdminAccessToDefaultServiceAccount
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1884,11 +1949,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Policy:Kubernetes/AnonymousAccessGranted
+    sagan_raw|contains|cased: Policy:Kubernetes/AnonymousAccessGranted
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1913,11 +1979,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Policy:Kubernetes/KubeflowDashboardExposed
+    sagan_raw|contains|cased: Policy:Kubernetes/KubeflowDashboardExposed
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1942,11 +2009,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Policy:Kubernetes/ExposedDashboard
+    sagan_raw|contains|cased: Policy:Kubernetes/ExposedDashboard
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1971,11 +2039,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Policy:S3/AccountBlockPublicAccessDisabled
+    sagan_raw|contains|cased: Policy:S3/AccountBlockPublicAccessDisabled
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2000,11 +2069,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Policy:S3/BucketAnonymousAccessGranted
+    sagan_raw|contains|cased: Policy:S3/BucketAnonymousAccessGranted
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2028,9 +2098,10 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Policy:S3/BucketBlockPublicAccessDisabled
+    sagan_raw|contains|cased: Policy:S3/BucketBlockPublicAccessDisabled
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2055,11 +2126,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Policy:S3/BucketPublicAccessGranted
+    sagan_raw|contains|cased: Policy:S3/BucketPublicAccessGranted
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2083,9 +2155,10 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: PrivilegeEscalation:IAMUser/AnomalousBehavior
+    sagan_raw|contains|cased: PrivilegeEscalation:IAMUser/AnomalousBehavior
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2109,11 +2182,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: PrivilegeEscalation:Kubernetes/PrivilegedContainer
+    sagan_raw|contains|cased: PrivilegeEscalation:Kubernetes/PrivilegedContainer
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2137,11 +2211,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Recon:EC2/PortProbeEMRUnprotectedPort
+    sagan_raw|contains|cased: Recon:EC2/PortProbeEMRUnprotectedPort
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2165,11 +2240,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Recon:EC2/PortProbeUnprotectedPort
+    sagan_raw|contains|cased: Recon:EC2/PortProbeUnprotectedPort
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2193,11 +2269,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Recon:EC2/Portscan
+    sagan_raw|contains|cased: Recon:EC2/Portscan
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2221,11 +2298,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Recon:IAMUser/MaliciousIPCaller
+    sagan_raw|contains|cased: Recon:IAMUser/MaliciousIPCaller
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2249,11 +2327,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Recon:IAMUser/MaliciousIPCaller.Custom
+    sagan_raw|contains|cased: Recon:IAMUser/MaliciousIPCaller.Custom
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2277,11 +2356,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Recon:IAMUser/TorIPCaller
+    sagan_raw|contains|cased: Recon:IAMUser/TorIPCaller
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2306,11 +2386,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Stealth:IAMUser/CloudTrailLoggingDisabled
+    sagan_raw|contains|cased: Stealth:IAMUser/CloudTrailLoggingDisabled
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2334,11 +2415,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Stealth:IAMUser/PasswordPolicyChange
+    sagan_raw|contains|cased: Stealth:IAMUser/PasswordPolicyChange
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2362,11 +2444,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Stealth:S3/ServerAccessLoggingDisabled
+    sagan_raw|contains|cased: Stealth:S3/ServerAccessLoggingDisabled
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2390,11 +2473,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Trojan:EC2/BlackholeTraffic
+    sagan_raw|contains|cased: Trojan:EC2/BlackholeTraffic
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2418,11 +2502,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Trojan:EC2/BlackholeTraffic!DNS
+    sagan_raw|contains|cased: Trojan:EC2/BlackholeTraffic!DNS
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2446,11 +2531,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Trojan:EC2/DGADomainRequest.B
+    sagan_raw|contains|cased: Trojan:EC2/DGADomainRequest.B
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2475,11 +2561,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Trojan:EC2/DGADomainRequest.C!DNS
+    sagan_raw|contains|cased: Trojan:EC2/DGADomainRequest.C!DNS
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2504,11 +2591,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Trojan:EC2/DNSDataExfiltration
+    sagan_raw|contains|cased: Trojan:EC2/DNSDataExfiltration
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2532,11 +2620,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Trojan:EC2/DriveBySourceTraffic!DNS
+    sagan_raw|contains|cased: Trojan:EC2/DriveBySourceTraffic!DNS
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2560,11 +2649,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Trojan:EC2/DropPoint
+    sagan_raw|contains|cased: Trojan:EC2/DropPoint
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2588,11 +2678,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Trojan:EC2/DropPoint!DNS
+    sagan_raw|contains|cased: Trojan:EC2/DropPoint!DNS
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2616,11 +2707,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Trojan:EC2/PhishingDomainRequest!DNS
+    sagan_raw|contains|cased: Trojan:EC2/PhishingDomainRequest!DNS
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2644,11 +2736,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: UnauthorizedAccess:EC2/MaliciousIPCaller.Custom
+    sagan_raw|contains|cased: UnauthorizedAccess:EC2/MaliciousIPCaller.Custom
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2672,11 +2765,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: UnauthorizedAccess:EC2/MetadataDNSRebind
+    sagan_raw|contains|cased: UnauthorizedAccess:EC2/MetadataDNSRebind
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2700,11 +2794,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: UnauthorizedAccess:EC2/RDPBruteForce
+    sagan_raw|contains|cased: UnauthorizedAccess:EC2/RDPBruteForce
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2728,11 +2823,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: UnauthorizedAccess:EC2/SSHBruteForce
+    sagan_raw|contains|cased: UnauthorizedAccess:EC2/SSHBruteForce
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2756,11 +2852,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: UnauthorizedAccess:EC2/TorClient
+    sagan_raw|contains|cased: UnauthorizedAccess:EC2/TorClient
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2784,11 +2881,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: UnauthorizedAccess:EC2/TorRelay
+    sagan_raw|contains|cased: UnauthorizedAccess:EC2/TorRelay
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2812,11 +2910,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: UnauthorizedAccess:IAMUser/ConsoleLoginSuccess.B
+    sagan_raw|contains|cased: UnauthorizedAccess:IAMUser/ConsoleLoginSuccess.B
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2840,11 +2939,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: UnauthorizedAccess:IAMUser/InstanceCredentialExfiltration.InsideAWS
+    sagan_raw|contains|cased: UnauthorizedAccess:IAMUser/InstanceCredentialExfiltration.InsideAWS
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2868,11 +2968,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: UnauthorizedAccess:IAMUser/InstanceCredentialExfiltration.OutsideAWS
+    sagan_raw|contains|cased: UnauthorizedAccess:IAMUser/InstanceCredentialExfiltration.OutsideAWS
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2896,11 +2997,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: UnauthorizedAccess:IAMUser/MaliciousIPCaller
+    sagan_raw|contains|cased: UnauthorizedAccess:IAMUser/MaliciousIPCaller
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2924,11 +3026,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom
+    sagan_raw|contains|cased: UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2952,11 +3055,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: UnauthorizedAccess:IAMUser/TorIPCaller
+    sagan_raw|contains|cased: UnauthorizedAccess:IAMUser/TorIPCaller
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2981,11 +3085,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: UnauthorizedAccess:S3/MaliciousIPCaller.Custom
+    sagan_raw|contains|cased: UnauthorizedAccess:S3/MaliciousIPCaller.Custom
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3011,11 +3116,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: UnauthorizedAccess:S3/TorIPCaller
+    sagan_raw|contains|cased: UnauthorizedAccess:S3/TorIPCaller
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3041,11 +3147,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Execution:EC2/MaliciousFile
+    sagan_raw|contains|cased: Execution:EC2/MaliciousFile
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3071,11 +3178,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Execution:ECS/MaliciousFile
+    sagan_raw|contains|cased: Execution:ECS/MaliciousFile
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3101,11 +3209,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Execution:Kubernetes/MaliciousFile
+    sagan_raw|contains|cased: Execution:Kubernetes/MaliciousFile
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3131,11 +3240,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Execution:Container/MaliciousFile
+    sagan_raw|contains|cased: Execution:Container/MaliciousFile
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3161,11 +3271,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Execution:EC2/SuspiciousFile
+    sagan_raw|contains|cased: Execution:EC2/SuspiciousFile
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3191,11 +3302,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Execution:ECS/SuspiciousFile
+    sagan_raw|contains|cased: Execution:ECS/SuspiciousFile
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3221,11 +3333,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Execution:Kubernetes/SuspiciousFile
+    sagan_raw|contains|cased: Execution:Kubernetes/SuspiciousFile
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3251,11 +3364,12 @@ logsource:
   product: aws
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   selection_2:
-    message|contains|cased: Execution:Container/SuspiciousFile
+    sagan_raw|contains|cased: Execution:Container/SuspiciousFile
   filter_3:
-    message|contains|cased: sample\\\\\\":true
+    sagan_raw|contains|cased: sample\\\\\\":true
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

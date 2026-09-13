@@ -9,9 +9,10 @@ logsource:
   service: sshd
 detection:
   selection_1:
-    message|contains|cased: Authentication failure
+    sagan_raw|contains|cased: Authentication failure
   selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -50,11 +51,12 @@ logsource:
   service: sshd
 detection:
   selection_1:
-    message|contains|cased: authentication failure
+    sagan_raw|contains|cased: authentication failure
   selection_2:
-    message|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}
+    sagan_raw|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}
   selection_3:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -94,9 +96,10 @@ logsource:
   service: sshd
 detection:
   selection_1:
-    message|contains|cased: Authentication failure for root
+    sagan_raw|contains|cased: Authentication failure for root
   selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -134,9 +137,10 @@ logsource:
   service: sshd
 detection:
   selection_1:
-    message|contains|cased: POSSIBLE BREAK-IN ATTEMPT
+    sagan_raw|contains|cased: POSSIBLE BREAK-IN ATTEMPT
   selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -159,9 +163,10 @@ logsource:
   service: sshd
 detection:
   selection_1:
-    message|contains|cased: is not executable
+    sagan_raw|contains|cased: is not executable
   selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -184,13 +189,14 @@ logsource:
   service: sshd
 detection:
   selection_1:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - for illegal user
       - for invalid user
   filter_2:
-    message|contains|cased: input_userauth_request
+    sagan_raw|contains|cased: input_userauth_request
   selection_3:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -228,13 +234,14 @@ logsource:
   service: sshd
 detection:
   selection_1:
-    message|contains|cased: Failed auth
+    sagan_raw|contains|cased: Failed auth
   selection_2:
-    message|contains|cased: out-of-band challenge
+    sagan_raw|contains|cased: out-of-band challenge
   selection_3:
-    message|contains|cased: pam_obc
+    sagan_raw|contains|cased: pam_obc
   selection_4:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -256,11 +263,12 @@ logsource:
   service: sshd
 detection:
   selection_1:
-    message|contains|cased: Bad protocol version identification
+    sagan_raw|contains|cased: Bad protocol version identification
   filter_2:
-    message|contains|cased: UNKNOWN
+    sagan_raw|contains|cased: UNKNOWN
   selection_3:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -283,9 +291,10 @@ logsource:
   service: sshd
 detection:
   selection_1:
-    message|contains|cased: Did not receive identification string
+    sagan_raw|contains|cased: Did not receive identification string
   selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -308,9 +317,10 @@ logsource:
   service: sshd
 detection:
   selection_1:
-    message|contains|cased: buffer_get_stringX bad string
+    sagan_raw|contains|cased: buffer_get_stringX bad string
   selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -332,9 +342,10 @@ logsource:
   service: sshd
 detection:
   selection_1:
-    message|contains|cased: Could not get shadow information for NOUSER
+    sagan_raw|contains|cased: Could not get shadow information for NOUSER
   selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -356,9 +367,10 @@ logsource:
   service: sshd
 detection:
   selection_1:
-    message|contains|cased: Corrupted check bytes on
+    sagan_raw|contains|cased: Corrupted check bytes on
   selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -382,9 +394,10 @@ logsource:
   service: sshd
 detection:
   selection_1:
-    message|contains: crc32 compensation attack
+    sagan_raw|contains: crc32 compensation attack
   selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -406,9 +419,10 @@ logsource:
   service: sshd
 detection:
   selection_1:
-    message|contains|cased: not allowed because
+    sagan_raw|contains|cased: not allowed because
   selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -495,9 +509,10 @@ logsource:
   service: sshd
 detection:
   selection_1:
-    message|contains|cased: Failed password
+    sagan_raw|contains|cased: Failed password
   selection_2:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -537,9 +552,10 @@ logsource:
   service: sshd
 detection:
   selection_1:
-    message|contains|cased: 'ssh: failed login attempt'
+    sagan_raw|contains|cased: 'ssh: failed login attempt'
   selection_2:
-    appname|cased: syslog
+    - appname|cased: syslog
+    - syslog_appname|cased: syslog
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -577,9 +593,9 @@ logsource:
   service: sshd
 detection:
   selection_1:
-    message|contains|cased: Fail2Ban
+    sagan_raw|contains|cased: Fail2Ban
   filter_2:
-    message|contains|cased: Fail2Ban Service
+    sagan_raw|contains|cased: Fail2Ban Service
   condition: selection_1 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -601,11 +617,12 @@ logsource:
   service: sshd
 detection:
   selection_1:
-    message|contains|cased: Bad protocol version identification
+    sagan_raw|contains|cased: Bad protocol version identification
   selection_2:
-    message|contains|cased: UNKNOWN
+    sagan_raw|contains|cased: UNKNOWN
   selection_3:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

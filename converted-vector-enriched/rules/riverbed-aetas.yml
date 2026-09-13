@@ -7,9 +7,10 @@ logsource:
   product: riverbed
 detection:
   selection_1:
-    message|contains|cased: logged in
+    sagan_raw|contains|cased: logged in
   selection_2:
-    appname|cased: webasd
+    - appname|cased: webasd
+    - syslog_appname|cased: webasd
   at_days:
     sagan_event_weekday:
       - 1

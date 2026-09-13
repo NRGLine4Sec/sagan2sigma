@@ -7,7 +7,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proftpd
+    - appname|cased: proftpd
+    - syslog_appname|cased: proftpd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -28,9 +29,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -51,7 +55,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: EMU
+    - appname|cased: EMU
+    - syslog_appname|cased: EMU
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -72,9 +77,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - arpalert
-      - arpwatch
+    - appname|cased:
+        - arpalert
+        - arpwatch
+    - syslog_appname|cased:
+        - arpalert
+        - arpwatch
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -95,7 +103,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Artillery
+    - appname|cased: Artillery
+    - syslog_appname|cased: Artillery
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -116,7 +125,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: asterisk
+    - appname|cased: asterisk
+    - syslog_appname|cased: asterisk
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -137,11 +147,16 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - bash
-      - -bash
-      - sh
-      - -sh
+    - appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
+    - syslog_appname|cased:
+        - bash
+        - -bash
+        - sh
+        - -sh
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -162,7 +177,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: named
+    - appname|cased: named
+    - syslog_appname|cased: named
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -183,7 +199,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: bit9
+    - appname|cased: bit9
+    - syslog_appname|cased: bit9
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -204,9 +221,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - bro
-      - zeek
+    - appname|cased:
+        - bro
+        - zeek
+    - syslog_appname|cased:
+        - bro
+        - zeek
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -227,9 +247,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - '%ASA*'
-      - '%FWSM*'
+    - appname|cased:
+        - '%ASA*'
+        - '%FWSM*'
+    - syslog_appname|cased:
+        - '%ASA*'
+        - '%FWSM*'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -250,9 +273,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - imapd
-      - imapd-sslcourierlogger
+    - appname|cased:
+        - imapd
+        - imapd-sslcourierlogger
+    - syslog_appname|cased:
+        - imapd
+        - imapd-sslcourierlogger
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -273,7 +299,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -294,7 +321,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: '*DigitalPersona*'
+    - appname|cased: '*DigitalPersona*'
+    - syslog_appname|cased: '*DigitalPersona*'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -315,7 +343,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: dovecot
+    - appname|cased: dovecot
+    - syslog_appname|cased: dovecot
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -336,7 +365,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: '*PIPAYPIN*'
+    - appname|cased: '*PIPAYPIN*'
+    - syslog_appname|cased: '*PIPAYPIN*'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -357,11 +387,16 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - ftpd
-      - ftp
-      - FTP
-      - FTPD
+    - appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
+    - syslog_appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -382,7 +417,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: grsec
+    - appname|cased: grsec
+    - syslog_appname|cased: grsec
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -403,7 +439,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: honeyd
+    - appname|cased: honeyd
+    - syslog_appname|cased: honeyd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -424,7 +461,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: HORDE
+    - appname|cased: HORDE
+    - syslog_appname|cased: HORDE
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -445,7 +483,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: hostapd
+    - appname|cased: hostapd
+    - syslog_appname|cased: hostapd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -466,9 +505,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - imapd
-      - imapd-ssl
+    - appname|cased:
+        - imapd
+        - imapd-ssl
+    - syslog_appname|cased:
+        - imapd
+        - imapd-ssl
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -489,7 +531,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: ipop3d
+    - appname|cased: ipop3d
+    - syslog_appname|cased: ipop3d
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -510,7 +553,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Juniper
+    - appname|cased: Juniper
+    - syslog_appname|cased: Juniper
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -531,7 +575,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: kismet_server
+    - appname|cased: kismet_server
+    - syslog_appname|cased: kismet_server
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -552,7 +597,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: knockd
+    - appname|cased: knockd
+    - syslog_appname|cased: knockd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -573,7 +619,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: kernel
+    - appname|cased: kernel
+    - syslog_appname|cased: kernel
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -594,9 +641,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - mimedefang
-      - smf-sav
+    - appname|cased:
+        - mimedefang
+        - smf-sav
+    - syslog_appname|cased:
+        - mimedefang
+        - smf-sav
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -617,10 +667,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - mongodb
-      - '*MongoDB*'
-      - '*MONGODB*'
+    - appname|cased:
+        - mongodb
+        - '*MongoDB*'
+        - '*MONGODB*'
+    - syslog_appname|cased:
+        - mongodb
+        - '*MongoDB*'
+        - '*MONGODB*'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -641,9 +695,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - mysqld
-      - MySQL
+    - appname|cased:
+        - mysqld
+        - MySQL
+    - syslog_appname|cased:
+        - mysqld
+        - MySQL
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -664,7 +721,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: NeXpose
+    - appname|cased: NeXpose
+    - syslog_appname|cased: NeXpose
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -685,7 +743,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: nfcapd
+    - appname|cased: nfcapd
+    - syslog_appname|cased: nfcapd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -706,7 +765,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: nginx
+    - appname|cased: nginx
+    - syslog_appname|cased: nginx
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -727,7 +787,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: openvpn
+    - appname|cased: openvpn
+    - syslog_appname|cased: openvpn
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -748,7 +809,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: ossec
+    - appname|cased: ossec
+    - syslog_appname|cased: ossec
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -769,7 +831,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: postfix
+    - appname|cased: postfix
+    - syslog_appname|cased: postfix
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -790,7 +853,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: postgres
+    - appname|cased: postgres
+    - syslog_appname|cased: postgres
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -811,7 +875,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: pptpd
+    - appname|cased: pptpd
+    - syslog_appname|cased: pptpd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -832,7 +897,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: pure-ftpd
+    - appname|cased: pure-ftpd
+    - syslog_appname|cased: pure-ftpd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -853,7 +919,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: racoon
+    - appname|cased: racoon
+    - syslog_appname|cased: racoon
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -874,7 +941,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: webasd
+    - appname|cased: webasd
+    - syslog_appname|cased: webasd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -895,7 +963,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: webasd
+    - appname|cased: webasd
+    - syslog_appname|cased: webasd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -916,9 +985,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - rsync
-      - rsyncd
+    - appname|cased:
+        - rsync
+        - rsyncd
+    - syslog_appname|cased:
+        - rsync
+        - rsyncd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -939,7 +1011,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: smbd
+    - appname|cased: smbd
+    - syslog_appname|cased: smbd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -960,9 +1033,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - sm-mta
-      - sendmail
+    - appname|cased:
+        - sm-mta
+        - sendmail
+    - syslog_appname|cased:
+        - sm-mta
+        - sendmail
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -983,7 +1059,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1004,7 +1081,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: squid
+    - appname|cased: squid
+    - syslog_appname|cased: squid
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1025,7 +1103,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: '*SSH_Tectia_Server*'
+    - appname|cased: '*SSH_Tectia_Server*'
+    - syslog_appname|cased: '*SSH_Tectia_Server*'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1046,10 +1125,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - -su
-      - su
-      - sudo
+    - appname|cased:
+        - -su
+        - su
+        - sudo
+    - syslog_appname|cased:
+        - -su
+        - su
+        - sudo
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1070,7 +1153,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: pgp/client
+    - appname|cased: pgp/client
+    - syslog_appname|cased: pgp/client
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1091,7 +1175,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: telnetd
+    - appname|cased: telnetd
+    - syslog_appname|cased: telnetd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1112,7 +1197,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: TMCM
+    - appname|cased: TMCM
+    - syslog_appname|cased: TMCM
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1133,10 +1219,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - tripwire
-      - '*Tripwire*'
-      - '*TRIPWIRE*'
+    - appname|cased:
+        - tripwire
+        - '*Tripwire*'
+        - '*TRIPWIRE*'
+    - syslog_appname|cased:
+        - tripwire
+        - '*Tripwire*'
+        - '*TRIPWIRE*'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1157,7 +1247,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: vm-pop3d
+    - appname|cased: vm-pop3d
+    - syslog_appname|cased: vm-pop3d
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1178,11 +1269,16 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - vmware-hostd
-      - vmware-authd
-      - Hostd
-      - vmkernel
+    - appname|cased:
+        - vmware-hostd
+        - vmware-authd
+        - Hostd
+        - vmkernel
+    - syslog_appname|cased:
+        - vmware-hostd
+        - vmware-authd
+        - Hostd
+        - vmkernel
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1203,7 +1299,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: vpopmail
+    - appname|cased: vpopmail
+    - syslog_appname|cased: vpopmail
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1224,7 +1321,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: vsftpd
+    - appname|cased: vsftpd
+    - syslog_appname|cased: vsftpd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1245,7 +1343,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: weblabyrinth
+    - appname|cased: weblabyrinth
+    - syslog_appname|cased: weblabyrinth
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1266,7 +1365,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: '*MSSQL*'
+    - appname|cased: '*MSSQL*'
+    - syslog_appname|cased: '*MSSQL*'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1287,7 +1387,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: '*Sysmon*'
+    - appname|cased: '*Sysmon*'
+    - syslog_appname|cased: '*Sysmon*'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1308,7 +1409,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: WPsyslog
+    - appname|cased: WPsyslog
+    - syslog_appname|cased: WPsyslog
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1329,7 +1431,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: xinetd
+    - appname|cased: xinetd
+    - syslog_appname|cased: xinetd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1350,7 +1453,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: yk_chkpwd
+    - appname|cased: yk_chkpwd
+    - syslog_appname|cased: yk_chkpwd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1371,7 +1475,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: zeus
+    - appname|cased: zeus
+    - syslog_appname|cased: zeus
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1392,10 +1497,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - CISE_Passed_Authentications
-      - CISE_Failed_Attempts
-      - CSCOacs_Failed_Attempts
+    - appname|cased:
+        - CISE_Passed_Authentications
+        - CISE_Failed_Attempts
+        - CSCOacs_Failed_Attempts
+    - syslog_appname|cased:
+        - CISE_Passed_Authentications
+        - CISE_Failed_Attempts
+        - CSCOacs_Failed_Attempts
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1445,7 +1554,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: CSYS
+    - appname|cased: CSYS
+    - syslog_appname|cased: CSYS
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1508,7 +1618,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: WatchGuard*
+    - appname|cased: WatchGuard*
+    - syslog_appname|cased: WatchGuard*
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1575,7 +1686,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: '*PowerShell*'
+    - appname|cased: '*PowerShell*'
+    - syslog_appname|cased: '*PowerShell*'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1640,7 +1752,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1684,7 +1797,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: FIREWALL
+    - appname|cased: FIREWALL
+    - syslog_appname|cased: FIREWALL
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1705,10 +1819,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - cachefsd
-      - ftpd
-      - rpc.statd
+    - appname|cased:
+        - cachefsd
+        - ftpd
+        - rpc.statd
+    - syslog_appname|cased:
+        - cachefsd
+        - ftpd
+        - rpc.statd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1729,7 +1847,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1750,7 +1869,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: azureEventHub
+    - appname|cased: azureEventHub
+    - syslog_appname|cased: azureEventHub
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1792,7 +1912,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: CactiTholdLog
+    - appname|cased: CactiTholdLog
+    - syslog_appname|cased: CactiTholdLog
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1813,10 +1934,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - bit9
-      - carbonblack
-      - cb_cloud
+    - appname|cased:
+        - bit9
+        - carbonblack
+        - cb_cloud
+    - syslog_appname|cased:
+        - bit9
+        - carbonblack
+        - cb_cloud
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1837,10 +1962,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - '*adclient*'
-      - adclient
-      - dzdo
+    - appname|cased:
+        - '*adclient*'
+        - adclient
+        - dzdo
+    - syslog_appname|cased:
+        - '*adclient*'
+        - adclient
+        - dzdo
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1861,7 +1990,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: CISCO-AMP
+    - appname|cased: CISCO-AMP
+    - syslog_appname|cased: CISCO-AMP
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1882,10 +2012,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - '%ASA*'
-      - CisACS_01_PassedAuth
-      - '%SEC_LOGIN-5-LOGIN_SUCCESS'
+    - appname|cased:
+        - '%ASA*'
+        - CisACS_01_PassedAuth
+        - '%SEC_LOGIN-5-LOGIN_SUCCESS'
+    - syslog_appname|cased:
+        - '%ASA*'
+        - CisACS_01_PassedAuth
+        - '%SEC_LOGIN-5-LOGIN_SUCCESS'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1906,10 +2040,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - '%ASA*-4-106023'
-      - '%ASA*-6-302013'
-      - '%ASA*-6-302015'
+    - appname|cased:
+        - '%ASA*-4-106023'
+        - '%ASA*-6-302013'
+        - '%ASA*-6-302015'
+    - syslog_appname|cased:
+        - '%ASA*-4-106023'
+        - '%ASA*-6-302013'
+        - '%ASA*-6-302015'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1930,7 +2068,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: snmptrapd
+    - appname|cased: snmptrapd
+    - syslog_appname|cased: snmptrapd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1951,7 +2090,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: '*.amazonaws.com'
+    - appname|cased: '*.amazonaws.com'
+    - syslog_appname|cased: '*.amazonaws.com'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1973,7 +2113,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: imapd
+    - appname|cased: imapd
+    - syslog_appname|cased: imapd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1994,7 +2135,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: duo
+    - appname|cased: duo
+    - syslog_appname|cased: duo
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2015,7 +2157,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: xtremed
+    - appname|cased: xtremed
+    - syslog_appname|cased: xtremed
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2036,7 +2179,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: xtremed
+    - appname|cased: xtremed
+    - syslog_appname|cased: xtremed
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2057,7 +2201,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: imapd*
+    - appname|cased: imapd*
+    - syslog_appname|cased: imapd*
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2078,7 +2223,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: mwg
+    - appname|cased: mwg
+    - syslog_appname|cased: mwg
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2099,7 +2245,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: msdns
+    - appname|cased: msdns
+    - syslog_appname|cased: msdns
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2120,7 +2267,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: nfcapd
+    - appname|cased: nfcapd
+    - syslog_appname|cased: nfcapd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2141,7 +2289,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: ntpd*
+    - appname|cased: ntpd*
+    - syslog_appname|cased: ntpd*
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2162,7 +2311,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: nxlog
+    - appname|cased: nxlog
+    - syslog_appname|cased: nxlog
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2183,7 +2333,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: onelogin
+    - appname|cased: onelogin
+    - syslog_appname|cased: onelogin
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2204,7 +2355,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: sshd
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2225,13 +2377,20 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - '00077'
-      - 00419
-      - auth
-      - FFI
-      - ports
-      - system
+    - appname|cased:
+        - '00077'
+        - 00419
+        - auth
+        - FFI
+        - ports
+        - system
+    - syslog_appname|cased:
+        - '00077'
+        - 00419
+        - auth
+        - FFI
+        - ports
+        - system
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2252,7 +2411,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: PROOFPOINT
+    - appname|cased: PROOFPOINT
+    - syslog_appname|cased: PROOFPOINT
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2273,9 +2433,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - kcfd
-      - rmclomv
+    - appname|cased:
+        - kcfd
+        - rmclomv
+    - syslog_appname|cased:
+        - kcfd
+        - rmclomv
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2296,7 +2459,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: SSH_Tectia_Server
+    - appname|cased: SSH_Tectia_Server
+    - syslog_appname|cased: SSH_Tectia_Server
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2317,9 +2481,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - audit
-      - systemd
+    - appname|cased:
+        - audit
+        - systemd
+    - syslog_appname|cased:
+        - audit
+        - systemd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2340,7 +2507,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: TCP
+    - appname|cased: TCP
+    - syslog_appname|cased: TCP
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2361,9 +2529,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - Hostd
-      - vmware-hostd
+    - appname|cased:
+        - Hostd
+        - vmware-hostd
+    - syslog_appname|cased:
+        - Hostd
+        - vmware-hostd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2384,7 +2555,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: vsftpd
+    - appname|cased: vsftpd
+    - syslog_appname|cased: vsftpd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2405,7 +2577,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: AppLocker
+    - appname|cased: AppLocker
+    - syslog_appname|cased: AppLocker
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2426,12 +2599,18 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - audit
-      - mailbox
-      - misc-activity
-      - sync
-      - zimbra
+    - appname|cased:
+        - audit
+        - mailbox
+        - misc-activity
+        - sync
+        - zimbra
+    - syslog_appname|cased:
+        - audit
+        - mailbox
+        - misc-activity
+        - sync
+        - zimbra
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2452,7 +2631,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: zws
+    - appname|cased: zws
+    - syslog_appname|cased: zws
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2473,7 +2653,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2494,7 +2675,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: cloudtrail.amazonaws.com
+    - appname|cased: cloudtrail.amazonaws.com
+    - syslog_appname|cased: cloudtrail.amazonaws.com
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2515,7 +2697,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: clipboard
+    - appname|cased: clipboard
+    - syslog_appname|cased: clipboard
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2536,7 +2719,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: AirInvestigation
+    - appname|cased: AirInvestigation
+    - syslog_appname|cased: AirInvestigation
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2557,7 +2741,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: AzureActiveDirectory
+    - appname|cased: AzureActiveDirectory
+    - syslog_appname|cased: AzureActiveDirectory
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2578,7 +2763,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: WindowsDefenderAtp
+    - appname|cased: WindowsDefenderAtp
+    - syslog_appname|cased: WindowsDefenderAtp
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2599,7 +2785,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Exchange
+    - appname|cased: Exchange
+    - syslog_appname|cased: Exchange
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2620,7 +2807,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: MCAS
+    - appname|cased: MCAS
+    - syslog_appname|cased: MCAS
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2641,7 +2829,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: OneDrive
+    - appname|cased: OneDrive
+    - syslog_appname|cased: OneDrive
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2662,7 +2851,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: SecurityComplianceCenter
+    - appname|cased: SecurityComplianceCenter
+    - syslog_appname|cased: SecurityComplianceCenter
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2706,7 +2896,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: ThreatIntelligence
+    - appname|cased: ThreatIntelligence
+    - syslog_appname|cased: ThreatIntelligence
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2727,7 +2918,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: guardduty
+    - appname|cased: guardduty
+    - syslog_appname|cased: guardduty
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2748,7 +2940,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: azureEventHub
+    - appname|cased: azureEventHub
+    - syslog_appname|cased: azureEventHub
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2769,7 +2962,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: kernel
+    - appname|cased: kernel
+    - syslog_appname|cased: kernel
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2790,9 +2984,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - cb_usb_approval_data
-      - cb_endpoint_standard
+    - appname|cased:
+        - cb_usb_approval_data
+        - cb_endpoint_standard
+    - syslog_appname|cased:
+        - cb_usb_approval_data
+        - cb_endpoint_standard
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2813,7 +3010,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: CISE_Passed_Authentications
+    - appname|cased: CISE_Passed_Authentications
+    - syslog_appname|cased: CISE_Passed_Authentications
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2834,7 +3032,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: cisco-sca_data
+    - appname|cased: cisco-sca_data
+    - syslog_appname|cased: cisco-sca_data
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2855,7 +3054,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: cyberark
+    - appname|cased: cyberark
+    - syslog_appname|cased: cyberark
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2899,7 +3099,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: '*FortiSandbox*'
+    - appname|cased: '*FortiSandbox*'
+    - syslog_appname|cased: '*FortiSandbox*'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2920,7 +3121,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: github
+    - appname|cased: github
+    - syslog_appname|cased: github
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2941,7 +3143,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: knowbe4
+    - appname|cased: knowbe4
+    - syslog_appname|cased: knowbe4
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2962,7 +3165,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: librenms
+    - appname|cased: librenms
+    - syslog_appname|cased: librenms
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2983,7 +3187,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Netwrix_Auditor_Integration
+    - appname|cased: Netwrix_Auditor_Integration
+    - syslog_appname|cased: Netwrix_Auditor_Integration
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3004,7 +3209,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: ninjarmm
+    - appname|cased: ninjarmm
+    - syslog_appname|cased: ninjarmm
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3025,7 +3231,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: webasd
+    - appname|cased: webasd
+    - syslog_appname|cased: webasd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3046,7 +3253,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3067,7 +3275,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: tenable_io_data
+    - appname|cased: tenable_io_data
+    - syslog_appname|cased: tenable_io_data
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3088,7 +3297,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: sts.amazonaws.com
+    - appname|cased: sts.amazonaws.com
+    - syslog_appname|cased: sts.amazonaws.com
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3109,7 +3319,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: account.amazonaws.com
+    - appname|cased: account.amazonaws.com
+    - syslog_appname|cased: account.amazonaws.com
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3130,7 +3341,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: access-analyzer.amazonaws.com
+    - appname|cased: access-analyzer.amazonaws.com
+    - syslog_appname|cased: access-analyzer.amazonaws.com
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3151,9 +3363,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - cb_protect
-      - cb_app_control
+    - appname|cased:
+        - cb_protect
+        - cb_app_control
+    - syslog_appname|cased:
+        - cb_protect
+        - cb_app_control
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3174,7 +3389,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: appconfig.amazonaws.com
+    - appname|cased: appconfig.amazonaws.com
+    - syslog_appname|cased: appconfig.amazonaws.com
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3195,7 +3411,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: apigateway.amazonaws.com
+    - appname|cased: apigateway.amazonaws.com
+    - syslog_appname|cased: apigateway.amazonaws.com
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3216,7 +3433,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: application-insights.amazonaws.com
+    - appname|cased: application-insights.amazonaws.com
+    - syslog_appname|cased: application-insights.amazonaws.com
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3237,7 +3455,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: appsync.amazonaws.com
+    - appname|cased: appsync.amazonaws.com
+    - syslog_appname|cased: appsync.amazonaws.com
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3258,7 +3477,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: autoscaling.amazonaws.com
+    - appname|cased: autoscaling.amazonaws.com
+    - syslog_appname|cased: autoscaling.amazonaws.com
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3279,7 +3499,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: athena.amazonaws.com
+    - appname|cased: athena.amazonaws.com
+    - syslog_appname|cased: athena.amazonaws.com
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3300,7 +3521,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: artifact.amazonaws.com
+    - appname|cased: artifact.amazonaws.com
+    - syslog_appname|cased: artifact.amazonaws.com
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3321,7 +3543,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: cognito.amazonaws.com
+    - appname|cased: cognito.amazonaws.com
+    - syslog_appname|cased: cognito.amazonaws.com
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3342,7 +3565,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: detective.amazonaws.com
+    - appname|cased: detective.amazonaws.com
+    - syslog_appname|cased: detective.amazonaws.com
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3363,7 +3587,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Microsoft-Exchange-ActiveMonitoring?ProbeResult
+    - appname|cased: Microsoft-Exchange-ActiveMonitoring?ProbeResult
+    - syslog_appname|cased: Microsoft-Exchange-ActiveMonitoring?ProbeResult
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3384,7 +3609,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: MSExchange_Management
+    - appname|cased: MSExchange_Management
+    - syslog_appname|cased: MSExchange_Management
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3405,7 +3631,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: airtable_audit_log_data
+    - appname|cased: airtable_audit_log_data
+    - syslog_appname|cased: airtable_audit_log_data
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3453,7 +3680,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: RansomCare
+    - appname|cased: RansomCare
+    - syslog_appname|cased: RansomCare
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3474,7 +3702,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: salesforce_streaming_api_data
+    - appname|cased: salesforce_streaming_api_data
+    - syslog_appname|cased: salesforce_streaming_api_data
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3495,7 +3724,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: signin.amazonaws.com
+    - appname|cased: signin.amazonaws.com
+    - syslog_appname|cased: signin.amazonaws.com
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3516,7 +3746,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Incapsula
+    - appname|cased: Incapsula
+    - syslog_appname|cased: Incapsula
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3537,7 +3768,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: secretsmanager.amazonaws.com
+    - appname|cased: secretsmanager.amazonaws.com
+    - syslog_appname|cased: secretsmanager.amazonaws.com
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3558,7 +3790,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: jamf_protect
+    - appname|cased: jamf_protect
+    - syslog_appname|cased: jamf_protect
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3579,7 +3812,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: filterlog
+    - appname|cased: filterlog
+    - syslog_appname|cased: filterlog
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3644,7 +3878,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: BitdefenderGZ
+    - appname|cased: BitdefenderGZ
+    - syslog_appname|cased: BitdefenderGZ
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3665,7 +3900,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: bomgar
+    - appname|cased: bomgar
+    - syslog_appname|cased: bomgar
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3686,7 +3922,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: veeam
+    - appname|cased: veeam
+    - syslog_appname|cased: veeam
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3707,7 +3944,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: screenconnect-restful-api_data
+    - appname|cased: screenconnect-restful-api_data
+    - syslog_appname|cased: screenconnect-restful-api_data
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3751,7 +3989,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Forensics
+    - appname|cased: Forensics
+    - syslog_appname|cased: Forensics
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3802,7 +4041,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: k9
+    - appname|cased: k9
+    - syslog_appname|cased: k9
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3823,7 +4063,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: exabeam-api_data
+    - appname|cased: exabeam-api_data
+    - syslog_appname|cased: exabeam-api_data
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3844,7 +4085,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: oci-kafka-consumer_data
+    - appname|cased: oci-kafka-consumer_data
+    - syslog_appname|cased: oci-kafka-consumer_data
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3865,7 +4107,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: prisma
+    - appname|cased: prisma
+    - syslog_appname|cased: prisma
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3886,7 +4129,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: halcyon_webapi_data
+    - appname|cased: halcyon_webapi_data
+    - syslog_appname|cased: halcyon_webapi_data
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3930,7 +4174,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: box-api_data
+    - appname|cased: box-api_data
+    - syslog_appname|cased: box-api_data
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3997,7 +4242,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: CISE_*
+    - appname|cased: CISE_*
+    - syslog_appname|cased: CISE_*
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4018,7 +4264,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: meraki_dashboard_api_data
+    - appname|cased: meraki_dashboard_api_data
+    - syslog_appname|cased: meraki_dashboard_api_data
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4062,7 +4309,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: '*TACACS*'
+    - appname|cased: '*TACACS*'
+    - syslog_appname|cased: '*TACACS*'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4083,7 +4331,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: UMBRELLA*
+    - appname|cased: UMBRELLA*
+    - syslog_appname|cased: UMBRELLA*
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4167,7 +4416,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: CrowdStrike
+    - appname|cased: CrowdStrike
+    - syslog_appname|cased: CrowdStrike
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4188,7 +4438,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4235,9 +4486,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - purity.audit
-      - fileaudit
+    - appname|cased:
+        - purity.audit
+        - fileaudit
+    - syslog_appname|cased:
+        - purity.audit
+        - fileaudit
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4488,7 +4742,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: eset
+    - appname|cased: eset
+    - syslog_appname|cased: eset
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4509,7 +4764,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Forescout
+    - appname|cased: Forescout
+    - syslog_appname|cased: Forescout
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4626,7 +4882,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: microsoft-defender-endpoint-alerts_relayer
+    - appname|cased: microsoft-defender-endpoint-alerts_relayer
+    - syslog_appname|cased: microsoft-defender-endpoint-alerts_relayer
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4670,7 +4927,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: netskope-api_data
+    - appname|cased: netskope-api_data
+    - syslog_appname|cased: netskope-api_data
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4691,7 +4949,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: netwrix_auditor_api_data
+    - appname|cased: netwrix_auditor_api_data
+    - syslog_appname|cased: netwrix_auditor_api_data
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4712,7 +4971,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: iokta-system-log*
+    - appname|cased: iokta-system-log*
+    - syslog_appname|cased: iokta-system-log*
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4780,7 +5040,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: apache
+    - appname|cased: apache
+    - syslog_appname|cased: apache
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4801,7 +5062,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: pptpd
+    - appname|cased: pptpd
+    - syslog_appname|cased: pptpd
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4822,7 +5084,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: proofpoint_od_data
+    - appname|cased: proofpoint_od_data
+    - syslog_appname|cased: proofpoint_od_data
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4843,7 +5106,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: RKMA_MONITORING_EVENT
+    - appname|cased: RKMA_MONITORING_EVENT
+    - syslog_appname|cased: RKMA_MONITORING_EVENT
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4864,7 +5128,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: SentinelOne
+    - appname|cased: SentinelOne
+    - syslog_appname|cased: SentinelOne
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4885,7 +5150,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: sonicwall
+    - appname|cased: sonicwall
+    - syslog_appname|cased: sonicwall
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4929,9 +5195,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - bro
-      - zeek
+    - appname|cased:
+        - bro
+        - zeek
+    - syslog_appname|cased:
+        - bro
+        - zeek
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4952,7 +5221,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: mimecast
+    - appname|cased: mimecast
+    - syslog_appname|cased: mimecast
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4973,7 +5243,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4994,7 +5265,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Zscaler
+    - appname|cased: Zscaler
+    - syslog_appname|cased: Zscaler
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5015,7 +5287,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: Zscaler
+    - appname|cased: Zscaler
+    - syslog_appname|cased: Zscaler
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5036,7 +5309,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: MicrosoftTeams
+    - appname|cased: MicrosoftTeams
+    - syslog_appname|cased: MicrosoftTeams
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

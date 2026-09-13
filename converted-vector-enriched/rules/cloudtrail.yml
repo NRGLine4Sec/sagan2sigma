@@ -10,9 +10,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AddClientIDToOpenIDConnectProvider"'
+    sagan_raw|contains|cased: 'event detectedName": "AddClientIDToOpenIDConnectProvider"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -36,9 +37,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AddRoleToInstanceProfile"'
+    sagan_raw|contains|cased: 'event detectedName": "AddRoleToInstanceProfile"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -62,9 +64,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AddUserToGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "AddUserToGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -88,9 +91,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AttachGroupPolicy"'
+    sagan_raw|contains|cased: 'event detectedName": "AttachGroupPolicy"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -114,9 +118,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AttachRolePolicy"'
+    sagan_raw|contains|cased: 'event detectedName": "AttachRolePolicy"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -140,9 +145,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AttachUserPolicy"'
+    sagan_raw|contains|cased: 'event detectedName": "AttachUserPolicy"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -166,9 +172,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ChangePassword"'
+    sagan_raw|contains|cased: 'event detectedName": "ChangePassword"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -192,9 +199,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ConsoleLogin"'
+    sagan_raw|contains|cased: 'event detectedName": "ConsoleLogin"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -218,9 +226,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateAccessKey"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateAccessKey"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -244,9 +253,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateAccountAlias"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateAccountAlias"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -270,9 +280,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -296,9 +307,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateInstanceProfile"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateInstanceProfile"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -322,9 +334,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateLoginProfile"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateLoginProfile"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -348,9 +361,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateOpenIDConnectProvider"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateOpenIDConnectProvider"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -374,9 +388,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreatePolicy"'
+    sagan_raw|contains|cased: 'event detectedName": "CreatePolicy"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -400,9 +415,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreatePolicyVersion"'
+    sagan_raw|contains|cased: 'event detectedName": "CreatePolicyVersion"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -426,9 +442,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateRole"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateRole"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -452,9 +469,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateSAMLProvider"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateSAMLProvider"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -478,9 +496,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateUser"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateUser"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -504,9 +523,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateVirtualMFADevice"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateVirtualMFADevice"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -530,9 +550,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeactivateMFADevice"'
+    sagan_raw|contains|cased: 'event detectedName": "DeactivateMFADevice"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -556,9 +577,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteAccessKey"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteAccessKey"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -582,9 +604,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteAccountAlias"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteAccountAlias"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -608,9 +631,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteAccountPasswordPolicy"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteAccountPasswordPolicy"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -634,9 +658,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -660,9 +685,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteGroupPolicy"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteGroupPolicy"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -686,9 +712,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteInstanceProfile"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteInstanceProfile"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -712,9 +739,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteLoginProfile"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteLoginProfile"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -738,9 +766,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteOpenIDConnectProvider"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteOpenIDConnectProvider"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -764,9 +793,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeletePolicy"'
+    sagan_raw|contains|cased: 'event detectedName": "DeletePolicy"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -790,9 +820,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeletePolicyVersion"'
+    sagan_raw|contains|cased: 'event detectedName": "DeletePolicyVersion"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -816,9 +847,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteRole"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteRole"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -842,9 +874,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteRolePolicy"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteRolePolicy"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -868,9 +901,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteSAMLProvider"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteSAMLProvider"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -894,9 +928,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteServerCertificate"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteServerCertificate"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -920,9 +955,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteSigningCertificate"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteSigningCertificate"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -946,9 +982,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteSSHPublicKey"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteSSHPublicKey"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -972,9 +1009,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteUser"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteUser"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -998,9 +1036,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteUserPolicy"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteUserPolicy"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1024,9 +1063,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteVirtualMFADevice"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteVirtualMFADevice"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1050,9 +1090,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DetachGroupPolicy"'
+    sagan_raw|contains|cased: 'event detectedName": "DetachGroupPolicy"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1076,9 +1117,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DetachRolePolicy"'
+    sagan_raw|contains|cased: 'event detectedName": "DetachRolePolicy"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1102,9 +1144,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DetachUserPolicy"'
+    sagan_raw|contains|cased: 'event detectedName": "DetachUserPolicy"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1128,9 +1171,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "EnableMFADevice"'
+    sagan_raw|contains|cased: 'event detectedName": "EnableMFADevice"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1154,9 +1198,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "PutGroupPolicy"'
+    sagan_raw|contains|cased: 'event detectedName": "PutGroupPolicy"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1180,9 +1225,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "PutRolePolicy"'
+    sagan_raw|contains|cased: 'event detectedName": "PutRolePolicy"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1206,9 +1252,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "PutUserPolicy"'
+    sagan_raw|contains|cased: 'event detectedName": "PutUserPolicy"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1232,9 +1279,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "RemoveClientIDFromOpenIDConnectProvider"'
+    sagan_raw|contains|cased: 'event detectedName": "RemoveClientIDFromOpenIDConnectProvider"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1258,9 +1306,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "RemoveRoleFromInstanceProfile"'
+    sagan_raw|contains|cased: 'event detectedName": "RemoveRoleFromInstanceProfile"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1284,9 +1333,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "RemoveUserFromGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "RemoveUserFromGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1310,9 +1360,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ResyncMFADevice"'
+    sagan_raw|contains|cased: 'event detectedName": "ResyncMFADevice"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1336,9 +1387,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "SetDefaultPolicyVersion"'
+    sagan_raw|contains|cased: 'event detectedName": "SetDefaultPolicyVersion"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1362,9 +1414,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateAccessKey"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateAccessKey"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1388,9 +1441,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateAccountPasswordPolicy"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateAccountPasswordPolicy"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1414,9 +1468,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateAssumeRolePolicy"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateAssumeRolePolicy"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1440,9 +1495,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1466,9 +1522,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateLoginProfile"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateLoginProfile"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1492,9 +1549,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateOpenIDConnectProviderThumbprint"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateOpenIDConnectProviderThumbprint"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1518,9 +1576,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateSAMLProvider"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateSAMLProvider"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1544,9 +1603,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateServerCertificate"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateServerCertificate"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1570,9 +1630,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateSigningCertificate"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateSigningCertificate"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1596,9 +1657,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateSSHPublicKey"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateSSHPublicKey"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1622,9 +1684,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateUser"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateUser"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1648,9 +1711,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UploadServerCertificate"'
+    sagan_raw|contains|cased: 'event detectedName": "UploadServerCertificate"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1674,9 +1738,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UploadSigningCertificate"'
+    sagan_raw|contains|cased: 'event detectedName": "UploadSigningCertificate"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1700,9 +1765,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: iam.amazonaws.com
+    - appname|cased: iam.amazonaws.com
+    - syslog_appname|cased: iam.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UploadSSHPublicKey"'
+    sagan_raw|contains|cased: 'event detectedName": "UploadSSHPublicKey"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1726,9 +1792,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: config.amazonaws.com
+    - appname|cased: config.amazonaws.com
+    - syslog_appname|cased: config.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteConfigRule"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteConfigRule"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1752,9 +1819,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: config.amazonaws.com
+    - appname|cased: config.amazonaws.com
+    - syslog_appname|cased: config.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteConfigurationRecorder"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteConfigurationRecorder"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1778,9 +1846,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: config.amazonaws.com
+    - appname|cased: config.amazonaws.com
+    - syslog_appname|cased: config.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteDeliveryChannel"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteDeliveryChannel"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1804,9 +1873,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: config.amazonaws.com
+    - appname|cased: config.amazonaws.com
+    - syslog_appname|cased: config.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteEvaluationResults"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteEvaluationResults"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1830,9 +1900,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: config.amazonaws.com
+    - appname|cased: config.amazonaws.com
+    - syslog_appname|cased: config.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "PutConfigurationRecorder"'
+    sagan_raw|contains|cased: 'event detectedName": "PutConfigurationRecorder"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1856,9 +1927,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: config.amazonaws.com
+    - appname|cased: config.amazonaws.com
+    - syslog_appname|cased: config.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "PutConfigRule"'
+    sagan_raw|contains|cased: 'event detectedName": "PutConfigRule"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1882,9 +1954,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: config.amazonaws.com
+    - appname|cased: config.amazonaws.com
+    - syslog_appname|cased: config.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "PutDeliveryChannel"'
+    sagan_raw|contains|cased: 'event detectedName": "PutDeliveryChannel"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1908,9 +1981,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: config.amazonaws.com
+    - appname|cased: config.amazonaws.com
+    - syslog_appname|cased: config.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "PutEvaluations"'
+    sagan_raw|contains|cased: 'event detectedName": "PutEvaluations"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1934,9 +2008,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: config.amazonaws.com
+    - appname|cased: config.amazonaws.com
+    - syslog_appname|cased: config.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "StartConfigRulesEvaluation"'
+    sagan_raw|contains|cased: 'event detectedName": "StartConfigRulesEvaluation"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1960,9 +2035,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: config.amazonaws.com
+    - appname|cased: config.amazonaws.com
+    - syslog_appname|cased: config.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "StartConfigurationRecorder"'
+    sagan_raw|contains|cased: 'event detectedName": "StartConfigurationRecorder"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1986,9 +2062,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: config.amazonaws.com
+    - appname|cased: config.amazonaws.com
+    - syslog_appname|cased: config.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "StopConfigurationRecorder"'
+    sagan_raw|contains|cased: 'event detectedName": "StopConfigurationRecorder"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2012,9 +2089,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "RunInstances"'
+    sagan_raw|contains|cased: 'event detectedName": "RunInstances"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2038,9 +2116,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "StartInstances"'
+    sagan_raw|contains|cased: 'event detectedName": "StartInstances"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2064,9 +2143,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "StopInstances"'
+    sagan_raw|contains|cased: 'event detectedName": "StopInstances"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2090,9 +2170,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "TerminateInstances"'
+    sagan_raw|contains|cased: 'event detectedName": "TerminateInstances"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2116,9 +2197,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AssociateIamInstanceProfile"'
+    sagan_raw|contains|cased: 'event detectedName": "AssociateIamInstanceProfile"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2142,9 +2224,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AssociateAddress"'
+    sagan_raw|contains|cased: 'event detectedName": "AssociateAddress"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2168,9 +2251,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AssociateRouteTable"'
+    sagan_raw|contains|cased: 'event detectedName": "AssociateRouteTable"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2194,9 +2278,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AssociateSubnetCidrBlock"'
+    sagan_raw|contains|cased: 'event detectedName": "AssociateSubnetCidrBlock"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2220,9 +2305,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AssociateVpcCidrBlock"'
+    sagan_raw|contains|cased: 'event detectedName": "AssociateVpcCidrBlock"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2246,9 +2332,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AttachClassicLinkVpc"'
+    sagan_raw|contains|cased: 'event detectedName": "AttachClassicLinkVpc"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2272,9 +2359,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AttachInternetGateway"'
+    sagan_raw|contains|cased: 'event detectedName": "AttachInternetGateway"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2298,9 +2386,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AttachNetworkInterface"'
+    sagan_raw|contains|cased: 'event detectedName": "AttachNetworkInterface"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2324,9 +2413,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AllocateAddress"'
+    sagan_raw|contains|cased: 'event detectedName": "AllocateAddress"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2350,9 +2440,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AssignPrivateIpAddresses"'
+    sagan_raw|contains|cased: 'event detectedName": "AssignPrivateIpAddresses"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2376,9 +2467,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AttachVpnGateway"'
+    sagan_raw|contains|cased: 'event detectedName": "AttachVpnGateway"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2402,9 +2494,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateNatGateway"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateNatGateway"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2428,9 +2521,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateKeyPair"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateKeyPair"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2454,9 +2548,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateNetworkAcl"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateNetworkAcl"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2480,9 +2575,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateNetworkAclEntry"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateNetworkAclEntry"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2506,9 +2602,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateNetworkInterface"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateNetworkInterface"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2532,9 +2629,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateRoute"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateRoute"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2558,9 +2656,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateRouteTable"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateRouteTable"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2584,9 +2683,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateSecurityGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateSecurityGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2610,9 +2710,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateVpc"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateVpc"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2636,9 +2737,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateVpcEndpoint"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateVpcEndpoint"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2662,9 +2764,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateVpcPeeringConnection"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateVpcPeeringConnection"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2688,9 +2791,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateVpnConnection"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateVpnConnection"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2714,9 +2818,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateVpnConnectionRoute"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateVpnConnectionRoute"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2740,9 +2845,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateVpnGateway"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateVpnGateway"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2766,9 +2872,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteCustomerGateway"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteCustomerGateway"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2792,9 +2899,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteDhcpOptions"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteDhcpOptions"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2818,9 +2926,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteEgressOnlyInternetGateway"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteEgressOnlyInternetGateway"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2844,9 +2953,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteInternetGateway"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteInternetGateway"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2870,9 +2980,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteKeyPair"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteKeyPair"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2896,9 +3007,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteNatGateway"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteNatGateway"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2922,9 +3034,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteNetworkAcl"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteNetworkAcl"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2948,9 +3061,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteNetworkAclEntry"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteNetworkAclEntry"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2974,9 +3088,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteNetworkInterface"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteNetworkInterface"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3000,9 +3115,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteRoute"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteRoute"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3026,9 +3142,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteRouteTable"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteRouteTable"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3052,9 +3169,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteSecurityGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteSecurityGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3078,9 +3196,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteVpcEndpoints"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteVpcEndpoints"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3104,9 +3223,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteVpcPeeringConnection"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteVpcPeeringConnection"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3130,9 +3250,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteVpnConnection"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteVpnConnection"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3156,9 +3277,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteVpnConnectionRoute"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteVpnConnectionRoute"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3182,9 +3304,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteVpnGateway"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteVpnGateway"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3208,9 +3331,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DetachClassicLinkVpc"'
+    sagan_raw|contains|cased: 'event detectedName": "DetachClassicLinkVpc"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3234,9 +3358,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DetachInternetGateway"'
+    sagan_raw|contains|cased: 'event detectedName": "DetachInternetGateway"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3260,9 +3385,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DetachNetworkInterface"'
+    sagan_raw|contains|cased: 'event detectedName": "DetachNetworkInterface"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3286,9 +3412,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DetachVolume"'
+    sagan_raw|contains|cased: 'event detectedName": "DetachVolume"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3312,9 +3439,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DetachVpnGateway"'
+    sagan_raw|contains|cased: 'event detectedName": "DetachVpnGateway"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3338,9 +3466,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DisableVgwRoutePropagation"'
+    sagan_raw|contains|cased: 'event detectedName": "DisableVgwRoutePropagation"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3364,9 +3493,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DisableVpcClassicLink"'
+    sagan_raw|contains|cased: 'event detectedName": "DisableVpcClassicLink"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3390,9 +3520,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DisassociateAddress"'
+    sagan_raw|contains|cased: 'event detectedName": "DisassociateAddress"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3416,9 +3547,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DisassociateIamInstanceProfile"'
+    sagan_raw|contains|cased: 'event detectedName": "DisassociateIamInstanceProfile"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3442,9 +3574,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DisassociateRouteTable"'
+    sagan_raw|contains|cased: 'event detectedName": "DisassociateRouteTable"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3468,9 +3601,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DisassociateSubnetCidrBlock"'
+    sagan_raw|contains|cased: 'event detectedName": "DisassociateSubnetCidrBlock"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3494,9 +3628,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DisassociateVpcCidrBlock"'
+    sagan_raw|contains|cased: 'event detectedName": "DisassociateVpcCidrBlock"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3520,9 +3655,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "EnableVgwRoutePropagation"'
+    sagan_raw|contains|cased: 'event detectedName": "EnableVgwRoutePropagation"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3546,9 +3682,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "EnableVolumeIO"'
+    sagan_raw|contains|cased: 'event detectedName": "EnableVolumeIO"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3572,9 +3709,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "EnableVpcClassicLink"'
+    sagan_raw|contains|cased: 'event detectedName": "EnableVpcClassicLink"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3598,9 +3736,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AuthorizeSecurityGroupEgress"'
+    sagan_raw|contains|cased: 'event detectedName": "AuthorizeSecurityGroupEgress"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3624,9 +3763,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AuthorizeSecurityGroupIngress"'
+    sagan_raw|contains|cased: 'event detectedName": "AuthorizeSecurityGroupIngress"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3650,9 +3790,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "RevokeSecurityGroupEgress"'
+    sagan_raw|contains|cased: 'event detectedName": "RevokeSecurityGroupEgress"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3676,9 +3817,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: ec2.amazonaws.com
+    - appname|cased: ec2.amazonaws.com
+    - syslog_appname|cased: ec2.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "RevokeSecurityGroupIngress"'
+    sagan_raw|contains|cased: 'event detectedName": "RevokeSecurityGroupIngress"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3702,9 +3844,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: autoscaling.amazonaws.com
+    - appname|cased: autoscaling.amazonaws.com
+    - syslog_appname|cased: autoscaling.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AttachLoadBalancers"'
+    sagan_raw|contains|cased: 'event detectedName": "AttachLoadBalancers"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3728,9 +3871,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: autoscaling.amazonaws.com
+    - appname|cased: autoscaling.amazonaws.com
+    - syslog_appname|cased: autoscaling.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DetachLoadBalancers"'
+    sagan_raw|contains|cased: 'event detectedName": "DetachLoadBalancers"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3754,9 +3898,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: autoscaling.amazonaws.com
+    - appname|cased: autoscaling.amazonaws.com
+    - syslog_appname|cased: autoscaling.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "PutScalingPolicy"'
+    sagan_raw|contains|cased: 'event detectedName": "PutScalingPolicy"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3780,9 +3925,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: autoscaling.amazonaws.com
+    - appname|cased: autoscaling.amazonaws.com
+    - syslog_appname|cased: autoscaling.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeletePolicy"'
+    sagan_raw|contains|cased: 'event detectedName": "DeletePolicy"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3806,9 +3952,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: autoscaling.amazonaws.com
+    - appname|cased: autoscaling.amazonaws.com
+    - syslog_appname|cased: autoscaling.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "TerminateInstanceInAutoScalingGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "TerminateInstanceInAutoScalingGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3832,9 +3979,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: cloudformation.amazonaws.com
+    - appname|cased: cloudformation.amazonaws.com
+    - syslog_appname|cased: cloudformation.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CancelUpdateStack"'
+    sagan_raw|contains|cased: 'event detectedName": "CancelUpdateStack"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3858,9 +4006,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: cloudformation.amazonaws.com
+    - appname|cased: cloudformation.amazonaws.com
+    - syslog_appname|cased: cloudformation.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateStack"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateStack"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3884,9 +4033,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: cloudformation.amazonaws.com
+    - appname|cased: cloudformation.amazonaws.com
+    - syslog_appname|cased: cloudformation.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteStack"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteStack"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3910,9 +4060,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: cloudformation.amazonaws.com
+    - appname|cased: cloudformation.amazonaws.com
+    - syslog_appname|cased: cloudformation.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateStack"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateStack"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3936,9 +4087,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: acm.amazonaws.com
+    - appname|cased: acm.amazonaws.com
+    - syslog_appname|cased: acm.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteCertificate"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteCertificate"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3962,9 +4114,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: acm.amazonaws.com
+    - appname|cased: acm.amazonaws.com
+    - syslog_appname|cased: acm.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "RequestCertificate"'
+    sagan_raw|contains|cased: 'event detectedName": "RequestCertificate"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3988,9 +4141,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: acm.amazonaws.com
+    - appname|cased: acm.amazonaws.com
+    - syslog_appname|cased: acm.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ResendValidationEmail"'
+    sagan_raw|contains|cased: 'event detectedName": "ResendValidationEmail"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4014,9 +4168,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: cloudtrail.amazonaws.com
+    - appname|cased: cloudtrail.amazonaws.com
+    - syslog_appname|cased: cloudtrail.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "StopLogging"'
+    sagan_raw|contains|cased: 'event detectedName": "StopLogging"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4040,9 +4195,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: directconnect.amazonaws.com
+    - appname|cased: directconnect.amazonaws.com
+    - syslog_appname|cased: directconnect.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AllocateHostedConnection"'
+    sagan_raw|contains|cased: 'event detectedName": "AllocateHostedConnection"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4066,9 +4222,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: directconnect.amazonaws.com
+    - appname|cased: directconnect.amazonaws.com
+    - syslog_appname|cased: directconnect.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AllocatePrivateVirtualInterface"'
+    sagan_raw|contains|cased: 'event detectedName": "AllocatePrivateVirtualInterface"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4092,9 +4249,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: directconnect.amazonaws.com
+    - appname|cased: directconnect.amazonaws.com
+    - syslog_appname|cased: directconnect.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AllocatePublicVirtualInterface"'
+    sagan_raw|contains|cased: 'event detectedName": "AllocatePublicVirtualInterface"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4118,9 +4276,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: directconnect.amazonaws.com
+    - appname|cased: directconnect.amazonaws.com
+    - syslog_appname|cased: directconnect.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AssociateConnectionWithLag"'
+    sagan_raw|contains|cased: 'event detectedName": "AssociateConnectionWithLag"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4144,9 +4303,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: directconnect.amazonaws.com
+    - appname|cased: directconnect.amazonaws.com
+    - syslog_appname|cased: directconnect.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AssociateHostedConnection"'
+    sagan_raw|contains|cased: 'event detectedName": "AssociateHostedConnection"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4170,9 +4330,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: directconnect.amazonaws.com
+    - appname|cased: directconnect.amazonaws.com
+    - syslog_appname|cased: directconnect.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AssociateVirtualInterface"'
+    sagan_raw|contains|cased: 'event detectedName": "AssociateVirtualInterface"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4196,9 +4357,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: directconnect.amazonaws.com
+    - appname|cased: directconnect.amazonaws.com
+    - syslog_appname|cased: directconnect.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ConfirmConnection"'
+    sagan_raw|contains|cased: 'event detectedName": "ConfirmConnection"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4222,9 +4384,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: directconnect.amazonaws.com
+    - appname|cased: directconnect.amazonaws.com
+    - syslog_appname|cased: directconnect.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ConfirmPrivateVirtualInterface"'
+    sagan_raw|contains|cased: 'event detectedName": "ConfirmPrivateVirtualInterface"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4248,9 +4411,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: directconnect.amazonaws.com
+    - appname|cased: directconnect.amazonaws.com
+    - syslog_appname|cased: directconnect.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ConfirmPublicVirtualInterface"'
+    sagan_raw|contains|cased: 'event detectedName": "ConfirmPublicVirtualInterface"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4274,9 +4438,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: directconnect.amazonaws.com
+    - appname|cased: directconnect.amazonaws.com
+    - syslog_appname|cased: directconnect.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateConnection"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateConnection"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4300,9 +4465,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: directconnect.amazonaws.com
+    - appname|cased: directconnect.amazonaws.com
+    - syslog_appname|cased: directconnect.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateInterconnect"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateInterconnect"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4326,9 +4492,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: directconnect.amazonaws.com
+    - appname|cased: directconnect.amazonaws.com
+    - syslog_appname|cased: directconnect.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateLag"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateLag"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4352,9 +4519,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: directconnect.amazonaws.com
+    - appname|cased: directconnect.amazonaws.com
+    - syslog_appname|cased: directconnect.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreatePrivateVirtualInterface"'
+    sagan_raw|contains|cased: 'event detectedName": "CreatePrivateVirtualInterface"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4378,9 +4546,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: directconnect.amazonaws.com
+    - appname|cased: directconnect.amazonaws.com
+    - syslog_appname|cased: directconnect.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreatePublicVirtualInterface"'
+    sagan_raw|contains|cased: 'event detectedName": "CreatePublicVirtualInterface"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4404,9 +4573,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: directconnect.amazonaws.com
+    - appname|cased: directconnect.amazonaws.com
+    - syslog_appname|cased: directconnect.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteConnection"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteConnection"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4430,9 +4600,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: directconnect.amazonaws.com
+    - appname|cased: directconnect.amazonaws.com
+    - syslog_appname|cased: directconnect.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteInterconnect"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteInterconnect"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4456,9 +4627,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: directconnect.amazonaws.com
+    - appname|cased: directconnect.amazonaws.com
+    - syslog_appname|cased: directconnect.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteLag"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteLag"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4482,9 +4654,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: directconnect.amazonaws.com
+    - appname|cased: directconnect.amazonaws.com
+    - syslog_appname|cased: directconnect.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteVirtualInterface"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteVirtualInterface"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4508,9 +4681,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: directconnect.amazonaws.com
+    - appname|cased: directconnect.amazonaws.com
+    - syslog_appname|cased: directconnect.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DisassociateConnectionFromLag"'
+    sagan_raw|contains|cased: 'event detectedName": "DisassociateConnectionFromLag"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4534,9 +4708,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: directconnect.amazonaws.com
+    - appname|cased: directconnect.amazonaws.com
+    - syslog_appname|cased: directconnect.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateLag"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateLag"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4560,9 +4735,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticfilesystem.amazonaws.com
+    - appname|cased: elasticfilesystem.amazonaws.com
+    - syslog_appname|cased: elasticfilesystem.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateFileSystem"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateFileSystem"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4586,9 +4762,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticfilesystem.amazonaws.com
+    - appname|cased: elasticfilesystem.amazonaws.com
+    - syslog_appname|cased: elasticfilesystem.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateMountTarget"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateMountTarget"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4612,9 +4789,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticfilesystem.amazonaws.com
+    - appname|cased: elasticfilesystem.amazonaws.com
+    - syslog_appname|cased: elasticfilesystem.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteFileSystem"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteFileSystem"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4638,9 +4816,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticfilesystem.amazonaws.com
+    - appname|cased: elasticfilesystem.amazonaws.com
+    - syslog_appname|cased: elasticfilesystem.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteMountTarget"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteMountTarget"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4664,9 +4843,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticfilesystem.amazonaws.com
+    - appname|cased: elasticfilesystem.amazonaws.com
+    - syslog_appname|cased: elasticfilesystem.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ModifyMountTargetSecurityGroups"'
+    sagan_raw|contains|cased: 'event detectedName": "ModifyMountTargetSecurityGroups"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4690,9 +4870,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticbeanstalk.amazonaws.com
+    - appname|cased: elasticbeanstalk.amazonaws.com
+    - syslog_appname|cased: elasticbeanstalk.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AbortEnvironmentUpdate"'
+    sagan_raw|contains|cased: 'event detectedName": "AbortEnvironmentUpdate"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4716,9 +4897,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticbeanstalk.amazonaws.com
+    - appname|cased: elasticbeanstalk.amazonaws.com
+    - syslog_appname|cased: elasticbeanstalk.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateApplication"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateApplication"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4742,9 +4924,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticbeanstalk.amazonaws.com
+    - appname|cased: elasticbeanstalk.amazonaws.com
+    - syslog_appname|cased: elasticbeanstalk.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateApplicationVersion"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateApplicationVersion"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4768,9 +4951,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticbeanstalk.amazonaws.com
+    - appname|cased: elasticbeanstalk.amazonaws.com
+    - syslog_appname|cased: elasticbeanstalk.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateConfigurationTemplate"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateConfigurationTemplate"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4794,9 +4978,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticbeanstalk.amazonaws.com
+    - appname|cased: elasticbeanstalk.amazonaws.com
+    - syslog_appname|cased: elasticbeanstalk.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateEnvironment"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateEnvironment"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4820,9 +5005,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticbeanstalk.amazonaws.com
+    - appname|cased: elasticbeanstalk.amazonaws.com
+    - syslog_appname|cased: elasticbeanstalk.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateStorageLocation"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateStorageLocation"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4846,9 +5032,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticbeanstalk.amazonaws.com
+    - appname|cased: elasticbeanstalk.amazonaws.com
+    - syslog_appname|cased: elasticbeanstalk.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteApplication"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteApplication"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4872,9 +5059,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticbeanstalk.amazonaws.com
+    - appname|cased: elasticbeanstalk.amazonaws.com
+    - syslog_appname|cased: elasticbeanstalk.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteApplicationVersion"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteApplicationVersion"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4898,9 +5086,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticbeanstalk.amazonaws.com
+    - appname|cased: elasticbeanstalk.amazonaws.com
+    - syslog_appname|cased: elasticbeanstalk.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteConfigurationTemplate"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteConfigurationTemplate"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4924,9 +5113,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticbeanstalk.amazonaws.com
+    - appname|cased: elasticbeanstalk.amazonaws.com
+    - syslog_appname|cased: elasticbeanstalk.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteEnvironmentConfiguration"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteEnvironmentConfiguration"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4950,9 +5140,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticbeanstalk.amazonaws.com
+    - appname|cased: elasticbeanstalk.amazonaws.com
+    - syslog_appname|cased: elasticbeanstalk.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "RebuildEnvironment"'
+    sagan_raw|contains|cased: 'event detectedName": "RebuildEnvironment"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -4976,9 +5167,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticbeanstalk.amazonaws.com
+    - appname|cased: elasticbeanstalk.amazonaws.com
+    - syslog_appname|cased: elasticbeanstalk.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "RestartAppServer"'
+    sagan_raw|contains|cased: 'event detectedName": "RestartAppServer"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5002,9 +5194,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticbeanstalk.amazonaws.com
+    - appname|cased: elasticbeanstalk.amazonaws.com
+    - syslog_appname|cased: elasticbeanstalk.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "SwapEnvironmentCNAMEs"'
+    sagan_raw|contains|cased: 'event detectedName": "SwapEnvironmentCNAMEs"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5028,9 +5221,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticbeanstalk.amazonaws.com
+    - appname|cased: elasticbeanstalk.amazonaws.com
+    - syslog_appname|cased: elasticbeanstalk.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "TerminateEnvironment"'
+    sagan_raw|contains|cased: 'event detectedName": "TerminateEnvironment"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5054,9 +5248,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticbeanstalk.amazonaws.com
+    - appname|cased: elasticbeanstalk.amazonaws.com
+    - syslog_appname|cased: elasticbeanstalk.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateApplication"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateApplication"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5080,9 +5275,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticbeanstalk.amazonaws.com
+    - appname|cased: elasticbeanstalk.amazonaws.com
+    - syslog_appname|cased: elasticbeanstalk.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateApplicationVersion"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateApplicationVersion"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5106,9 +5302,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticbeanstalk.amazonaws.com
+    - appname|cased: elasticbeanstalk.amazonaws.com
+    - syslog_appname|cased: elasticbeanstalk.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateConfigurationTemplate"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateConfigurationTemplate"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5132,9 +5329,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticbeanstalk.amazonaws.com
+    - appname|cased: elasticbeanstalk.amazonaws.com
+    - syslog_appname|cased: elasticbeanstalk.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateEnvironment"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateEnvironment"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5158,9 +5356,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticache.amazonaws.com
+    - appname|cased: elasticache.amazonaws.com
+    - syslog_appname|cased: elasticache.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AuthorizeCacheSecurityGroupIngress"'
+    sagan_raw|contains|cased: 'event detectedName": "AuthorizeCacheSecurityGroupIngress"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5184,9 +5383,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticache.amazonaws.com
+    - appname|cased: elasticache.amazonaws.com
+    - syslog_appname|cased: elasticache.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateCacheSecurityGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateCacheSecurityGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5210,9 +5410,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticache.amazonaws.com
+    - appname|cased: elasticache.amazonaws.com
+    - syslog_appname|cased: elasticache.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteCacheSecurityGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteCacheSecurityGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5236,9 +5437,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticache.amazonaws.com
+    - appname|cased: elasticache.amazonaws.com
+    - syslog_appname|cased: elasticache.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "RevokeCacheSecurityGroupIngress"'
+    sagan_raw|contains|cased: 'event detectedName": "RevokeCacheSecurityGroupIngress"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5262,9 +5464,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticloadbalancing.amazonaws.com
+    - appname|cased: elasticloadbalancing.amazonaws.com
+    - syslog_appname|cased: elasticloadbalancing.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ApplySecurityGroupsToLoadBalancer"'
+    sagan_raw|contains|cased: 'event detectedName": "ApplySecurityGroupsToLoadBalancer"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5288,9 +5491,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticloadbalancing.amazonaws.com
+    - appname|cased: elasticloadbalancing.amazonaws.com
+    - syslog_appname|cased: elasticloadbalancing.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateListener"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateListener"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5314,9 +5518,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticloadbalancing.amazonaws.com
+    - appname|cased: elasticloadbalancing.amazonaws.com
+    - syslog_appname|cased: elasticloadbalancing.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateLoadBalancer"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateLoadBalancer"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5340,9 +5545,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticloadbalancing.amazonaws.com
+    - appname|cased: elasticloadbalancing.amazonaws.com
+    - syslog_appname|cased: elasticloadbalancing.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateLoadBalancerPolicy"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateLoadBalancerPolicy"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5366,9 +5572,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticloadbalancing.amazonaws.com
+    - appname|cased: elasticloadbalancing.amazonaws.com
+    - syslog_appname|cased: elasticloadbalancing.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateRule"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateRule"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5392,9 +5599,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticloadbalancing.amazonaws.com
+    - appname|cased: elasticloadbalancing.amazonaws.com
+    - syslog_appname|cased: elasticloadbalancing.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateTargetGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateTargetGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5418,9 +5626,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticloadbalancing.amazonaws.com
+    - appname|cased: elasticloadbalancing.amazonaws.com
+    - syslog_appname|cased: elasticloadbalancing.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteListener"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteListener"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5444,9 +5653,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticloadbalancing.amazonaws.com
+    - appname|cased: elasticloadbalancing.amazonaws.com
+    - syslog_appname|cased: elasticloadbalancing.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteLoadBalancer"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteLoadBalancer"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5470,9 +5680,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticloadbalancing.amazonaws.com
+    - appname|cased: elasticloadbalancing.amazonaws.com
+    - syslog_appname|cased: elasticloadbalancing.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteLoadBalancerListeners"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteLoadBalancerListeners"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5496,9 +5707,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticloadbalancing.amazonaws.com
+    - appname|cased: elasticloadbalancing.amazonaws.com
+    - syslog_appname|cased: elasticloadbalancing.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteRule"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteRule"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5522,9 +5734,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticloadbalancing.amazonaws.com
+    - appname|cased: elasticloadbalancing.amazonaws.com
+    - syslog_appname|cased: elasticloadbalancing.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteTargetGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteTargetGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5548,9 +5761,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticloadbalancing.amazonaws.com
+    - appname|cased: elasticloadbalancing.amazonaws.com
+    - syslog_appname|cased: elasticloadbalancing.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeregisterTargets"'
+    sagan_raw|contains|cased: 'event detectedName": "DeregisterTargets"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5574,9 +5788,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticloadbalancing.amazonaws.com
+    - appname|cased: elasticloadbalancing.amazonaws.com
+    - syslog_appname|cased: elasticloadbalancing.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ModifyListener"'
+    sagan_raw|contains|cased: 'event detectedName": "ModifyListener"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5600,9 +5815,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticloadbalancing.amazonaws.com
+    - appname|cased: elasticloadbalancing.amazonaws.com
+    - syslog_appname|cased: elasticloadbalancing.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ModifyLoadBalancerAttributes"'
+    sagan_raw|contains|cased: 'event detectedName": "ModifyLoadBalancerAttributes"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5626,9 +5842,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticloadbalancing.amazonaws.com
+    - appname|cased: elasticloadbalancing.amazonaws.com
+    - syslog_appname|cased: elasticloadbalancing.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ModifyRule"'
+    sagan_raw|contains|cased: 'event detectedName": "ModifyRule"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5652,9 +5869,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticloadbalancing.amazonaws.com
+    - appname|cased: elasticloadbalancing.amazonaws.com
+    - syslog_appname|cased: elasticloadbalancing.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ModifyTargetGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "ModifyTargetGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5678,9 +5896,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticloadbalancing.amazonaws.com
+    - appname|cased: elasticloadbalancing.amazonaws.com
+    - syslog_appname|cased: elasticloadbalancing.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ModifyTargetGroupAttributes"'
+    sagan_raw|contains|cased: 'event detectedName": "ModifyTargetGroupAttributes"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5704,9 +5923,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticloadbalancing.amazonaws.com
+    - appname|cased: elasticloadbalancing.amazonaws.com
+    - syslog_appname|cased: elasticloadbalancing.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "RegisterTargets"'
+    sagan_raw|contains|cased: 'event detectedName": "RegisterTargets"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5730,9 +5950,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticloadbalancing.amazonaws.com
+    - appname|cased: elasticloadbalancing.amazonaws.com
+    - syslog_appname|cased: elasticloadbalancing.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "RemoveTags"'
+    sagan_raw|contains|cased: 'event detectedName": "RemoveTags"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5756,9 +5977,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: elasticloadbalancing.amazonaws.com
+    - appname|cased: elasticloadbalancing.amazonaws.com
+    - syslog_appname|cased: elasticloadbalancing.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "SetSecurityGroups"'
+    sagan_raw|contains|cased: 'event detectedName": "SetSecurityGroups"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5782,9 +6004,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: redshift.amazonaws.com
+    - appname|cased: redshift.amazonaws.com
+    - syslog_appname|cased: redshift.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AuthorizeSnapshotAccess"'
+    sagan_raw|contains|cased: 'event detectedName": "AuthorizeSnapshotAccess"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5808,9 +6031,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: redshift.amazonaws.com
+    - appname|cased: redshift.amazonaws.com
+    - syslog_appname|cased: redshift.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "RevokeSnapshotAccess"'
+    sagan_raw|contains|cased: 'event detectedName": "RevokeSnapshotAccess"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5834,9 +6058,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: redshift.amazonaws.com
+    - appname|cased: redshift.amazonaws.com
+    - syslog_appname|cased: redshift.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "RotateEncryptionKey"'
+    sagan_raw|contains|cased: 'event detectedName": "RotateEncryptionKey"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5860,9 +6085,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: redshift.amazonaws.com
+    - appname|cased: redshift.amazonaws.com
+    - syslog_appname|cased: redshift.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AuthorizeClusterSecurityGroupIngress"'
+    sagan_raw|contains|cased: 'event detectedName": "AuthorizeClusterSecurityGroupIngress"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5886,9 +6112,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: redshift.amazonaws.com
+    - appname|cased: redshift.amazonaws.com
+    - syslog_appname|cased: redshift.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateClusterSecurityGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateClusterSecurityGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5912,9 +6139,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: redshift.amazonaws.com
+    - appname|cased: redshift.amazonaws.com
+    - syslog_appname|cased: redshift.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteClusterSecurityGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteClusterSecurityGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5938,9 +6166,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: redshift.amazonaws.com
+    - appname|cased: redshift.amazonaws.com
+    - syslog_appname|cased: redshift.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "RevokeClusterSecurityGroupIngress"'
+    sagan_raw|contains|cased: 'event detectedName": "RevokeClusterSecurityGroupIngress"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5964,9 +6193,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "AuthorizeDBSecurityGroupIngress"'
+    sagan_raw|contains|cased: 'event detectedName": "AuthorizeDBSecurityGroupIngress"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -5990,9 +6220,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateDBCluster"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateDBCluster"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6016,9 +6247,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateDBClusterParameterGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateDBClusterParameterGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6042,9 +6274,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateDBClusterSnapshot"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateDBClusterSnapshot"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6068,9 +6301,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateDBInstance"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateDBInstance"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6094,9 +6328,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateDBInstanceReadReplica"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateDBInstanceReadReplica"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6120,9 +6355,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateDBParameterGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateDBParameterGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6146,9 +6382,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateDBSecurityGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateDBSecurityGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6172,9 +6409,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateDBSnapshot"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateDBSnapshot"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6198,9 +6436,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateDBSubnetGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateDBSubnetGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6224,9 +6463,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateOptionGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateOptionGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6250,9 +6490,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteDBCluster"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteDBCluster"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6276,9 +6517,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteDBClusterParameterGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteDBClusterParameterGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6302,9 +6544,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteDBClusterSnapshot"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteDBClusterSnapshot"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6328,9 +6571,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteDBInstance"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteDBInstance"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6354,9 +6598,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteDBParameterGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteDBParameterGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6380,9 +6625,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteDBSecurityGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteDBSecurityGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6406,9 +6652,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteDBSnapshot"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteDBSnapshot"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6432,9 +6679,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteDBSubnetGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteDBSubnetGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6458,9 +6706,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteOptionGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteOptionGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6484,9 +6733,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "FailoverDBCluster"'
+    sagan_raw|contains|cased: 'event detectedName": "FailoverDBCluster"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6510,9 +6760,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ModifyDBCluster"'
+    sagan_raw|contains|cased: 'event detectedName": "ModifyDBCluster"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6536,9 +6787,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ModifyDBClusterParameterGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "ModifyDBClusterParameterGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6562,9 +6814,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ModifyDBInstance"'
+    sagan_raw|contains|cased: 'event detectedName": "ModifyDBInstance"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6588,9 +6841,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ModifyDBParameterGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "ModifyDBParameterGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6614,9 +6868,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ModifyDBSnapshotAttribute"'
+    sagan_raw|contains|cased: 'event detectedName": "ModifyDBSnapshotAttribute"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6640,9 +6895,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ModifyDBSubnetGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "ModifyDBSubnetGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6666,9 +6922,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ModifyOptionGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "ModifyOptionGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6692,9 +6949,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "PromoteReadReplica"'
+    sagan_raw|contains|cased: 'event detectedName": "PromoteReadReplica"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6718,9 +6976,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "RebootDBInstance"'
+    sagan_raw|contains|cased: 'event detectedName": "RebootDBInstance"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6744,9 +7003,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ResetDBClusterParameterGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "ResetDBClusterParameterGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6770,9 +7030,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ResetDBParameterGroup"'
+    sagan_raw|contains|cased: 'event detectedName": "ResetDBParameterGroup"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6796,9 +7057,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "RestoreDBClusterFromSnapshot"'
+    sagan_raw|contains|cased: 'event detectedName": "RestoreDBClusterFromSnapshot"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6822,9 +7084,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "RestoreDBClusterToPointInTime"'
+    sagan_raw|contains|cased: 'event detectedName": "RestoreDBClusterToPointInTime"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6848,9 +7111,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "RestoreDBInstanceFromDBSnapshot"'
+    sagan_raw|contains|cased: 'event detectedName": "RestoreDBInstanceFromDBSnapshot"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6874,9 +7138,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "RestoreDBInstanceToPointInTime"'
+    sagan_raw|contains|cased: 'event detectedName": "RestoreDBInstanceToPointInTime"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6900,9 +7165,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: rds.amazonaws.com
+    - appname|cased: rds.amazonaws.com
+    - syslog_appname|cased: rds.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "RevokeDBSecurityGroupIngress"'
+    sagan_raw|contains|cased: 'event detectedName": "RevokeDBSecurityGroupIngress"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6926,9 +7192,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: route53.amazonaws.com
+    - appname|cased: route53.amazonaws.com
+    - syslog_appname|cased: route53.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "ChangeResourceRecordSets"'
+    sagan_raw|contains|cased: 'event detectedName": "ChangeResourceRecordSets"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6952,9 +7219,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: route53.amazonaws.com
+    - appname|cased: route53.amazonaws.com
+    - syslog_appname|cased: route53.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteHealthCheck"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteHealthCheck"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -6978,9 +7246,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: s3.amazonaws.com
+    - appname|cased: s3.amazonaws.com
+    - syslog_appname|cased: s3.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateBucket"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateBucket"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7004,9 +7273,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: s3.amazonaws.com
+    - appname|cased: s3.amazonaws.com
+    - syslog_appname|cased: s3.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteBucket"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteBucket"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7030,9 +7300,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: s3.amazonaws.com
+    - appname|cased: s3.amazonaws.com
+    - syslog_appname|cased: s3.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteBucketCors"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteBucketCors"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7056,9 +7327,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: s3.amazonaws.com
+    - appname|cased: s3.amazonaws.com
+    - syslog_appname|cased: s3.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteBucketLifecycle"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteBucketLifecycle"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7082,9 +7354,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: s3.amazonaws.com
+    - appname|cased: s3.amazonaws.com
+    - syslog_appname|cased: s3.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteBucketPolicy"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteBucketPolicy"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7108,9 +7381,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: s3.amazonaws.com
+    - appname|cased: s3.amazonaws.com
+    - syslog_appname|cased: s3.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteBucketReplication"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteBucketReplication"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7134,9 +7408,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: s3.amazonaws.com
+    - appname|cased: s3.amazonaws.com
+    - syslog_appname|cased: s3.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteBucketTagging"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteBucketTagging"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7160,9 +7435,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: s3.amazonaws.com
+    - appname|cased: s3.amazonaws.com
+    - syslog_appname|cased: s3.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "PutBucketAcl"'
+    sagan_raw|contains|cased: 'event detectedName": "PutBucketAcl"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7186,9 +7462,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: s3.amazonaws.com
+    - appname|cased: s3.amazonaws.com
+    - syslog_appname|cased: s3.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "PutBucketCors"'
+    sagan_raw|contains|cased: 'event detectedName": "PutBucketCors"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7212,9 +7489,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: s3.amazonaws.com
+    - appname|cased: s3.amazonaws.com
+    - syslog_appname|cased: s3.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "PutBucketLifecycle"'
+    sagan_raw|contains|cased: 'event detectedName": "PutBucketLifecycle"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7238,9 +7516,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: s3.amazonaws.com
+    - appname|cased: s3.amazonaws.com
+    - syslog_appname|cased: s3.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "PutBucketLogging"'
+    sagan_raw|contains|cased: 'event detectedName": "PutBucketLogging"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7264,9 +7543,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: s3.amazonaws.com
+    - appname|cased: s3.amazonaws.com
+    - syslog_appname|cased: s3.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "PutBucketNotification"'
+    sagan_raw|contains|cased: 'event detectedName": "PutBucketNotification"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7290,9 +7570,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: s3.amazonaws.com
+    - appname|cased: s3.amazonaws.com
+    - syslog_appname|cased: s3.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "PutBucketPolicy"'
+    sagan_raw|contains|cased: 'event detectedName": "PutBucketPolicy"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7316,9 +7597,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: s3.amazonaws.com
+    - appname|cased: s3.amazonaws.com
+    - syslog_appname|cased: s3.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "PutBucketReplication"'
+    sagan_raw|contains|cased: 'event detectedName": "PutBucketReplication"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7342,9 +7624,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: s3.amazonaws.com
+    - appname|cased: s3.amazonaws.com
+    - syslog_appname|cased: s3.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "PutBucketRequestPayment"'
+    sagan_raw|contains|cased: 'event detectedName": "PutBucketRequestPayment"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7368,9 +7651,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: s3.amazonaws.com
+    - appname|cased: s3.amazonaws.com
+    - syslog_appname|cased: s3.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "PutBucketTagging"'
+    sagan_raw|contains|cased: 'event detectedName": "PutBucketTagging"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7394,9 +7678,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: s3.amazonaws.com
+    - appname|cased: s3.amazonaws.com
+    - syslog_appname|cased: s3.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "PutBucketVersioning"'
+    sagan_raw|contains|cased: 'event detectedName": "PutBucketVersioning"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7420,9 +7705,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: s3.amazonaws.com
+    - appname|cased: s3.amazonaws.com
+    - syslog_appname|cased: s3.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "PutBucketWebsite"'
+    sagan_raw|contains|cased: 'event detectedName": "PutBucketWebsite"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7446,9 +7732,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateByteMatchSet"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateByteMatchSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7472,9 +7759,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateGeoMatchSet"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateGeoMatchSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7498,9 +7786,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateIPSet"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateIPSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7524,9 +7813,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateRateBasedRule"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateRateBasedRule"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7550,9 +7840,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateRegexMatchSet"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateRegexMatchSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7576,9 +7867,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateRegexPatternSet"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateRegexPatternSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7602,9 +7894,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateRule"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateRule"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7628,9 +7921,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateSizeConstraintSet"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateSizeConstraintSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7654,9 +7948,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateSqlInjectionMatchSet"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateSqlInjectionMatchSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7680,9 +7975,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateWebACL"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateWebACL"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7706,9 +8002,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "CreateXssMatchSet"'
+    sagan_raw|contains|cased: 'event detectedName": "CreateXssMatchSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7732,9 +8029,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteByteMatchSet"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteByteMatchSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7758,9 +8056,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteGeoMatchSet"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteGeoMatchSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7784,9 +8083,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteIPSet"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteIPSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7810,9 +8110,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteRateBasedRule"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteRateBasedRule"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7836,9 +8137,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteRegexMatchSet"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteRegexMatchSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7862,9 +8164,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteRegexPatternSet"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteRegexPatternSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7888,9 +8191,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteRule"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteRule"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7914,9 +8218,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteSizeConstraintSet"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteSizeConstraintSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7940,9 +8245,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteSqlInjectionMatchSet"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteSqlInjectionMatchSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7966,9 +8272,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteWebACL"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteWebACL"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -7992,9 +8299,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "DeleteXssMatchSet"'
+    sagan_raw|contains|cased: 'event detectedName": "DeleteXssMatchSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8018,9 +8326,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateByteMatchSet"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateByteMatchSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8044,9 +8353,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateGeoMatchSet"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateGeoMatchSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8070,9 +8380,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateIPSet"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateIPSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8096,9 +8407,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateRateBasedRule"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateRateBasedRule"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8122,9 +8434,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateRegexMatchSet"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateRegexMatchSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8148,9 +8461,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateRegexPatternSet"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateRegexPatternSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8174,9 +8488,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateRule"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateRule"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8200,9 +8515,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateSizeConstraintSet"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateSizeConstraintSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8226,9 +8542,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateSqlInjectionMatchSet"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateSqlInjectionMatchSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8252,9 +8569,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateWebACL"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateWebACL"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -8278,9 +8596,10 @@ logsource:
   service: cloudtrail
 detection:
   selection_1:
-    appname|cased: waf.amazonaws.com
+    - appname|cased: waf.amazonaws.com
+    - syslog_appname|cased: waf.amazonaws.com
   selection_2:
-    message|contains|cased: 'event detectedName": "UpdateXssMatchSet"'
+    sagan_raw|contains|cased: 'event detectedName": "UpdateXssMatchSet"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

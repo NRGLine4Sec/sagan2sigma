@@ -7,14 +7,15 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   selection_2:
     EventID:
       - 4624
       - 540
       - 528
   selection_3:
-    message|contains|cased: 'Logon Type: 10 '
+    sagan_raw|contains|cased: 'Logon Type: 10 '
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -45,7 +46,8 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   selection_2:
     EventID: 529
   bluedot_hit_1:
@@ -80,7 +82,8 @@ detection:
   selection_1:
     EventID: 530
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -113,9 +116,10 @@ detection:
   selection_1:
     EventID: 531
   filter_2:
-    message|contains|cased: 'User Name: Domain:'
+    sagan_raw|contains|cased: 'User Name: Domain:'
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -149,7 +153,8 @@ detection:
   selection_1:
     EventID: 532
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -181,7 +186,8 @@ detection:
   selection_1:
     EventID: 533
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -213,9 +219,10 @@ detection:
   selection_1:
     EventID: 539|
   filter_2:
-    message|contains|cased: 'User Name: Domain: Logon Type:'
+    sagan_raw|contains|cased: 'User Name: Domain: Logon Type:'
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -254,7 +261,8 @@ detection:
       - 676
       - 681
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:

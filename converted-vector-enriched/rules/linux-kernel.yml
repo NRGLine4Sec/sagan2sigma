@@ -7,11 +7,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: I/O error, dev
+    sagan_raw|contains|cased: I/O error, dev
   filter_2:
-    message|contains|cased: dev fd
+    sagan_raw|contains|cased: dev fd
   selection_3:
-    appname|cased: kernel
+    - appname|cased: kernel
+    - syslog_appname|cased: kernel
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -33,9 +34,10 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: hostbyte=DID_ERROR
+    sagan_raw|contains|cased: hostbyte=DID_ERROR
   selection_2:
-    appname|cased: kernel
+    - appname|cased: kernel
+    - syslog_appname|cased: kernel
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -57,11 +59,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: 'hpsa '
+    sagan_raw|contains|cased: 'hpsa '
   selection_2:
-    message|contains|cased: FAILED abort on device
+    sagan_raw|contains|cased: FAILED abort on device
   selection_3:
-    appname|cased: kernel
+    - appname|cased: kernel
+    - syslog_appname|cased: kernel
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -82,11 +85,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: 'hpsa '
+    sagan_raw|contains|cased: 'hpsa '
   selection_2:
-    message|contains|cased: probably means device no longer present
+    sagan_raw|contains|cased: probably means device no longer present
   selection_3:
-    appname|cased: kernel
+    - appname|cased: kernel
+    - syslog_appname|cased: kernel
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -109,7 +113,7 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains: GCONV_PATH=
+    sagan_raw|contains: GCONV_PATH=
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -133,9 +137,9 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains: The value for environment variable
+    sagan_raw|contains: The value for environment variable
   selection_2:
-    message|contains: contains suscipious content
+    sagan_raw|contains: contains suscipious content
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

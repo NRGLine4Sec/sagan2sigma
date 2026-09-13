@@ -7,11 +7,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: failed authentication for internal PGP Desktop
+    sagan_raw|contains|cased: failed authentication for internal PGP Desktop
   filter_2:
-    message|contains|cased: 'null'
+    sagan_raw|contains|cased: 'null'
   selection_3:
-    appname|cased: pgp/client
+    - appname|cased: pgp/client
+    - syslog_appname|cased: pgp/client
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -33,13 +34,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: error searching for key
+    sagan_raw|contains|cased: error searching for key
   selection_2:
-    message|contains|cased: LDAP
+    sagan_raw|contains|cased: LDAP
   selection_3:
-    message|contains|cased: name lookup failed
+    sagan_raw|contains|cased: name lookup failed
   selection_4:
-    appname|cased: pgp/client
+    - appname|cased: pgp/client
+    - syslog_appname|cased: pgp/client
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

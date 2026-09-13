@@ -8,9 +8,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Unknown Traffic'
+    sagan_raw|contains|cased: 'Classification: Unknown Traffic'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -32,9 +33,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Bad Traffic'
+    sagan_raw|contains|cased: 'Classification: Bad Traffic'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -56,9 +58,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Attempted Information Leak'
+    sagan_raw|contains|cased: 'Classification: Attempted Information Leak'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -80,9 +83,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Information Leak'
+    sagan_raw|contains|cased: 'Classification: Information Leak'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -104,9 +108,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Large Scale Information Leak'
+    sagan_raw|contains|cased: 'Classification: Large Scale Information Leak'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -128,9 +133,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Attempted Denial of Service'
+    sagan_raw|contains|cased: 'Classification: Attempted Denial of Service'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -152,9 +158,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Denial of Service'
+    sagan_raw|contains|cased: 'Classification: Denial of Service'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -176,9 +183,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Attempted User Privilege Gain'
+    sagan_raw|contains|cased: 'Classification: Attempted User Privilege Gain'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -200,9 +208,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Unsuccessful User Privilege Gain'
+    sagan_raw|contains|cased: 'Classification: Unsuccessful User Privilege Gain'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -224,9 +233,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Successful User Privilege Gain'
+    sagan_raw|contains|cased: 'Classification: Successful User Privilege Gain'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -248,9 +258,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Attempted Administrator Privilege Gain'
+    sagan_raw|contains|cased: 'Classification: Attempted Administrator Privilege Gain'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -272,9 +283,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Successful Administrator Privilege Gain'
+    sagan_raw|contains|cased: 'Classification: Successful Administrator Privilege Gain'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -296,9 +308,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Decode of an RPC Query'
+    sagan_raw|contains|cased: 'Classification: Decode of an RPC Query'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -320,9 +333,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Executable code was detected'
+    sagan_raw|contains|cased: 'Classification: Executable code was detected'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -344,9 +358,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: A suspicious string was detected'
+    sagan_raw|contains|cased: 'Classification: A suspicious string was detected'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -368,9 +383,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: A suspicious filename was detected'
+    sagan_raw|contains|cased: 'Classification: A suspicious filename was detected'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -392,9 +408,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: An attempted login using a suspicious username was detected'
+    sagan_raw|contains|cased: 'Classification: An attempted login using a suspicious username was detected'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -416,9 +433,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: A system call was detected'
+    sagan_raw|contains|cased: 'Classification: A system call was detected'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -440,9 +458,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: A TCP connection was detected'
+    sagan_raw|contains|cased: 'Classification: A TCP connection was detected'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -464,9 +483,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: A Network Trojan was detected'
+    sagan_raw|contains|cased: 'Classification: A Network Trojan was detected'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -488,9 +508,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: A client was using an unusual port'
+    sagan_raw|contains|cased: 'Classification: A client was using an unusual port'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -512,9 +533,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Detection of a Network Scan'
+    sagan_raw|contains|cased: 'Classification: Detection of a Network Scan'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -536,9 +558,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Detection of a Denial of Service Attack'
+    sagan_raw|contains|cased: 'Classification: Detection of a Denial of Service Attack'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -560,9 +583,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Detection of a non-standard protocol or event'
+    sagan_raw|contains|cased: 'Classification: Detection of a non-standard protocol or event'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -584,9 +608,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Generic Protocol Command Decode'
+    sagan_raw|contains|cased: 'Classification: Generic Protocol Command Decode'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -608,9 +633,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: access to a potentially vulnerable web application'
+    sagan_raw|contains|cased: 'Classification: access to a potentially vulnerable web application'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -632,9 +658,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Web Application Attack'
+    sagan_raw|contains|cased: 'Classification: Web Application Attack'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -656,9 +683,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Misc activity'
+    sagan_raw|contains|cased: 'Classification: Misc activity'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -680,9 +708,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Misc Attack'
+    sagan_raw|contains|cased: 'Classification: Misc Attack'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -704,9 +733,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Generic ICMP event'
+    sagan_raw|contains|cased: 'Classification: Generic ICMP event'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -728,9 +758,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Potential Corporate Privacy Violation'
+    sagan_raw|contains|cased: 'Classification: Potential Corporate Privacy Violation'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -752,9 +783,10 @@ logsource:
   service: alert
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: 'Classification: Attempt to login by a default username and password'
+    sagan_raw|contains|cased: 'Classification: Attempt to login by a default username and password'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

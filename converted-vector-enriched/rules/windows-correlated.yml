@@ -13,11 +13,12 @@ detection:
       - 528
       - 540
   selection_2:
-    message|contains|cased: 'Logon Type: 10 '
+    sagan_raw|contains|cased: 'Logon Type: 10 '
   filter_3:
-    message|contains|cased: 'Source Network Address: 0.0.0.0'
+    sagan_raw|contains|cased: 'Source Network Address: 0.0.0.0'
   selection_4:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -60,11 +61,12 @@ detection:
       - 528
       - 540
   selection_2:
-    message|contains|cased: 'Logon Type: 10 '
+    sagan_raw|contains|cased: 'Logon Type: 10 '
   filter_3:
-    message|contains|cased: 'Source Network Address: 0.0.0.0'
+    sagan_raw|contains|cased: 'Source Network Address: 0.0.0.0'
   selection_4:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -107,11 +109,12 @@ detection:
       - 528
       - 540
   selection_2:
-    message|contains|cased: 'Logon Type: 10 '
+    sagan_raw|contains|cased: 'Logon Type: 10 '
   filter_3:
-    message|contains|cased: 'Source Network Address: 0.0.0.0'
+    sagan_raw|contains|cased: 'Source Network Address: 0.0.0.0'
   selection_4:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -154,11 +157,12 @@ detection:
       - 528
       - 540
   selection_2:
-    message|contains|cased: 'Logon Type: 10 '
+    sagan_raw|contains|cased: 'Logon Type: 10 '
   filter_3:
-    message|contains|cased: 'Source Network Address: 0.0.0.0'
+    sagan_raw|contains|cased: 'Source Network Address: 0.0.0.0'
   selection_4:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_4 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -198,13 +202,14 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   selection_2:
     EventID: 4688
   selection_3:
-    message|contains|cased: \\WMIC.exe Token
+    sagan_raw|contains|cased: \\WMIC.exe Token
   filter_4:
-    message|contains|cased: '$ Account Domain:'
+    sagan_raw|contains|cased: '$ Account Domain:'
   condition: selection_1 and selection_2 and selection_3 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -229,15 +234,16 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   selection_2:
     EventID: 4624
   selection_3:
-    message|contains|cased: 'Logon Type: 3'
+    sagan_raw|contains|cased: 'Logon Type: 3'
   filter_4:
-    message|contains|cased: '$ Account Domain:'
+    sagan_raw|contains|cased: '$ Account Domain:'
   filter_5:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - 'Source Network Address: -'
       - 'Source Network Address: 127.0.0.1'
       - 'Source Network Address: ::1'
@@ -280,11 +286,12 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   selection_2:
     EventID: 4688
   selection_3:
-    message|contains|cased: \\WmiPrvse.exe Token
+    sagan_raw|contains|cased: \\WmiPrvse.exe Token
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

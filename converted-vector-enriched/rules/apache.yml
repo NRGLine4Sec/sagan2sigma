@@ -8,11 +8,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: denied by server configuration
+    sagan_raw|contains|cased: denied by server configuration
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -38,11 +41,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: Directory index forbidden by rule [0/5]
+    sagan_raw|contains|cased: Directory index forbidden by rule [0/5]
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -68,11 +74,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: Client sent malformed Host header
+    sagan_raw|contains|cased: Client sent malformed Host header
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -97,11 +106,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains: authentication failed
+    sagan_raw|contains: authentication failed
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -126,11 +138,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|re|i: user \S+ not found
+    sagan_raw|re|i: user \S+ not found
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -154,13 +169,16 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|re|i: file does not exist|No such file or directory
+    sagan_raw|re|i: file does not exist|No such file or directory
   filter_2:
-    message|contains|cased: favicon.ico
+    sagan_raw|contains|cased: favicon.ico
   selection_3:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -186,11 +204,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|re|i: failed opening|failed to open stream
+    sagan_raw|re|i: failed opening|failed to open stream
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -215,11 +236,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: Invalid URI in request
+    sagan_raw|contains|cased: Invalid URI in request
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -243,13 +267,16 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: file name too long
+    sagan_raw|contains|cased: file name too long
   selection_2:
-    message|contains|cased: URI too long
+    sagan_raw|contains|cased: URI too long
   selection_3:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -273,16 +300,19 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - modsecurity
       - mod_security
       - mod_security-message
   selection_2:
-    message|contains: access denied
+    sagan_raw|contains: access denied
   selection_3:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -306,11 +336,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: \?C=S;O=A
+    sagan_raw|contains|cased: \?C=S;O=A
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -333,11 +366,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: \?C=M;O=A
+    sagan_raw|contains|cased: \?C=M;O=A
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -360,13 +396,16 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: robots.txt
+    sagan_raw|contains|cased: robots.txt
   filter_2:
-    message|contains|cased: ' 404 '
+    sagan_raw|contains|cased: ' 404 '
   selection_3:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -389,13 +428,16 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: phpinfo
+    sagan_raw|contains|cased: phpinfo
   filter_2:
-    message|contains|cased: ' 404 '
+    sagan_raw|contains|cased: ' 404 '
   selection_3:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -419,11 +461,12 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains: phpmyadmin
+    sagan_raw|contains: phpmyadmin
   filter_2:
-    message|contains|cased: ' 404 '
+    sagan_raw|contains|cased: ' 404 '
   selection_3:
-    appname|cased: apachehttpd
+    - appname|cased: apachehttpd
+    - syslog_appname|cased: apachehttpd
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -449,11 +492,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '() { '
+    sagan_raw|contains|cased: '() { '
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -478,11 +524,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '%28%29 { '
+    sagan_raw|contains|cased: '%28%29 { '
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -507,11 +556,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '%28%29 {%20'
+    sagan_raw|contains|cased: '%28%29 {%20'
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -536,11 +588,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '%28%29 %7b '
+    sagan_raw|contains|cased: '%28%29 %7b '
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -565,11 +620,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '%28%29 %7b%20'
+    sagan_raw|contains|cased: '%28%29 %7b%20'
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -594,11 +652,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '%28%29%20{ '
+    sagan_raw|contains|cased: '%28%29%20{ '
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -623,11 +684,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '%28%29%20{%20'
+    sagan_raw|contains|cased: '%28%29%20{%20'
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -652,11 +716,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '%28%29%20%7b '
+    sagan_raw|contains|cased: '%28%29%20%7b '
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -681,11 +748,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '%28%29%20%7b%20'
+    sagan_raw|contains|cased: '%28%29%20%7b%20'
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -710,11 +780,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '%28 { '
+    sagan_raw|contains|cased: '%28 { '
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -739,11 +812,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '%28 {%20'
+    sagan_raw|contains|cased: '%28 {%20'
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -768,11 +844,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '%28 %7b '
+    sagan_raw|contains|cased: '%28 %7b '
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -797,11 +876,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '%28 %7b%20'
+    sagan_raw|contains|cased: '%28 %7b%20'
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -826,11 +908,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '%28%20{ '
+    sagan_raw|contains|cased: '%28%20{ '
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -855,11 +940,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '%28%20{%20'
+    sagan_raw|contains|cased: '%28%20{%20'
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -884,11 +972,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '%28%20%7b '
+    sagan_raw|contains|cased: '%28%20%7b '
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -913,11 +1004,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '%28%20%7b%20'
+    sagan_raw|contains|cased: '%28%20%7b%20'
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -942,11 +1036,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '(%29 { '
+    sagan_raw|contains|cased: '(%29 { '
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -971,11 +1068,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: (%29 {%20
+    sagan_raw|contains|cased: (%29 {%20
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1000,11 +1100,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '(%29 %7b '
+    sagan_raw|contains|cased: '(%29 %7b '
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1029,11 +1132,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: (%29 %7b%20
+    sagan_raw|contains|cased: (%29 %7b%20
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1058,11 +1164,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '(%29%20{ '
+    sagan_raw|contains|cased: '(%29%20{ '
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1087,11 +1196,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: (%29%20{%20
+    sagan_raw|contains|cased: (%29%20{%20
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1116,11 +1228,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '(%29%20%7b '
+    sagan_raw|contains|cased: '(%29%20%7b '
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1145,11 +1260,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: (%29%20%7b%20
+    sagan_raw|contains|cased: (%29%20%7b%20
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1174,11 +1292,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: () {%20
+    sagan_raw|contains|cased: () {%20
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1203,11 +1324,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '() %7b '
+    sagan_raw|contains|cased: '() %7b '
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1232,11 +1356,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: () %7b%20
+    sagan_raw|contains|cased: () %7b%20
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1261,11 +1388,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '))%20{ '
+    sagan_raw|contains|cased: '))%20{ '
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1290,11 +1420,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: '()%20%7b '
+    sagan_raw|contains|cased: '()%20%7b '
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1319,11 +1452,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: ()%20%7b%20
+    sagan_raw|contains|cased: ()%20%7b%20
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1348,13 +1484,16 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: |-
+    sagan_raw|contains|cased: |-
       ()
        {
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1379,11 +1518,14 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: "()\r\n {"
+    sagan_raw|contains|cased: "()\r\n {"
   selection_2:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1409,21 +1551,24 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: 'jndi:'
+    sagan_raw|contains|cased: 'jndi:'
   selection_2:
-    message|contains|cased: '{'
+    sagan_raw|contains|cased: '{'
   selection_3:
-    message|contains|cased: ' 200 '
+    sagan_raw|contains|cased: ' 200 '
   filter_4:
-    message|contains: Rule
+    sagan_raw|contains: Rule
   filter_5:
-    message|contains|cased: drop
+    sagan_raw|contains|cased: drop
   filter_6:
-    message|contains: tmm
+    sagan_raw|contains: tmm
   selection_7:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2 and selection_3 and selection_7 and not (filter_4 or filter_5
     or filter_6)
 falsepositives:
@@ -1450,17 +1595,20 @@ logsource:
   service: httpd
 detection:
   selection_1:
-    message|contains|cased: jndi
+    sagan_raw|contains|cased: jndi
   selection_2:
-    message|contains: '%3A'
+    sagan_raw|contains: '%3A'
   selection_3:
-    message|contains: '%7B'
+    sagan_raw|contains: '%7B'
   selection_4:
-    message|contains|cased: ' 200 '
+    sagan_raw|contains|cased: ' 200 '
   selection_5:
-    appname|cased:
-      - '*apache*'
-      - httpd
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

@@ -7,11 +7,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Login excessive login failures
+    sagan_raw|contains|cased: Login excessive login failures
   selection_2:
-    appname|cased:
-      - ipop3d
-      - ipop3d-ssl
+    - appname|cased:
+        - ipop3d
+        - ipop3d-ssl
+    - syslog_appname|cased:
+        - ipop3d
+        - ipop3d-ssl
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

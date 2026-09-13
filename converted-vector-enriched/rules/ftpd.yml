@@ -7,13 +7,18 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: FTP LOGIN REFUSED
+    sagan_raw|contains|cased: FTP LOGIN REFUSED
   selection_2:
-    appname|cased:
-      - ftpd
-      - ftp
-      - FTP
-      - FTPD
+    - appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
+    - syslog_appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -34,13 +39,18 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: ' created '
+    sagan_raw|contains|cased: ' created '
   selection_2:
-    appname|cased:
-      - ftpd
-      - ftp
-      - FTP
-      - FTPD
+    - appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
+    - syslog_appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -61,13 +71,18 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: ' deleted '
+    sagan_raw|contains|cased: ' deleted '
   selection_2:
-    appname|cased:
-      - ftpd
-      - ftp
-      - FTP
-      - FTPD
+    - appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
+    - syslog_appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -88,13 +103,18 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: IMPORT file
+    sagan_raw|contains|cased: IMPORT file
   selection_2:
-    appname|cased:
-      - ftpd
-      - ftp
-      - FTP
-      - FTPD
+    - appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
+    - syslog_appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -115,13 +135,18 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: EXPORT file
+    sagan_raw|contains|cased: EXPORT file
   selection_2:
-    appname|cased:
-      - ftpd
-      - ftp
-      - FTP
-      - FTPD
+    - appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
+    - syslog_appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -142,13 +167,18 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|re: FTP LOGIN FROM|connection from|connect from
+    sagan_raw|re: FTP LOGIN FROM|connection from|connect from
   selection_2:
-    appname|cased:
-      - ftpd
-      - ftp
-      - FTP
-      - FTPD
+    - appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
+    - syslog_appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -169,13 +199,18 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: refused connect from
+    sagan_raw|contains|cased: refused connect from
   selection_2:
-    appname|cased:
-      - ftpd
-      - ftp
-      - FTP
-      - FTPD
+    - appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
+    - syslog_appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -196,13 +231,18 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|re: can't verify hostname|gethostbyaddr
+    sagan_raw|re: can't verify hostname|gethostbyaddr
   selection_2:
-    appname|cased:
-      - ftpd
-      - ftp
-      - FTP
-      - FTPD
+    - appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
+    - syslog_appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -223,13 +263,18 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: repeated login failures
+    sagan_raw|contains|cased: repeated login failures
   selection_2:
-    appname|cased:
-      - ftpd
-      - ftp
-      - FTP
-      - FTPD
+    - appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
+    - syslog_appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -250,13 +295,18 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: timed out after
+    sagan_raw|contains|cased: timed out after
   selection_2:
-    appname|cased:
-      - ftpd
-      - ftp
-      - FTP
-      - FTPD
+    - appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
+    - syslog_appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -277,13 +327,18 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Account is disabled
+    sagan_raw|contains|cased: Account is disabled
   selection_2:
-    appname|cased:
-      - ftpd
-      - ftp
-      - FTP
-      - FTPD
+    - appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
+    - syslog_appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -305,13 +360,18 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains: failed authentication from
+    sagan_raw|contains: failed authentication from
   selection_2:
-    appname|cased:
-      - ftpd
-      - ftp
-      - FTP
-      - FTPD
+    - appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
+    - syslog_appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -348,9 +408,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: FTP LOGIN FROM
+    sagan_raw|contains|cased: FTP LOGIN FROM
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - ' apache '
       - ' mysql '
       - ' www '
@@ -381,11 +441,16 @@ detection:
       - ' ossec '
       - ' sagan '
   selection_3:
-    appname|cased:
-      - ftpd
-      - ftp
-      - FTP
-      - FTPD
+    - appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
+    - syslog_appname|cased:
+        - ftpd
+        - ftp
+        - FTP
+        - FTPD
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -408,18 +473,23 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: ftpchk3
+    sagan_raw|contains|cased: ftpchk3
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - CHMOD
       - DELE
       - STOR"
   selection_3:
-    appname|cased:
-      - ftp
-      - ftpd
-      - FTP
-      - FTPD
+    - appname|cased:
+        - ftp
+        - ftpd
+        - FTP
+        - FTPD
+    - syslog_appname|cased:
+        - ftp
+        - ftpd
+        - FTP
+        - FTPD
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

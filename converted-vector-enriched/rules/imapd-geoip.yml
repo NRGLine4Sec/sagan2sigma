@@ -7,9 +7,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: imapd*
+    - appname|cased: imapd*
+    - syslog_appname|cased: imapd*
   selection_2:
-    message|contains|cased: LOGIN,
+    sagan_raw|contains|cased: LOGIN,
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -38,9 +39,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: imapd*
+    - appname|cased: imapd*
+    - syslog_appname|cased: imapd*
   selection_2:
-    message|contains|cased: LOGOUT,
+    sagan_raw|contains|cased: LOGOUT,
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -69,9 +71,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: imapd*
+    - appname|cased: imapd*
+    - syslog_appname|cased: imapd*
   selection_2:
-    message|contains|cased: TIMEOUT,
+    sagan_raw|contains|cased: TIMEOUT,
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -100,9 +103,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: imapd*
+    - appname|cased: imapd*
+    - syslog_appname|cased: imapd*
   selection_2:
-    message|contains|cased: DISCONNECTED,
+    sagan_raw|contains|cased: DISCONNECTED,
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -131,9 +135,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: imapd*
+    - appname|cased: imapd*
+    - syslog_appname|cased: imapd*
   selection_2:
-    message|contains|cased: Connection,
+    sagan_raw|contains|cased: Connection,
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:

@@ -7,9 +7,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: failed auth
+    sagan_raw|contains|cased: failed auth
   selection_2:
-    appname|cased: vm-pop3d
+    - appname|cased: vm-pop3d
+    - syslog_appname|cased: vm-pop3d
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

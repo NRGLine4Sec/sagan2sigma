@@ -9,7 +9,7 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: '> /dev/null & rm'
+    sagan_raw|contains|cased: '> /dev/null & rm'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -35,9 +35,9 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: /proc/
+    sagan_raw|contains|cased: /proc/
   selection_2:
-    message|contains|cased: /cmdline
+    sagan_raw|contains|cased: /cmdline
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -63,7 +63,7 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains: linpeas.sh
+    sagan_raw|contains: linpeas.sh
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -87,9 +87,9 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains: frpc
+    sagan_raw|contains: frpc
   selection_2:
-    message|contains|cased: frpc.toml
+    sagan_raw|contains|cased: frpc.toml
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -138,9 +138,9 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: COMMAND=
+    sagan_raw|contains|cased: COMMAND=
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - adduser
       - useradd
   condition: selection_1 and selection_2
@@ -166,11 +166,11 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - useradd
       - adduser
   selection_2:
-    message|contains|cased: 'new user:'
+    sagan_raw|contains|cased: 'new user:'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -194,7 +194,7 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: usermod -aG sudo
+    sagan_raw|contains|cased: usermod -aG sudo
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -218,11 +218,11 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: COMMAND=
+    sagan_raw|contains|cased: COMMAND=
   selection_2:
-    message|contains|cased: chmod +x
+    sagan_raw|contains|cased: chmod +x
   filter_3:
-    message|contains|cased: docker-compose
+    sagan_raw|contains|cased: docker-compose
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -247,9 +247,9 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains: FoomaticRIPCommandLine
+    sagan_raw|contains: FoomaticRIPCommandLine
   selection_2:
-    message|contains: 'cupsFilter2 '
+    sagan_raw|contains: 'cupsFilter2 '
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

@@ -7,9 +7,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: password fail
+    sagan_raw|contains|cased: password fail
   selection_2:
-    appname|cased: vpopmail
+    - appname|cased: vpopmail
+    - syslog_appname|cased: vpopmail
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -30,9 +31,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: vpopmail user not found
+    sagan_raw|contains|cased: vpopmail user not found
   selection_2:
-    appname|cased: vpopmail
+    - appname|cased: vpopmail
+    - syslog_appname|cased: vpopmail
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -53,9 +55,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: null password given
+    sagan_raw|contains|cased: null password given
   selection_2:
-    appname|cased: vpopmail
+    - appname|cased: vpopmail
+    - syslog_appname|cased: vpopmail
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

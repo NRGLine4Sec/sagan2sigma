@@ -129,11 +129,12 @@ logsource:
   product: m365
 detection:
   selection_1:
-    appname|cased: AzureActiveDirectory
+    - appname|cased: AzureActiveDirectory
+    - syslog_appname|cased: AzureActiveDirectory
   selection_2:
-    message|contains|cased: Add member to role
+    sagan_raw|contains|cased: Add member to role
   selection_3:
-    message|contains|cased: Security Operator
+    sagan_raw|contains|cased: Security Operator
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -159,11 +160,12 @@ logsource:
   product: m365
 detection:
   selection_1:
-    appname|cased: AzureActiveDirectory
+    - appname|cased: AzureActiveDirectory
+    - syslog_appname|cased: AzureActiveDirectory
   selection_2:
-    message|contains|cased: Add member to role
+    sagan_raw|contains|cased: Add member to role
   selection_3:
-    message|contains|cased: Security Administrator
+    sagan_raw|contains|cased: Security Administrator
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -189,11 +191,12 @@ logsource:
   product: m365
 detection:
   selection_1:
-    appname|cased: AzureActiveDirectory
+    - appname|cased: AzureActiveDirectory
+    - syslog_appname|cased: AzureActiveDirectory
   selection_2:
-    message|contains|cased: Add member to role
+    sagan_raw|contains|cased: Add member to role
   selection_3:
-    message|contains|cased: User Administrator
+    sagan_raw|contains|cased: User Administrator
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -220,11 +223,12 @@ logsource:
   product: m365
 detection:
   selection_1:
-    appname|cased: AzureActiveDirectory
+    - appname|cased: AzureActiveDirectory
+    - syslog_appname|cased: AzureActiveDirectory
   selection_2:
-    message|contains|cased: Add member to role
+    sagan_raw|contains|cased: Add member to role
   selection_3:
-    message|contains|cased: Partner Tier2 Support
+    sagan_raw|contains|cased: Partner Tier2 Support
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -251,11 +255,12 @@ logsource:
   product: m365
 detection:
   selection_1:
-    appname|cased: AzureActiveDirectory
+    - appname|cased: AzureActiveDirectory
+    - syslog_appname|cased: AzureActiveDirectory
   selection_2:
-    message|contains|cased: Add member to role
+    sagan_raw|contains|cased: Add member to role
   selection_3:
-    message|contains|cased: Privileged Role Administrator
+    sagan_raw|contains|cased: Privileged Role Administrator
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

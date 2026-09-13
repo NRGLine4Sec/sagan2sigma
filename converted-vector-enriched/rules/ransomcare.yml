@@ -7,9 +7,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: RansomCare
+    - appname|cased: RansomCare
+    - syslog_appname|cased: RansomCare
   selection_2:
-    message|contains|cased: Critical Alert
+    sagan_raw|contains|cased: Critical Alert
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

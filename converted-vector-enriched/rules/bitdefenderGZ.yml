@@ -9,9 +9,10 @@ logsource:
   product: bitdefender
 detection:
   selection_1:
-    appname|cased: BitdefenderGZ
+    - appname|cased: BitdefenderGZ
+    - syslog_appname|cased: BitdefenderGZ
   selection_2:
-    message|contains|cased: act=aph_blocked
+    sagan_raw|contains|cased: act=aph_blocked
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -35,9 +36,10 @@ logsource:
   product: bitdefender
 detection:
   selection_1:
-    appname|cased: BitdefenderGZ
+    - appname|cased: BitdefenderGZ
+    - syslog_appname|cased: BitdefenderGZ
   selection_2:
-    message|contains|cased: act=reportOnly
+    sagan_raw|contains|cased: act=reportOnly
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -61,11 +63,12 @@ logsource:
   product: bitdefender
 detection:
   selection_1:
-    appname|cased: BitdefenderGZ
+    - appname|cased: BitdefenderGZ
+    - syslog_appname|cased: BitdefenderGZ
   selection_2:
-    message|contains|cased: BitdefenderGZMalwareType=file
+    sagan_raw|contains|cased: BitdefenderGZMalwareType=file
   selection_3:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - act=deleted
       - act=blocked
       - act=quarantined
@@ -93,13 +96,14 @@ logsource:
   product: bitdefender
 detection:
   selection_1:
-    appname|cased: BitdefenderGZ
+    - appname|cased: BitdefenderGZ
+    - syslog_appname|cased: BitdefenderGZ
   selection_2:
-    message|contains|cased: BitdefenderGZMalwareType=file
+    sagan_raw|contains|cased: BitdefenderGZMalwareType=file
   filter_3:
-    message|contains|cased: BitdefenderGZBlockedMalwareCnt=1
+    sagan_raw|contains|cased: BitdefenderGZBlockedMalwareCnt=1
   filter_4:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - act=deleted
       - act=blocked
       - act=quarantined
@@ -127,11 +131,12 @@ logsource:
   product: bitdefender
 detection:
   selection_1:
-    appname|cased: BitdefenderGZ
+    - appname|cased: BitdefenderGZ
+    - syslog_appname|cased: BitdefenderGZ
   selection_2:
-    message|contains|cased: BitdefenderGZMalwareType=process
+    sagan_raw|contains|cased: BitdefenderGZMalwareType=process
   selection_3:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - act=deleted
       - act=blocked
       - act=quarantined
@@ -159,13 +164,14 @@ logsource:
   product: bitdefender
 detection:
   selection_1:
-    appname|cased: BitdefenderGZ
+    - appname|cased: BitdefenderGZ
+    - syslog_appname|cased: BitdefenderGZ
   selection_2:
-    message|contains|cased: BitdefenderGZMalwareType=process
+    sagan_raw|contains|cased: BitdefenderGZMalwareType=process
   filter_3:
-    message|contains|cased: BitdefenderGZBlockedMalwareCnt=1
+    sagan_raw|contains|cased: BitdefenderGZBlockedMalwareCnt=1
   filter_4:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - act=deleted
       - act=blocked
       - act=quarantined
@@ -193,13 +199,14 @@ logsource:
   product: bitdefender
 detection:
   selection_1:
-    appname|cased: BitdefenderGZ
+    - appname|cased: BitdefenderGZ
+    - syslog_appname|cased: BitdefenderGZ
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - BitdefenderGZMalwareType=file
       - BitdefenderGZMalwareType=process
   selection_3:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - act=deleted
       - act=blocked
       - act=quarantined
@@ -227,19 +234,20 @@ logsource:
   product: bitdefender
 detection:
   selection_1:
-    appname|cased: BitdefenderGZ
+    - appname|cased: BitdefenderGZ
+    - syslog_appname|cased: BitdefenderGZ
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - BitdefenderGZMalwareType=file
       - BitdefenderGZMalwareType=process
   filter_3:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - act=deleted
       - act=blocked
       - act=quarantined
       - act=disinfected
   filter_4:
-    message|contains|cased: BitdefenderGZBlockedMalwareCnt=1
+    sagan_raw|contains|cased: BitdefenderGZBlockedMalwareCnt=1
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -263,11 +271,12 @@ logsource:
   product: bitdefender
 detection:
   selection_1:
-    appname|cased: BitdefenderGZ
+    - appname|cased: BitdefenderGZ
+    - syslog_appname|cased: BitdefenderGZ
   selection_2:
-    message|contains|cased: BitdefenderGZModule=avc
+    sagan_raw|contains|cased: BitdefenderGZModule=avc
   selection_3:
-    message|contains|cased: BitdefenderGZExploitType=IDS Blocked APP
+    sagan_raw|contains|cased: BitdefenderGZExploitType=IDS Blocked APP
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -291,11 +300,12 @@ logsource:
   product: bitdefender
 detection:
   selection_1:
-    appname|cased: BitdefenderGZ
+    - appname|cased: BitdefenderGZ
+    - syslog_appname|cased: BitdefenderGZ
   selection_2:
-    message|contains|cased: BitdefenderGZModule=avc
+    sagan_raw|contains|cased: BitdefenderGZModule=avc
   selection_3:
-    message|contains|cased: BitdefenderGZExploitType=AVC Blocked APP
+    sagan_raw|contains|cased: BitdefenderGZExploitType=AVC Blocked APP
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -319,11 +329,12 @@ logsource:
   product: bitdefender
 detection:
   selection_1:
-    appname|cased: BitdefenderGZ
+    - appname|cased: BitdefenderGZ
+    - syslog_appname|cased: BitdefenderGZ
   selection_2:
-    message|contains|cased: BitdefenderGZModule=avc
+    sagan_raw|contains|cased: BitdefenderGZModule=avc
   selection_3:
-    message|contains|cased: BitdefenderGZExploitType=AVC Blocked Exploit
+    sagan_raw|contains|cased: BitdefenderGZExploitType=AVC Blocked Exploit
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -347,13 +358,14 @@ logsource:
   product: bitdefender
 detection:
   selection_1:
-    appname|cased: BitdefenderGZ
+    - appname|cased: BitdefenderGZ
+    - syslog_appname|cased: BitdefenderGZ
   selection_2:
-    message|contains|cased: BitdefenderGZModule=dp
+    sagan_raw|contains|cased: BitdefenderGZModule=dp
   selection_3:
-    message|contains|cased: BitdefenderGZTargetType=http
+    sagan_raw|contains|cased: BitdefenderGZTargetType=http
   selection_4:
-    message|contains|cased: data_protection_blocked
+    sagan_raw|contains|cased: data_protection_blocked
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -377,13 +389,14 @@ logsource:
   product: bitdefender
 detection:
   selection_1:
-    appname|cased: BitdefenderGZ
+    - appname|cased: BitdefenderGZ
+    - syslog_appname|cased: BitdefenderGZ
   selection_2:
-    message|contains|cased: BitdefenderGZModule=dp
+    sagan_raw|contains|cased: BitdefenderGZModule=dp
   selection_3:
-    message|contains|cased: BitdefenderGZTargetType=mail
+    sagan_raw|contains|cased: BitdefenderGZTargetType=mail
   selection_4:
-    message|contains|cased: data_protection_blocked
+    sagan_raw|contains|cased: data_protection_blocked
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -407,9 +420,10 @@ logsource:
   product: bitdefender
 detection:
   selection_1:
-    appname|cased: BitdefenderGZ
+    - appname|cased: BitdefenderGZ
+    - syslog_appname|cased: BitdefenderGZ
   selection_2:
-    message|contains|cased: BitdefenderGZModule=uninstall
+    sagan_raw|contains|cased: BitdefenderGZModule=uninstall
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -433,9 +447,10 @@ logsource:
   product: bitdefender
 detection:
   selection_1:
-    appname|cased: BitdefenderGZ
+    - appname|cased: BitdefenderGZ
+    - syslog_appname|cased: BitdefenderGZ
   selection_2:
-    message|contains|cased: BitdefenderGZModule=exchange-user-credentials
+    sagan_raw|contains|cased: BitdefenderGZModule=exchange-user-credentials
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -459,11 +474,12 @@ logsource:
   product: bitdefender
 detection:
   selection_1:
-    appname|cased: BitdefenderGZ
+    - appname|cased: BitdefenderGZ
+    - syslog_appname|cased: BitdefenderGZ
   selection_2:
-    message|contains|cased: BitdefenderGZMalwareType=hd
+    sagan_raw|contains|cased: BitdefenderGZMalwareType=hd
   selection_3:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - act=deleted
       - act=blocked
       - act=quarantined
@@ -491,11 +507,12 @@ logsource:
   product: bitdefender
 detection:
   selection_1:
-    appname|cased: BitdefenderGZ
+    - appname|cased: BitdefenderGZ
+    - syslog_appname|cased: BitdefenderGZ
   selection_2:
-    message|contains|cased: BitdefenderGZMalwareType=hd
+    sagan_raw|contains|cased: BitdefenderGZMalwareType=hd
   filter_3:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - act=deleted
       - act=blocked
       - act=quarantined

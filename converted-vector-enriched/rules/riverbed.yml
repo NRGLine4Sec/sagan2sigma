@@ -7,11 +7,12 @@ logsource:
   product: riverbed
 detection:
   selection_1:
-    message|contains|cased: logged in
+    sagan_raw|contains|cased: logged in
   selection_2:
-    message|contains|cased: session count
+    sagan_raw|contains|cased: session count
   selection_3:
-    appname|cased: webasd
+    - appname|cased: webasd
+    - syslog_appname|cased: webasd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -32,9 +33,10 @@ logsource:
   product: riverbed
 detection:
   selection_1:
-    message|contains|cased: password is not recognized
+    sagan_raw|contains|cased: password is not recognized
   selection_2:
-    appname|cased: webasd
+    - appname|cased: webasd
+    - syslog_appname|cased: webasd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -56,9 +58,10 @@ logsource:
   product: riverbed
 detection:
   selection_1:
-    message|contains|cased: password is not recognized
+    sagan_raw|contains|cased: password is not recognized
   selection_2:
-    appname|cased: webasd
+    - appname|cased: webasd
+    - syslog_appname|cased: webasd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

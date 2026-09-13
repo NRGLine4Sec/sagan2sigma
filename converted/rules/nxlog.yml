@@ -113,7 +113,8 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: nxlog-fim-crit
+    - appname|cased: nxlog-fim-crit
+    - syslog_appname|cased: nxlog-fim-crit
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

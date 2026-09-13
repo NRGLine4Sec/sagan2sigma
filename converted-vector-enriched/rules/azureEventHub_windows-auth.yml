@@ -1508,14 +1508,14 @@ logsource:
   product: windows
 detection:
   selection_1:
-    message|re|i: failed to authorize|wrong password given|repeated login failures|authentication failed|authentication
+    sagan_raw|re|i: failed to authorize|wrong password given|repeated login failures|authentication failed|authentication
       failures|access denied|access not allowed|failed to authenticate
   selection_2:
-    message|contains|cased: '$ Session ID:'
+    sagan_raw|contains|cased: '$ Session ID:'
   filter_3:
-    message|contains|cased: access denied by ACL
+    sagan_raw|contains|cased: access denied by ACL
   filter_4:
-    message|contains|cased: Kerberos
+    sagan_raw|contains|cased: Kerberos
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

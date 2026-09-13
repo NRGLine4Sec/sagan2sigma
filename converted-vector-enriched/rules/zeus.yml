@@ -7,9 +7,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Authentication failure
+    sagan_raw|contains|cased: Authentication failure
   selection_2:
-    appname|cased: zeus
+    - appname|cased: zeus
+    - syslog_appname|cased: zeus
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -32,9 +33,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|re: ^[\S+ \S+] SERIOUS
+    sagan_raw|re: ^[\S+ \S+] SERIOUS
   selection_2:
-    appname|cased: zeus
+    - appname|cased: zeus
+    - syslog_appname|cased: zeus
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -57,9 +59,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|re: ^[\S+ \S+] FATAL
+    sagan_raw|re: ^[\S+ \S+] FATAL
   selection_2:
-    appname|cased: zeus
+    - appname|cased: zeus
+    - syslog_appname|cased: zeus
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

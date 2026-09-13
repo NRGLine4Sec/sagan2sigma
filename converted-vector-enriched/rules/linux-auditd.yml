@@ -7,11 +7,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"./a.out"'
+    sagan_raw|contains|cased: '"./a.out"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -32,11 +33,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"telnet"'
+    sagan_raw|contains|cased: '"telnet"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -57,11 +59,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"nmap"'
+    sagan_raw|contains|cased: '"nmap"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -82,11 +85,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"/etc/passwd"'
+    sagan_raw|contains|cased: '"/etc/passwd"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -107,11 +111,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"/etc/shadow"'
+    sagan_raw|contains|cased: '"/etc/shadow"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -132,11 +137,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '".bash_history"'
+    sagan_raw|contains|cased: '".bash_history"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -157,11 +163,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"/tmp/sh"'
+    sagan_raw|contains|cased: '"/tmp/sh"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -182,11 +189,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"suidperl"'
+    sagan_raw|contains|cased: '"suidperl"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -207,11 +215,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"iptables"'
+    sagan_raw|contains|cased: '"iptables"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -232,11 +241,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '".mysql_history"'
+    sagan_raw|contains|cased: '".mysql_history"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -257,14 +267,15 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"nc"'
       - '"ncat"'
       - '"netcat"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -285,11 +296,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"php"'
+    sagan_raw|contains|cased: '"php"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -310,11 +322,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"/dev/tcp"'
+    sagan_raw|contains|cased: '"/dev/tcp"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -335,11 +348,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"/dev/udp"'
+    sagan_raw|contains|cased: '"/dev/udp"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -360,11 +374,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"stunnel"'
+    sagan_raw|contains|cased: '"stunnel"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -385,13 +400,14 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"ssh"'
+    sagan_raw|contains|cased: '"ssh"'
   selection_3:
-    message|contains|cased: '"-A"'
+    sagan_raw|contains|cased: '"-A"'
   selection_4:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -412,13 +428,14 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"ssh"'
+    sagan_raw|contains|cased: '"ssh"'
   selection_3:
-    message|contains|cased: '"-D" '
+    sagan_raw|contains|cased: '"-D" '
   selection_4:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -439,13 +456,14 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"ssh"'
+    sagan_raw|contains|cased: '"ssh"'
   selection_3:
-    message|contains|cased: '"-K"'
+    sagan_raw|contains|cased: '"-K"'
   selection_4:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -466,13 +484,14 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"ssh"'
+    sagan_raw|contains|cased: '"ssh"'
   selection_3:
-    message|contains|cased: '"-L"'
+    sagan_raw|contains|cased: '"-L"'
   selection_4:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -493,13 +512,14 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"ssh"'
+    sagan_raw|contains|cased: '"ssh"'
   selection_3:
-    message|contains|cased: '"-R"'
+    sagan_raw|contains|cased: '"-R"'
   selection_4:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -520,13 +540,14 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"ssh"'
+    sagan_raw|contains|cased: '"ssh"'
   selection_3:
-    message|contains|cased: '"-W"'
+    sagan_raw|contains|cased: '"-W"'
   selection_4:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -547,13 +568,14 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"ssh"'
+    sagan_raw|contains|cased: '"ssh"'
   selection_3:
-    message|contains|cased: '"-w"'
+    sagan_raw|contains|cased: '"-w"'
   selection_4:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -574,13 +596,14 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"ssh"'
+    sagan_raw|contains|cased: '"ssh"'
   selection_3:
-    message|contains|cased: '"-X"'
+    sagan_raw|contains|cased: '"-X"'
   selection_4:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -601,13 +624,14 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"ssh"'
+    sagan_raw|contains|cased: '"ssh"'
   selection_3:
-    message|contains|cased: '"-Y"'
+    sagan_raw|contains|cased: '"-Y"'
   selection_4:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -628,11 +652,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"sudoedit"'
+    sagan_raw|contains|cased: '"sudoedit"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -653,15 +678,16 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"sudoedit"'
+    sagan_raw|contains|cased: '"sudoedit"'
   selection_3:
-    message|contains|cased: '"-s"'
+    sagan_raw|contains|cased: '"-s"'
   selection_4:
-    message|contains|cased: \\
+    sagan_raw|contains|cased: \\
   selection_5:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -682,11 +708,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"socat"'
+    sagan_raw|contains|cased: '"socat"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -707,11 +734,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"wget"'
+    sagan_raw|contains|cased: '"wget"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -732,11 +760,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"curl"'
+    sagan_raw|contains|cased: '"curl"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -757,11 +786,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"base64"'
+    sagan_raw|contains|cased: '"base64"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -782,11 +812,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"/tmp/haxhax"'
+    sagan_raw|contains|cased: '"/tmp/haxhax"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -807,11 +838,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"/tmp/ns_sploit"'
+    sagan_raw|contains|cased: '"/tmp/ns_sploit"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -832,11 +864,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"/tmp/ysocereal.jar"'
+    sagan_raw|contains|cased: '"/tmp/ysocereal.jar"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -857,11 +890,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"authorized_keys"'
+    sagan_raw|contains|cased: '"authorized_keys"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -882,13 +916,14 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"chmod"'
+    sagan_raw|contains|cased: '"chmod"'
   selection_3:
-    message|contains|cased: '"u+s"'
+    sagan_raw|contains|cased: '"u+s"'
   selection_4:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -909,13 +944,14 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"chmod"'
+    sagan_raw|contains|cased: '"chmod"'
   selection_3:
-    message|contains|cased: '"+s"'
+    sagan_raw|contains|cased: '"+s"'
   selection_4:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -936,13 +972,14 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"chmod"'
+    sagan_raw|contains|cased: '"chmod"'
   selection_3:
-    message|contains|cased: '"+s"'
+    sagan_raw|contains|cased: '"+s"'
   selection_4:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -963,13 +1000,14 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"cp"'
+    sagan_raw|contains|cased: '"cp"'
   selection_3:
-    message|contains|cased: '"/bin/ksh"'
+    sagan_raw|contains|cased: '"/bin/ksh"'
   selection_4:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -990,13 +1028,14 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"cp"'
+    sagan_raw|contains|cased: '"cp"'
   selection_3:
-    message|contains|cased: '"/bin/sh"'
+    sagan_raw|contains|cased: '"/bin/sh"'
   selection_4:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1017,13 +1056,14 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"cp"'
+    sagan_raw|contains|cased: '"cp"'
   selection_3:
-    message|contains|cased: '"/bin/bash"'
+    sagan_raw|contains|cased: '"/bin/bash"'
   selection_4:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1044,13 +1084,14 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"cp"'
+    sagan_raw|contains|cased: '"cp"'
   selection_3:
-    message|contains|cased: '"/bin/zsh"'
+    sagan_raw|contains|cased: '"/bin/zsh"'
   selection_4:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1071,13 +1112,14 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"cp"'
+    sagan_raw|contains|cased: '"cp"'
   selection_3:
-    message|contains|cased: '"/bin/zsh"'
+    sagan_raw|contains|cased: '"/bin/zsh"'
   selection_4:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1098,15 +1140,16 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"chmod"'
+    sagan_raw|contains|cased: '"chmod"'
   selection_3:
-    message|contains|cased: '"+x"'
+    sagan_raw|contains|cased: '"+x"'
   selection_4:
-    message|contains|cased: '"/tmp'
+    sagan_raw|contains|cased: '"/tmp'
   selection_5:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1127,11 +1170,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"whoami"'
+    sagan_raw|contains|cased: '"whoami"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1152,11 +1196,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: a0="id"
+    sagan_raw|contains|cased: a0="id"
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1177,11 +1222,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"/etc/security/passwd"'
+    sagan_raw|contains|cased: '"/etc/security/passwd"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1202,13 +1248,14 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"getent"'
+    sagan_raw|contains|cased: '"getent"'
   selection_3:
-    message|contains|cased: '"passwd"'
+    sagan_raw|contains|cased: '"passwd"'
   selection_4:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1229,15 +1276,16 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"python'
+    sagan_raw|contains|cased: '"python'
   selection_3:
-    message|contains|cased: '"-m"'
+    sagan_raw|contains|cased: '"-m"'
   selection_4:
-    message|contains|cased: '"SimpleHTTPServer"'
+    sagan_raw|contains|cased: '"SimpleHTTPServer"'
   selection_5:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1258,15 +1306,16 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"python'
+    sagan_raw|contains|cased: '"python'
   selection_3:
-    message|contains|cased: '"-m"'
+    sagan_raw|contains|cased: '"-m"'
   selection_4:
-    message|contains|cased: '"http.server"'
+    sagan_raw|contains|cased: '"http.server"'
   selection_5:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1287,11 +1336,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"/etc/sudoers"'
+    sagan_raw|contains|cased: '"/etc/sudoers"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1312,11 +1362,12 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"netstat"'
+    sagan_raw|contains|cased: '"netstat"'
   selection_3:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1337,13 +1388,14 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"mkdir"'
+    sagan_raw|contains|cased: '"mkdir"'
   selection_3:
-    message|contains|cased: a1=20
+    sagan_raw|contains|cased: a1=20
   selection_4:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1364,13 +1416,14 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=EXECVE
+    sagan_raw|contains|cased: type=EXECVE
   selection_2:
-    message|contains|cased: '"mkdir"'
+    sagan_raw|contains|cased: '"mkdir"'
   selection_3:
-    message|contains|cased: a1=".
+    sagan_raw|contains|cased: a1=".
   selection_4:
-    appname|cased: audispd
+    - appname|cased: audispd
+    - syslog_appname|cased: audispd
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1394,13 +1447,13 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=USER_CMD
+    sagan_raw|contains|cased: type=USER_CMD
   selection_2:
-    message|contains|cased: cmd="su"
+    sagan_raw|contains|cased: cmd="su"
   selection_3:
-    message|contains|cased: exe="/usr/bin/sudo"
+    sagan_raw|contains|cased: exe="/usr/bin/sudo"
   selection_4:
-    message|contains|cased: res=failed
+    sagan_raw|contains|cased: res=failed
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1442,11 +1495,11 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: type=USER_AUTH
+    sagan_raw|contains|cased: type=USER_AUTH
   selection_2:
-    message|contains|cased: exe="/usr/bin/sudo"
+    sagan_raw|contains|cased: exe="/usr/bin/sudo"
   selection_3:
-    message|contains|cased: res=failed
+    sagan_raw|contains|cased: res=failed
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1472,9 +1525,9 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: 'type=EXECVE '
+    sagan_raw|contains|cased: 'type=EXECVE '
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - useradd
       - adduser
   condition: selection_1 and selection_2
@@ -1502,11 +1555,11 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: syscall=257
+    sagan_raw|contains|cased: syscall=257
   selection_2:
-    message|contains|cased: success=yes
+    sagan_raw|contains|cased: success=yes
   selection_3:
-    message|contains|cased: name=".ssh/authorized_keys"
+    sagan_raw|contains|cased: name=".ssh/authorized_keys"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1532,11 +1585,11 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: syscall=59
+    sagan_raw|contains|cased: syscall=59
   selection_2:
-    message|contains|cased: success=yes
+    sagan_raw|contains|cased: success=yes
   selection_3:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - comm="chmod""+x
       - comm="chown""+x
   condition: selection_1 and selection_2 and selection_3
@@ -1564,11 +1617,11 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: syscall=59
+    sagan_raw|contains|cased: syscall=59
   selection_2:
-    message|contains|cased: success=yes
+    sagan_raw|contains|cased: success=yes
   selection_3:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - /dev/null
       - /dev/zero
   condition: selection_1 and selection_2 and selection_3
@@ -1596,13 +1649,13 @@ logsource:
   product: linux
 detection:
   selection_1:
-    message|contains|cased: syscall=59
+    sagan_raw|contains|cased: syscall=59
   selection_2:
-    message|contains|cased: success=yes
+    sagan_raw|contains|cased: success=yes
   selection_3:
-    message|contains|cased: chattr
+    sagan_raw|contains|cased: chattr
   selection_4:
-    message|contains|cased: -i
+    sagan_raw|contains|cased: -i
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

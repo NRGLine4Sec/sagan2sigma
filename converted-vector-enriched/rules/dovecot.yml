@@ -8,9 +8,10 @@ logsource:
   service: imap
 detection:
   selection_1:
-    message|contains|cased: Password mismatch
+    sagan_raw|contains|cased: Password mismatch
   selection_2:
-    appname|cased: dovecot
+    - appname|cased: dovecot
+    - syslog_appname|cased: dovecot
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -32,9 +33,10 @@ logsource:
   service: imap
 detection:
   selection_1:
-    message|contains|cased: starting up
+    sagan_raw|contains|cased: starting up
   selection_2:
-    appname|cased: dovecot
+    - appname|cased: dovecot
+    - syslog_appname|cased: dovecot
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -56,9 +58,10 @@ logsource:
   service: imap
 detection:
   selection_1:
-    message|re|i: user not found|User not known|unknown user
+    sagan_raw|re|i: user not found|User not known|unknown user
   selection_2:
-    appname|cased: dovecot
+    - appname|cased: dovecot
+    - syslog_appname|cased: dovecot
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

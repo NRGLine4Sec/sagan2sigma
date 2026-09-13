@@ -9,13 +9,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Anti-Virus"
+    sagan_raw|contains|cased: log_type="Anti-Virus"
   selection_3:
-    message|contains|cased: log_component="HTTP/HTTPS"
+    sagan_raw|contains|cased: log_component="HTTP/HTTPS"
   selection_4:
-    message|contains|cased: log_subtype="Virus"
+    sagan_raw|contains|cased: log_subtype="Virus"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -38,13 +39,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Anti-Virus"
+    sagan_raw|contains|cased: log_type="Anti-Virus"
   selection_3:
-    message|contains|cased: log_component="HTTP/HTTPS"
+    sagan_raw|contains|cased: log_component="HTTP/HTTPS"
   selection_4:
-    message|contains|cased: log_subtype="PUA"
+    sagan_raw|contains|cased: log_subtype="PUA"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -67,13 +69,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Anti-Virus"
+    sagan_raw|contains|cased: log_type="Anti-Virus"
   selection_3:
-    message|contains|cased: log_component="HTTP/HTTPS"
+    sagan_raw|contains|cased: log_component="HTTP/HTTPS"
   selection_4:
-    message|contains|cased: log_subtype="Clean"
+    sagan_raw|contains|cased: log_subtype="Clean"
   bluedot_hit_1:
     sagan_bluedot_malicious_2: true
   bluedot_hit_2:
@@ -103,13 +106,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Anti-Virus"
+    sagan_raw|contains|cased: log_type="Anti-Virus"
   selection_3:
-    message|contains|cased: log_component="FTP"
+    sagan_raw|contains|cased: log_component="FTP"
   selection_4:
-    message|contains|cased: log_subtype="Virus"
+    sagan_raw|contains|cased: log_subtype="Virus"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -132,13 +136,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Anti-Virus"
+    sagan_raw|contains|cased: log_type="Anti-Virus"
   selection_3:
-    message|contains|cased: log_component="FTP"
+    sagan_raw|contains|cased: log_component="FTP"
   selection_4:
-    message|contains|cased: log_subtype="Clean"
+    sagan_raw|contains|cased: log_subtype="Clean"
   bluedot_hit_1:
     sagan_bluedot_malicious_2: true
   bluedot_hit_2:
@@ -168,13 +173,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="ATP"
+    sagan_raw|contains|cased: log_type="ATP"
   selection_3:
-    message|contains|cased: log_component="Firewall"
+    sagan_raw|contains|cased: log_component="Firewall"
   selection_4:
-    message|contains|cased: log_subtype="Alert"
+    sagan_raw|contains|cased: log_subtype="Alert"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -197,13 +203,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="ATP"
+    sagan_raw|contains|cased: log_type="ATP"
   selection_3:
-    message|contains|cased: log_component="Firewall"
+    sagan_raw|contains|cased: log_component="Firewall"
   selection_4:
-    message|contains|cased: log_subtype="Drop"
+    sagan_raw|contains|cased: log_subtype="Drop"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -226,13 +233,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="ATP"
+    sagan_raw|contains|cased: log_type="ATP"
   selection_3:
-    message|contains|cased: log_component="DNS"
+    sagan_raw|contains|cased: log_component="DNS"
   selection_4:
-    message|contains|cased: log_subtype="Alert"
+    sagan_raw|contains|cased: log_subtype="Alert"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -255,13 +263,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="ATP"
+    sagan_raw|contains|cased: log_type="ATP"
   selection_3:
-    message|contains|cased: log_component="DNS"
+    sagan_raw|contains|cased: log_component="DNS"
   selection_4:
-    message|contains|cased: log_subtype="Drop"
+    sagan_raw|contains|cased: log_subtype="Drop"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -284,13 +293,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="ATP"
+    sagan_raw|contains|cased: log_type="ATP"
   selection_3:
-    message|contains|cased: log_component="IPS"
+    sagan_raw|contains|cased: log_component="IPS"
   selection_4:
-    message|contains|cased: log_subtype="Alert"
+    sagan_raw|contains|cased: log_subtype="Alert"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -313,13 +323,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="ATP"
+    sagan_raw|contains|cased: log_type="ATP"
   selection_3:
-    message|contains|cased: log_component="IPS"
+    sagan_raw|contains|cased: log_component="IPS"
   selection_4:
-    message|contains|cased: log_subtype="Drop"
+    sagan_raw|contains|cased: log_subtype="Drop"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -342,13 +353,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="ATP"
+    sagan_raw|contains|cased: log_type="ATP"
   selection_3:
-    message|contains|cased: log_component="Web"
+    sagan_raw|contains|cased: log_component="Web"
   selection_4:
-    message|contains|cased: log_subtype="Alert"
+    sagan_raw|contains|cased: log_subtype="Alert"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -371,13 +383,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="ATP"
+    sagan_raw|contains|cased: log_type="ATP"
   selection_3:
-    message|contains|cased: log_component="Web"
+    sagan_raw|contains|cased: log_component="Web"
   selection_4:
-    message|contains|cased: log_subtype="Drop"
+    sagan_raw|contains|cased: log_subtype="Drop"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -400,11 +413,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="ATP"
+    sagan_raw|contains|cased: log_type="ATP"
   selection_3:
-    message|contains|cased: log_subtype="Alert"
+    sagan_raw|contains|cased: log_subtype="Alert"
   bluedot_hit_1:
     sagan_bluedot_malicious_2: true
   bluedot_hit_2:
@@ -434,15 +448,16 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_component="Firewall Authentication"
+    sagan_raw|contains|cased: log_component="Firewall Authentication"
   selection_4:
-    message|contains|cased: log_subtype="Authentication"
+    sagan_raw|contains|cased: log_subtype="Authentication"
   selection_5:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -481,13 +496,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_component="My Account Authentication"
+    sagan_raw|contains|cased: log_component="My Account Authentication"
   selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -526,13 +542,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_component="Dial-In Authentication"
+    sagan_raw|contains|cased: log_component="Dial-In Authentication"
   selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -571,13 +588,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_component="VPN Authentication"
+    sagan_raw|contains|cased: log_component="VPN Authentication"
   selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -616,13 +634,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_component="SSL VPN Authentication"
+    sagan_raw|contains|cased: log_component="SSL VPN Authentication"
   selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -661,13 +680,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_component="GUI"
+    sagan_raw|contains|cased: log_component="GUI"
   selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -706,13 +726,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_component="Web Application Firewall"
+    sagan_raw|contains|cased: log_component="Web Application Firewall"
   selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -752,13 +773,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_component="CTA"
+    sagan_raw|contains|cased: log_component="CTA"
   selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -797,13 +819,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_component="Appliance"
+    sagan_raw|contains|cased: log_component="Appliance"
   selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -842,13 +865,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_component="External Authentication"
+    sagan_raw|contains|cased: log_component="External Authentication"
   selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -887,13 +911,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_component="VPN Portal Authentication"
+    sagan_raw|contains|cased: log_component="VPN Portal Authentication"
   selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -932,13 +957,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_subtype="Authentication"
+    sagan_raw|contains|cased: log_subtype="Authentication"
   selection_4:
-    message|contains|cased: status="Successful"
+    sagan_raw|contains|cased: status="Successful"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -977,13 +1003,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   selection_4:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - log_subtype=Admin
       - log_subtype=System
   condition: selection_1 and selection_2 and selection_3 and selection_4
@@ -1024,13 +1051,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: status="Successful"
+    sagan_raw|contains|cased: status="Successful"
   selection_4:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - log_subtype=Admin
       - log_subtype=System
   condition: selection_1 and selection_2 and selection_3 and selection_4
@@ -1071,13 +1099,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_subtype="Authentication"
+    sagan_raw|contains|cased: log_subtype="Authentication"
   selection_4:
-    message|contains|cased: status="Successful"
+    sagan_raw|contains|cased: status="Successful"
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -1107,13 +1136,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_type="Anti-Spam"
+    sagan_raw|contains|cased: log_type="Anti-Spam"
   filter_4:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - log_subtype="Clean"
       - log_subtype="Allowed"
       - log_subtype="Denied"
@@ -1139,13 +1169,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_type="Anti-virus"
+    sagan_raw|contains|cased: log_type="Anti-virus"
   selection_4:
-    message|contains|cased: subtype="Virus"
+    sagan_raw|contains|cased: subtype="Virus"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1168,11 +1199,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="IDP"
+    sagan_raw|contains|cased: log_type="IDP"
   selection_3:
-    message|contains|cased: log_subtype="Detect"
+    sagan_raw|contains|cased: log_subtype="Detect"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1195,13 +1227,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="IPsec"
+    sagan_raw|contains|cased: log_type="IPsec"
   selection_3:
-    message|contains|cased: log_subtype="System"
+    sagan_raw|contains|cased: log_subtype="System"
   selection_4:
-    message|contains|cased: priority="Alert"
+    sagan_raw|contains|cased: priority="Alert"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1224,13 +1257,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="IPsec"
+    sagan_raw|contains|cased: log_type="IPsec"
   selection_3:
-    message|contains|cased: log_subtype="System"
+    sagan_raw|contains|cased: log_subtype="System"
   selection_4:
-    message|contains|cased: priority="Critical"
+    sagan_raw|contains|cased: priority="Critical"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1253,13 +1287,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_subtype="System"
+    sagan_raw|contains|cased: log_subtype="System"
   selection_4:
-    message|contains|cased: '""established successfully'
+    sagan_raw|contains|cased: '""established successfully'
   bluedot_hit_1:
     sagan_bluedot_malicious_2: true
   bluedot_hit_2:
@@ -1289,13 +1324,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Sandbox"
+    sagan_raw|contains|cased: log_type="Sandbox"
   selection_3:
-    message|contains|cased: log_component="Mail"
+    sagan_raw|contains|cased: log_component="Mail"
   selection_4:
-    message|contains|cased: log_subtype="Allowed"
+    sagan_raw|contains|cased: log_subtype="Allowed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1318,13 +1354,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Sandbox"
+    sagan_raw|contains|cased: log_type="Sandbox"
   selection_3:
-    message|contains|cased: log_component="Mail"
+    sagan_raw|contains|cased: log_component="Mail"
   selection_4:
-    message|contains|cased: log_subtype="Denied"
+    sagan_raw|contains|cased: log_subtype="Denied"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1347,13 +1384,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Sandbox"
+    sagan_raw|contains|cased: log_type="Sandbox"
   selection_3:
-    message|contains|cased: log_component="Web"
+    sagan_raw|contains|cased: log_component="Web"
   selection_4:
-    message|contains|cased: log_subtype="Allowed"
+    sagan_raw|contains|cased: log_subtype="Allowed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1376,13 +1414,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Sandbox"
+    sagan_raw|contains|cased: log_type="Sandbox"
   selection_3:
-    message|contains|cased: log_component="Web"
+    sagan_raw|contains|cased: log_component="Web"
   selection_4:
-    message|contains|cased: log_subtype="Denied"
+    sagan_raw|contains|cased: log_subtype="Denied"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1405,11 +1444,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="SSL VPN"
+    sagan_raw|contains|cased: log_type="SSL VPN"
   selection_3:
-    message|contains|cased: mode="Remote Access"
+    sagan_raw|contains|cased: mode="Remote Access"
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -1438,11 +1478,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="WAF"
+    sagan_raw|contains|cased: log_type="WAF"
   selection_3:
-    message|contains|cased: reason="waf"
+    sagan_raw|contains|cased: reason="waf"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1465,11 +1506,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="WAF"
+    sagan_raw|contains|cased: log_type="WAF"
   selection_3:
-    message|contains|cased: reason="cookie"
+    sagan_raw|contains|cased: reason="cookie"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1492,11 +1534,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="WAF"
+    sagan_raw|contains|cased: log_type="WAF"
   selection_3:
-    message|contains|cased: reason="url hardening"
+    sagan_raw|contains|cased: reason="url hardening"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1519,11 +1562,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="WAF"
+    sagan_raw|contains|cased: log_type="WAF"
   selection_3:
-    message|contains|cased: reason="av"
+    sagan_raw|contains|cased: reason="av"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1546,11 +1590,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="WAF"
+    sagan_raw|contains|cased: log_type="WAF"
   selection_3:
-    message|contains|cased: reason="geoip"
+    sagan_raw|contains|cased: reason="geoip"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1573,11 +1618,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="WAF"
+    sagan_raw|contains|cased: log_type="WAF"
   selection_3:
-    message|contains|cased: reason="dnsrbl"
+    sagan_raw|contains|cased: reason="dnsrbl"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1600,11 +1646,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Content Filtering"
+    sagan_raw|contains|cased: log_type="Content Filtering"
   selection_3:
-    message|contains|cased: reason="cloud malicious"
+    sagan_raw|contains|cased: reason="cloud malicious"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1627,9 +1674,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: 'message="Configuration change: Firewall rule'
+    sagan_raw|contains|cased: 'message="Configuration change: Firewall rule'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1652,11 +1700,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="IDP"
+    sagan_raw|contains|cased: log_type="IDP"
   selection_3:
-    message|contains|cased: log_subtype="Detect"
+    sagan_raw|contains|cased: log_subtype="Detect"
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -1683,9 +1732,10 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="WAF"
+    sagan_raw|contains|cased: log_type="WAF"
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -1714,13 +1764,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Anti-Virus"
+    sagan_raw|contains|cased: log_type="Anti-Virus"
   selection_3:
-    message|contains|cased: log_component="HTTP/HTTPS"
+    sagan_raw|contains|cased: log_component="HTTP/HTTPS"
   selection_4:
-    message|contains|cased: log_subtype="Virus"
+    sagan_raw|contains|cased: log_subtype="Virus"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1744,13 +1795,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Anti-Virus"
+    sagan_raw|contains|cased: log_type="Anti-Virus"
   selection_3:
-    message|contains|cased: log_component="HTTP/HTTPS"
+    sagan_raw|contains|cased: log_component="HTTP/HTTPS"
   selection_4:
-    message|contains|cased: log_subtype="PUA"
+    sagan_raw|contains|cased: log_subtype="PUA"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1774,11 +1826,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Anti-Virus"
+    sagan_raw|contains|cased: log_type="Anti-Virus"
   selection_3:
-    message|contains|cased: log_component="HTTP/HTTPS"
+    sagan_raw|contains|cased: log_component="HTTP/HTTPS"
   bluedot_hit_1:
     sagan_bluedot_malicious_2: true
   bluedot_hit_2:
@@ -1809,13 +1862,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Anti-Virus"
+    sagan_raw|contains|cased: log_type="Anti-Virus"
   selection_3:
-    message|contains|cased: log_component="FTP"
+    sagan_raw|contains|cased: log_component="FTP"
   selection_4:
-    message|contains|cased: log_subtype="Virus"
+    sagan_raw|contains|cased: log_subtype="Virus"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1839,11 +1893,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Anti-Virus"
+    sagan_raw|contains|cased: log_type="Anti-Virus"
   selection_3:
-    message|contains|cased: log_component="FTP"
+    sagan_raw|contains|cased: log_component="FTP"
   bluedot_hit_1:
     sagan_bluedot_malicious_2: true
   bluedot_hit_2:
@@ -1874,13 +1929,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="ATP"
+    sagan_raw|contains|cased: log_type="ATP"
   selection_3:
-    message|contains|cased: log_component="Firewall"
+    sagan_raw|contains|cased: log_component="Firewall"
   selection_4:
-    message|contains|cased: log_subtype="Alert"
+    sagan_raw|contains|cased: log_subtype="Alert"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1904,13 +1960,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="ATP"
+    sagan_raw|contains|cased: log_type="ATP"
   selection_3:
-    message|contains|cased: log_component="Firewall"
+    sagan_raw|contains|cased: log_component="Firewall"
   selection_4:
-    message|contains|cased: log_subtype="Drop"
+    sagan_raw|contains|cased: log_subtype="Drop"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1934,13 +1991,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="ATP"
+    sagan_raw|contains|cased: log_type="ATP"
   selection_3:
-    message|contains|cased: log_component="DNS"
+    sagan_raw|contains|cased: log_component="DNS"
   selection_4:
-    message|contains|cased: log_subtype="Alert"
+    sagan_raw|contains|cased: log_subtype="Alert"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1964,13 +2022,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="ATP"
+    sagan_raw|contains|cased: log_type="ATP"
   selection_3:
-    message|contains|cased: log_component="DNS"
+    sagan_raw|contains|cased: log_component="DNS"
   selection_4:
-    message|contains|cased: log_subtype="Drop"
+    sagan_raw|contains|cased: log_subtype="Drop"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1994,13 +2053,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="ATP"
+    sagan_raw|contains|cased: log_type="ATP"
   selection_3:
-    message|contains|cased: log_component="IPS"
+    sagan_raw|contains|cased: log_component="IPS"
   selection_4:
-    message|contains|cased: log_subtype="Alert"
+    sagan_raw|contains|cased: log_subtype="Alert"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2024,13 +2084,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="ATP"
+    sagan_raw|contains|cased: log_type="ATP"
   selection_3:
-    message|contains|cased: log_component="IPS"
+    sagan_raw|contains|cased: log_component="IPS"
   selection_4:
-    message|contains|cased: log_subtype="Drop"
+    sagan_raw|contains|cased: log_subtype="Drop"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2054,13 +2115,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="ATP"
+    sagan_raw|contains|cased: log_type="ATP"
   selection_3:
-    message|contains|cased: log_component="Web"
+    sagan_raw|contains|cased: log_component="Web"
   selection_4:
-    message|contains|cased: log_subtype="Alert"
+    sagan_raw|contains|cased: log_subtype="Alert"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2084,13 +2146,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="ATP"
+    sagan_raw|contains|cased: log_type="ATP"
   selection_3:
-    message|contains|cased: log_component="Web"
+    sagan_raw|contains|cased: log_component="Web"
   selection_4:
-    message|contains|cased: log_subtype="Drop"
+    sagan_raw|contains|cased: log_subtype="Drop"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2114,11 +2177,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="ATP"
+    sagan_raw|contains|cased: log_type="ATP"
   selection_3:
-    message|contains|cased: log_subtype="Alert"
+    sagan_raw|contains|cased: log_subtype="Alert"
   bluedot_hit_1:
     sagan_bluedot_malicious_2: true
   bluedot_hit_2:
@@ -2150,15 +2214,16 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_component="Firewall Authentication"
+    sagan_raw|contains|cased: log_component="Firewall Authentication"
   selection_4:
-    message|contains|cased: log_subtype="Authentication"
+    sagan_raw|contains|cased: log_subtype="Authentication"
   selection_5:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2198,13 +2263,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_component="My Account Authentication"
+    sagan_raw|contains|cased: log_component="My Account Authentication"
   selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2244,13 +2310,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_component="Dial-In Authentication"
+    sagan_raw|contains|cased: log_component="Dial-In Authentication"
   selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2290,13 +2357,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_component="VPN Authentication"
+    sagan_raw|contains|cased: log_component="VPN Authentication"
   selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2336,13 +2404,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_component="SSL VPN Authentication"
+    sagan_raw|contains|cased: log_component="SSL VPN Authentication"
   selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2382,13 +2451,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_component="GUI"
+    sagan_raw|contains|cased: log_component="GUI"
   selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2428,13 +2498,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_component="Web Application Firewall"
+    sagan_raw|contains|cased: log_component="Web Application Firewall"
   selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2475,13 +2546,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_component="CTA"
+    sagan_raw|contains|cased: log_component="CTA"
   selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2521,13 +2593,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_component="Appliance"
+    sagan_raw|contains|cased: log_component="Appliance"
   selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2567,13 +2640,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_component="External Authentication"
+    sagan_raw|contains|cased: log_component="External Authentication"
   selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2613,13 +2687,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_component="VPN Portal Authentication"
+    sagan_raw|contains|cased: log_component="VPN Portal Authentication"
   selection_4:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2659,13 +2734,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_subtype="Authentication"
+    sagan_raw|contains|cased: log_subtype="Authentication"
   selection_4:
-    message|contains|cased: status="Successful"
+    sagan_raw|contains|cased: status="Successful"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2705,13 +2781,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: status="Failed"
+    sagan_raw|contains|cased: status="Failed"
   selection_4:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - log_subtype=Admin
       - log_subtype=System
   condition: selection_1 and selection_2 and selection_3 and selection_4
@@ -2738,13 +2815,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: status="Successful"
+    sagan_raw|contains|cased: status="Successful"
   selection_4:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - log_subtype=Admin
       - log_subtype=System
   condition: selection_1 and selection_2 and selection_3 and selection_4
@@ -2787,13 +2865,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_subtype="Authentication"
+    sagan_raw|contains|cased: log_subtype="Authentication"
   selection_4:
-    message|contains|cased: status="Successful"
+    sagan_raw|contains|cased: status="Successful"
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -2824,13 +2903,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_type="Anti-Spam"
+    sagan_raw|contains|cased: log_type="Anti-Spam"
   filter_4:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - log_subtype="Clean"
       - log_subtype="Allowed"
       - log_subtype="Denied"
@@ -2857,13 +2937,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_type="Anti-virus"
+    sagan_raw|contains|cased: log_type="Anti-virus"
   selection_4:
-    message|contains|cased: subtype="Virus"
+    sagan_raw|contains|cased: subtype="Virus"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2887,11 +2968,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="IDP"
+    sagan_raw|contains|cased: log_type="IDP"
   selection_3:
-    message|contains|cased: log_subtype="Detect"
+    sagan_raw|contains|cased: log_subtype="Detect"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2915,15 +2997,16 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_subcomponent="IPsec"
+    sagan_raw|contains|cased: log_subcomponent="IPsec"
   selection_4:
-    message|contains|cased: log_subtype="System"
+    sagan_raw|contains|cased: log_subtype="System"
   selection_5:
-    message|contains|cased: priority="Alert"
+    sagan_raw|contains|cased: priority="Alert"
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2947,15 +3030,16 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_subcomponent="IPsec"
+    sagan_raw|contains|cased: log_subcomponent="IPsec"
   selection_4:
-    message|contains|cased: log_subtype="System"
+    sagan_raw|contains|cased: log_subtype="System"
   selection_5:
-    message|contains|cased: priority="Critical"
+    sagan_raw|contains|cased: priority="Critical"
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2979,15 +3063,16 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Event"
+    sagan_raw|contains|cased: log_type="Event"
   selection_3:
-    message|contains|cased: log_subtype="System"
+    sagan_raw|contains|cased: log_subtype="System"
   selection_4:
-    message|contains|cased: '""established successfully'
+    sagan_raw|contains|cased: '""established successfully'
   selection_5:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - log_component="L2TP"
       - log_component="PPTP"
   bluedot_hit_1:
@@ -3020,13 +3105,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Sandbox"
+    sagan_raw|contains|cased: log_type="Sandbox"
   selection_3:
-    message|contains|cased: log_component="Mail"
+    sagan_raw|contains|cased: log_component="Mail"
   selection_4:
-    message|contains|cased: log_subtype="Allowed"
+    sagan_raw|contains|cased: log_subtype="Allowed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3050,13 +3136,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Sandbox"
+    sagan_raw|contains|cased: log_type="Sandbox"
   selection_3:
-    message|contains|cased: log_component="Mail"
+    sagan_raw|contains|cased: log_component="Mail"
   selection_4:
-    message|contains|cased: log_subtype="Denied"
+    sagan_raw|contains|cased: log_subtype="Denied"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3080,13 +3167,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Sandbox"
+    sagan_raw|contains|cased: log_type="Sandbox"
   selection_3:
-    message|contains|cased: log_component="Web"
+    sagan_raw|contains|cased: log_component="Web"
   selection_4:
-    message|contains|cased: log_subtype="Allowed"
+    sagan_raw|contains|cased: log_subtype="Allowed"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3110,13 +3198,14 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Sandbox"
+    sagan_raw|contains|cased: log_type="Sandbox"
   selection_3:
-    message|contains|cased: log_component="Web"
+    sagan_raw|contains|cased: log_component="Web"
   selection_4:
-    message|contains|cased: log_subtype="Denied"
+    sagan_raw|contains|cased: log_subtype="Denied"
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3140,11 +3229,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="SSL VPN"
+    sagan_raw|contains|cased: log_type="SSL VPN"
   selection_3:
-    message|contains|cased: mode="Remote Access"
+    sagan_raw|contains|cased: mode="Remote Access"
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -3174,11 +3264,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="WAF"
+    sagan_raw|contains|cased: log_type="WAF"
   selection_3:
-    message|contains|cased: reason="waf"
+    sagan_raw|contains|cased: reason="waf"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3202,11 +3293,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="WAF"
+    sagan_raw|contains|cased: log_type="WAF"
   selection_3:
-    message|contains|cased: reason="cookie"
+    sagan_raw|contains|cased: reason="cookie"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3230,11 +3322,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="WAF"
+    sagan_raw|contains|cased: log_type="WAF"
   selection_3:
-    message|contains|cased: reason="url hardening"
+    sagan_raw|contains|cased: reason="url hardening"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3258,11 +3351,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="WAF"
+    sagan_raw|contains|cased: log_type="WAF"
   selection_3:
-    message|contains|cased: reason="av"
+    sagan_raw|contains|cased: reason="av"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3286,11 +3380,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="WAF"
+    sagan_raw|contains|cased: log_type="WAF"
   selection_3:
-    message|contains|cased: reason="geoip"
+    sagan_raw|contains|cased: reason="geoip"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3314,11 +3409,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="WAF"
+    sagan_raw|contains|cased: log_type="WAF"
   selection_3:
-    message|contains|cased: reason="dnsrbl"
+    sagan_raw|contains|cased: reason="dnsrbl"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -3342,11 +3438,12 @@ logsource:
   product: sophos
 detection:
   selection_1:
-    appname|cased: sophos
+    - appname|cased: sophos
+    - syslog_appname|cased: sophos
   selection_2:
-    message|contains|cased: log_type="Content Filtering"
+    sagan_raw|contains|cased: log_type="Content Filtering"
   selection_3:
-    message|contains|cased: reason="cloud malicious"
+    sagan_raw|contains|cased: reason="cloud malicious"
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

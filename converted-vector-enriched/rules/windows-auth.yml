@@ -10,7 +10,8 @@ detection:
   selection_1:
     EventID: 529
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -50,7 +51,8 @@ detection:
   selection_1:
     EventID: 530
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -73,9 +75,10 @@ detection:
   selection_1:
     EventID: 531
   filter_2:
-    message|contains|cased: 'User Name: Domain:'
+    sagan_raw|contains|cased: 'User Name: Domain:'
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -99,7 +102,8 @@ detection:
   selection_1:
     EventID: 533
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -122,7 +126,8 @@ detection:
   selection_1:
     EventID: 534
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -145,11 +150,12 @@ detection:
   selection_1:
     EventID: 539
   filter_2:
-    message|contains|cased: 'User Name: Domain: Logon Type:'
+    sagan_raw|contains|cased: 'User Name: Domain: Logon Type:'
   filter_3:
-    message|contains|cased: 'Source Network Address: -'
+    sagan_raw|contains|cased: 'Source Network Address: -'
   selection_4:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_4 and not (filter_2 or filter_3)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -175,7 +181,8 @@ detection:
       - 4767
       - 671
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -198,7 +205,8 @@ detection:
   selection_1:
     EventID: 1012
   selection_2:
-    appname|cased: TermService
+    - appname|cased: TermService
+    - syslog_appname|cased: TermService
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -227,7 +235,8 @@ detection:
       - 20049
       - 20189
   selection_2:
-    appname|cased: RemoteAccess
+    - appname|cased: RemoteAccess
+    - syslog_appname|cased: RemoteAccess
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -250,7 +259,8 @@ detection:
   selection_1:
     EventID: 20158
   selection_2:
-    appname|cased: RemoteAccess
+    - appname|cased: RemoteAccess
+    - syslog_appname|cased: RemoteAccess
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -273,7 +283,8 @@ detection:
   selection_1:
     EventID: 640
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -301,9 +312,10 @@ detection:
       - 676
       - 675
   selection_2:
-    message|contains|cased: 'Failure Code: 0x1F'
+    sagan_raw|contains|cased: 'Failure Code: 0x1F'
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -331,9 +343,10 @@ detection:
       - 676
       - 675
   selection_2:
-    message|contains|cased: 'Failure Code: 0x22'
+    sagan_raw|contains|cased: 'Failure Code: 0x22'
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -358,9 +371,10 @@ detection:
       - 4732
       - 636
   selection_2:
-    message|contains|cased: 'S-1-5-32-556 '
+    sagan_raw|contains|cased: 'S-1-5-32-556 '
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -385,9 +399,10 @@ detection:
       - 4732
       - 636
   selection_2:
-    message|contains|cased: 'S-1-5-32-1101 '
+    sagan_raw|contains|cased: 'S-1-5-32-1101 '
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -412,9 +427,10 @@ detection:
       - 4728
       - 632
   selection_2:
-    message|contains|cased: 'Group Name: Domain Admins'
+    sagan_raw|contains|cased: 'Group Name: Domain Admins'
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -439,9 +455,10 @@ detection:
       - 4756
       - 660
   selection_2:
-    message|re: 'S-1-5-21-\d{5,15}\-\d{5,15}\-\d{5,15}-519 '
+    sagan_raw|re: 'S-1-5-21-\d{5,15}\-\d{5,15}\-\d{5,15}-519 '
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -466,9 +483,10 @@ detection:
       - 4756
       - 660
   selection_2:
-    message|re: 'S-1-5-21-\d{5,15}\-\d{5,15}\-\d{5,15}-520 '
+    sagan_raw|re: 'S-1-5-21-\d{5,15}\-\d{5,15}\-\d{5,15}-520 '
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -493,9 +511,10 @@ detection:
       - 4756
       - 660
   selection_2:
-    message|re: 'S-1-5-21-\d{5,15}\-\d{5,15}\-\d{5,15}-518 '
+    sagan_raw|re: 'S-1-5-21-\d{5,15}\-\d{5,15}\-\d{5,15}-518 '
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -517,19 +536,20 @@ logsource:
   product: windows
 detection:
   selection_1:
-    message|contains: C0000064
+    sagan_raw|contains: C0000064
   filter_2:
-    message|contains|cased: $ Source
+    sagan_raw|contains|cased: $ Source
   filter_3:
-    message|contains|cased: '$ Account Domain: '
+    sagan_raw|contains|cased: '$ Account Domain: '
   selection_4:
     EventID:
       - 4625
       - 4776
   selection_5:
-    message|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
+    sagan_raw|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
   selection_6:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_4 and selection_5 and selection_6 and not (filter_2 or filter_3)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -620,13 +640,14 @@ logsource:
   product: windows
 detection:
   selection_1:
-    message|contains: C0000234
+    sagan_raw|contains: C0000234
   selection_2:
     EventID: 4625
   selection_3:
-    message|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
+    sagan_raw|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
   selection_4:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -664,15 +685,16 @@ logsource:
   product: windows
 detection:
   selection_1:
-    message|contains: C0000072
+    sagan_raw|contains: C0000072
   selection_2:
     EventID:
       - 4625
       - 4776
   selection_3:
-    message|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
+    sagan_raw|re: ([1-2]?[0-9]{0,2}\.){3,3}[1-2]?[0-9]{0,2}|([A-Fa-f0-9]{1,4}::?){1,7}[A-Fa-f0-9]{1,4}
   selection_4:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -710,13 +732,14 @@ logsource:
   product: windows
 detection:
   selection_1:
-    message|contains: C000006F
+    sagan_raw|contains: C000006F
   selection_2:
     EventID:
       - 4625
       - 4776
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -761,9 +784,10 @@ detection:
       - 676
       - 675
   selection_2:
-    message|contains|cased: ' Code: 0xC '
+    sagan_raw|contains|cased: ' Code: 0xC '
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -863,9 +887,10 @@ detection:
       - 676
       - 675
   selection_2:
-    message|contains|cased: ' Code: 0x22 '
+    sagan_raw|contains|cased: ' Code: 0x22 '
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -911,9 +936,10 @@ detection:
       - 676
       - 675
   selection_2:
-    message|contains|cased: ' Code: 0x24 '
+    sagan_raw|contains|cased: ' Code: 0x24 '
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -958,9 +984,10 @@ detection:
       - 676
       - 675
   selection_2:
-    message|contains|cased: ' Code: 0x26 '
+    sagan_raw|contains|cased: ' Code: 0x26 '
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1006,9 +1033,10 @@ detection:
       - 676
       - 675
   selection_2:
-    message|contains|cased: ' Code: 0x31 '
+    sagan_raw|contains|cased: ' Code: 0x31 '
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1050,7 +1078,8 @@ detection:
       - 4720
       - 624
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1076,9 +1105,10 @@ detection:
       - 4722
       - 626
   filter_2:
-    message|contains|cased: $
+    sagan_raw|contains|cased: $
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1118,9 +1148,10 @@ detection:
       - 4740
       - 644
   selection_2:
-    message|contains: administrator
+    sagan_raw|contains: administrator
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1145,7 +1176,8 @@ detection:
       - 4726
       - 630
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1168,7 +1200,8 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '"Directory-Services-SAM"'
+    - appname|cased: '"Directory-Services-SAM"'
+    - syslog_appname|cased: '"Directory-Services-SAM"'
   selection_2:
     EventID: 12294
   condition: selection_1 and selection_2
@@ -1194,15 +1227,16 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   selection_2:
     EventID: 4624
   selection_3:
-    message|contains|cased: 'Logon Type: 3'
+    sagan_raw|contains|cased: 'Logon Type: 3'
   filter_4:
-    message|contains|cased: '$ Account Domain:'
+    sagan_raw|contains|cased: '$ Account Domain:'
   filter_5:
-    message|contains|cased: 'Workstation Name: Source Network Address:'
+    sagan_raw|contains|cased: 'Workstation Name: Source Network Address:'
   condition: selection_1 and selection_2 and selection_3 and not (filter_4 or filter_5)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1226,13 +1260,14 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   selection_2:
     EventID: 4624
   selection_3:
-    message|contains|cased: 'Logon Type: 3'
+    sagan_raw|contains|cased: 'Logon Type: 3'
   filter_4:
-    message|contains:
+    sagan_raw|contains:
       - 'Source Network Address: 10.'
       - 'Source Network Address: 192.168.'
       - 'Source Network Address: -'
@@ -1281,17 +1316,18 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   selection_2:
     EventID: 4648
   filter_3:
-    message|contains|cased: 'Account Name: -'
+    sagan_raw|contains|cased: 'Account Name: -'
   filter_4:
-    message|contains|cased: 'Target Server Name: localhost'
+    sagan_raw|contains|cased: 'Target Server Name: localhost'
   filter_5:
-    message|contains|cased: '$ Additional Information:'
+    sagan_raw|contains|cased: '$ Additional Information:'
   selection_6:
-    message|re|i: 'Process Name: (.*)(net\.exe|net1\.exe|wmic\.exe)(.*)'
+    sagan_raw|re|i: 'Process Name: (.*)(net\.exe|net1\.exe|wmic\.exe)(.*)'
   condition: selection_1 and selection_2 and selection_6 and not (filter_3 or filter_4 or filter_5)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1316,9 +1352,10 @@ detection:
       - 636
       - 4732
   selection_2:
-    message|contains|cased: 'Group: Security ID: S-1-5-32-544 '
+    sagan_raw|contains|cased: 'Group: Security ID: S-1-5-32-544 '
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1343,7 +1380,7 @@ detection:
       - 4740
       - 644
   selection_2:
-    message|contains:
+    sagan_raw|contains:
       - 'Account Name: guest '
       - 'Account Name: sql '
       - 'Account Name: demo '
@@ -1361,7 +1398,8 @@ detection:
       - 'Account Name: ec2-user '
       - 'Account Name: azureuser '
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1410,9 +1448,10 @@ detection:
       - 4729
       - 633
   selection_2:
-    message|re: 'S-1-5-21-\d{5,15}\-\d{5,15}\-\d{5,15}-512 '
+    sagan_raw|re: 'S-1-5-21-\d{5,15}\-\d{5,15}\-\d{5,15}-512 '
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1436,9 +1475,10 @@ detection:
   selection_1:
     EventID: 4757
   selection_2:
-    message|re: 'S-1-5-21-\d{5,15}\-\d{5,15}\-\d{5,15}-519 '
+    sagan_raw|re: 'S-1-5-21-\d{5,15}\-\d{5,15}\-\d{5,15}-519 '
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1461,9 +1501,10 @@ detection:
   selection_1:
     EventID: 4732
   selection_2:
-    message|contains|cased: 'S-1-5-32-1002 '
+    sagan_raw|contains|cased: 'S-1-5-32-1002 '
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1486,9 +1527,10 @@ detection:
   selection_1:
     EventID: 4733
   selection_2:
-    message|contains|cased: 'S-1-5-32-1002 '
+    sagan_raw|contains|cased: 'S-1-5-32-1002 '
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1511,9 +1553,10 @@ detection:
   selection_1:
     EventID: 4733
   selection_2:
-    message|contains|cased: 'S-1-5-32-1101 '
+    sagan_raw|contains|cased: 'S-1-5-32-1101 '
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

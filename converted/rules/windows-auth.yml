@@ -9,7 +9,8 @@ detection:
   selection_1:
     EventID: 530
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -58,7 +59,8 @@ detection:
   selection_1:
     EventID: 533
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -81,7 +83,8 @@ detection:
   selection_1:
     EventID: 534
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -134,7 +137,8 @@ detection:
       - 4767
       - 671
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -157,7 +161,8 @@ detection:
   selection_1:
     EventID: 1012
   selection_2:
-    appname|cased: TermService
+    - appname|cased: TermService
+    - syslog_appname|cased: TermService
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -186,7 +191,8 @@ detection:
       - 20049
       - 20189
   selection_2:
-    appname|cased: RemoteAccess
+    - appname|cased: RemoteAccess
+    - syslog_appname|cased: RemoteAccess
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -209,7 +215,8 @@ detection:
   selection_1:
     EventID: 20158
   selection_2:
-    appname|cased: RemoteAccess
+    - appname|cased: RemoteAccess
+    - syslog_appname|cased: RemoteAccess
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -232,7 +239,8 @@ detection:
   selection_1:
     EventID: 640
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -479,7 +487,8 @@ detection:
       - 4720
       - 624
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -574,7 +583,8 @@ detection:
       - 4726
       - 630
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -597,7 +607,8 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '"Directory-Services-SAM"'
+    - appname|cased: '"Directory-Services-SAM"'
+    - syslog_appname|cased: '"Directory-Services-SAM"'
   selection_2:
     EventID: 12294
   condition: selection_1 and selection_2

@@ -7,11 +7,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: FILE-IDENTIFY
+    sagan_raw|contains|cased: FILE-IDENTIFY
   selection_3:
-    message|contains|cased: Exe
+    sagan_raw|contains|cased: Exe
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -41,11 +42,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: FILE-IDENTIFY
+    sagan_raw|contains|cased: FILE-IDENTIFY
   selection_3:
-    message|contains|cased: Java
+    sagan_raw|contains|cased: Java
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -75,11 +77,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: FILE-IDENTIFY
+    sagan_raw|contains|cased: FILE-IDENTIFY
   selection_3:
-    message|contains|cased: Jar
+    sagan_raw|contains|cased: Jar
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -109,11 +112,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: FILE-IDENTIFY
+    sagan_raw|contains|cased: FILE-IDENTIFY
   selection_3:
-    message|contains|cased: PDF
+    sagan_raw|contains|cased: PDF
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -143,11 +147,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: snort
+    - appname|cased: snort
+    - syslog_appname|cased: snort
   selection_2:
-    message|contains|cased: FILE-IDENTIFY
+    sagan_raw|contains|cased: FILE-IDENTIFY
   selection_3:
-    message|contains|cased: Flash
+    sagan_raw|contains|cased: Flash
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:

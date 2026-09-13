@@ -7,9 +7,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: TCP_DENIED
+    sagan_raw|contains|cased: TCP_DENIED
   selection_2:
-    appname|cased: squid
+    - appname|cased: squid
+    - syslog_appname|cased: squid
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -30,11 +31,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: TCP_DENIED
+    sagan_raw|contains|cased: TCP_DENIED
   selection_2:
-    message|contains|cased: unsupported-request-method
+    sagan_raw|contains|cased: unsupported-request-method
   selection_3:
-    appname|cased: squid
+    - appname|cased: squid
+    - syslog_appname|cased: squid
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -55,11 +57,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: TCP_DENIED
+    sagan_raw|contains|cased: TCP_DENIED
   selection_2:
-    message|contains|cased: invalid-request
+    sagan_raw|contains|cased: invalid-request
   selection_3:
-    appname|cased: squid
+    - appname|cased: squid
+    - syslog_appname|cased: squid
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -80,9 +83,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: '@CGIDIRScgiwrap'
+    sagan_raw|contains|cased: '@CGIDIRScgiwrap'
   selection_2:
-    appname|cased: squid
+    - appname|cased: squid
+    - syslog_appname|cased: squid
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -103,9 +107,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: ../..
+    sagan_raw|contains|cased: ../..
   selection_2:
-    appname|cased: squid
+    - appname|cased: squid
+    - syslog_appname|cased: squid
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -126,15 +131,16 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains: <script>
+    sagan_raw|contains: <script>
   selection_2:
-    message|contains: alert
+    sagan_raw|contains: alert
   selection_3:
-    message|contains: document.cookie
+    sagan_raw|contains: document.cookie
   selection_4:
-    message|contains|cased: </script>
+    sagan_raw|contains|cased: </script>
   selection_5:
-    appname|cased: squid
+    - appname|cased: squid
+    - syslog_appname|cased: squid
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -155,9 +161,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: passwd
+    sagan_raw|contains|cased: passwd
   selection_2:
-    appname|cased: squid
+    - appname|cased: squid
+    - syslog_appname|cased: squid
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -178,9 +185,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: ///
+    sagan_raw|contains|cased: ///
   selection_2:
-    appname|cased: squid
+    - appname|cased: squid
+    - syslog_appname|cased: squid
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -201,9 +209,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: x-msn-messenger
+    sagan_raw|contains|cased: x-msn-messenger
   selection_2:
-    appname|cased: squid
+    - appname|cased: squid
+    - syslog_appname|cased: squid
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

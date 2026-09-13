@@ -9,9 +9,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: tenable_io_data
+    - appname|cased: tenable_io_data
+    - syslog_appname|cased: tenable_io_data
   selection_2:
-    message|contains|cased: '"action": "session.impersonation.start"'
+    sagan_raw|contains|cased: '"action": "session.impersonation.start"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -34,9 +35,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: tenable_io_data
+    - appname|cased: tenable_io_data
+    - syslog_appname|cased: tenable_io_data
   selection_2:
-    message|contains|cased: '"action": "user.create"'
+    sagan_raw|contains|cased: '"action": "user.create"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -59,9 +61,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: tenable_io_data
+    - appname|cased: tenable_io_data
+    - syslog_appname|cased: tenable_io_data
   selection_2:
-    message|contains|cased: '"action": "users.delete"'
+    sagan_raw|contains|cased: '"action": "users.delete"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -84,9 +87,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: tenable_io_data
+    - appname|cased: tenable_io_data
+    - syslog_appname|cased: tenable_io_data
   selection_2:
-    message|contains|cased: '"action": "user.impersonation.start"'
+    sagan_raw|contains|cased: '"action": "user.impersonation.start"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -109,9 +113,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: tenable_io_data
+    - appname|cased: tenable_io_data
+    - syslog_appname|cased: tenable_io_data
   selection_2:
-    message|contains|cased: '"action": "user.update"'
+    sagan_raw|contains|cased: '"action": "user.update"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

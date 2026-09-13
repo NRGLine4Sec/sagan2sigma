@@ -7,13 +7,16 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: Carbon Black has detected a threat
+    sagan_raw|contains|cased: Carbon Black has detected a threat
   selection_3:
-    message|contains|cased: 'Threat score: 10'
+    sagan_raw|contains|cased: 'Threat score: 10'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -34,13 +37,16 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: Carbon Black has detected a threat
+    sagan_raw|contains|cased: Carbon Black has detected a threat
   selection_3:
-    message|contains|cased: 'Threat score: 9'
+    sagan_raw|contains|cased: 'Threat score: 9'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -61,13 +67,16 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: Carbon Black has detected a threat
+    sagan_raw|contains|cased: Carbon Black has detected a threat
   selection_3:
-    message|contains|cased: 'Threat score: 8'
+    sagan_raw|contains|cased: 'Threat score: 8'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -88,13 +97,16 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: Carbon Black has detected a threat
+    sagan_raw|contains|cased: Carbon Black has detected a threat
   selection_3:
-    message|contains|cased: 'Threat score: 7'
+    sagan_raw|contains|cased: 'Threat score: 7'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -115,13 +127,16 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: Carbon Black has detected a threat
+    sagan_raw|contains|cased: Carbon Black has detected a threat
   selection_3:
-    message|contains|cased: 'Threat score: 6'
+    sagan_raw|contains|cased: 'Threat score: 6'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -142,13 +157,16 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased:
-      - bit9
-      - carbonblack
+    - appname|cased:
+        - bit9
+        - carbonblack
+    - syslog_appname|cased:
+        - bit9
+        - carbonblack
   selection_2:
-    message|contains|cased: Carbon Black has detected a threat
+    sagan_raw|contains|cased: Carbon Black has detected a threat
   selection_3:
-    message|contains|cased: 'Threat score: 5'
+    sagan_raw|contains|cased: 'Threat score: 5'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -169,13 +187,14 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased: carbonblack
+    - appname|cased: carbonblack
+    - syslog_appname|cased: carbonblack
   selection_2:
-    message|contains|cased: '"type": "CB_ANALYTICS"'
+    sagan_raw|contains|cased: '"type": "CB_ANALYTICS"'
   selection_3:
-    message|contains|cased: '"severity": 10'
+    sagan_raw|contains|cased: '"severity": 10'
   filter_4:
-    message|contains|cased: '"sensor_action": "TERMINATE"'
+    sagan_raw|contains|cased: '"sensor_action": "TERMINATE"'
   condition: selection_1 and selection_2 and selection_3 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -197,13 +216,14 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased: carbonblack
+    - appname|cased: carbonblack
+    - syslog_appname|cased: carbonblack
   selection_2:
-    message|contains|cased: '"type": "CB_ANALYTICS"'
+    sagan_raw|contains|cased: '"type": "CB_ANALYTICS"'
   selection_3:
-    message|contains|cased: '"severity": 9'
+    sagan_raw|contains|cased: '"severity": 9'
   filter_4:
-    message|contains|cased: '"sensor_action": "TERMINATE"'
+    sagan_raw|contains|cased: '"sensor_action": "TERMINATE"'
   condition: selection_1 and selection_2 and selection_3 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -225,13 +245,14 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased: carbonblack
+    - appname|cased: carbonblack
+    - syslog_appname|cased: carbonblack
   selection_2:
-    message|contains|cased: '"type": "CB_ANALYTICS"'
+    sagan_raw|contains|cased: '"type": "CB_ANALYTICS"'
   selection_3:
-    message|contains|cased: '"severity": 8'
+    sagan_raw|contains|cased: '"severity": 8'
   filter_4:
-    message|contains|cased: '"sensor_action": "TERMINATE"'
+    sagan_raw|contains|cased: '"sensor_action": "TERMINATE"'
   condition: selection_1 and selection_2 and selection_3 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -253,13 +274,14 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased: carbonblack
+    - appname|cased: carbonblack
+    - syslog_appname|cased: carbonblack
   selection_2:
-    message|contains|cased: '"type": "CB_ANALYTICS"'
+    sagan_raw|contains|cased: '"type": "CB_ANALYTICS"'
   selection_3:
-    message|contains|cased: '"severity": 7'
+    sagan_raw|contains|cased: '"severity": 7'
   filter_4:
-    message|contains|cased: '"sensor_action": "TERMINATE"'
+    sagan_raw|contains|cased: '"sensor_action": "TERMINATE"'
   condition: selection_1 and selection_2 and selection_3 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -281,13 +303,14 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased: carbonblack
+    - appname|cased: carbonblack
+    - syslog_appname|cased: carbonblack
   selection_2:
-    message|contains|cased: '"type": "CB_ANALYTICS"'
+    sagan_raw|contains|cased: '"type": "CB_ANALYTICS"'
   selection_3:
-    message|contains|cased: '"severity": 6'
+    sagan_raw|contains|cased: '"severity": 6'
   filter_4:
-    message|contains|cased: '"sensor_action": "TERMINATE"'
+    sagan_raw|contains|cased: '"sensor_action": "TERMINATE"'
   condition: selection_1 and selection_2 and selection_3 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -309,13 +332,14 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased: carbonblack
+    - appname|cased: carbonblack
+    - syslog_appname|cased: carbonblack
   selection_2:
-    message|contains|cased: '"type": "CB_ANALYTICS"'
+    sagan_raw|contains|cased: '"type": "CB_ANALYTICS"'
   selection_3:
-    message|contains|cased: '"severity": 5'
+    sagan_raw|contains|cased: '"severity": 5'
   filter_4:
-    message|contains|cased: '"sensor_action": "TERMINATE"'
+    sagan_raw|contains|cased: '"sensor_action": "TERMINATE"'
   condition: selection_1 and selection_2 and selection_3 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -337,11 +361,12 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased: carbonblack
+    - appname|cased: carbonblack
+    - syslog_appname|cased: carbonblack
   selection_2:
-    message|contains|cased: '"type": "DEVICE_CONTROL"'
+    sagan_raw|contains|cased: '"type": "DEVICE_CONTROL"'
   selection_3:
-    message|contains|cased: '"severity": 10'
+    sagan_raw|contains|cased: '"severity": 10'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -363,11 +388,12 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased: carbonblack
+    - appname|cased: carbonblack
+    - syslog_appname|cased: carbonblack
   selection_2:
-    message|contains|cased: '"type": "DEVICE_CONTROL"'
+    sagan_raw|contains|cased: '"type": "DEVICE_CONTROL"'
   selection_3:
-    message|contains|cased: '"severity": 9'
+    sagan_raw|contains|cased: '"severity": 9'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -389,11 +415,12 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased: carbonblack
+    - appname|cased: carbonblack
+    - syslog_appname|cased: carbonblack
   selection_2:
-    message|contains|cased: '"type": "DEVICE_CONTROL"'
+    sagan_raw|contains|cased: '"type": "DEVICE_CONTROL"'
   selection_3:
-    message|contains|cased: '"severity": 8'
+    sagan_raw|contains|cased: '"severity": 8'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -415,11 +442,12 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased: carbonblack
+    - appname|cased: carbonblack
+    - syslog_appname|cased: carbonblack
   selection_2:
-    message|contains|cased: '"type": "DEVICE_CONTROL"'
+    sagan_raw|contains|cased: '"type": "DEVICE_CONTROL"'
   selection_3:
-    message|contains|cased: '"severity": 7'
+    sagan_raw|contains|cased: '"severity": 7'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -441,11 +469,12 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased: carbonblack
+    - appname|cased: carbonblack
+    - syslog_appname|cased: carbonblack
   selection_2:
-    message|contains|cased: '"type": "DEVICE_CONTROL"'
+    sagan_raw|contains|cased: '"type": "DEVICE_CONTROL"'
   selection_3:
-    message|contains|cased: '"severity": 6'
+    sagan_raw|contains|cased: '"severity": 6'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -467,11 +496,12 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased: carbonblack
+    - appname|cased: carbonblack
+    - syslog_appname|cased: carbonblack
   selection_2:
-    message|contains|cased: '"type": "DEVICE_CONTROL"'
+    sagan_raw|contains|cased: '"type": "DEVICE_CONTROL"'
   selection_3:
-    message|contains|cased: '"severity": 5'
+    sagan_raw|contains|cased: '"severity": 5'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -493,11 +523,12 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased: carbonblack
+    - appname|cased: carbonblack
+    - syslog_appname|cased: carbonblack
   selection_2:
-    message|contains|cased: '"type": "WATCHLIST"'
+    sagan_raw|contains|cased: '"type": "WATCHLIST"'
   selection_3:
-    message|contains|cased: '"severity": 10'
+    sagan_raw|contains|cased: '"severity": 10'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -519,11 +550,12 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased: carbonblack
+    - appname|cased: carbonblack
+    - syslog_appname|cased: carbonblack
   selection_2:
-    message|contains|cased: '"type": "WATCHLIST"'
+    sagan_raw|contains|cased: '"type": "WATCHLIST"'
   selection_3:
-    message|contains|cased: '"severity": 9'
+    sagan_raw|contains|cased: '"severity": 9'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -545,11 +577,12 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased: carbonblack
+    - appname|cased: carbonblack
+    - syslog_appname|cased: carbonblack
   selection_2:
-    message|contains|cased: '"type": "WATCHLIST"'
+    sagan_raw|contains|cased: '"type": "WATCHLIST"'
   selection_3:
-    message|contains|cased: '"severity": 8'
+    sagan_raw|contains|cased: '"severity": 8'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -571,11 +604,12 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased: carbonblack
+    - appname|cased: carbonblack
+    - syslog_appname|cased: carbonblack
   selection_2:
-    message|contains|cased: '"type": "WATCHLIST"'
+    sagan_raw|contains|cased: '"type": "WATCHLIST"'
   selection_3:
-    message|contains|cased: '"severity": 7'
+    sagan_raw|contains|cased: '"severity": 7'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -597,11 +631,12 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased: carbonblack
+    - appname|cased: carbonblack
+    - syslog_appname|cased: carbonblack
   selection_2:
-    message|contains|cased: '"type": "WATCHLIST"'
+    sagan_raw|contains|cased: '"type": "WATCHLIST"'
   selection_3:
-    message|contains|cased: '"severity": 6'
+    sagan_raw|contains|cased: '"severity": 6'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -623,11 +658,12 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased: carbonblack
+    - appname|cased: carbonblack
+    - syslog_appname|cased: carbonblack
   selection_2:
-    message|contains|cased: '"type": "WATCHLIST"'
+    sagan_raw|contains|cased: '"type": "WATCHLIST"'
   selection_3:
-    message|contains|cased: '"severity": 5'
+    sagan_raw|contains|cased: '"severity": 5'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

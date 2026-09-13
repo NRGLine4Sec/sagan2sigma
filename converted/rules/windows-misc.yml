@@ -253,7 +253,8 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*Microsoft_Antimalware*'
+    - appname|cased: '*Microsoft_Antimalware*'
+    - syslog_appname|cased: '*Microsoft_Antimalware*'
   selection_2:
     EventID: 2001
   condition: selection_1 and selection_2
@@ -281,8 +282,7 @@ detection:
   filter_2:
     _raw|contains|cased: 'Status code: 0x0 Value'
   selection_3:
-    - syslog_appname|cased: '*Security*'
-    - appname|cased: '*Security*'
+    appname|cased: '*Security*'
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -363,7 +363,8 @@ detection:
   selection_1:
     EventID: 8225
   selection_2:
-    appname|cased: '*Application*'
+    - appname|cased: '*Application*'
+    - syslog_appname|cased: '*Application*'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1660,8 +1661,7 @@ logsource:
   product: windows
 detection:
   selection_1:
-    - syslog_appname|cased: '*Microsoft-Windows-NTLM*'
-    - appname|cased: '*Microsoft-Windows-NTLM*'
+    appname|cased: '*Microsoft-Windows-NTLM*'
   selection_2:
     EventID: 4023
   selection_3:
@@ -1694,8 +1694,7 @@ logsource:
   product: windows
 detection:
   selection_1:
-    - syslog_appname|cased: '*Microsoft-Windows-NTLM*'
-    - appname|cased: '*Microsoft-Windows-NTLM*'
+    appname|cased: '*Microsoft-Windows-NTLM*'
   selection_2:
     EventID: 4023
   selection_3:

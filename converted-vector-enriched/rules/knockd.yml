@@ -7,9 +7,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: OPEN SESAME
+    sagan_raw|contains|cased: OPEN SESAME
   selection_2:
-    appname|cased: knockd
+    - appname|cased: knockd
+    - syslog_appname|cased: knockd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -30,9 +31,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: sequence timeout
+    sagan_raw|contains|cased: sequence timeout
   selection_2:
-    appname|cased: knockd
+    - appname|cased: knockd
+    - syslog_appname|cased: knockd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

@@ -7,11 +7,11 @@ logsource:
   product: fortinet
 detection:
   selection_1:
-    message|contains|cased: 32006 type=
+    sagan_raw|contains|cased: 32006 type=
   selection_2:
-    message|contains|cased: login
+    sagan_raw|contains|cased: login
   selection_3:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - accepted
       - successfully
   bluedot_hit_1:
@@ -43,9 +43,9 @@ logsource:
   product: fortinet
 detection:
   selection_1:
-    message|contains|cased: 32001 type=
+    sagan_raw|contains|cased: 32001 type=
   selection_2:
-    message|contains|cased: logged in
+    sagan_raw|contains|cased: logged in
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -74,9 +74,9 @@ logsource:
   product: fortinet
 detection:
   selection_1:
-    message|contains|cased: 38001 type=
+    sagan_raw|contains|cased: 38001 type=
   selection_2:
-    message|contains|cased: succeeded in authentication
+    sagan_raw|contains|cased: succeeded in authentication
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:
@@ -105,9 +105,9 @@ logsource:
   product: fortinet
 detection:
   selection_1:
-    message|contains|cased: ' service=SSH '
+    sagan_raw|contains|cased: ' service=SSH '
   filter_2:
-    message|contains|cased: duration=0 sentbyte=0 rcvdbyte=0
+    sagan_raw|contains|cased: duration=0 sentbyte=0 rcvdbyte=0
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:

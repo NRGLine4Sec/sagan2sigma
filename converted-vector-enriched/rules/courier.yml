@@ -8,11 +8,14 @@ logsource:
   service: imap
 detection:
   selection_1:
-    message|contains|cased: LOGIN FAILED,
+    sagan_raw|contains|cased: LOGIN FAILED,
   selection_2:
-    appname|cased:
-      - imapd
-      - imapd-sslcourierlogger
+    - appname|cased:
+        - imapd
+        - imapd-sslcourierlogger
+    - syslog_appname|cased:
+        - imapd
+        - imapd-sslcourierlogger
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -35,11 +38,14 @@ logsource:
   service: imap
 detection:
   selection_1:
-    message|contains|cased: LOGIN FAILED,
+    sagan_raw|contains|cased: LOGIN FAILED,
   selection_2:
-    appname|cased:
-      - imapd
-      - imapd-sslcourierlogger
+    - appname|cased:
+        - imapd
+        - imapd-sslcourierlogger
+    - syslog_appname|cased:
+        - imapd
+        - imapd-sslcourierlogger
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

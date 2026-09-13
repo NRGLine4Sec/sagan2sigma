@@ -8,9 +8,10 @@ logsource:
   service: application
 detection:
   selection_1:
-    message|contains|cased: User authentication failed
+    sagan_raw|contains|cased: User authentication failed
   selection_2:
-    appname|cased: WPsyslog
+    - appname|cased: WPsyslog
+    - syslog_appname|cased: WPsyslog
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -33,9 +34,10 @@ logsource:
   service: application
 detection:
   selection_1:
-    message|contains|cased: Plugin deactivated
+    sagan_raw|contains|cased: Plugin deactivated
   selection_2:
-    appname|cased: WPsyslog
+    - appname|cased: WPsyslog
+    - syslog_appname|cased: WPsyslog
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -58,9 +60,10 @@ logsource:
   service: application
 detection:
   selection_1:
-    message|contains|cased: Comment flood attempt
+    sagan_raw|contains|cased: Comment flood attempt
   selection_2:
-    appname|cased: WPsyslog
+    - appname|cased: WPsyslog
+    - syslog_appname|cased: WPsyslog
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -83,11 +86,12 @@ logsource:
   service: application
 detection:
   selection_1:
-    message|contains|cased: Warning
+    sagan_raw|contains|cased: Warning
   selection_2:
-    message|contains|cased: IDS
+    sagan_raw|contains|cased: IDS
   selection_3:
-    appname|cased: WPsyslog
+    - appname|cased: WPsyslog
+    - syslog_appname|cased: WPsyslog
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

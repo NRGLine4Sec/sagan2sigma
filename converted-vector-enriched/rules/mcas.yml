@@ -8,13 +8,13 @@ logsource:
   service: cloud_app_security
 detection:
   selection_1:
-    message|contains|cased: ALERT_ANUBIS_DETECTION_VELOCITY
+    sagan_raw|contains|cased: ALERT_ANUBIS_DETECTION_VELOCITY
   filter_2:
-    message|contains|cased: '"Workload": "Exchange"'
+    sagan_raw|contains|cased: '"Workload": "Exchange"'
   selection_3:
-    message|contains|cased: msg=
+    sagan_raw|contains|cased: msg=
   selection_4:
-    message|contains|cased: cloudapps
+    sagan_raw|contains|cased: cloudapps
   condition: selection_1 and selection_3 and selection_4 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -36,13 +36,13 @@ logsource:
   service: cloud_app_security
 detection:
   selection_1:
-    message|contains|cased: ALERT_CABINET_EVENT_MATCH_AUDIT
+    sagan_raw|contains|cased: ALERT_CABINET_EVENT_MATCH_AUDIT
   filter_2:
-    message|contains|cased: '"Workload": "Exchange"'
+    sagan_raw|contains|cased: '"Workload": "Exchange"'
   selection_3:
-    message|contains|cased: msg=
+    sagan_raw|contains|cased: msg=
   selection_4:
-    message|contains|cased: cloudapps
+    sagan_raw|contains|cased: cloudapps
   condition: selection_1 and selection_3 and selection_4 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -64,15 +64,15 @@ logsource:
   service: cloud_app_security
 detection:
   selection_1:
-    message|contains|cased: ALERT_ANUBIS_DETECTION_NEW_COUNTRY
+    sagan_raw|contains|cased: ALERT_ANUBIS_DETECTION_NEW_COUNTRY
   filter_2:
-    message|contains|cased: ResultStatus":"Resolved
+    sagan_raw|contains|cased: ResultStatus":"Resolved
   filter_3:
-    message|contains|cased: '"Workload": "Exchange"'
+    sagan_raw|contains|cased: '"Workload": "Exchange"'
   selection_4:
-    message|contains|cased: msg=
+    sagan_raw|contains|cased: msg=
   selection_5:
-    message|contains|cased: cloudapps
+    sagan_raw|contains|cased: cloudapps
   condition: selection_1 and selection_4 and selection_5 and not (filter_2 or filter_3)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -96,13 +96,13 @@ logsource:
   service: cloud_app_security
 detection:
   selection_1:
-    message|contains|cased: ALERT_SUSPICIOUS_ACTIVITY
+    sagan_raw|contains|cased: ALERT_SUSPICIOUS_ACTIVITY
   filter_2:
-    message|contains|cased: '"Workload": "Exchange"'
+    sagan_raw|contains|cased: '"Workload": "Exchange"'
   selection_3:
-    message|contains|cased: msg=
+    sagan_raw|contains|cased: msg=
   selection_4:
-    message|contains|cased: cloudapps
+    sagan_raw|contains|cased: cloudapps
   condition: selection_1 and selection_3 and selection_4 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -126,13 +126,13 @@ logsource:
   service: cloud_app_security
 detection:
   selection_1:
-    message|contains|cased: ALERT_DISCOVERY_ANOMALY_DETECTION
+    sagan_raw|contains|cased: ALERT_DISCOVERY_ANOMALY_DETECTION
   filter_2:
-    message|contains|cased: '"Workload": "Exchange"'
+    sagan_raw|contains|cased: '"Workload": "Exchange"'
   selection_3:
-    message|contains|cased: msg=
+    sagan_raw|contains|cased: msg=
   selection_4:
-    message|contains|cased: cloudapps
+    sagan_raw|contains|cased: cloudapps
   condition: selection_1 and selection_3 and selection_4 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -156,13 +156,13 @@ logsource:
   service: cloud_app_security
 detection:
   selection_1:
-    message|contains|cased: ALERT_CABINET_EVENT_MATCH_FILE
+    sagan_raw|contains|cased: ALERT_CABINET_EVENT_MATCH_FILE
   filter_2:
-    message|contains|cased: '"Workload": "Exchange"'
+    sagan_raw|contains|cased: '"Workload": "Exchange"'
   selection_3:
-    message|contains|cased: msg=
+    sagan_raw|contains|cased: msg=
   selection_4:
-    message|contains|cased: cloudapps
+    sagan_raw|contains|cased: cloudapps
   condition: selection_1 and selection_3 and selection_4 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -186,13 +186,13 @@ logsource:
   service: cloud_app_security
 detection:
   selection_1:
-    message|contains|cased: ALERT_CABINET_INLINE_EVENT_MATCH
+    sagan_raw|contains|cased: ALERT_CABINET_INLINE_EVENT_MATCH
   filter_2:
-    message|contains|cased: '"Workload": "Exchange"'
+    sagan_raw|contains|cased: '"Workload": "Exchange"'
   selection_3:
-    message|contains|cased: msg=
+    sagan_raw|contains|cased: msg=
   selection_4:
-    message|contains|cased: cloudapps
+    sagan_raw|contains|cased: cloudapps
   condition: selection_1 and selection_3 and selection_4 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -216,13 +216,13 @@ logsource:
   service: cloud_app_security
 detection:
   selection_1:
-    message|contains|cased: ALERT_CABINET_EVENT_MATCH_OBJECT
+    sagan_raw|contains|cased: ALERT_CABINET_EVENT_MATCH_OBJECT
   filter_2:
-    message|contains|cased: '"Workload": "Exchange"'
+    sagan_raw|contains|cased: '"Workload": "Exchange"'
   selection_3:
-    message|contains|cased: msg=
+    sagan_raw|contains|cased: msg=
   selection_4:
-    message|contains|cased: cloudapps
+    sagan_raw|contains|cased: cloudapps
   condition: selection_1 and selection_3 and selection_4 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -246,13 +246,13 @@ logsource:
   service: cloud_app_security
 detection:
   selection_1:
-    message|contains|cased: ALERT_CABINET_DISCOVERY_NEW_SERVICE
+    sagan_raw|contains|cased: ALERT_CABINET_DISCOVERY_NEW_SERVICE
   filter_2:
-    message|contains|cased: '"Workload": "Exchange"'
+    sagan_raw|contains|cased: '"Workload": "Exchange"'
   selection_3:
-    message|contains|cased: msg=
+    sagan_raw|contains|cased: msg=
   selection_4:
-    message|contains|cased: cloudapps
+    sagan_raw|contains|cased: cloudapps
   condition: selection_1 and selection_3 and selection_4 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -276,13 +276,13 @@ logsource:
   service: cloud_app_security
 detection:
   selection_1:
-    message|contains|cased: ALERT_PERSONAL_USER_SAGE
+    sagan_raw|contains|cased: ALERT_PERSONAL_USER_SAGE
   filter_2:
-    message|contains|cased: '"Workload": "Exchange"'
+    sagan_raw|contains|cased: '"Workload": "Exchange"'
   selection_3:
-    message|contains|cased: msg=
+    sagan_raw|contains|cased: msg=
   selection_4:
-    message|contains|cased: cloudapps
+    sagan_raw|contains|cased: cloudapps
   condition: selection_1 and selection_3 and selection_4 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -306,13 +306,13 @@ logsource:
   service: cloud_app_security
 detection:
   selection_1:
-    message|contains|cased: ALERT_GEOLOCATION_NEW_COUNTRY
+    sagan_raw|contains|cased: ALERT_GEOLOCATION_NEW_COUNTRY
   filter_2:
-    message|contains|cased: '"Workload": "Exchange"'
+    sagan_raw|contains|cased: '"Workload": "Exchange"'
   selection_3:
-    message|contains|cased: msg=
+    sagan_raw|contains|cased: msg=
   selection_4:
-    message|contains|cased: cloudapps
+    sagan_raw|contains|cased: cloudapps
   condition: selection_1 and selection_3 and selection_4 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -336,13 +336,13 @@ logsource:
   service: cloud_app_security
 detection:
   selection_1:
-    message|contains|cased: ALERT_ADMIN_USER
+    sagan_raw|contains|cased: ALERT_ADMIN_USER
   filter_2:
-    message|contains|cased: '"Workload": "Exchange"'
+    sagan_raw|contains|cased: '"Workload": "Exchange"'
   selection_3:
-    message|contains|cased: msg=
+    sagan_raw|contains|cased: msg=
   selection_4:
-    message|contains|cased: cloudapps
+    sagan_raw|contains|cased: cloudapps
   condition: selection_1 and selection_3 and selection_4 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -366,13 +366,13 @@ logsource:
   service: cloud_app_security
 detection:
   selection_1:
-    message|contains|cased: ALERT_ZOMBIE_USER
+    sagan_raw|contains|cased: ALERT_ZOMBIE_USER
   filter_2:
-    message|contains|cased: '"Workload": "Exchange"'
+    sagan_raw|contains|cased: '"Workload": "Exchange"'
   selection_3:
-    message|contains|cased: msg=
+    sagan_raw|contains|cased: msg=
   selection_4:
-    message|contains|cased: cloudapps
+    sagan_raw|contains|cased: cloudapps
   condition: selection_1 and selection_3 and selection_4 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -396,13 +396,13 @@ logsource:
   service: cloud_app_security
 detection:
   selection_1:
-    message|contains|cased: ALERT_NEW_ADMIN_LOCATION
+    sagan_raw|contains|cased: ALERT_NEW_ADMIN_LOCATION
   filter_2:
-    message|contains|cased: '"Workload": "Exchange"'
+    sagan_raw|contains|cased: '"Workload": "Exchange"'
   selection_3:
-    message|contains|cased: msg=
+    sagan_raw|contains|cased: msg=
   selection_4:
-    message|contains|cased: cloudapps
+    sagan_raw|contains|cased: cloudapps
   condition: selection_1 and selection_3 and selection_4 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -426,13 +426,13 @@ logsource:
   service: cloud_app_security
 detection:
   selection_1:
-    message|contains|cased: ALERT_COMPROMISED_ACCOUNT
+    sagan_raw|contains|cased: ALERT_COMPROMISED_ACCOUNT
   filter_2:
-    message|contains|cased: '"Workload": "Exchange"'
+    sagan_raw|contains|cased: '"Workload": "Exchange"'
   selection_3:
-    message|contains|cased: msg=
+    sagan_raw|contains|cased: msg=
   selection_4:
-    message|contains|cased: cloudapps
+    sagan_raw|contains|cased: cloudapps
   condition: selection_1 and selection_3 and selection_4 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -456,13 +456,13 @@ logsource:
   service: cloud_app_security
 detection:
   selection_1:
-    message|contains|cased: ALERT_ANUBIS_DETECTION_REPEATED_ACTIVITY_ADMIN_ACTIVITY
+    sagan_raw|contains|cased: ALERT_ANUBIS_DETECTION_REPEATED_ACTIVITY_ADMIN_ACTIVITY
   filter_2:
-    message|contains|cased: '"Workload": "Exchange"'
+    sagan_raw|contains|cased: '"Workload": "Exchange"'
   selection_3:
-    message|contains|cased: msg=
+    sagan_raw|contains|cased: msg=
   selection_4:
-    message|contains|cased: cloudapps
+    sagan_raw|contains|cased: cloudapps
   condition: selection_1 and selection_3 and selection_4 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -486,13 +486,13 @@ logsource:
   service: cloud_app_security
 detection:
   selection_1:
-    message|contains|cased: ALERT_MANAGEMENT_DISCOVERY_BREACHED_APP
+    sagan_raw|contains|cased: ALERT_MANAGEMENT_DISCOVERY_BREACHED_APP
   filter_2:
-    message|contains|cased: '"Workload": "Exchange"'
+    sagan_raw|contains|cased: '"Workload": "Exchange"'
   selection_3:
-    message|contains|cased: msg=
+    sagan_raw|contains|cased: msg=
   selection_4:
-    message|contains|cased: cloudapps
+    sagan_raw|contains|cased: cloudapps
   condition: selection_1 and selection_3 and selection_4 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -516,13 +516,13 @@ logsource:
   service: cloud_app_security
 detection:
   selection_1:
-    message|contains|cased: ALERT_ANUBIS_DETECTION_INBOX_HIDING
+    sagan_raw|contains|cased: ALERT_ANUBIS_DETECTION_INBOX_HIDING
   filter_2:
-    message|contains|cased: '"Workload": "Exchange"'
+    sagan_raw|contains|cased: '"Workload": "Exchange"'
   selection_3:
-    message|contains|cased: msg=
+    sagan_raw|contains|cased: msg=
   selection_4:
-    message|contains|cased: cloudapps
+    sagan_raw|contains|cased: cloudapps
   condition: selection_1 and selection_3 and selection_4 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -544,13 +544,13 @@ logsource:
   service: cloud_app_security
 detection:
   selection_1:
-    message|contains|cased: ALERT_ANUBIS_DETECTION_RISKY_IP_SUSPICIOUS
+    sagan_raw|contains|cased: ALERT_ANUBIS_DETECTION_RISKY_IP_SUSPICIOUS
   filter_2:
-    message|contains|cased: '"Workload": "Exchange"'
+    sagan_raw|contains|cased: '"Workload": "Exchange"'
   selection_3:
-    message|contains|cased: msg=
+    sagan_raw|contains|cased: msg=
   selection_4:
-    message|contains|cased: cloudapps
+    sagan_raw|contains|cased: cloudapps
   condition: selection_1 and selection_3 and selection_4 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

@@ -7,9 +7,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Decrypt packet error
+    sagan_raw|contains|cased: Decrypt packet error
   selection_2:
-    appname|cased: openvpn
+    - appname|cased: openvpn
+    - syslog_appname|cased: openvpn
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -31,9 +32,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: tunnelled as cleartext
+    sagan_raw|contains|cased: tunnelled as cleartext
   selection_2:
-    appname|cased: openvpn
+    - appname|cased: openvpn
+    - syslog_appname|cased: openvpn
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

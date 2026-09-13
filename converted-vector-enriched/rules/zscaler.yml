@@ -9,13 +9,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: "requestClientApplication=MSIE 9.0\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=MSIE 9.0\r\n"
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -40,13 +41,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=Mozilla/4.0 (compatible; MSIE 7.0; na; )
+    sagan_raw|contains|cased: requestClientApplication=Mozilla/4.0 (compatible; MSIE 7.0; na; )
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -71,13 +73,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: "requestClientApplication=Downloader 1.8\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=Downloader 1.8\r\n"
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -102,13 +105,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=HttpCall
+    sagan_raw|contains|cased: requestClientApplication=HttpCall
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -133,13 +137,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=MyProgramm
+    sagan_raw|contains|cased: requestClientApplication=MyProgramm
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -164,13 +169,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=Skypee
+    sagan_raw|contains|cased: requestClientApplication=Skypee
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -195,13 +201,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=XAgent
+    sagan_raw|contains|cased: requestClientApplication=XAgent
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -226,13 +233,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=crackim
+    sagan_raw|contains|cased: requestClientApplication=crackim
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -257,14 +265,15 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: "requestClientApplication=Mozilla/4.0+(compatible;+MSIE+6.0;+Windows+NT+5.1;+SV1;+.NET+CLR+2.0.50727)\r\
+    sagan_raw|contains|cased: "requestClientApplication=Mozilla/4.0+(compatible;+MSIE+6.0;+Windows+NT+5.1;+SV1;+.NET+CLR+2.0.50727)\r\
       \n"
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -289,15 +298,16 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=agent
+    sagan_raw|contains|cased: requestClientApplication=agent
   filter_2:
-    message|contains|cased: .battle.net
+    sagan_raw|contains|cased: .battle.net
   selection_3:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_4:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_5:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_3 and selection_4 and selection_5 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -324,13 +334,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=DriveCleaner Updater
+    sagan_raw|contains|cased: requestClientApplication=DriveCleaner Updater
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -355,13 +366,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains: requestClientApplication=WinFix Master
+    sagan_raw|contains: requestClientApplication=WinFix Master
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -386,13 +398,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=Museon
+    sagan_raw|contains|cased: requestClientApplication=Museon
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -417,13 +430,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=pcsafe
+    sagan_raw|contains|cased: requestClientApplication=pcsafe
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -448,19 +462,20 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication={
+    sagan_raw|contains|cased: requestClientApplication={
   filter_2:
-    message|contains|cased: directory.gladinet.com
+    sagan_raw|contains|cased: directory.gladinet.com
   filter_3:
-    message|contains|cased: "ff.avast.com\r\n"
+    sagan_raw|contains|cased: "ff.avast.com\r\n"
   selection_4:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_5:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_6:
-    message|re|i: User-Agent\x3a \{[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\}
+    sagan_raw|re|i: User-Agent\x3a \{[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\}
   selection_7:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_4 and selection_5 and selection_6 and selection_7 and not (filter_2
     or filter_3)
 falsepositives:
@@ -486,13 +501,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: "requestClientApplication=_\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=_\r\n"
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -517,13 +533,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: "requestClientApplication=Mozilla/5.0 (compatible, Viper 4.0)\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=Mozilla/5.0 (compatible, Viper 4.0)\r\n"
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -549,13 +566,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=BlackSun
+    sagan_raw|contains|cased: requestClientApplication=BlackSun
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -580,13 +598,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=Mozzila
+    sagan_raw|contains|cased: requestClientApplication=Mozzila
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -609,13 +628,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=ScrapeBox
+    sagan_raw|contains|cased: requestClientApplication=ScrapeBox
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -640,13 +660,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: "requestClientApplication=msndown\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=msndown\r\n"
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -669,13 +690,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=iamx/
+    sagan_raw|contains|cased: requestClientApplication=iamx/
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -698,13 +720,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=Win32
+    sagan_raw|contains|cased: requestClientApplication=Win32
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -727,13 +750,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: ' Our_Agent'
+    sagan_raw|contains|cased: ' Our_Agent'
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -756,15 +780,16 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: GET
+    sagan_raw|contains|cased: GET
   selection_2:
-    message|contains|cased: requestClientApplication=REKOM
+    sagan_raw|contains|cased: requestClientApplication=REKOM
   selection_3:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_4:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_5:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -787,13 +812,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=Moxilla
+    sagan_raw|contains|cased: requestClientApplication=Moxilla
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -816,13 +842,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=VCTestClient
+    sagan_raw|contains|cased: requestClientApplication=VCTestClient
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -845,13 +872,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=PrivacyInfoUpdate
+    sagan_raw|contains|cased: requestClientApplication=PrivacyInfoUpdate
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -877,13 +905,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=VMozilla
+    sagan_raw|contains|cased: requestClientApplication=VMozilla
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -906,13 +935,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=sample
+    sagan_raw|contains|cased: requestClientApplication=sample
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -935,13 +965,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: "requestClientApplication=Mozilla/3.0\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=Mozilla/3.0\r\n"
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -964,13 +995,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=IE6 on Windows XP
+    sagan_raw|contains|cased: requestClientApplication=IE6 on Windows XP
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -993,13 +1025,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=Lotto
+    sagan_raw|contains|cased: requestClientApplication=Lotto
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1022,13 +1055,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=AskPartner
+    sagan_raw|contains|cased: requestClientApplication=AskPartner
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1053,13 +1087,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=VERTEXNET
+    sagan_raw|contains|cased: requestClientApplication=VERTEXNET
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1082,13 +1117,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: "requestClientApplication=changhuatong\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=changhuatong\r\n"
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1111,13 +1147,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=CholTBAgent
+    sagan_raw|contains|cased: requestClientApplication=CholTBAgent
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1140,15 +1177,16 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: GET
+    sagan_raw|contains|cased: GET
   selection_2:
-    message|contains|cased: "requestClientApplication=mdms\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=mdms\r\n"
   selection_3:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_4:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_5:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1171,15 +1209,16 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: GET
+    sagan_raw|contains|cased: GET
   selection_2:
-    message|contains|cased: "requestClientApplication=asd\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=asd\r\n"
   selection_3:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_4:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_5:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1204,13 +1243,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: 'requestClientApplication=SimpleClient '
+    sagan_raw|contains|cased: 'requestClientApplication=SimpleClient '
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1235,13 +1275,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=Cyberdog
+    sagan_raw|contains|cased: requestClientApplication=Cyberdog
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1266,13 +1307,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=EmailSiphon
+    sagan_raw|contains|cased: requestClientApplication=EmailSiphon
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1297,13 +1339,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=EmailSiphon
+    sagan_raw|contains|cased: requestClientApplication=EmailSiphon
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1329,13 +1372,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=Binget/
+    sagan_raw|contains|cased: requestClientApplication=Binget/
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1359,13 +1403,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=pxyscand/
+    sagan_raw|contains|cased: requestClientApplication=pxyscand/
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1390,13 +1435,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=PyCurl
+    sagan_raw|contains|cased: requestClientApplication=PyCurl
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1421,13 +1467,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=Atomic_Email_Hunter/
+    sagan_raw|contains|cased: requestClientApplication=Atomic_Email_Hunter/
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1452,13 +1499,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=Atomic_Email_Hunter/
+    sagan_raw|contains|cased: requestClientApplication=Atomic_Email_Hunter/
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1483,13 +1531,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=Revolution
+    sagan_raw|contains|cased: requestClientApplication=Revolution
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1512,13 +1561,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=BGroom
+    sagan_raw|contains|cased: requestClientApplication=BGroom
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1541,13 +1591,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: "requestClientApplication=tiny\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=tiny\r\n"
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1572,15 +1623,16 @@ logsource:
   product: zscaler
 detection:
   filter_1:
-    message|contains|cased: econtrolsystems
+    sagan_raw|contains|cased: econtrolsystems
   selection_2:
-    message|contains|cased: requestClientApplication=adlib/
+    sagan_raw|contains|cased: requestClientApplication=adlib/
   selection_3:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_4:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_5:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_2 and selection_3 and selection_4 and selection_5 and not filter_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1603,13 +1655,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=Mozilla/5.0 (Windows NT 5.1 ; v.
+    sagan_raw|contains|cased: requestClientApplication=Mozilla/5.0 (Windows NT 5.1 ; v.
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1635,13 +1688,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=zeroup
+    sagan_raw|contains|cased: requestClientApplication=zeroup
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1667,13 +1721,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains: requestClientApplication=DownloadMR
+    sagan_raw|contains: requestClientApplication=DownloadMR
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1698,13 +1753,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains: requestClientApplication=ChilkatUpload
+    sagan_raw|contains: requestClientApplication=ChilkatUpload
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1727,13 +1783,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains: requestClientApplication=Google page
+    sagan_raw|contains: requestClientApplication=Google page
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1758,13 +1815,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: "requestClientApplication=FOCA\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=FOCA\r\n"
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1789,14 +1847,15 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: "requestClientApplication=Mozilla/4.0 (compatible; MSIE 6.1; Windows NT)\r\
+    sagan_raw|contains|cased: "requestClientApplication=Mozilla/4.0 (compatible; MSIE 6.1; Windows NT)\r\
       \n"
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1819,13 +1878,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: 'requestClientApplication=WT Games App '
+    sagan_raw|contains|cased: 'requestClientApplication=WT Games App '
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1850,13 +1910,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=Mozilla/5.0 (compatible; BLEXBot/
+    sagan_raw|contains|cased: requestClientApplication=Mozilla/5.0 (compatible; BLEXBot/
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1880,15 +1941,16 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=Windows NT 10.
+    sagan_raw|contains|cased: requestClientApplication=Windows NT 10.
   selection_2:
-    message|contains|cased: Edge/12.
+    sagan_raw|contains|cased: Edge/12.
   selection_3:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_4:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_5:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1911,13 +1973,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: "requestClientApplication=opera/8.11\r\n"
+    sagan_raw|contains|cased: "requestClientApplication=opera/8.11\r\n"
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1942,13 +2005,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=Gator
+    sagan_raw|contains|cased: requestClientApplication=Gator
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1974,13 +2038,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=IST
+    sagan_raw|contains|cased: requestClientApplication=IST
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2005,13 +2070,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=Poller
+    sagan_raw|contains|cased: requestClientApplication=Poller
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2037,13 +2103,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=SideStep
+    sagan_raw|contains|cased: requestClientApplication=SideStep
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2068,13 +2135,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=SAIv
+    sagan_raw|contains|cased: requestClientApplication=SAIv
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2097,13 +2165,14 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    message|contains|cased: requestClientApplication=WORKED
+    sagan_raw|contains|cased: requestClientApplication=WORKED
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2126,13 +2195,14 @@ logsource:
   product: zscaler
 detection:
   filter_1:
-    message|contains|cased: cs4=Clean Transaction
+    sagan_raw|contains|cased: cs4=Clean Transaction
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   selection_4:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_2 and selection_3 and selection_4 and not filter_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2155,17 +2225,18 @@ logsource:
   product: zscaler
 detection:
   filter_1:
-    message|contains|cased: cs5=None
+    sagan_raw|contains|cased: cs5=None
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   filter_4:
-    message|contains|cased: Mobile Device information leakage
+    sagan_raw|contains|cased: Mobile Device information leakage
   filter_5:
-    message|contains|cased: Mobile PII Information Leakage
+    sagan_raw|contains|cased: Mobile PII Information Leakage
   selection_6:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   condition: selection_2 and selection_3 and selection_6 and not (filter_1 or filter_4 or filter_5)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

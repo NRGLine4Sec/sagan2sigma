@@ -7,9 +7,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Anonymous netbios-ssn login attempt
+    sagan_raw|contains|cased: Anonymous netbios-ssn login attempt
   selection_2:
-    appname|cased: zws
+    - appname|cased: zws
+    - syslog_appname|cased: zws
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -32,9 +33,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: HTTP connection to risky Internet site detecte
+    sagan_raw|contains|cased: HTTP connection to risky Internet site detecte
   selection_2:
-    appname|cased: zws
+    - appname|cased: zws
+    - syslog_appname|cased: zws
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -57,9 +59,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: https connection to risky Internet site detected
+    sagan_raw|contains|cased: https connection to risky Internet site detected
   selection_2:
-    appname|cased: zws
+    - appname|cased: zws
+    - syslog_appname|cased: zws
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -82,9 +85,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Manufacturer default username and password in inbound http login
+    sagan_raw|contains|cased: Manufacturer default username and password in inbound http login
   selection_2:
-    appname|cased: zws
+    - appname|cased: zws
+    - syslog_appname|cased: zws
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -107,11 +111,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Risk level increase
+    sagan_raw|contains|cased: Risk level increase
   selection_2:
-    message|contains|cased: '"label":"updated risk level","value":"Medium"'
+    sagan_raw|contains|cased: '"label":"updated risk level","value":"Medium"'
   selection_3:
-    appname|cased: zws
+    - appname|cased: zws
+    - syslog_appname|cased: zws
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -134,11 +139,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Risk level increase
+    sagan_raw|contains|cased: Risk level increase
   selection_2:
-    message|contains|cased: '"label":"updated risk level","value":"High"'
+    sagan_raw|contains|cased: '"label":"updated risk level","value":"High"'
   selection_3:
-    appname|cased: zws
+    - appname|cased: zws
+    - syslog_appname|cased: zws
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -161,9 +167,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Unencrypted sensitive information in HTTP request
+    sagan_raw|contains|cased: Unencrypted sensitive information in HTTP request
   selection_2:
-    appname|cased: zws
+    - appname|cased: zws
+    - syslog_appname|cased: zws
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -186,9 +193,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Unsecure application usage by camera
+    sagan_raw|contains|cased: Unsecure application usage by camera
   selection_2:
-    appname|cased: zws
+    - appname|cased: zws
+    - syslog_appname|cased: zws
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -211,9 +219,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Unsecured outbound HTTP connections to the Internet
+    sagan_raw|contains|cased: Unsecured outbound HTTP connections to the Internet
   selection_2:
-    appname|cased: zws
+    - appname|cased: zws
+    - syslog_appname|cased: zws
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -236,9 +245,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Username same as password in FTP login
+    sagan_raw|contains|cased: Username same as password in FTP login
   selection_2:
-    appname|cased: zws
+    - appname|cased: zws
+    - syslog_appname|cased: zws
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -261,9 +271,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Weak Basic Authentication over HTTP
+    sagan_raw|contains|cased: Weak Basic Authentication over HTTP
   selection_2:
-    appname|cased: zws
+    - appname|cased: zws
+    - syslog_appname|cased: zws
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

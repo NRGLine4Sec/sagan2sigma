@@ -7,11 +7,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Access denied for user
+    sagan_raw|contains|cased: Access denied for user
   selection_2:
-    appname|cased:
-      - mysqld
-      - MySQL
+    - appname|cased:
+        - mysqld
+        - MySQL
+    - syslog_appname|cased:
+        - mysqld
+        - MySQL
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -32,11 +35,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|re|i: \d+ \S+ \d+ Connect
+    sagan_raw|re|i: \d+ \S+ \d+ Connect
   selection_2:
-    appname|cased:
-      - mysqld
-      - MySQL
+    - appname|cased:
+        - mysqld
+        - MySQL
+    - syslog_appname|cased:
+        - mysqld
+        - MySQL
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -60,11 +66,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - '*mysqld*'
-      - '*MySQL*'
+    - appname|cased:
+        - '*mysqld*'
+        - '*MySQL*'
+    - syslog_appname|cased:
+        - '*mysqld*'
+        - '*MySQL*'
   selection_2:
-    message|contains|cased: UPDATE moveittransfer.hostpermits
+    sagan_raw|contains|cased: UPDATE moveittransfer.hostpermits
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -91,13 +100,16 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased:
-      - '*mysqld*'
-      - '*MySQL*'
+    - appname|cased:
+        - '*mysqld*'
+        - '*MySQL*'
+    - syslog_appname|cased:
+        - '*mysqld*'
+        - '*MySQL*'
   selection_2:
-    message|contains|cased: UPDATE moveittransfer.hostpermits
+    sagan_raw|contains|cased: UPDATE moveittransfer.hostpermits
   selection_3:
-    message|contains|cased: Host=,\*.\*.\*.\*,
+    sagan_raw|contains|cased: Host=,\*.\*.\*.\*,
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

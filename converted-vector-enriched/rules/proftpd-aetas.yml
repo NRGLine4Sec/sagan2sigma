@@ -7,9 +7,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Login successful
+    sagan_raw|contains|cased: Login successful
   selection_2:
-    appname|cased: proftpd
+    - appname|cased: proftpd
+    - syslog_appname|cased: proftpd
   at_days:
     sagan_event_weekday:
       - 1

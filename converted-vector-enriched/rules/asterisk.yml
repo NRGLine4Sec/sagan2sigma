@@ -7,9 +7,10 @@ logsource:
   product: asterisk
 detection:
   selection_1:
-    message|contains|cased: Wrong password
+    sagan_raw|contains|cased: Wrong password
   selection_2:
-    appname|cased: asterisk
+    - appname|cased: asterisk
+    - syslog_appname|cased: asterisk
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -31,9 +32,10 @@ logsource:
   product: asterisk
 detection:
   selection_1:
-    message|contains|cased: Username/auth name mismatch
+    sagan_raw|contains|cased: Username/auth name mismatch
   selection_2:
-    appname|cased: asterisk
+    - appname|cased: asterisk
+    - syslog_appname|cased: asterisk
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -55,9 +57,10 @@ logsource:
   product: asterisk
 detection:
   selection_1:
-    message|contains|cased: No matching peer found
+    sagan_raw|contains|cased: No matching peer found
   selection_2:
-    appname|cased: asterisk
+    - appname|cased: asterisk
+    - syslog_appname|cased: asterisk
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -79,9 +82,10 @@ logsource:
   product: asterisk
 detection:
   selection_1:
-    message|contains|cased: Invalid to address
+    sagan_raw|contains|cased: Invalid to address
   selection_2:
-    appname|cased: asterisk
+    - appname|cased: asterisk
+    - syslog_appname|cased: asterisk
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -103,9 +107,10 @@ logsource:
   product: asterisk
 detection:
   selection_1:
-    message|contains|cased: Wrong password
+    sagan_raw|contains|cased: Wrong password
   selection_2:
-    appname|cased: asterisk
+    - appname|cased: asterisk
+    - syslog_appname|cased: asterisk
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -143,9 +148,10 @@ logsource:
   product: asterisk
 detection:
   selection_1:
-    message|contains|cased: Username/auth name mismatch
+    sagan_raw|contains|cased: Username/auth name mismatch
   selection_2:
-    appname|cased: asterisk
+    - appname|cased: asterisk
+    - syslog_appname|cased: asterisk
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -183,9 +189,10 @@ logsource:
   product: asterisk
 detection:
   selection_1:
-    message|contains|cased: No matching peer found
+    sagan_raw|contains|cased: No matching peer found
   selection_2:
-    appname|cased: asterisk
+    - appname|cased: asterisk
+    - syslog_appname|cased: asterisk
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

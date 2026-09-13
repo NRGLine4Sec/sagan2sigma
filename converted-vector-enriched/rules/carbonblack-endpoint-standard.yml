@@ -9,9 +9,10 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased: cb_usb_approval_data
+    - appname|cased: cb_usb_approval_data
+    - syslog_appname|cased: cb_usb_approval_data
   selection_2:
-    message|contains|cased: '"action": "created"'
+    sagan_raw|contains|cased: '"action": "created"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -34,9 +35,10 @@ logsource:
   product: carbonblack
 detection:
   selection_1:
-    appname|cased: cb_usb_approval_data
+    - appname|cased: cb_usb_approval_data
+    - syslog_appname|cased: cb_usb_approval_data
   selection_2:
-    message|contains|cased: '"action": "updated"'
+    sagan_raw|contains|cased: '"action": "updated"'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

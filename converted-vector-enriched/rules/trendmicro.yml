@@ -7,11 +7,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SLF_INCIDENT_EVT_VIRUS_FOUND_PASS_THRU
+    sagan_raw|contains|cased: SLF_INCIDENT_EVT_VIRUS_FOUND_PASS_THRU
   selection_2:
-    message|contains|cased: Unable to quarantine file
+    sagan_raw|contains|cased: Unable to quarantine file
   selection_3:
-    appname|cased: TMCM
+    - appname|cased: TMCM
+    - syslog_appname|cased: TMCM
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -32,9 +33,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: LogApplicationControl
+    sagan_raw|contains|cased: LogApplicationControl
   selection_2:
-    appname|cased: TRENDMICRO
+    - appname|cased: TRENDMICRO
+    - syslog_appname|cased: TRENDMICRO
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -55,9 +57,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: LogDeviceControl
+    sagan_raw|contains|cased: LogDeviceControl
   selection_2:
-    appname|cased: TRENDMICRO
+    - appname|cased: TRENDMICRO
+    - syslog_appname|cased: TRENDMICRO
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -78,9 +81,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: LogBehaviorMonitoring
+    sagan_raw|contains|cased: LogBehaviorMonitoring
   selection_2:
-    appname|cased: TRENDMICRO
+    - appname|cased: TRENDMICRO
+    - syslog_appname|cased: TRENDMICRO
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -101,9 +105,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: LogSpyware
+    sagan_raw|contains|cased: LogSpyware
   selection_2:
-    appname|cased: TRENDMICRO
+    - appname|cased: TRENDMICRO
+    - syslog_appname|cased: TRENDMICRO
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -124,9 +129,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: LogUrlFiltering
+    sagan_raw|contains|cased: LogUrlFiltering
   selection_2:
-    appname|cased: TRENDMICRO
+    - appname|cased: TRENDMICRO
+    - syslog_appname|cased: TRENDMICRO
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -147,9 +153,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: LogVirus
+    sagan_raw|contains|cased: LogVirus
   selection_2:
-    appname|cased: TRENDMICRO
+    - appname|cased: TRENDMICRO
+    - syslog_appname|cased: TRENDMICRO
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -170,9 +177,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: LogWebReputation
+    sagan_raw|contains|cased: LogWebReputation
   selection_2:
-    appname|cased: TRENDMICRO
+    - appname|cased: TRENDMICRO
+    - syslog_appname|cased: TRENDMICRO
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -195,7 +203,7 @@ detection:
   selection_1:
     EventID: 26
   selection_2:
-    message|contains|cased: Outbreak when total viruses found exceed
+    sagan_raw|contains|cased: Outbreak when total viruses found exceed
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -218,7 +226,7 @@ detection:
   selection_1:
     EventID: 101
   selection_2:
-    message|contains|cased: Real-time scan found virus
+    sagan_raw|contains|cased: Real-time scan found virus
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

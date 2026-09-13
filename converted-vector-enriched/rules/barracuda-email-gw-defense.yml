@@ -9,14 +9,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Advanced_Threat_Protection"'
+    sagan_raw|contains: '"reason":"Advanced_Threat_Protection"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -39,14 +40,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Anti-Fraud"'
+    sagan_raw|contains: '"reason":"Anti-Fraud"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -69,14 +71,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Antivirus"'
+    sagan_raw|contains: '"reason":"Antivirus"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -99,14 +102,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Attachment_Content"'
+    sagan_raw|contains: '"reason":"Attachment_Content"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -129,14 +133,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Attachment_Filter"'
+    sagan_raw|contains: '"reason":"Attachment_Filter"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -159,14 +164,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Atp_Exempt"'
+    sagan_raw|contains: '"reason":"Atp_Exempt"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -189,14 +195,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Atp_Scan_Inconclusive"'
+    sagan_raw|contains: '"reason":"Atp_Scan_Inconclusive"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -219,14 +226,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Av_Service_Unavailable"'
+    sagan_raw|contains: '"reason":"Av_Service_Unavailable"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -249,14 +257,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Brts"'
+    sagan_raw|contains: '"reason":"Brts"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -279,14 +288,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Barracuda_Reputation"'
+    sagan_raw|contains: '"reason":"Barracuda_Reputation"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -309,14 +319,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Body_Content"'
+    sagan_raw|contains: '"reason":"Body_Content"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -339,14 +350,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Bulk_Email"'
+    sagan_raw|contains: '"reason":"Bulk_Email"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -369,14 +381,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Cloudscan_Service_Unavailable"'
+    sagan_raw|contains: '"reason":"Cloudscan_Service_Unavailable"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -399,14 +412,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Content_Protected"'
+    sagan_raw|contains: '"reason":"Content_Protected"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -429,14 +443,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Content_Url"'
+    sagan_raw|contains: '"reason":"Content_Url"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -459,14 +474,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Dkim"'
+    sagan_raw|contains: '"reason":"Dkim"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -489,14 +505,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Dmarc"'
+    sagan_raw|contains: '"reason":"Dmarc"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -519,14 +536,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Email_Categorization"'
+    sagan_raw|contains: '"reason":"Email_Categorization"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -549,14 +567,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Extortion"'
+    sagan_raw|contains: '"reason":"Extortion"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -579,14 +598,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"From_Address_'
+    sagan_raw|contains: '"reason":"From_Address_'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -609,14 +629,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Geoip_Policies"'
+    sagan_raw|contains: '"reason":"Geoip_Policies"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -639,14 +660,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Header_Content"'
+    sagan_raw|contains: '"reason":"Header_Content"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -669,14 +691,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Ip_Address_Policies"'
+    sagan_raw|contains: '"reason":"Ip_Address_Policies"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -699,14 +722,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Image_Analysis_"'
+    sagan_raw|contains: '"reason":"Image_Analysis_"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -729,14 +753,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Inbound_Tls_Required"'
+    sagan_raw|contains: '"reason":"Inbound_Tls_Required"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -759,14 +784,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Intent_Analysis"'
+    sagan_raw|contains: '"reason":"Intent_Analysis"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -789,14 +815,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Invalid_Recipient"'
+    sagan_raw|contains: '"reason":"Invalid_Recipient"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -819,14 +846,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Language_Policies"'
+    sagan_raw|contains: '"reason":"Language_Policies"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -849,14 +877,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Malformed_"'
+    sagan_raw|contains: '"reason":"Malformed_"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -879,14 +908,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Message_Delivery_Interrupted"'
+    sagan_raw|contains: '"reason":"Message_Delivery_Interrupted"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -909,14 +939,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Message_Too_Large"'
+    sagan_raw|contains: '"reason":"Message_Too_Large"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -939,14 +970,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"No_Ptr_Record_"'
+    sagan_raw|contains: '"reason":"No_Ptr_Record_"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -969,14 +1001,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Office_Protected"'
+    sagan_raw|contains: '"reason":"Office_Protected"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -999,14 +1032,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Password_Protected_Pdf_Filtering"'
+    sagan_raw|contains: '"reason":"Password_Protected_Pdf_Filtering"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1029,14 +1063,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Pending_Scan"'
+    sagan_raw|contains: '"reason":"Pending_Scan"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1059,14 +1094,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Phishing"'
+    sagan_raw|contains: '"reason":"Phishing"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1089,14 +1125,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Possible_Mail_Loop"'
+    sagan_raw|contains: '"reason":"Possible_Mail_Loop"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1119,14 +1156,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Predefined_Attachment_Content"'
+    sagan_raw|contains: '"reason":"Predefined_Attachment_Content"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1149,14 +1187,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Predefined_Body_Content"'
+    sagan_raw|contains: '"reason":"Predefined_Body_Content"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1179,14 +1218,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Predefined_Filter_Exceptions"'
+    sagan_raw|contains: '"reason":"Predefined_Filter_Exceptions"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1209,14 +1249,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Predefined_From_Address"'
+    sagan_raw|contains: '"reason":"Predefined_From_Address"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1239,14 +1280,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Predefined_Header_Content"'
+    sagan_raw|contains: '"reason":"Predefined_Header_Content"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1269,14 +1311,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Predefined_Subject_Content"'
+    sagan_raw|contains: '"reason":"Predefined_Subject_Content"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1299,14 +1342,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Predefined_To/Cc_Address"'
+    sagan_raw|contains: '"reason":"Predefined_To/Cc_Address"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1329,14 +1373,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Rate_Control"'
+    sagan_raw|contains: '"reason":"Rate_Control"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1359,14 +1404,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Realtime Block_List"'
+    sagan_raw|contains: '"reason":"Realtime Block_List"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1389,14 +1435,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Remediated_By_Incident_Response"'
+    sagan_raw|contains: '"reason":"Remediated_By_Incident_Response"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1419,14 +1466,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Remediated_By_Impersonation_Protection"'
+    sagan_raw|contains: '"reason":"Remediated_By_Impersonation_Protection"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1449,14 +1497,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Score"'
+    sagan_raw|contains: '"reason":"Score"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1479,14 +1528,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Security_Awareness_Training"'
+    sagan_raw|contains: '"reason":"Security_Awareness_Training"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1509,14 +1559,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Sender_Email_Address"'
+    sagan_raw|contains: '"reason":"Sender_Email_Address"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1539,14 +1590,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Sender_Policies"'
+    sagan_raw|contains: '"reason":"Sender_Policies"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1569,14 +1621,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Sender_Policy_Framework_(Spf)"'
+    sagan_raw|contains: '"reason":"Sender_Policy_Framework_(Spf)"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1599,14 +1652,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Sender_Spoof_Protection"'
+    sagan_raw|contains: '"reason":"Sender_Spoof_Protection"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1629,14 +1683,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Spam"'
+    sagan_raw|contains: '"reason":"Spam"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1659,14 +1714,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Subject_Content"'
+    sagan_raw|contains: '"reason":"Subject_Content"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1689,14 +1745,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Suspicious"'
+    sagan_raw|contains: '"reason":"Suspicious"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1719,14 +1776,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"System_Sender_Policies"'
+    sagan_raw|contains: '"reason":"System_Sender_Policies"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1749,14 +1807,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"Tls_Required"'
+    sagan_raw|contains: '"reason":"Tls_Required"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1779,14 +1838,15 @@ logsource:
   product: barracuda
 detection:
   selection_1:
-    message|contains: '"reason":"To/Cc_Address"'
+    sagan_raw|contains: '"reason":"To/Cc_Address"'
   filter_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"action":"blocked"'
       - '"action":"quarantined"'
       - '"action":"deferred"'
   selection_3:
-    appname|cased: barracuda_email
+    - appname|cased: barracuda_email
+    - syslog_appname|cased: barracuda_email
   condition: selection_1 and selection_3 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

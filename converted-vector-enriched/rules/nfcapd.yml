@@ -8,11 +8,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: nfcapd
+    - appname|cased: nfcapd
+    - syslog_appname|cased: nfcapd
   selection_2:
-    message|contains|cased: '/2222, protocol: TCP,'
+    sagan_raw|contains|cased: '/2222, protocol: TCP,'
   selection_3:
-    message|contains|cased: 'flags: |.AP...|,'
+    sagan_raw|contains|cased: 'flags: |.AP...|,'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -50,11 +51,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    appname|cased: nfcapd
+    - appname|cased: nfcapd
+    - syslog_appname|cased: nfcapd
   selection_2:
-    message|contains|cased: '/23, protocol: TCP,'
+    sagan_raw|contains|cased: '/23, protocol: TCP,'
   selection_3:
-    message|contains|cased: 'flags: |.AP...|,'
+    sagan_raw|contains|cased: 'flags: |.AP...|,'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

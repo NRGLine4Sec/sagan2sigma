@@ -7,7 +7,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Admin Accessed UniFi Network
+    sagan_raw|contains|cased: Admin Accessed UniFi Network
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -28,9 +28,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Admin Accessed UniFi Network
+    sagan_raw|contains|cased: Admin Accessed UniFi Network
   selection_2:
-    message|contains|cased: opened UniFi Network
+    sagan_raw|contains|cased: opened UniFi Network
   selection_3:
     sagan_bluedot_malicious_1: true
   condition: selection_1 and selection_2 and selection_3
@@ -53,9 +53,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Admin Accessed UniFi Network
+    sagan_raw|contains|cased: Admin Accessed UniFi Network
   selection_2:
-    message|contains|cased: accessed the UniFi OS
+    sagan_raw|contains|cased: accessed the UniFi OS
   selection_3:
     sagan_bluedot_malicious_1: true
   condition: selection_1 and selection_2 and selection_3
@@ -78,7 +78,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: An invitation email to join UniFi Identity has been sent
+    sagan_raw|contains|cased: An invitation email to join UniFi Identity has been sent
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -99,7 +99,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: LAN_WAN]Allow All Traffic
+    sagan_raw|contains|cased: LAN_WAN]Allow All Traffic
   selection_2:
     sagan_bluedot_malicious_2: true
   condition: selection_1 and selection_2
@@ -122,7 +122,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: LOCAL_WAN]Allow All Traffic
+    sagan_raw|contains|cased: LOCAL_WAN]Allow All Traffic
   selection_2:
     sagan_bluedot_malicious_2: true
   condition: selection_1 and selection_2
@@ -145,7 +145,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: VPN_WAN]Allow All Traffic
+    sagan_raw|contains|cased: VPN_WAN]Allow All Traffic
   selection_2:
     sagan_bluedot_malicious_2: true
   condition: selection_1 and selection_2
@@ -168,7 +168,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: WAN_LOCAL]Allow All Traffic
+    sagan_raw|contains|cased: WAN_LOCAL]Allow All Traffic
   selection_2:
     sagan_bluedot_malicious_1: true
   condition: selection_1 and selection_2
@@ -191,7 +191,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: WAN_LAN]Allow All Traffic
+    sagan_raw|contains|cased: WAN_LAN]Allow All Traffic
   selection_2:
     sagan_bluedot_malicious_1: true
   condition: selection_1 and selection_2

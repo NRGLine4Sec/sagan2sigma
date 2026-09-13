@@ -7,14 +7,15 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   selection_2:
     EventID:
       - 4624
       - 528
       - 540
   selection_3:
-    message|contains|cased: 'Logon Type: 10 '
+    sagan_raw|contains|cased: 'Logon Type: 10 '
   selection_4:
     sagan_denylist_1: true
   condition: selection_1 and selection_2 and selection_3 and selection_4
@@ -37,7 +38,8 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   selection_2:
     EventID: 529
   selection_3:
@@ -65,7 +67,8 @@ detection:
   selection_1:
     EventID: 530
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   selection_3:
     sagan_denylist_1: true
   condition: selection_1 and selection_2 and selection_3
@@ -91,9 +94,10 @@ detection:
   selection_1:
     EventID: 531
   filter_2:
-    message|contains|cased: 'User Name: Domain:'
+    sagan_raw|contains|cased: 'User Name: Domain:'
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   selection_4:
     sagan_denylist_1: true
   condition: selection_1 and selection_3 and selection_4 and not filter_2
@@ -119,7 +123,8 @@ detection:
   selection_1:
     EventID: 532
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   selection_3:
     sagan_denylist_1: true
   condition: selection_1 and selection_2 and selection_3
@@ -144,7 +149,8 @@ detection:
   selection_1:
     EventID: 533
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   selection_3:
     sagan_denylist_1: true
   condition: selection_1 and selection_2 and selection_3
@@ -169,11 +175,12 @@ detection:
   selection_1:
     EventID: 539
   filter_2:
-    message|contains|cased: 'User Name: Domain: Logon Type:'
+    sagan_raw|contains|cased: 'User Name: Domain: Logon Type:'
   selection_3:
     sagan_denylist_1: true
   selection_4:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   condition: selection_1 and selection_3 and selection_4 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -200,7 +207,8 @@ detection:
       - 676
       - 681
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   selection_3:
     sagan_denylist_1: true
   condition: selection_1 and selection_2 and selection_3

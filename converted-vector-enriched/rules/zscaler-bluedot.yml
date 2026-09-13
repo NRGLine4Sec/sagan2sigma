@@ -7,11 +7,12 @@ logsource:
   product: zscaler
 detection:
   selection_1:
-    appname|cased: CEF
+    - appname|cased: CEF
+    - syslog_appname|cased: CEF
   selection_2:
-    message|contains|cased: Zscaler
+    sagan_raw|contains|cased: Zscaler
   selection_3:
-    message|contains|cased: act=Allowed
+    sagan_raw|contains|cased: act=Allowed
   bluedot_hit_1:
     sagan_bluedot_malicious_1: true
   bluedot_hit_2:

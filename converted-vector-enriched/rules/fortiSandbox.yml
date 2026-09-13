@@ -9,9 +9,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: type=event
+    sagan_raw|contains|cased: type=event
   selection_2:
-    message|contains: subtype=playbook
+    sagan_raw|contains: subtype=playbook
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -35,9 +35,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: type=event
+    sagan_raw|contains|cased: type=event
   selection_2:
-    message|contains: subtype=incident
+    sagan_raw|contains: subtype=incident
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -61,19 +61,19 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: logid=1015000205
+    sagan_raw|contains|cased: logid=1015000205
   selection_2:
-    message|contains|cased: type=malware
+    sagan_raw|contains|cased: type=malware
   selection_3:
-    message|contains|cased: risk=
+    sagan_raw|contains|cased: risk=
   selection_4:
-    message|contains|cased: 'clientname="mx:'
+    sagan_raw|contains|cased: 'clientname="mx:'
   filter_5:
-    message|contains|cased: On-Demand"
+    sagan_raw|contains|cased: On-Demand"
   filter_6:
-    message|contains|cased: risk="Low Risk"
+    sagan_raw|contains|cased: risk="Low Risk"
   selection_7:
-    message|contains:
+    sagan_raw|contains:
       - ftype="docx"
       - ftype="htm"
       - ftype="html"
@@ -118,17 +118,17 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: logid=1015000205
+    sagan_raw|contains|cased: logid=1015000205
   selection_2:
-    message|contains|cased: type=malware
+    sagan_raw|contains|cased: type=malware
   selection_3:
-    message|contains|cased: rating=
+    sagan_raw|contains|cased: rating=
   filter_4:
-    message|contains|cased: On-Demand"
+    sagan_raw|contains|cased: On-Demand"
   filter_5:
-    message|contains|cased: rating=Low
+    sagan_raw|contains|cased: rating=Low
   selection_6:
-    message|contains:
+    sagan_raw|contains:
       - ftype="docx"
       - ftype="htm"
       - ftype="html"
@@ -172,19 +172,19 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: logid=1015000205
+    sagan_raw|contains|cased: logid=1015000205
   selection_2:
-    message|contains|cased: type=malware
+    sagan_raw|contains|cased: type=malware
   selection_3:
-    message|contains|cased: ftype="WEBLink"
+    sagan_raw|contains|cased: ftype="WEBLink"
   selection_4:
-    message|contains|cased: url=
+    sagan_raw|contains|cased: url=
   filter_5:
-    message|contains|cased: stype="On-Demand"
+    sagan_raw|contains|cased: stype="On-Demand"
   filter_6:
-    message|contains|cased: risk="Low Risk"
+    sagan_raw|contains|cased: risk="Low Risk"
   selection_7:
-    message|contains:
+    sagan_raw|contains:
       - .docx"
       - .htm"
       - .html"
@@ -228,21 +228,21 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: logid=1015000205
+    sagan_raw|contains|cased: logid=1015000205
   selection_2:
-    message|contains|cased: type=malware
+    sagan_raw|contains|cased: type=malware
   filter_3:
-    message|contains|cased: 'clientname="mx:'
+    sagan_raw|contains|cased: 'clientname="mx:'
   filter_4:
-    message|contains|cased: ftype="WEBLink"
+    sagan_raw|contains|cased: ftype="WEBLink"
   filter_5:
-    message|contains|cased: stype="On-Demand"
+    sagan_raw|contains|cased: stype="On-Demand"
   filter_6:
-    message|contains|cased: rating=Low
+    sagan_raw|contains|cased: rating=Low
   filter_7:
-    message|contains|cased: risk="Low Risk"
+    sagan_raw|contains|cased: risk="Low Risk"
   selection_8:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - risk=
       - rating=
   condition: selection_1 and selection_2 and selection_8 and not (filter_3 or filter_4 or filter_5 or
@@ -269,9 +269,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: type=event
+    sagan_raw|contains|cased: type=event
   selection_2:
-    message|contains|cased: level=critical
+    sagan_raw|contains|cased: level=critical
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -295,9 +295,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: type=event
+    sagan_raw|contains|cased: type=event
   selection_2:
-    message|contains|cased: level=error
+    sagan_raw|contains|cased: level=error
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

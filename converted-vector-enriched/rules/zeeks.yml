@@ -7,11 +7,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SSH::Password_Guessing
+    sagan_raw|contains|cased: SSH::Password_Guessing
   selection_2:
-    appname|cased:
-      - bro
-      - zeek
+    - appname|cased:
+        - bro
+        - zeek
+    - syslog_appname|cased:
+        - bro
+        - zeek
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -35,11 +38,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: TeamCymruMalwareHashRegistry::Match
+    sagan_raw|contains|cased: TeamCymruMalwareHashRegistry::Match
   selection_2:
-    appname|cased:
-      - bro
-      - zeek
+    - appname|cased:
+        - bro
+        - zeek
+    - syslog_appname|cased:
+        - bro
+        - zeek
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -60,11 +66,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SSH::Login_By_Password_Guesser
+    sagan_raw|contains|cased: SSH::Login_By_Password_Guesser
   selection_2:
-    appname|cased:
-      - bro
-      - zeek
+    - appname|cased:
+        - bro
+        - zeek
+    - syslog_appname|cased:
+        - bro
+        - zeek
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -85,11 +94,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SSH::Watched_Country_Login
+    sagan_raw|contains|cased: SSH::Watched_Country_Login
   selection_2:
-    appname|cased:
-      - bro
-      - zeek
+    - appname|cased:
+        - bro
+        - zeek
+    - syslog_appname|cased:
+        - bro
+        - zeek
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -111,11 +123,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: SSL::Invalid_Server_Cert
+    sagan_raw|contains|cased: SSL::Invalid_Server_Cert
   selection_2:
-    appname|cased:
-      - bro
-      - zeek
+    - appname|cased:
+        - bro
+        - zeek
+    - syslog_appname|cased:
+        - bro
+        - zeek
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -153,11 +168,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: unable to get local issuer certificate
+    sagan_raw|contains|cased: unable to get local issuer certificate
   selection_2:
-    appname|cased:
-      - bro
-      - zeek
+    - appname|cased:
+        - bro
+        - zeek
+    - syslog_appname|cased:
+        - bro
+        - zeek
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -196,11 +214,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Bitcoin::Miner
+    sagan_raw|contains|cased: Bitcoin::Miner
   selection_2:
-    appname|cased:
-      - bro
-      - zeek
+    - appname|cased:
+        - bro
+        - zeek
+    - syslog_appname|cased:
+        - bro
+        - zeek
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -224,11 +245,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Lurk0::Lurk0_Client
+    sagan_raw|contains|cased: Lurk0::Lurk0_Client
   selection_2:
-    appname|cased:
-      - bro
-      - zeek
+    - appname|cased:
+        - bro
+        - zeek
+    - syslog_appname|cased:
+        - bro
+        - zeek
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -251,11 +275,14 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Sidejacking
+    sagan_raw|contains|cased: Sidejacking
   selection_2:
-    appname|cased:
-      - bro
-      - zeek
+    - appname|cased:
+        - bro
+        - zeek
+    - syslog_appname|cased:
+        - bro
+        - zeek
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -276,14 +303,17 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Scan::Port_Scan
+    sagan_raw|contains|cased: Scan::Port_Scan
   selection_2:
-    message|re|s|m|i: ((192)\.(168)\.(\d+)\.(\d+)|(10)\.(\d+)\.(\d+)\.(\d+)|(172)\.(1[6,7,8,9])\.(\d+)\.(\d+)|(172)\.(2[0,1,2,3,4,5,6,7,8,9])\.(\d+)\.(\d+)|(172)\.(3[0,1])\.(\d+)\.(\d+))
+    sagan_raw|re|s|m|i: ((192)\.(168)\.(\d+)\.(\d+)|(10)\.(\d+)\.(\d+)\.(\d+)|(172)\.(1[6,7,8,9])\.(\d+)\.(\d+)|(172)\.(2[0,1,2,3,4,5,6,7,8,9])\.(\d+)\.(\d+)|(172)\.(3[0,1])\.(\d+)\.(\d+))
       scanned at least \d+ unique ports
   selection_3:
-    appname|cased:
-      - bro
-      - zeek
+    - appname|cased:
+        - bro
+        - zeek
+    - syslog_appname|cased:
+        - bro
+        - zeek
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

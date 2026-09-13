@@ -2642,11 +2642,12 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: Clipboard
+    - appname|cased: Clipboard
+    - syslog_appname|cased: Clipboard
   selection_2:
-    message|contains: rundll32.exe
+    sagan_raw|contains: rundll32.exe
   filter_3:
-    message|contains: .dll,
+    sagan_raw|contains: .dll,
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2670,13 +2671,16 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased:
-      - '*Sysmon'
-      - '*Security'
+    - appname|cased:
+        - '*Sysmon'
+        - '*Security'
+    - syslog_appname|cased:
+        - '*Sysmon'
+        - '*Security'
   selection_2:
-    message|contains: 'CommandLine: C:\\\\Windows\\\\system32\\\\rundll32.exe'
+    sagan_raw|contains: 'CommandLine: C:\\\\Windows\\\\system32\\\\rundll32.exe'
   selection_3:
-    message|contains|cased: ',DllRegisterServer'
+    sagan_raw|contains|cased: ',DllRegisterServer'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2698,11 +2702,14 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased:
-      - '*Security'
-      - '*Sysmon'
+    - appname|cased:
+        - '*Security'
+        - '*Sysmon'
+    - syslog_appname|cased:
+        - '*Security'
+        - '*Sysmon'
   selection_2:
-    message|contains: rclone
+    sagan_raw|contains: rclone
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2929,15 +2936,18 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased:
-      - '*System*'
-      - '*Service*'
+    - appname|cased:
+        - '*System*'
+        - '*Service*'
+    - syslog_appname|cased:
+        - '*System*'
+        - '*Service*'
   selection_2:
-    message|contains: EventID="7045"
+    sagan_raw|contains: EventID="7045"
   selection_3:
-    message|contains|cased: ServiceName="Fax"
+    sagan_raw|contains|cased: ServiceName="Fax"
   selection_4:
-    message|contains|cased: A service was installed in the system
+    sagan_raw|contains|cased: A service was installed in the system
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

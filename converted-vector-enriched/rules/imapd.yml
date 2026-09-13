@@ -8,9 +8,10 @@ logsource:
   service: imap
 detection:
   selection_1:
-    message|re|i: Login failed user=|AUTHENTICATE LOGIN failure
+    sagan_raw|re|i: Login failed user=|AUTHENTICATE LOGIN failure
   selection_2:
-    appname|cased: imapd*
+    - appname|cased: imapd*
+    - syslog_appname|cased: imapd*
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -32,9 +33,10 @@ logsource:
   service: imap
 detection:
   selection_1:
-    message|contains|cased: Authenticated user=
+    sagan_raw|contains|cased: Authenticated user=
   selection_2:
-    appname|cased: imapd*
+    - appname|cased: imapd*
+    - syslog_appname|cased: imapd*
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -56,9 +58,10 @@ logsource:
   service: imap
 detection:
   selection_1:
-    message|contains|cased: Logout user=
+    sagan_raw|contains|cased: Logout user=
   selection_2:
-    appname|cased: imapd*
+    - appname|cased: imapd*
+    - syslog_appname|cased: imapd*
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -80,9 +83,10 @@ logsource:
   service: imap
 detection:
   selection_1:
-    message|contains|cased: Login excessive login
+    sagan_raw|contains|cased: Login excessive login
   selection_2:
-    appname|cased: imapd*
+    - appname|cased: imapd*
+    - syslog_appname|cased: imapd*
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -105,9 +109,10 @@ logsource:
   service: imap
 detection:
   selection_1:
-    message|re|i: Login failed user=|AUTHENTICATE LOGIN failure
+    sagan_raw|re|i: Login failed user=|AUTHENTICATE LOGIN failure
   selection_2:
-    appname|cased: imapd*
+    - appname|cased: imapd*
+    - syslog_appname|cased: imapd*
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

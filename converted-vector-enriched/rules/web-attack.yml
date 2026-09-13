@@ -7,7 +7,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: '0x31303235343830303536'
+    sagan_raw|contains|cased: '0x31303235343830303536'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -28,7 +28,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains: 0%27%20union%20all%20select%20
+    sagan_raw|contains: 0%27%20union%20all%20select%20
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -49,7 +49,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains: '%20and%20%27x%27%3D%27x'
+    sagan_raw|contains: '%20and%20%27x%27%3D%27x'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -70,7 +70,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains: '%20and%20%271%27%3D%271'
+    sagan_raw|contains: '%20and%20%271%27%3D%271'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -91,9 +91,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: concat
+    sagan_raw|contains|cased: concat
   selection_2:
-    message|contains: unhex
+    sagan_raw|contains: unhex
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -117,9 +117,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: Absinthe
+    sagan_raw|contains|cased: Absinthe
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -143,9 +143,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains: bsqlbf
+    sagan_raw|contains: bsqlbf
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -170,9 +170,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: Cisco-torch
+    sagan_raw|contains|cased: Cisco-torch
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -193,9 +193,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: core-project/1.0
+    sagan_raw|contains|cased: core-project/1.0
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -218,11 +218,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains: GET
+    sagan_raw|contains: GET
   selection_2:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_3:
-    message|contains: crimscanner
+    sagan_raw|contains: crimscanner
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -247,9 +247,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: DAV.pm
+    sagan_raw|contains|cased: DAV.pm
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -273,9 +273,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: DirBuster
+    sagan_raw|contains|cased: DirBuster
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -299,9 +299,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: pymills-spider
+    sagan_raw|contains|cased: pymills-spider
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -324,9 +324,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: get-minimal
+    sagan_raw|contains|cased: get-minimal
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -350,9 +350,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: Grabber
+    sagan_raw|contains|cased: Grabber
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -376,13 +376,13 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: Mozilla/5.0
+    sagan_raw|contains|cased: Mozilla/5.0
   selection_3:
-    message|contains: Grendel-Scan
+    sagan_raw|contains: Grendel-Scan
   selection_4:
-    message|contains: http://www.grendel-scan.com
+    sagan_raw|contains: http://www.grendel-scan.com
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -406,15 +406,15 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains: GET
+    sagan_raw|contains: GET
   selection_2:
-    message|contains|cased: HTTP/1.0
+    sagan_raw|contains|cased: HTTP/1.0
   selection_3:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_4:
-    message|contains|cased: Mozilla
+    sagan_raw|contains|cased: Mozilla
   selection_5:
-    message|contains|cased: 4.75 [en] (Windows NT 5.0
+    sagan_raw|contains|cased: 4.75 [en] (Windows NT 5.0
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -438,9 +438,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: prog.CustomCrawler
+    sagan_raw|contains|cased: prog.CustomCrawler
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -464,9 +464,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: Mysqloit
+    sagan_raw|contains|cased: Mysqloit
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -489,9 +489,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: Nmap NSE
+    sagan_raw|contains|cased: Nmap NSE
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -514,11 +514,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: Mozilla/5.0
+    sagan_raw|contains|cased: Mozilla/5.0
   selection_3:
-    message|contains: Nmap Scripting Engine
+    sagan_raw|contains: Nmap Scripting Engine
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -542,19 +542,19 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains: User-Agent
+    sagan_raw|contains: User-Agent
   selection_2:
-    message|contains: Nessus
+    sagan_raw|contains: Nessus
   filter_3:
-    message|contains: inessus
+    sagan_raw|contains: inessus
   filter_4:
-    message|contains: www.nessus.org
+    sagan_raw|contains: www.nessus.org
   filter_5:
-    message|contains: Rule
+    sagan_raw|contains: Rule
   filter_6:
-    message|contains|cased: drop
+    sagan_raw|contains|cased: drop
   filter_7:
-    message|contains: tmm
+    sagan_raw|contains: tmm
   condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6 or filter_7)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -577,9 +577,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: ' Netsparker'
+    sagan_raw|contains|cased: ' Netsparker'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -603,9 +603,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: Nikto
+    sagan_raw|contains|cased: Nikto
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -629,9 +629,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: Paros
+    sagan_raw|contains|cased: Paros
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -655,9 +655,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: uil2pn
+    sagan_raw|contains|cased: uil2pn
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -682,11 +682,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: SQL Power Injector
+    sagan_raw|contains|cased: SQL Power Injector
   selection_3:
-    message|contains|cased: Security tool (Make sure it is used with the administrator consent)
+    sagan_raw|contains|cased: Security tool (Make sure it is used with the administrator consent)
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -710,9 +710,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: sqlmap
+    sagan_raw|contains|cased: sqlmap
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -737,9 +737,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: Mozilla/5.0 SF
+    sagan_raw|contains|cased: Mozilla/5.0 SF
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -764,13 +764,13 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: GET
+    sagan_raw|contains|cased: GET
   selection_2:
-    message|contains|cased: .old
+    sagan_raw|contains|cased: .old
   selection_3:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_4:
-    message|contains|cased: Mozilla/5.0 SF/
+    sagan_raw|contains|cased: Mozilla/5.0 SF/
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -794,9 +794,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains: Springenwerk
+    sagan_raw|contains: Springenwerk
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -819,11 +819,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains: bot/
+    sagan_raw|contains: bot/
   filter_3:
-    message|contains: robots.txt
+    sagan_raw|contains: robots.txt
   condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -848,9 +848,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: Toata dragostea
+    sagan_raw|contains|cased: Toata dragostea
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -873,19 +873,19 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains: GET
+    sagan_raw|contains: GET
   selection_2:
-    message|contains: /manager/html
+    sagan_raw|contains: /manager/html
   selection_3:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_4:
-    message|contains|cased: Mozilla/3.0
+    sagan_raw|contains|cased: Mozilla/3.0
   selection_5:
-    message|contains|cased: Indy Library)
+    sagan_raw|contains|cased: Indy Library)
   selection_6:
-    message|contains|cased: Authorization
+    sagan_raw|contains|cased: Authorization
   selection_7:
-    message|contains|cased: Basic
+    sagan_raw|contains|cased: Basic
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
     and selection_7
 falsepositives:
@@ -910,11 +910,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains: SQL
+    sagan_raw|contains: SQL
   selection_3:
-    message|contains: Inject
+    sagan_raw|contains: Inject
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -938,9 +938,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: w3af.sourceforge.net
+    sagan_raw|contains|cased: w3af.sourceforge.net
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -964,11 +964,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: /ServiceDefinition
+    sagan_raw|contains|cased: /ServiceDefinition
   selection_2:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_3:
-    message|contains|cased: Python-urllib
+    sagan_raw|contains|cased: Python-urllib
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -992,15 +992,15 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: GET
+    sagan_raw|contains|cased: GET
   selection_2:
-    message|contains|cased: \?http
+    sagan_raw|contains|cased: \?http
   selection_3:
-    message|contains: //www.google.
+    sagan_raw|contains: //www.google.
   selection_4:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_5:
-    message|contains|cased: Python-httplib2
+    sagan_raw|contains|cased: Python-httplib2
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1025,9 +1025,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains: webcollage/1.135a
+    sagan_raw|contains: webcollage/1.135a
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1051,9 +1051,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: webshag
+    sagan_raw|contains|cased: webshag
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1077,9 +1077,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: WhatWeb
+    sagan_raw|contains|cased: WhatWeb
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1103,19 +1103,19 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: union+select
+    sagan_raw|contains|cased: union+select
   selection_2:
-    message|contains|cased: select+user
+    sagan_raw|contains|cased: select+user
   selection_3:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_4:
-    message|contains|cased: Mozilla/4.0 (compatible
+    sagan_raw|contains|cased: Mozilla/4.0 (compatible
   selection_5:
-    message|contains|cased: MSIE 6.0
+    sagan_raw|contains|cased: MSIE 6.0
   selection_6:
-    message|contains|cased: Windows NT 5.0
+    sagan_raw|contains|cased: Windows NT 5.0
   selection_7:
-    message|contains|cased: MyIE2
+    sagan_raw|contains|cased: MyIE2
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
     and selection_7
 falsepositives:
@@ -1139,9 +1139,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: Made by ZmEu
+    sagan_raw|contains|cased: Made by ZmEu
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1165,19 +1165,19 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Host
+    sagan_raw|contains|cased: Host
   selection_2:
-    message|contains|cased: localhost
+    sagan_raw|contains|cased: localhost
   selection_3:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_4:
-    message|contains|cased: Mozilla/5.0 (Windows
+    sagan_raw|contains|cased: Mozilla/5.0 (Windows
   selection_5:
-    message|contains|cased: Windows NT 5.1
+    sagan_raw|contains|cased: Windows NT 5.1
   selection_6:
-    message|contains|cased: en-GB
+    sagan_raw|contains|cased: en-GB
   selection_7:
-    message|contains|cased: Gecko/20061204 Firefox/2.0.0.1
+    sagan_raw|contains|cased: Gecko/20061204 Firefox/2.0.0.1
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
     and selection_7
 falsepositives:
@@ -1201,9 +1201,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains: Mozilla/4.0 (Hydra)
+    sagan_raw|contains: Mozilla/4.0 (Hydra)
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1228,9 +1228,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: inspath [path disclosure finder
+    sagan_raw|contains|cased: inspath [path disclosure finder
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1254,9 +1254,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains: Teh Forest Lobster
+    sagan_raw|contains: Teh Forest Lobster
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1280,9 +1280,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains: DotDotPwn
+    sagan_raw|contains: DotDotPwn
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1306,11 +1306,11 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: ' Havij'
+    sagan_raw|contains|cased: ' Havij'
   selection_3:
-    message|contains|cased: 'Connection: '
+    sagan_raw|contains|cased: 'Connection: '
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1333,9 +1333,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: OpenVAS
+    sagan_raw|contains|cased: OpenVAS
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1356,9 +1356,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: (internal dummy connection)
+    sagan_raw|contains|cased: (internal dummy connection)
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1381,9 +1381,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains: DominoHunter
+    sagan_raw|contains: DominoHunter
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1407,11 +1407,11 @@ logsource:
   product: syslog
 detection:
   filter_1:
-    message|contains|cased: Vegas
+    sagan_raw|contains|cased: Vegas
   selection_2:
-    message|contains|cased: Vega
+    sagan_raw|contains|cased: Vega
   selection_3:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   condition: selection_2 and selection_3 and not filter_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1434,7 +1434,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: 'FHScan Core '
+    sagan_raw|contains|cased: 'FHScan Core '
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1455,9 +1455,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: User-Agent
+    sagan_raw|contains|cased: User-Agent
   selection_2:
-    message|contains|cased: w3af.sf.net
+    sagan_raw|contains|cased: w3af.sf.net
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1480,9 +1480,9 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: index.php\?cmd=
+    sagan_raw|contains|cased: index.php\?cmd=
   selection_2:
-    message|contains|cased: page=
+    sagan_raw|contains|cased: page=
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1505,7 +1505,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: index.php\?system=
+    sagan_raw|contains|cased: index.php\?system=
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1528,7 +1528,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: /wp-login.php
+    sagan_raw|contains|cased: /wp-login.php
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1551,7 +1551,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: /wp-login.php
+    sagan_raw|contains|cased: /wp-login.php
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1574,7 +1574,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: /include/config.php
+    sagan_raw|contains|cased: /include/config.php
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1597,7 +1597,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: /changelog.php
+    sagan_raw|contains|cased: /changelog.php
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1620,7 +1620,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: robots.txt
+    sagan_raw|contains|cased: robots.txt
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1643,7 +1643,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: ;--
+    sagan_raw|contains|cased: ;--
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1666,7 +1666,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: /sites/default/settings.php
+    sagan_raw|contains|cased: /sites/default/settings.php
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1689,7 +1689,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: /configuration.php
+    sagan_raw|contains|cased: /configuration.php
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1712,7 +1712,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: /db.php
+    sagan_raw|contains|cased: /db.php
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1735,7 +1735,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: /inc/mysql.php
+    sagan_raw|contains|cased: /inc/mysql.php
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1758,7 +1758,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: /iisamples
+    sagan_raw|contains|cased: /iisamples
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1782,17 +1782,17 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: 'jndi:'
+    sagan_raw|contains|cased: 'jndi:'
   selection_2:
-    message|contains|cased: '{'
+    sagan_raw|contains|cased: '{'
   selection_3:
-    message|contains|cased: ' 200 '
+    sagan_raw|contains|cased: ' 200 '
   filter_4:
-    message|contains: Rule
+    sagan_raw|contains: Rule
   filter_5:
-    message|contains|cased: drop
+    sagan_raw|contains|cased: drop
   filter_6:
-    message|contains: tmm
+    sagan_raw|contains: tmm
   condition: selection_1 and selection_2 and selection_3 and not (filter_4 or filter_5 or filter_6)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1816,13 +1816,13 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: jndi
+    sagan_raw|contains|cased: jndi
   selection_2:
-    message|contains: '%3A'
+    sagan_raw|contains: '%3A'
   selection_3:
-    message|contains: '%7B'
+    sagan_raw|contains: '%7B'
   selection_4:
-    message|contains|cased: ' 200 '
+    sagan_raw|contains|cased: ' 200 '
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

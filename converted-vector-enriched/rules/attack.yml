@@ -7,9 +7,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|re: gethostbyname error for \W+
+    sagan_raw|re: gethostbyname error for \W+
   selection_2:
-    appname|cased: rpc.statd
+    - appname|cased: rpc.statd
+    - syslog_appname|cased: rpc.statd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -30,9 +31,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|re: \S+ FTP LOGIN FROM \.+ 0bin0sh
+    sagan_raw|re: \S+ FTP LOGIN FROM \.+ 0bin0sh
   selection_2:
-    appname|cased: ftpd
+    - appname|cased: ftpd
+    - syslog_appname|cased: ftpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -53,7 +55,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: \?\?\?\?\?\?\?\?\?\?\?\?\?\?\?\?\?\?\?\?\?
+    sagan_raw|contains|cased: \?\?\?\?\?\?\?\?\?\?\?\?\?\?\?\?\?\?\?\?\?
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -75,7 +77,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains: changed by null
+    sagan_raw|contains: changed by null
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -96,7 +98,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: '@@@@@@@@@@@@@@@@@@@@@@@@@'
+    sagan_raw|contains|cased: '@@@@@@@@@@@@@@@@@@@@@@@@@'
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -117,11 +119,12 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: Segmentation Fault
+    sagan_raw|contains|cased: Segmentation Fault
   selection_2:
-    message|contains|cased: core dumped
+    sagan_raw|contains|cased: core dumped
   selection_3:
-    appname|cased: cachefsd
+    - appname|cased: cachefsd
+    - syslog_appname|cased: cachefsd
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -142,7 +145,7 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains: attempt to execute code on stack by
+    sagan_raw|contains: attempt to execute code on stack by
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

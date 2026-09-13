@@ -7,9 +7,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: ' [Warning] '
+    sagan_raw|contains|cased: ' [Warning] '
   selection_2:
-    appname|cased: librenms
+    - appname|cased: librenms
+    - syslog_appname|cased: librenms
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -30,9 +31,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: ' [Critical] '
+    sagan_raw|contains|cased: ' [Critical] '
   selection_2:
-    appname|cased: librenms
+    - appname|cased: librenms
+    - syslog_appname|cased: librenms
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

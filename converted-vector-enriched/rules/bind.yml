@@ -8,9 +8,10 @@ logsource:
   service: named
 detection:
   selection_1:
-    message|contains|cased: dropping source port zero packet from
+    sagan_raw|contains|cased: dropping source port zero packet from
   selection_2:
-    appname|cased: named
+    - appname|cased: named
+    - syslog_appname|cased: named
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -32,9 +33,10 @@ logsource:
   service: named
 detection:
   selection_1:
-    message|contains|cased: denied AXFR from
+    sagan_raw|contains|cased: denied AXFR from
   selection_2:
-    appname|cased: named
+    - appname|cased: named
+    - syslog_appname|cased: named
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -56,9 +58,10 @@ logsource:
   service: named
 detection:
   selection_1:
-    message|re: denied update from|unapproved update from
+    sagan_raw|re: denied update from|unapproved update from
   selection_2:
-    appname|cased: named
+    - appname|cased: named
+    - syslog_appname|cased: named
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -80,9 +83,10 @@ logsource:
   service: named
 detection:
   selection_1:
-    message|contains|cased: refused notify from non-master
+    sagan_raw|contains|cased: refused notify from non-master
   selection_2:
-    appname|cased: named
+    - appname|cased: named
+    - syslog_appname|cased: named
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -104,9 +108,10 @@ logsource:
   service: named
 detection:
   selection_1:
-    message|re: update \S+ denied
+    sagan_raw|re: update \S+ denied
   selection_2:
-    appname|cased: named
+    - appname|cased: named
+    - syslog_appname|cased: named
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -129,9 +134,10 @@ logsource:
   service: named
 detection:
   selection_1:
-    message|re: ^zone \S+ serial number \S+ received from master \S+ \S ours
+    sagan_raw|re: ^zone \S+ serial number \S+ received from master \S+ \S ours
   selection_2:
-    appname|cased: named
+    - appname|cased: named
+    - syslog_appname|cased: named
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -153,9 +159,10 @@ logsource:
   service: named
 detection:
   selection_1:
-    message|re: '^zone \S+: expired'
+    sagan_raw|re: '^zone \S+: expired'
   selection_2:
-    appname|cased: named
+    - appname|cased: named
+    - syslog_appname|cased: named
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -177,9 +184,10 @@ logsource:
   service: named
 detection:
   selection_1:
-    message|contains|cased: version.bind CH TXT
+    sagan_raw|contains|cased: version.bind CH TXT
   selection_2:
-    appname|cased: named
+    - appname|cased: named
+    - syslog_appname|cased: named
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

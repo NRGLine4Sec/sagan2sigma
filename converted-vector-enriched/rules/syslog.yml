@@ -8,11 +8,13 @@ logsource:
   service: syslog
 detection:
   selection_1:
-    message|contains|cased: Redirect from
+    sagan_raw|contains|cased: Redirect from
   selection_2:
-    appname|cased: Redirect
+    - appname|cased: Redirect
+    - syslog_appname|cased: Redirect
   selection_3:
-    facility: kern
+    - facility: kern
+    - syslog_facility: kern
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -34,11 +36,13 @@ logsource:
   service: syslog
 detection:
   selection_1:
-    message|contains|cased: Advised path
+    sagan_raw|contains|cased: Advised path
   selection_2:
-    appname|cased: Advised
+    - appname|cased: Advised
+    - syslog_appname|cased: Advised
   selection_3:
-    facility: kern
+    - facility: kern
+    - syslog_facility: kern
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -60,9 +64,10 @@ logsource:
   service: syslog
 detection:
   selection_1:
-    message|contains|cased: respawning too fast
+    sagan_raw|contains|cased: respawning too fast
   selection_2:
-    appname|cased: init
+    - appname|cased: init
+    - syslog_appname|cased: init
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -85,11 +90,13 @@ logsource:
   service: syslog
 detection:
   selection_1:
-    message|contains|cased: martian source
+    sagan_raw|contains|cased: martian source
   selection_2:
-    appname|cased: martian
+    - appname|cased: martian
+    - syslog_appname|cased: martian
   selection_3:
-    facility: kern
+    - facility: kern
+    - syslog_facility: kern
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -111,27 +118,27 @@ logsource:
   service: syslog
 detection:
   selection_1:
-    message|re|i: ' fatal |segmentation fault| corrupt '
+    sagan_raw|re|i: ' fatal |segmentation fault| corrupt '
   filter_2:
-    message|contains|cased: 'File Path: '
+    sagan_raw|contains|cased: 'File Path: '
   filter_3:
-    message|contains|cased: '36888: '
+    sagan_raw|contains|cased: '36888: '
   filter_4:
-    message|contains: subject
+    sagan_raw|contains: subject
   filter_5:
-    message|contains|cased: '36887: '
+    sagan_raw|contains|cased: '36887: '
   filter_6:
-    message|contains|cased: Phoenix BIOS
+    sagan_raw|contains|cased: Phoenix BIOS
   filter_7:
-    message|contains|cased: GET
+    sagan_raw|contains|cased: GET
   filter_8:
-    message|contains: heart attack
+    sagan_raw|contains: heart attack
   filter_9:
-    message|contains|cased: alert tcp
+    sagan_raw|contains|cased: alert tcp
   filter_10:
-    message|contains|cased: alert http
+    sagan_raw|contains|cased: alert http
   filter_11:
-    message|contains:
+    sagan_raw|contains:
       - abcnews
       - cnn
       - cbsnews
@@ -160,7 +167,7 @@ logsource:
   service: syslog
 detection:
   selection_1:
-    message|re|i: file system full|No space left on device
+    sagan_raw|re|i: file system full|No space left on device
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -184,23 +191,23 @@ logsource:
   service: syslog
 detection:
   filter_1:
-    message|contains: TACACS
+    sagan_raw|contains: TACACS
   filter_2:
-    message|contains|cased: '$ Session ID:'
+    sagan_raw|contains|cased: '$ Session ID:'
   filter_3:
-    message|contains|cased: access denied by ACL
+    sagan_raw|contains|cased: access denied by ACL
   filter_4:
-    message|contains|cased: server certificate authentication failed
+    sagan_raw|contains|cased: server certificate authentication failed
   filter_5:
-    message|contains|cased: Kerberos
+    sagan_raw|contains|cased: Kerberos
   filter_6:
-    message|contains|cased: 'IPSEC: Received an ESP packet'
+    sagan_raw|contains|cased: 'IPSEC: Received an ESP packet'
   filter_7:
-    message|contains|cased: reason="IEEE 802.1X authentication failed
+    sagan_raw|contains|cased: reason="IEEE 802.1X authentication failed
   filter_8:
-    message|contains|cased: session.token.rotate
+    sagan_raw|contains|cased: session.token.rotate
   selection_9:
-    message|re|i: failed to authorize|failed authentication|wrong password given|repeated login failures|authentication
+    sagan_raw|re|i: failed to authorize|failed authentication|wrong password given|repeated login failures|authentication
       failed|authentication failures|access denied|access not allowed|failed to authenticate
   condition: selection_9 and not (filter_1 or filter_2 or filter_3 or filter_4 or filter_5 or filter_6
     or filter_7 or filter_8)
@@ -240,7 +247,7 @@ logsource:
   service: syslog
 detection:
   selection_1:
-    message|re: ILLEGAL ROOT LOGIN|ROOT LOGIN REFUSED
+    sagan_raw|re: ILLEGAL ROOT LOGIN|ROOT LOGIN REFUSED
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -262,7 +269,7 @@ logsource:
   service: syslog
 detection:
   selection_1:
-    message|re|i: refused connect from|libwrap refused connection|connection from \S+ denied
+    sagan_raw|re|i: refused connect from|libwrap refused connection|connection from \S+ denied
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -284,7 +291,7 @@ logsource:
   service: syslog
 detection:
   selection_1:
-    message|contains: ROOT LOGIN  on
+    sagan_raw|contains: ROOT LOGIN  on
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -306,9 +313,10 @@ logsource:
   service: syslog
 detection:
   selection_1:
-    message|contains|cased: Oversized packet received from
+    sagan_raw|contains|cased: Oversized packet received from
   selection_2:
-    facility: kern
+    - facility: kern
+    - syslog_facility: kern
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -330,9 +338,10 @@ logsource:
   service: syslog
 detection:
   selection_1:
-    message|re|i: Promiscuous mode enabled|device \S+ entered promiscuous mode
+    sagan_raw|re|i: Promiscuous mode enabled|device \S+ entered promiscuous mode
   selection_2:
-    facility: kern
+    - facility: kern
+    - syslog_facility: kern
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -380,9 +389,10 @@ logsource:
   service: syslog
 detection:
   selection_1:
-    message|contains: kernel log daemon terminating
+    sagan_raw|contains: kernel log daemon terminating
   selection_2:
-    facility: kern
+    - facility: kern
+    - syslog_facility: kern
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -404,11 +414,14 @@ logsource:
   service: syslog
 detection:
   selection_1:
-    message|contains: new group
+    sagan_raw|contains: new group
   selection_2:
-    appname|cased:
-      - useradd
-      - adduser
+    - appname|cased:
+        - useradd
+        - adduser
+    - syslog_appname|cased:
+        - useradd
+        - adduser
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -430,7 +443,7 @@ logsource:
   service: syslog
 detection:
   selection_1:
-    message|re|i: delete user|account deleted|remove group
+    sagan_raw|re|i: delete user|account deleted|remove group
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -452,7 +465,7 @@ logsource:
   service: syslog
 detection:
   selection_1:
-    message|contains: changed user
+    sagan_raw|contains: changed user
   condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -474,9 +487,10 @@ logsource:
   service: syslog
 detection:
   selection_1:
-    appname|cased: syslog-ng
+    - appname|cased: syslog-ng
+    - syslog_appname|cased: syslog-ng
   selection_2:
-    message|contains|cased: I/O error occurred while writing
+    sagan_raw|contains|cased: I/O error occurred while writing
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -498,9 +512,10 @@ logsource:
   service: syslog
 detection:
   selection_1:
-    appname|cased: syslog-ng
+    - appname|cased: syslog-ng
+    - syslog_appname|cased: syslog-ng
   selection_2:
-    message|contains|cased: Suspending write operation
+    sagan_raw|contains|cased: Suspending write operation
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -522,11 +537,12 @@ logsource:
   service: syslog
 detection:
   selection_1:
-    message|contains|cased: scsi
+    sagan_raw|contains|cased: scsi
   selection_2:
-    message|contains|cased: task abort
+    sagan_raw|contains|cased: task abort
   selection_3:
-    appname|cased: kernel
+    - appname|cased: kernel
+    - syslog_appname|cased: kernel
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -548,9 +564,10 @@ logsource:
   service: syslog
 detection:
   selection_1:
-    message|contains: starting ssh (count 25)
+    sagan_raw|contains: starting ssh (count 25)
   selection_2:
-    facility: kern
+    - facility: kern
+    - syslog_facility: kern
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -572,9 +589,10 @@ logsource:
   service: syslog
 detection:
   selection_1:
-    message|contains: starting ssh (count 50)
+    sagan_raw|contains: starting ssh (count 50)
   selection_2:
-    facility: kern
+    - facility: kern
+    - syslog_facility: kern
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -596,9 +614,10 @@ logsource:
   service: syslog
 detection:
   selection_1:
-    message|contains: starting ssh (count 100)
+    sagan_raw|contains: starting ssh (count 100)
   selection_2:
-    facility: kern
+    - facility: kern
+    - syslog_facility: kern
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -620,9 +639,10 @@ logsource:
   service: syslog
 detection:
   selection_1:
-    message|contains: starting ssh (count 250)
+    sagan_raw|contains: starting ssh (count 250)
   selection_2:
-    facility: kern
+    - facility: kern
+    - syslog_facility: kern
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -644,9 +664,10 @@ logsource:
   service: syslog
 detection:
   selection_1:
-    message|contains: starting ssh (count 500)
+    sagan_raw|contains: starting ssh (count 500)
   selection_2:
-    facility: kern
+    - facility: kern
+    - syslog_facility: kern
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

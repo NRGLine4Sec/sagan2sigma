@@ -7,9 +7,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|re: 'GRE: \S+ from \S+ failed: status = -1'
+    sagan_raw|re: 'GRE: \S+ from \S+ failed: status = -1'
   selection_2:
-    appname|cased: pptpd
+    - appname|cased: pptpd
+    - syslog_appname|cased: pptpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -30,9 +31,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    message|contains|cased: control connection started
+    sagan_raw|contains|cased: control connection started
   selection_2:
-    appname|cased: pptpd
+    - appname|cased: pptpd
+    - syslog_appname|cased: pptpd
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

@@ -10,15 +10,18 @@ detection:
   selection_1:
     EventID: 18456
   filter_2:
-    message|contains|cased: local machine
+    sagan_raw|contains|cased: local machine
   filter_3:
-    message|contains|cased: named pipe
+    sagan_raw|contains|cased: named pipe
   filter_4:
-    message|contains|cased: Failed to open the explicitly specified database
+    sagan_raw|contains|cased: Failed to open the explicitly specified database
   selection_5:
-    appname|cased:
-      - MSSQL*
-      - Application
+    - appname|cased:
+        - MSSQL*
+        - Application
+    - syslog_appname|cased:
+        - MSSQL*
+        - Application
   condition: selection_1 and selection_5 and not (filter_2 or filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -58,9 +61,12 @@ detection:
   selection_1:
     EventID: 18452
   selection_2:
-    appname|cased:
-      - MSSQL*
-      - Application
+    - appname|cased:
+        - MSSQL*
+        - Application
+    - syslog_appname|cased:
+        - MSSQL*
+        - Application
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

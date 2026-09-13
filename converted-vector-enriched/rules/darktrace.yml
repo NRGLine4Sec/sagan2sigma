@@ -7,11 +7,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|re: ^.+}$
+    sagan_raw|re: ^.+}$
   filter_3:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - 'Anomalous Connection::'
       - 'Anomalous File::'
       - 'Anomalous Server Activity::'
@@ -24,7 +25,7 @@ detection:
       - 'Unusual Activity::'
       - 'User::'
   filter_4:
-    message|contains|cased: config_alert_name
+    sagan_raw|contains|cased: config_alert_name
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -45,9 +46,10 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: 'Anomalous Connection::'
+    sagan_raw|contains|cased: 'Anomalous Connection::'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -68,9 +70,10 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: 'Anomalous File::'
+    sagan_raw|contains|cased: 'Anomalous File::'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -91,9 +94,10 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: 'Anomalous Server Activity::'
+    sagan_raw|contains|cased: 'Anomalous Server Activity::'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -114,9 +118,10 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: 'Antigena::'
+    sagan_raw|contains|cased: 'Antigena::'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -137,9 +142,10 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: 'Compliance::'
+    sagan_raw|contains|cased: 'Compliance::'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -160,9 +166,10 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: 'Compromise::'
+    sagan_raw|contains|cased: 'Compromise::'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -183,9 +190,10 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: 'Device::'
+    sagan_raw|contains|cased: 'Device::'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -206,9 +214,10 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: 'Infrastructure::'
+    sagan_raw|contains|cased: 'Infrastructure::'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -229,9 +238,10 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: 'System::'
+    sagan_raw|contains|cased: 'System::'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -252,9 +262,10 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: 'Unusual Activity::'
+    sagan_raw|contains|cased: 'Unusual Activity::'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -275,9 +286,10 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: 'User::'
+    sagan_raw|contains|cased: 'User::'
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -298,11 +310,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   selection_3:
-    message|contains|cased: Active Remote Desktop Tunnel
+    sagan_raw|contains|cased: Active Remote Desktop Tunnel
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -323,11 +336,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   selection_3:
-    message|contains|cased: Application Protocol on Uncommon Port
+    sagan_raw|contains|cased: Application Protocol on Uncommon Port
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -348,11 +362,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   selection_3:
-    message|contains|cased: Data Sent to Rare Domain
+    sagan_raw|contains|cased: Data Sent to Rare Domain
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -373,11 +388,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   selection_3:
-    message|contains|cased: IPSec VPN to Rare IP
+    sagan_raw|contains|cased: IPSec VPN to Rare IP
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -398,11 +414,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   selection_3:
-    message|contains|cased: Lots of New Connections
+    sagan_raw|contains|cased: Lots of New Connections
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -423,11 +440,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   selection_3:
-    message|contains|cased: Low and Slow Exfiltration to IP
+    sagan_raw|contains|cased: Low and Slow Exfiltration to IP
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -448,11 +466,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   selection_3:
-    message|contains|cased: Multiple Connections to New External UDP Port
+    sagan_raw|contains|cased: Multiple Connections to New External UDP Port
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -473,11 +492,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   selection_3:
-    message|contains|cased: Multiple HTTP POSTs to Rare Hostname
+    sagan_raw|contains|cased: Multiple HTTP POSTs to Rare Hostname
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -499,11 +519,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   selection_3:
-    message|contains|cased: New User Agent to IP Without Hostname
+    sagan_raw|contains|cased: New User Agent to IP Without Hostname
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -524,11 +545,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   selection_3:
-    message|contains|cased: Possible IDN Homograph Attack
+    sagan_raw|contains|cased: Possible IDN Homograph Attack
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -550,11 +572,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   selection_3:
-    message|contains|cased: Posting HTTP to IP Without Hostname
+    sagan_raw|contains|cased: Posting HTTP to IP Without Hostname
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -575,11 +598,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   selection_3:
-    message|contains|cased: Rare External SSL Self-Signed
+    sagan_raw|contains|cased: Rare External SSL Self-Signed
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -600,11 +624,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   selection_3:
-    message|contains|cased: Suspicious Expired SSL
+    sagan_raw|contains|cased: Suspicious Expired SSL
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -625,11 +650,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   selection_3:
-    message|contains|cased: Suspicious Self-Signed SSL
+    sagan_raw|contains|cased: Suspicious Self-Signed SSL
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -651,11 +677,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   selection_3:
-    message|contains|cased: Unusual Admin RDP Session
+    sagan_raw|contains|cased: Unusual Admin RDP Session
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -676,11 +703,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   selection_3:
-    message|contains|cased: Unusual Incoming Data Volume
+    sagan_raw|contains|cased: Unusual Incoming Data Volume
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -701,11 +729,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous Connection
+    sagan_raw|contains|cased: Anomalous Connection
   selection_3:
-    message|contains|cased: Unusual Internal Remote Desktop
+    sagan_raw|contains|cased: Unusual Internal Remote Desktop
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -726,11 +755,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous File
+    sagan_raw|contains|cased: Anomalous File
   selection_3:
-    message|contains|cased: Anomalous Octet Stream
+    sagan_raw|contains|cased: Anomalous Octet Stream
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -752,11 +782,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous File
+    sagan_raw|contains|cased: Anomalous File
   selection_3:
-    message|contains|cased: Apple Application from Rare External Location
+    sagan_raw|contains|cased: Apple Application from Rare External Location
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -777,11 +808,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous File
+    sagan_raw|contains|cased: Anomalous File
   selection_3:
-    message|contains|cased: FTP Executable from Rare External Location
+    sagan_raw|contains|cased: FTP Executable from Rare External Location
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -803,13 +835,14 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous File
+    sagan_raw|contains|cased: Anomalous File
   selection_3:
-    message|contains|cased: Internal
+    sagan_raw|contains|cased: Internal
   selection_4:
-    message|contains|cased: Unusual SMB Script Write
+    sagan_raw|contains|cased: Unusual SMB Script Write
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -831,11 +864,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous File
+    sagan_raw|contains|cased: Anomalous File
   selection_3:
-    message|contains|cased: Zip or Gzip from Rare External Location
+    sagan_raw|contains|cased: Zip or Gzip from Rare External Location
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -857,11 +891,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous Server Activity
+    sagan_raw|contains|cased: Anomalous Server Activity
   selection_3:
-    message|contains|cased: Outgoing from Server
+    sagan_raw|contains|cased: Outgoing from Server
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -882,11 +917,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Anomalous Server Activity
+    sagan_raw|contains|cased: Anomalous Server Activity
   selection_3:
-    message|contains|cased: Server Activity on New Non-Standard Port
+    sagan_raw|contains|cased: Server Activity on New Non-Standard Port
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -907,15 +943,16 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Antigena
+    sagan_raw|contains|cased: Antigena
   selection_3:
-    message|contains|cased: Network
+    sagan_raw|contains|cased: Network
   selection_4:
-    message|contains|cased: Compliance
+    sagan_raw|contains|cased: Compliance
   selection_5:
-    message|contains|cased: Antigena Tor Block
+    sagan_raw|contains|cased: Antigena Tor Block
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -936,15 +973,16 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Antigena
+    sagan_raw|contains|cased: Antigena
   selection_3:
-    message|contains|cased: Network
+    sagan_raw|contains|cased: Network
   selection_4:
-    message|contains|cased: Insider Threat
+    sagan_raw|contains|cased: Insider Threat
   selection_5:
-    message|contains|cased: Antigena Internal Anomalous File Activity
+    sagan_raw|contains|cased: Antigena Internal Anomalous File Activity
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -965,15 +1003,16 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Antigena
+    sagan_raw|contains|cased: Antigena
   selection_3:
-    message|contains|cased: Network
+    sagan_raw|contains|cased: Network
   selection_4:
-    message|contains|cased: Significant Anomaly
+    sagan_raw|contains|cased: Significant Anomaly
   selection_5:
-    message|contains|cased: Antigena Breaches Over Time Block
+    sagan_raw|contains|cased: Antigena Breaches Over Time Block
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -994,11 +1033,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Compliance
+    sagan_raw|contains|cased: Compliance
   selection_3:
-    message|contains|cased: BitTorrent
+    sagan_raw|contains|cased: BitTorrent
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1020,11 +1060,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Compliance
+    sagan_raw|contains|cased: Compliance
   selection_3:
-    message|contains|cased: External Windows Communications
+    sagan_raw|contains|cased: External Windows Communications
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1045,11 +1086,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Compliance
+    sagan_raw|contains|cased: Compliance
   selection_3:
-    message|contains|cased: Incoming Remote Desktop
+    sagan_raw|contains|cased: Incoming Remote Desktop
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1071,11 +1113,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Compliance
+    sagan_raw|contains|cased: Compliance
   selection_3:
-    message|contains|cased: Multiple SIP Requests From Rare
+    sagan_raw|contains|cased: Multiple SIP Requests From Rare
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1097,11 +1140,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Compliance
+    sagan_raw|contains|cased: Compliance
   selection_3:
-    message|contains|cased: Possible DNS Over HTTPS/TLS
+    sagan_raw|contains|cased: Possible DNS Over HTTPS/TLS
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1123,11 +1167,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Compliance
+    sagan_raw|contains|cased: Compliance
   selection_3:
-    message|contains|cased: Possible Unencrypted Password File On Server
+    sagan_raw|contains|cased: Possible Unencrypted Password File On Server
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1148,11 +1193,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Compliance
+    sagan_raw|contains|cased: Compliance
   selection_3:
-    message|contains|cased: Sensitive Terms in New or Unusual SMB Connection
+    sagan_raw|contains|cased: Sensitive Terms in New or Unusual SMB Connection
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1173,11 +1219,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Compliance
+    sagan_raw|contains|cased: Compliance
   selection_3:
-    message|contains|cased: SSH to Rare External Destination
+    sagan_raw|contains|cased: SSH to Rare External Destination
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1199,11 +1246,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Compromise
+    sagan_raw|contains|cased: Compromise
   selection_3:
-    message|contains|cased: Agent Beacon
+    sagan_raw|contains|cased: Agent Beacon
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1224,11 +1272,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Compromise
+    sagan_raw|contains|cased: Compromise
   selection_3:
-    message|contains|cased: Beaconing Activity To External Rare
+    sagan_raw|contains|cased: Beaconing Activity To External Rare
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1249,11 +1298,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Compromise
+    sagan_raw|contains|cased: Compromise
   selection_3:
-    message|contains|cased: DGA Beacon
+    sagan_raw|contains|cased: DGA Beacon
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1274,11 +1324,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Compromise
+    sagan_raw|contains|cased: Compromise
   selection_3:
-    message|contains|cased: High Volume of Connections with Beacon Score
+    sagan_raw|contains|cased: High Volume of Connections with Beacon Score
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1299,11 +1350,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Compromise
+    sagan_raw|contains|cased: Compromise
   selection_3:
-    message|contains|cased: Repeating Connections Over 4 Days
+    sagan_raw|contains|cased: Repeating Connections Over 4 Days
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1325,11 +1377,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Compromise
+    sagan_raw|contains|cased: Compromise
   selection_3:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - Sustained SSL or HTTP Increase
       - SSL or HTTP Beacon
   condition: selection_1 and selection_2 and selection_3
@@ -1352,11 +1405,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   selection_3:
-    message|contains|cased: Anomalous NTLM Bruteforce
+    sagan_raw|contains|cased: Anomalous NTLM Bruteforce
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1377,11 +1431,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   selection_3:
-    message|contains|cased: Attack and Recon Tools
+    sagan_raw|contains|cased: Attack and Recon Tools
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1403,11 +1458,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   selection_3:
-    message|contains|cased: EXE Files Distributed to Multiple Devices
+    sagan_raw|contains|cased: EXE Files Distributed to Multiple Devices
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1428,11 +1484,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   selection_3:
-    message|contains|cased: Large Number of Connections to New Endpoints
+    sagan_raw|contains|cased: Large Number of Connections to New Endpoints
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1453,11 +1510,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   selection_3:
-    message|contains|cased: Long Agent Connection to New Endpoint
+    sagan_raw|contains|cased: Long Agent Connection to New Endpoint
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1479,11 +1537,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   selection_3:
-    message|contains|cased: Network Scan - Low Anomaly Score
+    sagan_raw|contains|cased: Network Scan - Low Anomaly Score
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1505,11 +1564,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   selection_3:
-    message|contains|cased: New User Agent and New IP
+    sagan_raw|contains|cased: New User Agent and New IP
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1531,11 +1591,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   selection_3:
-    message|contains|cased: Possible Active Directory Enumeration
+    sagan_raw|contains|cased: Possible Active Directory Enumeration
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1557,11 +1618,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   selection_3:
-    message|contains|cased: Reverse DNS Sweep
+    sagan_raw|contains|cased: Reverse DNS Sweep
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1582,11 +1644,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   selection_3:
-    message|contains|cased: Suspicious SMB Query
+    sagan_raw|contains|cased: Suspicious SMB Query
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1607,11 +1670,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Device
+    sagan_raw|contains|cased: Device
   selection_3:
-    message|contains|cased: Unusual External DNS
+    sagan_raw|contains|cased: Unusual External DNS
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1632,11 +1696,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Infrastructure
+    sagan_raw|contains|cased: Infrastructure
   selection_3:
-    message|contains|cased: Proxy Server Change
+    sagan_raw|contains|cased: Proxy Server Change
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1658,11 +1723,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: System
+    sagan_raw|contains|cased: System
   selection_3:
-    message|contains|cased: Internal Domain Name Change
+    sagan_raw|contains|cased: Internal Domain Name Change
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1683,11 +1749,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Unusual Activity
+    sagan_raw|contains|cased: Unusual Activity
   selection_3:
-    message|contains|cased: Anomalous SMB Delete Volume
+    sagan_raw|contains|cased: Anomalous SMB Delete Volume
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1708,11 +1775,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    message|contains|cased: Unusual Activity
+    sagan_raw|contains|cased: Unusual Activity
   selection_2:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_3:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - Enhanced Unusual External Data Transfer
       - Unusual File Storage Data Transfer
   condition: selection_1 and selection_2 and selection_3
@@ -1735,11 +1803,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    message|contains|cased: Unusual Activity
+    sagan_raw|contains|cased: Unusual Activity
   selection_2:
-    message|contains|cased: Internal Data Transfer
+    sagan_raw|contains|cased: Internal Data Transfer
   selection_3:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1761,11 +1830,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Unusual Activity
+    sagan_raw|contains|cased: Unusual Activity
   selection_3:
-    message|contains|cased: SMB Access Failures
+    sagan_raw|contains|cased: SMB Access Failures
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1787,11 +1857,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: Unusual Activity
+    sagan_raw|contains|cased: Unusual Activity
   selection_3:
-    message|contains|cased: Unusual Activity from Re-Activated Device
+    sagan_raw|contains|cased: Unusual Activity from Re-Activated Device
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1812,11 +1883,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: User
+    sagan_raw|contains|cased: User
   selection_3:
-    message|contains|cased: Kerberos Password Bruteforce
+    sagan_raw|contains|cased: Kerberos Password Bruteforce
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1837,11 +1909,12 @@ logsource:
   product: darktrace
 detection:
   selection_1:
-    appname|cased: darktrace
+    - appname|cased: darktrace
+    - syslog_appname|cased: darktrace
   selection_2:
-    message|contains|cased: User
+    sagan_raw|contains|cased: User
   selection_3:
-    message|contains|cased: New Admin Credentials on Client
+    sagan_raw|contains|cased: New Admin Credentials on Client
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'

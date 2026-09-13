@@ -12,7 +12,8 @@ detection:
       - 540
       - 528
   selection_2:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   at_days:
     sagan_event_weekday:
       - 1
@@ -49,9 +50,10 @@ detection:
       - 540
       - 528
   selection_2:
-    message|contains|cased: 'Logon Type: 10 '
+    sagan_raw|contains|cased: 'Logon Type: 10 '
   selection_3:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   at_days:
     sagan_event_weekday:
       - 1
@@ -87,13 +89,14 @@ detection:
       - 4648
       - 552
   filter_2:
-    message|contains|cased: 'Network Address: - '
+    sagan_raw|contains|cased: 'Network Address: - '
   filter_3:
-    message|contains|cased: 'Port: - '
+    sagan_raw|contains|cased: 'Port: - '
   filter_4:
-    message|contains|cased: 'Target Server Name: localhost'
+    sagan_raw|contains|cased: 'Target Server Name: localhost'
   selection_5:
-    appname|cased: '*Security*'
+    - appname|cased: '*Security*'
+    - syslog_appname|cased: '*Security*'
   at_days:
     sagan_event_weekday:
       - 1

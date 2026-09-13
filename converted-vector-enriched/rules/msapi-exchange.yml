@@ -308,13 +308,14 @@ logsource:
   product: m365
 detection:
   selection_1:
-    appname|cased: Exchange
+    - appname|cased: Exchange
+    - syslog_appname|cased: Exchange
   selection_2:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - '"Operation":"New-InboxRule'
       - '"Operation":"Set-InboxRule'
   selection_3:
-    message|contains|cased:
+    sagan_raw|contains|cased:
       - Name\\":\\"DeleteMessage\\",\\"Value\\":\\"True
       - Name":"DeleteMessage","Value":"True
   condition: selection_1 and selection_2 and selection_3

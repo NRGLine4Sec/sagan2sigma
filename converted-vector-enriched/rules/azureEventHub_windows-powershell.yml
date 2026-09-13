@@ -9,11 +9,12 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*PowerShell*'
+    - appname|cased: '*PowerShell*'
+    - syslog_appname|cased: '*PowerShell*'
   selection_2:
-    message|contains|cased: HistorySave
+    sagan_raw|contains|cased: HistorySave
   selection_3:
-    message|contains|cased: del (Get-PSReadlineOption).HistorySavePath
+    sagan_raw|contains|cased: del (Get-PSReadlineOption).HistorySavePath
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -37,11 +38,12 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*PowerShell*'
+    - appname|cased: '*PowerShell*'
+    - syslog_appname|cased: '*PowerShell*'
   selection_2:
-    message|contains|cased: HistorySave
+    sagan_raw|contains|cased: HistorySave
   selection_3:
-    message|contains|cased: Set-PSReadlineOption -HistorySaveStyle SaveNothing
+    sagan_raw|contains|cased: Set-PSReadlineOption -HistorySaveStyle SaveNothing
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -65,11 +67,12 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*PowerShell*'
+    - appname|cased: '*PowerShell*'
+    - syslog_appname|cased: '*PowerShell*'
   selection_2:
-    message|contains|cased: HistorySave
+    sagan_raw|contains|cased: HistorySave
   selection_3:
-    message|contains|cased: Remove-Item (Get-PSReadlineOption).HistorySavePath
+    sagan_raw|contains|cased: Remove-Item (Get-PSReadlineOption).HistorySavePath
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -93,11 +96,12 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*PowerShell*'
+    - appname|cased: '*PowerShell*'
+    - syslog_appname|cased: '*PowerShell*'
   selection_2:
-    message|contains|cased: HistorySave
+    sagan_raw|contains|cased: HistorySave
   selection_3:
-    message|contains|cased: rm (Get-PSReadlineOption).HistorySavePath
+    sagan_raw|contains|cased: rm (Get-PSReadlineOption).HistorySavePath
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -904,9 +908,10 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*PowerShell*'
+    - appname|cased: '*PowerShell*'
+    - syslog_appname|cased: '*PowerShell*'
   selection_2:
-    message|contains: IEX (New-Object Net.WebClient).downloadstring
+    sagan_raw|contains: IEX (New-Object Net.WebClient).downloadstring
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -928,13 +933,14 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*PowerShell*'
+    - appname|cased: '*PowerShell*'
+    - syslog_appname|cased: '*PowerShell*'
   selection_2:
-    message|contains|cased: DisableIntrusionPreventionSystem
+    sagan_raw|contains|cased: DisableIntrusionPreventionSystem
   filter_3:
-    message|contains: _cmdletization_defaultValueIsPresent
+    sagan_raw|contains: _cmdletization_defaultValueIsPresent
   filter_4:
-    message|contains: ValidateNotNullOrEmpty
+    sagan_raw|contains: ValidateNotNullOrEmpty
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -956,20 +962,21 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*PowerShell*'
+    - appname|cased: '*PowerShell*'
+    - syslog_appname|cased: '*PowerShell*'
   selection_2:
-    message|contains|cased: DisableScriptScanning
+    sagan_raw|contains|cased: DisableScriptScanning
   filter_3:
-    message|contains|cased: this.AntiVirusSignatureVersion = antiVirusSignatureVersion
+    sagan_raw|contains|cased: this.AntiVirusSignatureVersion = antiVirusSignatureVersion
   filter_4:
-    message|contains|cased: |
+    sagan_raw|contains|cased: |
       [System.IO.File]::Open('C:\\ProgramData\\Microsoft\\Windows Defender Advanced Threat Protection\\DataCollection
   filter_5:
-    message|contains: _cmdletization_defaultValueIsPresent
+    sagan_raw|contains: _cmdletization_defaultValueIsPresent
   filter_6:
-    message|contains: ValidateNotNullOrEmpty
+    sagan_raw|contains: ValidateNotNullOrEmpty
   filter_7:
-    message|contains|cased: 'Path: C:\\\\ProgramData\\\\Microsoft\\\\Windows Defender Advanced Threat
+    sagan_raw|contains|cased: 'Path: C:\\\\ProgramData\\\\Microsoft\\\\Windows Defender Advanced Threat
       Protection\\\\'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6 or filter_7)
 falsepositives:
@@ -992,17 +999,18 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*PowerShell*'
+    - appname|cased: '*PowerShell*'
+    - syslog_appname|cased: '*PowerShell*'
   selection_2:
-    message|contains: Set-MpPreference
+    sagan_raw|contains: Set-MpPreference
   selection_3:
-    message|contains: DisableRealtimeMonitoring $true
+    sagan_raw|contains: DisableRealtimeMonitoring $true
   filter_4:
-    message|contains: _cmdletization_defaultValueIsPresent
+    sagan_raw|contains: _cmdletization_defaultValueIsPresent
   filter_5:
-    message|contains: ValidateNotNullOrEmpty
+    sagan_raw|contains: ValidateNotNullOrEmpty
   filter_6:
-    message|contains|cased: 'Path: C:\\\\ProgramData\\\\Microsoft\\\\Windows Defender Advanced Threat
+    sagan_raw|contains|cased: 'Path: C:\\\\ProgramData\\\\Microsoft\\\\Windows Defender Advanced Threat
       Protection\\\\'
   condition: selection_1 and selection_2 and selection_3 and not (filter_4 or filter_5 or filter_6)
 falsepositives:
@@ -1025,13 +1033,14 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*PowerShell*'
+    - appname|cased: '*PowerShell*'
+    - syslog_appname|cased: '*PowerShell*'
   selection_2:
-    message|contains|cased: MAPSReporting Disabled
+    sagan_raw|contains|cased: MAPSReporting Disabled
   filter_3:
-    message|contains: _cmdletization_defaultValueIsPresent
+    sagan_raw|contains: _cmdletization_defaultValueIsPresent
   filter_4:
-    message|contains: ValidateNotNullOrEmpty
+    sagan_raw|contains: ValidateNotNullOrEmpty
   condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1117,11 +1126,12 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*PowerShell*'
+    - appname|cased: '*PowerShell*'
+    - syslog_appname|cased: '*PowerShell*'
   selection_2:
-    message|contains: RightToLeft
+    sagan_raw|contains: RightToLeft
   selection_3:
-    message|contains|cased: '''eW.teN ct'' + ''ejbO-weN('''
+    sagan_raw|contains|cased: '''eW.teN ct'' + ''ejbO-weN('''
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1143,11 +1153,12 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*PowerShell*'
+    - appname|cased: '*PowerShell*'
+    - syslog_appname|cased: '*PowerShell*'
   selection_2:
-    message|contains: RightToLeft
+    sagan_raw|contains: RightToLeft
   selection_3:
-    message|contains|cased: tneilCbeW.teN ctejbO-weN
+    sagan_raw|contains|cased: tneilCbeW.teN ctejbO-weN
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1171,11 +1182,11 @@ logsource:
   product: windows
 detection:
   selection_1:
-    message|contains: ms-msd:/id
+    sagan_raw|contains: ms-msd:/id
   selection_2:
-    message|contains: PCWDiagnostic
+    sagan_raw|contains: PCWDiagnostic
   selection_3:
-    message|contains:
+    sagan_raw|contains:
       - Invoke
       - IT_RebrowseForFile
       - IT_LaunchMethod
@@ -1202,13 +1213,14 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*PowerShell*'
+    - appname|cased: '*PowerShell*'
+    - syslog_appname|cased: '*PowerShell*'
   selection_2:
-    message|contains: malicious content
+    sagan_raw|contains: malicious content
   selection_3:
-    message|contains: blocked
+    sagan_raw|contains: blocked
   selection_4:
-    message|contains: antivirus software
+    sagan_raw|contains: antivirus software
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -1233,13 +1245,14 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased: '*PowerShell*'
+    - appname|cased: '*PowerShell*'
+    - syslog_appname|cased: '*PowerShell*'
   selection_2:
-    message|contains: IEX
+    sagan_raw|contains: IEX
   selection_3:
-    message|contains: New-Object
+    sagan_raw|contains: New-Object
   selection_4:
-    message|contains: Net.WebClient).downloadstring
+    sagan_raw|contains: Net.WebClient).downloadstring
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2496,15 +2509,20 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased:
-      - '*Exchange*'
-      - '*IIs*'
-      - '*PowerShell*'
-      - '*Sysmon*'
+    - appname|cased:
+        - '*Exchange*'
+        - '*IIs*'
+        - '*PowerShell*'
+        - '*Sysmon*'
+    - syslog_appname|cased:
+        - '*Exchange*'
+        - '*IIs*'
+        - '*PowerShell*'
+        - '*Sysmon*'
   selection_2:
-    message|contains: '"cmd" /c cd /d "c:\\\\PerfLogs"&certutil.exe -urlcache -split -f http://'
+    sagan_raw|contains: '"cmd" /c cd /d "c:\\\\PerfLogs"&certutil.exe -urlcache -split -f http://'
   selection_3:
-    message|contains: :8080/themes.aspx c:\\perflogs\\\\t&echo [S]&cd&echo [E]
+    sagan_raw|contains: :8080/themes.aspx c:\\perflogs\\\\t&echo [S]&cd&echo [E]
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2530,15 +2548,20 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased:
-      - '*Exchange*'
-      - '*IIs*'
-      - '*PowerShell*'
-      - '*Sysmon*'
+    - appname|cased:
+        - '*Exchange*'
+        - '*IIs*'
+        - '*PowerShell*'
+        - '*Sysmon*'
+    - syslog_appname|cased:
+        - '*Exchange*'
+        - '*IIs*'
+        - '*PowerShell*'
+        - '*Sysmon*'
   selection_2:
-    message|contains: '"cmd" /c cd /d "c:\\\\PerfLogs"&certutil.exe -urlcache -split -f https://'
+    sagan_raw|contains: '"cmd" /c cd /d "c:\\\\PerfLogs"&certutil.exe -urlcache -split -f https://'
   selection_3:
-    message|contains: c:\\test&echo [S]&cd&echo [E]
+    sagan_raw|contains: c:\\test&echo [S]&cd&echo [E]
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2564,14 +2587,18 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased:
-      - '*Exchange*'
-      - '*IIs*'
-      - '*PowerShell*'
+    - appname|cased:
+        - '*Exchange*'
+        - '*IIs*'
+        - '*PowerShell*'
+    - syslog_appname|cased:
+        - '*Exchange*'
+        - '*IIs*'
+        - '*PowerShell*'
   selection_2:
-    message|contains: autodiscover/autodiscover.json\?@
+    sagan_raw|contains: autodiscover/autodiscover.json\?@
   selection_3:
-    message|contains: '&Email=autodiscover/autodiscover.json%3f@'
+    sagan_raw|contains: '&Email=autodiscover/autodiscover.json%3f@'
   condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -2597,24 +2624,28 @@ logsource:
   product: windows
 detection:
   selection_1:
-    appname|cased:
-      - '*Exchange*'
-      - '*IIs*'
-      - '*PowerShell*'
+    - appname|cased:
+        - '*Exchange*'
+        - '*IIs*'
+        - '*PowerShell*'
+    - syslog_appname|cased:
+        - '*Exchange*'
+        - '*IIs*'
+        - '*PowerShell*'
   selection_2:
-    message|contains: '%eval(System.Text.Encoding.GetEncoding(936).GetString(System.Convert.FromBase64String('''
+    sagan_raw|contains: '%eval(System.Text.Encoding.GetEncoding(936).GetString(System.Convert.FromBase64String('''
   selection_3:
-    message|contains: char(837-763)+
+    sagan_raw|contains: char(837-763)+
   selection_4:
-    message|contains: System.Text.Encoding.GetEncoding(936).GetString(System.Convert.FromBase64String(
+    sagan_raw|contains: System.Text.Encoding.GetEncoding(936).GetString(System.Convert.FromBase64String(
   selection_5:
-    message|contains: +char(51450/525)+'
+    sagan_raw|contains: +char(51450/525)+'
   selection_6:
-    message|contains: '''+char(0640-0462)+char(0x8c28/0x1cc)'
+    sagan_raw|contains: '''+char(0640-0462)+char(0x8c28/0x1cc)'
   selection_7:
-    message|contains: +char(0212100/01250)+System.Text.Encoding.GetEncoding(936).GetString(System.Convert.FromBase64String('
+    sagan_raw|contains: +char(0212100/01250)+System.Text.Encoding.GetEncoding(936).GetString(System.Convert.FromBase64String('
   selection_8:
-    message|contains|cased: ''')));%'
+    sagan_raw|contains|cased: ''')));%'
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
     and selection_7 and selection_8
 falsepositives:

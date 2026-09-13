@@ -8,9 +8,10 @@ logsource:
   product: yubikey
 detection:
   selection_1:
-    appname|cased: yk_chkpwd
+    - appname|cased: yk_chkpwd
+    - syslog_appname|cased: yk_chkpwd
   selection_2:
-    message|contains|cased: password check failed for user
+    sagan_raw|contains|cased: password check failed for user
   condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
