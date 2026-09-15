@@ -61,7 +61,7 @@ reproduced. They are worth reviewing before the ruleset goes live.
 | `D_RAW_TEXT_MATCH` | 6431 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
 | `D_LOGSOURCE_FALLBACK` | 1981 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
 | `D_EVENT_ID_HEURISTIC` | 1935 | Without a json_map for event_id, Sagan looks for ' <id>: ', with the surrounding spaces, in the first nine characters of the message, so an ID at the very start never matches. The converted rule assumes a proper EventID field instead, which fires on events the heuristic would have missed. Measured against a locally built engine. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
-| `D_THRESHOLD_SUPPRESS` | 1488 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
+| `D_THRESHOLD_SUPPRESS` | 1489 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
 | `D_PASS_SHORT_CIRCUIT` | 515 | The rule used the pass action. In Sagan a matching pass rule still emits an alert (Send_Alert runs before the pass check) and then stops evaluating the remaining signatures for that event. The detection is converted faithfully; only the short-circuit, the suppression of other rules on the same event, is not reproduced, since Sigma evaluates every rule independently. | `5016065`, `5016066`, `5016067`, `5016068`, `5016069` |
 | `D_GROUPBY_SYSLOG_HOST` | 388 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
 | `D_POSITIONAL_IP_FIELD` | 288 | The group-by key comes from the bundled VRL transform rather than from the log itself. The correlation only works if that transform runs in the ingestion pipeline. | `5002942`, `5015097`, `5014021`, `5014177`, `5008553` |
@@ -92,11 +92,11 @@ conversion error and is the opposite of one.
 
 | Code | Rules | What it means |
 | --- | --- | --- |
-| `U_CANNOT_MATCH` | 9 | the rule loads and can never fire |
+| `U_CANNOT_MATCH` | 8 | the rule loads and can never fire |
 | `U_INVERTED_CONDITION` | 1 | the rule fires, but a condition means its opposite |
 
 <details>
-<summary><code>U_CANNOT_MATCH</code> (9 rules)</summary>
+<summary><code>U_CANNOT_MATCH</code> (8 rules)</summary>
 
 | SID | File | Detail |
 | --- | --- | --- |
@@ -108,7 +108,6 @@ conversion error and is the opposite of one.
 | `5005944` | `confluent.rules` | the key path 'data.authorizationInfo.aclAuthorization.permissionType' is clipped to 'data.authorizationInfo.aclAuth' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
 | `5014569` | `pfsense.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '",3389,"0,S' |
 | `5015096` | `aws-cloudtrail.rules` | the key path 'userIdentity.sessionContext.sessionIssuer.userName' is clipped to 'userIdentity.sessionContext.se' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
-| `5015819` | `barracuda-waf.rules` | the negated content 'DENY' is part of the required 'DENY_ACL_MATCHED', so no message can satisfy both |
 
 </details>
 

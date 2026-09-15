@@ -1612,7 +1612,7 @@ custom_attributes:
 title: '[WEB-ATTACKS] Attempt to Access robots.txt File'
 id: 0a9ba10a-17cc-554e-ba31-83b1f8945ce2
 status: experimental
-description: Converted from Sagan rule SID 5002742 (rev 3), file web-attack.rules.
+description: Converted from Sagan rule SID 5002742 (rev 4), file web-attack.rules.
 references:
   - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
 author: sagan2sigma
@@ -1621,7 +1621,9 @@ logsource:
 detection:
   selection_1:
     sagan_raw|contains|cased: robots.txt
-  condition: selection_1
+  filter_2:
+    sagan_raw|contains|cased: srcintfrole="lan"
+  condition: selection_1 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: high
@@ -1629,7 +1631,7 @@ tags:
   - sagan.classtype.web-application-attack
 custom_attributes:
   sagan.sid: '5002742'
-  sagan.rev: '3'
+  sagan.rev: '4'
   sagan.source_file: web-attack.rules
 ---
 title: '[WEB-ATTACKS] Possible SQL Injection'

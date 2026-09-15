@@ -27,7 +27,7 @@ custom_attributes:
 title: '[LINUX-SECURITY] Suspicious Command (/proc/<PID>/cmdline)'
 id: 6447250b-fc51-5775-bd1a-85dae9ab6026
 status: experimental
-description: Converted from Sagan rule SID 5014633 (rev 2), file linux-security.rules.
+description: Converted from Sagan rule SID 5014633 (rev 3), file linux-security.rules.
 references:
   - https://blog.apnic.net/2019/10/14/how-to-basic-linux-malware-process-forensics-for-incident-responders/
 author: sagan2sigma
@@ -38,7 +38,9 @@ detection:
     _raw|contains|cased: /proc/
   selection_2:
     _raw|contains|cased: /cmdline
-  condition: selection_1 and selection_2
+  filter_3:
+    _raw|contains|cased: a0="cat"
+  condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -48,9 +50,10 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5014633'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: linux-security.rules
-  sagan.metadata: deployment=Server,created_at=2024_01_25,updated_at=2024_01_25
+  rsigma.suppress: 1h
+  sagan.metadata: deployment=Server,created_at=2024_01_25,updated_at=2026_09_14
 ---
 title: '[LINUX-SECURITY] Download/Use Of LinPEAS Detected - Privesc Tool'
 id: 687df603-ae24-58c9-8093-76ec6007d493

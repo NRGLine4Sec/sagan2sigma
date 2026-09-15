@@ -5627,7 +5627,7 @@ custom_attributes:
 title: '[Barracuda] WAF Deny ACL matched'
 id: 8ce7a6be-1ad0-5f71-9ee4-70fb0fee3136
 status: experimental
-description: Converted from Sagan rule SID 5015819 (rev 1), file barracuda-waf.rules.
+description: Converted from Sagan rule SID 5015819 (rev 2), file barracuda-waf.rules.
 references:
   - https://campus.barracuda.com/product/webapplicationfirewall/doc/29819001/attacks-description-action-policy/
 author: sagan2sigma
@@ -5636,9 +5636,7 @@ logsource:
 detection:
   selection_1:
     sagan_raw|contains|cased: DENY_ACL_MATCHED
-  filter_2:
-    sagan_raw|contains|cased: DENY
-  condition: selection_1 and not filter_2
+  condition: selection_1
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: high
@@ -5646,7 +5644,7 @@ tags:
   - sagan.classtype.exploit-attempt
 custom_attributes:
   sagan.sid: '5015819'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: barracuda-waf.rules
 ---
 title: '[Barracuda] WAF Session timed out'

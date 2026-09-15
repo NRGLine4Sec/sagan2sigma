@@ -61,14 +61,14 @@ reproduced. They are worth reviewing before the ruleset goes live.
 | `D_RAW_TEXT_MATCH` | 5803 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
 | `D_EVENT_ID_HEURISTIC` | 1871 | Without a json_map for event_id, Sagan looks for ' <id>: ', with the surrounding spaces, in the first nine characters of the message, so an ID at the very start never matches. The converted rule assumes a proper EventID field instead, which fires on events the heuristic would have missed. Measured against a locally built engine. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
 | `D_LOGSOURCE_FALLBACK` | 1867 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
-| `D_THRESHOLD_SUPPRESS` | 1135 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
+| `D_THRESHOLD_SUPPRESS` | 1136 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
 | `D_PASS_SHORT_CIRCUIT` | 513 | The rule used the pass action. In Sagan a matching pass rule still emits an alert (Send_Alert runs before the pass check) and then stops evaluating the remaining signatures for that event. The detection is converted faithfully; only the short-circuit, the suppression of other rules on the same event, is not reproduced, since Sigma evaluates every rule independently. | `5016065`, `5016066`, `5016067`, `5016068`, `5016069` |
 | `D_GROUPBY_SYSLOG_HOST` | 387 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
 | `D_SIDE_EFFECT_DROPPED` | 233 | Engine-specific side effect (external, email, dynamic_load, unset) with no Sigma equivalent. | `5008539`, `5003022`, `5003023`, `5002959`, `5002960` |
 | `D_THRESHOLD_LIMIT` | 145 | threshold type limit caps alert volume, not detection. Sigma has no equivalent, so the constraint is dropped. | `5017933`, `5008570`, `5009316`, `5009317`, `5009318` |
 | `D_APPEND_PROGRAM` | 74 | append_program makes Sagan append the program field to the message before matching. The converted rule searches the message alone. | `5000419`, `5000470`, `5000489`, `5000519`, `5000521` |
 | `D_XBIT_SET_DROPPED` | 65 | The rule set or tested an xbit that no converted rule consumes. The state link is lost. | `5009285`, `5009290`, `5007210`, `5007211`, `5005994` |
-| `D_JSON_BODY_ARM_LOST` | 30 | The rule carries a json_map binding but no condition a plain-text event cannot satisfy, so Sagan matches it on both a plain line and a JSON document. This profile exposes no raw body for a JSON-bodied event, so the text search has nothing to run against there and the converted rule covers the plain-text half only. Convert under --profile vector-enriched, whose pipeline keeps the raw body, to cover both. | `5004304`, `5003879`, `5000055`, `5000111`, `5010582` |
+| `D_JSON_BODY_ARM_LOST` | 31 | The rule carries a json_map binding but no condition a plain-text event cannot satisfy, so Sagan matches it on both a plain line and a JSON document. This profile exposes no raw body for a JSON-bodied event, so the text search has nothing to run against there and the converted rule covers the plain-text half only. Convert under --profile vector-enriched, whose pipeline keeps the raw body, to cover both. | `5004304`, `5003879`, `5000055`, `5000111`, `5010582` |
 | `D_XBIT_ISSET_SYNTHETIC` | 20 | The state correlation was rebuilt through a synthetic aggregate rule gathering every rule that sets the bit. | `9870107`, `5014091`, `5008539`, `5009793`, `5015226` |
 | `D_JSON_KEY_RESTORED` | 15 | The rule names a JSON key that upstream clipped to 31 characters so that Sagan, which stores key paths clipped and compares them with an exact strcmp, would match it at all. The full path is recorded in a comment above the rule and is what the log carries, so the converted rule uses that instead: Sigma has no such limit, and emitting the clipped name would match nothing outside Sagan. | `5004773`, `5017933`, `5017933`, `5005921`, `5005923` |
 | `D_DROP_ACTION` | 13 | The rule used the drop action. Sigma has no action concept; it was converted as a normal detection rule. | `5000102`, `5000103`, `5000193`, `5000018`, `5000071` |
@@ -86,11 +86,11 @@ conversion error and is the opposite of one.
 
 | Code | Rules | What it means |
 | --- | --- | --- |
-| `U_CANNOT_MATCH` | 9 | the rule loads and can never fire |
+| `U_CANNOT_MATCH` | 8 | the rule loads and can never fire |
 | `U_INVERTED_CONDITION` | 1 | the rule fires, but a condition means its opposite |
 
 <details>
-<summary><code>U_CANNOT_MATCH</code> (9 rules)</summary>
+<summary><code>U_CANNOT_MATCH</code> (8 rules)</summary>
 
 | SID | File | Detail |
 | --- | --- | --- |
@@ -102,7 +102,6 @@ conversion error and is the opposite of one.
 | `5005944` | `confluent.rules` | the key path 'data.authorizationInfo.aclAuthorization.permissionType' is clipped to 'data.authorizationInfo.aclAuth' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
 | `5014569` | `pfsense.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '",3389,"0,S' |
 | `5015096` | `aws-cloudtrail.rules` | the key path 'userIdentity.sessionContext.sessionIssuer.userName' is clipped to 'userIdentity.sessionContext.se' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
-| `5015819` | `barracuda-waf.rules` | the negated content 'DENY' is part of the required 'DENY_ACL_MATCHED', so no message can satisfy both |
 
 </details>
 
