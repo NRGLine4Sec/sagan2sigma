@@ -197,27 +197,29 @@ less than it looks.
 
 Run against the upstream `quadrantsec/sagan-rules` corpus converted with the
 `rsigma-syslog` profile, and SigmaHQ at the same date with `rules-placeholder/`
-excluded, using RSigma 0.21.0.
+excluded, using RSigma 0.21.0. The figures below are from `sagan-rules@78148f1`
+and `SigmaHQ@5c9b217`, measured on 2026-09-15; `docs/OVERLAP-INVENTORY.md`
+pins the same pair of commits.
 
 | Metric | Converted (Sagan) | SigmaHQ |
 | --- | ---: | ---: |
-| Rules with a detection block | 8,665 | 4,013 |
-| With an engine-confirmed test event | 8,632 | 3,870 |
-| Refused by the engine (uncompilable) | 0 | 0 |
+| Rules with a detection block | 8,724 | 4,016 |
+| With an engine-confirmed test event | 8,689 | 3,872 |
+| Refused by the engine (uncompilable) | 0 | 1 |
 | Absence matchers, excluded | 0 | 1 |
-| Synthesised no candidate event at all | 1 | 61 |
+| Synthesised no candidate event at all | 0 | 61 |
 
-21,985 events were evaluated in one engine pass, producing 632 recorded verdicts:
+22,592 events were evaluated in one engine pass, producing 640 recorded verdicts:
 
 | Relation | Pairs |
 | --- | ---: |
 | `EQUIVALENT` | 6 |
-| `SAGAN_REDUNDANT` | 549 |
+| `SAGAN_REDUNDANT` | 554 |
 | `SAGAN_BROADER` | 19 |
-| `OVERLAP` | 58 |
+| `OVERLAP` | 61 |
 
-**Headline: 58 converted rules are fully covered by a log-source-compatible
-SigmaHQ rule**, roughly 0.7% of those testable. Deploying SigmaHQ makes those 58
+**Headline: 60 converted rules are fully covered by a log-source-compatible
+SigmaHQ rule**, roughly 0.7% of those testable. Deploying SigmaHQ makes those 60
 redundant. They concentrate where the two corpora genuinely share structured
 telemetry: Windows AppLocker (Sagan `windows-applocker` covered by the SigmaHQ
 AppLocker event rules on `EventID` 8003/8004), Windows Security (SID history,
@@ -229,7 +231,7 @@ appliances and Unix daemons, terrain SigmaHQ barely covers, while SigmaHQ is
 overwhelmingly Windows endpoint telemetry. The two libraries are largely
 complementary rather than redundant.
 
-A further **457 covering co-firings were found across incompatible log sources**
+A further **494 covering co-firings were found across incompatible log sources**
 and deliberately kept out of that count. Almost all are a SigmaHQ keyword rule
 matching a common English word in the raw body of a rule from another product:
 "Cisco File Deletion" firing on any message containing "delete", "Suspicious SQL

@@ -28,6 +28,21 @@ All notable changes to this project are documented here. The format follows
   skip is printed, counted and named, never reported as a pass.
 
 ### Changed
+- The SigmaHQ overlap inventory is regenerated. The published snapshot was
+  pinned to `sagan-rules@142303c` of 5 August, and both corpora have moved since:
+  seventeen upstream rule fixes landed, SigmaHQ gained rules, and this project
+  changed what 6,220 converted rules match. Re-measured against
+  `sagan-rules@78148f1` and `SigmaHQ@5c9b217`, the inventory holds 2,464 pairs
+  against 2,415, and the strongest tier, where the behavioural and the lexical
+  method agree on the same pair, goes from 6 to 13.
+
+  Twenty-seven pairs are gone and seventy-six are new. **None of the
+  twenty-seven came from a measurement**: twenty-six were weak lexical
+  candidates and one a strong one, which is the churn that method has by
+  construction when both corpora move. Coverage established by running the
+  engine went from 64 pairs to 66, and seven pairs were promoted to the
+  strongest tier. `docs/SIGMAHQ-OVERLAP.md` and `docs/CONCEPTUAL-OVERLAP.md`
+  carry the new figures and the commits they belong to.
 - The upstream defect counts are re-measured against `sagan-rules` at `78148f1`,
   which carries seven more of this project's fixes. They fall from 27 at
   `cab835c` to 9: the twelve rules whose `pcre` the engine compiled differently

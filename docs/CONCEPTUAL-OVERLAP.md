@@ -95,10 +95,13 @@ SigmaHQ with `rules-placeholder/` excluded), with the default lexical floor of
 
 | Metric | Value |
 | --- | ---: |
-| Converted rules | 8,665 |
-| SigmaHQ rules | 4,013 |
-| Converted rules with at least one candidate | 1,049 |
-| Candidate pairs | 1,794 |
+| Converted rules | 8,724 |
+| SigmaHQ rules | 4,016 |
+| Converted rules with at least one candidate | 1,068 |
+| Candidate pairs | 1,842 |
+
+Measured on 2026-09-15, from `sagan-rules@78148f1` and `SigmaHQ@5c9b217`, the
+same pair of commits `docs/OVERLAP-INVENTORY.md` pins.
 
 The strongest candidates are unambiguous, and they are exactly the pairs the
 behavioural method cannot see, because both sides match structured Sysmon or
