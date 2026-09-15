@@ -5,10 +5,10 @@ it actually does, so that the claims this project makes about Sagan's behaviour
 can be verified by execution instead of by reading C.
 
 Last verified against Sagan `main` at `3b9b0fa` and the rule corpus at
-`78148f1`, on 2026-09-14: 8,187 rules judged by the corpus differential, no
-disagreement. That line is the lab's support statement: it says what
-was measured and when, and it is meant to be updated by whoever runs the suite
-next.
+`78148f1`, on 2026-09-15: 8,187 rules judged by the corpus differential, no
+disagreement, 8,183 of them exercised. That line is the lab's support
+statement: it says what was measured and when, and it is meant to be updated by
+whoever runs the suite next.
 
 **It is not part of the test suite and CI never runs it.** A full pass starts
 several hundred Sagan processes and takes the better part of an hour, which does

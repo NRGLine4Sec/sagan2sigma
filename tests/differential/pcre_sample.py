@@ -48,12 +48,22 @@ class Unsupported(Exception):
 
 
 def _class_member(body: str) -> str:
-    """One character a bracket expression accepts."""
+    r"""One character a bracket expression accepts.
+
+    A hex escape is decoded here as it is outside a class. Returning the letter
+    of `\x22` instead of the quote it names produced a sample the pattern
+    itself rejects, which `sample_for` then throws away, leaving the rule
+    undecided on both sides of the differential for a reason belonging to this
+    function. sid 5015511 of `windows-security.rules` is the case: its class is
+    `[\x22\']`, a quote or an apostrophe.
+    """
     if body.startswith("^"):
         return "z" if "z" not in body else "q"
     i = 0
     while i < len(body):
         if body[i] == "\\" and i + 1 < len(body):
+            if _HEX_ESCAPE.match(body, i):
+                return chr(int(body[i + 2 : i + 4], 16))
             return SHORTHAND.get(body[i + 1], body[i + 1])
         if i + 2 < len(body) and body[i + 1] == "-":
             return body[i]

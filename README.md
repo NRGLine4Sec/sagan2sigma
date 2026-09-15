@@ -183,8 +183,11 @@ So behind it sits a second line of checking, which runs a locally built Sagan
 instead of modelling one. It judges the rules no model can decide too, `pcre`
 and effective positional constructs among them. Measured against `sagan-rules`
 at `78148f1` under the enriched profile: **8,187 rules judged, no
-disagreement**, and 8,174 of them made both engines fire on a probe satisfying
+disagreement**, and 8,183 of them made both engines fire on a probe satisfying
 every positive condition, which is what says the agreement was not two silences.
+The four that did not are undecidable rather than unmeasured: two carry a
+literal no serialised document can hold, one an `event_id` the engine cannot
+resolve from a document, and one is an upstream rule that can never fire.
 It separately walks every `after` correlation it can drive to its threshold,
 checking that each stays silent at N events and alerts at N+1. Both were shown
 able to fail before being believed: with the old `gte: N` reinstated, the

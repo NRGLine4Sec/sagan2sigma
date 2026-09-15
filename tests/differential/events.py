@@ -43,7 +43,7 @@ from __future__ import annotations
 
 import json
 import re
-from collections.abc import Sequence
+from collections.abc import Iterator, Sequence
 from dataclasses import dataclass, replace
 from typing import Any
 
@@ -497,6 +497,17 @@ _MEMBER_TEMPLATES = (
     '{%s"}',
     '{%s""}',
     '{"%s"}}',
+    # A literal can also start mid-key and end at the close of the value, which
+    # is the shape a pattern written around `\x22` produces:
+    # `risk_score":"76"` is a whole member missing only its opening quote.
+    # Supplying that quote makes it an object again, and the compact
+    # serialisation puts it back byte for byte.
+    '{"%s}',
+    # A run that starts inside a value and crosses into the next member:
+    # `FromAddressContainsWords","Value":"@` is the tail of one value, the comma,
+    # and the head of the next. Giving it a key of its own makes an object of
+    # two members whose serialisation holds the run intact.
+    '{"sagan_probe_key": "%s"}',
 )
 
 #: Serialisation styles tried for a JSON-bodied probe, spaced first. A rule's
@@ -559,14 +570,45 @@ def _place(
             return True
 
     members = _members(literal)
-    if (
-        members is not None
-        and not (members.keys() & body.keys())
-        and literal in _serialise({**body, **members}, style)
-    ):
-        body.update(members)
-        return True
+    if members is None:
+        return False
+    for candidate in _without_collisions(members, body):
+        if literal in _serialise({**body, **candidate}, style):
+            body.update(candidate)
+            return True
     return False
+
+
+def _without_collisions(
+    members: dict[str, Any], body: dict[str, Any]
+) -> Iterator[dict[str, Any]]:
+    """The member set, then the same with colliding keys renamed.
+
+    Two literals of one rule can ask for the same key with different values,
+    which one object cannot hold: sid 5017920 searches for both
+    `Name":"MoveToFolder` and `Name":"RedirectTo`, and the second placement used
+    to be dropped, leaving the rule undecided.
+
+    A literal of that shape starts *inside* the key, its opening quote belonging
+    to the document rather than to the pattern, so any key ending in the same
+    text carries it. Prefixing the colliding key is therefore enough, and the
+    caller verifies the serialisation afterwards, which is what keeps the trick
+    honest: where the literal does include the opening quote, the prefixed form
+    fails that check and the placement is refused as before.
+
+    The colliding set is never yielded as it stands. Merging it would overwrite
+    the key the earlier literal is carried by, and the check the caller runs
+    cannot see that: it asks whether *this* literal is in the serialisation,
+    which it is, having just replaced the other one.
+    """
+    collisions = members.keys() & body.keys()
+    if not collisions:
+        yield members
+        return
+    yield {
+        (f"sagan_probe_{len(body)}{name}" if name in collisions else name): value
+        for name, value in members.items()
+    }
 
 
 def build_event(

@@ -6,6 +6,38 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+- Four blind spots in the probe generator, each of which left a corpus rule
+  undecided on both sides of the differential, which reads as agreement and
+  measures nothing. A `\xHH` escape inside a character class is decoded as it
+  already was outside one, so a pattern whose class is `[\x22\']` samples a
+  quote rather than the letter x and the sample its own pattern rejects is no
+  longer thrown away. A literal that is a member missing only its opening
+  quote, `risk_score":"76"`, is put back as an object with that quote supplied.
+  A literal that starts inside one value and crosses into the next member,
+  `FromAddressContainsWords","Value":"@`, is given a key of its own so the run
+  survives serialisation. And two literals of one rule asking for the same key
+  with different values, which one object cannot hold, no longer lose the
+  second: the colliding key is prefixed, which works because such a literal
+  starts inside the key, and the placement is verified by serialising as every
+  other one is.
+
+  Measured against the engine over the corpus at `78148f1`, enriched profile,
+  same instant as the previous run: 8,187 rules judged, no disagreement, and
+  **8,183 exercised against 8,174**, the undecided falling from 13 to 4.
+
+  None of the four is the generator's doing any more, which is the point of
+  chasing them. Two are provably impossible and pinned in
+  `tests/unit/test_probe_placement.py`: a literal whose quotes sit inside prose,
+  which no serialisation carries, and a pair of fragments asking for a spaced
+  and a compact serialisation of one document. One asks for an `event_id` the
+  engine can only resolve from the first nine characters of a plain line, on a
+  rule that requires a document. And the last, `msapi-exchange.rules` sid
+  5017893, is a dead upstream rule: its `meta_content` template runs past its
+  closing quote and swallows what was meant to be the list, so it searches for
+  an escaped fragment immediately followed by the same fragment unescaped. That
+  one is fixed upstream rather than here.
+
 ## [0.6.0] - 2026-09-15
 
 ### Added
