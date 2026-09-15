@@ -6,6 +6,8 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-09-15
+
 ### Added
 - `lab/`, the engine lab, with `docs/LAB.md` for what each part measures and
   what a run costs. It builds Sagan from source and puts rules and events

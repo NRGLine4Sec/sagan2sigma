@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "sagan2sigma"
-version = "0.5.0"
+version = "0.6.0"
 description = "Convert Sagan rules (Snort/Suricata syntax) into Sigma rules, with a full conversion report"
 readme = "README.md"
 license = "GPL-2.0-only"
@@ -93,7 +93,14 @@ sagan2sigma-inventory = "sagan2sigma.inventory.cli:main"
 packages = ["src/sagan2sigma"]
 
 [tool.hatch.build.targets.sdist]
-include = ["src/", "tests/", "docs/", "README.md", "LICENSE", "CHANGELOG.md"]
+# The root files are anchored with a leading slash. Unanchored, `README.md`
+# matches at any depth, so the sdist carried converted/README.md,
+# converted-vector-enriched/README.md and lab/README.md, three files torn out of
+# directories it otherwise excludes. `lab/` is included whole instead, since
+# docs/LAB.md travels in the sdist and would otherwise describe a directory that
+# is not there. The converted corpora stay out: they are large generated
+# artefacts that CI refreshes in the repository.
+include = ["src/", "tests/", "docs/", "lab/", "/README.md", "/LICENSE", "/CHANGELOG.md"]
 
 [tool.pytest.ini_options]
 minversion = "8.0"
