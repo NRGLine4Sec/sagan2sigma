@@ -156,7 +156,7 @@ Each of these carries a stable code in the report, with the reasoning attached.
 
 ## Status and what has not been verified
 
-This is a 0.4.0 release and the rules it emits are marked `status:
+This is a 0.5.0 release and the rules it emits are marked `status:
 experimental` for a reason.
 
 **What is verified.** Every emitted document is parsed by
@@ -166,7 +166,7 @@ corpus converts with zero parse failures and zero rejected documents, and the
 conversion is deterministic: two runs are byte-identical.
 
 Beyond shape, behaviour is checked too. A differential harness runs every
-corpus rule it can judge, 4,310 of them, through two independent evaluators: a
+corpus rule it can judge, 4,303 of them, through two independent evaluators: a
 reference implementation of Sagan semantics written from the engine C source,
 and the real [rsigma](https://github.com/timescale/rsigma) engine evaluating
 the converted rule. Tens of thousands of event evaluations, no disagreements.
@@ -180,18 +180,21 @@ harness reported perfect agreement, because the same belief shaped the model and
 the code.
 
 So behind it sits a second line of checking, which runs a locally built Sagan
-instead of modelling one. It judges 6,581 corpus rules, the difference being
-`pcre` and effective positional constructs that no model can decide, and it
-separately walks the 372 `after` correlations it can drive to their threshold,
-checking that each stays silent at N events and alerts at N+1. Both report no
-disagreement, and both were shown able to fail before being believed: with the
-old `gte: N` reinstated, the correlation check flags every rule.
+instead of modelling one. It judges the rules no model can decide too, `pcre`
+and effective positional constructs among them. Measured against `sagan-rules`
+at `78148f1` under the enriched profile: **8,187 rules judged, no
+disagreement**, and 8,174 of them made both engines fire on a probe satisfying
+every positive condition, which is what says the agreement was not two silences.
+It separately walks every `after` correlation it can drive to its threshold,
+checking that each stays silent at N events and alerts at N+1. Both were shown
+able to fail before being believed: with the old `gte: N` reinstated, the
+correlation check flags every rule.
 
 That exercise corrected a dozen behaviours the source reading had missed, most
 of them making the converted rules noisier than the originals. It also found
 limits in the engine that no converter can reproduce, which are recorded in
 `docs/DESIGN-DECISIONS.md` rather than imitated, and defects in the upstream
-rules themselves, sixteen of which are now fixed upstream.
+rules themselves, seventeen of which are now fixed upstream.
 
 The instrument that produced all of it is in [`lab/`](lab), documented in
 [`docs/LAB.md`](docs/LAB.md). CI never runs it: it needs a compiled Sagan and

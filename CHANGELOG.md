@@ -11,7 +11,7 @@ All notable changes to this project are documented here. The format follows
   what a run costs. It builds Sagan from source and puts rules and events
   through it, which is how every claim in this repository about the engine's
   behaviour was established, including the dozen converter defects that reading
-  the C had missed and the sixteen rule defects now fixed upstream. It was kept
+  the C had missed and the seventeen rule defects now fixed upstream. It was kept
   outside the repository until now, on the grounds that it needs a compiled
   engine and could not run in CI. Neither reason survives contact with the
   question a contributor faces: a claim nobody else can re-measure is a claim on
@@ -22,23 +22,25 @@ All notable changes to this project are documented here. The format follows
   from the checkout rather than hardcoded, its GeoIP fixture is built by a
   script instead of committed as a binary, and its engine binaries are build
   output. Two patches to the engine stay out: they fix defects that are not
-  public, the maintainers have been told privately, and publishing the patches
-  would disclose them. Five check files and the three differentials need those
-  builds and skip themselves with an explanation; the other eleven check files
-  run on a plain upstream build. A skip is printed, counted and named, never
-  reported as a pass.
+  public, and publishing the patches would disclose them. Five check files and
+  the three differentials need those builds and skip themselves with an
+  explanation; the other eleven check files run on a plain upstream build. A
+  skip is printed, counted and named, never reported as a pass.
 
 ### Changed
-- The upstream defect counts are re-measured against `sagan-rules` at `8d65d8a`,
-  which carries six more of this project's fixes. They fall from 27 to 10: the
-  twelve rules whose `pcre` the engine compiled differently from what was
-  written are gone, so are the two that missed the first value they listed, and
-  the silent category drops from 12 to 9. What remains cannot be fixed the same
-  way: six name a JSON key path the engine clips, two carry a malformed
-  `content` whose intended value only the log format can settle, one is the
-  negated `pcre` the engine reads as positive, and one excludes a string that is
-  part of the string it requires. The published document count follows the same
-  tree, 9,528 for the plain profile.
+- The upstream defect counts are re-measured against `sagan-rules` at `78148f1`,
+  which carries seven more of this project's fixes. They fall from 27 at
+  `cab835c` to 9: the twelve rules whose `pcre` the engine compiled differently
+  from what was written are gone, so are the two that missed the first value
+  they listed and the one that excluded a string its own required literal
+  contains, and the silent category drops from 12 to 8.
+
+  What remains is what a rules change cannot reach. Six name a JSON key path the
+  engine clips below the level that names the value, one is the negated `pcre`
+  the engine reads as positive, and two carry a malformed `content` whose
+  intended value is not recoverable from the rule. Every defect this module
+  reports that could be corrected by editing a rule has been. The published
+  document count follows the same tree, 9,528 for the plain profile.
 
 ### Fixed
 - A raw-text search converts against the field that carries the body whatever
@@ -365,8 +367,8 @@ All notable changes to this project are documented here. The format follows
   `D_VALUE_TRUNCATED`, which makes the converted rule agree with the engine and
   broader than the rule reads. The truncation runs on the raw text, before hex
   escapes are expanded, so a colon written `|3a|` survives it as it does in the
-  engine; doing it the other way round would have undone the escape that PR 3
-  adds upstream.
+  engine; doing it the other way round would have undone the `|3a|` escaping
+  that the upstream fix for those rules relies on.
 - `resolve_references` checked correlation references against `name:` only, so
   the id references above would have been reported as pointing outside the
   batch. It accepts either form now, as the spec does.

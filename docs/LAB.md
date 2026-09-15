@@ -5,7 +5,8 @@ it actually does, so that the claims this project makes about Sagan's behaviour
 can be verified by execution instead of by reading C.
 
 Last verified against Sagan `main` at `3b9b0fa` and the rule corpus at
-`8d65d8a`, on 2026-09-12. That line is the lab's support statement: it says what
+`78148f1`, on 2026-09-14: 8,187 rules judged by the corpus differential, no
+disagreement. That line is the lab's support statement: it says what
 was measured and when, and it is meant to be updated by whoever runs the suite
 next.
 
@@ -66,7 +67,7 @@ project, and only running both engines side by side exposed it.
 ```
 bin/     sagan-upstream    pristine upstream, hardened as Nix builds it
          sagan-patched     upstream plus one local patch (not shipped)
-         sagan-sane        both patches; use this to measure what a rule means
+         sagan-sane        every patch; use this to measure what a rule means
          (generated, not committed: see build/)
 build/   build-sagan.sh    build the binaries from source
 config/  sagan.yaml        the harness configuration; @LAB@ is substituted
@@ -135,12 +136,13 @@ committed: they are only valid for the store of the machine that produced them.
 
 ## What runs without the local patches
 
-The engine needs two patches for its `after` correlation path to be measurable.
-They are not in this repository: they fix defects that are not public, the
-maintainers have been told privately, and publishing the patches here would
-amount to disclosing the defects. Whoever holds them points
-`SAGAN2SIGMA_LAB_PATCHES` at the directory containing them and gets the two
-extra builds.
+The engine needs three patches before anything about it can be measured
+reliably: two for its `after` correlation path, and one for an address parser
+that aborts the process on an ordinary log line. They are not in this
+repository: they fix defects that are not public, and publishing the patches
+here would amount to disclosing them, which is not a converter's call to make.
+Whoever holds them points `SAGAN2SIGMA_LAB_PATCHES` at the directory containing
+them and gets the two extra builds.
 
 Without them, a fresh clone can run:
 
@@ -427,8 +429,8 @@ local patches described above. Measure detection semantics against
 alone: that build stops the crash while leaving a rule silently correlated.
 
 The defects themselves are not described here on purpose. They are unfixed in a
-security product, the maintainers have been told privately, and this repository
-is not the place to publish them.
+security product, and a repository that converts its rules is not the place to
+publish them.
 
 **Sagan's correlation state outlives the process.** `xbits`, `flexbits`,
 `threshold` and `after` counters live in `/dev/shm/sagan-*.shared`. A harness

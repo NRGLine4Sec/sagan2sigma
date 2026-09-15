@@ -62,21 +62,22 @@ UPSTREAM = BIN / "sagan-upstream"
 #: may be absent.
 PATCHED = BIN / "sagan-patched"
 
-#: Upstream plus both local patches. This is the binary to use when measuring
-#: what a rule *means*, because without them a rule carrying only `content` and
-#: `program` can be silently turned into a correlation and then fires only from
-#: the N+1th event, which would attribute engine behaviour to the converter.
+#: Upstream plus every local patch. This is the binary to use when measuring
+#: what a rule *means*, because each defect they fix turns into noise the
+#: converter gets blamed for: a rule carrying only `content` and `program` can
+#: be silently turned into a correlation and then fire only from the N+1th
+#: event, and a log line holding three colons in one token aborts the process
+#: outright, which no measurement survives.
 SANE = BIN / "sagan-sane"
 
 
 class MissingBinary(RuntimeError):
     """An engine build this measurement needs is not present.
 
-    Two of the three binaries need local patches to the engine that this
-    repository does not carry. They are held back deliberately: they fix
-    defects that are not public, and the maintainers have been told privately.
-    Publishing them here would amount to disclosing those defects, which is not
-    this repository's call to make.
+    Two of the three binaries need patches to the engine that this repository
+    does not carry. They are held back deliberately: they fix defects that are
+    not public, and publishing the patches would amount to disclosing them,
+    which is not a converter's call to make.
 
     Everything that does not touch the `after` correlation path runs on the
     plain upstream build. ``docs/LAB.md`` lists what runs and what does not.
