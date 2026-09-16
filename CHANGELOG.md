@@ -6,6 +6,22 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+- A Dependabot configuration, weekly, for the GitHub Actions the workflows pin
+  and for the Python dependencies. The actions half is the one that will produce
+  pull requests: the Python dependencies are declared as lower bounds, so the
+  newest release of each is already allowed and there is nothing to raise.
+  Dependabot touches them when a version inside the allowed range carries an
+  advisory, which is what the entry is there for. Two actions stay out,
+  `pypa/gh-action-pypi-publish` and `dtolnay/rust-toolchain`, both pinned to a
+  branch rather than a tag: a moving ref is not a version to bump.
+- A test that the `minimum-versions` CI job installs exactly the floors
+  `pyproject.toml` declares. The job proves a lower bound is usable, and the two
+  files had nothing keeping them in step, so a raised floor left the job testing
+  a version the project no longer claims to support, or made pip refuse the
+  combination and fail the job with a resolver error that reads as a code
+  problem. Both directions now fail with the reason stated.
+
 ### Fixed
 - Four blind spots in the probe generator, each of which left a corpus rule
   undecided on both sides of the differential, which reads as agreement and

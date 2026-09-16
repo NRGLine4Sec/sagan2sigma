@@ -1,0 +1,65 @@
+# Dependabot keeps the pinned parts of this repository current and opens a pull
+# request when a dependency it can see has a published advisory.
+#
+# What it will actually do here, so nobody waits for pull requests that are not
+# coming:
+#
+#   github-actions  the useful half. Every workflow pins an action by major
+#                   tag, so Dependabot proposes the bump when a new major is
+#                   released. Two actions are pinned to a branch,
+#                   pypa/gh-action-pypi-publish@release/v1 and
+#                   dtolnay/rust-toolchain@stable, and a moving ref is not a
+#                   version, so those are left alone by design.
+#
+#   pip             quiet by design. The dependencies in pyproject.toml are
+#                   lower bounds, so the newest release of each is already
+#                   allowed and there is nothing to raise. Dependabot opens a
+#                   pull request here only when a version inside the allowed
+#                   range carries an advisory, which is the case this file is
+#                   really here for: it then raises the floor past the
+#                   vulnerable release.
+#
+# Version updates are what this file configures. Security updates also need
+# Dependency graph and Dependabot alerts enabled in the repository settings;
+# they are on by default for a public repository.
+#
+# A raised floor in pyproject.toml has to be mirrored by hand in the
+# minimum-versions job of .github/workflows/ci.yml, which installs the declared
+# floors by exact version so an unusable minimum cannot ship unnoticed. The two
+# cannot drift silently: pip refuses to install a version the project now
+# forbids, so the job fails on the Dependabot pull request itself.
+
+version: 2
+
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 5
+    # One pull request for the whole set rather than one per action: these move
+    # together and each bump costs a full CI run.
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+    commit-message:
+      prefix: "ci"
+
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/Paris"
+    open-pull-requests-limit: 5
+    groups:
+      python-dependencies:
+        patterns:
+          - "*"
+    commit-message:
+      prefix: "deps"

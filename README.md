@@ -197,7 +197,7 @@ That exercise corrected a dozen behaviours the source reading had missed, most
 of them making the converted rules noisier than the originals. It also found
 limits in the engine that no converter can reproduce, which are recorded in
 `docs/DESIGN-DECISIONS.md` rather than imitated, and defects in the upstream
-rules themselves, seventeen of which are now fixed upstream.
+rules themselves, eighteen of which are now fixed upstream.
 
 The instrument that produced all of it is in [`lab/`](lab), documented in
 [`docs/LAB.md`](docs/LAB.md). CI never runs it: it needs a compiled Sagan and
