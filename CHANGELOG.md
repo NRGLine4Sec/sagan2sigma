@@ -6,6 +6,20 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Changed
+- What the documentation says about the rule header. `Header` claimed the
+  address fields "are not filters on the incoming log" and that they "fall back
+  to the syslog sender": both are wrong. `flow.c` checks them on every event,
+  and a plain syslog event reaches that check carrying `0.0.0.0` in both address
+  slots and `default-port` in both port slots, the sender never appearing.
+  Measured slot by slot, along with the case that does reach it: an address from
+  `parse_src_ip` is held to the header, including against a network variable.
+  The conversion still ignores the header, and `docs/DESIGN-DECISIONS.md` now
+  says why that is faithful only for the shipped `sagan.yaml`, where `HOME_NET`
+  and `EXTERNAL_NET` are `any`: 9,499 of the corpus's 10,028 rules name a
+  non-`any` destination, so a site setting those variables narrows thousands of
+  Sagan rules at once and the converted rules do not follow.
+
 ### Added
 - A Dependabot configuration, weekly, for the GitHub Actions the workflows pin
   and for the Python dependencies. The actions half is the one that will produce

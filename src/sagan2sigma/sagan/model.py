@@ -29,11 +29,22 @@ class Option:
 class Header:
     """The ``<action> <proto> <src> <sport> <dir> <dst> <dport>`` header.
 
-    Sagan keeps the Snort shape for rule-management tooling compatibility, but
-    the address fields are not filters on the incoming log: they are populated
-    *after* the fact from ``parse_src_ip``, ``parse_dst_ip`` or liblognorm, and
-    fall back to the syslog sender otherwise. The header is therefore kept for
-    traceability and ignored by the conversion, except for ``action``.
+    Sagan keeps the Snort shape for rule-management tooling compatibility. The
+    address and port fields are real conditions, checked in ``flow.c``, but they
+    are checked against values the engine derives rather than against anything
+    the log line carries by itself: an address arrives only from
+    ``parse_src_ip``, ``parse_dst_ip``, a ``json_map`` binding or liblognorm,
+    and a plain syslog event reaches the check with ``0.0.0.0`` in both address
+    slots and ``default-port`` in both port slots. The syslog sender never
+    reaches them.
+
+    Under the shipped ``sagan.yaml``, where ``HOME_NET`` and ``EXTERNAL_NET``
+    are both ``any``, every slot naming one of them therefore accepts every
+    event, which is what the corpus is written for. The header is kept for
+    traceability and ignored by the conversion, except for ``action``. See
+    ``docs/DESIGN-DECISIONS.md`` under "The rule header is a condition the
+    shipped configuration disarms" for the measurements and for what changes on
+    a site that sets those variables.
     """
 
     action: str

@@ -1123,6 +1123,55 @@ regressions are invisible in review.
 Enforced by `tests/integration/test_corpus.py::TestDeterminism` and by the
 golden files.
 
+## The rule header is a condition the shipped configuration disarms
+
+Every Sagan rule opens with the Snort header, `<action> <proto> <src> <sport> ->
+<dst> <dport>`, and the conversion keeps only `action`. That is a decision worth
+stating with its measurements, because the fields are not decoration: `flow.c`
+checks them on every event.
+
+What they are checked against is the point. The engine holds an event to the
+header using values it derived, not anything the log line carries by itself.
+Measured on Sagan `3b9b0fa`, a plain syslog event whose message satisfies the
+rule, asking each slot which values let the rule fire:
+
+| slot | fires on | silent on |
+| --- | --- | --- |
+| source address | `any`, `0.0.0.0` | the syslog sender, any other address |
+| destination address | `any`, `0.0.0.0` | the syslog sender, any other address |
+| source port | `any`, `514` | any other port |
+| destination port | `any`, `514` | any other port |
+
+So both addresses are zero and both ports are `default-port` from `sagan.yaml`.
+The syslog sender never reaches the header check, which is the part worth
+knowing: the sender is the group-by key a correlation falls back to, and it is
+still not an address for this purpose. An address arrives only from
+`parse_src_ip`, `parse_dst_ip`, a `json_map` binding or `normalize`, and it does
+reach the check when it does. The same rule carrying `parse_src_ip:1` on a
+message naming `8.8.4.4` fires under a header asking for `8.8.4.4`, and under
+one asking for an `$EXTERNAL_NET` set to `8.0.0.0/8`.
+
+The variables are expanded before the header is parsed, so the shipped
+`sagan.yaml` decides the rest. It sets `HOME_NET` and `EXTERNAL_NET` to `any`,
+calling it rare to want otherwise, and every slot naming one of them then
+accepts every event. That is the configuration the corpus is written for: 9,499
+of its 10,028 rules name a non-`any` destination, which under any other setting
+would hold them to an address that, for most of them, is `0.0.0.0`.
+
+Ignoring the header is therefore faithful for the configuration the rules are
+written against, and only for it. A site that sets `HOME_NET` to its own
+networks narrows thousands of Sagan rules at once, and the converted rules do
+not follow: they keep matching what the rule text describes. That is a
+divergence this project chose rather than one it missed, and the reason is that
+reproducing it would mean emitting a condition on a field no log carries, from a
+variable read at conversion time, to reproduce a filter the corpus does not
+appear to intend.
+
+Two header conditions are not ignored, because they make a rule dead rather than
+wide: a `tcp` or `icmp` protocol with nothing setting the protocol, and an
+enforced port slot with no `default_dst_port`. Both are reported as upstream
+defects, `U_CANNOT_MATCH`, not converted into anything.
+
 ## We do not re-validate the upstream Sagan rules
 
 This project does not check that the rules in `quadrantsec/sagan-rules` are valid
