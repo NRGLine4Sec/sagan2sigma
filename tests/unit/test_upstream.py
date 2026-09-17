@@ -561,3 +561,95 @@ class TestThresholdKeys:
             "threshold: type suppress, track by_tag, count 1, seconds 3600; sid:1;"
         )
         assert DefectCode.WILL_NOT_LOAD in codes(raw)
+
+
+class TestSpaceBeforeADelimiter:
+    """A space after a closing quote is read as part of the value.
+
+    `Between_Quotes` re-arms its flag on the closing quote, so what follows is
+    appended to what it extracted. Measured on Sagan `3b9b0fa`: the rule
+    `json_meta_content:".catdesc" ,Hacking` stays silent on a document carrying
+    `catdesc`, and fires on one whose key is literally `catdesc `, which is what
+    pins the mechanism. Three corpus rules were written that way, sids 5014501,
+    5001881 and 5008539.
+    """
+
+    def test_a_key_with_a_trailing_space_cannot_match(self) -> None:
+        raw = (
+            'msg:"t"; json_content:".type","utm"; '
+            'json_meta_content:".catdesc" ,Hacking; sid:1;'
+        )
+        assert DefectCode.CANNOT_MATCH in codes(raw)
+
+    def test_a_negated_key_only_stops_excluding(self) -> None:
+        raw = (
+            'msg:"t"; json_content:".type","utm"; '
+            'json_meta_content:!".catdesc" ,Hacking; sid:1;'
+        )
+        assert DefectCode.INERT_CONDITION in codes(raw)
+
+    def test_a_negated_content_stops_excluding(self) -> None:
+        """Sid 5001881, where the `$` marks a machine account."""
+        raw = 'msg:"t"; content:"Account Name"; content:! "$" ; sid:1;'
+        assert DefectCode.INERT_CONDITION in codes(raw)
+
+    def test_a_positive_content_searches_for_something_else(self) -> None:
+        raw = 'msg:"t"; content:"Account Name" ; sid:1;'
+        assert DefectCode.ALTERED_PATTERN in codes(raw)
+
+    def test_a_space_after_the_comma_is_harmless(self) -> None:
+        """`Remove_Spaces` is applied to the value list, so this one is fine."""
+        raw = 'msg:"t"; json_meta_content:".catdesc", Hacking; sid:1;'
+        assert codes(raw) == set()
+
+    def test_a_space_after_the_colon_is_harmless(self) -> None:
+        raw = 'msg:"t"; json_meta_content: ".catdesc",Hacking; sid:1;'
+        assert codes(raw) == set()
+
+    def test_a_trailing_space_in_a_msg_is_not_reported(self) -> None:
+        """It reaches the alert text and changes no decision."""
+        raw = 'msg:"t" ; program: sshd; content:"failed"; sid:1;'
+        assert codes(raw) == set()
+
+
+class TestSeveralMetaListsUnderContains:
+    """`json_meta_contains` with more than one list does not test what it says.
+
+    The loader resets the value index once per rule rather than once per list,
+    so each list after the first carries empty leading values and counts them.
+    A substring search finds an empty needle in anything. Measured on Sagan
+    `3b9b0fa` and reported as quadrantsec/sagan issue 107; sid 5017898 is the
+    corpus rule it kills, and its sibling 5017897, with one list, is fine.
+    """
+
+    def test_a_negated_second_list_kills_the_rule(self) -> None:
+        raw = (
+            'msg:"t"; json_content:".Op","go"; '
+            'json_meta_content:!".A",aaa; json_meta_content:!".C",ccc; '
+            "json_meta_contains; sid:1;"
+        )
+        assert DefectCode.CANNOT_MATCH in codes(raw)
+
+    def test_a_positive_second_list_only_stops_constraining(self) -> None:
+        raw = (
+            'msg:"t"; json_content:".Op","go"; '
+            'json_meta_content:!".A",aaa; json_meta_content:".C",ccc; '
+            "json_meta_contains; sid:1;"
+        )
+        assert DefectCode.INERT_CONDITION in codes(raw)
+
+    def test_one_list_is_fine(self) -> None:
+        """Sid 5017897 expresses the same intent with a single list."""
+        raw = (
+            'msg:"t"; json_content:".Op","go"; '
+            'json_meta_content:!".C",ccc; json_meta_contains; sid:1;'
+        )
+        assert codes(raw) == set()
+
+    def test_several_lists_without_the_modifier_are_fine(self) -> None:
+        """Without it the comparison is strcmp, which no empty value satisfies."""
+        raw = (
+            'msg:"t"; json_content:".Op","go"; '
+            'json_meta_content:!".A",aaa; json_meta_content:!".C",ccc; sid:1;'
+        )
+        assert codes(raw) == set()

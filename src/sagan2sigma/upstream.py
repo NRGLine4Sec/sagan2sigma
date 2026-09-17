@@ -9,22 +9,28 @@ inherits a rule that never fired, and someone comparing the converted output
 against a running Sagan would find the two agreeing perfectly, both silent, and
 conclude the conversion was sound.
 
-Counted against `quadrantsec/sagan-rules` at `78148f1`, where seventeen of the
-fixes this module found have been merged: 8 rules fall into the silent category
-below and one asserts what it means to forbid. Nothing is left in the two
-categories that held 12 and 2 at `cab835c`, the twelve patterns that were not
-the one written and the two rules missing the first value they list having been
-fixed upstream. Against `c6fddfd`, the tree this project measured before any of
-them landed, the silent category held 768, which is what a ruleset looks like
-when nobody has been running it through the engine it was written for.
+Counted against `quadrantsec/sagan-rules` at `a1cf3b3`, where eighteen of the
+fixes this module found have been merged: 13 rules are reported, 11 of them
+silent and 2 broader than they read. Nothing is left in the two categories that
+held 12 and 2 at `cab835c`, the twelve patterns that were not the one written
+and the two rules missing the first value they list having been fixed upstream.
+Against `c6fddfd`, the tree this project measured before any of them landed,
+the silent category held 768, which is what a ruleset looks like when nobody has
+been running it through the engine it was written for.
 
-The nine that remain are the ones a rules change cannot reach. Six name a JSON
-key path the engine clips below the level that names the value, which is an
-engine limit whatever the rule says. One is the negated `pcre` the engine reads
-as positive, which is an engine defect. Two carry a malformed `content` whose
-intended value is not recoverable from the rule, so only someone who knows the
-log format can write the fix. Every defect this module reports that could be
-corrected by editing a rule has been.
+Nine of the thirteen are beyond a rules change. Six name a JSON key path the
+engine clips below the level that names the value, which is an engine limit
+whatever the rule says. One is the negated `pcre` the engine reads as positive.
+One carries several `json_meta_content` lists under `json_meta_contains`, where
+the loader mis-indexes their values; the rule text is correct and the fix is a
+line in the engine, proposed as quadrantsec/sagan issue 107. Two carry a
+malformed `content` whose intended value is not recoverable from the rule, so
+only someone who knows the log format can write the fix.
+
+The other four are three rules whose quoted argument is followed by a space,
+which the engine reads as part of the value, and which a pull request closes
+up. Every defect this module reports that could be corrected by editing a rule
+has been, or is waiting in a pull request.
 
 Each detector below corresponds to an engine behaviour established by running a
 locally built Sagan, not by reading it. The comments name what was measured, so
@@ -34,9 +40,11 @@ is harmless in two of its shapes and fatal in the rest, and only the engine
 says which is which.
 
 Most have a fix upstream, proposed as pull requests against
-`quadrantsec/sagan-rules`. Two do not, both being engine defects rather than
-rule ones: `pcre:!` has no negation to fix in the rules, and a key path clipped
-above the level that names the value cannot be written any other way.
+`quadrantsec/sagan-rules`. Three do not, all being engine defects rather than
+rule ones: `pcre:!` has no negation to fix in the rules, a key path clipped
+above the level that names the value cannot be written any other way, and the
+value index shared across a rule's `json_meta_content` lists is a loader
+variable, not something a rule can avoid.
 
 What this deliberately does **not** do is judge intent. A rule can load, fire,
 and still be useless because its pattern matches nothing any real appliance
@@ -172,6 +180,22 @@ _VALUE_LISTS = ("meta_content", "json_meta_content")
 #:     expanded values nor the variable's own name appear in anything the rule
 #:     will fire on, so the rule is dead.
 _META_TEMPLATE = re.compile(r'^\s*!?\s*"(?P<template>[^"]*)"')
+
+#: Options whose quoted argument the engine searches for or looks up, rather
+#: than only reports. A trailing space inside a `msg` reaches the alert text and
+#: changes no decision, so `msg` and `reference` are deliberately absent.
+_KEY_OPTIONS = frozenset({"json_content", "json_meta_content", "json_pcre", "json_map"})
+_VALUE_OPTIONS = frozenset({"content", "meta_content", "pcre"})
+
+#: A quoted argument with whitespace between its closing quote and the
+#: delimiter that ends it. Measured on the engine: the space is appended to the
+#: value, so a key written `".catdesc" ,x` is looked up as `.catdesc ` and a
+#: `content:! "$" ;` searches for a dollar followed by a space.
+_TRAILING_SPACE = re.compile(
+    r"\b(?P<keyword>" + "|".join(sorted(_KEY_OPTIONS | _VALUE_OPTIONS)) + r")"
+    r'\s*:\s*(?P<negated>!?)\s*"[^"]*"[ \t]+(?=[,;])',
+    re.I,
+)
 
 
 @dataclass(frozen=True, slots=True)
@@ -759,6 +783,79 @@ def inspect(rule: SaganRule) -> list[UpstreamDefect]:
                 )
             )
         break
+
+    # --- a space the engine reads as part of the value ----------------------
+    #
+    # `Between_Quotes` re-arms its flag on the closing quote, so whatever
+    # follows that quote, up to the next one, is appended to what it extracted.
+    # Whitespace before the delimiter therefore lands inside the value. This
+    # parser strips it, as any reader would, which is exactly why the converted
+    # rule and the engine part company here.
+    for match in _TRAILING_SPACE.finditer(rule.raw):
+        keyword = match.group("keyword").lower()
+        negated = bool(match.group("negated"))
+        if keyword in _KEY_OPTIONS:
+            code = DefectCode.INERT_CONDITION if negated else DefectCode.CANNOT_MATCH
+            detail = (
+                f"the {keyword} key is followed by a space before its comma, so "
+                f"the engine looks up a key ending in a space, which no document "
+                f"carries"
+            )
+            if keyword == "json_map":
+                code = DefectCode.INERT_CONDITION
+                detail = (
+                    "the json_map name is followed by a space before its comma, "
+                    "so the binding names no field the engine knows and nothing "
+                    "is bound"
+                )
+        else:
+            code = DefectCode.INERT_CONDITION if negated else DefectCode.ALTERED_PATTERN
+            detail = (
+                f"the {keyword} value is followed by a space before its "
+                f"delimiter, so the engine searches for that value with a space "
+                f"appended"
+            )
+            if negated:
+                detail += ", and the exclusion is not the one written"
+        found.append(UpstreamDefect(rule.sid, rule.source_file, code, detail))
+        break
+
+    # --- several meta lists under a substring modifier ----------------------
+    #
+    # The loader stores every `json_meta_content` value at an index it resets
+    # once per rule rather than once per list, so each list after the first
+    # carries empty leading values and reports them in its count. With
+    # `json_meta_contains` the comparison is a substring search, and an empty
+    # needle is found in anything: a negated list then excludes every document
+    # and a positive one constrains nothing. Reported upstream as
+    # quadrantsec/sagan issue 107, where a one-line fix is proposed; until that
+    # lands, such a rule does not do what it reads as doing and the converter
+    # deliberately emits what the rule says instead.
+    meta_lists = list(rule.iter_options("json_meta_content"))
+    if len(meta_lists) > 1 and rule.has("json_meta_contains"):
+        negated_lists = [
+            option
+            for option in meta_lists[1:]
+            if option.value and option.value.lstrip().startswith("!")
+        ]
+        found.append(
+            UpstreamDefect(
+                rule.sid,
+                rule.source_file,
+                DefectCode.CANNOT_MATCH
+                if negated_lists
+                else DefectCode.INERT_CONDITION,
+                f"{len(meta_lists)} json_meta_content lists with "
+                f"json_meta_contains: the engine gives every list after the "
+                f"first a set of empty values, which a substring search finds in "
+                f"anything"
+                + (
+                    ", so a negated list excludes every document"
+                    if negated_lists
+                    else ", so the list constrains nothing"
+                ),
+            )
+        )
 
     # --- the rule loads, matches, and groups on the wrong thing --------------
     for keys in _after_keys(rule):

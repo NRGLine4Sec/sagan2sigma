@@ -182,13 +182,12 @@ the code.
 So behind it sits a second line of checking, which runs a locally built Sagan
 instead of modelling one. It judges the rules no model can decide too, `pcre`
 and effective positional constructs among them. Measured against `sagan-rules`
-at `a1cf3b3` under the enriched profile: **8,159 rules judged, no
-disagreement**, and 8,156 of them made both engines fire on a probe satisfying
+at `a1cf3b3` under the enriched profile: **9,138 rules judged, no
+disagreement**, and 9,134 of them made both engines fire on a probe satisfying
 every positive condition, which is what says the agreement was not two silences.
-The three that did not are undecidable rather than unmeasured: two carry a
+The four that did not are undecidable rather than unmeasured: three carry a
 literal no serialised document can hold, and one an `event_id` the engine cannot
-resolve from a document. A fourth used to sit there, an upstream rule that could
-never fire; it fires now, the fix having been merged upstream.
+resolve from a document.
 It separately walks every `after` correlation it can drive to its threshold,
 checking that each stays silent at N events and alerts at N+1: 921 of them under
 the same profile, again with no disagreement, and 10 `xbits` state machines

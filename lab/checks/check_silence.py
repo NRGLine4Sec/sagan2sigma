@@ -53,7 +53,7 @@ sys.path.insert(0, str(REPO / "src"))
 from engine_differential import (
     _country_bindings,
     _feed_context,
-    strip_threshold,
+    strip_counting,
 )
 from sagan2sigma.errors import Refusal
 from sagan2sigma.mapping.content import split_meta_content
@@ -112,7 +112,7 @@ def fires(
 ) -> bool:
     """Whether Sagan alerts on the rule's own base probe.
 
-    `strip_threshold` and the instant come from the differential: a rule judged
+    `strip_counting` and the instant come from the differential: a rule judged
     there under those conditions has to be asked here under the same ones. The
     first version of this check did neither, and reported three `alert_time`
     rules as firing because it happened to run inside their window.
@@ -137,7 +137,7 @@ def fires(
         level=base.event.level,
     )
     got = sagan(
-        rules=[strip_threshold(raw)],
+        rules=[strip_counting(raw)],
         events=[line],
         binary=PATCHED,
         at_time=clock[0] if clock else None,

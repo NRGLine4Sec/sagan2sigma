@@ -26,11 +26,15 @@ alert only from the N+1th event. Measuring detection semantics against a binary
 that can silently turn a rule into a correlation would attribute heap noise to
 the converter.
 
-Correlation rules are still out of scope here, for a different and honest
-reason: `after`, `threshold` and the bit keywords need a sequence of events and
-carry state between them, so a single probe cannot decide them. The engine lab
-covers those separately, case by case, in `checks/check_correlation.py` and
-`checks/check_flexbits.py`.
+What a correlation *counts* is still out of scope here, for a different and
+honest reason: a threshold needs a sequence of events, so a single probe cannot
+decide it. What a correlation *matches* is in scope, and is judged the same way
+for `after` as for `threshold`: the counting option is stripped from the rule
+before the engine sees it, and the Sigma side carries the detection document the
+emitted correlation would reference rather than the correlation itself. The
+boundary those rules count to is measured separately, at N and N+1, by
+`after_differential.py`, and the bit state machines by `xbits_differential.py`
+and `checks/check_flexbits.py`.
 
 This cannot run in CI, which is why it lives here: it needs a compiled Sagan.
 The Python harness stays in the repository as the light net that runs on every
@@ -145,7 +149,15 @@ RSIGMA = "rsigma"
 #: whose only bit option is `xbits: set` alerts on the first matching event,
 #: exactly like the same rule without it, and so does `unset`. Excluding on the
 #: keyword withheld 487 rules from judgement for no reason.
-STATEFUL = frozenset({"after", "flexbits_pause", "xbits_pause"})
+#:
+#: `after` is deliberately absent too, and for the same reason as `threshold`:
+#: it decides *when* a rule alerts, not *what* it matches. It is stripped from
+#: the rule before the engine sees it, like `threshold`, so both sides decide on
+#: the first matching event. Judging it here is not judging the correlation,
+#: which needs a sequence and is measured at its N/N+1 boundary by
+#: after_differential.py; it is judging the detection half those 831 rules carry
+#: and which nothing else in this repository compared.
+STATEFUL = frozenset({"flexbits_pause", "xbits_pause"})
 
 #: Bit operations that consult state written by an earlier event.
 STATEFUL_BIT_OPS = frozenset({"isset", "isnotset"})
@@ -197,10 +209,23 @@ def _bit_operations(rule: Any) -> set[str]:
 #: checks/check_correlation.py, which is where that claim belongs.
 _THRESHOLD_OPTION = re.compile(r"\s*threshold\s*:[^;]*;", re.I)
 
+#: `after` is removed for the same reason, and the reason is worth separating
+#: from the threshold one. A `threshold` rule matches every event and reports
+#: some of them; an `after` rule matches every event and reports none until its
+#: counter is full, so one probe leaves the engine silent while the converted
+#: detection rule fires. That reads as a disagreement and is an artefact of the
+#: probe being single.
+#:
+#: The Sigma side needs no equivalent surgery: `sigma_document` builds the
+#: detection document with `needs_name=False`, which is the rule the emitted
+#: correlation would reference, not the correlation itself. So both sides carry
+#: the same detection and neither carries the counting.
+_AFTER_OPTION = re.compile(r"\s*after\s*:[^;]*;", re.I)
 
-def strip_threshold(raw: str) -> str:
-    """The rule as written, minus any `threshold` option."""
-    return _THRESHOLD_OPTION.sub(" ", raw)
+
+def strip_counting(raw: str) -> str:
+    """The rule as written, minus its `threshold` and `after` options."""
+    return _AFTER_OPTION.sub(" ", _THRESHOLD_OPTION.sub(" ", raw))
 
 
 #: Keywords that stop the engine from loading the ruleset at all here.
@@ -725,7 +750,7 @@ def run_batch(
     owned: list[tuple[Any, Any, str, str, dict[str, Any]]] = []
 
     for rule, _, rule_probes in batch:
-        sagan_rules.append(strip_threshold(rule.raw))
+        sagan_rules.append(strip_counting(rule.raw))
         for probe in rule_probes:
             # A JSON rule keeps its keys in json_body and leaves `message` as
             # the literal text. The Sigma side is handed the parsed object, so

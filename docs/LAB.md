@@ -5,8 +5,8 @@ it actually does, so that the claims this project makes about Sagan's behaviour
 can be verified by execution instead of by reading C.
 
 Last verified against Sagan `main` at `3b9b0fa` and the rule corpus at
-`a1cf3b3`, on 2026-09-17: 8,159 rules judged by the corpus differential, no
-disagreement, 8,156 of them exercised, and the correlation differentials adding
+`a1cf3b3`, on 2026-09-17: 9,138 rules judged by the corpus differential, no
+disagreement, 9,134 of them exercised, and the correlation differentials adding
 921 `after` boundaries and 10 `xbits` state machines, also without
 disagreement. That line is the lab's support statement: it says what was
 measured and when, and it is meant to be updated by whoever runs the suite

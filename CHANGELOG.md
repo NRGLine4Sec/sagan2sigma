@@ -6,7 +6,42 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Added
+- Two upstream detectors, both for shapes the corpus differential found by
+  disagreeing rather than by anyone reading a rule.
+
+  A quoted argument followed by whitespace before its delimiter. `Between_Quotes`
+  re-arms its flag on the closing quote, so the space lands inside the value:
+  `json_meta_content:".catdesc" ,x` looks up a key ending in a space, which no
+  document carries, and `content:! "$" ;` searches for a dollar followed by one,
+  so it stops excluding the machine accounts it was written for. Measured on the
+  engine both ways, including the case that pins the mechanism rather than
+  inferring it: the rule fires on a document whose key really is `catdesc `.
+  Three corpus rules, sids 5014501, 5001881 and 5008539; a pull request closes
+  them up and adds the check to the upstream CI validator.
+
+  Several `json_meta_content` lists under `json_meta_contains`. The loader
+  resets the value index once per rule rather than once per list, so every list
+  after the first carries empty leading values and counts them, and a substring
+  search finds an empty needle in anything: a negated list excludes every
+  document, a positive one constrains nothing. The rule text is correct, so this
+  detector reports an engine defect, reported as quadrantsec/sagan issue 107
+  with a one-line fix. It should be removed when that lands. One corpus rule,
+  sid 5017898, whose single-list sibling 5017897 is unaffected.
+
+  Both codes put their rules in the differential's dead-upstream exclusion,
+  which is where they belong: the converter emits what the rule says, the engine
+  does something else, and judging that measures the policy rather than the
+  conversion.
+
 ### Changed
+- The corpus differential judges the detection half of `after` correlations.
+  `after` decides when a rule alerts, not what it matches, so it is now stripped
+  from the rule before the engine sees it exactly as `threshold` already was,
+  and the Sigma side carries the detection document the emitted correlation
+  references. What a correlation counts is still measured separately, at its
+  N/N+1 boundary. Judged rules rise from 8,159 to 9,138 on `sagan-rules@a1cf3b3`,
+  and the two rules above are what the new coverage found.
 - What the documentation says about the rule header. `Header` claimed the
   address fields "are not filters on the incoming log" and that they "fall back
   to the syslog sender": both are wrong. `flow.c` checks them on every event,
