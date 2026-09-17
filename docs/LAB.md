@@ -5,10 +5,12 @@ it actually does, so that the claims this project makes about Sagan's behaviour
 can be verified by execution instead of by reading C.
 
 Last verified against Sagan `main` at `3b9b0fa` and the rule corpus at
-`78148f1`, on 2026-09-15: 8,187 rules judged by the corpus differential, no
-disagreement, 8,183 of them exercised. That line is the lab's support
-statement: it says what was measured and when, and it is meant to be updated by
-whoever runs the suite next.
+`a1cf3b3`, on 2026-09-17: 8,159 rules judged by the corpus differential, no
+disagreement, 8,156 of them exercised, and the correlation differentials adding
+921 `after` boundaries and 10 `xbits` state machines, also without
+disagreement. That line is the lab's support statement: it says what was
+measured and when, and it is meant to be updated by whoever runs the suite
+next.
 
 **It is not part of the test suite and CI never runs it.** A full pass starts
 several hundred Sagan processes and takes the better part of an hour, which does
@@ -375,8 +377,18 @@ For the correlation differential the same pipeline is what makes a rule
 grouping on `parse_src_ip` judgeable at all: its probe is given five addresses
 to be parsed, one set per case so that a neighbour's event lands in a different
 group on both sides, and each side then derives its own group key from the same
-line. 454 correlations are judged under the enriched profile against 373 under
-syslog.
+line. Measured against `sagan-rules@a1cf3b3`, **921 correlations are judged
+under the enriched profile against 748 under syslog**, with no disagreement in
+either run, at N events or at N+1. The enriched run sets 34 cases aside as `no
+trigger` and 12 as `over-count`; the syslog run, 5 and 7. What the two profiles
+part company over is named in the skip counters: 120 rules need the enriched
+pipeline and 65 want an address `normalize` alone cannot resolve, which is the
+whole of the gap.
+
+Those figures replace 454 and 373, measured on an earlier corpus and, more to
+the point, before the group-by work. Nothing about the corpus accounts for the
+difference: it gained a handful of rules over the same period. The harness
+learned to drive correlations it used to set aside.
 
 Both also carry a flag that reintroduces a defect the project has actually
 shipped, and both must report it: `--case-policy relaxed` drops `|cased` and the
@@ -389,6 +401,16 @@ Read the counters, not just the verdict. `no trigger` means the generated event
 never satisfied the rule, and `over-count` that another rule in the batch fed it
 extra matching events: in both cases the two engines agree, but the boundary was
 not tested, so those rules are covered by the run and not judged by it.
+
+`xbits_differential.py` asks the same boundary question of the other state
+machine, one setter event then one tester, and runs each correlation twice: once
+with the bit primed and once without, since a rule that fires either way has not
+been judged at all. It needs no corpus-wide batching, the family being small.
+On `a1cf3b3`: 14 cases, 10 judged, no disagreement in either state. The four it
+does not judge are named individually, sids 5009793, 5003985, 5014047 and
+5003390, each because the rule that sets the bit does not match its own probe.
+That is a generated event the tool could not build, reported rather than counted
+as agreement.
 
 `exercised` says the same thing for the detection run: how many rules made
 *both* sides fire on a probe that satisfies every positive condition, the base
