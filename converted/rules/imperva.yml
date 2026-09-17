@@ -352,29 +352,3 @@ custom_attributes:
   sagan.sid: '5003917'
   sagan.rev: '3'
   sagan.source_file: imperva.rules
----
-title: '[INCAPSULA] DDoS'
-id: 688cea9d-ac23-5d7c-9770-bab937efe7a0
-status: experimental
-description: Converted from Sagan rule SID 5003924 (rev 5), file imperva.rules.
-author: sagan2sigma
-logsource:
-  product: syslog
-detection:
-  selection_1:
-    appname|cased:
-      - Incapsula*
-      - incapsula*
-  selection_2:
-    _raw|contains|cased: '|DDoS|'
-  condition: selection_1 and selection_2
-falsepositives:
-  - 'Unassessed: automatically converted, not yet tuned'
-level: medium
-tags:
-  - sagan.classtype.system-event
-custom_attributes:
-  sagan.sid: '5003924'
-  sagan.rev: '5'
-  sagan.source_file: imperva.rules
-  rsigma.suppress: 30m

@@ -5,13 +5,13 @@
 | Metric | Value |
 | --- | --- |
 | Rule files processed | 343 |
-| Active rules parsed | 10025 |
+| Active rules parsed | 10027 |
 | Commented-out rules skipped | 9443 |
-| Rules converted | 8714 (86.9%) |
-| Rules refused | 1311 (13.1%) |
+| Rules converted | 8715 (86.9%) |
+| Rules refused | 1312 (13.1%) |
 | Lines that failed to parse | 0 |
 | Synthetic rules added | 10 |
-| Sigma documents emitted | 9528 |
+| Sigma documents emitted | 9529 |
 | pySigma validation issues | 0 |
 | Output profile | `rsigma-syslog` |
 | Case policy | `faithful` |
@@ -26,7 +26,7 @@ logsource catalog. It answers which kinds of device caused trouble.
 | --- | ---: | ---: | ---: | ---: |
 | AWS | 534 | 101 | 84.1% | 534 |
 | Applications and web | 180 | 72 | 71.4% | 171 |
-| Azure and Microsoft 365 | 1344 | 410 | 76.6% | 549 |
+| Azure and Microsoft 365 | 1346 | 410 | 76.7% | 551 |
 | Endpoint and EDR | 983 | 57 | 94.5% | 976 |
 | Google Cloud | 68 | 8 | 89.5% | 62 |
 | Infrastructure | 189 | 25 | 88.3% | 189 |
@@ -34,7 +34,7 @@ logsource catalog. It answers which kinds of device caused trouble.
 | Network detection | 241 | 20 | 92.3% | 241 |
 | SaaS and identity | 311 | 33 | 90.4% | 154 |
 | State correlations | 10 | 0 | 100.0% | 0 |
-| Unclassified | 1550 | 113 | 93.2% | 1550 |
+| Unclassified | 1549 | 114 | 93.1% | 1549 |
 | Unix and Linux | 180 | 36 | 83.3% | 176 |
 | Windows | 2001 | 101 | 95.2% | 1966 |
 
@@ -44,8 +44,8 @@ logsource catalog. It answers which kinds of device caused trouble.
 | --- | ---: | ---: | --- |
 | `E_RAW_TEXT_ON_JSON_EVENT` | 501 | 38.2% | The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text. |
 | `E_EXTERNAL_ENRICHMENT` | 383 | 29.2% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
-| `E_GROUPBY_UNRESOLVED` | 311 | 23.7% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
-| `E_POSITIONAL` | 40 | 3.1% | The rule constrains where a pattern sits in the log line with a non-zero offset, depth or distance. Sigma string modifiers cannot express a byte position, so no faithful translation exists. A zero-valued positional is a no-op in the Sagan engine and is converted. |
+| `E_GROUPBY_UNRESOLVED` | 312 | 23.8% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
+| `E_POSITIONAL` | 40 | 3.0% | The rule constrains where a pattern sits in the log line with a non-zero offset, depth or distance. Sigma string modifiers cannot express a byte position, so no faithful translation exists. A zero-valued positional is a no-op in the Sagan engine and is converted. |
 | `E_PCRE_UNSUPPORTED` | 39 | 3.0% | The regular expression uses a PCRE construct the Rust engine cannot express and the converter cannot safely rewrite (recursion, look-around, back-references, control verbs). Recoverable constructs (numbered subroutines, literal braces, the whole-string negation idiom, inert flags) are rewritten instead of refused. |
 | `E_TIME_WINDOW` | 29 | 2.2% | The rule only fires on given weekdays or hour ranges (alert_time). Sigma has no recurring-time operator, so this is refused unless --profile vector-enriched is used, whose bundled time transform supplies the weekday and hour-of-day fields the window matches on. |
 | `E_STATE_ABSENCE` | 6 | 0.5% | The rule requires that an earlier event did NOT happen (xbits or flexbits isnotset). Sigma cannot express a negative correlation. |
@@ -58,18 +58,18 @@ reproduced. They are worth reviewing before the ruleset goes live.
 
 | Code | Rules | Meaning | Example SIDs |
 | --- | ---: | --- | --- |
-| `D_RAW_TEXT_MATCH` | 5803 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
+| `D_RAW_TEXT_MATCH` | 5804 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
 | `D_EVENT_ID_HEURISTIC` | 1871 | Without a json_map for event_id, Sagan looks for ' <id>: ', with the surrounding spaces, in the first nine characters of the message, so an ID at the very start never matches. The converted rule assumes a proper EventID field instead, which fires on events the heuristic would have missed. Measured against a locally built engine. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
-| `D_LOGSOURCE_FALLBACK` | 1867 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
-| `D_THRESHOLD_SUPPRESS` | 1136 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
+| `D_LOGSOURCE_FALLBACK` | 1866 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
+| `D_THRESHOLD_SUPPRESS` | 1137 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
 | `D_PASS_SHORT_CIRCUIT` | 513 | The rule used the pass action. In Sagan a matching pass rule still emits an alert (Send_Alert runs before the pass check) and then stops evaluating the remaining signatures for that event. The detection is converted faithfully; only the short-circuit, the suppression of other rules on the same event, is not reproduced, since Sigma evaluates every rule independently. | `5016065`, `5016066`, `5016067`, `5016068`, `5016069` |
 | `D_GROUPBY_SYSLOG_HOST` | 387 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
 | `D_SIDE_EFFECT_DROPPED` | 233 | Engine-specific side effect (external, email, dynamic_load, unset) with no Sigma equivalent. | `5008539`, `5003022`, `5003023`, `5002959`, `5002960` |
 | `D_THRESHOLD_LIMIT` | 145 | threshold type limit caps alert volume, not detection. Sigma has no equivalent, so the constraint is dropped. | `5017933`, `5008570`, `5009316`, `5009317`, `5009318` |
 | `D_APPEND_PROGRAM` | 74 | append_program makes Sagan append the program field to the message before matching. The converted rule searches the message alone. | `5000419`, `5000470`, `5000489`, `5000519`, `5000521` |
 | `D_XBIT_SET_DROPPED` | 65 | The rule set or tested an xbit that no converted rule consumes. The state link is lost. | `5009285`, `5009290`, `5007210`, `5007211`, `5005994` |
-| `D_JSON_BODY_ARM_LOST` | 31 | The rule carries a json_map binding but no condition a plain-text event cannot satisfy, so Sagan matches it on both a plain line and a JSON document. This profile exposes no raw body for a JSON-bodied event, so the text search has nothing to run against there and the converted rule covers the plain-text half only. Convert under --profile vector-enriched, whose pipeline keeps the raw body, to cover both. | `5004304`, `5003879`, `5000055`, `5000111`, `5010582` |
-| `D_XBIT_ISSET_SYNTHETIC` | 20 | The state correlation was rebuilt through a synthetic aggregate rule gathering every rule that sets the bit. | `9870107`, `5014091`, `5008539`, `5009793`, `5015226` |
+| `D_JSON_BODY_ARM_LOST` | 33 | The rule carries a json_map binding but no condition a plain-text event cannot satisfy, so Sagan matches it on both a plain line and a JSON document. This profile exposes no raw body for a JSON-bodied event, so the text search has nothing to run against there and the converted rule covers the plain-text half only. Convert under --profile vector-enriched, whose pipeline keeps the raw body, to cover both. | `5004304`, `5003879`, `5000055`, `5000111`, `5010582` |
+| `D_XBIT_ISSET_SYNTHETIC` | 20 | The state correlation was rebuilt through a synthetic aggregate rule gathering every rule that sets the bit. | `5017993`, `5014091`, `5008539`, `5009793`, `5015226` |
 | `D_JSON_KEY_RESTORED` | 15 | The rule names a JSON key that upstream clipped to 31 characters so that Sagan, which stores key paths clipped and compares them with an exact strcmp, would match it at all. The full path is recorded in a comment above the rule and is what the log carries, so the converted rule uses that instead: Sigma has no such limit, and emitting the clipped name would match nothing outside Sagan. | `5004773`, `5017933`, `5017933`, `5005921`, `5005923` |
 | `D_DROP_ACTION` | 13 | The rule used the drop action. Sigma has no action concept; it was converted as a normal detection rule. | `5000102`, `5000103`, `5000193`, `5000018`, `5000071` |
 | `D_GROUPBY_SHAPE_SPLIT` | 7 | A rebuilt state correlation groups on the syslog sender, whose field name differs between JSON-bodied and plain events in RSigma. The bit is set by rules of both shapes, so the correlation pairs with the setters matching the tester and misses the others. Degraded rather than refused: most of these keep the majority of their setters. | `5008539`, `5009793`, `5014047`, `5003332`, `5003336` |
@@ -244,8 +244,8 @@ The rule searches the raw message body while also using JSON operators. When the
 | `5015948` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [AZURE-EVENTHUB-AD] MFA Phone Device Registered - VSCode | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5017158` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [AZURE-EVENTHUB-AD] New MFA Device Registered - VSCode | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5017159` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [AZURE-EVENTHUB-AD] MFA Authenticator Device Registered - VSCode | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
+| `5017992` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [AZURE-EVENTHUB-AD] Suspicious Device Registration - Add Registered User/Owner with Anomal | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `9870101` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [EXPERIMENTAL][AZURE-EVENTHUB-AD] Non-Interactive SignIn - Possible AiTM Session Theft via | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| `9870102` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [EXPERIMENTAL][AZURE-EVENTHUB-AD] Suspicious Device Registration - Add Registered User/Own | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `9870103` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [EXPERIMENTAL][AZURE-EVENTHUB-AD] Suspicious Device Registration - Add Registered User wit | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `9870104` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [EXPERIMENTAL][AZURE-EVENTHUB-AD] Suspicious Device Registration - Add Registered Owner wi | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5017924` | `azureEventHub_entra.rules` | Azure and Microsoft 365 | [AZURE-EVENTHUB-ENTRA] User Risk Detected - Details Hidden | `meta_content` | meta_content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding |
@@ -929,12 +929,12 @@ The rule queries an external source. Bluedot threat intelligence is out of scope
 
 </details>
 
-### `E_GROUPBY_UNRESOLVED` (311 rules)
+### `E_GROUPBY_UNRESOLVED` (312 rules)
 
 The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline.
 
 <details>
-<summary>Show the 311 refused rules</summary>
+<summary>Show the 312 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -1098,6 +1098,7 @@ The group-by key required by after does not exist as a field in any event: Sagan
 | `5003299` | `imapd-correlated.rules` | Applications and web | [IMAPD-CORRELATED] Connection after exploit attempt | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5003300` | `imapd-correlated.rules` | Applications and web | [IMAPD-CORRELATED] Connection after brute force activity | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5002947` | `imapd.rules` | Applications and web | [IMAPD] Brute force attack [5/1] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
+| `5003924` | `imperva.rules` | Unclassified | [INCAPSULA] DDoS Detected (50/30min) | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5001645` | `juniper.rules` | Network and firewalls | [JUNIPER] SSHD_LOGIN_FAILED - Brute force [5/5] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5002023` | `juniper.rules` | Network and firewalls | [JUNIPER] VPN Login failed - Brute Force [10/5] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5017930` | `juniper.rules` | Network and firewalls | [JUNIPER] ArcheClient C2 - Unidentified TCP Beaconing on Port 9000 | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |

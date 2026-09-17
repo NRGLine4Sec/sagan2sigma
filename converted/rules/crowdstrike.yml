@@ -2305,7 +2305,7 @@ custom_attributes:
 title: '[CROWDSTRIKE] EppDetectionSummaryEvent - Catch All'
 id: 490cee4b-9a3a-531e-8196-de954c05c4ac
 status: experimental
-description: Converted from Sagan rule SID 5017160 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017160 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -2320,7 +2320,7 @@ detection:
     _raw|contains|cased: Detected and blocked a heap spray attempt, which was likely part of an attempted
       exploit
   filter_5:
-    _raw|contains|cased: :"msg=A number of behaviors occurred indicative of the Empyre Backdoor tool"
+    _raw|contains|cased: msg=A number of behaviors occurred indicative of the Empyre Backdoor tool
   filter_6:
     _raw|contains|cased: msg=A process launched whose behavior is likely related to a potentially unwanted
       program
@@ -2332,9 +2332,9 @@ tags:
   - sagan.classtype.suspicious-activity
 custom_attributes:
   sagan.sid: '5017160'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
-  sagan.metadata: created_at=2025_08_08
+  sagan.metadata: created_at=2025_08_08,updated_at=2026_09_16
 ---
 title: '[CROWDSTRIKE] EppDetectionSummaryEvent - Detected and blocked a heap spray attempt'
 id: e1f847f2-df08-5c20-bd61-03131b010bfd

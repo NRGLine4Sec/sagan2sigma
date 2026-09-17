@@ -149,3 +149,51 @@ custom_attributes:
   sagan.rev: '2'
   sagan.source_file: msapi-azuread.rules
   sagan.metadata: created_on=2024_05_15
+---
+title: '[EXPERIMENTAL][COPILOT] Possible CoPilot Jailbreak Detected'
+id: 9ab48dab-5f30-5760-8d86-90c39a91e9a4
+status: experimental
+description: Converted from Sagan rule SID 5017990 (rev 1), file msapi-azuread.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Copilot
+  selection_2:
+    _raw|contains|cased: '"JailbreakDetected": true, "IsPrompt": true'
+  filter_3:
+    _raw|contains|cased: BingWebSearch
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+custom_attributes:
+  sagan.sid: '5017990'
+  sagan.rev: '1'
+  sagan.source_file: msapi-azuread.rules
+  rsigma.suppress: 1h
+---
+title: '[EXPERIMENTAL][COPILOT] Possible CoPilot Prompt Injection Detected'
+id: 5219f8f0-fe3b-5109-9e79-15786acf01c9
+status: experimental
+description: Converted from Sagan rule SID 5017991 (rev 1), file msapi-azuread.rules.
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    appname|cased: Copilot
+  selection_2:
+    _raw|contains|cased: '"XPIADetected": true'
+  filter_3:
+    _raw|contains|cased: BingWebSearch
+  condition: selection_1 and selection_2 and not filter_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+custom_attributes:
+  sagan.sid: '5017991'
+  sagan.rev: '1'
+  sagan.source_file: msapi-azuread.rules
+  rsigma.suppress: 1h

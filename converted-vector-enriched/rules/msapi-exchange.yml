@@ -900,7 +900,7 @@ level: medium
 title: '[MSAPI-EXCHANGE] Inbox Rule Created Or Modified To Hide Campaign-Related Email'
 id: 3a678c2f-7013-5028-81f4-8e97fd777b1b
 status: experimental
-description: Converted from Sagan rule SID 5017893 (rev 2), file msapi-exchange.rules.
+description: Converted from Sagan rule SID 5017893 (rev 3), file msapi-exchange.rules.
 author: sagan2sigma
 logsource:
   product: m365
@@ -921,7 +921,9 @@ detection:
       - hacked
       - compromised email
   selection_4:
-    sagan_raw|contains|cased: '\\"MarkAsRead\\", \\"Value\\": \\"True\\"""MarkAsRead", "Value": "True"'
+    sagan_raw|contains|cased:
+      - '"MarkAsRead", "Value": "True"'
+      - '\\"MarkAsRead\\", \\"Value\\": \\"True\\""'
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -930,7 +932,7 @@ tags:
   - sagan.classtype.evasion
 custom_attributes:
   sagan.sid: '5017893'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: msapi-exchange.rules
   sagan.metadata: created_at=2026_04_16,updated_at=2026_05_07,Mitre_TacticID=TA0005,Mitre_TacticName=Defense
     Evasion,Mitre_TechniqueID=T1564.008,Mitre_TechniqueName=Hide_Artifacts

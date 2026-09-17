@@ -371,10 +371,11 @@ custom_attributes:
   sagan.rev: '3'
   sagan.source_file: imperva.rules
 ---
-title: '[INCAPSULA] DDoS'
+title: '[INCAPSULA] DDoS Detected (50/30min)'
 id: 688cea9d-ac23-5d7c-9770-bab937efe7a0
+name: sagan_5003924
 status: experimental
-description: Converted from Sagan rule SID 5003924 (rev 5), file imperva.rules.
+description: Converted from Sagan rule SID 5003924 (rev 6), file imperva.rules.
 author: sagan2sigma
 logsource:
   product: syslog
@@ -396,6 +397,21 @@ tags:
   - sagan.classtype.system-event
 custom_attributes:
   sagan.sid: '5003924'
-  sagan.rev: '5'
+  sagan.rev: '6'
   sagan.source_file: imperva.rules
-  rsigma.suppress: 30m
+  rsigma.suppress: 1h
+---
+title: '[INCAPSULA] DDoS Detected (50/30min) (threshold 50 in 30m)'
+id: 18fd8275-d374-5ea4-80c0-3a560bc180eb
+status: experimental
+description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
+correlation:
+  type: event_count
+  rules:
+    - sagan_5003924
+  group-by:
+    - sagan_ip_1
+  timespan: 30m
+  condition:
+    gte: 51
+level: medium
