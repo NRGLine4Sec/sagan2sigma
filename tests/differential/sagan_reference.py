@@ -149,13 +149,28 @@ MAX_JSON_KEY = 30
 
 
 def _flatten(body: dict[str, Any], prefix: str = "") -> dict[str, Any]:
-    """Every dotted path in the document, clipped as the engine stores it."""
+    """Every dotted path in the document, clipped as the engine stores it.
+
+    Two paths can clip to the same key, a nested one and the object holding it,
+    and then the order matters: the engine stores its table as it walks the
+    document, parents before children, and `src/json-content.c` stops at the
+    **first** entry whose key matches, returning false when its value does not
+    compare. So the shallower entry decides and the deeper one is unreachable.
+
+    Keeping the last writer instead, which is what a plain assignment does, made
+    this evaluator find the nested value the engine never reaches: five
+    `confluent.rules` rules read as firing while Sagan stayed silent. They are
+    the rules upstream rewrote to the clipped form on purpose, and the clip
+    lands above the level naming the value, so they are dead in the engine and
+    this model said otherwise. Found by `lab/differential/model_differential.py`.
+    """
     flat: dict[str, Any] = {}
     for name, value in body.items():
         path = f"{prefix}.{name}" if prefix else str(name)
-        flat[path[:MAX_JSON_KEY]] = value
+        flat.setdefault(path[:MAX_JSON_KEY], value)
         if isinstance(value, dict):
-            flat.update(_flatten(value, path))
+            for nested, deeper in _flatten(value, path).items():
+                flat.setdefault(nested, deeper)
     return flat
 
 

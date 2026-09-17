@@ -6,9 +6,9 @@ can be verified by execution instead of by reading C.
 
 Last verified against Sagan `main` at `3b9b0fa` and the rule corpus at
 `a1cf3b3`, on 2026-09-17: 9,331 rules judged by the corpus differential, no
-disagreement, 9,314 of them exercised, and the correlation differentials adding
-921 `after` boundaries and 10 `xbits` state machines, also without
-disagreement. That line is the lab's support statement: it says what was
+disagreement, 9,314 of them exercised; the correlation differentials adding 921
+`after` boundaries and 10 `xbits` state machines, also without disagreement; and
+the model differential agreeing with the engine on 4,308 rules. That line is the lab's support statement: it says what was
 measured and when, and it is meant to be updated by whoever runs the suite
 next.
 
@@ -89,6 +89,8 @@ differential/
                            the after correlations, at their N/N+1 boundary
          xbits_differential.py
                            the xbits state machine, setter then tester
+         model_differential.py
+                           the Python model of Sagan against the real one
          vector_pipeline.py
                            runs the shipped VRL transforms, for the profiles
                            whose fields a syslog line alone cannot carry
@@ -302,7 +304,7 @@ rules actually fired.
   `country_code` requires a *resolved* country for both `is` and `isnot`, so an
   address the database cannot place fires neither.
 
-## The two differentials
+## The differentials
 
 `checks/` pins one behaviour at a time. `differential/` asks the other question:
 does the *converted corpus* behave like the original, rule by rule.
@@ -310,6 +312,7 @@ does the *converted corpus* behave like the original, rule by rule.
 ```sh
 lab/differential/engine_differential.py --rules <corpus>   # detection
 lab/differential/after_differential.py  --rules <corpus>   # correlation boundary
+lab/differential/model_differential.py  --rules <corpus>   # the model, not the conversion
 ```
 
 Both batch heavily, which is what makes the corpus tractable: one Sagan run
@@ -401,6 +404,35 @@ Read the counters, not just the verdict. `no trigger` means the generated event
 never satisfied the rule, and `over-count` that another rule in the batch fed it
 extra matching events: in both cases the two engines agree, but the boundary was
 not tested, so those rules are covered by the run and not judged by it.
+
+`model_differential.py` asks a different question from the other three, and the
+only one whose answer is unambiguous. They compare the *converted* rule against
+something; this compares the two readings of Sagan, the engine and
+`tests/differential/sagan_reference.py`, on the same probes. A divergence
+therefore cannot be an arbitration between two opinions: the engine is Sagan, so
+the model is wrong. And the model is what CI runs on every push, which is the
+point of running this in the lab: what it corrects strengthens the light net
+without the heavy one ever leaving here.
+
+On `a1cf3b3`: 4,308 rules, 28,792 probes, no divergence. It took one defect to
+get there. Two paths of a document can clip to the same stored key, a nested one
+and the object holding it, and the engine's table keeps both in the order it
+walked them while `src/json-content.c` stops at the first key that matches. The
+shallower entry decides and the deeper one is unreachable; the model kept the
+deeper one, so five `confluent.rules` rules that are dead in the engine read as
+alive. They are the rules upstream rewrote to the clipped form deliberately, and
+`sagan2sigma`'s own upstream detector already called them dead, so the converter
+and the model had disagreed about them for as long as both existed with nothing
+to arbitrate.
+
+The other 23 divergences of that first run were defects in the tool rather than
+in the model, and all three had been solved next door in `engine_differential.py`
+before: attribution has to key on the program as well as the message, since
+`base` and `wrong_program` differ only by it; every candidate has to be re-judged
+alone, since Sagan's `pass` action silences the rules that follow it in a batch;
+and a rule carrying `json_map: "program"` has its program replaced by the body's
+value, logged that way, so those rules are attributed by message alone. Reading
+the neighbour first would have saved all three.
 
 `xbits_differential.py` asks the same boundary question of the other state
 machine, one setter event then one tester, and runs each correlation twice: once

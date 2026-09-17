@@ -6,6 +6,25 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+- The reference evaluator resolved a JSON key the engine cannot reach. Two paths
+  of a document can clip to the same stored key, a nested one and the object
+  holding it; the engine keeps both in the order it walked them and
+  `src/json-content.c` stops at the first key that matches, so the shallower
+  entry decides. The model kept the deeper one, and five `confluent.rules` rules
+  that are dead in Sagan read as alive. Those are the rules upstream rewrote to
+  the clipped form on purpose, and this project's own upstream detector already
+  called them dead: the converter and the model had disagreed about them for as
+  long as both existed, with nothing in the repository able to say which was
+  right.
+
+  What says it now is `lab/differential/model_differential.py`, a third
+  differential that puts the engine on one side and the model of it on the
+  other, with no converted rule in between. A divergence there cannot be an
+  arbitration between two readings. On `sagan-rules@a1cf3b3` it judges 4,308
+  rules over 28,792 probes and finds none, which is the first evidence the
+  model has ever had that is independent of the converter it is used to check.
+
 ### Added
 - A non-zero `offset`, `depth` or `distance` on a `content` is converted instead
   of refused. The reason it could be is a property of the engine rather than of
