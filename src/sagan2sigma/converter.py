@@ -259,15 +259,29 @@ class Converter:
         effective = effective_positional(rule)
         if not effective:
             return
-        detail = ", ".join(f"{keyword}:{value}" for keyword, value in effective)
+        remaining = sorted(
+            {keyword for keyword, _ in effective if keyword.startswith("meta_")}
+        )
+        if not remaining:
+            # A `content` window is expressible: the engine computes it from the
+            # rule alone, never from where the previous content matched, so the
+            # slice is known at conversion time and `handle_content` emits it as
+            # an anchored regular expression. See `mapping/positional.py`.
+            return
+        detail = ", ".join(
+            f"{keyword}:{value}"
+            for keyword, value in effective
+            if keyword.startswith("meta_")
+        )
         raise Refusal(
             code=RefusalCode.POSITIONAL,
             detail=(
-                "the rule constrains a byte position that changes what matches "
-                f"({detail}); Sigma string modifiers cannot express a byte "
-                "distance, so no faithful translation exists"
+                "the rule constrains a byte position inside a meta_content "
+                f"({detail}); the engine computes that window in "
+                "src/meta-content.c, which this converter has not measured, so "
+                "translating it would be a guess"
             ),
-            keywords=tuple(sorted({keyword for keyword, _ in effective})),
+            keywords=tuple(remaining),
         )
 
     @staticmethod

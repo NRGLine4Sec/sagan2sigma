@@ -49,6 +49,7 @@ class DegradationCode(str, Enum):
     EVENT_ID_HEURISTIC = "D_EVENT_ID_HEURISTIC"
     NORMALIZE_PRECEDENCE = "D_NORMALIZE_PRECEDENCE"
     POSITIONAL_IP_FIELD = "D_POSITIONAL_IP_FIELD"
+    POSITIONAL_WINDOW = "D_POSITIONAL_WINDOW"
     GEOIP_COUNTRY_ENRICHMENT = "D_GEOIP_COUNTRY_ENRICHMENT"
     ALERT_TIME_EVENT_CLOCK = "D_ALERT_TIME_EVENT_CLOCK"
     DENYLIST_USERNAME_INERT = "D_DENYLIST_USERNAME_INERT"
@@ -77,10 +78,15 @@ REFUSAL_HELP: dict[RefusalCode, str] = {
         "Sagan either."
     ),
     RefusalCode.POSITIONAL: (
-        "The rule constrains where a pattern sits in the log line with a "
-        "non-zero offset, depth or distance. Sigma string modifiers cannot "
-        "express a byte position, so no faithful translation exists. A "
-        "zero-valued positional is a no-op in the Sagan engine and is converted."
+        "The rule constrains where a pattern sits in the log line, in a way "
+        "this converter will not translate. A non-zero offset, depth or "
+        "distance on a content is translated: the engine computes that window "
+        "from the rule alone, so it is emitted as an anchored regular "
+        "expression and reported as D_POSITIONAL_WINDOW. What is refused is the "
+        "same constraint on a meta_content, whose window the engine computes "
+        "elsewhere and this converter has not measured, and a window too short "
+        "to hold the value searched for, which never fires in Sagan either. A "
+        "zero-valued positional is a no-op in the engine and is converted."
     ),
     RefusalCode.EXTERNAL_ENRICHMENT: (
         "The rule queries an external source. Bluedot threat intelligence is out "
@@ -210,6 +216,12 @@ DEGRADATION_HELP: dict[DegradationCode, str] = {
         "The rule carries both normalize and parse_src_ip. Sagan lets "
         "liblognorm win when it resolves the address and falls back to "
         "positional parsing otherwise; only the fallback is reproduced."
+    ),
+    DegradationCode.POSITIONAL_WINDOW: (
+        "A non-zero offset, depth or distance is emitted as an anchored "
+        "regular expression on the message. The window is exact, but it counts "
+        "characters where the engine counts bytes, so a message whose prefix "
+        "holds multi-byte characters is measured differently on the two sides."
     ),
     DegradationCode.POSITIONAL_IP_FIELD: (
         "The group-by key comes from the bundled VRL transform rather than "

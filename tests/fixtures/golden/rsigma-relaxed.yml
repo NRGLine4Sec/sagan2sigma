@@ -458,6 +458,31 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: synthetic.rules
 ---
+title: '[TEST] Positional window'
+id: 5adc19e1-7176-57a0-a843-428d50fd16d6
+status: experimental
+description: Converted from Sagan rule SID 9000029 (rev 1), file synthetic.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname: test
+  selection_2:
+    _raw|contains: alice
+  selection_3:
+    _raw|re|s: ^.{5}.{0,17}bob
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: low
+tags:
+  - sagan.classtype.user-activity
+custom_attributes:
+  sagan.sid: '9000029'
+  sagan.rev: '1'
+  sagan.source_file: synthetic.rules
+---
 title: '[TEST] Global suppression'
 id: 6acf23d8-89b9-57d1-890c-b2ec26fa7001
 status: experimental

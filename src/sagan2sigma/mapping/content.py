@@ -8,13 +8,15 @@ carries ``json_map: "message", ".key"``.
 
 from __future__ import annotations
 
+import re
+
 from ..errors import Degradation, DegradationCode, Refusal, RefusalCode
 from ..sagan.hexdec import decode_hex
 from ..sagan.model import SaganRule
 from .context import Context
 from .fields import FieldResolver
 from .ir import Predicate, RuleDraft
-from .positional import POSITIONAL_KEYWORDS
+from .positional import POSITIONAL_KEYWORDS, Window, content_windows
 from .registry import handler
 from .values import CasePolicy, case_modifiers, escape_literal, strip_quotes
 
@@ -94,6 +96,7 @@ def handle_content(
       in Sigma, so they are escaped.
     """
     _reject_unreachable(rule, resolver, "content")
+    windows = content_windows(rule)
     for option in rule.iter_options("content"):
         if option.value is None:
             continue
@@ -104,6 +107,33 @@ def handle_content(
         nocase = "nocase" in rule.modifiers_after(
             option.index, frozenset({"nocase"}) | POSITIONAL_KEYWORDS
         )
+        window = windows.get(option.index)
+        if window is not None:
+            draft.add(
+                Predicate(
+                    field=resolver.message,
+                    modifiers=("re", "s", *(("i",) if nocase else ())),
+                    values=(_windowed_pattern(decode_hex(text), window, rule),),
+                    negated=negated,
+                    origin="content",
+                )
+            )
+            draft.degrade(
+                Degradation(
+                    code=DegradationCode.POSITIONAL_WINDOW,
+                    detail=(
+                        f"the byte window {window.start}.."
+                        + (
+                            f"{window.start + window.length}"
+                            if window.length is not None
+                            else "end"
+                        )
+                        + " is emitted as an anchored regular expression, which "
+                        "counts characters where the engine counts bytes"
+                    ),
+                )
+            )
+            continue
         draft.add(
             Predicate(
                 field=resolver.message,
@@ -114,6 +144,33 @@ def handle_content(
             )
         )
     _flag_portability(draft, resolver)
+
+
+def _windowed_pattern(literal: str, window: Window, rule: SaganRule) -> str:
+    """A regular expression matching ``literal`` inside ``window``.
+
+    The literal has to fit entirely inside the slice, which is what the
+    engine's truncation of its working copy amounts to, so a window shorter
+    than the literal is a rule that can never fire. Sagan loads it all the
+    same, so refusing is the only faithful answer: emitting a pattern that
+    cannot match would be indistinguishable from a converter defect.
+    """
+    if window.length is not None and window.length < len(literal):
+        raise Refusal(
+            code=RefusalCode.POSITIONAL,
+            detail=(
+                f"the {window.length}-byte window the positional modifiers "
+                f"leave cannot hold the {len(literal)}-byte value the content "
+                f"searches for, so the rule never fires in Sagan either"
+            ),
+            keywords=("within", "depth"),
+        )
+    body = re.escape(literal)
+    prefix = f".{{{window.start}}}" if window.start else ""
+    if window.length is None:
+        return f"^{prefix}.*{body}"
+    slack = window.length - len(literal)
+    return f"^{prefix}.{{0,{slack}}}{body}"
 
 
 @handler("meta_content")

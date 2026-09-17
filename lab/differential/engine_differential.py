@@ -637,7 +637,13 @@ def silence_reasons(rule: Any, rule_probes: list[Any], context: Context) -> list
         # excluding it silences the rule whatever the probe carries.
         found.append("an alert_time window that excludes the instant this run used")
     if effective_positional(rule):
-        found.append("an effective offset, depth or distance the probe cannot honour")
+        # The probe places each windowed literal at the offset the engine will
+        # read, so most of these rules are exercised. What remains silent is a
+        # rule whose windows cannot all be satisfied at once, an earlier literal
+        # reaching past a later window's start: the probe then honours the
+        # earlier one and the rule is reported here rather than judged on a
+        # message that satisfies only half of it.
+        found.append("byte windows the probe cannot satisfy at the same time")
     if document_only and literals and unplaceable(rule, literals):
         found.append("a literal no serialised document can carry")
     if any(

@@ -51,6 +51,7 @@ from sagan2sigma.errors import Refusal
 from sagan2sigma.mapping.content import split_meta_content
 from sagan2sigma.mapping.context import Profile, load_profile
 from sagan2sigma.mapping.json_ops import truncate_like_sagan
+from sagan2sigma.mapping.positional import Window, content_windows
 from sagan2sigma.sagan.hexdec import decode_hex
 from sagan2sigma.sagan.model import SaganRule
 from sagan2sigma.sagan.pcre import engine_pattern
@@ -172,13 +173,40 @@ def _strip(value: str) -> tuple[bool, str]:
     return negated, text
 
 
+def windowed_literals(
+    rule: SaganRule,
+) -> list[tuple[str, Window]]:
+    """Positive literals whose content is searched inside a byte window.
+
+    A probe that ignores the window is worse than useless here. The engine
+    computes the window from the rule alone, so a literal placed anywhere else
+    is simply not found, both sides stay silent and the rule reads as agreed
+    about when nothing was tested. Worse, `src/content.c` subtracts the window
+    start from the message length into an unsigned variable with no check, so a
+    message shorter than the distance ends the process rather than failing to
+    match; a probe that is too short takes the whole run down with it.
+    """
+    windows = content_windows(rule)
+    placed: list[tuple[str, Window]] = []
+    for option in rule.iter_options("content"):
+        if option.value is None or option.index not in windows:
+            continue
+        negated, text = _strip(option.value)
+        if not negated:
+            placed.append((decode_hex(text), windows[option.index]))
+    return placed
+
+
 def positive_literals(
     rule: SaganRule, variables: dict[str, list[str]] | None = None
 ) -> list[str]:
     """Text fragments the message must contain for the rule to fire."""
     literals: list[str] = []
+    windows = content_windows(rule)
     for option in rule.iter_options("content"):
-        if option.value is None:
+        if option.value is None or option.index in windows:
+            # A windowed literal is placed by `_windowed_message`, at the offset
+            # the engine will look at, rather than joined with the others.
             continue
         negated, text = _strip(option.value)
         if not negated:
@@ -611,6 +639,34 @@ def _without_collisions(
     }
 
 
+#: Filler for the gaps a windowed literal leaves. A single repeated character
+#: keeps the arithmetic readable when a probe has to be read by hand, and none
+#: of the corpus literals is a run of dashes, so the filler cannot be mistaken
+#: for one of them.
+WINDOW_FILLER = "-"
+
+
+def _windowed_message(rule: SaganRule, literals: list[str]) -> str:
+    """The raw text of a probe, with each windowed literal at its own offset.
+
+    The literals with no window are joined as they always were and land after
+    the windowed ones, so their presence cannot shift a window.
+    """
+    placed = windowed_literals(rule)
+    if not placed:
+        return FILLER.join(literals) or "no conditions"
+    message = ""
+    for literal, window in sorted(placed, key=lambda item: item[1].start):
+        if len(message) > window.start:
+            # An earlier literal already reaches past this window's start. The
+            # probe cannot satisfy both, so it satisfies the earlier one and
+            # this rule is reported as not exercised rather than judged wrong.
+            continue
+        message += WINDOW_FILLER * (window.start - len(message)) + literal
+    tail = FILLER.join(literals)
+    return message + (FILLER + tail if tail else "")
+
+
 def build_event(
     rule: SaganRule,
     literals: list[str],
@@ -641,7 +697,7 @@ def build_event(
     if not plain:
         for name, value in (overrides or {}).items():
             _write(body, name, value)
-    text = FILLER.join(literals) or "no conditions"
+    text = _windowed_message(rule, literals)
     key = None if plain else text_key(rule)
     if shape == "document" and key is None:
         # A rule naming no JSON has no region of its own inside a document, so

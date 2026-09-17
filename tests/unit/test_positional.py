@@ -4,8 +4,10 @@ Sagan's ``Content()`` and ``MetaContent()`` guard every positional adjustment
 with ``if (value != 0)``, so a zero-valued ``offset``/``depth``/``distance``/
 ``within`` is a no-op and a rule carrying only inert ones converts exactly as if
 they were absent. A non-zero ``offset``, ``depth`` or ``distance`` is a real byte
-position and is refused. These tests pin both halves, and the nocase-through-
-positional scan that the un-blocking exposed.
+position, and its window is computed from the rule alone rather than from where
+the previous content matched, so it is emitted as an anchored regular
+expression. These tests pin all of it, and the nocase-through-positional scan
+that the un-blocking exposed.
 """
 
 from __future__ import annotations
@@ -14,7 +16,7 @@ import pytest
 from tests.conftest import make_rule, run
 
 from sagan2sigma.converter import Converter
-from sagan2sigma.errors import Refusal, RefusalCode
+from sagan2sigma.errors import DegradationCode, Refusal, RefusalCode
 from sagan2sigma.mapping.content import handle_content, handle_meta_content
 from sagan2sigma.mapping.ir import RuleDraft
 from sagan2sigma.mapping.positional import effective_positional
@@ -68,15 +70,60 @@ class TestConversion:
         # Must not raise.
         Converter(context=context).convert_rule(rule)
 
-    @pytest.mark.parametrize("positional", ["distance:1", "depth:5", "offset:3"])
-    def test_effective_positional_is_refused(self, context, positional: str) -> None:
+    @pytest.mark.parametrize(
+        ("positional", "pattern"),
+        [
+            ("distance:1;", "^.{2}.*y"),
+            ("depth:5;", "^.{0,5}y"),
+            ("offset:3;", "^.{3}.*y"),
+            ("distance:5; within:10;", "^.{6}.{0,9}y"),
+        ],
+    )
+    def test_a_content_window_becomes_an_anchored_regex(
+        self, context, positional: str, pattern: str
+    ) -> None:
+        """The window is known from the rule alone, so it is expressible.
+
+        `src/content.c` computes it from the rule's own numbers and never from
+        where the previous content matched, so the slice is static. Each pattern
+        here was checked against the engine position by position.
+        """
         rule = make_rule(
             f'msg:"t"; program:sshd; content:"x"; content:"y"; {positional} sid:1;'
+        )
+        draft = Converter(context=context).convert_rule(rule)
+        regexes = [p for p in draft.predicates if "re" in p.modifiers]
+        assert [p.values[0] for p in regexes] == [pattern]
+        assert DegradationCode.POSITIONAL_WINDOW in {d.code for d in draft.degradations}
+
+    def test_nocase_makes_the_window_regex_case_insensitive(self, context) -> None:
+        rule = make_rule(
+            'msg:"t"; program:sshd; content:"x"; content:"y"; depth:5; nocase; sid:1;'
+        )
+        draft = Converter(context=context).convert_rule(rule)
+        regex = next(p for p in draft.predicates if "re" in p.modifiers)
+        assert "i" in regex.modifiers
+
+    def test_a_window_too_small_for_the_value_is_refused(self, context) -> None:
+        """Such a rule never fires in Sagan either, so emitting it would lie."""
+        rule = make_rule(
+            'msg:"t"; program:sshd; content:"x"; content:"needle"; '
+            "distance:5; within:3; sid:1;"
         )
         with pytest.raises(Refusal) as excinfo:
             Converter(context=context).convert_rule(rule)
         assert excinfo.value.code is RefusalCode.POSITIONAL
-        assert positional.replace(";", "") in excinfo.value.detail
+        assert "never fires in Sagan either" in excinfo.value.detail
+
+    def test_a_meta_content_window_is_still_refused(self, context) -> None:
+        """src/meta-content.c computes its own window, which was not measured."""
+        rule = make_rule(
+            'msg:"t"; program:sshd; meta_content:"%sagan%",v; meta_distance:2; sid:1;'
+        )
+        with pytest.raises(Refusal) as excinfo:
+            Converter(context=context).convert_rule(rule)
+        assert excinfo.value.code is RefusalCode.POSITIONAL
+        assert "meta_distance:2" in excinfo.value.detail
 
 
 class TestNocaseThroughPositional:

@@ -58,8 +58,10 @@ alert any any any -> any any (msg:"[TEST] by_string correlation"; program: test;
 # --- bluedot: closed CTI substituted by open-source per-category feeds (enriched) ---
 alert any any any -> any any (msg:"[TEST] Bluedot substitution"; program: test; content:"x"; parse_src_ip: 1; bluedot: type ip_reputation, track by_src, none, Malicious,Tor; classtype: trojan-activity; sid:9000029; rev:1;)
 
+alert any any any -> any any (msg:"[TEST] Positional window"; program: test; content:"alice"; content:"bob"; distance: 4; within: 20; classtype: user-activity; sid:9000029; rev:1;)
+
 # --- refusals --------------------------------------------------------------
-alert any any any -> any any (msg:"[TEST] Positional constraint"; program: test; content:"bob"; depth: 10; classtype: user-activity; sid:9000014; rev:1;)
+alert any any any -> any any (msg:"[TEST] Positional constraint in a meta_content"; program: test; meta_content:"%sagan%",bob,alice; meta_distance: 4; classtype: user-activity; sid:9000014; rev:1;)
 alert any any any -> any any (msg:"[TEST] External enrichment"; program: test; content:"x"; parse_src_ip: 1; country_code: track by_src, isnot US; classtype: user-activity; sid:9000015; rev:1;)
 alert any any any -> any any (msg:"[TEST] Recurring time window"; program: test; content:"x"; alert_time: days 0123456, hours 0800-1800; classtype: user-activity; sid:9000016; rev:1;)
 alert any any any -> any any (msg:"[TEST] Negative correlation"; program: test; content:"x"; xbits: isnotset,windows_reboot,track ip_src; classtype: user-activity; sid:9000017; rev:1;)

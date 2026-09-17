@@ -7,6 +7,30 @@ All notable changes to this project are documented here. The format follows
 ## [Unreleased]
 
 ### Added
+- A non-zero `offset`, `depth` or `distance` on a `content` is converted instead
+  of refused. The reason it could be is a property of the engine rather than of
+  Sigma: `src/content.c` computes the search window from the rule's own numbers
+  and never from where the previous content matched, so the window is known at
+  conversion time and an anchored regular expression expresses it exactly.
+  Measured needle by needle against the engine before anything was written,
+  then checked position by position against the converted rule under RSigma:
+  the two pictures are identical, including the negated and the `nocase` cases.
+
+  `E_POSITIONAL` falls from 40 rules to 2, and the conversion rate rises to
+  87.2% plain and 94.5% enriched. What stays refused: the same constraint on a
+  `meta_content`, whose window `src/meta-content.c` computes and this project
+  has not measured, and a window too short to hold the value searched for, which
+  never fires in Sagan either. The new `D_POSITIONAL_WINDOW` records the one
+  divergence that remains, the regex counting characters where the engine counts
+  bytes, which differs only on a message whose prefix carries multi-byte
+  characters.
+
+  The probe generator places a windowed literal at the offset the engine will
+  read. Ignoring the window would leave both sides silent, which reads as
+  agreement and measures nothing, and the corpus differential now judges 36 more
+  rules; 12 carry windows a single probe cannot satisfy at once and are reported
+  as silent by name rather than counted as agreed.
+
 - Two upstream detectors, both for shapes the corpus differential found by
   disagreeing rather than by anyone reading a rule.
 
