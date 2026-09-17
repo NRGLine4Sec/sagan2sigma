@@ -26,15 +26,20 @@ alert only from the N+1th event. Measuring detection semantics against a binary
 that can silently turn a rule into a correlation would attribute heap noise to
 the converter.
 
-What a correlation *counts* is still out of scope here, for a different and
-honest reason: a threshold needs a sequence of events, so a single probe cannot
-decide it. What a correlation *matches* is in scope, and is judged the same way
-for `after` as for `threshold`: the counting option is stripped from the rule
-before the engine sees it, and the Sigma side carries the detection document the
-emitted correlation would reference rather than the correlation itself. The
-boundary those rules count to is measured separately, at N and N+1, by
-`after_differential.py`, and the bit state machines by `xbits_differential.py`
-and `checks/check_flexbits.py`.
+What a correlation *waits for* is still out of scope here, for a different and
+honest reason: a threshold, a counter and a bit all need a sequence of events,
+so a single probe cannot decide them. What a correlation *matches* is in scope.
+`threshold`, `after` and a bit `isset` are three ways of saying "not yet" and
+none of them changes which events the rule matches, so all three are stripped
+from the rule before the engine sees it, and the Sigma side carries the
+detection document the emitted correlation would reference rather than the
+correlation itself. What they wait for is measured separately: the `after`
+boundary at N and N+1 by `after_differential.py`, the bit state machines by
+`xbits_differential.py` and `checks/check_flexbits.py`.
+
+`isnotset` is the exception, and not for symmetry: the converter refuses such a
+rule outright, Sigma having no way to assert that an earlier event did not
+happen, so there is nothing to compare against.
 
 This cannot run in CI, which is why it lives here: it needs a compiled Sagan.
 The Python harness stays in the repository as the light net that runs on every
@@ -160,7 +165,25 @@ RSIGMA = "rsigma"
 STATEFUL = frozenset({"flexbits_pause", "xbits_pause"})
 
 #: Bit operations that consult state written by an earlier event.
-STATEFUL_BIT_OPS = frozenset({"isset", "isnotset"})
+#:
+#: `isset` is not here any more. Like `after`, it decides *when* a rule alerts
+#: and not *what* it matches, so the option is stripped from the rule before the
+#: engine sees it and both sides then decide on the event in front of them. The
+#: state machine itself is judged by `xbits_differential.py`, which primes the
+#: bit and runs each correlation both ways, and by `checks/check_flexbits.py`.
+#:
+#: `isnotset` stays. The converter refuses such a rule outright, Sigma having no
+#: way to assert the absence of an earlier event, so there is no converted rule
+#: to compare against and stripping it would only turn a refusal into a
+#: one-sided verdict.
+STATEFUL_BIT_OPS = frozenset({"isnotset"})
+
+#: The `xbits` and `flexbits` options that consult state, which `strip_counting`
+#: removes for the same reason it removes `after`. Only the consulting
+#: operations go: `set` and `unset` write state after the rule has decided, so
+#: they change nothing about this event and are left in place, which keeps the
+#: rule as close to the one upstream ships as the comparison allows.
+_BIT_STATE_OPTION = re.compile(r"\s*(?:xbits|flexbits)\s*:\s*isset\s*,[^;]*;", re.I)
 
 #: Probes that satisfy every positive condition of their rule, so that both
 #: sides firing on one means the rule was decided rather than agreed about in
@@ -224,8 +247,16 @@ _AFTER_OPTION = re.compile(r"\s*after\s*:[^;]*;", re.I)
 
 
 def strip_counting(raw: str) -> str:
-    """The rule as written, minus its `threshold` and `after` options."""
-    return _AFTER_OPTION.sub(" ", _THRESHOLD_OPTION.sub(" ", raw))
+    """The rule as written, minus what makes it wait for other events.
+
+    `threshold`, `after` and a bit `isset`: three ways of saying "not yet",
+    none of which changes which events the rule matches. What each of them
+    counts or waits for is measured elsewhere, by the two correlation
+    differentials and by the checks.
+    """
+    return _BIT_STATE_OPTION.sub(
+        " ", _AFTER_OPTION.sub(" ", _THRESHOLD_OPTION.sub(" ", raw))
+    )
 
 
 #: Keywords that stop the engine from loading the ruleset at all here.

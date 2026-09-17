@@ -35,13 +35,23 @@ All notable changes to this project are documented here. The format follows
   conversion.
 
 ### Changed
-- The corpus differential judges the detection half of `after` correlations.
-  `after` decides when a rule alerts, not what it matches, so it is now stripped
-  from the rule before the engine sees it exactly as `threshold` already was,
-  and the Sigma side carries the detection document the emitted correlation
-  references. What a correlation counts is still measured separately, at its
-  N/N+1 boundary. Judged rules rise from 8,159 to 9,138 on `sagan-rules@a1cf3b3`,
-  and the two rules above are what the new coverage found.
+- The corpus differential judges the detection half of the rules that wait for
+  another event. `threshold`, `after` and a bit `isset` are three ways of saying
+  "not yet", and none of them changes which events a rule matches, so all three
+  are now stripped before the engine sees the rule, as only `threshold` was. The
+  Sigma side needs nothing: the document the harness compares is the detection
+  rule the emitted correlation references, not the correlation.
+
+  Judged rules rise from 8,159 to **9,295** on `sagan-rules@a1cf3b3`, 9,290 of
+  them exercised, still with no disagreement. The two detectors above are what
+  the `after` half of that coverage found.
+
+  `isnotset` stays out, and for a reason rather than for symmetry: the converter
+  refuses those rules, Sigma having no way to assert the absence of an earlier
+  event, so there is no converted rule to compare against. `set` and `unset`
+  stay in the rule, writing state after it has decided. Of the 169 rules that
+  left the skipped bucket, 157 are judged, 9 are refused by the converter, 2
+  suppress their own alert and 1 declares a divergence.
 - What the documentation says about the rule header. `Header` claimed the
   address fields "are not filters on the incoming log" and that they "fall back
   to the syslog sender": both are wrong. `flow.c` checks them on every event,
