@@ -4,8 +4,8 @@
 it actually does, so that the claims this project makes about Sagan's behaviour
 can be verified by execution instead of by reading C.
 
-Last verified against Sagan `main` at `3b9b0fa` and the rule corpus at
-`a1cf3b3`, on 2026-09-17: 9,331 rules judged by the corpus differential, no
+Last verified against Sagan `main` at `3b9b0fa`, RSigma 0.22.0 and the rule
+corpus at `a1cf3b3`, on 2026-09-17: 9,331 rules judged by the corpus differential, no
 disagreement, 9,314 of them exercised; the correlation differentials adding 921
 `after` boundaries and 10 `xbits` state machines, also without disagreement; and
 the model differential agreeing with the engine on 4,308 rules. That line is the lab's support statement: it says what was
@@ -91,6 +91,7 @@ differential/
                            the xbits state machine, setter then tester
          model_differential.py
                            the Python model of Sagan against the real one
+         attribution.py    which probe an alert belongs to, shared by the above
          vector_pipeline.py
                            runs the shipped VRL transforms, for the profiles
                            whose fields a syslog line alone cannot carry

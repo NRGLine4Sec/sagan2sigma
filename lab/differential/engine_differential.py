@@ -133,6 +133,7 @@ from tests.differential.events import (  # noqa: E402
     unplaceable,
     wire_body,
 )
+from attribution import AlertIndex  # noqa: E402
 from vector_pipeline import (  # noqa: E402
     PRODUCED_BY,
     VectorPipeline,
@@ -847,19 +848,16 @@ def run_batch(
     # `base` and `wrong_program` probes carry the same text and differ only in
     # the program, so a message-only key credits the second with the first's
     # alert and every such probe reads as a disagreement.
-    fired: dict[tuple[str, str], set[str]] = defaultdict(set)
-    #: The same alerts keyed on the message alone, for the rules below.
-    by_message: dict[str, set[str]] = defaultdict(set)
-    for row in run_sagan(
-        sagan_rules,
-        pipe_lines,
-        binary=SANE,
-        config=sagan_config,
-        at_time=clock[0] if clock else None,
-        timezone=clock[1] if clock else None,
-    ):
-        fired[(row.get("program", ""), row["message"])].add(row["sid"])
-        by_message[row["message"]].add(row["sid"])
+    alerts = AlertIndex(
+        run_sagan(
+            sagan_rules,
+            pipe_lines,
+            binary=SANE,
+            config=sagan_config,
+            at_time=clock[0] if clock else None,
+            timezone=clock[1] if clock else None,
+        )
+    )
     hits = rsigma_hits(rules_yaml, rsigma_events)
 
     found: list[Verdict] = []
@@ -871,26 +869,11 @@ def run_batch(
     #: fires is a rule this tool did not decide.
     exercised: set[str] = set()
     for rule, probe, program, body, payload in owned:
-        # `json_map: "program", ".Something"` replaces the program with a value
-        # taken from the event body, so Sagan logs that instead of the program
-        # this tool sent and the pair never matches. sid 5005158 sends `syslog`
-        # and is logged as `SharePoint`. Falling back to the message alone is
-        # safe for exactly these rules: the program a probe carries is
-        # overridden by the body, so no two probes of such a rule can be told
-        # apart by it anyway.
-        remapped = "program" in json_map(rule)
-        sagan_fired = rule.sid in fired.get((program, body), set())
-        if not sagan_fired and rule.has("append_program"):
-            # The keyword makes the engine log the message with ` | <program>`
-            # appended, so the text it writes is not the text this tool sent
-            # and the pair never matches. Measured: an event sent as
-            # `%ASA-1-216001 ~ %ASA` is logged as `%ASA-1-216001 ~ %ASA |
-            # syslog`. 75 corpus rules carry it, and every probe of every one
-            # of them read as "Sagan did not fire" until their pcre samples
-            # made the Sigma side fire and turned it into 296 disagreements.
-            sagan_fired = rule.sid in fired.get((program, f"{body} | {program}"), set())
-        if remapped:
-            sagan_fired = rule.sid in by_message.get(body, set())
+        # Tying an alert back to its probe is `attribution.AlertIndex`, which
+        # carries the three rewrites the engine performs on what it logs and how
+        # each was found. It used to be inline here, and the second tool to need
+        # it rediscovered all three one failed run at a time.
+        sagan_fired = alerts.fired(rule, program, body)
         rule_id = stable_uuid("rule", rule.sid)
         sigma_fired = (rule_id, json.dumps(payload, sort_keys=True)) in hits
         if probe.name in POSITIVE_PROBES and sagan_fired and sigma_fired:

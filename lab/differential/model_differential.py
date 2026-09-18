@@ -50,10 +50,10 @@ sys.path.insert(0, str(REPO / "src"))
 
 from sagan2sigma.sagan.parser import parse_file  # noqa: E402
 from tests.differential.events import probes, wire_body  # noqa: E402
+from attribution import AlertIndex  # noqa: E402
 from tests.differential.sagan_reference import (  # noqa: E402
     SaganEvaluator,
     is_supported,
-    json_map,
 )
 
 #: Keywords the engine cannot load here, so a rule carrying one is skipped
@@ -110,34 +110,16 @@ def judge(batch: list[Any], counts: Counter[str]) -> list[Divergence]:
     if not rules:
         return []
 
-    # Attribution is on (program, message), not the message alone: a rule's
-    # `base` and `wrong_program` probes carry the same text and differ only in
-    # the program, so a message-only key credits the second with the first's
-    # alert and every such probe reads as a divergence.
-    #
-    # Except when the rule maps its own program. `json_map: "program", ".Key"`
-    # replaces the syslog program with the body's value, measured both ways: a
-    # document carrying the wanted value fires whatever the syslog program
-    # says, and one carrying another value stays silent even when the syslog
-    # program is right. Sagan then logs the mapped program, not the one this
-    # tool sent, so the pair never matches and every probe of those rules reads
-    # as a divergence. It is the message alone for them, which loses nothing:
-    # no two probes of such a rule can be told apart by a program the body
-    # overrides anyway.
-    engine_hits: set[tuple[str, str, str]] = set()
-    by_message: set[tuple[str, str]] = set()
-    for row in run_sagan(rules, lines, binary=SANE):
-        engine_hits.add((row["sid"], row.get("program", ""), row["message"]))
-        by_message.add((row["sid"], row["message"]))
+    # Tying an alert back to its probe is `attribution.AlertIndex`, shared with
+    # engine_differential.py, which carries the three rewrites the engine
+    # performs on what it logs. Writing it again here cost three failed runs.
+    alerts = AlertIndex(run_sagan(rules, lines, binary=SANE))
 
     divergences: list[Divergence] = []
     for rule, probe, body, program in owned:
         evaluator = SaganEvaluator(rule)
         model = evaluator.matches(probe.event)
-        if "program" in json_map(rule):
-            engine = (str(rule.sid), body) in by_message
-        else:
-            engine = (str(rule.sid), program, body) in engine_hits
+        engine = alerts.fired(rule, program, body)
         counts["judged probes"] += 1
         if model != engine:
             divergences.append(

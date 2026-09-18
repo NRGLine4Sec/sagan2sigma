@@ -6,6 +6,24 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Changed
+- The lab measures against RSigma 0.22.0, and the differentials share one answer
+  to "which probe does this alert belong to". `lab/differential/attribution.py`
+  holds the three rewrites the engine applies to what it logs, each with the
+  measurement behind it: the program belongs in the key, since `base` and
+  `wrong_program` differ only by it; `append_program` logs the message with
+  ` | <program>` appended; and `json_map: "program"` replaces the program with a
+  value from the body and logs that. Written inline in one tool, all three were
+  rediscovered one failed run at a time by the second.
+
+  Both changes are measured rather than assumed, and both are inert: the corpus
+  differential, the two correlation differentials and the model differential all
+  return counters identical to the run before, down to the sids they name. The
+  version bump was made for the correlation fix 0.22.0 announces, name-referenced
+  temporal correlations firing, and that expectation did not materialise: the
+  `xbits` run is unchanged, which also settles that its four untriggered cases
+  are a limit of the probe generator rather than of the engine.
+
 ### Fixed
 - The reference evaluator resolved a JSON key the engine cannot reach. Two paths
   of a document can clip to the same stored key, a nested one and the object
