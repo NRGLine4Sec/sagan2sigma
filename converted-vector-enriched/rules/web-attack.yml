@@ -926,6 +926,62 @@ custom_attributes:
   sagan.rev: '3'
   sagan.source_file: web-attack.rules
 ---
+title: '[WEB-ATTACKS] Suspicious User-Agent Containing Web Scan/er, Likely Web Scanner'
+id: 3e0529af-0de3-5bbd-957c-24fe862d99a5
+status: experimental
+description: Converted from Sagan rule SID 5001821 (rev 4), file web-attack.rules.
+references:
+  - https://doc.emergingthreats.net/2010088
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    sagan_raw|contains|cased: User-Agent
+  selection_2:
+    sagan_raw|re|s|i: ^.{2}.{0,97}web
+  selection_3:
+    sagan_raw|contains: scan
+  filter_4:
+    sagan_raw|contains|cased: scandal
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001821'
+  sagan.rev: '4'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] Suspicious User-Agent Containing Security Scan/ner, Likely Scan'
+id: 5efa3a0d-edd6-5e2a-9269-c320c505e5bd
+status: experimental
+description: Converted from Sagan rule SID 5001822 (rev 4), file web-attack.rules.
+references:
+  - https://doc.emergingthreats.net/2010089
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    sagan_raw|contains|cased: User-Agent
+  selection_2:
+    sagan_raw|re|s|i: ^.{2}.{0,92}security
+  selection_3:
+    sagan_raw|contains: scan
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5001822'
+  sagan.rev: '4'
+  sagan.source_file: web-attack.rules
+---
 title: '[WEB-ATTACKS] w3af User Agent'
 id: 19049054-e339-55c3-b877-cee54968d22a
 status: experimental
@@ -1009,6 +1065,32 @@ tags:
   - sagan.classtype.attempted-recon
 custom_attributes:
   sagan.sid: '5001825'
+  sagan.rev: '3'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] WebHack Control Center User-Agent Inbound (WHCC/)'
+id: 9222541d-c179-50eb-b968-4f8ed40f2504
+status: experimental
+description: Converted from Sagan rule SID 5001826 (rev 3), file web-attack.rules.
+references:
+  - https://governmentsecurity.org/forum/index.php?showtopic=5112&pid=28561&mode=threaded&start=
+  - https://doc.emergingthreats.net/2003924
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    sagan_raw|contains|cased: User-Agent
+  selection_2:
+    sagan_raw|re|s|i: ^.{2}.{0,46}WHCC
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5001826'
   sagan.rev: '3'
   sagan.source_file: web-attack.rules
 ---
@@ -1345,6 +1427,29 @@ tags:
 custom_attributes:
   sagan.sid: '5001839'
   sagan.rev: '4'
+  sagan.source_file: web-attack.rules
+---
+title: '[WEB-ATTACKS] ZmEu Scanner User-Agent Inbound'
+id: 13234578-efad-5520-9843-8d1bd1598ac4
+status: experimental
+description: Converted from Sagan rule SID 5001840 (rev 3), file web-attack.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    sagan_raw|contains|cased: User-Agent
+  selection_2:
+    sagan_raw|re|s: ^.{2}.{0,96}ZmEu
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.trojan-activity
+custom_attributes:
+  sagan.sid: '5001840'
+  sagan.rev: '3'
   sagan.source_file: web-attack.rules
 ---
 title: '[WEB-ATTACKS] Internal Dummy Connection User-Agent Inbound'

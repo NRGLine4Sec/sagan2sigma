@@ -1669,7 +1669,7 @@ custom_attributes:
 title: '[CROWDSTRIKE] Collection Tactic Catchall'
 id: db38d00e-452d-53a3-a7c9-ed67bcff5e96
 status: experimental
-description: Converted from Sagan rule SID 5016642 (rev 2), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5016642 (rev 3), file crowdstrike.rules.
 references:
   - https://www.reddit.com/r/crowdstrike/comments/rbbzwi/pattern_disposition_values_in_detect_api/
 author: sagan2sigma
@@ -1683,10 +1683,12 @@ detection:
   filter_3:
     _raw|contains|cased: Multiple processes in a session accessed linux data files
   filter_4:
+    _raw|contains|cased: '|MitreAttack|'
+  filter_5:
     _raw|contains|cased:
       - Network Access In A Detection Summary Event
       - Document Access In A Detection Summary Event
-  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1694,14 +1696,14 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5016642'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: crowdstrike.rules
-  sagan.metadata: created_at=2025_06_25,updated_at=2026_03_26
+  sagan.metadata: created_at=2025_06_25,updated_at=2026_09_17
 ---
 title: '[CROWDSTRIKE] Command and Control Tactic Catchall'
 id: d10b7ed7-b106-5719-95ff-35fee72ed467
 status: experimental
-description: Converted from Sagan rule SID 5016643 (rev 2), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5016643 (rev 4), file crowdstrike.rules.
 references:
   - https://www.reddit.com/r/crowdstrike/comments/rbbzwi/pattern_disposition_values_in_detect_api/
 author: sagan2sigma
@@ -1718,10 +1720,17 @@ detection:
     _raw|contains|cased: A process attempted to establish an unusual connection over a commonly used port,
       possibly to a command and control server
   filter_5:
+    _raw|contains|cased: Executable Written In A Detection Summary Event
+  filter_6:
+    _raw|contains|cased: Network Access In An Epp Detection Summary Event
+  filter_7:
+    _raw|contains|cased: '|MitreAttack|'
+  filter_8:
     _raw|contains|cased:
       - Network Access In A Detection Summary Event
       - Document Access In A Detection Summary Event
-  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6 or filter_7
+    or filter_8)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1729,14 +1738,14 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5016643'
-  sagan.rev: '2'
+  sagan.rev: '4'
   sagan.source_file: crowdstrike.rules
-  sagan.metadata: created_at=2025_06_25,updated_at=2026_03_26
+  sagan.metadata: created_at=2025_06_25,updated_at=2026_09_17
 ---
 title: '[CROWDSTRIKE] Custom Intelligence Tactic Catchall'
 id: 5a17f268-1d73-5adf-a681-ae94251b40ef
 status: experimental
-description: Converted from Sagan rule SID 5016644 (rev 3), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5016644 (rev 4), file crowdstrike.rules.
 references:
   - https://www.reddit.com/r/crowdstrike/comments/rbbzwi/pattern_disposition_values_in_detect_api/
 author: sagan2sigma
@@ -1763,11 +1772,13 @@ detection:
   filter_9:
     _raw|contains|cased: A process triggered a high severity custom rule
   filter_10:
+    _raw|contains|cased: '|MitreAttack|'
+  filter_11:
     _raw|contains|cased:
       - Network Access In A Detection Summary Event
       - Document Access In A Detection Summary Event
   condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6 or filter_7
-    or filter_8 or filter_9 or filter_10)
+    or filter_8 or filter_9 or filter_10 or filter_11)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1775,14 +1786,14 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5016644'
-  sagan.rev: '3'
+  sagan.rev: '4'
   sagan.source_file: crowdstrike.rules
-  sagan.metadata: created_at=2025_06_25,updated_at=2026_03_26
+  sagan.metadata: created_at=2025_06_25,updated_at=2026_09_17
 ---
 title: '[CROWDSTRIKE] Defense Evasion Tactic Catchall'
 id: f844d09b-842b-5004-b43f-d427ea76aad9
 status: experimental
-description: Converted from Sagan rule SID 5016645 (rev 2), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5016645 (rev 4), file crowdstrike.rules.
 references:
   - https://www.reddit.com/r/crowdstrike/comments/rbbzwi/pattern_disposition_values_in_detect_api/
 author: sagan2sigma
@@ -1796,6 +1807,14 @@ detection:
   filter_3:
     _raw|contains|cased: AutomatedLeadSummaryEvent
   filter_4:
+    _raw|contains|cased: Executable Written In A Detection Summary Event
+  filter_5:
+    _raw|contains|cased: Network Access In A Detection Summary Event
+  filter_6:
+    _raw|contains|cased: Quarantined Files In A Detection Summary Event
+  filter_7:
+    _raw|contains|cased: '|MitreAttack|'
+  filter_8:
     _raw|contains|cased:
       - A file appears to be imitating a standard OS or otherwise benign filename and/or launched from
         an unusual location
@@ -1827,7 +1846,8 @@ detection:
       - Mshta attempted to load a likely malicious command line from a registry entry using an obfuscated
         script
       - Msiexec launched with unusual arguments
-  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6 or filter_7
+    or filter_8)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1835,14 +1855,14 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5016645'
-  sagan.rev: '2'
+  sagan.rev: '4'
   sagan.source_file: crowdstrike.rules
-  sagan.metadata: created_at=2025_06_25,updated_at=2026_03_26
+  sagan.metadata: created_at=2025_06_25,updated_at=2026_09_17
 ---
 title: '[CROWDSTRIKE] Execution Tactic Catchall'
 id: a7e599d8-a9a5-5c86-a34f-b180f6246592
 status: experimental
-description: Converted from Sagan rule SID 5016646 (rev 2), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5016646 (rev 3), file crowdstrike.rules.
 references:
   - https://www.reddit.com/r/crowdstrike/comments/rbbzwi/pattern_disposition_values_in_detect_api/
 author: sagan2sigma
@@ -1868,6 +1888,8 @@ detection:
   filter_9:
     _raw|contains|cased: AutomatedLeadSummaryEvent
   filter_10:
+    _raw|contains|cased: '|MitreAttack|'
+  filter_11:
     _raw|contains|cased:
       - An obfuscated command line attempted to launch an unusual script
       - A number of behaviors occurred indicative of the Empyre Backdoor tool
@@ -1880,7 +1902,7 @@ detection:
       - A user executed a PsExec command on a DC for the first time
       - A user executed a scheduled task RPC DCE/RPC command targeting a DC for the first time
   condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6 or filter_7
-    or filter_8 or filter_9 or filter_10)
+    or filter_8 or filter_9 or filter_10 or filter_11)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1888,14 +1910,14 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5016646'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: crowdstrike.rules
-  sagan.metadata: created_at=2025_06_25,updated_at=2026_03_26
+  sagan.metadata: created_at=2025_06_25,updated_at=2026_09_17
 ---
 title: '[CROWDSTRIKE] Exfiltration Tactic Catchall'
 id: dbca3153-b6c8-56cd-be46-3deae5d0eaa0
 status: experimental
-description: Converted from Sagan rule SID 5016647 (rev 2), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5016647 (rev 3), file crowdstrike.rules.
 references:
   - https://www.reddit.com/r/crowdstrike/comments/rbbzwi/pattern_disposition_values_in_detect_api/
 author: sagan2sigma
@@ -1912,7 +1934,9 @@ detection:
     _raw|contains|cased: The activity may be related to an adversary exfiltrating data from this host
   filter_5:
     _raw|contains|cased: Network Access In A Detection Summary Event
-  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+  filter_6:
+    _raw|contains|cased: '|MitreAttack|'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1920,14 +1944,14 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5016647'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: crowdstrike.rules
-  sagan.metadata: created_at=2025_06_25,updated_at=2026_03_26
+  sagan.metadata: created_at=2025_06_25,updated_at=2026_09_17
 ---
 title: '[CROWDSTRIKE] Falcon Intel Tactic Catchall'
 id: ed0749f5-4556-5a5d-9b2b-31f5370eec44
 status: experimental
-description: Converted from Sagan rule SID 5016648 (rev 2), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5016648 (rev 3), file crowdstrike.rules.
 references:
   - https://www.reddit.com/r/crowdstrike/comments/rbbzwi/pattern_disposition_values_in_detect_api/
 author: sagan2sigma
@@ -1941,7 +1965,9 @@ detection:
   filter_3:
     _raw|contains|cased: A domain lookup matched a CrowdStrike Intelligence indicator that has previously
       been used in targeted attacks
-  condition: selection_1 and selection_2 and not filter_3
+  filter_4:
+    _raw|contains|cased: '|MitreAttack|'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1949,14 +1975,14 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5016648'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: crowdstrike.rules
-  sagan.metadata: created_at=2025_06_25,updated_at=2026_03_26
+  sagan.metadata: created_at=2025_06_25,updated_at=2026_09_17
 ---
 title: '[CROWDSTRIKE] Falcon Overwatch Tactic Catchall'
 id: 83f93619-c597-5f1b-99bd-e7cc65df926c
 status: experimental
-description: Converted from Sagan rule SID 5016649 (rev 2), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5016649 (rev 4), file crowdstrike.rules.
 references:
   - https://www.reddit.com/r/crowdstrike/comments/rbbzwi/pattern_disposition_values_in_detect_api/
 author: sagan2sigma
@@ -1968,11 +1994,17 @@ detection:
   selection_2:
     _raw|contains|cased: cat=Falcon Overwatch
   filter_3:
+    _raw|contains|cased: Network Access In A Detection Summary Event
+  filter_4:
+    _raw|contains|cased: Network Access In An Epp Detection Summary Event
+  filter_5:
+    _raw|contains|cased: '|MitreAttack|'
+  filter_6:
     _raw|contains|cased:
       - A critical level detection was triggered on this process for testing purposes
       - Falcon Overwatch has identified malicious activity of moderate concern
       - Falcon Overwatch has identified malicious activity of significant concern
-  condition: selection_1 and selection_2 and not filter_3
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1980,14 +2012,14 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5016649'
-  sagan.rev: '2'
+  sagan.rev: '4'
   sagan.source_file: crowdstrike.rules
-  sagan.metadata: created_at=2025_06_25,updated_at=2026_03_26
+  sagan.metadata: created_at=2025_06_25,updated_at=2026_09_17
 ---
 title: '[CROWDSTRIKE] Impact Tactic Catchall'
 id: 6c0ebca3-35cc-5102-9e6c-67098afedb9c
 status: experimental
-description: Converted from Sagan rule SID 5016650 (rev 2), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5016650 (rev 4), file crowdstrike.rules.
 references:
   - https://www.reddit.com/r/crowdstrike/comments/rbbzwi/pattern_disposition_values_in_detect_api/
 author: sagan2sigma
@@ -1999,13 +2031,17 @@ detection:
   selection_2:
     _raw|contains|cased: cat=Impact
   filter_3:
+    _raw|contains|cased: Executable Written In A Detection Summary Event
+  filter_4:
+    _raw|contains|cased: '|MitreAttack|'
+  filter_5:
     _raw|contains|cased:
-      - A process attempted to hide a Volume Shadow Snapshot
+      - A process attempted to delete a Volume Shadow Snapshot
       - A process deleted a system backup
       - Ransomware file operation activity has been observed occurring over a remote SMB connection
       - technique=Data Encrypted for Impact
       - The BCDEdit tool was used to disable operating system recovery features
-  condition: selection_1 and selection_2 and not filter_3
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -2013,14 +2049,14 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5016650'
-  sagan.rev: '2'
+  sagan.rev: '4'
   sagan.source_file: crowdstrike.rules
-  sagan.metadata: created_at=2025_06_25,updated_at=2026_03_26
+  sagan.metadata: created_at=2025_06_25,updated_at=2026_09_17
 ---
 title: '[CROWDSTRIKE] Initial Access Tactic Catchall'
 id: 2f4b9bc5-6462-5508-92ec-77eaf4a346af
 status: experimental
-description: Converted from Sagan rule SID 5016651 (rev 4), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5016651 (rev 5), file crowdstrike.rules.
 references:
   - https://www.reddit.com/r/crowdstrike/comments/rbbzwi/pattern_disposition_values_in_detect_api/
 author: sagan2sigma
@@ -2047,8 +2083,12 @@ detection:
     _raw|contains|cased: A user accessed an unusual location
   filter_10:
     _raw|contains|cased: IdpDetectionSummaryEvent
+  filter_11:
+    _raw|contains|cased: msg=Suspicious EC2 launch detected
+  filter_12:
+    _raw|contains|cased: '|MitreAttack|'
   condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6 or filter_7
-    or filter_8 or filter_9 or filter_10)
+    or filter_8 or filter_9 or filter_10 or filter_11 or filter_12)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -2056,14 +2096,14 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5016651'
-  sagan.rev: '4'
+  sagan.rev: '5'
   sagan.source_file: crowdstrike.rules
-  sagan.metadata: created_at=2025_06_25,updated_at=2026_03_26
+  sagan.metadata: created_at=2025_06_25,updated_at=2026_09_17
 ---
 title: '[CROWDSTRIKE] Machine Learning Tactic Catchall'
 id: d18019a7-34c1-5861-a32f-3cb81df4856f
 status: experimental
-description: Converted from Sagan rule SID 5016652 (rev 3), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5016652 (rev 4), file crowdstrike.rules.
 references:
   - https://www.reddit.com/r/crowdstrike/comments/rbbzwi/pattern_disposition_values_in_detect_api/
 author: sagan2sigma
@@ -2080,6 +2120,8 @@ detection:
   filter_4:
     _raw|contains|cased: Document Access In
   filter_5:
+    _raw|contains|cased: '|MitreAttack|'
+  filter_6:
     _raw|contains|cased:
       - A file written to the file-system meets the cloud-based machine learning model high confidence
         threshold for malicious files
@@ -2100,7 +2142,7 @@ detection:
         ML algorithm's high-confidence threshold
       - This process wrote a suspicious file to disk. That associated file meets the ML algorithm's high-confidence
         adware/PUP detection threshold
-  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -2108,14 +2150,14 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5016652'
-  sagan.rev: '3'
+  sagan.rev: '4'
   sagan.source_file: crowdstrike.rules
-  sagan.metadata: created_at=2025_06_25,updated_at=2026_03_26
+  sagan.metadata: created_at=2025_06_25,updated_at=2026_09_17
 ---
 title: '[CROWDSTRIKE] Malware Tactic Catchall'
 id: 64d511db-db45-542c-8302-6c971daef689
 status: experimental
-description: Converted from Sagan rule SID 5016653 (rev 2), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5016653 (rev 4), file crowdstrike.rules.
 references:
   - https://www.reddit.com/r/crowdstrike/comments/rbbzwi/pattern_disposition_values_in_detect_api/
 author: sagan2sigma
@@ -2127,13 +2169,24 @@ detection:
   selection_2:
     _raw|contains|cased: cat=Malware
   filter_3:
+    _raw|contains|cased: EppDetectionSummaryEvent
+  filter_4:
+    _raw|contains|cased: '|DetectionSummaryEvent|'
+  filter_5:
+    _raw|contains|cased: Network Access In An Epp Detection Summary Event
+  filter_6:
+    _raw|contains|cased: Quarantined Files In An Epp Detection Summary Event
+  filter_7:
+    _raw|contains|cased: '|MitreAttack|'
+  filter_8:
     _raw|contains|cased:
-      - A file written to the file-system was classified as Adware/PUP based on its SHA256 hash
+      - This file is classified as Adware/PUP based on its SHA256 hash
       - A process launched whose behavior is likely related to a potentially unwanted program (PUP)
       - A process launched with a filename
       - path
       - and/or arguments associated with known adware
-  condition: selection_1 and selection_2 and not filter_3
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6 or filter_7
+    or filter_8)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -2141,14 +2194,14 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5016653'
-  sagan.rev: '2'
+  sagan.rev: '4'
   sagan.source_file: crowdstrike.rules
-  sagan.metadata: created_at=2025_06_25,updated_at=2026_03_23
+  sagan.metadata: created_at=2025_06_25,updated_at=2026_09_17
 ---
 title: '[CROWDSTRIKE] Persistence Tactic Catchall'
 id: f5f88699-56ce-57a8-b558-b45cb3d4e3f8
 status: experimental
-description: Converted from Sagan rule SID 5016654 (rev 2), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5016654 (rev 4), file crowdstrike.rules.
 references:
   - https://www.reddit.com/r/crowdstrike/comments/rbbzwi/pattern_disposition_values_in_detect_api/
 author: sagan2sigma
@@ -2166,7 +2219,11 @@ detection:
   filter_5:
     _raw|contains|cased: A process made a suspicious change to the registry that might indicate a malicious
       persistence mechanism
-  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
+  filter_6:
+    _raw|contains|cased: Executable Written In A Detection Summary Event
+  filter_7:
+    _raw|contains|cased: '|MitreAttack|'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6 or filter_7)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -2174,14 +2231,14 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5016654'
-  sagan.rev: '2'
+  sagan.rev: '4'
   sagan.source_file: crowdstrike.rules
-  sagan.metadata: created_at=2025_06_25,updated_at=2026_03_26
+  sagan.metadata: created_at=2025_06_25,updated_at=2026_09_17
 ---
 title: '[CROWDSTRIKE] Post-Exploit Tactic Catchall'
 id: 7b2c78b6-b44c-502c-a1eb-70342c5d7863
 status: experimental
-description: Converted from Sagan rule SID 5016655 (rev 2), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5016655 (rev 3), file crowdstrike.rules.
 references:
   - https://www.reddit.com/r/crowdstrike/comments/rbbzwi/pattern_disposition_values_in_detect_api/
 author: sagan2sigma
@@ -2196,7 +2253,9 @@ detection:
     _raw|contains|cased: A suspicious process related to a likely malicious file was launched
   filter_4:
     _raw|contains|cased: Malicious artifacts were identified in memory
-  condition: selection_1 and selection_2 and not (filter_3 or filter_4)
+  filter_5:
+    _raw|contains|cased: '|MitreAttack|'
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -2204,14 +2263,14 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5016655'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: crowdstrike.rules
-  sagan.metadata: created_at=2025_06_25,updated_at=2026_03_26
+  sagan.metadata: created_at=2025_06_25,updated_at=2026_09_17
 ---
 title: '[CROWDSTRIKE] Privilege Escalation Tactic Catchall'
 id: d4b6633b-673d-5d22-936c-c0002e189e9e
 status: experimental
-description: Converted from Sagan rule SID 5016656 (rev 3), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5016656 (rev 4), file crowdstrike.rules.
 references:
   - https://www.reddit.com/r/crowdstrike/comments/rbbzwi/pattern_disposition_values_in_detect_api/
 author: sagan2sigma
@@ -2231,6 +2290,8 @@ detection:
   filter_6:
     _raw|contains|cased: FcsIoaDetectionSummaryEvent
   filter_7:
+    _raw|contains|cased: '|MitreAttack|'
+  filter_8:
     _raw|contains|cased:
       - An Azure service principal received new privileges
       - An endpoint received new privileges
@@ -2239,7 +2300,8 @@ detection:
       - this could be as a result of an adversary's attempt to bypass access controls or as part of legitimate
         system administration
       - A user executed a valid accounts DCE/RPC command targeting a DC for the first time
-  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6 or filter_7)
+  condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6 or filter_7
+    or filter_8)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -2247,9 +2309,9 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5016656'
-  sagan.rev: '3'
+  sagan.rev: '4'
   sagan.source_file: crowdstrike.rules
-  sagan.metadata: created_at=2025_06_25,updated_at=2026_03_26
+  sagan.metadata: created_at=2025_06_25,updated_at=2026_09_17
 ---
 title: '[CROWDSTRIKE] Quarantined Files In Endpoint Protection Platform'
 id: 05bf788a-aa60-5aa1-b015-8b6cbcc112e2
@@ -6581,10 +6643,10 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: crowdstrike.rules
 ---
-title: '[CROWDSTRIKE] Possible Impact Blocked - Process Attempted To Hide A Volume Shadow Snapshot'
+title: '[CROWDSTRIKE] Possible Impact Blocked - Process Attempted To Delete A Volume Shadow Snapshot'
 id: 034c888e-7387-5978-857e-51613f69a10b
 status: experimental
-description: Converted from Sagan rule SID 5017617 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017617 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -6592,7 +6654,7 @@ detection:
   selection_1:
     appname|cased: CrowdStrike
   selection_2:
-    _raw|contains|cased: A process attempted to hide a Volume Shadow Snapshot
+    _raw|contains|cased: A process attempted to delete a Volume Shadow Snapshot
   selection_3:
     _raw|contains: blocked
   selection_4:
@@ -6605,13 +6667,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017617'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
+  sagan.metadata: updated_at=2026_09_17
 ---
-title: '[CROWDSTRIKE] Possible Impact Killed - Process Attempted To Hide A Volume Shadow Snapshot'
+title: '[CROWDSTRIKE] Possible Impact Killed - Process Attempted To Delete A Volume Shadow Snapshot'
 id: 9ac6c6b4-6e4c-577b-ac34-5b3ca7d8e59f
 status: experimental
-description: Converted from Sagan rule SID 5017618 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017618 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -6619,7 +6682,7 @@ detection:
   selection_1:
     appname|cased: CrowdStrike
   selection_2:
-    _raw|contains|cased: A process attempted to hide a Volume Shadow Snapshot
+    _raw|contains|cased: A process attempted to delete a Volume Shadow Snapshot
   selection_3:
     _raw|contains: killed
   selection_4:
@@ -6632,13 +6695,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017618'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
+  sagan.metadata: updated_at=2026_09_17
 ---
-title: '[CROWDSTRIKE] Possible Impact Detected - Process Attempted To Hide A Volume Shadow Snapshot'
+title: '[CROWDSTRIKE] Possible Impact Detected - Process Attempted To Delete A Volume Shadow Snapshot'
 id: 90bdced6-0144-5df2-9786-2d9b90849257
 status: experimental
-description: Converted from Sagan rule SID 5017619 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017619 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -6646,7 +6710,7 @@ detection:
   selection_1:
     appname|cased: CrowdStrike
   selection_2:
-    _raw|contains|cased: A process attempted to hide a Volume Shadow Snapshot
+    _raw|contains|cased: A process attempted to delete a Volume Shadow Snapshot
   selection_3:
     _raw|contains: standard detection
   selection_4:
@@ -6659,8 +6723,9 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017619'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
+  sagan.metadata: updated_at=2026_09_17
 ---
 title: '[CROWDSTRIKE] Possible Initial Access - User accessed IP associated with malicious activity'
 id: 0b3fe883-c11e-5b97-ad09-ddd0d70b967a
@@ -6737,6 +6802,35 @@ custom_attributes:
   sagan.sid: '5017626'
   sagan.rev: '1'
   sagan.source_file: crowdstrike.rules
+---
+title: '[CROWDSTRIKE] Suspicious EC2 Instance Launch From Unrecognized User-Agent'
+id: 9ea17ad0-e005-5e4e-a431-1b2299214acc
+status: experimental
+description: Converted from Sagan rule SID 5017994 (rev 1), file crowdstrike.rules.
+author: sagan2sigma
+logsource:
+  product: crowdstrike
+detection:
+  selection_1:
+    appname|cased: CrowdStrike
+  selection_2:
+    _raw|contains|cased: FcsIoaDetectionSummaryEvent
+  selection_3:
+    _raw|contains|cased: msg=Suspicious EC2 launch detected
+  selection_4:
+    _raw|contains|cased: tactic=Initial Access
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.suspicious-traffic
+custom_attributes:
+  sagan.sid: '5017994'
+  sagan.rev: '1'
+  sagan.source_file: crowdstrike.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_at=2026_09_17,updated_at=2026_09_17
 ---
 title: '[CROWDSTRIKE] Machine Learning Analysis: Cloud-based ML high confidence malware detection - Blocked'
 id: 38af579a-4e56-58e4-b53a-f59048d1fae5
@@ -7080,7 +7174,7 @@ custom_attributes:
 title: '[CROWDSTRIKE] File classified as Adware or PUP based on SHA256 hash - Blocked'
 id: d15d7c33-caed-5788-b263-f0658335fc65
 status: experimental
-description: Converted from Sagan rule SID 5017639 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017639 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -7088,8 +7182,7 @@ detection:
   selection_1:
     appname|cased: CrowdStrike
   selection_2:
-    _raw|contains|cased: A file written to the file-system was classified as Adware/PUP based on its SHA256
-      hash
+    _raw|contains|cased: This file is classified as Adware/PUP based on its SHA256 hash
   selection_3:
     _raw|contains: blocked
   selection_4:
@@ -7102,13 +7195,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017639'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
+  sagan.metadata: updated_at=2026_09_17
 ---
 title: '[CROWDSTRIKE] File classified as Adware or PUP based on SHA256 hash - Killed'
 id: 1de9246e-78cd-5d38-b95b-7be6464f0c93
 status: experimental
-description: Converted from Sagan rule SID 5017640 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017640 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -7116,8 +7210,7 @@ detection:
   selection_1:
     appname|cased: CrowdStrike
   selection_2:
-    _raw|contains|cased: A file written to the file-system was classified as Adware/PUP based on its SHA256
-      hash
+    _raw|contains|cased: This file is classified as Adware/PUP based on its SHA256 hash
   selection_3:
     _raw|contains: killed
   selection_4:
@@ -7130,13 +7223,14 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017640'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
+  sagan.metadata: updated_at=2026_09_17
 ---
 title: '[CROWDSTRIKE] File classified as Adware or PUP based on SHA256 hash - Detected'
 id: 3ecc7ff9-24cc-5448-b4b0-986326bd8432
 status: experimental
-description: Converted from Sagan rule SID 5017641 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017641 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -7144,8 +7238,7 @@ detection:
   selection_1:
     appname|cased: CrowdStrike
   selection_2:
-    _raw|contains|cased: A file written to the file-system was classified as Adware/PUP based on its SHA256
-      hash
+    _raw|contains|cased: This file is classified as Adware/PUP based on its SHA256 hash
   selection_3:
     _raw|contains: standard detection
   selection_4:
@@ -7158,8 +7251,9 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017641'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
+  sagan.metadata: updated_at=2026_09_17
 ---
 title: '[CROWDSTRIKE] Process behavior indicative of potentially unwanted program - Blocked'
 id: dcbf7b59-f446-513c-ae1d-99b905b29211

@@ -2135,7 +2135,7 @@ title: Aggregate of rules setting Sagan bit recon
 id: 4880c497-cf45-52f5-aabe-9414140ee9c8
 name: sagan_xbit_recon
 status: experimental
-description: Synthetic rule. Sagan set the 'recon' bit from 62 rule(s); since Sigma cannot express an
+description: Synthetic rule. Sagan set the 'recon' bit from 64 rule(s); since Sigma cannot express an
   OR between correlated rules, their detections are gathered here. This rule is not meant to alert on
   its own.
 author: sagan2sigma
@@ -2383,127 +2383,141 @@ detection:
   s43_selection_1:
     _raw|contains|cased: User-Agent
   s43_selection_2:
-    _raw|contains|cased: w3af.sourceforge.net
+    _raw|re|s|i: ^.{2}.{0,97}web
+  s43_selection_3:
+    _raw|contains: scan
+  s43_filter_4:
+    _raw|contains|cased: scandal
   s44_selection_1:
-    _raw|contains|cased: /ServiceDefinition
+    _raw|contains|cased: User-Agent
   s44_selection_2:
-    _raw|contains|cased: User-Agent
+    _raw|re|s|i: ^.{2}.{0,92}security
   s44_selection_3:
-    _raw|contains|cased: Python-urllib
+    _raw|contains: scan
   s45_selection_1:
-    _raw|contains|cased: GET
+    _raw|contains|cased: User-Agent
   s45_selection_2:
-    _raw|contains|cased: \?http
-  s45_selection_3:
-    _raw|contains: //www.google.
-  s45_selection_4:
-    _raw|contains|cased: User-Agent
-  s45_selection_5:
-    _raw|contains|cased: Python-httplib2
+    _raw|contains|cased: w3af.sourceforge.net
   s46_selection_1:
-    _raw|contains|cased: User-Agent
+    _raw|contains|cased: /ServiceDefinition
   s46_selection_2:
-    _raw|contains|cased: webshag
+    _raw|contains|cased: User-Agent
+  s46_selection_3:
+    _raw|contains|cased: Python-urllib
   s47_selection_1:
-    _raw|contains|cased: User-Agent
+    _raw|contains|cased: GET
   s47_selection_2:
-    _raw|contains|cased: WhatWeb
+    _raw|contains|cased: \?http
+  s47_selection_3:
+    _raw|contains: //www.google.
+  s47_selection_4:
+    _raw|contains|cased: User-Agent
+  s47_selection_5:
+    _raw|contains|cased: Python-httplib2
   s48_selection_1:
-    _raw|contains|cased: union+select
+    _raw|contains|cased: User-Agent
   s48_selection_2:
-    _raw|contains|cased: select+user
-  s48_selection_3:
-    _raw|contains|cased: User-Agent
-  s48_selection_4:
-    _raw|contains|cased: Mozilla/4.0 (compatible
-  s48_selection_5:
-    _raw|contains|cased: MSIE 6.0
-  s48_selection_6:
-    _raw|contains|cased: Windows NT 5.0
-  s48_selection_7:
-    _raw|contains|cased: MyIE2
+    _raw|contains|cased: webshag
   s49_selection_1:
-    _raw|contains|cased: Host
+    _raw|contains|cased: User-Agent
   s49_selection_2:
-    _raw|contains|cased: localhost
-  s49_selection_3:
-    _raw|contains|cased: User-Agent
-  s49_selection_4:
-    _raw|contains|cased: Mozilla/5.0 (Windows
-  s49_selection_5:
-    _raw|contains|cased: Windows NT 5.1
-  s49_selection_6:
-    _raw|contains|cased: en-GB
-  s49_selection_7:
-    _raw|contains|cased: Gecko/20061204 Firefox/2.0.0.1
+    _raw|contains|cased: WhatWeb
   s50_selection_1:
-    _raw|contains|cased: User-Agent
+    _raw|contains|cased: union+select
   s50_selection_2:
-    _raw|contains: Mozilla/4.0 (Hydra)
-  s51_selection_1:
+    _raw|contains|cased: select+user
+  s50_selection_3:
     _raw|contains|cased: User-Agent
+  s50_selection_4:
+    _raw|contains|cased: Mozilla/4.0 (compatible
+  s50_selection_5:
+    _raw|contains|cased: MSIE 6.0
+  s50_selection_6:
+    _raw|contains|cased: Windows NT 5.0
+  s50_selection_7:
+    _raw|contains|cased: MyIE2
+  s51_selection_1:
+    _raw|contains|cased: Host
   s51_selection_2:
-    _raw|contains|cased: inspath [path disclosure finder
+    _raw|contains|cased: localhost
+  s51_selection_3:
+    _raw|contains|cased: User-Agent
+  s51_selection_4:
+    _raw|contains|cased: Mozilla/5.0 (Windows
+  s51_selection_5:
+    _raw|contains|cased: Windows NT 5.1
+  s51_selection_6:
+    _raw|contains|cased: en-GB
+  s51_selection_7:
+    _raw|contains|cased: Gecko/20061204 Firefox/2.0.0.1
   s52_selection_1:
     _raw|contains|cased: User-Agent
   s52_selection_2:
-    _raw|contains: Teh Forest Lobster
+    _raw|contains: Mozilla/4.0 (Hydra)
   s53_selection_1:
     _raw|contains|cased: User-Agent
   s53_selection_2:
-    _raw|contains: DotDotPwn
+    _raw|contains|cased: inspath [path disclosure finder
   s54_selection_1:
     _raw|contains|cased: User-Agent
   s54_selection_2:
-    _raw|contains|cased: OpenVAS
-  s55_filter_1:
-    _raw|contains|cased: Vegas
+    _raw|contains: Teh Forest Lobster
+  s55_selection_1:
+    _raw|contains|cased: User-Agent
   s55_selection_2:
-    _raw|contains|cased: Vega
-  s55_selection_3:
-    _raw|contains|cased: User-Agent
+    _raw|contains: DotDotPwn
   s56_selection_1:
-    _raw|contains|cased: 'FHScan Core '
-  s57_selection_1:
     _raw|contains|cased: User-Agent
+  s56_selection_2:
+    _raw|contains|cased: OpenVAS
+  s57_filter_1:
+    _raw|contains|cased: Vegas
   s57_selection_2:
-    _raw|contains|cased: w3af.sf.net
-  s58_selection_1:
+    _raw|contains|cased: Vega
+  s57_selection_3:
     _raw|contains|cased: User-Agent
-  s58_selection_2:
-    _raw|contains|cased: Mozilla/5.0
-  s58_selection_3:
-    _raw|contains: Grendel-Scan
-  s58_selection_4:
-    _raw|contains: http://www.grendel-scan.com
+  s58_selection_1:
+    _raw|contains|cased: 'FHScan Core '
   s59_selection_1:
     _raw|contains|cased: User-Agent
   s59_selection_2:
-    _raw|contains|cased: Absinthe
+    _raw|contains|cased: w3af.sf.net
   s60_selection_1:
-    _raw|contains: User-Agent
+    _raw|contains|cased: User-Agent
   s60_selection_2:
-    _raw|contains: Nessus
-  s60_filter_3:
-    _raw|contains: inessus
-  s60_filter_4:
-    _raw|contains: www.nessus.org
-  s60_filter_5:
-    _raw|contains: Rule
-  s60_filter_6:
-    _raw|contains|cased: drop
-  s60_filter_7:
-    _raw|contains: tmm
+    _raw|contains|cased: Mozilla/5.0
+  s60_selection_3:
+    _raw|contains: Grendel-Scan
+  s60_selection_4:
+    _raw|contains: http://www.grendel-scan.com
   s61_selection_1:
-    appname|cased: snmptrapd
+    _raw|contains|cased: User-Agent
   s61_selection_2:
-    _raw|contains|cased: =USER_AUTHENTICATION_FAILURE(
+    _raw|contains|cased: Absinthe
   s62_selection_1:
-    _raw|contains|cased: Scan::Port_Scan
+    _raw|contains: User-Agent
   s62_selection_2:
+    _raw|contains: Nessus
+  s62_filter_3:
+    _raw|contains: inessus
+  s62_filter_4:
+    _raw|contains: www.nessus.org
+  s62_filter_5:
+    _raw|contains: Rule
+  s62_filter_6:
+    _raw|contains|cased: drop
+  s62_filter_7:
+    _raw|contains: tmm
+  s63_selection_1:
+    appname|cased: snmptrapd
+  s63_selection_2:
+    _raw|contains|cased: =USER_AUTHENTICATION_FAILURE(
+  s64_selection_1:
+    _raw|contains|cased: Scan::Port_Scan
+  s64_selection_2:
     _raw|re|s|m|i: ((192)\.(168)\.(\d+)\.(\d+)|(10)\.(\d+)\.(\d+)\.(\d+)|(172)\.(1[6,7,8,9])\.(\d+)\.(\d+)|(172)\.(2[0,1,2,3,4,5,6,7,8,9])\.(\d+)\.(\d+)|(172)\.(3[0,1])\.(\d+)\.(\d+))
       scanned at least \d+ unique ports
-  s62_selection_3:
+  s64_selection_3:
     appname|cased:
       - bro
       - zeek
@@ -2527,22 +2541,24 @@ detection:
     or (s38_selection_1 and s38_selection_2 and s38_selection_3 and s38_selection_4) or (s39_selection_1
     and s39_selection_2) or (s40_selection_1 and s40_selection_2) or (s41_selection_1 and s41_selection_2
     and s41_selection_3 and s41_selection_4 and s41_selection_5 and s41_selection_6 and s41_selection_7)
-    or (s42_selection_1 and s42_selection_2 and s42_selection_3) or (s43_selection_1 and s43_selection_2)
-    or (s44_selection_1 and s44_selection_2 and s44_selection_3) or (s45_selection_1 and s45_selection_2
-    and s45_selection_3 and s45_selection_4 and s45_selection_5) or (s46_selection_1 and s46_selection_2)
-    or (s47_selection_1 and s47_selection_2) or (s48_selection_1 and s48_selection_2 and s48_selection_3
-    and s48_selection_4 and s48_selection_5 and s48_selection_6 and s48_selection_7) or (s49_selection_1
-    and s49_selection_2 and s49_selection_3 and s49_selection_4 and s49_selection_5 and s49_selection_6
-    and s49_selection_7) or (s50_selection_1 and s50_selection_2) or (s51_selection_1 and s51_selection_2)
-    or (s52_selection_1 and s52_selection_2) or (s53_selection_1 and s53_selection_2) or (s54_selection_1
-    and s54_selection_2) or (s55_selection_2 and s55_selection_3 and not s55_filter_1) or (s56_selection_1)
-    or (s57_selection_1 and s57_selection_2) or (s58_selection_1 and s58_selection_2 and s58_selection_3
-    and s58_selection_4) or (s59_selection_1 and s59_selection_2) or (s60_selection_1 and s60_selection_2
-    and not (s60_filter_3 or s60_filter_4 or s60_filter_5 or s60_filter_6 or s60_filter_7)) or (s61_selection_1
-    and s61_selection_2) or (s62_selection_1 and s62_selection_2 and s62_selection_3)
+    or (s42_selection_1 and s42_selection_2 and s42_selection_3) or (s43_selection_1 and s43_selection_2
+    and s43_selection_3 and not s43_filter_4) or (s44_selection_1 and s44_selection_2 and s44_selection_3)
+    or (s45_selection_1 and s45_selection_2) or (s46_selection_1 and s46_selection_2 and s46_selection_3)
+    or (s47_selection_1 and s47_selection_2 and s47_selection_3 and s47_selection_4 and s47_selection_5)
+    or (s48_selection_1 and s48_selection_2) or (s49_selection_1 and s49_selection_2) or (s50_selection_1
+    and s50_selection_2 and s50_selection_3 and s50_selection_4 and s50_selection_5 and s50_selection_6
+    and s50_selection_7) or (s51_selection_1 and s51_selection_2 and s51_selection_3 and s51_selection_4
+    and s51_selection_5 and s51_selection_6 and s51_selection_7) or (s52_selection_1 and s52_selection_2)
+    or (s53_selection_1 and s53_selection_2) or (s54_selection_1 and s54_selection_2) or (s55_selection_1
+    and s55_selection_2) or (s56_selection_1 and s56_selection_2) or (s57_selection_2 and s57_selection_3
+    and not s57_filter_1) or (s58_selection_1) or (s59_selection_1 and s59_selection_2) or (s60_selection_1
+    and s60_selection_2 and s60_selection_3 and s60_selection_4) or (s61_selection_1 and s61_selection_2)
+    or (s62_selection_1 and s62_selection_2 and not (s62_filter_3 or s62_filter_4 or s62_filter_5 or s62_filter_6
+    or s62_filter_7)) or (s63_selection_1 and s63_selection_2) or (s64_selection_1 and s64_selection_2
+    and s64_selection_3)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: informational
 custom_attributes:
   sagan.xbit: recon
-  sagan.xbit_setters: '62'
+  sagan.xbit_setters: '64'

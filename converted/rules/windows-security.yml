@@ -1817,6 +1817,103 @@ custom_attributes:
   sagan.rev: '1'
   sagan.source_file: windows-security.rules
 ---
+title: '[WINDOWS-SECURITY] A user''s local group membership was enumerated'
+id: ac2d412d-284d-5ff3-b481-762b5d0c1518
+status: experimental
+description: Converted from Sagan rule SID 5007214 (rev 1), file windows-security.rules.
+references:
+  - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4799
+  - https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-identifiers
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4798
+  selection_3:
+    _raw|contains|cased:
+      - 'Group: Security ID: S-1-5-32-544'
+      - 'Group: Security ID: S-1-5-32-545'
+      - 'Group: Security ID: S-1-5-32-546'
+      - 'Group: Security ID: S-1-5-32-547'
+      - 'Group: Security ID: S-1-5-32-548'
+      - 'Group: Security ID: S-1-5-32-549'
+      - 'Group: Security ID: S-1-5-32-550'
+      - 'Group: Security ID: S-1-5-32-555'
+  filter_4:
+    _raw|contains|cased: 'Process ID: 0x0'
+  filter_5:
+    _raw|contains|cased: 'Process Name: C:\\Windows\\System32'
+  selection_6:
+    _raw|contains|cased: 'Process Name: '
+  filter_7:
+    _raw|re|s: ^.{2}.{0,0}:\\Program\ Files
+  condition: selection_1 and selection_2 and selection_3 and selection_6 and not (filter_4 or filter_5
+    or filter_7)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5007214'
+  sagan.rev: '1'
+  sagan.source_file: windows-security.rules
+---
+title: '[WINDOWS-SECURITY] A user''s local group membership was enumerated (Domain Groups)'
+id: 2470e0b6-b43d-59dc-9faa-70b0cc0b3acf
+status: experimental
+description: Converted from Sagan rule SID 5007215 (rev 1), file windows-security.rules.
+references:
+  - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4799
+  - https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-identifiers
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*Security*'
+  selection_2:
+    EventID: 4798
+  selection_3:
+    _raw|contains|cased: 'Group: Security ID: S-1-5'
+  filter_4:
+    _raw|contains|cased: 'Process ID: 0x0'
+  filter_5:
+    _raw|contains|cased: 'Process Name: C:\\Windows\\System32'
+  selection_6:
+    _raw|contains|cased: 'Process Name: '
+  filter_7:
+    _raw|re|s: ^.{2}.{0,0}:\\Program\ Files
+  selection_8:
+    _raw|contains|cased:
+      - 500-
+      - 501-
+      - 502-
+      - 512-
+      - 513-
+      - 514-
+      - 515-
+      - 516-
+      - 517-
+      - 518-
+      - 519-
+      - 520-
+      - 553-
+  condition: selection_1 and selection_2 and selection_3 and selection_6 and selection_8 and not (filter_4
+    or filter_5 or filter_7)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.attempted-recon
+custom_attributes:
+  sagan.sid: '5007215'
+  sagan.rev: '1'
+  sagan.source_file: windows-security.rules
+---
 title: '[WINDOWS-SECURITY] Possible Microsoft Teams token access via Cookies'
 id: 433919fe-825b-51e8-a898-1bb5f1af2fe4
 status: experimental
@@ -6559,7 +6656,7 @@ custom_attributes:
 title: '[EXPERIMENTAL][WINDOWS-SECURITY] Authentication - Anonymous NTLM V1 Logon via NtLmSsp'
 id: d859d46a-2154-576b-a8f4-dce0cda6b4ef
 status: experimental
-description: Converted from Sagan rule SID 9870000 (rev 5), file windows-security.rules.
+description: Converted from Sagan rule SID 9870000 (rev 6), file windows-security.rules.
 references:
   - https://attack.mitre.org/techniques/T1187/
 author: sagan2sigma
@@ -6584,10 +6681,10 @@ tags:
   - sagan.classtype.credential-access
 custom_attributes:
   sagan.sid: '9870000'
-  sagan.rev: '5'
+  sagan.rev: '6'
   sagan.source_file: windows-security.rules
   rsigma.suppress: 1d
-  sagan.metadata: createdOn=2026_06_11,updatedOn=2026_09_01
+  sagan.metadata: createdOn=2026_06_11,updatedOn=2026_09_17
 ---
 title: '[WINDOWS-SECURITY] SMB - Anonymous Access to IPC$ Share'
 id: dcf09015-ebe7-560e-8c15-f01abcab9285
@@ -6620,39 +6717,10 @@ custom_attributes:
   rsigma.suppress: 6h
   sagan.metadata: createdOn=2026_06_11,updatedOn=2026_06_30
 ---
-title: '[EXPERIMENTAL][WINDOWS-SECURITY] SMB - Anonymous Access Denied to ADMIN$ Share'
-id: df91e795-ffb8-5f2b-96f6-15cb23267ec0
+title: '[WINDOWS-SECURITY] Kerberos - Service Ticket Request with RC4 Encryption (Kerberoasting)'
+id: 54b557f6-2e83-573a-b66a-6c9a16d9c8dd
 status: experimental
-description: Converted from Sagan rule SID 9870004 (rev 2), file windows-security.rules.
-references:
-  - https://attack.mitre.org/techniques/T1021/
-author: sagan2sigma
-logsource:
-  product: windows
-detection:
-  selection_1:
-    appname|cased: Microsoft-Windows-SMBServer/Security
-  selection_2:
-    EventID: 1007
-  selection_3:
-    _raw|contains|cased: ADMIN$
-  condition: selection_1 and selection_2 and selection_3
-falsepositives:
-  - 'Unassessed: automatically converted, not yet tuned'
-level: high
-tags:
-  - sagan.classtype.lateral-movement
-custom_attributes:
-  sagan.sid: '9870004'
-  sagan.rev: '2'
-  sagan.source_file: windows-security.rules
-  rsigma.suppress: 1h
-  sagan.metadata: createdOn=2026_06_11,updatedOn=2026_06_16
----
-title: '[EXPERIMENTAL][WINDOWS-SECURITY] Kerberos - Service Ticket Request with RC4 Encryption (Kerberoasting)'
-id: cbb1ee50-7313-5466-a2a5-729e1f79c133
-status: experimental
-description: Converted from Sagan rule SID 9870007 (rev 2), file windows-security.rules.
+description: Converted from Sagan rule SID 5018004 (rev 3), file windows-security.rules.
 references:
   - https://adsecurity.org/?p=3458
   - https://attack.mitre.org/techniques/T1558/003/
@@ -6675,10 +6743,10 @@ level: high
 tags:
   - sagan.classtype.credential-access
 custom_attributes:
-  sagan.sid: '9870007'
-  sagan.rev: '2'
+  sagan.sid: '5018004'
+  sagan.rev: '3'
   sagan.source_file: windows-security.rules
-  sagan.metadata: createdOn=2026_06_11,updatedOn=2026_09_01
+  sagan.metadata: createdOn=2026_06_11,updatedOn=2026_09_17
 ---
 title: '[WINDOWS-SECURITY] Kerberos - AS-REP Roasting Attempt with RC4-Encrypted Ticket'
 id: 84e9dd2e-e9f9-5d97-9c40-30f087fb5aa7

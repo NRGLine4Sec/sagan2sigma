@@ -1,3 +1,195 @@
+title: '[RSA-DPM] Physical Memory status Yellow'
+id: 4a2c020d-36ca-50c1-827c-4ac5f6b64fc4
+status: experimental
+description: Converted from Sagan rule SID 5003938 (rev 3), file rsa-dpm.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    sagan_raw|contains|cased: RKMA_MONITORING_EVENT
+  selection_2:
+    sagan_raw|contains|cased: '[Type:Physical'
+  selection_3:
+    sagan_raw|re|s: ^.{46}.{0,19}YELLOW
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+custom_attributes:
+  sagan.sid: '5003938'
+  sagan.rev: '3'
+  sagan.source_file: rsa-dpm.rules
+  rsigma.suppress: 15m
+---
+title: '[RSA-DPM] Physical Memory status RED [Critical]'
+id: cc9dfa74-4052-596c-86fe-50780f454b94
+status: experimental
+description: Converted from Sagan rule SID 5003939 (rev 3), file rsa-dpm.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    sagan_raw|contains|cased: RKMA_MONITORING_EVENT
+  selection_2:
+    sagan_raw|contains|cased: '[Type:Physical'
+  selection_3:
+    sagan_raw|re|s: ^.{46}.{0,22}RED
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+custom_attributes:
+  sagan.sid: '5003939'
+  sagan.rev: '3'
+  sagan.source_file: rsa-dpm.rules
+  rsigma.suppress: 5m
+---
+title: '[RSA-DPM] Swap-Memory Memory status Yellow'
+id: 5fa27ed8-2a5b-52a5-9a64-238092ee86db
+status: experimental
+description: Converted from Sagan rule SID 5003940 (rev 4), file rsa-dpm.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    sagan_raw|contains|cased: RKMA_MONITORING_EVENT
+  selection_2:
+    sagan_raw|contains|cased: Type:Swap-Memory
+  selection_3:
+    sagan_raw|re|s: ^.{46}.{0,19}YELLOW
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+custom_attributes:
+  sagan.sid: '5003940'
+  sagan.rev: '4'
+  sagan.source_file: rsa-dpm.rules
+  rsigma.suppress: 15m
+---
+title: '[RSA-DPM] Swap-Memory Memory status Red [Critical]'
+id: 94b3c4b6-6d9f-5963-8ec2-ad7c339232b0
+status: experimental
+description: Converted from Sagan rule SID 5003941 (rev 2), file rsa-dpm.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    sagan_raw|contains|cased: RKMA_MONITORING_EVENT
+  selection_2:
+    sagan_raw|contains|cased: Type:Swap-Memory
+  selection_3:
+    sagan_raw|re|s: ^.{46}.{0,22}RED
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+custom_attributes:
+  sagan.sid: '5003941'
+  sagan.rev: '2'
+  sagan.source_file: rsa-dpm.rules
+  rsigma.suppress: 5m
+---
+title: '[RSA-DPM] Disk status Yellow'
+id: e95b6632-de68-5b04-b539-b44d26f19bed
+status: experimental
+description: Converted from Sagan rule SID 5003942 (rev 4), file rsa-dpm.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    sagan_raw|contains|cased: RKMA_MONITORING_EVENT
+  selection_2:
+    sagan_raw|contains|cased: DiskInfo=
+  selection_3:
+    sagan_raw|re|s: ^.{26}.{0,4}YELLOW
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+custom_attributes:
+  sagan.sid: '5003942'
+  sagan.rev: '4'
+  sagan.source_file: rsa-dpm.rules
+  rsigma.suppress: 15m
+---
+title: '[RSA-DPM] Disk status Red - [Critical]'
+id: 01ae0499-4061-59d2-9849-1c3d8c5b1812
+status: experimental
+description: Converted from Sagan rule SID 5003943 (rev 3), file rsa-dpm.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    sagan_raw|contains|cased: RKMA_MONITORING_EVENT
+  selection_2:
+    sagan_raw|contains|cased: DiskInfo=
+  selection_3:
+    sagan_raw|re|s: ^.{26}.{0,7}RED
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+custom_attributes:
+  sagan.sid: '5003943'
+  sagan.rev: '3'
+  sagan.source_file: rsa-dpm.rules
+  rsigma.suppress: 5m
+---
+title: '[RSA-DPM] CPU status Yellow'
+id: 31f5dfdc-e047-5d08-a7c9-f29425119a4c
+status: experimental
+description: Converted from Sagan rule SID 5003944 (rev 3), file rsa-dpm.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    sagan_raw|contains|cased: RKMA_MONITORING_EVENT
+  selection_2:
+    sagan_raw|contains|cased: No:CPU-
+  selection_3:
+    sagan_raw|re|s: ^.{21}.{0,6}YELLOW
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+custom_attributes:
+  sagan.sid: '5003944'
+  sagan.rev: '3'
+  sagan.source_file: rsa-dpm.rules
+  rsigma.suppress: 15m
+---
+title: '[RSA-DPM] CPU status Red - [Critical]'
+id: 5cb42f75-bd86-50b1-a0f0-2f2f4d65d7cf
+status: experimental
+description: Converted from Sagan rule SID 5003945 (rev 2), file rsa-dpm.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    sagan_raw|contains|cased: RKMA_MONITORING_EVENT
+  selection_2:
+    sagan_raw|contains|cased: No:CPU-
+  selection_3:
+    sagan_raw|re|s: ^.{21}.{0,9}RED
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+custom_attributes:
+  sagan.sid: '5003945'
+  sagan.rev: '2'
+  sagan.source_file: rsa-dpm.rules
+  rsigma.suppress: 5m
+---
 title: '[RSA-DPM] APACHE status Yellow'
 id: 761dcd3d-3137-5035-bafb-eec359d1166f
 status: experimental

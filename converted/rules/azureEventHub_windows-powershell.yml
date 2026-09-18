@@ -1106,6 +1106,36 @@ custom_attributes:
   sagan.source_file: azureEventHub_windows-powershell.rules
   sagan.metadata: created_on=2022_11_22,old_sid=5005955
 ---
+title: '[WINDOWS-POWERSHELL] Suspicious Pingtest'
+id: bce1db95-4fe8-5900-a871-a4d7b1dd1b09
+status: experimental
+description: Converted from Sagan rule SID 5009330 (rev 2), file azureEventHub_windows-powershell.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*PowerShell*'
+  selection_2:
+    _raw|contains: $ping = test-connection
+  selection_3:
+    _raw|re|s: ^.{2}.{0,20}\-comp
+  selection_4:
+    _raw|re|s: ^.{2}.{0,19}\-count
+  selection_5:
+    _raw|re|s|i: ^.{2}.{0,19}\-Quiet
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009330'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  sagan.metadata: created_on=2022_11_22,old_sid=5005984
+---
 title: '[WINDOWS-POWERSHELL] Obfuscated New-Object Command (1/2)'
 id: de50e8e3-4b68-55d2-9373-f1af90ebc19d
 status: experimental
@@ -1157,6 +1187,68 @@ custom_attributes:
   sagan.rev: '2'
   sagan.source_file: azureEventHub_windows-powershell.rules
   sagan.metadata: created_on=2022_11_22,old_sid=5005986
+---
+title: '[WINDOWS-POWERSHELL] Suspicious Download using IEX'
+id: b0f09606-68e6-595f-a20a-c43c98b98ad9
+status: experimental
+description: Converted from Sagan rule SID 5009333 (rev 2), file azureEventHub_windows-powershell.rules.
+references:
+  - https://fireeye.com/blog/threat-research/2018/07/malicious-powershell-detection-via-machine-learning.html
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*PowerShell*'
+  selection_2:
+    _raw|contains: IEX
+  selection_3:
+    _raw|re|s|i: ^.{2}.*New\-Object
+  selection_4:
+    _raw|re|s|i: ^.{2}.*Net\.WebClient\)\.downloadstring
+  filter_5:
+    _raw|contains|cased: chocolatey.org/
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5009333'
+  sagan.rev: '2'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_on=2022_11_22,old_sid=5006106
+---
+title: '[WINDOWS-POWERSHELL] Anti-virus Has Blocked Malicious Content'
+id: 7d0bd23f-cd40-573a-93f5-a18f9d84cba4
+status: experimental
+description: Converted from Sagan rule SID 5009334 (rev 1), file azureEventHub_windows-powershell.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*PowerShell*'
+  selection_2:
+    _raw|contains: malicious content
+  selection_3:
+    _raw|re|s|i: ^.{2}.*blocked
+  selection_4:
+    _raw|re|s|i: ^.{2}.*antivirus\ software
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.bad-unknown
+custom_attributes:
+  sagan.sid: '5009334'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-powershell.rules
+  rsigma.suppress: 1h
+  sagan.metadata: created_on=2022_11_22,old_sid=5006107
 ---
 title: '[WINDOWS-POWERSHELL] MSDT PCWDiagnostic Call to Powershell Detected (CVE-2022-30190)'
 id: 4f8d7240-5aea-5469-a185-116b4c5cb852

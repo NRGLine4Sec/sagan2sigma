@@ -38,3 +38,126 @@ correlation:
     - sagan_ip_1
   timespan: 1d
 level: high
+---
+title: '[OPENSSH-CORRELATED] Authentication success after exploit attempt'
+id: 54f6cc0b-3171-5f6b-b6c6-3f65c77abd57
+name: sagan_5003973
+status: experimental
+description: Converted from Sagan rule SID 5003973 (rev 2), file openssh-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    sagan_raw|re|s|i: ^.{0,3}accepted
+  selection_2:
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003973'
+  sagan.rev: '2'
+  sagan.source_file: openssh-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[OPENSSH-CORRELATED] Authentication success after exploit attempt (correlated with exploit_attempt)'
+id: cee93191-5d83-534c-ab6b-9ec51bbc0329
+status: experimental
+description: Reconstruction of the Sagan 'exploit_attempt' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - aee13b8d-5d70-5016-a70c-77a55da530e2
+    - 54f6cc0b-3171-5f6b-b6c6-3f65c77abd57
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[OPENSSH-CORRELATED] Authentication success after brute force activity'
+id: 89866cff-3299-5795-a28e-20450b5be219
+name: sagan_5003974
+status: experimental
+description: Converted from Sagan rule SID 5003974 (rev 4), file openssh-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    sagan_raw|re|s|i: ^.{0,3}accepted
+  selection_2:
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003974'
+  sagan.rev: '4'
+  sagan.source_file: openssh-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[OPENSSH-CORRELATED] Authentication success after brute force activity (correlated with brute_force)'
+id: cc98b3be-89fc-5ed1-a034-1529bfa589bd
+status: experimental
+description: Reconstruction of the Sagan 'brute_force' bit. The window comes from the expire time declared
+  by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - d096d8bc-eae7-5535-9ff1-02c0aeca8e2c
+    - 89866cff-3299-5795-a28e-20450b5be219
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high
+---
+title: '[OPENSSH-CORRELATED] Authentication success after recon activity'
+id: 5dc2195a-c983-59d4-bbf2-248cd12daa70
+name: sagan_5003975
+status: experimental
+description: Converted from Sagan rule SID 5003975 (rev 4), file openssh-correlated.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    sagan_raw|re|s|i: ^.{0,3}accepted
+  selection_2:
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.correlated-attack
+custom_attributes:
+  sagan.sid: '5003975'
+  sagan.rev: '4'
+  sagan.source_file: openssh-correlated.rules
+  rsigma.suppress: 1h
+---
+title: '[OPENSSH-CORRELATED] Authentication success after recon activity (correlated with recon)'
+id: 23c16fb9-aeee-54df-b3ba-75e9b910b974
+status: experimental
+description: Reconstruction of the Sagan 'recon' bit. The window comes from the expire time declared by
+  the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - 4880c497-cf45-52f5-aabe-9414140ee9c8
+    - 5dc2195a-c983-59d4-bbf2-248cd12daa70
+  group-by:
+    - sagan_ip_1
+  timespan: 1d
+level: high

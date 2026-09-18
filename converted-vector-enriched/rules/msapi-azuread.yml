@@ -623,11 +623,11 @@ correlation:
   timespan: 148h
 level: high
 ---
-title: '[EXPERIMENTAL][MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon [25+/1Min]'
-id: bf9d9ba4-86d3-541c-b41a-619b12d03e8a
-name: sagan_99552
+title: '[MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon [25+/1Min]'
+id: b96709ee-c51a-5246-ae27-0b30de3c8649
+name: sagan_5017996
 status: experimental
-description: Converted from Sagan rule SID 99552 (rev 4), file msapi-azuread.rules.
+description: Converted from Sagan rule SID 5017996 (rev 5), file msapi-azuread.rules.
 author: sagan2sigma
 logsource:
   product: m365
@@ -673,99 +673,26 @@ level: high
 tags:
   - sagan.classtype.suspicious-activity
 custom_attributes:
-  sagan.sid: '99552'
-  sagan.rev: '4'
+  sagan.sid: '5017996'
+  sagan.rev: '5'
   sagan.source_file: msapi-azuread.rules
   rsigma.suppress: 1h
-  sagan.metadata: createdOn=2026_05_14,updatedOn=2026_05_28
+  sagan.metadata: createdOn=2026_05_14,updatedOn=2026_09_17
 ---
-title: '[EXPERIMENTAL][MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon [25+/1Min]
-  (threshold 25 in 1m)'
-id: 0e3a256f-6f98-541f-bb43-40ed44d65418
+title: '[MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon [25+/1Min] (threshold
+  25 in 1m)'
+id: 29bed5e5-69fd-58b7-8b4f-333d6732d116
 status: experimental
 description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
 correlation:
   type: event_count
   rules:
-    - sagan_99552
+    - sagan_5017996
   group-by:
     - UserId
   timespan: 1m
   condition:
     gte: 26
-level: high
----
-title: '[EXPERIMENTAL][MSAPI-AZUREAD] Security Threat Detected In User Login - Multiple Keep Me Signed
-  In Events Detected For User [2+/1Min]'
-id: b6242280-581b-5e5f-9be1-9bc2b05734bf
-name: sagan_99553
-status: experimental
-description: Converted from Sagan rule SID 99553 (rev 3), file msapi-azuread.rules.
-author: sagan2sigma
-logsource:
-  product: m365
-detection:
-  selection_1:
-    syslog_appname|cased: AzureActiveDirectory
-  selection_2:
-    Operation|cased: UserLoggedIn
-  selection_3:
-    AzureActiveDirectoryEventType: 1
-  selection_4:
-    UserType: 0
-  selection_5:
-    ApplicationId|cased: 4765445b-32c6-49b0-83e6-1d93765276ca
-  selection_6:
-    UserId|exists: true
-  filter_7:
-    UserId|contains|cased: _jit@
-  selection_8:
-    sagan_raw|contains|cased: Kmsi
-  filter_9:
-    sagan_raw|contains|cased: '"TrustType","Value":"2"'
-  filter_10:
-    sagan_raw|contains|cased: '"TrustType","Value":"1"'
-  filter_11:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
-  filter_12:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
-  filter_13:
-    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
-  filter_14:
-    sagan_raw|contains|cased: '"TrustType", "Value": "1"'
-  selection_15:
-    sagan_raw|contains|cased:
-      - 'IsCompliantAndManaged", "Value": "False"'
-      - IsCompliantAndManaged","Value":"False""
-  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
-    and selection_8 and selection_15 and not (filter_7 or filter_9 or filter_10 or filter_11 or filter_12
-    or filter_13 or filter_14)
-falsepositives:
-  - 'Unassessed: automatically converted, not yet tuned'
-level: high
-tags:
-  - sagan.classtype.suspicious-activity
-custom_attributes:
-  sagan.sid: '99553'
-  sagan.rev: '3'
-  sagan.source_file: msapi-azuread.rules
-  rsigma.suppress: 1h
-  sagan.metadata: createdOn=2026_05_19,updatedOn=2026_05_28,mitreTacticId=TA0003,mitreTacticName=Persistence,mitreTechniqueId=T1078.004,mitreTechniqueName=ValidAccounts_CloudAccounts
----
-title: '[EXPERIMENTAL][MSAPI-AZUREAD] Security Threat Detected In User Login - Multiple Keep Me Signed
-  In Events Detected For User [2+/1Min] (threshold 1 in 1m)'
-id: 3316cb0d-bc2e-57ee-9be2-79a098304467
-status: experimental
-description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
-correlation:
-  type: event_count
-  rules:
-    - sagan_99553
-  group-by:
-    - UserId
-  timespan: 1m
-  condition:
-    gte: 2
 level: high
 ---
 title: '[MSAPI-AZUREAD] Initial Access: Potential AiTM Token Replay via Unknown ObjectId'
@@ -825,11 +752,11 @@ custom_attributes:
   rsigma.suppress: 1h
   sagan.metadata: createdOn=2026_05_19,updatedOn=2026_05_28,mitreTacticId=TA0001,mitreTacticName=InitialAccess,mitreTechniqueId=T1078.004,mitreTechniqueName=ValidAccounts_CloudAccounts
 ---
-title: '[EXPERIMENTAL][MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon [5+/1Hour]'
-id: 85193053-009e-575a-aaf5-d6b1e1748cd6
-name: sagan_99555
+title: '[MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon [5+/1Hour]'
+id: e110fe87-7855-5db2-b93c-52d6ba2f8afc
+name: sagan_5017997
 status: experimental
-description: Converted from Sagan rule SID 99555 (rev 1), file msapi-azuread.rules.
+description: Converted from Sagan rule SID 5017997 (rev 2), file msapi-azuread.rules.
 author: sagan2sigma
 logsource:
   product: m365
@@ -875,21 +802,21 @@ level: high
 tags:
   - sagan.classtype.suspicious-activity
 custom_attributes:
-  sagan.sid: '99555'
-  sagan.rev: '1'
+  sagan.sid: '5017997'
+  sagan.rev: '2'
   sagan.source_file: msapi-azuread.rules
   rsigma.suppress: 1h
-  sagan.metadata: createdOn=2026_05_18,updatedOn=2026_05_28
+  sagan.metadata: createdOn=2026_05_18,updatedOn=2026_09_17
 ---
-title: '[EXPERIMENTAL][MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon [5+/1Hour]
-  (threshold 5 in 1h)'
-id: bb2bb109-deab-5bca-b108-ee89f173a2ae
+title: '[MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon [5+/1Hour] (threshold
+  5 in 1h)'
+id: 028c0f20-1c55-5195-aebe-767c9fbee775
 status: experimental
 description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
 correlation:
   type: event_count
   rules:
-    - sagan_99555
+    - sagan_5017997
   group-by:
     - UserId
   timespan: 1h
@@ -897,11 +824,11 @@ correlation:
     gte: 6
 level: high
 ---
-title: '[EXPERIMENTAL][MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon [20/5Days]'
-id: 1154852a-fc1b-5ae1-a983-b6f4b353dc4f
-name: sagan_99556
+title: '[MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon [20/5Days]'
+id: 1048b1cb-58dd-5b7b-a015-bffc61e9e644
+name: sagan_5017998
 status: experimental
-description: Converted from Sagan rule SID 99556 (rev 1), file msapi-azuread.rules.
+description: Converted from Sagan rule SID 5017998 (rev 2), file msapi-azuread.rules.
 author: sagan2sigma
 logsource:
   product: m365
@@ -947,21 +874,21 @@ level: high
 tags:
   - sagan.classtype.suspicious-activity
 custom_attributes:
-  sagan.sid: '99556'
-  sagan.rev: '1'
+  sagan.sid: '5017998'
+  sagan.rev: '2'
   sagan.source_file: msapi-azuread.rules
   rsigma.suppress: 5d
-  sagan.metadata: createdOn=2026_05_28,updatedOn=2026_05_28
+  sagan.metadata: createdOn=2026_05_28,updatedOn=2026_09_17
 ---
-title: '[EXPERIMENTAL][MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon [20/5Days]
-  (threshold 25 in 1m)'
-id: 53256715-7a77-5fd6-b4b5-66ac9e5378a6
+title: '[MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon [20/5Days] (threshold
+  25 in 1m)'
+id: 59cf67fc-de77-5e95-9a36-840c6772bc01
 status: experimental
 description: Correlation derived from the Sagan after keyword. The base rule must not alert on its own.
 correlation:
   type: event_count
   rules:
-    - sagan_99556
+    - sagan_5017998
   group-by:
     - UserId
   timespan: 1m
@@ -969,71 +896,10 @@ correlation:
     gte: 26
 level: high
 ---
-title: '[EXPERIMENTAL][MSAPI-AZUREAD] Successful User Login From UnManaged/UnTrusted Device To Known AITM
-  Landing Page - Possible AITM'
-id: b79fce59-dd7f-535e-af68-99c15dfa7c26
+title: '[MSAPI-AZUREAD] Suspicious Device Registration - Add Registered Owner with Anomalous Hostname'
+id: ed184e64-82f6-5c54-a779-ed59421ce522
 status: experimental
-description: Converted from Sagan rule SID 99557 (rev 1), file msapi-azuread.rules.
-author: sagan2sigma
-logsource:
-  product: m365
-detection:
-  selection_1:
-    syslog_appname|cased: AzureActiveDirectory
-  selection_2:
-    Operation|cased: UserLoggedIn
-  selection_3:
-    AzureActiveDirectoryEventType: 1
-  selection_4:
-    UserType: 0
-  selection_5:
-    ApplicationId|cased: 4765445b-32c6-49b0-83e6-1d93765276ca
-  selection_6:
-    UserId|exists: true
-  filter_7:
-    UserId|contains|cased: _jit@
-  selection_8:
-    sagan_raw|contains|cased: Login:login
-  filter_9:
-    sagan_raw|contains|cased: '"TrustType","Value":"2"'
-  filter_10:
-    sagan_raw|contains|cased: '"TrustType","Value":"1"'
-  filter_11:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"2\\"
-  filter_12:
-    sagan_raw|contains|cased: \\"TrustType\\",\\"Value\\":\\"1\\"
-  filter_13:
-    sagan_raw|contains|cased: '"TrustType", "Value": "2"'
-  filter_14:
-    sagan_raw|contains|cased: '"TrustType", "Value": "1"'
-  selection_15:
-    sagan_raw|contains|cased:
-      - 'IsCompliantAndManaged", "Value": "False"'
-      - IsCompliantAndManaged","Value":"False""
-  selection_16:
-    sagan_raw|contains|cased:
-      - UserAuthenticationMethod","Value":"16"
-      - UserAuthenticationMethod\\",\\"Value\\":\\"16\\"
-  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5 and selection_6
-    and selection_8 and selection_15 and selection_16 and not (filter_7 or filter_9 or filter_10 or filter_11
-    or filter_12 or filter_13 or filter_14)
-falsepositives:
-  - 'Unassessed: automatically converted, not yet tuned'
-level: high
-tags:
-  - sagan.classtype.suspicious-activity
-custom_attributes:
-  sagan.sid: '99557'
-  sagan.rev: '1'
-  sagan.source_file: msapi-azuread.rules
-  rsigma.suppress: 1h
-  sagan.metadata: createdOn=2026_05_28,updatedOn=2026_05_28
----
-title: '[EXPERIMENTAL][MSAPI-AZUREAD] Suspicious Device Registration - Add Registered Owner with Anomalous
-  Hostname'
-id: ac0d16b1-3ec3-5b13-9515-a1ab9ed54364
-status: experimental
-description: Converted from Sagan rule SID 9870105 (rev 2), file msapi-azuread.rules.
+description: Converted from Sagan rule SID 5018001 (rev 3), file msapi-azuread.rules.
 references:
   - https://attack.mitre.org/techniques/T1098/005/
 author: sagan2sigma
@@ -1057,17 +923,16 @@ level: high
 tags:
   - sagan.classtype.suspicious-activity
 custom_attributes:
-  sagan.sid: '9870105'
-  sagan.rev: '2'
+  sagan.sid: '5018001'
+  sagan.rev: '3'
   sagan.source_file: msapi-azuread.rules
   rsigma.suppress: 1h
-  sagan.metadata: createdOn=2026_06_29,updatedOn=2026_07_02
+  sagan.metadata: createdOn=2026_06_29,updatedOn=2026_09_17
 ---
-title: '[EXPERIMENTAL][MSAPI-AZUREAD] Suspicious Device Registration - Add Registered User with Anomalous
-  Hostname'
-id: 1d62d97b-0be2-54e1-9a18-4ccc58263297
+title: '[MSAPI-AZUREAD] Suspicious Device Registration - Add Registered User with Anomalous Hostname'
+id: 08c172d1-020f-501f-ac67-b06a60437bea
 status: experimental
-description: Converted from Sagan rule SID 9870106 (rev 2), file msapi-azuread.rules.
+description: Converted from Sagan rule SID 5018002 (rev 3), file msapi-azuread.rules.
 references:
   - https://attack.mitre.org/techniques/T1098/005/
 author: sagan2sigma
@@ -1091,11 +956,11 @@ level: high
 tags:
   - sagan.classtype.suspicious-activity
 custom_attributes:
-  sagan.sid: '9870106'
-  sagan.rev: '2'
+  sagan.sid: '5018002'
+  sagan.rev: '3'
   sagan.source_file: msapi-azuread.rules
   rsigma.suppress: 1h
-  sagan.metadata: createdOn=2026_06_29,updatedOn=2026_07_02
+  sagan.metadata: createdOn=2026_06_29,updatedOn=2026_09_17
 ---
 title: '[EXPERIMENTAL][COPILOT] Possible CoPilot Jailbreak Detected'
 id: 9ab48dab-5f30-5760-8d86-90c39a91e9a4

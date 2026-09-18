@@ -387,6 +387,41 @@ custom_attributes:
   sagan.source_file: azureEventHub_windows-sysmon.rules
   sagan.metadata: created_on=2022_11_22,endpoint_command=SHUTDOWN,old_sid=5003391
 ---
+title: '[WINDOWS-SYSMON] Possible Command To Disable Crash Logging Detected'
+id: edd58422-0f00-5739-993b-f53b89cecf8e
+status: experimental
+description: Converted from Sagan rule SID 5009796 (rev 1), file azureEventHub_windows-sysmon.rules.
+references:
+  - https://crowdstrike.com/blog/how-to-decrypt-the-partyticket-ransomware-targeting-ukraine
+  - https://welivesecurity.com/2022/03/01/isaacwiper-hermeticwizard-wiper-worm-targeting-ukraine
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased:
+      - '*Security*'
+      - '*Sysmon*'
+      - '*PowerShell*'
+  selection_2:
+    _raw|contains: RegSetValueExW
+  selection_3:
+    _raw|re|s|i: ^.{2}.{0,34}CrashDumpEnabled
+  selection_4:
+    _raw|re|s: ^.{2}.{0,7}0x0
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.ransomware
+custom_attributes:
+  sagan.sid: '5009796'
+  sagan.rev: '1'
+  sagan.source_file: azureEventHub_windows-sysmon.rules
+  rsigma.suppress: 5m
+  sagan.metadata: created_on=2022_11_22,old_sid=5005993
+---
 title: '[WINDOWS-SYSMON] Suspicious Base64 Encoded Commands [1/2]'
 id: 75673c74-6f2e-5edc-8a37-1c93f9fc70bf
 status: experimental

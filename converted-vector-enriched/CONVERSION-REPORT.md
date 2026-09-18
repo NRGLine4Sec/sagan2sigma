@@ -5,13 +5,13 @@
 | Metric | Value |
 | --- | --- |
 | Rule files processed | 343 |
-| Active rules parsed | 10027 |
-| Commented-out rules skipped | 9443 |
-| Rules converted | 9466 (94.4%) |
-| Rules refused | 561 (5.6%) |
+| Active rules parsed | 10026 |
+| Commented-out rules skipped | 9445 |
+| Rules converted | 9501 (94.8%) |
+| Rules refused | 525 (5.2%) |
 | Lines that failed to parse | 0 |
 | Synthetic rules added | 19 |
-| Sigma documents emitted | 10620 |
+| Sigma documents emitted | 10657 |
 | pySigma validation issues | 0 |
 | Output profile | `vector-enriched` |
 | Case policy | `faithful` |
@@ -25,30 +25,30 @@ logsource catalog. It answers which kinds of device caused trouble.
 | Product family | Converted | Refused | Rate | Converted with loss |
 | --- | ---: | ---: | ---: | ---: |
 | AWS | 634 | 1 | 99.8% | 634 |
-| Applications and web | 236 | 16 | 93.7% | 227 |
-| Azure and Microsoft 365 | 1460 | 296 | 83.1% | 665 |
-| Endpoint and EDR | 1024 | 16 | 98.5% | 1017 |
+| Applications and web | 240 | 12 | 95.2% | 231 |
+| Azure and Microsoft 365 | 1464 | 290 | 83.5% | 669 |
+| Endpoint and EDR | 1025 | 16 | 98.5% | 1018 |
 | Google Cloud | 76 | 0 | 100.0% | 70 |
 | Infrastructure | 210 | 4 | 98.1% | 210 |
-| Network and firewalls | 1380 | 88 | 94.0% | 1303 |
+| Network and firewalls | 1384 | 84 | 94.3% | 1307 |
 | Network detection | 248 | 13 | 95.0% | 248 |
 | SaaS and identity | 331 | 13 | 96.2% | 170 |
 | State correlations | 19 | 0 | 100.0% | 0 |
-| Unclassified | 1589 | 74 | 95.6% | 1589 |
-| Unix and Linux | 204 | 12 | 94.4% | 200 |
-| Windows | 2074 | 28 | 98.7% | 2039 |
+| Unclassified | 1597 | 66 | 96.0% | 1597 |
+| Unix and Linux | 213 | 3 | 98.6% | 209 |
+| Windows | 2079 | 23 | 98.9% | 2044 |
 
 ## Refusals by code
 
 | Code | Rules | Share | Meaning |
 | --- | ---: | ---: | --- |
-| `E_VAR_UNRESOLVED` | 274 | 48.8% | The rule references a sagan.yaml variable that was not supplied. Re-run with --sagan-yaml to resolve it. |
-| `E_EXTERNAL_ENRICHMENT` | 183 | 32.6% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
-| `E_POSITIONAL` | 40 | 7.1% | The rule constrains where a pattern sits in the log line with a non-zero offset, depth or distance. Sigma string modifiers cannot express a byte position, so no faithful translation exists. A zero-valued positional is a no-op in the Sagan engine and is converted. |
-| `E_PCRE_UNSUPPORTED` | 40 | 7.1% | The regular expression uses a PCRE construct the Rust engine cannot express and the converter cannot safely rewrite (recursion, look-around, back-references, control verbs). Recoverable constructs (numbered subroutines, literal braces, the whole-string negation idiom, inert flags) are rewritten instead of refused. |
-| `E_STATE_ABSENCE` | 10 | 1.8% | The rule requires that an earlier event did NOT happen (xbits or flexbits isnotset). Sigma cannot express a negative correlation. |
-| `E_GROUPBY_UNRESOLVED` | 8 | 1.4% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
-| `E_NO_DETECTION` | 5 | 0.9% | The rule can never produce an alert: nothing is left to match on after conversion (it carried only side effects or metadata), or it carries a mandatory condition the engine can never satisfy, so it never fires in Sagan either. |
+| `E_VAR_UNRESOLVED` | 275 | 52.4% | The rule references a sagan.yaml variable that was not supplied. Re-run with --sagan-yaml to resolve it. |
+| `E_EXTERNAL_ENRICHMENT` | 183 | 34.9% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
+| `E_PCRE_UNSUPPORTED` | 40 | 7.6% | The regular expression uses a PCRE construct the Rust engine cannot express and the converter cannot safely rewrite (recursion, look-around, back-references, control verbs). Recoverable constructs (numbered subroutines, literal braces, the whole-string negation idiom, inert flags) are rewritten instead of refused. |
+| `E_STATE_ABSENCE` | 11 | 2.1% | The rule requires that an earlier event did NOT happen (xbits or flexbits isnotset). Sigma cannot express a negative correlation. |
+| `E_GROUPBY_UNRESOLVED` | 8 | 1.5% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
+| `E_NO_DETECTION` | 5 | 1.0% | The rule can never produce an alert: nothing is left to match on after conversion (it carried only side effects or metadata), or it carries a mandatory condition the engine can never satisfy, so it never fires in Sagan either. |
+| `E_POSITIONAL` | 2 | 0.4% | The rule constrains where a pattern sits in the log line, in a way this converter will not translate. A non-zero offset, depth or distance on a content is translated: the engine computes that window from the rule alone, so it is emitted as an anchored regular expression and reported as D_POSITIONAL_WINDOW. What is refused is the same constraint on a meta_content, whose window the engine computes elsewhere and this converter has not measured, and a window too short to hold the value searched for, which never fires in Sagan either. A zero-valued positional is a no-op in the engine and is converted. |
 | `E_PARSE` | 1 | 0.2% | The rule could not be parsed, or it uses a construct that Sagan itself would reject at load time. |
 
 ## Converted with semantic loss
@@ -58,22 +58,23 @@ reproduced. They are worth reviewing before the ruleset goes live.
 
 | Code | Rules | Meaning | Example SIDs |
 | --- | ---: | --- | --- |
-| `D_RAW_TEXT_MATCH` | 6433 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
-| `D_LOGSOURCE_FALLBACK` | 1981 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
-| `D_EVENT_ID_HEURISTIC` | 1935 | Without a json_map for event_id, Sagan looks for ' <id>: ', with the surrounding spaces, in the first nine characters of the message, so an ID at the very start never matches. The converted rule assumes a proper EventID field instead, which fires on events the heuristic would have missed. Measured against a locally built engine. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
-| `D_THRESHOLD_SUPPRESS` | 1491 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
+| `D_RAW_TEXT_MATCH` | 6468 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
+| `D_LOGSOURCE_FALLBACK` | 2002 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
+| `D_EVENT_ID_HEURISTIC` | 1936 | Without a json_map for event_id, Sagan looks for ' <id>: ', with the surrounding spaces, in the first nine characters of the message, so an ID at the very start never matches. The converted rule assumes a proper EventID field instead, which fires on events the heuristic would have missed. Measured against a locally built engine. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
+| `D_THRESHOLD_SUPPRESS` | 1511 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
 | `D_PASS_SHORT_CIRCUIT` | 515 | The rule used the pass action. In Sagan a matching pass rule still emits an alert (Send_Alert runs before the pass check) and then stops evaluating the remaining signatures for that event. The detection is converted faithfully; only the short-circuit, the suppression of other rules on the same event, is not reproduced, since Sigma evaluates every rule independently. | `5016065`, `5016066`, `5016067`, `5016068`, `5016069` |
 | `D_GROUPBY_SYSLOG_HOST` | 388 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
-| `D_POSITIONAL_IP_FIELD` | 289 | The group-by key comes from the bundled VRL transform rather than from the log itself. The correlation only works if that transform runs in the ingestion pipeline. | `5002942`, `5015097`, `5014021`, `5014177`, `5008553` |
+| `D_POSITIONAL_IP_FIELD` | 292 | The group-by key comes from the bundled VRL transform rather than from the log itself. The correlation only works if that transform runs in the ingestion pipeline. | `5002942`, `5015097`, `5014021`, `5014177`, `5008553` |
 | `D_SIDE_EFFECT_DROPPED` | 233 | Engine-specific side effect (external, email, dynamic_load, unset) with no Sigma equivalent. | `5008539`, `5003022`, `5003023`, `5002959`, `5002960` |
 | `D_THRESHOLD_LIMIT` | 170 | threshold type limit caps alert volume, not detection. Sigma has no equivalent, so the constraint is dropped. | `5017933`, `5008570`, `5008760`, `5009316`, `5009317` |
-| `D_XBIT_ISSET_SYNTHETIC` | 155 | The state correlation was rebuilt through a synthetic aggregate rule gathering every rule that sets the bit. | `5014084`, `5017993`, `5014091`, `5008539`, `5008654` |
-| `D_BLUEDOT_SUBSTITUTION` | 133 | bluedot queries Quadrant's Bluedot threat-intelligence API, which is a closed commercial source that cannot be redistributed. This conversion deliberately SUBSTITUTES it: the rule matches the parsed address against open-source feeds you supply, one per Bluedot category (Tor, Proxy, Malicious, Honeypot), so it fires on your feed's addresses, not on Bluedot's. This is the project's one accepted break from faithful conversion, taken because a bluedot rule that is not converted can never fire under RSigma at all, whereas a substituted one keeps the detection intent. Fidelity varies by category: Tor is near-authoritative (the Tor Project exit list is the same public ground truth Bluedot derives from); Malicious, Proxy and Honeypot depend entirely on the feed you choose and will diverge from Bluedot's verdicts. Only the address (ip_reputation) lookup is reproduced; hash and URL lookups are still refused. | `5005726`, `5005727`, `5005728`, `5005729`, `5005730` |
+| `D_XBIT_ISSET_SYNTHETIC` | 158 | The state correlation was rebuilt through a synthetic aggregate rule gathering every rule that sets the bit. | `5014084`, `5017993`, `5014091`, `5008539`, `5008654` |
+| `D_BLUEDOT_SUBSTITUTION` | 134 | bluedot queries Quadrant's Bluedot threat-intelligence API, which is a closed commercial source that cannot be redistributed. This conversion deliberately SUBSTITUTES it: the rule matches the parsed address against open-source feeds you supply, one per Bluedot category (Tor, Proxy, Malicious, Honeypot), so it fires on your feed's addresses, not on Bluedot's. This is the project's one accepted break from faithful conversion, taken because a bluedot rule that is not converted can never fire under RSigma at all, whereas a substituted one keeps the detection intent. Fidelity varies by category: Tor is near-authoritative (the Tor Project exit list is the same public ground truth Bluedot derives from); Malicious, Proxy and Honeypot depend entirely on the feed you choose and will diverge from Bluedot's verdicts. Only the address (ip_reputation) lookup is reproduced; hash and URL lookups are still refused. | `5005726`, `5005727`, `5005728`, `5005729`, `5005730` |
 | `D_APPEND_PROGRAM` | 117 | append_program makes Sagan append the program field to the message before matching. The converted rule searches the message alone. | `5005782`, `5005783`, `5005784`, `5005785`, `5005787` |
-| `D_NORMALIZE_PRECEDENCE` | 78 | The rule carries both normalize and parse_src_ip. Sagan lets liblognorm win when it resolves the address and falls back to positional parsing otherwise; only the fallback is reproduced. | `5002942`, `5014805`, `5014806`, `5000113`, `5015130` |
+| `D_NORMALIZE_PRECEDENCE` | 81 | The rule carries both normalize and parse_src_ip. Sagan lets liblognorm win when it resolves the address and falls back to positional parsing otherwise; only the fallback is reproduced. | `5002942`, `5014805`, `5014806`, `5000113`, `5015130` |
 | `D_XBIT_SET_DROPPED` | 72 | The rule set or tested an xbit that no converted rule consumes. The state link is lost. | `5017158`, `5017159`, `5015948`, `5009285`, `5009290` |
+| `D_POSITIONAL_WINDOW` | 39 | A non-zero offset, depth or distance is emitted as an anchored regular expression on the message. The window is exact, but it counts characters where the engine counts bytes, so a message whose prefix holds multi-byte characters is measured differently on the two sides. | `5008803`, `5008807`, `5009330`, `5009333`, `5009334` |
 | `D_DENYLIST_ENRICHMENT` | 32 | blacklist matches the address against an IP denylist the bundled Vector enrichment carries, not the log itself. The rule only fires if that enrichment, built from a feed such as SANS DShield, runs in the ingestion pipeline. Sagan evaluates the denylist on the address at processing time; the converted rule evaluates it on the extracted address field. Expect the two to disagree on the same feed: Sagan never resets its mask buffer between denylist lines, so an entry whose prefix is shorter than one above it is silently narrowed to that longer prefix, while the bundled enrichment matches CIDR normally. Measured against a locally built engine: 198.51.100.0/24 covers the range on its own and only its network address once a /32 precedes it. | `5008572`, `5008576`, `5008577`, `5008579`, `5005736` |
-| `D_ALERT_TIME_EVENT_CLOCK` | 29 | alert_time matches against weekday and hour-of-day fields the bundled Vector time transform derives from the event timestamp. Sagan evaluates the window against the wall clock at processing time, not the event's own time; the two coincide in near-real-time ingestion. The comparison uses the timezone Vector formats in, which must match the Sagan host's local time for the window to align. | `5008407`, `5008408`, `5008409`, `5005733`, `5005734` |
+| `D_ALERT_TIME_EVENT_CLOCK` | 30 | alert_time matches against weekday and hour-of-day fields the bundled Vector time transform derives from the event timestamp. Sagan evaluates the window against the wall clock at processing time, not the event's own time; the two coincide in near-real-time ingestion. The comparison uses the timezone Vector formats in, which must match the Sagan host's local time for the window to align. | `5008407`, `5008408`, `5008409`, `5005733`, `5005734` |
 | `D_ZEEK_INTEL_ENRICHMENT` | 29 | zeek-intel matches the address against a Zeek Intelligence Framework feed the bundled Vector enrichment carries, not the log itself. The rule only fires if that enrichment, built from a feed such as CriticalPathSecurity's Zeek-Intelligence-Feeds, runs in the ingestion pipeline. Only the address indicators the rule keyword uses are reproduced, not the domain, hash or URL indicators the feed may also carry. | `5010226`, `5010227`, `5010228`, `5010229`, `5010230` |
 | `D_DROP_ACTION` | 20 | The rule used the drop action. Sigma has no action concept; it was converted as a normal detection rule. | `5000102`, `5000103`, `5000113`, `5000193`, `5001592` |
 | `D_JSON_KEY_RESTORED` | 18 | The rule names a JSON key that upstream clipped to 31 characters so that Sagan, which stores key paths clipped and compares them with an exact strcmp, would match it at all. The full path is recorded in a comment above the rule and is what the log carries, so the converted rule uses that instead: Sigma has no such limit, and emitting the clipped name would match nothing outside Sagan. | `5015096`, `5004773`, `5017933`, `5017933`, `5005921` |
@@ -92,11 +93,11 @@ conversion error and is the opposite of one.
 
 | Code | Rules | What it means |
 | --- | --- | --- |
-| `U_CANNOT_MATCH` | 8 | the rule loads and can never fire |
+| `U_CANNOT_MATCH` | 9 | the rule loads and can never fire |
 | `U_INVERTED_CONDITION` | 1 | the rule fires, but a condition means its opposite |
 
 <details>
-<summary><code>U_CANNOT_MATCH</code> (8 rules)</summary>
+<summary><code>U_CANNOT_MATCH</code> (9 rules)</summary>
 
 | SID | File | Detail |
 | --- | --- | --- |
@@ -108,6 +109,7 @@ conversion error and is the opposite of one.
 | `5005944` | `confluent.rules` | the key path 'data.authorizationInfo.aclAuthorization.permissionType' is clipped to 'data.authorizationInfo.aclAuth' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
 | `5014569` | `pfsense.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '",3389,"0,S' |
 | `5015096` | `aws-cloudtrail.rules` | the key path 'userIdentity.sessionContext.sessionIssuer.userName' is clipped to 'userIdentity.sessionContext.se' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
+| `5017898` | `msapi-sharepoint.rules` | 3 json_meta_content lists with json_meta_contains: the engine gives every list after the first a set of empty values, which a substring search finds in anything, so a negated list excludes every document |
 
 </details>
 
@@ -127,12 +129,12 @@ correlation resolved the rules it references.
 
 ## Refused rules
 
-### `E_VAR_UNRESOLVED` (274 rules)
+### `E_VAR_UNRESOLVED` (275 rules)
 
 The rule references a sagan.yaml variable that was not supplied. Re-run with --sagan-yaml to resolve it.
 
 <details>
-<summary>Show the 274 refused rules</summary>
+<summary>Show the 275 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -327,6 +329,7 @@ The rule references a sagan.yaml variable that was not supplied. Re-run with --s
 | `5014683` | `onelogin.rules` | SaaS and identity | [ONELOGIN] USER_FAILED_OTP_CHALLENGE From Outside HOME_COUNTRY | `country_code` | variable $HOME_COUNTRY in country_code is undefined; supply the sagan.yaml with --sagan-yaml |
 | `5014684` | `onelogin.rules` | SaaS and identity | [ONELOGIN] USER_LOGGED_INTO_ONELOGIN From Outside HOME_COUNTRY | `country_code` | variable $HOME_COUNTRY in country_code is undefined; supply the sagan.yaml with --sagan-yaml |
 | `5014685` | `onelogin.rules` | SaaS and identity | [ONELOGIN] USER_LOGGED_INTO_ONELOGIN after Brute Force | `country_code` | variable $HOME_COUNTRY in country_code is undefined; supply the sagan.yaml with --sagan-yaml |
+| `5003969` | `openssh-geoip.rules` | Unix and Linux | [OPENSSH] Authentication success from outside HOME_COUNTRY | `country_code` | variable $HOME_COUNTRY in country_code is undefined; supply the sagan.yaml with --sagan-yaml |
 | `5016664` | `oracle_oci.rules` | Unclassified | [ORACLE] OCI Audit - AuthenticationUser Outside HOME_COUNTRY Event Detected | `country_code` | variable $HOME_COUNTRY in country_code is undefined; supply the sagan.yaml with --sagan-yaml |
 | `5016749` | `oracle_oci.rules` | Unclassified | [ORACLE] OCI Audit - GetBucket Outside HOME_COUNTRY Event Detected | `country_code` | variable $HOME_COUNTRY in country_code is undefined; supply the sagan.yaml with --sagan-yaml |
 | `5016750` | `oracle_oci.rules` | Unclassified | [ORACLE] OCI Audit - GetCloudShellInformation Outside HOME_COUNTRY Event Detected | `country_code` | variable $HOME_COUNTRY in country_code is undefined; supply the sagan.yaml with --sagan-yaml |
@@ -608,58 +611,6 @@ The rule queries an external source. Bluedot threat intelligence is out of scope
 
 </details>
 
-### `E_POSITIONAL` (40 rules)
-
-The rule constrains where a pattern sits in the log line with a non-zero offset, depth or distance. Sigma string modifiers cannot express a byte position, so no faithful translation exists. A zero-valued positional is a no-op in the Sagan engine and is converted.
-
-<details>
-<summary>Show the 40 refused rules</summary>
-
-| SID | Source file | Family | Title | Keywords | Detail |
-| --- | --- | --- | --- | --- | --- |
-| `5008803` | `azureEventHub_windows-malware.rules` | Azure and Microsoft 365 | [WINDOWS-MALWARE] Object Downloaded to Temp Directory with .temp File Extention | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translatio |
-| `5008807` | `azureEventHub_windows-malware.rules` | Azure and Microsoft 365 | [WINDOWS-MALWARE] PARTYTICKET Function Detected(1/2) | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5009330` | `azureEventHub_windows-powershell.rules` | Azure and Microsoft 365 | [WINDOWS-POWERSHELL] Suspicious Pingtest | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translatio |
-| `5009333` | `azureEventHub_windows-powershell.rules` | Azure and Microsoft 365 | [WINDOWS-POWERSHELL] Suspicious Download using IEX | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5009334` | `azureEventHub_windows-powershell.rules` | Azure and Microsoft 365 | [WINDOWS-POWERSHELL] Anti-virus Has Blocked Malicious Content | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5009758` | `azureEventHub_windows-security.rules` | Azure and Microsoft 365 | [WINDOWS-SECURITY] A user's local group membership was enumerated | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5009759` | `azureEventHub_windows-security.rules` | Azure and Microsoft 365 | [WINDOWS-SECURITY] A user's local group membership was enumerated (Domain Groups) | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5009796` | `azureEventHub_windows-sysmon.rules` | Azure and Microsoft 365 | [WINDOWS-SYSMON] Possible Command To Disable Crash Logging Detected | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5005962` | `linux-kernel.rules` | Unix and Linux | [LINUX-POLKIT] POSSIBLE POLKIT PRIVILEGE ESCALATION ATTEMPT (CVE-2021-4034) | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5005963` | `linux-kernel.rules` | Unix and Linux | [LINUX-POLKIT] POSSIBLE POLKIT PRIVILEGE ESCALATION ATTEMPT (CVE-2021-4034) | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5005964` | `linux-kernel.rules` | Unix and Linux | [LINUX-POLKIT] POLKIT PRIVILEGE ESCALATION ATTEMPT (CVE-2021-4034) | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5005965` | `linux-kernel.rules` | Unix and Linux | [LINUX-POLKIT] POLKIT PRIVILEGE ESCALATION ATTEMPT (CVE-2021-4034) | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5010287` | `netwrix.rules` | Network and firewalls | [NETWRIX] Active Directory Security Group Added | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5010289` | `netwrix.rules` | Network and firewalls | [NETWRIX] Active Directory Member Added to Security Group | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5010339` | `netwrix.rules` | Network and firewalls | [NETWRIX] Active Directory Computer Modified Encryption Type: 0x17 | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5011308` | `netwrix.rules` | Network and firewalls | [NETWRIX] Active Directory User Added | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003970` | `openssh-aetas.rules` | Unix and Linux | [OPENSSH-AETAS] Authentication success at suspicious time | `depth` | the rule constrains a byte position that changes what matches (depth:10); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003971` | `openssh-bluedot.rules` | Unix and Linux | [OPENSSH-BLUEDOT] Authentication success from suspicious source | `depth` | the rule constrains a byte position that changes what matches (depth:10); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003973` | `openssh-correlated.rules` | Unix and Linux | [OPENSSH-CORRELATED] Authentication success after exploit attempt | `depth` | the rule constrains a byte position that changes what matches (depth:10); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003974` | `openssh-correlated.rules` | Unix and Linux | [OPENSSH-CORRELATED] Authentication success after brute force activity | `depth` | the rule constrains a byte position that changes what matches (depth:10); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003975` | `openssh-correlated.rules` | Unix and Linux | [OPENSSH-CORRELATED] Authentication success after recon activity | `depth` | the rule constrains a byte position that changes what matches (depth:10); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003969` | `openssh-geoip.rules` | Unix and Linux | [OPENSSH] Authentication success from outside HOME_COUNTRY | `depth` | the rule constrains a byte position that changes what matches (depth:10); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003938` | `rsa-dpm.rules` | Unclassified | [RSA-DPM] Physical Memory status Yellow | `distance` | the rule constrains a byte position that changes what matches (distance:45); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003939` | `rsa-dpm.rules` | Unclassified | [RSA-DPM] Physical Memory status RED [Critical] | `distance` | the rule constrains a byte position that changes what matches (distance:45); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003940` | `rsa-dpm.rules` | Unclassified | [RSA-DPM] Swap-Memory Memory status Yellow | `distance` | the rule constrains a byte position that changes what matches (distance:45); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003941` | `rsa-dpm.rules` | Unclassified | [RSA-DPM] Swap-Memory Memory status Red [Critical] | `distance` | the rule constrains a byte position that changes what matches (distance:45); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003942` | `rsa-dpm.rules` | Unclassified | [RSA-DPM] Disk status Yellow | `distance` | the rule constrains a byte position that changes what matches (distance:25); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003943` | `rsa-dpm.rules` | Unclassified | [RSA-DPM] Disk status Red - [Critical] | `distance` | the rule constrains a byte position that changes what matches (distance:25); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003944` | `rsa-dpm.rules` | Unclassified | [RSA-DPM] CPU status Yellow | `distance` | the rule constrains a byte position that changes what matches (distance:20); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003945` | `rsa-dpm.rules` | Unclassified | [RSA-DPM] CPU status Red - [Critical] | `distance` | the rule constrains a byte position that changes what matches (distance:20); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5001821` | `web-attack.rules` | Applications and web | [WEB-ATTACKS] Suspicious User-Agent Containing Web Scan/er, Likely Web Scanner | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5001822` | `web-attack.rules` | Applications and web | [WEB-ATTACKS] Suspicious User-Agent Containing Security Scan/ner, Likely Scan | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5001826` | `web-attack.rules` | Applications and web | [WEB-ATTACKS] WebHack Control Center User-Agent Inbound (WHCC/) | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5001840` | `web-attack.rules` | Applications and web | [WEB-ATTACKS] ZmEu Scanner User-Agent Inbound | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5005987` | `windows-malware.rules` | Windows | [WINDOWS-MALWARE] Object Downloaded to Temp Directory with .temp File Extention | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translatio |
-| `5005991` | `windows-malware.rules` | Windows | [WINDOWS-MALWARE] PARTYTICKET Function Detected(1/2) | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5005984` | `windows-powershell.rules` | Windows | [WINDOWS-POWERSHELL] Suspicious Pingtest | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translatio |
-| `5007214` | `windows-security.rules` | Windows | [WINDOWS-SECURITY] A user's local group membership was enumerated | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5007215` | `windows-security.rules` | Windows | [WINDOWS-SECURITY] A user's local group membership was enumerated (Domain Groups) | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5005993` | `windows-sysmon.rules` | Windows | [WINDOWS-SYSMON] Possible Command To Disable Crash Logging Detected | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-
-</details>
-
 ### `E_PCRE_UNSUPPORTED` (40 rules)
 
 The regular expression uses a PCRE construct the Rust engine cannot express and the converter cannot safely rewrite (recursion, look-around, back-references, control verbs). Recoverable constructs (numbered subroutines, literal braces, the whole-string negation idiom, inert flags) are rewritten instead of refused.
@@ -712,12 +663,12 @@ The regular expression uses a PCRE construct the Rust engine cannot express and 
 
 </details>
 
-### `E_STATE_ABSENCE` (10 rules)
+### `E_STATE_ABSENCE` (11 rules)
 
 The rule requires that an earlier event did NOT happen (xbits or flexbits isnotset). Sigma cannot express a negative correlation.
 
 <details>
-<summary>Show the 10 refused rules</summary>
+<summary>Show the 11 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -731,6 +682,7 @@ The rule requires that an earlier event did NOT happen (xbits or flexbits isnots
 | `5003125` | `nxlog.rules` | Unclassified | [NXLOG] Service restart to correct problem [CLEAR XBIT] | `flexbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
 | `5002011` | `windows-malware.rules` | Windows | [WINDOWS-MALWARE] System protection disabled | `flexbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
 | `5015930` | `windows-misc.rules` | Windows | [WINDOWS-MISC] NXLog has Stopped On Host | `xbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
+| `9870004` | `windows-security.rules` | Windows | [EXPERIMENTAL][WINDOWS-SECURITY] SMB - Anonymous Access Denied to ADMIN$ Share | `xbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
 
 </details>
 
@@ -750,7 +702,7 @@ The group-by key required by after does not exist as a field in any event: Sagan
 | `5014637` | `linux-security.rules` | Unix and Linux | [LINUX-SECURITY] Multiple Failed SUDO Auth Attempts | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5017724` | `sophos_firewall.rules` | Endpoint and EDR | [SOPHOS_FIREWALL] VPN Authentication - Credential Stuffing Attempt | `after` | dest_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5015179` | `windows-malware.rules` | Windows | [WINDOWS-SECURITY] WFP Provider Change After EDRSilencer Detection | `flexbits` | flexbits tracks by 'none', which is not a group-by over a single field: Sigma cannot express it |
-| `9870006` | `windows-security.rules` | Windows | [EXPERIMENTAL][WINDOWS-SECURITY] SMB - Suspected Authentication Coercion IPC\|24\| Access fo | `xbits` | dest_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
+| `5018003` | `windows-security.rules` | Windows | [WINDOWS-SECURITY] SMB - Suspected Authentication Coercion IPC\|24\| Access followed by ADMI | `xbits` | dest_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 
 </details>
 
@@ -771,6 +723,20 @@ The rule can never produce an alert: nothing is left to match on after conversio
 
 </details>
 
+### `E_POSITIONAL` (2 rules)
+
+The rule constrains where a pattern sits in the log line, in a way this converter will not translate. A non-zero offset, depth or distance on a content is translated: the engine computes that window from the rule alone, so it is emitted as an anchored regular expression and reported as D_POSITIONAL_WINDOW. What is refused is the same constraint on a meta_content, whose window the engine computes elsewhere and this converter has not measured, and a window too short to hold the value searched for, which never fires in Sagan either. A zero-valued positional is a no-op in the engine and is converted.
+
+<details>
+<summary>Show the 2 refused rules</summary>
+
+| SID | Source file | Family | Title | Keywords | Detail |
+| --- | --- | --- | --- | --- | --- |
+| `5009758` | `azureEventHub_windows-security.rules` | Azure and Microsoft 365 | [WINDOWS-SECURITY] A user's local group membership was enumerated | `within, depth` | the 15-byte window the positional modifiers leave cannot hold the 16-byte value the content searches for, so the rule never fires in Sagan either |
+| `5009759` | `azureEventHub_windows-security.rules` | Azure and Microsoft 365 | [WINDOWS-SECURITY] A user's local group membership was enumerated (Domain Groups) | `within, depth` | the 15-byte window the positional modifiers leave cannot hold the 16-byte value the content searches for, so the rule never fires in Sagan either |
+
+</details>
+
 ### `E_PARSE` (1 rules)
 
 The rule could not be parsed, or it uses a construct that Sagan itself would reject at load time.
@@ -780,6 +746,6 @@ The rule could not be parsed, or it uses a construct that Sagan itself would rej
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
-| `9870101` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [EXPERIMENTAL][AZURE-EVENTHUB-AD] Non-Interactive SignIn - Possible AiTM Session Theft via | `json_meta_content` | unparsable json_meta_content arguments: '!".properties".deviceDetail",Azure\|20\|AD\|20\|joined,Azure\|20\|AD\|20\|Registered,Hybrid\|20\|Azure\|20\|AD\|20\|joined' |
+| `5017995` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [AZURE-EVENTHUB-AD] Non-Interactive SignIn - Possible AiTM Session Theft via Device Code M | `json_meta_content` | unparsable json_meta_content arguments: '!".properties".deviceDetail",Azure\|20\|AD\|20\|joined,Azure\|20\|AD\|20\|Registered,Hybrid\|20\|Azure\|20\|AD\|20\|joined' |
 
 </details>

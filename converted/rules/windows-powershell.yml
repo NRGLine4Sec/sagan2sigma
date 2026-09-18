@@ -1159,6 +1159,38 @@ custom_attributes:
   sagan.source_file: windows-powershell.rules
   sagan.metadata: updated_at=2023_10_10
 ---
+title: '[WINDOWS-POWERSHELL] Suspicious Pingtest'
+id: 99549ebb-59fc-5bcc-8cb0-ed4b76e7d2de
+status: experimental
+description: Converted from Sagan rule SID 5005984 (rev 2), file windows-powershell.rules.
+author: sagan2sigma
+logsource:
+  product: windows
+detection:
+  selection_1:
+    appname|cased: '*PowerShell*'
+  selection_2:
+    _raw|contains: $ping = test-connection
+  selection_3:
+    _raw|re|s: ^.{2}.{0,20}\-comp
+  selection_4:
+    _raw|re|s: ^.{2}.{0,19}\-count
+  selection_5:
+    _raw|re|s|i: ^.{2}.{0,19}\-Quiet
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1018
+  - attack.ta0007
+  - sagan.classtype.suspicious-command
+custom_attributes:
+  sagan.sid: '5005984'
+  sagan.rev: '2'
+  sagan.source_file: windows-powershell.rules
+  sagan.metadata: updated_at=2023_10_10
+---
 title: '[WINDOWS-POWERSHELL] Obfuscated New-Object Command (1/2)'
 id: d1980b82-c259-5a46-8f74-557d2abb9e52
 status: experimental

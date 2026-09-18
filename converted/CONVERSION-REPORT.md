@@ -5,13 +5,13 @@
 | Metric | Value |
 | --- | --- |
 | Rule files processed | 343 |
-| Active rules parsed | 10027 |
-| Commented-out rules skipped | 9443 |
-| Rules converted | 8715 (86.9%) |
-| Rules refused | 1312 (13.1%) |
+| Active rules parsed | 10026 |
+| Commented-out rules skipped | 9445 |
+| Rules converted | 8747 (87.2%) |
+| Rules refused | 1279 (12.8%) |
 | Lines that failed to parse | 0 |
 | Synthetic rules added | 10 |
-| Sigma documents emitted | 9529 |
+| Sigma documents emitted | 9561 |
 | pySigma validation issues | 0 |
 | Output profile | `rsigma-syslog` |
 | Case policy | `faithful` |
@@ -25,30 +25,30 @@ logsource catalog. It answers which kinds of device caused trouble.
 | Product family | Converted | Refused | Rate | Converted with loss |
 | --- | ---: | ---: | ---: | ---: |
 | AWS | 534 | 101 | 84.1% | 534 |
-| Applications and web | 180 | 72 | 71.4% | 171 |
-| Azure and Microsoft 365 | 1346 | 410 | 76.7% | 551 |
-| Endpoint and EDR | 983 | 57 | 94.5% | 976 |
+| Applications and web | 184 | 68 | 73.0% | 175 |
+| Azure and Microsoft 365 | 1352 | 402 | 77.1% | 557 |
+| Endpoint and EDR | 984 | 57 | 94.5% | 977 |
 | Google Cloud | 68 | 8 | 89.5% | 62 |
 | Infrastructure | 189 | 25 | 88.3% | 189 |
-| Network and firewalls | 1133 | 335 | 77.2% | 1056 |
+| Network and firewalls | 1137 | 331 | 77.5% | 1060 |
 | Network detection | 241 | 20 | 92.3% | 241 |
 | SaaS and identity | 311 | 33 | 90.4% | 154 |
 | State correlations | 10 | 0 | 100.0% | 0 |
-| Unclassified | 1549 | 114 | 93.1% | 1549 |
-| Unix and Linux | 180 | 36 | 83.3% | 176 |
-| Windows | 2001 | 101 | 95.2% | 1966 |
+| Unclassified | 1557 | 106 | 93.6% | 1557 |
+| Unix and Linux | 184 | 32 | 85.2% | 180 |
+| Windows | 2006 | 96 | 95.4% | 1971 |
 
 ## Refusals by code
 
 | Code | Rules | Share | Meaning |
 | --- | ---: | ---: | --- |
-| `E_RAW_TEXT_ON_JSON_EVENT` | 501 | 38.2% | The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text. |
-| `E_EXTERNAL_ENRICHMENT` | 383 | 29.2% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
-| `E_GROUPBY_UNRESOLVED` | 312 | 23.8% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
-| `E_POSITIONAL` | 40 | 3.0% | The rule constrains where a pattern sits in the log line with a non-zero offset, depth or distance. Sigma string modifiers cannot express a byte position, so no faithful translation exists. A zero-valued positional is a no-op in the Sagan engine and is converted. |
+| `E_RAW_TEXT_ON_JSON_EVENT` | 499 | 39.0% | The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text. |
+| `E_EXTERNAL_ENRICHMENT` | 385 | 30.1% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
+| `E_GROUPBY_UNRESOLVED` | 315 | 24.6% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
 | `E_PCRE_UNSUPPORTED` | 39 | 3.0% | The regular expression uses a PCRE construct the Rust engine cannot express and the converter cannot safely rewrite (recursion, look-around, back-references, control verbs). Recoverable constructs (numbered subroutines, literal braces, the whole-string negation idiom, inert flags) are rewritten instead of refused. |
-| `E_TIME_WINDOW` | 29 | 2.2% | The rule only fires on given weekdays or hour ranges (alert_time). Sigma has no recurring-time operator, so this is refused unless --profile vector-enriched is used, whose bundled time transform supplies the weekday and hour-of-day fields the window matches on. |
-| `E_STATE_ABSENCE` | 6 | 0.5% | The rule requires that an earlier event did NOT happen (xbits or flexbits isnotset). Sigma cannot express a negative correlation. |
+| `E_TIME_WINDOW` | 30 | 2.3% | The rule only fires on given weekdays or hour ranges (alert_time). Sigma has no recurring-time operator, so this is refused unless --profile vector-enriched is used, whose bundled time transform supplies the weekday and hour-of-day fields the window matches on. |
+| `E_STATE_ABSENCE` | 7 | 0.5% | The rule requires that an earlier event did NOT happen (xbits or flexbits isnotset). Sigma cannot express a negative correlation. |
+| `E_POSITIONAL` | 2 | 0.2% | The rule constrains where a pattern sits in the log line, in a way this converter will not translate. A non-zero offset, depth or distance on a content is translated: the engine computes that window from the rule alone, so it is emitted as an anchored regular expression and reported as D_POSITIONAL_WINDOW. What is refused is the same constraint on a meta_content, whose window the engine computes elsewhere and this converter has not measured, and a window too short to hold the value searched for, which never fires in Sagan either. A zero-valued positional is a no-op in the engine and is converted. |
 | `E_NO_DETECTION` | 2 | 0.2% | The rule can never produce an alert: nothing is left to match on after conversion (it carried only side effects or metadata), or it carries a mandatory condition the engine can never satisfy, so it never fires in Sagan either. |
 
 ## Converted with semantic loss
@@ -58,16 +58,17 @@ reproduced. They are worth reviewing before the ruleset goes live.
 
 | Code | Rules | Meaning | Example SIDs |
 | --- | ---: | --- | --- |
-| `D_RAW_TEXT_MATCH` | 5804 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
-| `D_EVENT_ID_HEURISTIC` | 1871 | Without a json_map for event_id, Sagan looks for ' <id>: ', with the surrounding spaces, in the first nine characters of the message, so an ID at the very start never matches. The converted rule assumes a proper EventID field instead, which fires on events the heuristic would have missed. Measured against a locally built engine. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
-| `D_LOGSOURCE_FALLBACK` | 1866 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
-| `D_THRESHOLD_SUPPRESS` | 1137 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
+| `D_RAW_TEXT_MATCH` | 5836 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
+| `D_LOGSOURCE_FALLBACK` | 1882 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
+| `D_EVENT_ID_HEURISTIC` | 1872 | Without a json_map for event_id, Sagan looks for ' <id>: ', with the surrounding spaces, in the first nine characters of the message, so an ID at the very start never matches. The converted rule assumes a proper EventID field instead, which fires on events the heuristic would have missed. Measured against a locally built engine. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
+| `D_THRESHOLD_SUPPRESS` | 1156 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
 | `D_PASS_SHORT_CIRCUIT` | 513 | The rule used the pass action. In Sagan a matching pass rule still emits an alert (Send_Alert runs before the pass check) and then stops evaluating the remaining signatures for that event. The detection is converted faithfully; only the short-circuit, the suppression of other rules on the same event, is not reproduced, since Sigma evaluates every rule independently. | `5016065`, `5016066`, `5016067`, `5016068`, `5016069` |
 | `D_GROUPBY_SYSLOG_HOST` | 387 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
 | `D_SIDE_EFFECT_DROPPED` | 233 | Engine-specific side effect (external, email, dynamic_load, unset) with no Sigma equivalent. | `5008539`, `5003022`, `5003023`, `5002959`, `5002960` |
 | `D_THRESHOLD_LIMIT` | 145 | threshold type limit caps alert volume, not detection. Sigma has no equivalent, so the constraint is dropped. | `5017933`, `5008570`, `5009316`, `5009317`, `5009318` |
 | `D_APPEND_PROGRAM` | 74 | append_program makes Sagan append the program field to the message before matching. The converted rule searches the message alone. | `5000419`, `5000470`, `5000489`, `5000519`, `5000521` |
 | `D_XBIT_SET_DROPPED` | 65 | The rule set or tested an xbit that no converted rule consumes. The state link is lost. | `5009285`, `5009290`, `5007210`, `5007211`, `5005994` |
+| `D_POSITIONAL_WINDOW` | 34 | A non-zero offset, depth or distance is emitted as an anchored regular expression on the message. The window is exact, but it counts characters where the engine counts bytes, so a message whose prefix holds multi-byte characters is measured differently on the two sides. | `5008803`, `5008807`, `5009330`, `5009333`, `5009334` |
 | `D_JSON_BODY_ARM_LOST` | 33 | The rule carries a json_map binding but no condition a plain-text event cannot satisfy, so Sagan matches it on both a plain line and a JSON document. This profile exposes no raw body for a JSON-bodied event, so the text search has nothing to run against there and the converted rule covers the plain-text half only. Convert under --profile vector-enriched, whose pipeline keeps the raw body, to cover both. | `5004304`, `5003879`, `5000055`, `5000111`, `5010582` |
 | `D_XBIT_ISSET_SYNTHETIC` | 20 | The state correlation was rebuilt through a synthetic aggregate rule gathering every rule that sets the bit. | `5017993`, `5014091`, `5008539`, `5009793`, `5015226` |
 | `D_JSON_KEY_RESTORED` | 15 | The rule names a JSON key that upstream clipped to 31 characters so that Sagan, which stores key paths clipped and compares them with an exact strcmp, would match it at all. The full path is recorded in a comment above the rule and is what the log carries, so the converted rule uses that instead: Sigma has no such limit, and emitting the clipped name would match nothing outside Sagan. | `5004773`, `5017933`, `5017933`, `5005921`, `5005923` |
@@ -86,11 +87,11 @@ conversion error and is the opposite of one.
 
 | Code | Rules | What it means |
 | --- | --- | --- |
-| `U_CANNOT_MATCH` | 8 | the rule loads and can never fire |
+| `U_CANNOT_MATCH` | 9 | the rule loads and can never fire |
 | `U_INVERTED_CONDITION` | 1 | the rule fires, but a condition means its opposite |
 
 <details>
-<summary><code>U_CANNOT_MATCH</code> (8 rules)</summary>
+<summary><code>U_CANNOT_MATCH</code> (9 rules)</summary>
 
 | SID | File | Detail |
 | --- | --- | --- |
@@ -102,6 +103,7 @@ conversion error and is the opposite of one.
 | `5005944` | `confluent.rules` | the key path 'data.authorizationInfo.aclAuthorization.permissionType' is clipped to 'data.authorizationInfo.aclAuth' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
 | `5014569` | `pfsense.rules` | the content option is missing its semicolon, so the text after the closing quote is swallowed into its argument and the rule matches nothing: '",3389,"0,S' |
 | `5015096` | `aws-cloudtrail.rules` | the key path 'userIdentity.sessionContext.sessionIssuer.userName' is clipped to 'userIdentity.sessionContext.se' by the engine, and the rest of the path lies below that point, so no spelling of the key can reach the value |
+| `5017898` | `msapi-sharepoint.rules` | 3 json_meta_content lists with json_meta_contains: the engine gives every list after the first a set of empty values, which a substring search finds in anything, so a negated list excludes every document |
 
 </details>
 
@@ -121,12 +123,12 @@ correlation resolved the rules it references.
 
 ## Refused rules
 
-### `E_RAW_TEXT_ON_JSON_EVENT` (501 rules)
+### `E_RAW_TEXT_ON_JSON_EVENT` (499 rules)
 
 The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text.
 
 <details>
-<summary>Show 400 of the 501 refused rules</summary>
+<summary>Show 400 of the 499 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -245,9 +247,9 @@ The rule searches the raw message body while also using JSON operators. When the
 | `5017158` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [AZURE-EVENTHUB-AD] New MFA Device Registered - VSCode | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5017159` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [AZURE-EVENTHUB-AD] MFA Authenticator Device Registered - VSCode | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5017992` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [AZURE-EVENTHUB-AD] Suspicious Device Registration - Add Registered User/Owner with Anomal | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| `9870101` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [EXPERIMENTAL][AZURE-EVENTHUB-AD] Non-Interactive SignIn - Possible AiTM Session Theft via | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| `9870103` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [EXPERIMENTAL][AZURE-EVENTHUB-AD] Suspicious Device Registration - Add Registered User wit | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| `9870104` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [EXPERIMENTAL][AZURE-EVENTHUB-AD] Suspicious Device Registration - Add Registered Owner wi | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
+| `5017995` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [AZURE-EVENTHUB-AD] Non-Interactive SignIn - Possible AiTM Session Theft via Device Code M | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
+| `5017999` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [AZURE-EVENTHUB-AD] Suspicious Device Registration - Add Registered User with Anomalous Ho | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
+| `5018000` | `azure-eventhub-ad.rules` | Azure and Microsoft 365 | [AZURE-EVENTHUB-AD] Suspicious Device Registration - Add Registered Owner with Anomalous H | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5017924` | `azureEventHub_entra.rules` | Azure and Microsoft 365 | [AZURE-EVENTHUB-ENTRA] User Risk Detected - Details Hidden | `meta_content` | meta_content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding |
 | `5017063` | `ddr.rules` | Unclassified | [AWS] S3 File Transfer (GetObject) | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `991009` | `ddr.rules` | Unclassified | [AWS] S3 File Transfer (PutObject) | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
@@ -355,13 +357,11 @@ The rule searches the raw message body while also using JSON operators. When the
 | `5017971` | `msapi-azuread.rules` | Azure and Microsoft 365 | [MSAPI-AZUREAD] Successful User Login From UnTrusted Device To Known AITM Landing Page - P | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5017972` | `msapi-azuread.rules` | Azure and Microsoft 365 | [MSAPI-AZUREAD] Successful User Login From UnTrusted Device To Known AITM Landing Page - P | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5017973` | `msapi-azuread.rules` | Azure and Microsoft 365 | [MSAPI-AZUREAD] Initial Access: Potential AiTM Token Replay via Unknown ObjectId | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| `9870105` | `msapi-azuread.rules` | Azure and Microsoft 365 | [EXPERIMENTAL][MSAPI-AZUREAD] Suspicious Device Registration - Add Registered Owner with A | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| `9870106` | `msapi-azuread.rules` | Azure and Microsoft 365 | [EXPERIMENTAL][MSAPI-AZUREAD] Suspicious Device Registration - Add Registered User with An | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| `99552` | `msapi-azuread.rules` | Azure and Microsoft 365 | [EXPERIMENTAL][MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| `99553` | `msapi-azuread.rules` | Azure and Microsoft 365 | [EXPERIMENTAL][MSAPI-AZUREAD] Security Threat Detected In User Login - Multiple Keep Me Si | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| `99555` | `msapi-azuread.rules` | Azure and Microsoft 365 | [EXPERIMENTAL][MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| `99556` | `msapi-azuread.rules` | Azure and Microsoft 365 | [EXPERIMENTAL][MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| `99557` | `msapi-azuread.rules` | Azure and Microsoft 365 | [EXPERIMENTAL][MSAPI-AZUREAD] Successful User Login From UnManaged/UnTrusted Device To Kno | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
+| `5017996` | `msapi-azuread.rules` | Azure and Microsoft 365 | [MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon [25+/1Min] | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
+| `5017997` | `msapi-azuread.rules` | Azure and Microsoft 365 | [MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon [5+/1Hour] | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
+| `5017998` | `msapi-azuread.rules` | Azure and Microsoft 365 | [MSAPI-AZUREAD] Multiple Login Failures Over Azure CLI - Possible AITM Recon [20/5Days] | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
+| `5018001` | `msapi-azuread.rules` | Azure and Microsoft 365 | [MSAPI-AZUREAD] Suspicious Device Registration - Add Registered Owner with Anomalous Hostn | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
+| `5018002` | `msapi-azuread.rules` | Azure and Microsoft 365 | [MSAPI-AZUREAD] Suspicious Device Registration - Add Registered User with Anomalous Hostna | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5004874` | `msapi-exchange-bluedot.rules` | Azure and Microsoft 365 | [MSAPI-EXCHANGE-BLUEDOT] AddFolderPermissions from Bluedot listed IP address | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5004875` | `msapi-exchange-bluedot.rules` | Azure and Microsoft 365 | [MSAPI-EXCHANGE-BLUEDOT] Copy from Bluedot listed IP address | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5004876` | `msapi-exchange-bluedot.rules` | Azure and Microsoft 365 | [MSAPI-EXCHANGE-BLUEDOT] MailboxLogin from Bluedot listed IP address | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
@@ -530,16 +530,18 @@ The rule searches the raw message body while also using JSON operators. When the
 | `5005037` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] RefreshDataset from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5005038` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] SetScheduledRefresh from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5005039` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] ShareReport from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| ... | ... | ... | *101 more rows omitted, see the JSON report* | | |
+| `5005040` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] UnpublishApp from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
+| `5005041` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] UnpublishApp from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
+| ... | ... | ... | *99 more rows omitted, see the JSON report* | | |
 
 </details>
 
-### `E_EXTERNAL_ENRICHMENT` (383 rules)
+### `E_EXTERNAL_ENRICHMENT` (385 rules)
 
 The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed.
 
 <details>
-<summary>Show the 383 refused rules</summary>
+<summary>Show the 385 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -760,6 +762,8 @@ The rule queries an external source. Bluedot threat intelligence is out of scope
 | `5014682` | `onelogin.rules` | SaaS and identity | [ONELOGIN] USER_FAILED_ONELOGIN_LOGIN From Outside HOME_COUNTRY | `country_code` | country_code needs a GeoIP country field, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled GeoIP transform; the tracke |
 | `5014684` | `onelogin.rules` | SaaS and identity | [ONELOGIN] USER_LOGGED_INTO_ONELOGIN From Outside HOME_COUNTRY | `country_code` | country_code needs a GeoIP country field, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled GeoIP transform; the tracke |
 | `5014685` | `onelogin.rules` | SaaS and identity | [ONELOGIN] USER_LOGGED_INTO_ONELOGIN after Brute Force | `country_code` | country_code needs a GeoIP country field, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled GeoIP transform; the tracke |
+| `5003971` | `openssh-bluedot.rules` | Unix and Linux | [OPENSSH-BLUEDOT] Authentication success from suspicious source | `bluedot` | bluedot substitution needs the vector-enriched profile, which supplies the per-category address flags |
+| `5003969` | `openssh-geoip.rules` | Unix and Linux | [OPENSSH] Authentication success from outside HOME_COUNTRY | `country_code` | country_code needs a GeoIP country field, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled GeoIP transform; the tracke |
 | `5016664` | `oracle_oci.rules` | Unclassified | [ORACLE] OCI Audit - AuthenticationUser Outside HOME_COUNTRY Event Detected | `country_code` | country_code needs a GeoIP country field, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled GeoIP transform; the tracke |
 | `5016665` | `oracle_oci.rules` | Unclassified | [ORACLE] OCI Audit - AuthenticationUser Bluedot Event Detected | `bluedot` | bluedot substitution needs the vector-enriched profile, which supplies the per-category address flags |
 | `5016749` | `oracle_oci.rules` | Unclassified | [ORACLE] OCI Audit - GetBucket Outside HOME_COUNTRY Event Detected | `country_code` | country_code needs a GeoIP country field, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled GeoIP transform; the tracke |
@@ -929,12 +933,12 @@ The rule queries an external source. Bluedot threat intelligence is out of scope
 
 </details>
 
-### `E_GROUPBY_UNRESOLVED` (312 rules)
+### `E_GROUPBY_UNRESOLVED` (315 rules)
 
 The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline.
 
 <details>
-<summary>Show the 312 refused rules</summary>
+<summary>Show the 315 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -1115,6 +1119,9 @@ The group-by key required by after does not exist as a field in any event: Sagan
 | `5006607` | `okta.rules` | SaaS and identity | [OKTA] CORRELATED LOGIN AFTER BRUTE FORCE ATTEMPT [2] | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5006434` | `onelogin.rules` | SaaS and identity | [ONELOGIN] ONELOGIN_DESKTOP_USER_FAILED_ONELOGIN_LOGIN | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5003972` | `openssh-correlated.rules` | Unix and Linux | [OPENSSH-CORRELATED] Authentication success after honeypot activity | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
+| `5003973` | `openssh-correlated.rules` | Unix and Linux | [OPENSSH-CORRELATED] Authentication success after exploit attempt | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
+| `5003974` | `openssh-correlated.rules` | Unix and Linux | [OPENSSH-CORRELATED] Authentication success after brute force activity | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
+| `5003975` | `openssh-correlated.rules` | Unix and Linux | [OPENSSH-CORRELATED] Authentication success after recon activity | `xbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5000015` | `openssh.rules` | Unix and Linux | [OPENSSH] PAM Authentication failure - Brute force [10/1] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5000016` | `openssh.rules` | Unix and Linux | [OPENSSH] Authentication failure - Brute force [10/5] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5000017` | `openssh.rules` | Unix and Linux | [OPENSSH] Authentication failure for root - Brute force [5/5] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
@@ -1238,9 +1245,9 @@ The group-by key required by after does not exist as a field in any event: Sagan
 | `5017966` | `windows-security.rules` | Windows | [WINDOWS-SECURITY] Kerberos - AS-REP Roasting Bulk Enumeration Multiple Accounts RC4 | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5017967` | `windows-security.rules` | Windows | [WINDOWS-SECURITY] AD CS - Certificate Services Template Loaded (Possible Enumeration) | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5017969` | `windows-security.rules` | Windows | [WINDOWS-SECURITY] Kerberos - RC4 Kerberoasting followed by AD CS Template Load | `flexbits` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
+| `5018003` | `windows-security.rules` | Windows | [WINDOWS-SECURITY] SMB - Suspected Authentication Coercion IPC\|24\| Access followed by ADMI | `xbits` | dest_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
+| `5018005` | `windows-security.rules` | Windows | [WINDOWS-SECURITY] Kerberos - Multiple RC4 Service Ticket Requests from Single Source (Ker | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `9870005` | `windows-security.rules` | Windows | [EXPERIMENTAL][WINDOWS-SECURITY] SMB - Multiple Authentication Failures [3/5Mins] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
-| `9870006` | `windows-security.rules` | Windows | [EXPERIMENTAL][WINDOWS-SECURITY] SMB - Suspected Authentication Coercion IPC\|24\| Access fo | `xbits` | dest_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
-| `9870008` | `windows-security.rules` | Windows | [EXPERIMENTAL][WINDOWS-SECURITY] Kerberos - Multiple RC4 Service Ticket Requests from Sing | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `9870012` | `windows-security.rules` | Windows | [EXPERIMENTAL][WINDOWS-SECURITY] AD CS - Certificate Request Received (Possible ESC Exploi | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5002069` | `zeeks.rules` | Network detection | [ZEEK] 10+ SSL Invalid_Server_Cert in 30 seconds [10/5] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5002070` | `zeeks.rules` | Network detection | [ZEEK] 10+ unable to get local issuer certificate in 30 seconds [10/5] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
@@ -1250,58 +1257,6 @@ The group-by key required by after does not exist as a field in any event: Sagan
 | `5003031` | `zimbra.rules` | Applications and web | [ZIMBRA] MS ActiveSync - Brute force invalid password [5/3] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5003033` | `zimbra.rules` | Applications and web | [ZIMBRA] SYNC - Brute force invalid username or password [5/3] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
 | `5003037` | `zimbra.rules` | Applications and web | [ZIMBRA] SYNC - User password mismatch [5/3] | `after` | src_ip is extracted from raw text by Sagan (parse_src_ip / normalize); supply it upstream, or convert with --profile vector-enriched and deploy the bundled VRL transforms |
-
-</details>
-
-### `E_POSITIONAL` (40 rules)
-
-The rule constrains where a pattern sits in the log line with a non-zero offset, depth or distance. Sigma string modifiers cannot express a byte position, so no faithful translation exists. A zero-valued positional is a no-op in the Sagan engine and is converted.
-
-<details>
-<summary>Show the 40 refused rules</summary>
-
-| SID | Source file | Family | Title | Keywords | Detail |
-| --- | --- | --- | --- | --- | --- |
-| `5008803` | `azureEventHub_windows-malware.rules` | Azure and Microsoft 365 | [WINDOWS-MALWARE] Object Downloaded to Temp Directory with .temp File Extention | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translatio |
-| `5008807` | `azureEventHub_windows-malware.rules` | Azure and Microsoft 365 | [WINDOWS-MALWARE] PARTYTICKET Function Detected(1/2) | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5009330` | `azureEventHub_windows-powershell.rules` | Azure and Microsoft 365 | [WINDOWS-POWERSHELL] Suspicious Pingtest | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translatio |
-| `5009333` | `azureEventHub_windows-powershell.rules` | Azure and Microsoft 365 | [WINDOWS-POWERSHELL] Suspicious Download using IEX | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5009334` | `azureEventHub_windows-powershell.rules` | Azure and Microsoft 365 | [WINDOWS-POWERSHELL] Anti-virus Has Blocked Malicious Content | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5009758` | `azureEventHub_windows-security.rules` | Azure and Microsoft 365 | [WINDOWS-SECURITY] A user's local group membership was enumerated | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5009759` | `azureEventHub_windows-security.rules` | Azure and Microsoft 365 | [WINDOWS-SECURITY] A user's local group membership was enumerated (Domain Groups) | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5009796` | `azureEventHub_windows-sysmon.rules` | Azure and Microsoft 365 | [WINDOWS-SYSMON] Possible Command To Disable Crash Logging Detected | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5005962` | `linux-kernel.rules` | Unix and Linux | [LINUX-POLKIT] POSSIBLE POLKIT PRIVILEGE ESCALATION ATTEMPT (CVE-2021-4034) | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5005963` | `linux-kernel.rules` | Unix and Linux | [LINUX-POLKIT] POSSIBLE POLKIT PRIVILEGE ESCALATION ATTEMPT (CVE-2021-4034) | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5005964` | `linux-kernel.rules` | Unix and Linux | [LINUX-POLKIT] POLKIT PRIVILEGE ESCALATION ATTEMPT (CVE-2021-4034) | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5005965` | `linux-kernel.rules` | Unix and Linux | [LINUX-POLKIT] POLKIT PRIVILEGE ESCALATION ATTEMPT (CVE-2021-4034) | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5010287` | `netwrix.rules` | Network and firewalls | [NETWRIX] Active Directory Security Group Added | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5010289` | `netwrix.rules` | Network and firewalls | [NETWRIX] Active Directory Member Added to Security Group | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5010339` | `netwrix.rules` | Network and firewalls | [NETWRIX] Active Directory Computer Modified Encryption Type: 0x17 | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5011308` | `netwrix.rules` | Network and firewalls | [NETWRIX] Active Directory User Added | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003970` | `openssh-aetas.rules` | Unix and Linux | [OPENSSH-AETAS] Authentication success at suspicious time | `depth` | the rule constrains a byte position that changes what matches (depth:10); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003971` | `openssh-bluedot.rules` | Unix and Linux | [OPENSSH-BLUEDOT] Authentication success from suspicious source | `depth` | the rule constrains a byte position that changes what matches (depth:10); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003973` | `openssh-correlated.rules` | Unix and Linux | [OPENSSH-CORRELATED] Authentication success after exploit attempt | `depth` | the rule constrains a byte position that changes what matches (depth:10); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003974` | `openssh-correlated.rules` | Unix and Linux | [OPENSSH-CORRELATED] Authentication success after brute force activity | `depth` | the rule constrains a byte position that changes what matches (depth:10); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003975` | `openssh-correlated.rules` | Unix and Linux | [OPENSSH-CORRELATED] Authentication success after recon activity | `depth` | the rule constrains a byte position that changes what matches (depth:10); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003969` | `openssh-geoip.rules` | Unix and Linux | [OPENSSH] Authentication success from outside HOME_COUNTRY | `depth` | the rule constrains a byte position that changes what matches (depth:10); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003938` | `rsa-dpm.rules` | Unclassified | [RSA-DPM] Physical Memory status Yellow | `distance` | the rule constrains a byte position that changes what matches (distance:45); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003939` | `rsa-dpm.rules` | Unclassified | [RSA-DPM] Physical Memory status RED [Critical] | `distance` | the rule constrains a byte position that changes what matches (distance:45); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003940` | `rsa-dpm.rules` | Unclassified | [RSA-DPM] Swap-Memory Memory status Yellow | `distance` | the rule constrains a byte position that changes what matches (distance:45); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003941` | `rsa-dpm.rules` | Unclassified | [RSA-DPM] Swap-Memory Memory status Red [Critical] | `distance` | the rule constrains a byte position that changes what matches (distance:45); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003942` | `rsa-dpm.rules` | Unclassified | [RSA-DPM] Disk status Yellow | `distance` | the rule constrains a byte position that changes what matches (distance:25); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003943` | `rsa-dpm.rules` | Unclassified | [RSA-DPM] Disk status Red - [Critical] | `distance` | the rule constrains a byte position that changes what matches (distance:25); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003944` | `rsa-dpm.rules` | Unclassified | [RSA-DPM] CPU status Yellow | `distance` | the rule constrains a byte position that changes what matches (distance:20); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5003945` | `rsa-dpm.rules` | Unclassified | [RSA-DPM] CPU status Red - [Critical] | `distance` | the rule constrains a byte position that changes what matches (distance:20); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5001821` | `web-attack.rules` | Applications and web | [WEB-ATTACKS] Suspicious User-Agent Containing Web Scan/er, Likely Web Scanner | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5001822` | `web-attack.rules` | Applications and web | [WEB-ATTACKS] Suspicious User-Agent Containing Security Scan/ner, Likely Scan | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5001826` | `web-attack.rules` | Applications and web | [WEB-ATTACKS] WebHack Control Center User-Agent Inbound (WHCC/) | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5001840` | `web-attack.rules` | Applications and web | [WEB-ATTACKS] ZmEu Scanner User-Agent Inbound | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5005987` | `windows-malware.rules` | Windows | [WINDOWS-MALWARE] Object Downloaded to Temp Directory with .temp File Extention | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translatio |
-| `5005991` | `windows-malware.rules` | Windows | [WINDOWS-MALWARE] PARTYTICKET Function Detected(1/2) | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5005984` | `windows-powershell.rules` | Windows | [WINDOWS-POWERSHELL] Suspicious Pingtest | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translatio |
-| `5007214` | `windows-security.rules` | Windows | [WINDOWS-SECURITY] A user's local group membership was enumerated | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5007215` | `windows-security.rules` | Windows | [WINDOWS-SECURITY] A user's local group membership was enumerated (Domain Groups) | `distance` | the rule constrains a byte position that changes what matches (distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
-| `5005993` | `windows-sysmon.rules` | Windows | [WINDOWS-SYSMON] Possible Command To Disable Crash Logging Detected | `distance` | the rule constrains a byte position that changes what matches (distance:1, distance:1); Sigma string modifiers cannot express a byte distance, so no faithful translation exists |
 
 </details>
 
@@ -1356,12 +1311,12 @@ The regular expression uses a PCRE construct the Rust engine cannot express and 
 
 </details>
 
-### `E_TIME_WINDOW` (29 rules)
+### `E_TIME_WINDOW` (30 rules)
 
 The rule only fires on given weekdays or hour ranges (alert_time). Sigma has no recurring-time operator, so this is refused unless --profile vector-enriched is used, whose bundled time transform supplies the weekday and hour-of-day fields the window matches on.
 
 <details>
-<summary>Show the 29 refused rules</summary>
+<summary>Show the 30 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -1387,6 +1342,7 @@ The rule only fires on given weekdays or hour ranges (alert_time). Sigma has no 
 | `5002047` | `juniper-aetas.rules` | Network and firewalls | [JUNIPER-AETAS] VPN Login at suspicious time | `alert_time` | alert_time needs weekday and hour fields, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled time transform |
 | `5002048` | `juniper-aetas.rules` | Network and firewalls | [JUNIPER-AETAS] VPN Logout at suspicious time | `alert_time` | alert_time needs weekday and hour fields, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled time transform |
 | `5017985` | `juniper-aetas.rules` | Network and firewalls | [JUNIPER] Suspicious - Unknown Application Activity Outside Business Hours | `alert_time` | alert_time needs weekday and hour fields, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled time transform |
+| `5003970` | `openssh-aetas.rules` | Unix and Linux | [OPENSSH-AETAS] Authentication success at suspicious time | `alert_time` | alert_time needs weekday and hour fields, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled time transform |
 | `5002052` | `proftpd-aetas.rules` | Applications and web | [PROFTPD-AETAS] Authentication success at suspicious time | `alert_time` | alert_time needs weekday and hour fields, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled time transform |
 | `5002053` | `riverbed-aetas.rules` | Network and firewalls | [RIVERBED-AETAS] Administrator Login at suspicious time | `alert_time` | alert_time needs weekday and hour fields, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled time transform |
 | `5017977` | `sonicwall.rules` | Network and firewalls | [SONICWALL] Suspicious - Unknown Application Activity Outside Business Hours | `alert_time` | alert_time needs weekday and hour fields, which only the vector-enriched profile supplies. Convert with --profile vector-enriched and deploy the bundled time transform |
@@ -1397,12 +1353,12 @@ The rule only fires on given weekdays or hour ranges (alert_time). Sigma has no 
 
 </details>
 
-### `E_STATE_ABSENCE` (6 rules)
+### `E_STATE_ABSENCE` (7 rules)
 
 The rule requires that an earlier event did NOT happen (xbits or flexbits isnotset). Sigma cannot express a negative correlation.
 
 <details>
-<summary>Show the 6 refused rules</summary>
+<summary>Show the 7 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -1412,6 +1368,21 @@ The rule requires that an earlier event did NOT happen (xbits or flexbits isnots
 | `5003125` | `nxlog.rules` | Unclassified | [NXLOG] Service restart to correct problem [CLEAR XBIT] | `flexbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
 | `5002011` | `windows-malware.rules` | Windows | [WINDOWS-MALWARE] System protection disabled | `flexbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
 | `5015930` | `windows-misc.rules` | Windows | [WINDOWS-MISC] NXLog has Stopped On Host | `xbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
+| `9870004` | `windows-security.rules` | Windows | [EXPERIMENTAL][WINDOWS-SECURITY] SMB - Anonymous Access Denied to ADMIN$ Share | `xbits` | the rule requires that an earlier event did not occur; Sigma cannot express a negative correlation |
+
+</details>
+
+### `E_POSITIONAL` (2 rules)
+
+The rule constrains where a pattern sits in the log line, in a way this converter will not translate. A non-zero offset, depth or distance on a content is translated: the engine computes that window from the rule alone, so it is emitted as an anchored regular expression and reported as D_POSITIONAL_WINDOW. What is refused is the same constraint on a meta_content, whose window the engine computes elsewhere and this converter has not measured, and a window too short to hold the value searched for, which never fires in Sagan either. A zero-valued positional is a no-op in the engine and is converted.
+
+<details>
+<summary>Show the 2 refused rules</summary>
+
+| SID | Source file | Family | Title | Keywords | Detail |
+| --- | --- | --- | --- | --- | --- |
+| `5009758` | `azureEventHub_windows-security.rules` | Azure and Microsoft 365 | [WINDOWS-SECURITY] A user's local group membership was enumerated | `within, depth` | the 15-byte window the positional modifiers leave cannot hold the 16-byte value the content searches for, so the rule never fires in Sagan either |
+| `5009759` | `azureEventHub_windows-security.rules` | Azure and Microsoft 365 | [WINDOWS-SECURITY] A user's local group membership was enumerated (Domain Groups) | `within, depth` | the 15-byte window the positional modifiers leave cannot hold the 16-byte value the content searches for, so the rule never fires in Sagan either |
 
 </details>
 

@@ -1,0 +1,34 @@
+title: '[OPENSSH-AETAS] Authentication success at suspicious time'
+id: 605ac559-3345-5420-8611-865c4b119117
+status: experimental
+description: Converted from Sagan rule SID 5003970 (rev 1), file openssh-aetas.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    sagan_raw|re|s|i: ^.{0,3}accepted
+  selection_2:
+    - appname|cased: sshd
+    - syslog_appname|cased: sshd
+  at_days:
+    sagan_event_weekday:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+  at_from:
+    sagan_event_hhmm|gte: 700
+  at_to:
+    sagan_event_hhmm|lte: 1800
+  condition: selection_1 and selection_2 and (at_days and at_from and at_to)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5003970'
+  sagan.rev: '1'
+  sagan.source_file: openssh-aetas.rules

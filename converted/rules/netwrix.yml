@@ -1,3 +1,115 @@
+title: '[NETWRIX] Active Directory Security Group Added'
+id: c4dd6add-e273-5313-8401-09f0a465e5a7
+status: experimental
+description: Converted from Sagan rule SID 5010287 (rev 1), file netwrix.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: Netwrix_Auditor_Integration
+  selection_2:
+    _raw|contains|cased: 'Active Directory Action : Added'
+  selection_3:
+    _raw|re|s: ^.{2}.*Message:\ Added\ group
+  selection_4:
+    _raw|contains|cased: 'Group Type: "Universal Security Group"'
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5010287'
+  sagan.rev: '1'
+  sagan.source_file: netwrix.rules
+---
+title: '[NETWRIX] Active Directory Member Added to Security Group'
+id: 9759a5f3-1251-5ab6-a5d0-9103c8b563c8
+status: experimental
+description: Converted from Sagan rule SID 5010289 (rev 1), file netwrix.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: Netwrix_Auditor_Integration
+  selection_2:
+    _raw|contains|cased: 'Active Directory Action : Modified'
+  selection_3:
+    _raw|re|s: ^.{2}.*Message:\ Modified\ group
+  selection_4:
+    _raw|contains|cased: 'Details : Security Universal Group'
+  selection_5:
+    _raw|contains|cased: 'Added:'
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5010289'
+  sagan.rev: '1'
+  sagan.source_file: netwrix.rules
+---
+title: '[NETWRIX] Active Directory Computer Modified Encryption Type: 0x17'
+id: e9d210b9-bc52-53a6-a92f-e22457e5f905
+status: experimental
+description: Converted from Sagan rule SID 5010339 (rev 1), file netwrix.rules.
+references:
+  - https://redsiege.com/tools-techniques/2020/10/detecting-kerberoasting/
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: Netwrix_Auditor_Integration
+  selection_2:
+    _raw|contains|cased: 'Active Directory Action : Modified'
+  selection_3:
+    _raw|re|s: ^.{2}.*Message:\ Modified\ computer
+  selection_4:
+    _raw|contains|cased: Supported Encryption Type changed to "23"
+  condition: selection_1 and selection_2 and selection_3 and selection_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.system-event
+custom_attributes:
+  sagan.sid: '5010339'
+  sagan.rev: '1'
+  sagan.source_file: netwrix.rules
+---
+title: '[NETWRIX] Active Directory User Added'
+id: cb3760ec-7eec-5a5e-a5e4-74b074b5875e
+status: experimental
+description: Converted from Sagan rule SID 5011308 (rev 1), file netwrix.rules.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  selection_1:
+    appname|cased: Netwrix_Auditor_Integration
+  selection_2:
+    _raw|contains|cased: 'Active Directory Action : Added'
+  selection_3:
+    _raw|re|s: ^.{2}.*Message:\ Added\ user
+  filter_4:
+    _raw|contains|cased: 'Details : Security Universal Group'
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - sagan.classtype.successful-user
+custom_attributes:
+  sagan.sid: '5011308'
+  sagan.rev: '1'
+  sagan.source_file: netwrix.rules
+---
 title: '[NETWRIX] User Activity (Video) - Activated Window - Powershell'
 id: 90883046-bdf4-52e3-b97c-524a1b4786b5
 status: experimental
