@@ -899,7 +899,7 @@ level: high
 title: '[MSAPI-AZUREAD] Suspicious Device Registration - Add Registered Owner with Anomalous Hostname'
 id: ed184e64-82f6-5c54-a779-ed59421ce522
 status: experimental
-description: Converted from Sagan rule SID 5018001 (rev 3), file msapi-azuread.rules.
+description: Converted from Sagan rule SID 5018001 (rev 4), file msapi-azuread.rules.
 references:
   - https://attack.mitre.org/techniques/T1098/005/
 author: sagan2sigma
@@ -915,7 +915,7 @@ detection:
   selection_4:
     sagan_raw|contains|cased: NewValue
   selection_5:
-    sagan_raw|re: DESKTOP-[A-Z0-9]{6}|DESKTOP-[A-Z0-9]{8}
+    sagan_raw|re: DESKTOP-[A-Z0-9]{6}\b|DESKTOP-[A-Z0-9]{8}\b
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -924,15 +924,15 @@ tags:
   - sagan.classtype.suspicious-activity
 custom_attributes:
   sagan.sid: '5018001'
-  sagan.rev: '3'
+  sagan.rev: '4'
   sagan.source_file: msapi-azuread.rules
   rsigma.suppress: 1h
-  sagan.metadata: createdOn=2026_06_29,updatedOn=2026_09_17
+  sagan.metadata: createdOn=2026_06_29,updatedOn=2026_09_18
 ---
 title: '[MSAPI-AZUREAD] Suspicious Device Registration - Add Registered User with Anomalous Hostname'
 id: 08c172d1-020f-501f-ac67-b06a60437bea
 status: experimental
-description: Converted from Sagan rule SID 5018002 (rev 3), file msapi-azuread.rules.
+description: Converted from Sagan rule SID 5018002 (rev 4), file msapi-azuread.rules.
 references:
   - https://attack.mitre.org/techniques/T1098/005/
 author: sagan2sigma
@@ -948,7 +948,7 @@ detection:
   selection_4:
     sagan_raw|contains|cased: NewValue
   selection_5:
-    sagan_raw|re: DESKTOP-[A-Z0-9]{6}|DESKTOP-[A-Z0-9]{8}
+    sagan_raw|re: DESKTOP-[A-Z0-9]{6}\b|DESKTOP-[A-Z0-9]{8}\b
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -957,10 +957,10 @@ tags:
   - sagan.classtype.suspicious-activity
 custom_attributes:
   sagan.sid: '5018002'
-  sagan.rev: '3'
+  sagan.rev: '4'
   sagan.source_file: msapi-azuread.rules
   rsigma.suppress: 1h
-  sagan.metadata: createdOn=2026_06_29,updatedOn=2026_09_17
+  sagan.metadata: createdOn=2026_06_29,updatedOn=2026_09_18
 ---
 title: '[EXPERIMENTAL][COPILOT] Possible CoPilot Jailbreak Detected'
 id: 9ab48dab-5f30-5760-8d86-90c39a91e9a4

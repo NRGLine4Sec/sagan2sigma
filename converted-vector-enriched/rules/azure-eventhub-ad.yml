@@ -794,7 +794,7 @@ title: '[AZURE-EVENTHUB-AD] Suspicious Device Registration - Add Registered User
   Hostname'
 id: a2e34882-3338-5ad3-95de-8b5bb2785f9a
 status: experimental
-description: Converted from Sagan rule SID 5017992 (rev 3), file azure-eventhub-ad.rules.
+description: Converted from Sagan rule SID 5017992 (rev 4), file azure-eventhub-ad.rules.
 references:
   - https://attack.mitre.org/techniques/T1098/005/
   - https://research.eye.security/device-code-phishing-forensics/
@@ -811,7 +811,7 @@ detection:
   selection_4:
     sagan_raw|contains|cased: displayName
   selection_5:
-    sagan_raw|re: DESKTOP-[A-Z0-9]{6}|DESKTOP-[A-Z0-9]{8}
+    sagan_raw|re: DESKTOP-[A-Z0-9]{6}\b|DESKTOP-[A-Z0-9]{8}\b
   condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -820,10 +820,10 @@ tags:
   - sagan.classtype.suspicious-activity
 custom_attributes:
   sagan.sid: '5017992'
-  sagan.rev: '3'
+  sagan.rev: '4'
   sagan.source_file: azure-eventhub-ad.rules
   rsigma.suppress: 1h
-  sagan.metadata: updatedOn=2026_09_16
+  sagan.metadata: updatedOn=2026_09_18
 ---
 title: '[AZURE-EVENTHUB-AD] Device Registration Attempt Following Device-Code Refresh Token Theft [FLEXBIT
   CORRELATED]'
@@ -874,7 +874,7 @@ level: high
 title: '[AZURE-EVENTHUB-AD] Suspicious Device Registration - Add Registered User with Anomalous Hostname'
 id: 50de3290-dc99-52b3-9d05-8eaf5b9408fc
 status: experimental
-description: Converted from Sagan rule SID 5017999 (rev 3), file azure-eventhub-ad.rules.
+description: Converted from Sagan rule SID 5017999 (rev 4), file azure-eventhub-ad.rules.
 references:
   - https://attack.mitre.org/techniques/T1098/005/
 author: sagan2sigma
@@ -888,7 +888,7 @@ detection:
   selection_3:
     sagan_raw|contains|cased: newValue
   selection_4:
-    sagan_raw|re: DESKTOP-[A-Z0-9]{6}|DESKTOP-[A-Z0-9]{8}
+    sagan_raw|re: DESKTOP-[A-Z0-9]{6}\b|DESKTOP-[A-Z0-9]{8}\b
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -897,15 +897,15 @@ tags:
   - sagan.classtype.suspicious-activity
 custom_attributes:
   sagan.sid: '5017999'
-  sagan.rev: '3'
+  sagan.rev: '4'
   sagan.source_file: azure-eventhub-ad.rules
   rsigma.suppress: 1h
-  sagan.metadata: updatedOn=2026_09_17
+  sagan.metadata: updatedOn=2026_09_18
 ---
 title: '[AZURE-EVENTHUB-AD] Suspicious Device Registration - Add Registered Owner with Anomalous Hostname'
 id: db918967-9806-52c0-bd44-31a90c142559
 status: experimental
-description: Converted from Sagan rule SID 5018000 (rev 3), file azure-eventhub-ad.rules.
+description: Converted from Sagan rule SID 5018000 (rev 4), file azure-eventhub-ad.rules.
 references:
   - https://attack.mitre.org/techniques/T1098/005/
 author: sagan2sigma
@@ -919,7 +919,7 @@ detection:
   selection_3:
     sagan_raw|contains|cased: newValue
   selection_4:
-    sagan_raw|re: DESKTOP-[A-Z0-9]{6}|DESKTOP-[A-Z0-9]{8}
+    sagan_raw|re: DESKTOP-[A-Z0-9]{6}\b|DESKTOP-[A-Z0-9]{8}\b
   condition: selection_1 and selection_2 and selection_3 and selection_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
@@ -928,7 +928,7 @@ tags:
   - sagan.classtype.suspicious-activity
 custom_attributes:
   sagan.sid: '5018000'
-  sagan.rev: '3'
+  sagan.rev: '4'
   sagan.source_file: azure-eventhub-ad.rules
   rsigma.suppress: 1h
-  sagan.metadata: updatedOn=2026_09_17
+  sagan.metadata: updatedOn=2026_09_18

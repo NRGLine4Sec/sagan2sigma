@@ -4349,7 +4349,7 @@ custom_attributes:
 title: '[DYNAMIC] Netscaler Logs Detected'
 id: c900b68a-a1c5-5df7-ad20-d9815b03986f
 status: experimental
-description: Converted from Sagan rule SID 5017209 (rev 2), file dynamic.rules.
+description: Converted from Sagan rule SID 5017209 (rev 3), file dynamic.rules.
 author: sagan2sigma
 logsource:
   product: syslog
@@ -4366,12 +4366,15 @@ detection:
     sagan_raw|contains|cased: '"PlatformType":"PRISMA_ACCESS"'
   filter_6:
     sagan_raw|contains|cased: CNAME
-  selection_7:
+  filter_7:
+    sagan_raw|contains|cased: (AAAA)"
+  selection_8:
     sagan_raw|contains|cased:
       - SSL VPN
       - AAA
       - LB AUDIT
-  condition: selection_1 and selection_7 and not (filter_2 or filter_3 or filter_4 or filter_5 or filter_6)
+  condition: selection_1 and selection_8 and not (filter_2 or filter_3 or filter_4 or filter_5 or filter_6
+    or filter_7)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -4379,9 +4382,9 @@ tags:
   - sagan.classtype.dynamic-rules
 custom_attributes:
   sagan.sid: '5017209'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: dynamic.rules
-  sagan.metadata: updatedOn=2026_06_30
+  sagan.metadata: updatedOn=2026_09_23
 ---
 title: '[DYNAMIC] Confluence Kafka Logs Detected'
 id: 64b8cb7c-b45a-5e0f-95c2-cfdda7503f56

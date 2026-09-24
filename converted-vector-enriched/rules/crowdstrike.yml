@@ -1670,7 +1670,7 @@ custom_attributes:
 title: '[CROWDSTRIKE] An IP Address matched a Custom Intelligence Indicator (Custom IOC).'
 id: 853676b6-0dcd-5844-ba2c-253151eaf6c1
 status: experimental
-description: Converted from Sagan rule SID 5016641 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5016641 (rev 2), file crowdstrike.rules.
 references:
   - https://www.reddit.com/r/crowdstrike/comments/rbbzwi/pattern_disposition_values_in_detect_api/
 author: sagan2sigma
@@ -1678,12 +1678,13 @@ logsource:
   product: crowdstrike
 detection:
   selection_1:
-    - appname|cased: CrowdStrike
     - syslog_appname|cased: CrowdStrike
+    - appname|cased: CrowdStrike
   selection_2:
-    sagan_raw|contains|cased: msg=An IP Address matched a Custom Intelligence Indicator (Custom IOC) with
-      informational severity.
-  condition: selection_1 and selection_2
+    sagan_raw|contains|cased: msg=An IP Address matched a Custom Intelligence Indicator (Custom IOC)
+  filter_3:
+    sagan_raw|contains|cased: with informational severity.
+  condition: selection_1 and selection_2 and not filter_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1691,9 +1692,10 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5016641'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
-  sagan.metadata: created_at=2025_06_25,updated_at=2026_03_16
+  rsigma.suppress: 1h
+  sagan.metadata: created_at=2025_06_25,updated_at=2026_09_23
 ---
 title: '[CROWDSTRIKE] A web-based activity was detected as anomalous by ML model'
 id: 2f5a9052-4e79-5d6a-b3ff-adde639856bd
@@ -3899,7 +3901,7 @@ title: '[CROWDSTRIKE] Custom Intelligence Indicator Detected - Network Access In
   Event'
 id: 1ac2df8d-106b-5ac3-8b4a-18808b042f45
 status: experimental
-description: Converted from Sagan rule SID 5017491 (rev 1), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5017491 (rev 2), file crowdstrike.rules.
 author: sagan2sigma
 logsource:
   product: crowdstrike
@@ -3935,8 +3937,9 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5017491'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
+  rsigma.suppress: 1h
 ---
 title: '[CROWDSTRIKE] Custom Intelligence Indicator Blocked - Process Triggered High Severity Custom Rule'
 id: 6c7cfb0a-825f-58d3-aa62-87298ff5b9db
