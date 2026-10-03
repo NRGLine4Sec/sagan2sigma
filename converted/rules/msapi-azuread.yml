@@ -150,6 +150,38 @@ custom_attributes:
   sagan.source_file: msapi-azuread.rules
   sagan.metadata: created_on=2024_05_15
 ---
+title: '[MSAPI-AZUREAD] Sign-In to Visual Studio Dev Tunnels Service'
+id: 9e029592-cb5c-5cd0-9747-897060a089d6
+status: experimental
+description: Converted from Sagan rule SID 5017172 (rev 4), file msapi-azuread.rules.
+references:
+  - https://github.com/microsoft/dev-tunnels/blob/main/go/tunnels/tunnel_service_properties.go
+  - https://cybersecuritynews.com/hackers-abusing-microsoft-vscode-remote-tunnels/
+author: sagan2sigma
+logsource:
+  product: m365
+detection:
+  selection_1:
+    Workload|cased: AzureActiveDirectory
+  selection_2:
+    Operation|cased: UserLoggedIn
+  selection_3:
+    ObjectId|cased: 46da2f7e-b5ef-422a-88d4-2a7f9de6a0b2
+  condition: selection_1 and selection_2 and selection_3
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - attack.t1572
+  - attack.ta0011
+  - sagan.classtype.suspicious-activity
+custom_attributes:
+  sagan.sid: '5017172'
+  sagan.rev: '4'
+  sagan.source_file: msapi-azuread.rules
+  rsigma.suppress: 7d
+  sagan.metadata: createdOn=2025_05_07,updatedOn=2026_10_02
+---
 title: '[COPILOT] Possible CoPilot Jailbreak Detected'
 id: d6de6092-baf3-5180-9356-0780717d407c
 status: experimental
@@ -193,6 +225,8 @@ detection:
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
+tags:
+  - sagan.classtype.suspicious-activity
 custom_attributes:
   sagan.sid: '5018008'
   sagan.rev: '2'

@@ -346,11 +346,12 @@ custom_attributes:
   sagan.source_file: msapi-azuread.rules
   sagan.metadata: created_on=2026_08_28
 ---
-title: '[MSAPI-AZUREAD] VSCode Tunnel Detected - Critical'
+title: '[MSAPI-AZUREAD] Sign-In to Visual Studio Dev Tunnels Service'
 id: 9e029592-cb5c-5cd0-9747-897060a089d6
 status: experimental
-description: Converted from Sagan rule SID 5017172 (rev 3), file msapi-azuread.rules.
+description: Converted from Sagan rule SID 5017172 (rev 4), file msapi-azuread.rules.
 references:
+  - https://github.com/microsoft/dev-tunnels/blob/main/go/tunnels/tunnel_service_properties.go
   - https://cybersecuritynews.com/hackers-abusing-microsoft-vscode-remote-tunnels/
 author: sagan2sigma
 logsource:
@@ -361,24 +362,21 @@ detection:
   selection_2:
     Operation|cased: UserLoggedIn
   selection_3:
-    ApplicationId|cased: aebc6443-996d-45c2-90f0-388ff96faa56
-  selection_4:
-    sagan_raw|contains|cased:
-      - OAuth2:Token
-      - OAuth2:Authorize
-      - SAS:ProcessAuth
-  condition: selection_1 and selection_2 and selection_3 and selection_4
+    ObjectId|cased: 46da2f7e-b5ef-422a-88d4-2a7f9de6a0b2
+  condition: selection_1 and selection_2 and selection_3
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
-level: high
+level: medium
 tags:
+  - attack.t1572
+  - attack.ta0011
   - sagan.classtype.suspicious-activity
 custom_attributes:
   sagan.sid: '5017172'
-  sagan.rev: '3'
+  sagan.rev: '4'
   sagan.source_file: msapi-azuread.rules
-  rsigma.suppress: 1h
-  sagan.metadata: createdOn=2025_05_07,updatedOn=2025_09_05,mitre_technique=InitialAccess
+  rsigma.suppress: 7d
+  sagan.metadata: createdOn=2025_05_07,updatedOn=2026_10_02
 ---
 title: '[MSAPI-AZUREAD] User Login Failed Because Strong Auth Requirement w/ Check Me Signed In'
 id: dcdbf223-b472-5dfd-a360-56a5ad830296
@@ -1007,6 +1005,8 @@ detection:
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
+tags:
+  - sagan.classtype.suspicious-activity
 custom_attributes:
   sagan.sid: '5018008'
   sagan.rev: '2'

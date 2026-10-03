@@ -7,11 +7,11 @@
 | Rule files processed | 343 |
 | Active rules parsed | 10026 |
 | Commented-out rules skipped | 9446 |
-| Rules converted | 8747 (87.2%) |
-| Rules refused | 1279 (12.8%) |
+| Rules converted | 8748 (87.3%) |
+| Rules refused | 1278 (12.7%) |
 | Lines that failed to parse | 0 |
 | Synthetic rules added | 10 |
-| Sigma documents emitted | 9561 |
+| Sigma documents emitted | 9562 |
 | pySigma validation issues | 0 |
 | Output profile | `rsigma-syslog` |
 | Case policy | `faithful` |
@@ -26,7 +26,7 @@ logsource catalog. It answers which kinds of device caused trouble.
 | --- | ---: | ---: | ---: | ---: |
 | AWS | 534 | 101 | 84.1% | 534 |
 | Applications and web | 184 | 68 | 73.0% | 175 |
-| Azure and Microsoft 365 | 1352 | 402 | 77.1% | 557 |
+| Azure and Microsoft 365 | 1353 | 401 | 77.1% | 558 |
 | Endpoint and EDR | 985 | 57 | 94.5% | 978 |
 | Google Cloud | 68 | 8 | 89.5% | 62 |
 | Infrastructure | 189 | 25 | 88.3% | 189 |
@@ -42,10 +42,10 @@ logsource catalog. It answers which kinds of device caused trouble.
 
 | Code | Rules | Share | Meaning |
 | --- | ---: | ---: | --- |
-| `E_RAW_TEXT_ON_JSON_EVENT` | 499 | 39.0% | The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text. |
+| `E_RAW_TEXT_ON_JSON_EVENT` | 498 | 39.0% | The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text. |
 | `E_EXTERNAL_ENRICHMENT` | 385 | 30.1% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
 | `E_GROUPBY_UNRESOLVED` | 315 | 24.6% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
-| `E_PCRE_UNSUPPORTED` | 39 | 3.0% | The regular expression uses a PCRE construct the Rust engine cannot express and the converter cannot safely rewrite (recursion, look-around, back-references, control verbs). Recoverable constructs (numbered subroutines, literal braces, the whole-string negation idiom, inert flags) are rewritten instead of refused. |
+| `E_PCRE_UNSUPPORTED` | 39 | 3.1% | The regular expression uses a PCRE construct the Rust engine cannot express and the converter cannot safely rewrite (recursion, look-around, back-references, control verbs). Recoverable constructs (numbered subroutines, literal braces, the whole-string negation idiom, inert flags) are rewritten instead of refused. |
 | `E_TIME_WINDOW` | 30 | 2.3% | The rule only fires on given weekdays or hour ranges (alert_time). Sigma has no recurring-time operator, so this is refused unless --profile vector-enriched is used, whose bundled time transform supplies the weekday and hour-of-day fields the window matches on. |
 | `E_STATE_ABSENCE` | 7 | 0.5% | The rule requires that an earlier event did NOT happen (xbits or flexbits isnotset). Sigma cannot express a negative correlation. |
 | `E_POSITIONAL` | 2 | 0.2% | The rule constrains where a pattern sits in the log line, in a way this converter will not translate. A non-zero offset, depth or distance on a content is translated: the engine computes that window from the rule alone, so it is emitted as an anchored regular expression and reported as D_POSITIONAL_WINDOW. What is refused is the same constraint on a meta_content, whose window the engine computes elsewhere and this converter has not measured, and a window too short to hold the value searched for, which never fires in Sagan either. A zero-valued positional is a no-op in the engine and is converted. |
@@ -61,7 +61,7 @@ reproduced. They are worth reviewing before the ruleset goes live.
 | `D_RAW_TEXT_MATCH` | 5836 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
 | `D_LOGSOURCE_FALLBACK` | 1882 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
 | `D_EVENT_ID_HEURISTIC` | 1872 | Without a json_map for event_id, Sagan looks for ' <id>: ', with the surrounding spaces, in the first nine characters of the message, so an ID at the very start never matches. The converted rule assumes a proper EventID field instead, which fires on events the heuristic would have missed. Measured against a locally built engine. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
-| `D_THRESHOLD_SUPPRESS` | 1157 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
+| `D_THRESHOLD_SUPPRESS` | 1158 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
 | `D_PASS_SHORT_CIRCUIT` | 513 | The rule used the pass action. In Sagan a matching pass rule still emits an alert (Send_Alert runs before the pass check) and then stops evaluating the remaining signatures for that event. The detection is converted faithfully; only the short-circuit, the suppression of other rules on the same event, is not reproduced, since Sigma evaluates every rule independently. | `5016065`, `5016066`, `5016067`, `5016068`, `5016069` |
 | `D_GROUPBY_SYSLOG_HOST` | 387 | after track by_src with no IP extraction: Sagan falls back to the syslog sender, so grouping is per emitting host, not per attacker IP. | `5002943`, `5002944`, `5008539`, `5009793`, `5003977` |
 | `D_SIDE_EFFECT_DROPPED` | 233 | Engine-specific side effect (external, email, dynamic_load, unset) with no Sigma equivalent. | `5008539`, `5003022`, `5003023`, `5002959`, `5002960` |
@@ -123,12 +123,12 @@ correlation resolved the rules it references.
 
 ## Refused rules
 
-### `E_RAW_TEXT_ON_JSON_EVENT` (499 rules)
+### `E_RAW_TEXT_ON_JSON_EVENT` (498 rules)
 
 The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text.
 
 <details>
-<summary>Show 400 of the 499 refused rules</summary>
+<summary>Show 400 of the 498 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -348,7 +348,6 @@ The rule searches the raw message body while also using JSON operators. When the
 | `5004858` | `msapi-azuread.rules` | Azure and Microsoft 365 | [MSAPI-AZUREAD] User Login Failed - Brute Force [5/5] | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5013580` | `msapi-azuread.rules` | Azure and Microsoft 365 | [MSAPI-AZUREAD] Successful Login after Brute Force | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5014644` | `msapi-azuread.rules` | Azure and Microsoft 365 | [MSAPI-AZUREAD] CRITICAL - Global Administrator role assigned to Member | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| `5017172` | `msapi-azuread.rules` | Azure and Microsoft 365 | [MSAPI-AZUREAD] VSCode Tunnel Detected - Critical | `meta_content` | meta_content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding |
 | `5017903` | `msapi-azuread.rules` | Azure and Microsoft 365 | [MSAPI-AZUREAD] User Login Failed Because Strong Auth Requirement w/ Check Me Signed In | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5017904` | `msapi-azuread.rules` | Azure and Microsoft 365 | [MSAPI-AZUREAD] User Login Failed Because External Challenge Requirement w/ Check Me Signe | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5017905` | `msapi-azuread.rules` | Azure and Microsoft 365 | [MSAPI-AZUREAD] Login Blocked by Conditional Access Policy w/ CMSI | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
@@ -532,7 +531,8 @@ The rule searches the raw message body while also using JSON operators. When the
 | `5005039` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] ShareReport from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5005040` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] UnpublishApp from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
 | `5005041` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] UnpublishApp from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
-| ... | ... | ... | *99 more rows omitted, see the JSON report* | | |
+| `5005042` | `msapi-powerbi-geoip.rules` | Azure and Microsoft 365 | [MSAPI-POWERBI-GEOIP] UpdateApp from outside HOME_COUNTRY | `content` | content searches the raw body while the rule also uses JSON operators; on a JSON-bodied event there is no raw field to search. Add json_map binding message to the key holding the t |
+| ... | ... | ... | *98 more rows omitted, see the JSON report* | | |
 
 </details>
 
