@@ -1705,7 +1705,7 @@ custom_attributes:
 title: '[CROWDSTRIKE] Collection Tactic Catchall'
 id: db38d00e-452d-53a3-a7c9-ed67bcff5e96
 status: experimental
-description: Converted from Sagan rule SID 5016642 (rev 5), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5016642 (rev 6), file crowdstrike.rules.
 references:
   - https://www.reddit.com/r/crowdstrike/comments/rbbzwi/pattern_disposition_values_in_detect_api/
 author: sagan2sigma
@@ -1725,13 +1725,16 @@ detection:
   filter_6:
     _raw|contains|cased: Network Access In An Epp Detection Summary Event
   filter_7:
-    _raw|contains|cased: '|MitreAttack|'
+    _raw|contains|cased: duser=AWSControlTowerExecution msg=A Lambda layer version has had a permission
+      added to allow public use of the Lambda layer
   filter_8:
+    _raw|contains|cased: '|MitreAttack|'
+  filter_9:
     _raw|contains|cased:
       - Network Access In A Detection Summary Event
       - Document Access In A Detection Summary Event
   condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6 or filter_7
-    or filter_8)
+    or filter_8 or filter_9)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -1739,9 +1742,9 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5016642'
-  sagan.rev: '5'
+  sagan.rev: '6'
   sagan.source_file: crowdstrike.rules
-  sagan.metadata: created_at=2025_06_25,updated_at=2026_09_28
+  sagan.metadata: created_at=2025_06_25,updated_at=2026_10_06
 ---
 title: '[CROWDSTRIKE] Command and Control Tactic Catchall'
 id: d10b7ed7-b106-5719-95ff-35fee72ed467
@@ -2218,7 +2221,7 @@ custom_attributes:
 title: '[CROWDSTRIKE] Machine Learning Tactic Catchall'
 id: d18019a7-34c1-5861-a32f-3cb81df4856f
 status: experimental
-description: Converted from Sagan rule SID 5016652 (rev 7), file crowdstrike.rules.
+description: Converted from Sagan rule SID 5016652 (rev 8), file crowdstrike.rules.
 references:
   - https://www.reddit.com/r/crowdstrike/comments/rbbzwi/pattern_disposition_values_in_detect_api/
 author: sagan2sigma
@@ -2241,8 +2244,10 @@ detection:
   filter_7:
     _raw|contains|cased: fname=build-script-build.exe
   filter_8:
-    _raw|contains|cased: '|MitreAttack|'
+    _raw|contains|cased: fname=build_script_build-
   filter_9:
+    _raw|contains|cased: '|MitreAttack|'
+  filter_10:
     _raw|contains|cased:
       - A file written to the file-system meets the cloud-based machine learning model high confidence
         threshold for malicious files
@@ -2254,21 +2259,21 @@ detection:
         for malicious files
       - An Office file with a macro written to the file system meets the File Analysis ML algorithm's
         high-confidence threshold for malware
-  filter_10:
+  filter_11:
     _raw|contains|cased:
       - Network Access In An Epp Detection Summary Event
       - Quarantined Files In A Detection Summary Event
       - Quarantined Files In An Epp Detection Summary Event
       - This file meets the Adware/PUP Anti-malware ML algorithm's high-confidence threshold
       - This file meets the File Analysis ML algorithm's high-confidence threshold for malware
-  filter_11:
+  filter_12:
     _raw|contains|cased:
       - This process wrote a suspicious file to disk. That associated file meets the Adware/PUP Anti-malware
         ML algorithm's high-confidence threshold
       - This process wrote a suspicious file to disk. That associated file meets the ML algorithm's high-confidence
         adware/PUP detection threshold
   condition: selection_1 and selection_2 and not (filter_3 or filter_4 or filter_5 or filter_6 or filter_7
-    or filter_8 or filter_9 or filter_10 or filter_11)
+    or filter_8 or filter_9 or filter_10 or filter_11 or filter_12)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -2276,9 +2281,9 @@ tags:
   - sagan.classtype.trojan-activity
 custom_attributes:
   sagan.sid: '5016652'
-  sagan.rev: '7'
+  sagan.rev: '8'
   sagan.source_file: crowdstrike.rules
-  sagan.metadata: created_at=2025_06_25,updated_at=2026_09_30
+  sagan.metadata: created_at=2025_06_25,updated_at=2026_10_06
 ---
 title: '[CROWDSTRIKE] Malware Tactic Catchall'
 id: 64d511db-db45-542c-8302-6c971daef689

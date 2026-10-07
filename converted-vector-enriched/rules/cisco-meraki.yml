@@ -627,14 +627,14 @@ custom_attributes:
 title: '[CISCO-MERAKI] SSID Configuration Change Detected'
 id: af9b56f4-dc23-5d4f-b164-4c01e1271a33
 status: experimental
-description: Converted from Sagan rule SID 5016038 (rev 1), file cisco-meraki.rules.
+description: Converted from Sagan rule SID 5016038 (rev 2), file cisco-meraki.rules.
 author: sagan2sigma
 logsource:
   product: cisco
 detection:
   selection_1:
-    - appname|cased: meraki_dashboard_api_data
     - syslog_appname|cased: meraki_dashboard_api_data
+    - appname|cased: meraki_dashboard_api_data
   selection_2:
     sagan_raw|contains: 'label": "ssid'
   condition: selection_1 and selection_2
@@ -645,8 +645,10 @@ tags:
   - sagan.classtype.system-event
 custom_attributes:
   sagan.sid: '5016038'
-  sagan.rev: '1'
+  sagan.rev: '2'
   sagan.source_file: cisco-meraki.rules
+  rsigma.suppress: 1d
+  sagan.metadata: createdOn=2025_06_09,updatedOn=2026_10_06
 ---
 title: '[CISCO-MERAKI] Firewall Policy/Configuration Change Detected'
 id: 38423c6f-b91e-5358-91d7-650a2ee8eb49
