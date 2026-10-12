@@ -2367,7 +2367,7 @@ custom_attributes:
 title: '[WINDOWS-POWERSHELL] Access to Firefox Login/Cookie Data'
 id: a7b97548-4781-5e6a-aa4d-4464bb3e3ee5
 status: experimental
-description: Converted from Sagan rule SID 5007152 (rev 2), file windows-powershell.rules.
+description: Converted from Sagan rule SID 5007152 (rev 3), file windows-powershell.rules.
 references:
   - https://github.com/SigmaHQ/sigma/blob/master/rules/windows/powershell/powershell_script/posh_ps_access_to_browser_login_data.yml
   - https://kylemistele.medium.com/stealing-saved-browser-passwords-your-new-favorite-post-exploitation-technique-c5e72c86159a
@@ -2376,8 +2376,8 @@ logsource:
   product: windows
 detection:
   selection_1:
-    - appname|cased: '*PowerShell*'
     - syslog_appname|cased: '*PowerShell*'
+    - appname|cased: '*PowerShell*'
   selection_2:
     EventID:
       - 400
@@ -2390,7 +2390,9 @@ detection:
     sagan_raw|contains: .default
   filter_5:
     sagan_raw|contains: C:\\ProgramData\\Microsoft\\Windows Defender Advanced Threat Protection
-  condition: selection_1 and selection_2 and selection_3 and selection_4 and not filter_5
+  filter_6:
+    sagan_raw|contains: Set-UserCacheJunctions.ps1
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and not (filter_5 or filter_6)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: high
@@ -2400,9 +2402,10 @@ tags:
   - sagan.classtype.suspicious-command
 custom_attributes:
   sagan.sid: '5007152'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: windows-powershell.rules
-  sagan.metadata: updated_at=2023_10_10
+  rsigma.suppress: 1h
+  sagan.metadata: updated_at=2026_10_12
 ---
 title: '[WINDOWS-POWERSHELL] Access to Microsoft Edge Login/Cookie Data'
 id: 6062755f-2da2-5ef0-a294-6ac31dd7e7d5
