@@ -2131,6 +2131,35 @@ custom_attributes:
   sagan.xbit: password-spray
   sagan.xbit_setters: '1'
 ---
+title: Aggregate of rules setting Sagan bit php_oom_prerinit
+id: b530fc0a-7f90-5bdc-8bee-23dd97c26d6e
+name: sagan_xbit_php_oom_prerinit
+status: experimental
+description: Synthetic rule. Sagan set the 'php_oom_prerinit' bit from 1 rule(s); since Sigma cannot express
+  an OR between correlated rules, their detections are gathered here. This rule is not meant to alert
+  on its own.
+author: sagan2sigma
+logsource:
+  product: syslog
+detection:
+  s1_selection_1:
+    _raw|contains|cased: Allowed memory size
+  s1_selection_2:
+    _raw|contains|cased: exhausted
+  s1_selection_3:
+    _raw|contains|cased: in Unknown on line 0
+  s1_selection_4:
+    appname|cased:
+      - apache
+      - httpd
+  condition: (s1_selection_1 and s1_selection_2 and s1_selection_3 and s1_selection_4)
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: informational
+custom_attributes:
+  sagan.xbit: php_oom_prerinit
+  sagan.xbit_setters: '1'
+---
 title: Aggregate of rules setting Sagan bit recon
 id: 4880c497-cf45-52f5-aabe-9414140ee9c8
 name: sagan_xbit_recon

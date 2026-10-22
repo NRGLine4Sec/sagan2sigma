@@ -1620,3 +1620,122 @@ custom_attributes:
   sagan.sid: '5005961'
   sagan.rev: '3'
   sagan.source_file: apache.rules
+---
+title: '[EXPERIMENTAL][APACHE] Worker process crashed with a segmentation fault'
+id: 3148bc71-30e9-5a78-816e-7254e9a36b0a
+status: experimental
+description: Converted from Sagan rule SID 5018011 (rev 1), file apache.rules.
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    sagan_raw|contains|cased: exit signal Segmentation fault
+  selection_2:
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: medium
+tags:
+  - sagan.classtype.program-error
+custom_attributes:
+  sagan.sid: '5018011'
+  sagan.rev: '1'
+  sagan.source_file: apache.rules
+  rsigma.suppress: 15m
+---
+title: '[EXPERIMENTAL][APACHE] Worker segfault shortly after a pre-RINIT PHP out-of-memory error on the
+  same host (high-confidence CVE-2026-109618/109619 exploitation attempt)'
+id: a1b922f5-df00-5530-b74a-12fdc838c052
+name: sagan_5018012
+status: experimental
+description: Converted from Sagan rule SID 5018012 (rev 1), file apache.rules.
+references:
+  - https://www.php.net/archive/2026.php#2026-10-21-5
+  - 2026-109618
+  - 2026-109619
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    sagan_raw|contains|cased: exit signal Segmentation fault
+  selection_2:
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1190
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5018012'
+  sagan.rev: '1'
+  sagan.source_file: apache.rules
+  rsigma.suppress: 1h
+---
+title: '[EXPERIMENTAL][APACHE] Worker segfault shortly after a pre-RINIT PHP out-of-memory error on the
+  same host (high-confidence CVE-2026-109618/109619 exploitation attempt) (correlated with php_oom_prerinit)'
+id: 177de87d-44ba-57b7-9932-2c41cfdae3d5
+status: experimental
+description: Reconstruction of the Sagan 'php_oom_prerinit' bit. The window comes from the expire time
+  declared by the rules that set the bit.
+correlation:
+  type: temporal_ordered
+  rules:
+    - b530fc0a-7f90-5bdc-8bee-23dd97c26d6e
+    - a1b922f5-df00-5530-b74a-12fdc838c052
+  group-by:
+    - hostname
+  timespan: 2m
+level: high
+---
+title: '[EXPERIMENTAL][APACHE] Request using the known public php2shell CVE-2026-109618/109619 exploit
+  tool''s default User-Agent'
+id: 22c02b70-dad1-5a4a-bab6-0ac6eec19b21
+status: experimental
+description: Converted from Sagan rule SID 5018013 (rev 1), file apache.rules.
+references:
+  - https://github.com/eness/php2shell-CVE-2026-109618-CVE-2026-109619-PoC
+  - 2026-109618
+  - 2026-109619
+author: sagan2sigma
+logsource:
+  product: apache
+  service: httpd
+detection:
+  selection_1:
+    sagan_raw|contains|cased: php2shell-109618
+  selection_2:
+    - appname|cased:
+        - '*apache*'
+        - httpd
+    - syslog_appname|cased:
+        - '*apache*'
+        - httpd
+  condition: selection_1 and selection_2
+falsepositives:
+  - 'Unassessed: automatically converted, not yet tuned'
+level: high
+tags:
+  - attack.t1190
+  - sagan.classtype.exploit-attempt
+custom_attributes:
+  sagan.sid: '5018013'
+  sagan.rev: '1'
+  sagan.source_file: apache.rules
+  rsigma.suppress: 1h
