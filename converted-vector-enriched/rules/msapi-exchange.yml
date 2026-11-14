@@ -1,7 +1,7 @@
 title: '[MSAPI-EXCHANGE] Data Loss Prevention Rule Match'
 id: 28bff3d3-e8af-56be-abfa-ac705d0f6a8e
 status: experimental
-description: Converted from Sagan rule SID 5004863 (rev 4), file msapi-exchange.rules.
+description: Converted from Sagan rule SID 5004863 (rev 6), file msapi-exchange.rules.
 author: sagan2sigma
 logsource:
   product: m365
@@ -10,9 +10,11 @@ detection:
     Workload|cased: Exchange
   selection_2:
     Operation|cased: DlpRuleMatch
-  filter_3:
+  selection_3:
+    sagan_raw|contains|cased: 'Severity": "High'
+  filter_4:
     sagan_raw|contains|cased: phisher.knowbe4.com
-  condition: selection_1 and selection_2 and not filter_3
+  condition: selection_1 and selection_2 and selection_3 and not filter_4
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -23,8 +25,9 @@ tags:
   - sagan.classtype.misc-attack
 custom_attributes:
   sagan.sid: '5004863'
-  sagan.rev: '4'
+  sagan.rev: '6'
   sagan.source_file: msapi-exchange.rules
+  sagan.metadata: created_at=2021_01_05,updated_at=2026_11_13
 ---
 title: '[MSAPI-EXCHANGE] Admin Audit New-InboxRule Created w/ Forwarding'
 id: 3a036914-af5f-5851-b8e4-50ede9eb7832

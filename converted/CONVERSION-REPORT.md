@@ -5,13 +5,13 @@
 | Metric | Value |
 | --- | --- |
 | Rule files processed | 343 |
-| Active rules parsed | 10029 |
-| Commented-out rules skipped | 9448 |
-| Rules converted | 8751 (87.3%) |
-| Rules refused | 1278 (12.7%) |
+| Active rules parsed | 10027 |
+| Commented-out rules skipped | 9450 |
+| Rules converted | 8750 (87.3%) |
+| Rules refused | 1277 (12.7%) |
 | Lines that failed to parse | 0 |
 | Synthetic rules added | 11 |
-| Sigma documents emitted | 9567 |
+| Sigma documents emitted | 9566 |
 | pySigma validation issues | 0 |
 | Output profile | `rsigma-syslog` |
 | Case policy | `faithful` |
@@ -27,10 +27,10 @@ logsource catalog. It answers which kinds of device caused trouble.
 | AWS | 534 | 101 | 84.1% | 534 |
 | Applications and web | 187 | 68 | 73.3% | 178 |
 | Azure and Microsoft 365 | 1353 | 401 | 77.1% | 558 |
-| Endpoint and EDR | 985 | 57 | 94.5% | 978 |
+| Endpoint and EDR | 984 | 57 | 94.5% | 977 |
 | Google Cloud | 68 | 8 | 89.5% | 62 |
 | Infrastructure | 189 | 25 | 88.3% | 189 |
-| Network and firewalls | 1135 | 331 | 77.4% | 1058 |
+| Network and firewalls | 1135 | 330 | 77.5% | 1058 |
 | Network detection | 241 | 20 | 92.3% | 241 |
 | SaaS and identity | 311 | 33 | 90.4% | 154 |
 | State correlations | 11 | 0 | 100.0% | 0 |
@@ -43,8 +43,8 @@ logsource catalog. It answers which kinds of device caused trouble.
 | Code | Rules | Share | Meaning |
 | --- | ---: | ---: | --- |
 | `E_RAW_TEXT_ON_JSON_EVENT` | 498 | 39.0% | The rule searches the raw message body while also using JSON operators. When the syslog body is a JSON document, RSigma exposes the parsed object and no raw field at all, so the text search could never match. Convert with --profile vector-enriched, whose pipeline keeps the original body in sagan_raw for the text search to run against; or add a json_map binding message to the key that carries the text. |
-| `E_EXTERNAL_ENRICHMENT` | 385 | 30.1% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
-| `E_GROUPBY_UNRESOLVED` | 315 | 24.6% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
+| `E_EXTERNAL_ENRICHMENT` | 384 | 30.1% | The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed. |
+| `E_GROUPBY_UNRESOLVED` | 315 | 24.7% | The group-by key required by after does not exist as a field in any event: Sagan derives it by regular expression from the raw text or through liblognorm. It has to be produced upstream, in the ingestion pipeline. |
 | `E_PCRE_UNSUPPORTED` | 39 | 3.1% | The regular expression uses a PCRE construct the Rust engine cannot express and the converter cannot safely rewrite (recursion, look-around, back-references, control verbs). Recoverable constructs (numbered subroutines, literal braces, the whole-string negation idiom, inert flags) are rewritten instead of refused. |
 | `E_TIME_WINDOW` | 30 | 2.3% | The rule only fires on given weekdays or hour ranges (alert_time). Sigma has no recurring-time operator, so this is refused unless --profile vector-enriched is used, whose bundled time transform supplies the weekday and hour-of-day fields the window matches on. |
 | `E_STATE_ABSENCE` | 7 | 0.5% | The rule requires that an earlier event did NOT happen (xbits or flexbits isnotset). Sigma cannot express a negative correlation. |
@@ -58,7 +58,7 @@ reproduced. They are worth reviewing before the ruleset goes live.
 
 | Code | Rules | Meaning | Example SIDs |
 | --- | ---: | --- | --- |
-| `D_RAW_TEXT_MATCH` | 5838 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
+| `D_RAW_TEXT_MATCH` | 5837 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
 | `D_LOGSOURCE_FALLBACK` | 1884 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
 | `D_EVENT_ID_HEURISTIC` | 1872 | Without a json_map for event_id, Sagan looks for ' <id>: ', with the surrounding spaces, in the first nine characters of the message, so an ID at the very start never matches. The converted rule assumes a proper EventID field instead, which fires on events the heuristic would have missed. Measured against a locally built engine. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
 | `D_THRESHOLD_SUPPRESS` | 1165 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
@@ -536,12 +536,12 @@ The rule searches the raw message body while also using JSON operators. When the
 
 </details>
 
-### `E_EXTERNAL_ENRICHMENT` (385 rules)
+### `E_EXTERNAL_ENRICHMENT` (384 rules)
 
 The rule queries an external source. Bluedot threat intelligence is out of scope. GeoIP country_code, blacklist denylists and zeek-intel feeds do convert under --profile vector-enriched, whose bundled transforms supply the country and threat-intel fields from a database; they are refused here only when that profile is not in use or the tracked address is not parsed.
 
 <details>
-<summary>Show the 385 refused rules</summary>
+<summary>Show the 384 refused rules</summary>
 
 | SID | Source file | Family | Title | Keywords | Detail |
 | --- | --- | --- | --- | --- | --- |
@@ -626,7 +626,6 @@ The rule queries an external source. Bluedot threat intelligence is out of scope
 | `5005801` | `cisco-bluedot.rules` | Network and firewalls | [CISCO-BLUEDOT] Suspicious INBOUND TCP connection from a know Honeypot attacker | `bluedot` | bluedot substitution needs the vector-enriched profile, which supplies the per-category address flags |
 | `5005803` | `cisco-bluedot.rules` | Network and firewalls | [CISCO-BLUEDOT] Suspicious INBOUND UDP connection from a Malicious IP | `bluedot` | bluedot substitution needs the vector-enriched profile, which supplies the per-category address flags |
 | `5005804` | `cisco-bluedot.rules` | Network and firewalls | [CISCO-BLUEDOT] Suspicious INBOUND UDP connection from a Proxy IP | `bluedot` | bluedot substitution needs the vector-enriched profile, which supplies the per-category address flags |
-| `5005805` | `cisco-bluedot.rules` | Network and firewalls | [CISCO-BLUEDOT] Suspicious INBOUND UDP connection from a know Honeypot attacker | `bluedot` | bluedot substitution needs the vector-enriched profile, which supplies the per-category address flags |
 | `5005807` | `cisco-bluedot.rules` | Network and firewalls | [CISCO-BLUEDOT] Suspicious INBOUND ICMP connection from a Malicious IP | `bluedot` | bluedot substitution needs the vector-enriched profile, which supplies the per-category address flags |
 | `5005808` | `cisco-bluedot.rules` | Network and firewalls | [CISCO-BLUEDOT] Suspicious INBOUND ICMP connection from a Proxy IP | `bluedot` | bluedot substitution needs the vector-enriched profile, which supplies the per-category address flags |
 | `5005809` | `cisco-bluedot.rules` | Network and firewalls | [CISCO-BLUEDOT] Suspicious INBOUND ICMP connection from a know Honeypot attacker | `bluedot` | bluedot substitution needs the vector-enriched profile, which supplies the per-category address flags |

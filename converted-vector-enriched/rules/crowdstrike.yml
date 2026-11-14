@@ -188,28 +188,6 @@ custom_attributes:
   sagan.rev: '2'
   sagan.source_file: crowdstrike.rules
 ---
-title: '[CROWDSTRIKE] CrowdStrike Remote Response Session Start Event Reported'
-id: 01cae6b3-063b-57b2-b2a5-b17a2595867b
-status: experimental
-description: Converted from Sagan rule SID 5004785 (rev 3), file crowdstrike.rules.
-author: sagan2sigma
-logsource:
-  product: crowdstrike
-detection:
-  selection_1:
-    sagan_raw|contains: RemoteResponseSessionStartEvent
-  condition: selection_1
-falsepositives:
-  - 'Unassessed: automatically converted, not yet tuned'
-level: medium
-tags:
-  - attack.t1078
-  - sagan.classtype.suspicious-traffic
-custom_attributes:
-  sagan.sid: '5004785'
-  sagan.rev: '3'
-  sagan.source_file: crowdstrike.rules
----
 title: '[CROWDSTRIKE] CrowdStrike High Severity Event Reported'
 id: b9b83ca7-ae44-5a46-8d6e-acb058ff919d
 status: experimental

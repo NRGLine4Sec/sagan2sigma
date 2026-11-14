@@ -1645,10 +1645,10 @@ custom_attributes:
   sagan.rev: '3'
   sagan.source_file: web-attack.rules
 ---
-title: '[WEB-ATTACKS] Attempt to Access a Webshell via WordPress'
+title: '[EXPERIMENTAL][WEB-ATTACKS] Possible Webshell - PHP Execution in WordPress Uploads Directory'
 id: c2d3557b-2879-55ec-89e7-35b57cb75636
 status: experimental
-description: Converted from Sagan rule SID 5002739 (rev 3), file web-attack.rules.
+description: Converted from Sagan rule SID 5002739 (rev 4), file web-attack.rules.
 references:
   - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
 author: sagan2sigma
@@ -1656,8 +1656,10 @@ logsource:
   product: syslog
 detection:
   selection_1:
-    sagan_raw|contains|cased: /wp-login.php
-  condition: selection_1
+    sagan_raw|contains: wp-content/uploads
+  selection_2:
+    sagan_raw|re|i: \/wp-content\/uploads\/[\w\-\.\/%]*\.php
+  condition: selection_1 and selection_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: high
@@ -1665,7 +1667,7 @@ tags:
   - sagan.classtype.web-application-attack
 custom_attributes:
   sagan.sid: '5002739'
-  sagan.rev: '3'
+  sagan.rev: '4'
   sagan.source_file: web-attack.rules
 ---
 title: '[WEB-ATTACKS] Attempt to Access Default Cacti Login Page'

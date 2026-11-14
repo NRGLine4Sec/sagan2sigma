@@ -1795,10 +1795,10 @@ custom_attributes:
   sagan.source_file: azureEventHub_windows-powershell.rules
   sagan.metadata: created_on=2022_11_22,old_sid=5007139
 ---
-title: '[WINDOWS-POWERSHELL] Path to ProgramData PS1 Script'
+title: '[EXPERIMENTAL][WINDOWS-POWERSHELL] Path to ProgramData PS1 Script'
 id: 061aac2d-787b-5632-a71c-e60e66e085c7
 status: experimental
-description: Converted from Sagan rule SID 5009353 (rev 1), file azureEventHub_windows-powershell.rules.
+description: Converted from Sagan rule SID 5009353 (rev 3), file azureEventHub_windows-powershell.rules.
 references:
   - https://bazaar.abuse.ch/download/aa87d136aacebb0496371be929657834d541209ef53695e45dc0acc8b65663a7/
 author: sagan2sigma
@@ -1817,9 +1817,18 @@ detection:
     RenderedDescription|contains: -Path
   selection_4:
     RenderedDescription|contains: c:\\\\ProgramData
-  selection_5:
-    RenderedDescription|re|i: C:\\ProgramDatai\(?:[\-\w]+\)+\w+.ps1
-  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_5
+  filter_5:
+    RenderedDescription|contains|cased: \\AzureWindowsBaseline\\
+  filter_6:
+    RenderedDescription|contains|cased: \\Quest\\KACE\\
+  filter_7:
+    RenderedDescription|contains|cased: \\Qualys\\QualysTemp\\
+  filter_8:
+    RenderedDescription|contains|cased: \\Amazon\\SSM\\
+  selection_9:
+    RenderedDescription|re|i: C:\\ProgramData\\(?:[\-\w]+\\)+\w+.ps1
+  condition: selection_1 and selection_2 and selection_3 and selection_4 and selection_9 and not (filter_5
+    or filter_6 or filter_7 or filter_8)
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: high
@@ -1827,7 +1836,7 @@ tags:
   - sagan.classtype.suspicious-command
 custom_attributes:
   sagan.sid: '5009353'
-  sagan.rev: '1'
+  sagan.rev: '3'
   sagan.source_file: azureEventHub_windows-powershell.rules
   sagan.metadata: created_on=2022_11_22,old_sid=5007140
 ---

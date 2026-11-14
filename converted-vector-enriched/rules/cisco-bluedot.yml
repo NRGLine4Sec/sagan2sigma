@@ -663,41 +663,6 @@ custom_attributes:
   sagan.source_file: cisco-bluedot.rules
   rsigma.suppress: 2h
 ---
-title: '[CISCO-BLUEDOT] Suspicious INBOUND UDP connection from a know Honeypot attacker'
-id: cb5b1a71-848a-5aab-9b9c-177b8f8f818a
-status: experimental
-description: Converted from Sagan rule SID 5005805 (rev 1), file cisco-bluedot.rules.
-author: sagan2sigma
-logsource:
-  product: cisco
-detection:
-  selection_1:
-    sagan_raw|contains|cased: -6-302015
-  selection_2:
-    sagan_raw|contains|cased: Built inbound
-  bluedot_hit_1:
-    sagan_bluedot_honeypot_1: true
-  bluedot_hit_2:
-    sagan_bluedot_honeypot_2: true
-  bluedot_hit_3:
-    sagan_bluedot_honeypot_3: true
-  bluedot_hit_4:
-    sagan_bluedot_honeypot_4: true
-  bluedot_hit_5:
-    sagan_bluedot_honeypot_5: true
-  condition: selection_1 and selection_2 and (bluedot_hit_1 or bluedot_hit_2 or bluedot_hit_3 or bluedot_hit_4
-    or bluedot_hit_5)
-falsepositives:
-  - 'Unassessed: automatically converted, not yet tuned'
-level: medium
-tags:
-  - sagan.classtype.suspicious-traffic
-custom_attributes:
-  sagan.sid: '5005805'
-  sagan.rev: '1'
-  sagan.source_file: cisco-bluedot.rules
-  rsigma.suppress: 2h
----
 title: '[CISCO-BLUEDOT] Suspicious INBOUND ICMP connection from a Malicious IP'
 id: 485624f8-49cf-5b0a-8b52-890df1038c49
 status: experimental

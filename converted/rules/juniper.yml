@@ -367,14 +367,16 @@ custom_attributes:
 title: '[JUNIPER] IDP Attack log generated for attack'
 id: a8d68394-4231-58fd-9770-77d132bce370
 status: experimental
-description: Converted from Sagan rule SID 5001132 (rev 2), file juniper.rules.
+description: Converted from Sagan rule SID 5001132 (rev 3), file juniper.rules.
 author: sagan2sigma
 logsource:
   product: juniper
 detection:
   selection_1:
     _raw|contains|cased: IDP_ATTACK_LOG_EVENT
-  condition: selection_1
+  filter_2:
+    _raw|contains|cased: action="DROP
+  condition: selection_1 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: medium
@@ -382,7 +384,7 @@ tags:
   - sagan.classtype.suspicious-traffic
 custom_attributes:
   sagan.sid: '5001132'
-  sagan.rev: '2'
+  sagan.rev: '3'
   sagan.source_file: juniper.rules
 ---
 title: '[JUNIPER] IDP Attack log generated for attack in a logical system'
