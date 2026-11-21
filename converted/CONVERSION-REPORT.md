@@ -5,13 +5,13 @@
 | Metric | Value |
 | --- | --- |
 | Rule files processed | 343 |
-| Active rules parsed | 10027 |
+| Active rules parsed | 10030 |
 | Commented-out rules skipped | 9450 |
-| Rules converted | 8750 (87.3%) |
+| Rules converted | 8753 (87.3%) |
 | Rules refused | 1277 (12.7%) |
 | Lines that failed to parse | 0 |
 | Synthetic rules added | 11 |
-| Sigma documents emitted | 9566 |
+| Sigma documents emitted | 9569 |
 | pySigma validation issues | 0 |
 | Output profile | `rsigma-syslog` |
 | Case policy | `faithful` |
@@ -27,7 +27,7 @@ logsource catalog. It answers which kinds of device caused trouble.
 | AWS | 534 | 101 | 84.1% | 534 |
 | Applications and web | 187 | 68 | 73.3% | 178 |
 | Azure and Microsoft 365 | 1353 | 401 | 77.1% | 558 |
-| Endpoint and EDR | 984 | 57 | 94.5% | 977 |
+| Endpoint and EDR | 987 | 57 | 94.5% | 980 |
 | Google Cloud | 68 | 8 | 89.5% | 62 |
 | Infrastructure | 189 | 25 | 88.3% | 189 |
 | Network and firewalls | 1135 | 330 | 77.5% | 1058 |
@@ -58,7 +58,7 @@ reproduced. They are worth reviewing before the ruleset goes live.
 
 | Code | Rules | Meaning | Example SIDs |
 | --- | ---: | --- | --- |
-| `D_RAW_TEXT_MATCH` | 5837 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
+| `D_RAW_TEXT_MATCH` | 5840 | Detection runs against the raw message body. The rule works under RSigma but is not portable to other Sigma backends. | `5001126`, `5001127`, `5000156`, `5000157`, `5000158` |
 | `D_LOGSOURCE_FALLBACK` | 1884 | No catalog entry covers this source file, so a generic logsource was applied. | `5002081`, `5002082`, `5002083`, `5002084`, `5002085` |
 | `D_EVENT_ID_HEURISTIC` | 1872 | Without a json_map for event_id, Sagan looks for ' <id>: ', with the surrounding spaces, in the first nine characters of the message, so an ID at the very start never matches. The converted rule assumes a proper EventID field instead, which fires on events the heuristic would have missed. Measured against a locally built engine. | `5007210`, `5007211`, `5100128`, `5100143`, `5100164` |
 | `D_THRESHOLD_SUPPRESS` | 1165 | threshold type suppress caps alert volume, not detection. Carried over as custom_attributes['rsigma.suppress']. | `5000156`, `5000157`, `5000161`, `5000362`, `5000364` |
