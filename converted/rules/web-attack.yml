@@ -1744,7 +1744,7 @@ custom_attributes:
 title: '[WEB-ATTACKS] Possible SQL Injection'
 id: 86fbf825-40fb-5bb8-b5ac-df6a4f092d86
 status: experimental
-description: Converted from Sagan rule SID 5002743 (rev 3), file web-attack.rules.
+description: Converted from Sagan rule SID 5002743 (rev 5), file web-attack.rules.
 references:
   - https://www.doomedraven.com/2013/05/cheat-sheet-web-application-exploitation.html
 author: sagan2sigma
@@ -1753,7 +1753,9 @@ logsource:
 detection:
   selection_1:
     _raw|contains|cased: ;--
-  condition: selection_1
+  filter_2:
+    _raw|contains|cased: type=EXECVE
+  condition: selection_1 and not filter_2
 falsepositives:
   - 'Unassessed: automatically converted, not yet tuned'
 level: high
@@ -1761,8 +1763,9 @@ tags:
   - sagan.classtype.web-application-attack
 custom_attributes:
   sagan.sid: '5002743'
-  sagan.rev: '3'
+  sagan.rev: '5'
   sagan.source_file: web-attack.rules
+  rsigma.suppress: 1h
 ---
 title: '[WEB-ATTACKS] Attempt to Access Default Drupal DB Config File'
 id: d913ea98-a818-5051-9188-cd75303bab64
